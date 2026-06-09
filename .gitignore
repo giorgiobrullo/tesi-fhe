@@ -1,0 +1,20 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Concrete debug dump (scritto quando una compilazione fallisce)
+.artifacts/
+
+# Materiale messo da parte (benchmark di scaling) — serve dopo, non condividere
+wip/
+
+# Output generati dagli esperimenti (si rigenerano da soli: figure, CSV, specifiche macchina)
+data/
+figures/

@@ -1,0 +1,29 @@
+[project]
+name = "tesi-fhe"
+version = "0.1.0"
+description = "Riconoscimento facciale che preserva la privacy con crittografia omomorfica (Zama Concrete)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "concrete-python>=2.11.0",
+    "matplotlib>=3.10.9",
+    "numpy>=1.26.4",
+    "scikit-learn>=1.9.0",
+]
+
+[tool.basedpyright]
+# Progetto scientifico (numpy/sklearn/Concrete non hanno stub di tipo completi):
+# usiamo il type-checking "standard" come il pyright normale — hover e errori
+# reali sì, ma senza le pignolerie della modalità strict (es. "dict/ndarray
+# vogliono i parametri di tipo") che qui sarebbero solo rumore.
+typeCheckingMode = "standard"
+reportMissingTypeStubs = false
+
+# Concrete tipizza encrypt()/run()/decrypt()/keys in modo troppo largo (Optional,
+# tuple[Value | None, ...]), ma a runtime per i nostri circuiti restituiscono sempre
+# un singolo Value / array. Questi quattro check darebbero solo falsi positivi su
+# .serialize()/.generate()/np.argmin (codice verificato funzionante a runtime).
+reportOptionalMemberAccess = false
+reportAttributeAccessIssue = false
+reportCallIssue = false
+reportArgumentType = false
