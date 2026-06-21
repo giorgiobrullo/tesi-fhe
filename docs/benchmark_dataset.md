@@ -9,6 +9,45 @@ scanner per entrare), identificazione **1:N open-set** con **rifiuto degli scono
 > Basata su due ricerche approfondite multi-fonte con verifica adversariale dei
 > claim. Citazioni in fondo.
 
+## Verdetto: "dal 2018 niente di più nuovo?" — confermato (e perché)
+
+Ricerca dedicata (24/25 claim verificati). **Dal 2018 nessun benchmark pubblico di
+volti REALI 1:N batte VGGFace2 per attualità + scaricabilità.** Non è pigrizia: è la
+forma del campo. Due cause documentate:
+1. **Il progresso è andato su training e modelli, non sui benchmark.** Dataset enormi
+   (WebFace260M, Glint360K) sono per *addestrare*; i benchmark di *valutazione* restano
+   i vecchi perché sono i punti di confronto condivisi.
+2. **Ondata di ritiri per consenso/privacy** (MS-Celeb-1M 2019, MegaFace, host VGGFace2,
+   DukeMTMC) → il panorama pubblico si è **ristretto**, non ampliato.
+
+**La vera novità post-2018 sono i dataset SINTETICI** (volti generati, niente persone
+reali → niente consenso) — e sono **tematicamente perfetti per una tesi sulla privacy**.
+Ma: sono pensati per il **training**, e le competizioni che li usano (FRCSyn, SDFR) sono
+di **verifica 1:1**, non 1:N. Nessun benchmark 1:N "pronto": lo split galleria/probe va
+**costruito a mano** (da VGGFace2 o da un sintetico).
+
+→ **Decisione: VGGFace2 (reale 1:N) + LFW (sanity) + un sintetico moderno.** I sintetici
+non competono con VGGFace2, lo **affiancano** (reale-ma-vecchio vs sintetico-pulito-moderno);
+la letteratura mostra che un sintetico illimitato può perfino superare un reale di pari
+scala, e la fusione migliora accuratezza *e* fairness.
+
+### I sintetici recuperabili oggi
+
+| dataset | metodo / anno | dimensione | per noi | accesso / licenza |
+|---|---|---|---|---|
+| **DigiFace-1M** ⭐(per 1:N) | 3D-render, WACV 2023 | 1,22M img, **72 img/id** | **ideale per split galleria/probe** (tante img/id, struttura per-identità) | 8 ZIP Azure diretti, **no-gate** (verificati live) · R-UDA non-commerciale |
+| **DCFace** ⭐(per confronto) | diffusion, CVPR 2023 | 0,5M e 1,2M img, ≤20K id | il **più usato** (standard FRCSyn) → confrontabile con la letteratura | Google Drive, formato MXNet `.rec` · `mk-minchul/dcface` · non-commerciale |
+| **Vec2Face / HSFace** | 2024-25 (ICLR'25) | 10K-300K id | il più nuovo; batte reale di pari scala (CALFW 93,57 vs 93,35) | HF `BooBooWu/Vec2Face` · **MIT** (licenza più pulita) |
+| IDiff-Face | diffusion, ICCV 2023 | 10K id × 50 | training, non 1:N | `fdbtrs/IDiff-Face` · CC BY-NC-SA |
+
+**Quale adottare:** **DigiFace-1M** è meccanicamente il migliore per il *nostro* 1:N
+(72 img/identità → galleria/probe banale, download diretto senza gate). **DCFace** se
+serve confrontabilità con la letteratura. **Vec2Face** se serve licenza MIT/pulita.
+
+> Parte B (nuovi reali: BRIAR, IJB-S, TinyFace, WebFace260M-FRUITS, fairness RFW/BFW/
+> FairFace) **non verificata** in questa ricerca; BRIAR/IJB-S risultano comunque gated.
+> WebFace260M ha un protocollo di valutazione (FRUITS) ma è un track con registrazione.
+
 ## Il pivot: niente sorveglianza, sì buona risoluzione
 
 Avevamo prima guardato i dataset di **sorveglianza** (QMUL-SurvFace, SCface,
@@ -60,16 +99,18 @@ non-gated) contiene già `lfw/cfp_fp/cplfw/calfw/agedb_30 .bin` allineati 112×1
 **Scala di difficoltà** a buona risoluzione, tutta recuperabile:
 
 1. **LFW** — baseline/sanity (ce l'abbiamo).
-2. **CPLFW + CFP-FP** — *set duro principale per la misura rapida*: pronti all'uso
-   (bundle HF, già allineati), quantificano il divario posa/età. Formato 1:1.
-3. **VGGFace2** — *il set 1:N vero*: folder-per-identità, tante img/persona → costruiamo
-   lo split **galleria/probe open-set** (con impostori) che modella il varco. È anche
-   **già allineato 112×112 = pronto per ArcFace/MobileFaceNet** (gradino 08): due
-   piccioni con una fava.
-4. **IJB-C** — solo se otteniamo l'accesso: protocollo open-set 1:N nativo (riferimento).
+2. **CPLFW + CFP-FP** — misura-posa rapida: pronti all'uso (bundle HF, già allineati),
+   quantificano il divario posa/età. Formato 1:1.
+3. **VGGFace2** — *il set 1:N reale*: folder-per-identità, tante img/persona → split
+   **galleria/probe open-set** che modella il varco. **Già allineato 112×112 = pronto
+   anche per la CNN** (gradino 08): due piccioni con una fava.
+4. **DigiFace-1M** (sintetico) — *complemento moderno license-clean a tema privacy*:
+   72 img/identità → 1:N banale, download diretto. Coppia perfetta col tema FHE.
+5. **IJB-C** — solo se otteniamo l'accesso: protocollo open-set 1:N nativo (riferimento).
 
-**Set duro principale accanto a LFW: VGGFace2** (è l'unico che dà un 1:N onesto a buona
-risoluzione e serve anche al gradino CNN). CPLFW/CFP come misura-posa rapida.
+**Set duro principale accanto a LFW: VGGFace2** (l'unico 1:N reale a buona risoluzione,
+serve anche al gradino CNN), affiancato da **DigiFace-1M** come sintetico 1:N pulito.
+CPLFW/CFP come misura-posa rapida.
 
 ## Passi pratici (split 1:N da VGGFace2)
 

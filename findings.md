@@ -194,7 +194,13 @@ richiederebbero super-risoluzione). Scelta: **VGGFace2** come set duro principal
 nativo, folder-per-identità, già allineato 112×112 → pronto anche per la CNN del
 gradino 08), con **CPLFW + CFP-FP** come misura-posa rapida (pronti su HuggingFace,
 `gaunernst/face-recognition-eval`). Metrica: **TPIR@FPIR**, non Rank-k. Divario
-LFW→CPLFW ≈ 7 punti (stesso modello). Dettagli, formati 1:1 vs 1:N, rotte di download e
+LFW→CPLFW ≈ 7 punti (stesso modello). **Verdetto verificato** (ricerca dedicata): dal
+2018 nessun benchmark pubblico di volti reali 1:N batte VGGFace2 per attualità +
+scaricabilità — il progresso è andato su training/modelli e molti dataset sono stati
+ritirati per consenso. La novità post-2018 sono i **sintetici** (DCFace, DigiFace-1M,
+Vec2Face: volti generati, license-clean, a tema privacy), ma per il training/verifica
+1:1, non benchmark 1:N pronti. Scelta finale: **VGGFace2 + LFW + DigiFace-1M**
+(sintetico 1:N maneggevole, 72 img/id). Dettagli, formati 1:1 vs 1:N, rotte di download e
 citazioni in [`docs/benchmark_dataset.md`](docs/benchmark_dataset.md).
 
 **Modello di embedding per il gradino CNN.** Intuizione chiave: l'embedding gira **in
