@@ -185,6 +185,17 @@ interattiva su volti reali a ~73%** di accuratezza. La χ² (75%, il massimo in 
 è più accurata ma richiede la divisione cifrata: trade-off potere/costo, da pagare
 solo se serve quell'1-2% in più.
 
+**Verso un benchmark più duro.** LFW è saturo/quasi-frontale/sbilanciato → solo
+sanity-check. Per lo scenario reale (controllo accessi a un varco, identificazione
+**1:N open-set** con rifiuto degli sconosciuti = la galleria+soglia del gradino 06)
+abbiamo scelto una **scala di difficoltà**: LFW (facile) → **SCface** (mug-shot puliti
+vs probe di sorveglianza a 3 distanze, modella il varco alla lettera) → **QMUL-SurvFace**
+(bassa risoluzione nativa 24×20 px, libero, non saturato, estremo). Metrica corretta:
+**TPIR@FPIR**, non Rank-k. Dettagli, tradeoff, accesso e citazioni in
+[`docs/benchmark_dataset.md`](docs/benchmark_dataset.md). Nota FHE: i crop minuscoli
+richiedono super-risoluzione/cross-resolution → più bit per valore → leva di costo
+esponenziale (F1–F3).
+
 **Il bivio FHE** (è il trade-off centrale della tesi, potere vs costo):
 - **LBP + χ²** è il più accurato, ma la χ² `Σ(h−g)²/(h+g)` ha una **divisione** per
   `h+g` che dipende dal probe cifrato → divisione per quantità cifrata, ostile
