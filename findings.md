@@ -97,3 +97,42 @@ Stesso prototipo sul dataset LFW (volti presi "in natura", molto più vari).
 L'accuratezza **crolla** rispetto a Olivetti: gli eigenfaces non reggono la
 variabilità reale (posa, luce, sfondo). La PCA fa meglio del caso, ma è lontana
 dall'usabile.
+
+## F6 — La decisione: l'argmin va cifrato (privacy), ma su PCA non è praticabile
+**Decisione (dal meeting).** Nel gradino 05 l'argmin lo fa il client: il server
+restituisce tutti gli N punteggi, il client li decifra e prende il minimo. Ma così
+il client impara la **distanza con ogni faccia della galleria** (la similarità con
+tutti gli iscritti), non solo col match — informazione che non dovrebbe avere.
+Quindi l'argmin (più, in prospettiva, la soglia open-set per il rifiuto degli
+impostori) va spostato **sul server, sotto FHE**: il client apprende solo l'esito.
+
+**Costo: l'argmin cifrato non è gratis e non è nativo.** `np.argmin` non è
+supportato da Concrete → va fatto a **riduzione**, con confronti cifrati a coppie
+(`<`, select dell'indice/valore): ogni passo è un PBS. Il costo è dominato dalla
+**larghezza in bit dei punteggi** e cresce ~×2 per bit (di nuovo la leva di F1–F3,
+ora sull'argmin). Misurato (riduzione su N=10 valori):
+
+| larghezza punteggi | 5 bit | 6 bit | 7 bit | 8 bit | 9 bit | 10 bit |
+|---|---|---|---|---|---|---|
+| run argmin | 4,2 s | 5,8 s | 12,7 s | 34 s | 82 s | 172 s |
+
+**Su PCA non scala.** I punteggi del prototipo PCA reale (Olivetti, N=320, 50
+componenti, 6 bit/componente) sono **~14 bit** di larghezza (range misurato ≈ 9000).
+Estrapolando la curva (×2/bit da 172 s a 10 bit) si arriva all'ordine delle **decine
+di minuti per singola query** — e N=320 (vs N=10 della curva) lo moltiplica ancora.
+In pratica, già a galleria minuscola la compilazione di Concrete 2.11 sui punteggi
+*calcolati* (larghi) si rompe in due modi diversi: assert interno sul bit-width
+(`np.minimum`) oppure esplosione di memoria (~34 GB a N=6 con la variante a select).
+→ **Intrattabile.** Per contro, il solo calcolo dei punteggi (gradino 05, argmin sul
+client) è **~31 ms/query** (29 ms match + 2 ms decifra/argmin).
+
+**Conclusione.** La decisione di cifrare l'argmin è giusta per la privacy, ma con la
+PCA a piena precisione non è praticabile senza ridurre drasticamente la larghezza
+dei punteggi (meno bit/componenti, o troncamento prima della riduzione — lossy). Non
+investiamo oltre: la PCA è comunque debole sui dati reali (F5). La caratterizzazione
+del costo dell'argmin cifrato va **rifatta sulla tecnica vera** (CNN, gradino 07),
+sui soli parametri che danno accuratezza accettabile (metodo: prima i parametri in
+chiaro, poi il costo FHE su quel range). La soglia open-set sotto FHE è rimandata
+con lo stesso motivo: è un confronto in più, marginale rispetto agli N−1 dell'argmin.
+Tenuto qui come dato di fattibilità: *abbiamo provato a cifrare l'argmin su PCA, ed
+ecco i numeri.*

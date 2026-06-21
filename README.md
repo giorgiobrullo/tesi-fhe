@@ -62,8 +62,8 @@ si riporta **(accuratezza in chiaro, costo FHE)**.
 |---|---|---|---|
 | 00–04 | fondamenta FHE | hello world → PBS → distanza → galleria in chiaro → client/server | — |
 | **05** | **PCA / eigenfaces** ★ *sei qui* | proiezione lineare + distanza euclidea | ottima (niente PBS nel matching) |
-| 06 | argmin + soglia sotto FHE | il client apprende solo l'esito, non le N distanze | reintroduce i PBS (nuovo centro di costo) |
-| 07 | **CNN leggera** (MobileFaceNet) ← prossimo salto | embedding CNN pre-addestrato, frozen | attivazioni non lineari → PBS |
+| 06 | argmin sotto FHE | decisione (privacy): il client apprende solo l'esito, non le N distanze | reintroduce i PBS; su PCA intrattabile (F6) → da rivalutare sulla CNN |
+| **07** | **CNN leggera** (MobileFaceNet) ★ *prossimo* | embedding CNN pre-addestrato, frozen | attivazioni non lineari → PBS |
 | (salt.) | LDA · LBP (χ²) · HOG | gradini della scaletta non implementati | vedi `findings.md` per il perché |
 | 08+ | CNN profonda (ResNet/InsightFace) | … | costose |
 | — | transformer / multimodali | "magari un'altra volta" | fuori scope |

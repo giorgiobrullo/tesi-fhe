@@ -1,72 +1,46 @@
-# Gradino 06 — argmin + soglia sotto FHE
+# Gradino 06 — argmin sotto FHE: la decisione e il suo costo
 
-> Stato: **piano** (non ancora implementato). Questo file fissa obiettivo,
-> benchmark e l'unica decisione di design aperta, prima di scrivere il circuito.
+> Stato: **chiuso su PCA** (esito negativo, documentato). Da rivalutare sulla
+> tecnica vera (CNN, gradino 07). Vedi `findings.md` F6.
 
-## Obiettivo
+## La decisione
 
-Spostare **argmin + soglia dentro il circuito**, sul server, sotto FHE. Oggi
-(gradino 05) il server restituisce tutti gli N punteggi cifrati e l'**argmin lo fa
-il client** dopo averli decifrati — quindi il client vede le distanze con *tutta* la
-galleria. Qui invece il server riduce gli N punteggi al solo esito, e il client
-**apprende solo il risultato**, non le N distanze.
+Nel gradino 05 l'argmin lo fa il **client**: il server gli manda gli N punteggi, lui
+li decifra e prende il minimo. Ma così il client impara la distanza con *tutta* la
+galleria, non solo col match — informazione che non dovrebbe avere. Decisione (dal
+meeting): spostare l'argmin (e in prospettiva la soglia open-set) **sul server, sotto
+FHE**, così il client apprende solo *chi* è il match.
 
-Due cose nuove, entrambe confronti su cifrato → **reintroducono il PBS**:
-1. **argmin cifrato** sugli N punteggi (trovare la faccia più vicina);
-2. **soglia (open-set):** match solo se la distanza minima è sotto una soglia,
-   altrimenti "nessun match" (rifiuto degli impostori) — un confronto cifrato in più.
+Risposta scelta: **(A)** il server restituisce l'**indice/identità** del match (è un
+riconoscitore, non una verifica sì/no).
 
-È **il nuovo centro di costo e il numero chiave della tesi**: il salto dal regime
-"niente PBS" (gradino 05) al regime "PBS nel matching".
+## Cosa abbiamo trovato
 
-## Il benchmark (il motivo del gradino)
+`np.argmin` non è nativo in Concrete → riduzione a confronti cifrati a coppie (ogni
+passo un PBS), implementata in `core/matching.py::circuito_distanza_argmin`. Funziona
+ed è corretta su input piccoli, **ma non scala**: il costo raddoppia ~ad ogni bit di
+larghezza dei punteggi.
 
-Domanda guida: **spostando l'argmin sul server, quanto si perde in tempo?**
+| larghezza punteggi (N=10) | 5 bit | 6 bit | 7 bit | 8 bit | 9 bit | 10 bit |
+|---|---|---|---|---|---|---|
+| run argmin | 4,2 s | 5,8 s | 12,7 s | 34 s | 82 s | 172 s |
 
-Confronto **prima/dopo** sullo stesso input:
+I punteggi PCA reali (Olivetti, N=320, 50 comp, 6 bit) sono **~14 bit** → estrapolando
+si arriva a decine di minuti/query, e già a galleria minuscola la compilazione di
+Concrete 2.11 si rompe (assert sul bit-width / esplosione di memoria). **Intrattabile**
+— contro i **~31 ms/query** del gradino 05.
 
-| | argmin dove | PBS nel matching? | cosa apprende il client |
-|---|---|---|---|
-| **prima** (gradino 05) | client | no | tutte le N distanze |
-| **dopo** (questo gradino) | server, sotto FHE | sì | solo l'esito |
+## Conclusione
 
-Baseline "prima" già misurata (M4 Max, Olivetti, N=320, D=50, 6 bit):
-`match server ≈ 29 ms/probe` + `decifra+argmin client ≈ 2 ms/probe`. Il "dopo" va
-misurato e confrontato → **delta = costo in tempo della privacy**.
+La decisione (cifrare l'argmin) è giusta per la privacy, ma su **PCA a piena
+precisione non è praticabile**. Non investiamo oltre (PCA è debole sui dati reali,
+F5): la caratterizzazione del costo va rifatta sulla **tecnica vera** (CNN), sui soli
+parametri validi, e con eventuale riduzione di precisione dei punteggi. La soglia
+open-set è rimandata per lo stesso motivo (costo marginale rispetto all'argmin).
 
-Poi i due assi di scaling (è qui che entra il **terzo asse del benchmark**, dopo
-dimensione e precisione del gradino 02/03):
-- **N (dimensione della galleria):** l'argmin cifrato costa ~N−1 confronti → atteso
-  lineare in N. Sweep su N crescenti.
-- **bit di precisione:** ogni confronto cifrato è un PBS, la cui tabella cresce
-  ~2^bit → atteso esponenziale nei bit. Sweep sul range accettabile (dal param-search
-  in chiaro, non a caso).
+## File
 
-Output: `costo.py` → `results/bench_argmin.csv` + figura. Logga sempre i parametri
-(N, bit, soglia) per riproducibilità.
-
-## Decisione di design aperta (da confermare prima di implementare)
-
-**Cosa restituisce il server al client?** Cambia il circuito e la storia di privacy:
-- **(A) indice/identità del match, gated dalla soglia** — il client ottiene *chi* è
-  (o "nessun match"). È un sistema di *riconoscimento*. Argmin completo (porta avanti
-  l'indice) + confronto con soglia.
-- **(B) solo il bit "sotto-soglia sì/no"** — il client ottiene solo *se* qualcuno
-  matcha, non chi. Più privato, ma è *verifica*/autenticazione, non riconoscimento.
-
-In entrambi i casi la parte cara (riduzione argmin + confronto soglia) è simile;
-cambia solo cosa si decifra. Proposta: **(A) come primario** (è un riconoscitore) e
-**(B) come variante più privata** da benchmarkare a parte, così il confronto di
-costo tra le due diventa un altro numero della tesi.
-
-## TODO
-
-- [ ] Confermare la decisione di design (A / B / entrambe).
-- [ ] Studiare in Concrete come fare argmin cifrato su N valori (riduzione a torneo:
-      confronti a coppie + select; il confronto è `sign(x−y)` via PBS). Verificare il
-      supporto nativo (`np.argmin`/`minimum`/comparatori su cifrato).
-- [ ] Implementare il circuito in `core/matching.py` come
-      `circuito_distanza_argmin_soglia(galleria_q, soglia)` (fonte unica, riusabile
-      dai gradini superiori).
-- [ ] `costo.py`: benchmark prima/dopo + sweep N + sweep bit → CSV + figura.
-- [ ] Aggiornare `findings.md` (nuovo F6).
+| file | ruolo |
+|---|---|
+| `costo.py` | riproduce il muro: run dell'argmin cifrato vs larghezza in bit |
+| `results/muro_argmin.csv` | la curva misurata (N=10, 5→10 bit) |

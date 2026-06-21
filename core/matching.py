@@ -37,3 +37,55 @@ def circuito_distanza(galleria_q: np.ndarray):
 
     # inputset: probe plausibili (la galleria stessa è un buon campione dell'intervallo)
     return match.compile([b for b in B])
+
+
+def _argmin_riduzione(punteggi, N):
+    """argmin a riduzione su punteggi cifrati: porta avanti (indice, valore minimo).
+
+    `np.argmin` non è supportato da Concrete. Ogni passo confronta il candidato col
+    minimo corrente (confronto cifrato → PBS) e seleziona indice e valore. Ritorna
+    (indice_min, valore_min), entrambi cifrati. È il centro di costo del gradino 06,
+    dominato dalla larghezza in bit dei punteggi.
+    """
+    idx_min = fhe.zeros(())
+    val_min = punteggi[0]
+    for i in range(1, N):
+        piu_piccolo = (punteggi[i] < val_min).astype(np.int64)   # confronto cifrato → PBS
+        idx_min = piu_piccolo * i + (1 - piu_piccolo) * idx_min  # select indice (enc×enc)
+        val_min = np.minimum(val_min, punteggi[i])               # → PBS
+    return idx_min, val_min
+
+
+def circuito_distanza_argmin(galleria_q: np.ndarray):
+    """Gradino 06a: punteggi + argmin sotto FHE (senza soglia).
+
+    Il server riduce gli N punteggi al solo indice del più vicino: il client riceve
+    *chi* è il match, non le N distanze. È il confronto "pulito" prima/dopo rispetto
+    al gradino 05 (lì l'argmin era sul client, in chiaro, senza PBS).
+
+    ATTENZIONE (vedi findings.md F6): tracciabile solo a punteggi *stretti*. La
+    riduzione è corretta su input piccoli, ma il costo raddoppia ~ad ogni bit di
+    larghezza del punteggio, e sui punteggi PCA reali (~14 bit) la compilazione di
+    Concrete 2.11 diventa intrattabile. Questa funzione resta come implementazione di
+    riferimento della decisione (argmin cifrato), da rivalutare sulla tecnica vera.
+    """
+    B = galleria_q
+    b_sq = np.sum(B ** 2, axis=1)
+    N = len(B)
+
+    @fhe.compiler({"a": "encrypted"})
+    def match(a):
+        punteggi = b_sq - 2 * (B @ a)
+        idx_min, _ = _argmin_riduzione(punteggi, N)
+        return idx_min
+
+    return match.compile([b for b in B])
+
+
+# Nota — soglia open-set (rifiuto impostori) sotto FHE: deve confrontare la distanza
+# *vera* del match con una soglia, quindi rimettere ‖a‖² (scartato per il ranking) e
+# fare un confronto cifrato in più. Un primo tentativo (`val_min + ‖a‖² < soglia`)
+# inciampa in un limite interno di Concrete 2.11 (assert sul bit-width nel "trick" di
+# np.minimum quando coesiste col termine ‖a‖²). È un costo marginale rispetto agli
+# N−1 confronti dell'argmin e non cambia le conclusioni del gradino 06, quindi è
+# rimandato alla tecnica vera (CNN) — vedi findings.md F6.
