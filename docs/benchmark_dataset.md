@@ -1,95 +1,111 @@
 # Benchmark per "facce reali" — scelta dei dataset (nota di riferimento)
 
-Perché questa nota: LFW è **saturo** (le CNN moderne fanno >99% in verifica),
-quasi-frontale e demograficamente sbilanciato → va bene come *sanity-check*, non come
-prova dura. Il nostro caso d'uso è il **controllo accessi a un varco**: galleria di
-iscritti autorizzati, **identificazione 1:N open-set** con **rifiuto degli sconosciuti**
-(impostori) — esattamente la galleria + soglia del gradino 06. Servono dataset che
-riflettano acquisizioni reali e varie (sorveglianza, bassa risoluzione, distanza, posa
-e luce non controllate) e che **non siano saturati** dalle CNN.
+Perché: LFW è **saturo** (CNN moderne >99% in verifica), quasi-frontale e
+sbilanciato → solo *sanity-check*. Serve un set più duro per il nostro scenario:
+**controllo accessi a un varco cooperativo** (la persona presenta il volto a uno
+scanner per entrare), identificazione **1:N open-set** con **rifiuto degli sconosciuti**
+(= la galleria + soglia del gradino 06).
 
-> Fonte: ricerca approfondita multi-fonte con verifica adversariale dei claim
-> (23/25 confermati). Citazioni puntuali in fondo.
+> Basata su due ricerche approfondite multi-fonte con verifica adversariale dei
+> claim. Citazioni in fondo.
+
+## Il pivot: niente sorveglianza, sì buona risoluzione
+
+Avevamo prima guardato i dataset di **sorveglianza** (QMUL-SurvFace, SCface,
+TinyFace): scartati. Un varco cooperativo cattura un volto a **risoluzione decente**
+(non un crop CCTV da 24 px), e quei dataset richiederebbero super-risoluzione — una
+pezza, non un benchmark pulito. L'asse di difficoltà giusto è quindi **posa /
+espressione / illuminazione / età / etnia**, a risoluzione buona.
 
 ## La metrica giusta: TPIR@FPIR (non Rank-k)
 
-Per il controllo-accessi open-set la metrica corretta è la **TPIR a un FPIR basso
-fisso** (es. `FPIR = 0,01%`): misura insieme le identificazioni corrette *e* il rifiuto
-degli sconosciuti. Il **Rank-k closed-set (CMC)** assume che il probe sia sempre
-iscritto → non misura il rifiuto degli impostori, quindi è inadatto. (NIST FRVT
-NISTIR 8381, ISO/IEC 19795-1:2021. CMC(r) è il caso speciale di TPIR a FPIR=1.)
+Per il controllo-accessi open-set: **TPIR a un FPIR basso fisso** (es. `FPIR=0,01%`) —
+misura insieme le identificazioni corrette *e* il rifiuto degli sconosciuti. Il Rank-k
+closed-set (CMC) assume il probe sempre iscritto → inadatto. **Aggancio alla pipeline:**
+FPIR ↔ la soglia sulla distanza euclidea cifrata (gradino 06). (NIST FRVT, ISO/IEC
+19795-1.)
 
-**Aggancio alla nostra pipeline:** FPIR ↔ la **soglia sulla distanza euclidea cifrata**
-lato server (gradino 06). Abbassare la soglia = meno falsi accessi (FPIR↓) ma più
-rifiuti di iscritti veri (FNIR↑). È la stessa soglia open-set, vista come curva DET.
+## Il bivio di FORMATO (decisivo per noi)
 
-## I candidati
+- **Verifica 1:1 a coppie** (issame): CFP-FP, CPLFW, CALFW, AgeDB-30, RFW. **Pronti e
+  facili** da prendere (già allineati 112×112), quantificano subito la difficoltà — ma
+  NON sono il nostro 1:N. Per l'1:N vanno **spacchettati** e ricostruiti a mano.
+- **Folder-per-identità / 1:N nativo**: **VGGFace2** (molte img/persona → split
+  galleria/probe banale) e **IJB-C** (protocollo open-set 1:N nativo). Questi sono ciò
+  che serve davvero al nostro scenario.
 
-| dataset | cosa lo rende duro | protocollo | accesso | dimensione | note |
-|---|---|---|---|---|---|
-| **QMUL-SurvFace** | bassa risoluzione **nativa** da CCTV (media 24×20 px), blur, rotazioni | **1:N open-set nativo** (watch-list 3.000 gallery vs ~10.254 probe, ~70% sconosciuti) | **libero** (GitHub) | 463.507 img / 15.573 ID | il "vero" hard. CentreFace 65,2%→**29,9%** Rank-1; non saturato |
-| **SCface** | mug-shot puliti (gallery) vs probe di sorveglianza a **3 distanze** (1,0/2,6/4,2 m), luce/qualità varie, camera dall'alto | gallery mug-shot vs probe sorveglianza (closed-set; adattabile open-set) | **licenza accademica** (email) | 130 sogg / 4.160 img | modella *letteralmente* "riferimento pulito vs acquisizione al varco". Bias: 114M/16F, no non-caucasici, quasi-frontale |
-| **TinyFace** | bassa risoluzione **nativa** (media 20×16 px), web non controllato | 1:N con tutte le immagini non etichettate come **distrattori** | **libero** (GitHub) | 169.403 img / 5.139 ID | utile per scala/distrattori |
-| **IJB-S** | video sorveglianza reali, altitudine/distanza varie, UAV | **1:N open-set nativo**, TPIR@FPIR, 5 esperimenti | **licenza IARPA** (ristretta) | 202 sogg / 350 video | il più realistico, ma scenari recitati DoD e accesso difficile |
-| **IJB-C** | mixed-media in-the-wild | **1:N open-set nativo** (Test 4), TPIR@FPIR | **ritirato** (NIST, 2023-03-14) | 3.531 sogg | usare solo come *specifica del protocollo* |
-| LFW | (riferimento) | verifica 1:1 | libero (sklearn) | — | **saturo** → solo baseline/sanity |
+## Quanto sono più duri di LFW (stesso modello IR-50)
 
-Ritirati / non disponibili: **MS-Celeb-1M** (consenso/privacy), **MegaFace** (UW).
+LFW **99,78%** → CFP-FP 98,14% → AgeDB 97,53% → CALFW 95,87% → **CPLFW 92,45%** →
+VGGFace2-FP 95,22%. Il salto LFW→CPLFW (~7,3 punti, cross-posa) è l'asse che conta per
+il varco cooperativo. (Per la NOSTRA pipeline leggera il divario sarà molto più ampio.)
 
-## Raccomandazione per la tesi
+## I candidati buoni
 
-Una **scala di difficoltà** (coerente con lo spirito "scaletta crescente" del progetto),
-non un singolo set:
+| dataset | difficoltà | formato | dimensione | dove si prende OGGI |
+|---|---|---|---|---|
+| **VGGFace2** ⭐ | in-the-wild: posa+età+luce+etnia | **1:N (folder/identità, ~362 img/ID)** | 9.131 ID / 3,31M img | Academic Torrents `535113b8…fa5b` (40 GB); mirror HF `ProgramComputer/VGGFace2`, `logasja/VGGFace2`; **già allineato 112×112** via InsightFace (GDrive `1dyVQ7…v3R` + Baidu) |
+| **CPLFW** | cross-**posa** (il più duro dei pair-set) | 1:1 verifica | 3.884 ID / 11.652 img | bundle HF `gaunernst/face-recognition-eval` (`cplfw.bin`); face.evoLVe Data Zoo (112×112) |
+| **CFP(-FP)** | **posa** frontale↔profilo (estremo) | 1:1 (costruibile 1:N, 14 img/ID) | 500 ID / 7.000 img | `cfp_fp.bin` nel bundle HF; face.evoLVe (112×112, GDrive+Baidu) |
+| **CALFW / AgeDB-30** | **età** | 1:1 verifica | ~4–5K ID | stesso bundle HF `gaunernst/face-recognition-eval` |
+| **IJB-C** | mixed-media, **open-set 1:N nativo** (G1/G2 disgiunte) | **1:N open-set** | 3.531 ID | gold standard del protocollo, ma **rotta di accesso incerta** (da verificare) |
+| RFW | **etnia/fairness** (4 sottoinsiemi) | 1:1 verifica | ~3K ID/sottoins. | `whdeng.cn/RFW` (registrazione) — check di fairness, non 1:N |
+| LFW | (baseline) | 1:1 + 1:N | — | sklearn / bundle HF |
 
-1. **LFW** — sanity-check facile (lo abbiamo già). Mostra che la pipeline funziona.
-2. **SCface** — *set duro primario* per il controllo-accessi. Modella esplicitamente il
-   mismatch galleria-pulita / probe-al-varco, ha un **gradiente di difficoltà** built-in
-   (3 distanze) ottimo per mostrare le tecniche che salgono, ed è **piccolo e
-   maneggevole**. Richiede registrazione accademica (ok, hai detto licenza accettabile).
-3. **QMUL-SurvFace** — *riferimento estremo*, libero, open-set 1:N nativo, non saturato.
-   ⚠️ A 24×20 px nativi è **brutalmente duro**: i metodi semplici (e perfino ArcFace
-   off-the-shelf) rischiano di crollare al *pavimento* — informativo come limite, ma non
-   come gradiente. Da usare per dire "ecco dove si rompe tutto".
+Il bundle **`gaunernst/face-recognition-eval`** su HuggingFace (~512 MB, pubblico,
+non-gated) contiene già `lfw/cfp_fp/cplfw/calfw/agedb_30 .bin` allineati 112×112.
 
-Metrica primaria ovunque: **TPIR@FPIR**.
+## Raccomandazione
 
-Perché SCface come primario e non SurvFace (che il report metteva primo): per uno
-**studio di fattibilità che sale di tecnica**, un set dove *tutto* fallisce (~single
-digit) è informativo quanto uno saturo. SCface dà un gradiente leggibile (distanza
-crescente) e modella il varco alla lettera; SurvFace resta come "estremo".
+**Scala di difficoltà** a buona risoluzione, tutta recuperabile:
 
-## Caveat onesti (da scrivere in tesi)
+1. **LFW** — baseline/sanity (ce l'abbiamo).
+2. **CPLFW + CFP-FP** — *set duro principale per la misura rapida*: pronti all'uso
+   (bundle HF, già allineati), quantificano il divario posa/età. Formato 1:1.
+3. **VGGFace2** — *il set 1:N vero*: folder-per-identità, tante img/persona → costruiamo
+   lo split **galleria/probe open-set** (con impostori) che modella il varco. È anche
+   **già allineato 112×112 = pronto per ArcFace/MobileFaceNet** (gradino 08): due
+   piccioni con una fava.
+4. **IJB-C** — solo se otteniamo l'accesso: protocollo open-set 1:N nativo (riferimento).
 
-- **Nessun dataset di kiosk cooperativo puro.** SurvFace/TinyFace sono footage di
-  persone in movimento (re-ID/web); SCface/IJB-S modellano il mismatch
-  galleria/probe ma non sono "persona che presenta il volto a un varco". È
-  un'interpretazione applicata, non un dataset dedicato (non esiste/non emerso).
-- **Fairness e posa/età non verificati.** La domanda chiedeva anche RFW /
-  BUPT-Balancedface / FairFace / CPLFW / CALFW / CFP-FP / AgeDB-30, ma la verifica
-  adversariale **non** ha confermato claim su questi → non li raccomandiamo con
-  evidenza. Lacuna da colmare se la fairness diventa un requisito. (SCface stesso ha
-  forte bias demografico.)
-- **Crop minuscoli ⇒ problema FHE.** SurvFace/TinyFace sono 20-24 px: l'allineamento
-  ArcFace 112×112 RGB richiede **super-risoluzione o un modello cross-resolution**, non
-  un semplice resize. E più upscaling/precisione = più bit per valore = **leva di costo
-  esponenziale FHE** (F1–F3). Tensione concreta tra "set duro realistico" e costo FHE.
+**Set duro principale accanto a LFW: VGGFace2** (è l'unico che dà un 1:N onesto a buona
+risoluzione e serve anche al gradino CNN). CPLFW/CFP come misura-posa rapida.
 
-## Passi pratici
+## Passi pratici (split 1:N da VGGFace2)
 
-- **QMUL-SurvFace / TinyFace**: pagine GitHub pubbliche (`qmul-survface.github.io`,
-  `qmul-tinyface.github.io`), download diretto.
-- **SCface**: accordo di licenza via `scface.org` (modulo + email accademica).
-- Pipeline: allineamento volti (MTCNN/insightface) → per i crop piccoli, upscaling o
-  modello cross-resolution → embedding → quantizzazione → cifratura (la nostra
-  pipeline). Per i descrittori locali (LBP/HOG) attesa **caduta forte** su questi set:
-  è il punto.
+1. Scaricare VGGFace2 (torrent o mirror HF; o il pack allineato 112×112 di InsightFace).
+2. Sottocampionare N identità (es. 100–500) per una galleria maneggevole + tenerne
+   alcune **fuori galleria** come impostori (open-set).
+3. Per ogni identità in galleria: 1 img di riferimento (galleria) + il resto come probe.
+4. Embedding (LBP/HOG ora, CNN dopo) → quantizza → la nostra pipeline cifrata.
+5. Metrica: TPIR@FPIR (e CMC come secondaria).
+
+## Caveat onesti
+
+- **Formato**: CFP/CPLFW/CALFW/AgeDB/RFW sono verifica **1:1** → per l'1:N vanno
+  spacchettati. Solo VGGFace2/IJB-C sono nativamente 1:N.
+- **Licenze/ritiri**: VGGFace2 ritirato (consenso/fairness) ma recuperabile;
+  MS-Celeb-1M e MegaFace ritirati; Glint360K/MS1MV3 solo research non-commerciale.
+- **Link decay**: i mirror GDrive InsightFace (≈2021) potrebbero marcire; preferire
+  torrent/HF. Glint360K **non** ha GDrive (Baidu/torrent/HF).
+- **Fairness/sintetici non verificati**: RFW utile come check etnia (ma 1:1);
+  FairFace, BUPT-Balancedface, e i sintetici license-clean (DigiFace-1M, DCFace) non
+  coperti dalla verifica → da indagare se servono.
+- **IJB-C**: protocollo open-set 1:N confermato, ma **rotta di download da verificare**.
+
+## Per addestrare la CNN (gradino 08)
+
+Corpora di training (non benchmark), allineati 112×112, su mirror vivi: CASIA-WebFace
+(GDrive `1KxNCr…y1l`+Baidu), MS1MV3 (HF `gaunernst/ms1mv3-wds-gz`), Glint360K (HF
+`gaunernst/glint360k-wds-gz`; AT `e5f46ee…7b1e`). Ma per noi conviene un **modello già
+addestrato** (MobileFaceNet/ArcFace pre-trained), non addestrarne uno.
 
 ## Fonti
 
-- QMUL-SurvFace: https://qmul-survface.github.io/ · paper arXiv 1804.09691 · Massoli et al. arXiv 1912.02851
-- SCface: https://www.scface.org/ · Grgic et al., MTAP 2011 (10.1007/s11042-009-0417-2)
-- TinyFace: https://qmul-tinyface.github.io/ · arXiv 1811.08965
-- IJB-S: Kalka et al., BTAS 2018 (IEEE 8698584) · survey arXiv 2505.24247
-- IJB-C: README NIST/IARPA · ritiro NIST 2023-03-14
-- Metrica open-set: NIST FRVT https://pages.nist.gov/frvt/reports/1N/ · ISO/IEC 19795-1:2021
-- Saturazione LFW/CFP-FP: survey arXiv 2505.24247
+- Bundle benchmark 112×112: InsightFace `_datasets_` / Dataset-Zoo · HF `gaunernst/face-recognition-eval` · face.evoLVe (`github.com/ZhaoJ9014/face.evoLVe`)
+- CFP: Sengupta et al., WACV 2016 (`cfpw.io/paper.pdf`)
+- VGGFace2: Cao et al., arXiv:1710.08092 · Academic Torrents `535113b8…fa5b` · HF `ProgramComputer/VGGFace2`
+- IJB-C open-set 1:N: Idiap Bob `bob.db.ijbc` · Maze et al. 2018
+- RFW: Wang et al., CVPR 2019 (`whdeng.cn/RFW`)
+- Training: InsightFace `arcface_torch` README · HF `gaunernst/glint360k-wds-gz`, `gaunernst/ms1mv3-wds-gz`
+- Metrica open-set: NIST FRVT 1:N · ISO/IEC 19795-1
