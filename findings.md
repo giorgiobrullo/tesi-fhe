@@ -197,6 +197,16 @@ gradino 08), con **CPLFW + CFP-FP** come misura-posa rapida (pronti su HuggingFa
 LFW→CPLFW ≈ 7 punti (stesso modello). Dettagli, formati 1:1 vs 1:N, rotte di download e
 citazioni in [`docs/benchmark_dataset.md`](docs/benchmark_dataset.md).
 
+**Modello di embedding per il gradino CNN.** Intuizione chiave: l'embedding gira **in
+chiaro sul client** → peso/FLOPs del modello **non toccano l'FHE**; conta solo la
+**dimensione dell'embedding** (512 standard, la leva lineare del gradino 07). Quindi
+possiamo usare un modello **forte**, non per forza leggero (la "CNN leggera" serve solo
+per realismo edge / split-inference futura). Scelta: **`buffalo_l` di InsightFace**
+(ResNet50@WebFace600K, IJB-C 97,25%, emb 512, drop-in con detection+allineamento) come
+primario; **EdgeFace-S** come opzione edge. Più i sintetici **DCFace/DigiFace**
+(license-clean, a tema privacy). Dettagli, licenze e accesso in
+[`docs/modelli_embedding.md`](docs/modelli_embedding.md).
+
 **Il bivio FHE** (è il trade-off centrale della tesi, potere vs costo):
 - **LBP + χ²** è il più accurato, ma la χ² `Σ(h−g)²/(h+g)` ha una **divisione** per
   `h+g` che dipende dal probe cifrato → divisione per quantità cifrata, ostile
