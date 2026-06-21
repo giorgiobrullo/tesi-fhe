@@ -8,6 +8,7 @@ dependencies = [
     "concrete-python>=2.11.0",
     "matplotlib>=3.10.9",
     "numpy>=1.26.4",
+    "scikit-image>=0.26.0",
     "scikit-learn>=1.9.0",
 ]
 

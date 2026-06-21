@@ -130,9 +130,37 @@ client) è **~31 ms/query** (29 ms match + 2 ms decifra/argmin).
 PCA a piena precisione non è praticabile senza ridurre drasticamente la larghezza
 dei punteggi (meno bit/componenti, o troncamento prima della riduzione — lossy). Non
 investiamo oltre: la PCA è comunque debole sui dati reali (F5). La caratterizzazione
-del costo dell'argmin cifrato va **rifatta sulla tecnica vera** (CNN, gradino 07),
-sui soli parametri che danno accuratezza accettabile (metodo: prima i parametri in
-chiaro, poi il costo FHE su quel range). La soglia open-set sotto FHE è rimandata
+del costo dell'argmin cifrato va **rifatta sulla tecnica che useremo davvero** —
+salendo la scaletta (prima i descrittori locali, poi la CNN) — sui soli parametri
+che danno accuratezza accettabile (metodo: prima i parametri in chiaro, poi il costo
+FHE su quel range). La soglia open-set sotto FHE è rimandata
 con lo stesso motivo: è un confronto in più, marginale rispetto agli N−1 dell'argmin.
 Tenuto qui come dato di fattibilità: *abbiamo provato a cifrare l'argmin su PCA, ed
 ecco i numeri.*
+
+## F7 — Descrittori locali: battono la PCA sui volti reali, ma con un bivio FHE
+Secondo gradino della scaletta (LBP, HOG), validato **in chiaro** prima di toccare
+l'FHE. A parità di protocollo (1-NN, split per persona):
+
+| | Olivetti | LFW (volti reali) |
+|---|---|---|
+| PCA + euclidea (gradino 05) | 98,8% | **32,4%** (il crollo, F5) |
+| LBP + χ² | 100% | **65,1%** (≈2× la PCA) |
+| HOG + euclidea | 98,8% | **55,1%** |
+
+Su Olivetti (laboratorio) sono tutti equivalenti; la differenza emerge **sui volti
+reali**, dove i descrittori locali codificano texture/forma locali e reggono la
+variabilità che fa crollare gli eigenfaces globali. Salire di gradino era la mossa
+giusta.
+
+**Il bivio FHE** (è il trade-off centrale della tesi, potere vs costo):
+- **LBP + χ²** è il più accurato, ma la χ² `Σ(h−g)²/(h+g)` ha una **divisione** per
+  `h+g` che dipende dal probe cifrato → divisione per quantità cifrata, ostile
+  all'FHE (servirebbe un PBS costoso / un inverso).
+- **HOG + euclidea** è meno accurato ma **FHE-friendly**: vettore di feature +
+  distanza euclidea → riusa *identico* il circuito del gradino 05 (cifrato×chiaro,
+  niente PBS nel match). E fa comunque ~1,7× la PCA.
+
+→ Prossimo passo (lato FHE, sui parametri appena validati): caratterizzare il costo
+di HOG+euclidea cifrata (è il circuito del 05 sulla dimensione HOG reale) e valutare
+la fattibilità della divisione χ² per LBP. *Niente sweep su config non valide.*

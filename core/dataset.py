@@ -46,3 +46,14 @@ def carica_lfw(
 
 def carica(nome: str = "olivetti") -> Dataset:
     return carica_lfw() if nome == "lfw" else carica_olivetti()
+
+
+def carica_immagini(nome: str = "olivetti", frazione_test: float = 0.2, seed: int = 0) -> Dataset:
+    """Come `carica`, ma restituisce le immagini in 2D (N, H, W) invece che
+    appiattite. Serve ai descrittori locali (LBP, HOG) che lavorano sulla griglia
+    dei pixel, non su un vettore. Stesso split per persona."""
+    if nome == "lfw":
+        d: Any = fetch_lfw_people(min_faces_per_person=20, resize=0.4)
+    else:
+        d = fetch_olivetti_faces()
+    return _dividi(d.images, d.target, frazione_test, seed)

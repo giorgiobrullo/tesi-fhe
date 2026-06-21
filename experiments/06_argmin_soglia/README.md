@@ -1,7 +1,7 @@
 # Gradino 06 — argmin sotto FHE: la decisione e il suo costo
 
-> Stato: **chiuso su PCA** (esito negativo, documentato). Da rivalutare sulla
-> tecnica vera (CNN, gradino 07). Vedi `findings.md` F6.
+> Stato: **chiuso su PCA** (esito negativo, documentato). Da rivalutare salendo la
+> scaletta (descrittori locali, poi CNN). Vedi `findings.md` F6.
 
 ## La decisione
 
@@ -34,8 +34,9 @@ Concrete 2.11 si rompe (assert sul bit-width / esplosione di memoria). **Intratt
 
 La decisione (cifrare l'argmin) è giusta per la privacy, ma su **PCA a piena
 precisione non è praticabile**. Non investiamo oltre (PCA è debole sui dati reali,
-F5): la caratterizzazione del costo va rifatta sulla **tecnica vera** (CNN), sui soli
-parametri validi, e con eventuale riduzione di precisione dei punteggi. La soglia
+F5): la caratterizzazione del costo va rifatta salendo la scaletta (descrittori
+locali, poi CNN), sui soli parametri validi, e con eventuale riduzione di precisione
+dei punteggi. La soglia
 open-set è rimandata per lo stesso motivo (costo marginale rispetto all'argmin).
 
 ## File

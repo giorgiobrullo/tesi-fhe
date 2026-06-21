@@ -58,19 +58,21 @@ bello è che i due assi salgono *insieme*: più potere di riconoscimento ⇒ pi�
 FHE — ed è proprio questa la curva di trade-off che la tesi misura. A ogni gradino
 si riporta **(accuratezza in chiaro, costo FHE)**.
 
-| # | gradino | cosa | adatta a FHE? |
+| # | livello | gradino | adatta a FHE? |
 |---|---|---|---|
-| 00–04 | fondamenta FHE | hello world → PBS → distanza → galleria in chiaro → client/server | — |
-| **05** | **PCA / eigenfaces** ★ *sei qui* | proiezione lineare + distanza euclidea | ottima (niente PBS nel matching) |
-| 06 | argmin sotto FHE | decisione (privacy): il client apprende solo l'esito, non le N distanze | reintroduce i PBS; su PCA intrattabile (F6) → da rivalutare sulla CNN |
-| **07** | **CNN leggera** (MobileFaceNet) ★ *prossimo* | embedding CNN pre-addestrato, frozen | attivazioni non lineari → PBS |
-| (salt.) | LDA · LBP (χ²) · HOG | gradini della scaletta non implementati | vedi `findings.md` per il perché |
-| 08+ | CNN profonda (ResNet/InsightFace) | … | costose |
-| — | transformer / multimodali | "magari un'altra volta" | fuori scope |
+| 00–04 | — | fondamenta FHE: hello world → PBS → distanza → galleria in chiaro → client/server | — |
+| **05** | geometriche | **PCA / eigenfaces** — proiezione lineare + distanza euclidea | ottima (niente PBS nel matching) |
+| 06 | — | argmin sotto FHE: decisione (privacy), il client apprende solo l'esito | reintroduce i PBS; su PCA intrattabile (F6) |
+| **07** | **descrittori locali** | **LBP (χ²) + HOG** ★ *prossimo* | HOG+euclidea riusa il circuito; LBP+χ² ha una divisione (ostico) |
+| 08 | CNN | CNN leggera (MobileFaceNet, linea ArcFace), frozen | attivazioni non lineari → PBS |
+| 09+ | CNN | CNN profonda (ResNet/InsightFace) | costose |
+| (salt.) | geometriche | LDA / Fisherfaces | saltabile |
+| — | transformer | multimodali | "magari un'altra volta" — fuori scope |
 
-Implementiamo solo i gradini scelti (non tutti): i numeri salgono lo stesso, e la
-menu completa con i salti motivati vive in `findings.md`. Il costo FHE non è un silo
-a parte: è il `costo.py` di ogni gradino, così sale *insieme* alla scaletta.
+Si **sale un gradino alla volta** (scaletta di Carnemolla). Qualche gradino è
+saltabile (LDA), ma i numeri salgono lo stesso e la mappa completa coi salti
+motivati vive in `findings.md`. Il costo FHE non è un silo a parte: è il `costo.py`
+di ogni gradino, così sale *insieme* alla scaletta.
 
 ## Setup
 
