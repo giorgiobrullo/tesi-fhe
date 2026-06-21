@@ -1,34 +1,36 @@
-"""Descrittori locali del gradino 07: LBP e HOG.
+"""Descrittori locali del gradino 07: LBP e HOG (parametrizzati).
 
 Secondo gradino della scaletta (dopo le geometriche). A differenza della PCA, che
 proietta l'intero volto su poche direzioni globali, i descrittori locali codificano
 la **texture/forma in tante regioni** dell'immagine e concatenano le risposte.
 
 - **LBP** (Local Binary Patterns): per ogni pixel un codice binario dal confronto coi
-  vicini; l'immagine è divisa in una griglia di blocchi, si fa l'istogramma LBP di
-  ogni blocco e si concatena. Due volti si confrontano con la distanza **χ²** tra
-  istogrammi. (La χ² ha una divisione → ostica per l'FHE: vedi findings.)
+  vicini; l'immagine è divisa in una griglia di blocchi, istogramma LBP per blocco,
+  concatenato. Confronto fra volti con la distanza **χ²** (o euclidea). La χ² ha una
+  divisione → ostica per l'FHE.
 - **HOG** (Histogram of Oriented Gradients): istogrammi delle orientazioni del
-  gradiente su celle, concatenati in un vettore. Si confronta con la **distanza
-  euclidea** → riusa identico il circuito FHE del gradino 05 (è solo un altro
-  embedding).
+  gradiente su celle, concatenati. Confronto **euclideo** → riusa il circuito FHE del
+  gradino 05.
 
-Tutto in chiaro: questo file serve alla validazione dell'accuratezza, prima di
+Tutto in chiaro: serve alla ricerca dei parametri e alla validazione, prima di
 toccare l'FHE (metodo: prima i parametri buoni in chiaro, poi il costo).
 """
 
 import numpy as np
 from skimage.feature import hog, local_binary_pattern
 
-# Parametri LBP (classico per volti): P vicini, raggio R, codifica "uniform".
-LBP_P, LBP_R = 8, 2
-LBP_BINS = LBP_P + 2                 # numero di pattern "uniform" per P=8 -> 10
-GRIGLIA = (8, 8)                     # blocchi su cui fare gli istogrammi
+
+def n_bins_lbp(P: int, metodo: str) -> int:
+    """Numero di bin dell'istogramma LBP per blocco, secondo la codifica."""
+    if metodo == "uniform":
+        return P + 2
+    if metodo == "nri_uniform":
+        return P * (P - 1) + 3          # P=8 -> 59 (il classico per i volti)
+    return 2 ** P                       # 'default': tutti i pattern
 
 
 def _istogramma_blocchi(codici: np.ndarray, griglia: tuple, n_bins: int) -> np.ndarray:
-    """Divide la mappa di codici in una griglia di blocchi, istogramma per blocco,
-    concatena e normalizza (somma 1)."""
+    """Griglia di blocchi -> istogramma per blocco -> concatenato e normalizzato."""
     H, W = codici.shape
     gh, gw = griglia
     parti = []
@@ -41,26 +43,29 @@ def _istogramma_blocchi(codici: np.ndarray, griglia: tuple, n_bins: int) -> np.n
     return v / (v.sum() + 1e-9)
 
 
-def lbp(immagini: np.ndarray) -> np.ndarray:
+def lbp(immagini: np.ndarray, P: int = 8, R: int = 2,
+        metodo: str = "nri_uniform", griglia: tuple = (8, 8)) -> np.ndarray:
     """(N, H, W) -> (N, D) istogrammi LBP concatenati (in chiaro)."""
+    nb = n_bins_lbp(P, metodo)
     out = []
     for img in immagini:
-        codici = local_binary_pattern(img, LBP_P, LBP_R, method="uniform")
-        out.append(_istogramma_blocchi(codici, GRIGLIA, LBP_BINS))
+        codici = local_binary_pattern(img, P, R, method=metodo)
+        out.append(_istogramma_blocchi(codici, griglia, nb))
     return np.array(out)
 
 
-def hog_feat(immagini: np.ndarray) -> np.ndarray:
+def hog_feat(immagini: np.ndarray, orientazioni: int = 9,
+             px_per_cella: tuple = (8, 8), celle_per_blocco: tuple = (2, 2)) -> np.ndarray:
     """(N, H, W) -> (N, D) vettori HOG (in chiaro)."""
     return np.array([
-        hog(img, orientations=9, pixels_per_cell=(8, 8), cells_per_block=(2, 2),
-            block_norm="L2-Hys", feature_vector=True)
+        hog(img, orientations=orientazioni, pixels_per_cell=px_per_cella,
+            cells_per_block=celle_per_blocco, block_norm="L2-Hys", feature_vector=True)
         for img in immagini
     ])
 
 
 def dist_chi2(galleria: np.ndarray, query: np.ndarray) -> np.ndarray:
-    """Distanza χ² da ogni riga della galleria al query: Σ (g−q)²/(g+q)."""
+    """Distanza χ² da ogni riga della galleria al query: ½ Σ (g−q)²/(g+q)."""
     return 0.5 * np.sum((galleria - query) ** 2 / (galleria + query + 1e-9), axis=1)
 
 

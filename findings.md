@@ -145,13 +145,27 @@ l'FHE. A parità di protocollo (1-NN, split per persona):
 | | Olivetti | LFW (volti reali) |
 |---|---|---|
 | PCA + euclidea (gradino 05) | 98,8% | **32,4%** (il crollo, F5) |
-| LBP + χ² | 100% | **65,1%** (≈2× la PCA) |
-| HOG + euclidea | 98,8% | **55,1%** |
+| LBP + χ² (nri_uniform, ottimizzato) | 100% | **74,8%** (≈2,3× la PCA) |
+| HOG + euclidea (celle 4×4) | 98,8% | **64,8%** |
 
 Su Olivetti (laboratorio) sono tutti equivalenti; la differenza emerge **sui volti
 reali**, dove i descrittori locali codificano texture/forma locali e reggono la
 variabilità che fa crollare gli eigenfaces globali. Salire di gradino era la mossa
 giusta.
+
+**Ricerca dei parametri (in chiaro, su LFW)** — prima di pensare all'FHE, abbiamo
+cercato i parametri buoni (`ricerca_parametri.py`, dati in `results/ricerca_lfw.csv`).
+Leve principali:
+- LBP: la codifica **`nri_uniform`** (59 bin, il classico per i volti) batte nettamente
+  `uniform` (10 bin): da ~65% a ~75%. Griglia più fitta e raggio R=2 aiutano.
+- HOG: celle più piccole (4×4 invece di 8×8) salgono da 55% a ~65%, ma a costo di una
+  **dimensione molto più grande** (540 → 3168).
+- **χ² vs euclidea su LBP:** la χ² è migliore di ~4-6 punti (74,8% vs 70,4% a parità di
+  config), **ma l'euclidea regge** e resta ben sopra la PCA. → si può **evitare la
+  divisione** della χ² (ostica per l'FHE) pagando pochi punti.
+
+Le config migliori sono **ad alta dimensione** (LBP ~3776-5900, HOG ~3168): è la
+dimensione, non più la precisione per-valore, a guidare il costo FHE qui.
 
 **Il bivio FHE** (è il trade-off centrale della tesi, potere vs costo):
 - **LBP + χ²** è il più accurato, ma la χ² `Σ(h−g)²/(h+g)` ha una **divisione** per
