@@ -18,3 +18,4 @@ wip/
 # Output generati dagli esperimenti (si rigenerano da soli: figure, CSV, specifiche macchina)
 data/
 figures/
+datasets/

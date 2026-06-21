@@ -1,0 +1,4 @@
+benchmark,n_coppie,pca_eucl,lbp_chi2,lbp_eucl,hog_eucl
+lfw,6000,0.616,0.676,0.6293,0.663
+cplfw,6000,0.5333,0.5148,0.5042,0.4947
+cfp_fp,7000,0.5801,0.6109,0.6316,0.6331

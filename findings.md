@@ -242,3 +242,29 @@ Dopo aver scelto i dataset (vedi sopra e `docs/benchmark_dataset.md`), li abbiam
 Olivetti/LFW restano scaricabili da soli via sklearn; VGGFace2/DigiFace-1M sono cartelle
 locali (download pesante, separato — rotte in `docs/benchmark_dataset.md`). Il codice è
 pronto: appena i dati sono presenti, i gradini di riconoscimento li usano senza modifiche.
+
+## F9 — Le tecniche hand-crafted crollano al caso sui benchmark duri (il pavimento)
+Prima di salire alla CNN, abbiamo misurato le tecniche **già fatte** (PCA del gradino
+05, LBP/HOG del gradino 07) sui benchmark duri **CPLFW** (cross-posa) e **CFP-FP**
+(frontale↔profilo), a buona risoluzione 112×112, nel loro protocollo nativo di
+**verifica 1:1** (6.000 coppie, 10-fold, soglia migliore). Cartella
+`experiments/benchmark_duri/`, dati in `results/verifica_duri.csv`.
+
+| benchmark | PCA+eucl | LBP+χ² | LBP+eucl | HOG+eucl |
+|---|---|---|---|---|
+| LFW (facile) | 61,6% | 67,6% | 62,9% | 66,3% |
+| **CPLFW** (cross-posa) | **53,3%** | **51,5%** | **50,4%** | **49,5%** |
+| CFP-FP (front↔profilo) | 58,0% | 61,1% | 63,2% | 63,3% |
+
+**Su CPLFW tutte le tecniche crollano al ~caso (≈50%).** La verifica è bilanciata,
+quindi 50% = lancio di moneta: le feature lineari/locali non hanno **alcuna robustezza
+alla posa**. CFP-FP (front↔profilo) un po' meglio (~60%), LFW ~65%. È il **pavimento
+empirico** che motiva il salto alla CNN (gradino 08): un estrattore addestrato a essere
+invariante a posa/luce/età è *esattamente* ciò che qui manca.
+
+**Caveat onesti:**
+- È **verifica 1:1**, non l'1:N dei demo (metrica diversa) → confronta il *degrado*
+  riga per riga (facile→duro), non i valori assoluti tra protocolli.
+- Anche su LFW i numeri sono bassi (~65%): scala di grigi grezza, nessun tuning per-set,
+  PCA non supervisionata sulle immagini del set. Lo scopo non è il massimo assoluto ma
+  il **trend**: le tecniche semplici non reggono la posa. (Le CNN qui fanno ~92-99%.)
