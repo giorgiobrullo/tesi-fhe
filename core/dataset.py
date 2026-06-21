@@ -6,7 +6,8 @@ Due opzioni, dalla più facile alla più realistica:
 
 In entrambi i casi dividiamo in galleria (le foto iscritte sul server) e probe (i
 volti da riconoscere), tenendo foto diverse della stessa persona tra i due insiemi
-così non testiamo su immagini già viste.
+così non testiamo su immagini già viste. Condiviso da tutti i gradini di
+riconoscimento (PCA, CNN, …): la tecnica cambia, il dataset no.
 """
 
 from typing import Any

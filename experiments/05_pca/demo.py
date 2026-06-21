@@ -1,10 +1,10 @@
-"""Prototipo completo: riconoscimento facciale che preserva la privacy.
+"""Gradino 05 — PCA: prototipo end-to-end del riconoscimento che preserva la privacy.
 
-Mette insieme l'intera catena end-to-end. Il client proietta il volto con la PCA
-in chiaro, quantizza l'embedding, lo cifra e lo manda al server. Il server tiene la
-galleria in chiaro e calcola i punteggi di distanza direttamente sul cifrato, senza
-mai vedere il volto; restituisce i punteggi cifrati. Solo il client li decifra e
-trova la faccia più vicina.
+Mette insieme l'intera catena. Il client proietta il volto con la PCA in chiaro,
+quantizza l'embedding, lo cifra e lo manda al server. Il server tiene la galleria in
+chiaro e calcola i punteggi di distanza direttamente sul cifrato, senza mai vedere
+il volto; restituisce i punteggi cifrati. Solo il client li decifra e trova la
+faccia più vicina.
 
   client: volto -> PCA (in chiaro) -> quantizza -> cifra ----->  server
   server: punteggi cifrati  ‖b‖² - 2·a·b  (nessun bootstrapping) -->  client
@@ -15,19 +15,26 @@ Per controllo confronta tre accuratezze sullo stesso insieme di test:
   - quantizzata in chiaro             l'effetto della quantizzazione
   - cifrata end-to-end                deve coincidere con la quantizzata
 
-Esegui:  uv run python experiments/05_prototipo_e2e/demo.py [olivetti|lfw]
+L'embedding (PCA) è locale a questo gradino; il resto (FHE, dataset, quantizzazione)
+viene da `core/`.
+
+Esegui:  uv run python experiments/05_pca/demo.py [olivetti|lfw]
          (default: olivetti; lfw è più grande e realistico, scarica ~200 MB)
 """
 
+import pathlib
 import sys
 import time
 
 import numpy as np
 
-import dataset
-import pca as pca_mod
-from client import Client
-from server import Server
+# repo root sul path, per importare il motore condiviso core/
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+from core import dataset, quantize          # noqa: E402
+from core.client import Client              # noqa: E402
+from core.server import Server              # noqa: E402
+
+import embedding                            # noqa: E402  (PCA, specifico di questo gradino)
 
 DATASET = sys.argv[1] if len(sys.argv) > 1 else "olivetti"
 N_COMPONENTI = 150 if DATASET == "lfw" else 50
@@ -71,15 +78,15 @@ def main() -> None:
 
     # --- Iscrizione (in chiaro, una volta sola) ---
     # 1. stima la base PCA (eigenfaces) sulle foto della galleria
-    pca = pca_mod.fit(volti_galleria, N_COMPONENTI)
+    modello = embedding.fit(volti_galleria, N_COMPONENTI)
     # 2. proietta galleria e probe nello spazio PCA: embedding corti, ancora float
-    emb_galleria = pca.transform(volti_galleria)
-    emb_probe = pca.transform(volti_probe)
+    emb_galleria = modello.transform(volti_galleria)
+    emb_probe = modello.transform(volti_probe)
     # 3. scala di quantizzazione, calcolata SOLO sulla galleria e riusata per i probe
-    scala = pca_mod.scala_quant(emb_galleria, Q_MAX)
+    scala = quantize.scala_quant(emb_galleria, Q_MAX)
     # 4. quantizza entrambi: float -> interi con segno (la FHE lavora su interi)
-    galleria_q = pca_mod.quantizza(emb_galleria, scala, Q_MAX)
-    probe_q = pca_mod.quantizza(emb_probe, scala, Q_MAX)
+    galleria_q = quantize.quantizza(emb_galleria, scala, Q_MAX)
+    probe_q = quantize.quantizza(emb_probe, scala, Q_MAX)
     print(f"PCA: {N_COMPONENTI} componenti | quantizzazione: {BITS} bit "
           f"(q_max={Q_MAX})\n")
 
@@ -90,7 +97,8 @@ def main() -> None:
     # Catena cifrata end-to-end. Server() compila il circuito, Client() genera le
     # chiavi: costi una tantum (all'iscrizione), non per ogni interrogazione.
     server, t_compile = _ms(lambda: Server(galleria_q))
-    client, t_keygen = _ms(lambda: Client(server.client_specs(), pca, scala, Q_MAX, etichette_galleria))
+    client, t_keygen = _ms(lambda: Client(
+        server.client_specs(), embedding.embedding_fn(modello), scala, Q_MAX, etichette_galleria))
     eval_keys = client.eval_keys()
 
     pred_cifrata: list = []

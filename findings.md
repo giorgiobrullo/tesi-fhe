@@ -76,7 +76,7 @@ rifiuta: `clear-clear multiplications are not supported`. La parte tutta in chia
 circuito resta solo ciò che tocca il cifrato.
 → Principio generale: tieni fuori dal circuito tutto ciò che è puramente in chiaro.
 
-## F4 — Prototipo end-to-end funzionante (cartella `experiments/05_prototipo_e2e/`)
+## F4 — Prototipo end-to-end funzionante (cartella `experiments/05_pca/`)
 PCA in chiaro (client) + matching cifrato con formula espansa (server), sul dataset
 Olivetti/ORL (volti in laboratorio).
 

@@ -49,16 +49,28 @@ Modello di sicurezza: il probe è cifrato sotto la chiave del **client**; la
 server è *honest-but-curious* sul volto, mentre resta aperto quanto considerare *trusted*
 il client visto che cambierebbe le ottimizzazioni disponibili.
 
-## I livelli delle tecniche (dal più semplice, che ~segue il costo FHE)
+## La scaletta (un unico filo, dal più semplice al più complesso)
 
-| Livello | Tecnica | Adatta a FHE? |
-|---|---|---|
-| Geometriche / lineari | **PCA** (eigenfaces) + distanza euclidea, LDA | Ottima — proiezione lineare + una quadratica |
-| Descrittori locali | LBP (χ²), HOG | Più difficile — χ² ha una divisione |
-| CNN | MobileNet/ShuffleNet (poco profonde) → ResNet/InsightFace (profonde) | Costose — le attivazioni non lineari richiedono bootstrapping |
-| Transformer | — | Fuori scope? |
+Il repo è **una sola salita**: la leggi dal basso e capisci tutto ciò che è stato
+fatto. Prima le **fondamenta FHE** (capire lo strumento), poi la **scaletta del
+riconoscimento** (di Carnemolla, dalla tecnica più semplice alla più complessa). Il
+bello è che i due assi salgono *insieme*: più potere di riconoscimento ⇒ più costo
+FHE — ed è proprio questa la curva di trade-off che la tesi misura. A ogni gradino
+si riporta **(accuratezza in chiaro, costo FHE)**.
 
-**Primo prototipo cifrato end-to-end = PCA + distanza euclidea al quadrato.**
+| # | gradino | cosa | adatta a FHE? |
+|---|---|---|---|
+| 00–04 | fondamenta FHE | hello world → PBS → distanza → galleria in chiaro → client/server | — |
+| **05** | **PCA / eigenfaces** ★ *sei qui* | proiezione lineare + distanza euclidea | ottima (niente PBS nel matching) |
+| 06 | argmin + soglia sotto FHE | il client apprende solo l'esito, non le N distanze | reintroduce i PBS (nuovo centro di costo) |
+| 07 | **CNN leggera** (MobileFaceNet) ← prossimo salto | embedding CNN pre-addestrato, frozen | attivazioni non lineari → PBS |
+| (salt.) | LDA · LBP (χ²) · HOG | gradini della scaletta non implementati | vedi `findings.md` per il perché |
+| 08+ | CNN profonda (ResNet/InsightFace) | … | costose |
+| — | transformer / multimodali | "magari un'altra volta" | fuori scope |
+
+Implementiamo solo i gradini scelti (non tutti): i numeri salgono lo stesso, e la
+menu completa con i salti motivati vive in `findings.md`. Il costo FHE non è un silo
+a parte: è il `costo.py` di ogni gradino, così sale *insieme* alla scaletta.
 
 ## Setup
 
@@ -81,19 +93,22 @@ uv run python experiments/03_galleria_in_chiaro.py # risparmio della formula esp
 uv run python experiments/04_client_server.py      # separazione client/server (deploy + serializzazione)
 ```
 
-Prototipo end-to-end (riconoscimento cifrato):
+Prototipo end-to-end (riconoscimento cifrato), gradino 05:
 
 ```bash
-uv run python experiments/05_prototipo_e2e/demo.py [olivetti|lfw]
+uv run python experiments/05_pca/demo.py [olivetti|lfw]
 ```
 
 (default: `olivetti`; `lfw` è più grande e realistico, scarica ~200 MB.)
 
-## Stato
+## Com'è organizzato il repo
 
-Per ispezionare il progetto:
-- **`experiments/05_prototipo_e2e/`** — il prototipo end-to-end; il suo README ha
-  l'architettura (diagramma client/server) e il ruolo di ogni file.
-- **`experiments/00`–`04`** — i concetti costruiti passo passo (hello world → PBS →
-  distanza → galleria in chiaro → separazione client/server).
-- **`findings.md`** — risultati e conclusioni distillate (F0–F5 + prossimi passi).
+- **`core/`** — il motore condiviso: i circuiti FHE (`matching.py`, *fonte unica*),
+  il plumbing client/server, quantizzazione e caricamento dataset. Ciò che vale su
+  più gradini sta qui una volta sola.
+- **`experiments/NN_…`** — la scaletta. Le fondamenta FHE (`00`–`04`) sono script
+  singoli; i gradini di riconoscimento (`05_pca`, `06_argmin_soglia`, …) sono
+  cartelle con l'embedding specifico + demo/benchmark + un README. Ognuno importa da
+  `core/`.
+- **`findings.md`** — il filo narrativo: risultati distillati (F0–F5 + prossimi
+  passi) e la mappa completa della scaletta di Carnemolla.
