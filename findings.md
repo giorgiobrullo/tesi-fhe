@@ -167,6 +167,24 @@ Leve principali:
 Le config migliori sono **ad alta dimensione** (LBP ~3776-5900, HOG ~3168): è la
 dimensione, non più la precisione per-valore, a guidare il costo FHE qui.
 
+**Lato FHE (sui parametri validati).** Via FHE-friendly: **LBP + euclidea** (evita la
+divisione χ², ~70% in chiaro, meglio di HOG). È esattamente il circuito del gradino
+05 (`b_sq − 2·a·b`), ma a dimensione 3776 invece di 50. Misurato (LFW, M4 Max):
+
+| | risultato |
+|---|---|
+| quantizzazione a 6 bit | **non perde**: 70,4% (float) → 72,9% (quant) |
+| match cifrato (N=10→50, dim 3776) | **~75 → 95 ms/query**, punteggi esatti (cifrato == quant) |
+| compilazione | ~150 ms |
+
+Il contrasto con F6 è netto e istruttivo: la **distanza** è cifrato×chiaro (niente
+PBS) → scala bene anche a dimensione 75× quella della PCA, restando interattiva; è
+l'**argmin** (confronti cifrati → PBS) a esplodere. Quindi la pipeline FHE-friendly —
+**embedding locale + distanza euclidea cifrata, argmin sul client** — è **fattibile e
+interattiva su volti reali a ~73%** di accuratezza. La χ² (75%, il massimo in chiaro)
+è più accurata ma richiede la divisione cifrata: trade-off potere/costo, da pagare
+solo se serve quell'1-2% in più.
+
 **Il bivio FHE** (è il trade-off centrale della tesi, potere vs costo):
 - **LBP + χ²** è il più accurato, ma la χ² `Σ(h−g)²/(h+g)` ha una **divisione** per
   `h+g` che dipende dal probe cifrato → divisione per quantità cifrata, ostile
