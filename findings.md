@@ -224,3 +224,21 @@ primario; **EdgeFace-S** come opzione edge. Più i sintetici **DCFace/DigiFace**
 → Prossimo passo (lato FHE, sui parametri appena validati): caratterizzare il costo
 di HOG+euclidea cifrata (è il circuito del 05 sulla dimensione HOG reale) e valutare
 la fattibilità della divisione χ² per LBP. *Niente sweep su config non valide.*
+
+## F8 — Dataset duri integrati nel codice + split open-set per il varco
+Dopo aver scelto i dataset (vedi sopra e `docs/benchmark_dataset.md`), li abbiamo resi
+**usabili nella pipeline**, aggiungendo a `core/dataset.py`:
+
+- **`carica_da_cartelle(radice, …)`** — loader generico **una sottocartella per
+  identità**: vale per **VGGFace2** (reale 1:N) e **DigiFace-1M** (sintetico
+  license-clean), o qualunque set in quel formato. Opzioni per gallerie maneggevoli
+  (`max_identita`, `max_per_identita`) e per LBP/HOG (`grigio`).
+- **`split_openset(X, y, …)`** — lo split **open-set 1:N** che ci mancava: divide in
+  *galleria* (iscritti registrati), *probe noti* (devono fare match) e *probe ignoti*
+  (identità fuori galleria, da **rifiutare**). È esattamente lo scenario del varco e il
+  presupposto della metrica **TPIR@FPIR** del gradino 06 (identificare i noti *e*
+  rifiutare gli sconosciuti). Verificato: insiemi disgiunti, nessun ignoto in galleria.
+
+Olivetti/LFW restano scaricabili da soli via sklearn; VGGFace2/DigiFace-1M sono cartelle
+locali (download pesante, separato — rotte in `docs/benchmark_dataset.md`). Il codice è
+pronto: appena i dati sono presenti, i gradini di riconoscimento li usano senza modifiche.
