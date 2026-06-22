@@ -74,6 +74,7 @@ def carica_da_cartelle(
     min_per_identita: int = 2,
     max_per_identita: int | None = None,
     grigio: bool = False,
+    ridimensiona: tuple | None = None,
     seed: int = 0,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Carica un dataset con layout **una sottocartella per identità** (VGGFace2,
@@ -85,12 +86,15 @@ def carica_da_cartelle(
                            avere sia galleria che probe).
     - `max_per_identita` : tronca le foto per identità (limita memoria/tempo).
     - `grigio`           : converte a scala di grigi 2D (per LBP/HOG); altrimenti RGB.
+    - `ridimensiona`     : (H, W) a cui portare ogni immagine (necessario se il set ha
+                           dimensioni variabili, es. VGGFace2; serve per impilare).
 
-    Le immagini possono avere dimensioni diverse: vengono restituite come array di
-    `object` se non uniformi, oppure come tensore se tutte uguali (es. 112×112).
+    Gestisce RGBA (toglie il canale alpha). Restituisce un tensore se le immagini
+    sono uniformi, altrimenti un array di `object`.
     """
     from skimage.io import imread                 # scikit-image è già una dipendenza
     from skimage.color import rgb2gray
+    from skimage.transform import resize
 
     base = pathlib.Path(radice)
     cartelle = sorted([d for d in base.iterdir() if d.is_dir()])
@@ -109,6 +113,10 @@ def carica_da_cartelle(
             files = [files[i] for i in idx]
         for f in files:
             img = imread(f)
+            if img.ndim == 3 and img.shape[2] == 4:      # RGBA -> RGB (toglie alpha)
+                img = img[:, :, :3]
+            if ridimensiona is not None:
+                img = resize(img, ridimensiona, anti_aliasing=True)
             if grigio and img.ndim == 3:
                 img = rgb2gray(img)
             immagini.append(img)
@@ -117,6 +125,31 @@ def carica_da_cartelle(
     forme = {im.shape for im in immagini}
     X = np.stack(immagini) if len(forme) == 1 else np.array(immagini, dtype=object)
     return X, np.array(etichette)
+
+
+# Percorsi convenzionali dei dataset 1:N scaricati (cartelle locali, gitignorate).
+_RADICE = pathlib.Path(__file__).resolve().parents[1] / "datasets"
+
+
+def carica_digiface(max_identita=None, max_per_identita=None, grigio=False, seed=0):
+    """DigiFace-1M (sintetico, 112×112, già allineato). Folder-per-identità →
+    ideale per split open-set 1:N. Richiede i dati estratti in
+    datasets/digiface/estratto/ (vedi docs/benchmark_dataset.md)."""
+    return carica_da_cartelle(
+        str(_RADICE / "digiface" / "estratto"),
+        max_identita=max_identita, max_per_identita=max_per_identita,
+        grigio=grigio, seed=seed)
+
+
+def carica_vggface2_test(max_identita=None, max_per_identita=20, grigio=False,
+                         ridimensiona=(112, 112), seed=0):
+    """VGGFace2 test (500 identità reali). Dimensioni variabili → ridimensiona a
+    112×112. Folder-per-identità. Richiede i dati estratti in
+    datasets/vggface2/test/ (vedi docs/benchmark_dataset.md)."""
+    return carica_da_cartelle(
+        str(_RADICE / "vggface2" / "test"),
+        max_identita=max_identita, max_per_identita=max_per_identita,
+        grigio=grigio, ridimensiona=ridimensiona, seed=seed)
 
 
 def split_openset(

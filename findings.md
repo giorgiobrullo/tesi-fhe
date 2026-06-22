@@ -243,6 +243,17 @@ Olivetti/LFW restano scaricabili da soli via sklearn; VGGFace2/DigiFace-1M sono 
 locali (download pesante, separato — rotte in `docs/benchmark_dataset.md`). Il codice è
 pronto: appena i dati sono presenti, i gradini di riconoscimento li usano senza modifiche.
 
+**Dataset 1:N scaricati e funzionanti** (cartelle locali gitignorate):
+- **DigiFace-1M P1** (sintetico): 2000 identità × 72 img, 112×112 già allineato →
+  `carica_digiface()`. Il più comodo per l'1:N (tante img/identità, no gate).
+- **VGGFace2 test** (reale): 500 identità × ~200 img, dimensioni variabili →
+  ridimensionato a 112×112, `carica_vggface2_test()`.
+
+**Primo split open-set 1:N su dati reali** (verificato): `split_openset` su DigiFace
+produce galleria (50 id iscritte) + probe noti (devono matchare) + probe ignoti (50 id
+da rifiutare). La macchina 1:N del varco gira end-to-end. Pronti per la metrica
+TPIR@FPIR e il gradino 08.
+
 ## F9 — Le tecniche hand-crafted crollano al caso sui benchmark duri (il pavimento)
 Prima di salire alla CNN, abbiamo misurato le tecniche **già fatte** (PCA del gradino
 05, LBP/HOG del gradino 07) sui benchmark duri **CPLFW** (cross-posa) e **CFP-FP**
