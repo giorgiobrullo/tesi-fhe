@@ -1,9 +1,5 @@
 """
 Utilità condivise per grafici, statistica e specifiche della macchina.
-
-Separate da utils_fhe.py di proposito: lì c'è la "matematica cifrata", qui il
-"misurare e disegnare". Usate da più esperimenti (02, 03, ...), quindi stanno in
-comune e non duplicate in ogni file.
 """
 
 import csv

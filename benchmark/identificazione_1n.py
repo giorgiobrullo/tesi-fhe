@@ -25,8 +25,8 @@ import time
 import numpy as np
 from sklearn.decomposition import PCA
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "07_descrittori_locali"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))  # repo root
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "07_descrittori_locali"))
 from core import dataset                               # noqa: E402
 import descrittori as d                                # noqa: E402
 

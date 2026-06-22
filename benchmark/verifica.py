@@ -24,12 +24,12 @@ import numpy as np
 from skimage.color import rgb2gray
 from sklearn.decomposition import PCA
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))  # repo root
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "07_descrittori_locali"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))  # repo root
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "07_descrittori_locali"))
 import descrittori as d                                # noqa: E402  (LBP/HOG già fatti)
 
 BENCH = ["lfw", "cplfw", "cfp_fp"]                     # facile → duri
-DIR = pathlib.Path(__file__).resolve().parents[2] / "datasets" / "bench"
+DIR = pathlib.Path(__file__).resolve().parents[1] / "datasets" / "bench"
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 
 

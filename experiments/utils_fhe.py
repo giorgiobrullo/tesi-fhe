@@ -1,14 +1,5 @@
 """
 Funzioni di utilità condivise dagli esperimenti FHE.
-
-Sta nella stessa cartella degli esperimenti: dato che ogni esperimento viene
-eseguito da qui (`uv run python experiments/0X.py`), un import "fratello" come
-`import utils_fhe` funziona senza dover creare un package vero e proprio.
-
-Qui sta solo ciò che serve a più esperimenti: il circuito della distanza, la
-generazione dei vettori, il cronometro e la routine di benchmark (cronometrare una
-`run` con riscaldamento e ripetizioni). Ciò che è specifico di un esperimento
-resta nel suo file.
 """
 
 import time

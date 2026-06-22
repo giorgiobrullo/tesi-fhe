@@ -257,7 +257,7 @@ TPIR@FPIR e il gradino 08.
 ## F10 — Le tecniche attuali nel NOSTRO protocollo (1:N open-set): il varco non regge
 Finalmente la misura che conta: PCA / LBP / HOG in **identificazione 1:N open-set**
 (galleria iscritti + probe noti + probe ignoti da **rifiutare**) sui dataset 1:N veri,
-DigiFace (sintetico) e VGGFace2 (reale). Cartella `experiments/benchmark_duri/`
+DigiFace (sintetico) e VGGFace2 (reale). Cartella `benchmark/`
 (`identificazione_1n.py`, dati in `results/identificazione_1n.csv`). Galleria 50 id
 iscritte, 50 id ignote, ~500/500/1000 immagini.
 
@@ -294,7 +294,7 @@ Prima di salire alla CNN, abbiamo misurato le tecniche **già fatte** (PCA del g
 05, LBP/HOG del gradino 07) sui benchmark duri **CPLFW** (cross-posa) e **CFP-FP**
 (frontale↔profilo), a buona risoluzione 112×112, nel loro protocollo nativo di
 **verifica 1:1** (6.000 coppie, 10-fold, soglia migliore). Cartella
-`experiments/benchmark_duri/`, dati in `results/verifica_duri.csv`.
+`benchmark/`, dati in `results/verifica_duri.csv`.
 
 | benchmark | PCA+eucl | LBP+χ² | LBP+eucl | HOG+eucl |
 |---|---|---|---|---|

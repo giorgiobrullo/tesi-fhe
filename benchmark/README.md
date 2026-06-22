@@ -31,7 +31,7 @@ done
 ## Esecuzione
 
 ```bash
-uv run python experiments/benchmark_duri/verifica.py
+uv run python benchmark/verifica.py
 ```
 
 Per ogni set e tecnica: accuratezza di verifica 1:1 (10-fold). Output in

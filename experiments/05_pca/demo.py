@@ -1,4 +1,4 @@
-"""Gradino 05 — PCA: prototipo end-to-end del riconoscimento che preserva la privacy.
+"""Gradino 05 -- PCA: prototipo end-to-end del riconoscimento che preserva la privacy.
 
 Mette insieme l'intera catena. Il client proietta il volto con la PCA in chiaro,
 quantizza l'embedding, lo cifra e lo manda al server. Il server tiene la galleria in
