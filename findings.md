@@ -361,3 +361,36 @@ dominante), con segnato dove cade la PCA decente.
 Conclusione: lo spostamento dell'argmin sul server — necessario per privacy — ha un
 costo reale e quantificato; la leva di progetto per renderlo praticabile è **ridurre la
 larghezza dei punteggi** (meno componenti/bit, o troncamento prima della riduzione).
+
+## F13 — Come scala la PCA sui nostri dataset: accuratezza vs bit dei punteggi
+Caratterizzazione in chiaro della PCA al variare delle componenti, su tutti e quattro i
+dataset, misurando insieme **accuratezza (Rank-1 1:N)** e **larghezza-bit dei
+punteggi** (la leva di costo dell'argmin, F6/F12). Figura
+`benchmark/results/pca_scaling.png` (dati `pca_scaling.csv`).
+
+| dataset | Rank-1 (8→128 comp) | bit punteggi |
+|---|---|---|
+| Olivetti (laboratorio) | 77% → 87% | 13–14 |
+| LFW | 14% → 30% | 13–15 |
+| DigiFace (sintetico) | 7% → 9% | 13–15 |
+| VGGFace2 (reale) | 7% → 9% | 13–14 |
+
+Due fatti, entrambi importanti:
+
+1. **Accuratezza (pannello A):** solo Olivetti (volti da laboratorio) regge (~87%); su
+   tutto ciò che è reale/duro la PCA è **al pavimento** (LFW ~30%, DigiFace/VGGFace2
+   ~8–9%, vicino al caso 1/50=2%). Aggiungere componenti non salva: la PCA non
+   generalizza. Conferma F5/F10 su scala più ampia.
+
+2. **Bit dei punteggi (pannello B):** la larghezza è **già ~13 bit con sole 8
+   componenti** e sale appena a 14–15. Il motivo: il punteggio è `‖b‖²−2ab`, e il
+   termine `‖b‖²` (somma di quadrati) **domina e satura la larghezza** quasi subito,
+   indipendentemente da quante componenti aggiungi. Quindi non c'è una zona "poche
+   componenti = punteggi stretti = argmin economico": **la PCA è intrinsecamente nella
+   zona cara** (~14 bit) della curva di costo dell'argmin.
+
+→ Doppio vincolo: la PCA è **debole dove serve** (dati reali) **e cara da rendere
+privata** (punteggi larghi). Non c'è un punto di lavoro buono. È la motivazione, a
+numeri e su una figura, per (a) salire a un embedding migliore della PCA, e (b) per
+l'argmin: se la larghezza dei punteggi non si comprime "gratis", serve un troncamento
+esplicito (`truncate_bit_pattern`) o un embedding nativamente a pochi bit.

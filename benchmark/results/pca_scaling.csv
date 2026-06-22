@@ -1,0 +1,21 @@
+dataset,componenti,bit_punteggi,rank1
+Olivetti,8,13,0.77
+Olivetti,16,13,0.865
+Olivetti,32,13,0.87
+Olivetti,64,14,0.865
+Olivetti,128,14,0.86
+LFW,8,13,0.1435
+LFW,16,14,0.2025
+LFW,32,14,0.2418
+LFW,64,14,0.272
+LFW,128,15,0.2969
+DigiFace (sint.),8,13,0.0725
+DigiFace (sint.),16,13,0.085
+DigiFace (sint.),32,14,0.0875
+DigiFace (sint.),64,14,0.09
+DigiFace (sint.),128,15,0.08
+VGGFace2 (reale),8,13,0.0675
+VGGFace2 (reale),16,13,0.09
+VGGFace2 (reale),32,13,0.0875
+VGGFace2 (reale),64,14,0.0775
+VGGFace2 (reale),128,14,0.09
