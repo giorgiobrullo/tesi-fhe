@@ -15,10 +15,6 @@ omomorfica, basata su TFHE, aritmetica intera, modello a circuito).
    foto diverse della stessa persona tra galleria e probe), implementare le
    tecniche dalla più semplice alla più complessa, ottenere accuratezze di base.
 
-Convergenza: il client calcola l'embedding in chiaro, il server calcola la
-distanza cifrata contro la galleria — la *stessa* operazione vive su entrambi i
-filoni.
-
 ## Implementazione: cosa gira dove
 
 Il sistema separa nettamente i due ruoli:

@@ -37,9 +37,14 @@ uv run python experiments/benchmark_duri/verifica.py
 Per ogni set e tecnica: accuratezza di verifica 1:1 (10-fold). Output in
 `results/verifica_duri.csv`. (I risultati e la lettura sono in `findings.md`.)
 
-## Nota
+## Due protocolli, due script
 
-È **verifica 1:1** (stessa persona sì/no), non identificazione 1:N come i demo dei
-gradini. Serve perché è il protocollo nativo di questi benchmark e dà il confronto
-pulito del degrado LFW → set duri. L'1:N open-set vero verrà su VGGFace2/DigiFace con
-`core.dataset.split_openset` (gradino 08).
+| script | protocollo | set | cosa misura |
+|---|---|---|---|
+| `verifica.py` | **verifica 1:1** (coppie) | LFW, CPLFW, CFP-FP (`.bin`) | degrado facile→duro su posa/profilo |
+| `identificazione_1n.py` | **identificazione 1:N open-set** (il varco) | DigiFace, VGGFace2 | Rank-1 + DIR@FPIR (identifica i noti *e* rifiuta gli ignoti) |
+
+`verifica.py` è il protocollo nativo dei benchmark `.bin` (confrontabile con la
+letteratura). `identificazione_1n.py` è il protocollo del **nostro** sistema:
+costruisce lo split open-set con `core.dataset.split_openset` e riporta il `DIR@FPIR`
+— il numero che conta per il controllo-accessi (vedi `findings.md` F9, F10).

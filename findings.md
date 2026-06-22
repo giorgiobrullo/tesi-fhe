@@ -254,6 +254,41 @@ produce galleria (50 id iscritte) + probe noti (devono matchare) + probe ignoti 
 da rifiutare). La macchina 1:N del varco gira end-to-end. Pronti per la metrica
 TPIR@FPIR e il gradino 08.
 
+## F10 — Le tecniche attuali nel NOSTRO protocollo (1:N open-set): il varco non regge
+Finalmente la misura che conta: PCA / LBP / HOG in **identificazione 1:N open-set**
+(galleria iscritti + probe noti + probe ignoti da **rifiutare**) sui dataset 1:N veri,
+DigiFace (sintetico) e VGGFace2 (reale). Cartella `experiments/benchmark_duri/`
+(`identificazione_1n.py`, dati in `results/identificazione_1n.csv`). Galleria 50 id
+iscritte, 50 id ignote, ~500/500/1000 immagini.
+
+`DIR@FPIR=1%` = punto di lavoro **sicuro** (soglia che lascia passare solo l'1% di
+impostori): a quella soglia, quanti **autorizzati** riconosci?
+
+| | | Rank-1 | **DIR@FPIR=1%** | DIR@FPIR=10% |
+|---|---|---|---|---|
+| DigiFace (sintetico) | PCA | 8,2% | 0,2% | 1,8% |
+| | LBP+χ² | 46,0% | 6,6% | 21,8% |
+| | HOG | 42,2% | 10,4% | 21,4% |
+| VGGFace2 (reale) | PCA | 8,6% | 0,6% | 2,6% |
+| | LBP+χ² | 18,4% | **1,8%** | 4,4% |
+| | HOG | 14,4% | **2,2%** | 3,8% |
+
+**Esito.** Al punto di lavoro sicuro (FPIR=1%), su volti reali il meglio è **~2%**: il
+varco negherebbe l'accesso al **~98% degli autorizzati** pur di tenere fuori gli
+impostori. Il "no match" open-set c'è, ma rifiutare *bene* richiede una separazione che
+queste feature non hanno (è la risposta, a numeri, alla domanda "il 50% non basta?": in
+1:N il caso è 1/N, e qui siamo vicini al pavimento).
+
+Due osservazioni:
+- **PCA è morta in 1:N reale**: Rank-1 ~8% su 50 identità (il caso è 2%), DIR ≈ 0.
+- **Reale ≫ sintetico in difficoltà**: VGGFace2 dimezza/triplica il calo rispetto a
+  DigiFace (LBP 46%→18%, HOG 42%→14%). I volti sintetici sono puliti/frontali; i reali
+  (posa, luce) distruggono le feature hand-crafted. → DigiFace è un set "di controllo"
+  facile, VGGFace2 è il duro vero.
+
+È la motivazione **misurata nel nostro protocollo** per il gradino 08 (embedding CNN):
+non un "sarebbe meglio", ma "così com'è il varco non funziona".
+
 ## F9 — Le tecniche hand-crafted crollano al caso sui benchmark duri (il pavimento)
 Prima di salire alla CNN, abbiamo misurato le tecniche **già fatte** (PCA del gradino
 05, LBP/HOG del gradino 07) sui benchmark duri **CPLFW** (cross-posa) e **CFP-FP**

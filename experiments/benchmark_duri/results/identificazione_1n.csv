@@ -1,0 +1,7 @@
+dataset,tecnica,rank1,dir_fpir1,dir_fpir10
+DigiFace (sintetico),PCA+eucl,0.082,0.002,0.018
+DigiFace (sintetico),LBP+χ²,0.46,0.066,0.218
+DigiFace (sintetico),HOG+eucl,0.422,0.104,0.214
+VGGFace2 (reale),PCA+eucl,0.086,0.006,0.026
+VGGFace2 (reale),LBP+χ²,0.184,0.018,0.044
+VGGFace2 (reale),HOG+eucl,0.144,0.022,0.038
