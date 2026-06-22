@@ -333,3 +333,31 @@ Con un inputset **rappresentativo dei probe reali**, il circuito è corretto: ve
 costruito coi probe reali (o un campione che ne copra la gamma), non con la sola
 galleria — altrimenti i confronti cifrati overflowano in silenzio. Vale per ogni
 circuito con soglie/somme che dipendono dal probe.
+
+## F12 — Prima/dopo: il costo (in tempo) di spostare l'argmin sul server
+Il numero che il meeting chiedeva, misurato sul prototipo PCA (Olivetti). Figura:
+`experiments/06_argmin_soglia/results/prima_dopo.png` (dati `prima_dopo.csv`).
+
+| N (galleria) | PRIMA (argmin client) | DOPO (argmin server, FHE) | fattore |
+|---|---|---|---|
+| 2 | 51 ms | 293 ms | 6× |
+| 8 | 37 ms | 1.357 ms | 36× |
+| 16 | 37 ms | 3.264 ms | 87× |
+| 32 | 37 ms | 7.043 ms | **190×** |
+
+- **PRIMA** (gradino 05, argmin sul client): tempo **piatto ~37 ms/query**, quasi
+  indipendente da N (è solo decifrare gli N punteggi + un argmin numpy). Nessun PBS.
+- **DOPO** (gradino 06, argmin sul server sotto FHE): **cresce con N** (i confronti
+  cifrati sono ~N−1), da 6× a **190×** il costo del client.
+
+**Caveat di onestà (importante).** Il "dopo" è misurato a **precisione ridotta** (8
+componenti, 3 bit → punteggi ~6 bit) per renderlo eseguibile: alla precisione della
+**PCA decente** (50 comp, 6 bit → ~14 bit) l'argmin server è **fuori scala** (pannello
+B della figura: il costo raddoppia ~ad ogni bit, F6). Quindi i fattori 6–190× sono un
+**limite inferiore**: sulla PCA piena il divario è molto maggiore. La figura mostra
+entrambe le leve: (A) la galleria N, (B) la larghezza in bit dei punteggi (quella
+dominante), con segnato dove cade la PCA decente.
+
+Conclusione: lo spostamento dell'argmin sul server — necessario per privacy — ha un
+costo reale e quantificato; la leva di progetto per renderlo praticabile è **ridurre la
+larghezza dei punteggi** (meno componenti/bit, o troncamento prima della riduzione).
