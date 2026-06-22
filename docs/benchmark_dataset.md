@@ -112,6 +112,24 @@ non-gated) contiene già `lfw/cfp_fp/cplfw/calfw/agedb_30 .bin` allineati 112×1
 serve anche al gradino CNN), affiancato da **DigiFace-1M** come sintetico 1:N pulito.
 CPLFW/CFP come misura-posa rapida.
 
+## Download effettivi usati (riproducibili)
+
+I due dataset 1:N **scaricati e integrati** (`core.dataset.carica_digiface` /
+`carica_vggface2_test`), in `datasets/` (gitignorato):
+
+```bash
+# DigiFace-1M P1 (sintetico, 2000 id × 72 img, 112×112, no-gate)
+curl -L -o datasets/digiface/p1_72.zip \
+  "https://facesyntheticspubwedata.z6.web.core.windows.net/wacv-2023/subjects_0-1999_72_imgs.zip"
+unzip -q datasets/digiface/p1_72.zip -d datasets/digiface/estratto
+# (altre 4 parti: subjects_2000-3999 … 8000-9999, stesso schema)
+
+# VGGFace2 test (reale, 500 id, ~2 GB) dal mirror HuggingFace
+curl -L -o datasets/vggface2/vggface2_test.tar.gz \
+  "https://huggingface.co/datasets/ProgramComputer/VGGFace2/resolve/main/data/vggface2_test.tar.gz"
+tar xzf datasets/vggface2/vggface2_test.tar.gz -C datasets/vggface2
+```
+
 ## Passi pratici (split 1:N da VGGFace2)
 
 1. Scaricare VGGFace2 (torrent o mirror HF; o il pack allineato 112×112 di InsightFace).
