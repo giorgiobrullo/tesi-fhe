@@ -1,14 +1,13 @@
-"""Gradino 06 — il muro dell'argmin cifrato (evidenza di F6).
+"""Gradino 06 — costo dell'argmin cifrato sul server (evidenza di F6).
 
-NON è un benchmark a tappeto su PCA: quello sarebbe sbagliato (caratterizzeremmo una
-tecnica che già sappiamo debole, F5) e violerebbe il metodo (prima i parametri validi
-in chiaro, poi il costo FHE solo su quelli). Qui mostriamo solo *perché* l'argmin
-cifrato non scala: il costo della riduzione raddoppia ~ad ogni bit di larghezza dei
-punteggi. È il dato che motiva la decisione registrata in findings.md (F6).
+Per privacy l'argmin deve stare sul server, sotto FHE (vedi F6). Qui misuriamo quanto
+costa: la riduzione cifrata in funzione della **larghezza in bit dei punteggi**. Il
+costo raddoppia ~ad ogni bit → è la leva di progetto (tenere stretta la precisione).
 
-Confronto: il gradino 05 (argmin sul client, in chiaro) costa ~31 ms/query. I
-punteggi PCA reali sono ~14 bit: estrapolando la curva qui sotto, l'argmin cifrato
-arriva a decine di minuti/query → intrattabile.
+Confronto: il gradino 05 (argmin sul client, in chiaro) costa ~31 ms/query; spostarlo
+sul server lo fa passare da gratis a questo costo. NON facciamo uno sweep a tappeto su
+PCA (violerebbe il metodo: prima i parametri validi in chiaro, poi il costo FHE solo
+su quelli) — la caratterizzazione fine va sulla tecnica finale.
 
 Esegui:  uv run python experiments/06_argmin_soglia/costo.py
          (default fino a 8 bit, ~1 min; oltre cresce ×2/bit e diventa lento)

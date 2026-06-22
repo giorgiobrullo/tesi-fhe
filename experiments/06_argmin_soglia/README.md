@@ -1,47 +1,42 @@
-# Gradino 06 — argmin sotto FHE: la decisione e il suo costo
+# Gradino 06 — argmin sul server (privacy): quanto costa
 
-> Stato: **chiuso su PCA** (esito negativo, documentato). Da rivalutare salendo la
-> scaletta (descrittori locali, poi CNN). Vedi `findings.md` F6.
+> Misura presa. Vedi `findings.md` F6.
 
-## La decisione
+## Perché
 
-Nel gradino 05 l'argmin lo fa il **client**: il server gli manda gli N punteggi, lui
-li decifra e prende il minimo. Ma così il client impara la distanza con *tutta* la
-galleria, non solo col match — informazione che non dovrebbe avere. Decisione (dal
-meeting): spostare l'argmin (e in prospettiva la soglia open-set) **sul server, sotto
-FHE**, così il client apprende solo *chi* è il match.
+Nel gradino 05 l'argmin lo fa il **client**: comodo e gratis (nessun PBS), ma il
+client decifra tutti gli N punteggi → impara la distanza con *ogni* iscritto, non solo
+col match. Per privacy l'argmin (e in prospettiva la soglia open-set) **deve stare sul
+server, sotto FHE**, così il client apprende solo *chi* è il match. Qui misuriamo
+semplicemente quanto costa farlo lì.
 
 Risposta scelta: **(A)** il server restituisce l'**indice/identità** del match (è un
 riconoscitore, non una verifica sì/no).
 
-## Cosa abbiamo trovato
+## Il costo
 
 `np.argmin` non è nativo in Concrete → riduzione a confronti cifrati a coppie (ogni
-passo un PBS), implementata in `core/matching.py::circuito_distanza_argmin`. Funziona
-ed è corretta su input piccoli, **ma non scala**: il costo raddoppia ~ad ogni bit di
-larghezza dei punteggi.
+passo un PBS), in `core/matching.py::circuito_distanza_argmin`. Il costo è dominato
+dalla **larghezza in bit dei punteggi** e raddoppia ~ad ogni bit:
 
 | larghezza punteggi (N=10) | 5 bit | 6 bit | 7 bit | 8 bit | 9 bit | 10 bit |
 |---|---|---|---|---|---|---|
 | run argmin | 4,2 s | 5,8 s | 12,7 s | 34 s | 82 s | 172 s |
 
-I punteggi PCA reali (Olivetti, N=320, 50 comp, 6 bit) sono **~14 bit** → estrapolando
-si arriva a decine di minuti/query, e già a galleria minuscola la compilazione di
-Concrete 2.11 si rompe (assert sul bit-width / esplosione di memoria). **Intrattabile**
-— contro i **~31 ms/query** del gradino 05.
+**È il centro di costo del passaggio privato:** da gratis (client) a un prezzo che
+raddoppia per ogni bit di precisione del punteggio. → la leva di progetto è **tenere
+stretta la larghezza dei punteggi**. A larghezze realistiche pesa (i punteggi PCA del
+prototipo sono ~14 bit → secondi/decine di secondi per query; a piena larghezza
+Concrete 2.11 fatica anche solo a compilare). Per riferimento, il solo calcolo dei
+punteggi senza argmin (gradino 05) è ~31 ms/query.
 
-## Conclusione
-
-La decisione (cifrare l'argmin) è giusta per la privacy, ma su **PCA a piena
-precisione non è praticabile**. Non investiamo oltre (PCA è debole sui dati reali,
-F5): la caratterizzazione del costo va rifatta salendo la scaletta (descrittori
-locali, poi CNN), sui soli parametri validi, e con eventuale riduzione di precisione
-dei punteggi. La soglia
-open-set è rimandata per lo stesso motivo (costo marginale rispetto all'argmin).
+La caratterizzazione fine (a quale larghezza conviene girare) si fa sulla tecnica
+finale, sui parametri validi. La soglia open-set è un confronto cifrato in più,
+marginale rispetto agli N−1 dell'argmin.
 
 ## File
 
 | file | ruolo |
 |---|---|
-| `costo.py` | riproduce il muro: run dell'argmin cifrato vs larghezza in bit |
+| `costo.py` | run dell'argmin cifrato vs larghezza in bit |
 | `results/muro_argmin.csv` | la curva misurata (N=10, 5→10 bit) |

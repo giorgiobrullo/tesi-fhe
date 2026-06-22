@@ -98,45 +98,33 @@ L'accuratezza **crolla** rispetto a Olivetti: gli eigenfaces non reggono la
 variabilità reale (posa, luce, sfondo). La PCA fa meglio del caso, ma è lontana
 dall'usabile.
 
-## F6 — La decisione: l'argmin va cifrato (privacy), ma su PCA non è praticabile
-**Decisione (dal meeting).** Nel gradino 05 l'argmin lo fa il client: il server
-restituisce tutti gli N punteggi, il client li decifra e prende il minimo. Ma così
-il client impara la **distanza con ogni faccia della galleria** (la similarità con
-tutti gli iscritti), non solo col match — informazione che non dovrebbe avere.
-Quindi l'argmin (più, in prospettiva, la soglia open-set per il rifiuto degli
-impostori) va spostato **sul server, sotto FHE**: il client apprende solo l'esito.
+## F6 — L'argmin deve stare sul server (privacy): quanto costa
+Nel gradino 05 l'argmin lo fa il **client**: comodo e gratis (nessun PBS), ma il
+client decifra tutti gli N punteggi → impara la distanza con **ogni** iscritto, non
+solo col match. Per privacy l'argmin (e, in prospettiva, la soglia open-set) **deve
+stare sul server, sotto FHE**, così il client apprende solo l'esito. Qui misuriamo
+semplicemente quanto costa farlo in quel modo.
 
-**Costo: l'argmin cifrato non è gratis e non è nativo.** `np.argmin` non è
-supportato da Concrete → va fatto a **riduzione**, con confronti cifrati a coppie
-(`<`, select dell'indice/valore): ogni passo è un PBS. Il costo è dominato dalla
-**larghezza in bit dei punteggi** e cresce ~×2 per bit (di nuovo la leva di F1–F3,
-ora sull'argmin). Misurato (riduzione su N=10 valori):
+L'argmin cifrato non è nativo in Concrete (`np.argmin` non supportato) → si fa a
+**riduzione**: confronti cifrati a coppie con select di indice/valore, ogni passo un
+PBS. Il costo è dominato dalla **larghezza in bit dei punteggi** e raddoppia ~ad ogni
+bit (di nuovo la leva di F1–F3, ora sull'argmin). Misurato (riduzione su N=10):
 
 | larghezza punteggi | 5 bit | 6 bit | 7 bit | 8 bit | 9 bit | 10 bit |
 |---|---|---|---|---|---|---|
 | run argmin | 4,2 s | 5,8 s | 12,7 s | 34 s | 82 s | 172 s |
 
-**Su PCA non scala.** I punteggi del prototipo PCA reale (Olivetti, N=320, 50
-componenti, 6 bit/componente) sono **~14 bit** di larghezza (range misurato ≈ 9000).
-Estrapolando la curva (×2/bit da 172 s a 10 bit) si arriva all'ordine delle **decine
-di minuti per singola query** — e N=320 (vs N=10 della curva) lo moltiplica ancora.
-In pratica, già a galleria minuscola la compilazione di Concrete 2.11 sui punteggi
-*calcolati* (larghi) si rompe in due modi diversi: assert interno sul bit-width
-(`np.minimum`) oppure esplosione di memoria (~34 GB a N=6 con la variante a select).
-→ **Intrattabile.** Per contro, il solo calcolo dei punteggi (gradino 05, argmin sul
-client) è **~31 ms/query** (29 ms match + 2 ms decifra/argmin).
+**È il centro di costo del passaggio "privato".** Spostare l'argmin sul server lo fa
+passare da gratis (client) a un costo che **raddoppia per ogni bit** di precisione del
+punteggio. Quindi la leva di progetto è chiara: **tenere stretta la larghezza dei
+punteggi**. A larghezze realistiche pesa (es. i punteggi PCA del prototipo sono ~14
+bit → secondi/decine di secondi per query; a piena larghezza Concrete 2.11 fatica
+anche solo a compilare). Per riferimento, il solo calcolo dei punteggi senza argmin
+(gradino 05) è ~31 ms/query.
 
-**Conclusione.** La decisione di cifrare l'argmin è giusta per la privacy, ma con la
-PCA a piena precisione non è praticabile senza ridurre drasticamente la larghezza
-dei punteggi (meno bit/componenti, o troncamento prima della riduzione — lossy). Non
-investiamo oltre: la PCA è comunque debole sui dati reali (F5). La caratterizzazione
-del costo dell'argmin cifrato va **rifatta sulla tecnica che useremo davvero** —
-salendo la scaletta (prima i descrittori locali, poi la CNN) — sui soli parametri
-che danno accuratezza accettabile (metodo: prima i parametri in chiaro, poi il costo
-FHE su quel range). La soglia open-set sotto FHE è rimandata
-con lo stesso motivo: è un confronto in più, marginale rispetto agli N−1 dell'argmin.
-Tenuto qui come dato di fattibilità: *abbiamo provato a cifrare l'argmin su PCA, ed
-ecco i numeri.*
+→ Misura presa. La caratterizzazione fine (a quale larghezza/precisione conviene
+girare) si fa sulla tecnica finale, sui parametri validi. La soglia open-set è un
+confronto cifrato in più, marginale rispetto agli N−1 dell'argmin.
 
 ## F7 — Descrittori locali: battono la PCA sui volti reali, ma con un bivio FHE
 Secondo gradino della scaletta (LBP, HOG), validato **in chiaro** prima di toccare

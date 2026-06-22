@@ -58,7 +58,7 @@ si riporta **(accuratezza in chiaro, costo FHE)**.
 |---|---|---|---|
 | 00–04 | — | fondamenta FHE: hello world → PBS → distanza → galleria in chiaro → client/server | — |
 | **05** | geometriche | **PCA / eigenfaces** — proiezione lineare + distanza euclidea | ottima (niente PBS nel matching) |
-| 06 | — | argmin sotto FHE: decisione (privacy), il client apprende solo l'esito | reintroduce i PBS; su PCA intrattabile (F6) |
+| 06 | — | argmin sul server sotto FHE: per privacy il client apprende solo l'esito | reintroduce i PBS; costo ~×2 per bit dei punteggi (F6) |
 | **07** | **descrittori locali** | **LBP (χ²) + HOG** ★ *prossimo* | HOG+euclidea riusa il circuito; LBP+χ² ha una divisione (ostico) |
 | 08 | CNN | CNN leggera (MobileFaceNet, linea ArcFace), frozen | attivazioni non lineari → PBS |
 | 09+ | CNN | CNN profonda (ResNet/InsightFace) | costose |
