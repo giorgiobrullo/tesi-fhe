@@ -104,9 +104,15 @@ uv run python experiments/05_pca/demo.py [olivetti|lfw]
 - **`core/`** — il motore condiviso: i circuiti FHE (`matching.py`, *fonte unica*),
   il plumbing client/server, quantizzazione e caricamento dataset. Ciò che vale su
   più gradini sta qui una volta sola.
-- **`experiments/NN_…`** — la scaletta. Le fondamenta FHE (`00`–`04`) sono script
-  singoli; i gradini di riconoscimento (`05_pca`, `06_argmin_soglia`, …) sono
-  cartelle con l'embedding specifico + demo/benchmark + un README. Ognuno importa da
-  `core/`.
-- **`findings.md`** — il filo narrativo: risultati distillati (F0–F5 + prossimi
+- **`experiments/NN_…`** — la scaletta **numerata** delle tecniche. Le fondamenta FHE
+  (`00`–`04`) sono script singoli; i gradini di riconoscimento (`05_pca`,
+  `06_argmin_soglia`, `07_descrittori_locali`, …) sono cartelle con l'embedding
+  specifico + demo/costo + un README. Ognuno importa da `core/`.
+- **`benchmark/`** — valutazione **trasversale** (non un gradino): misura le tecniche
+  già fatte sui dataset duri. `verifica.py` (1:1 su CPLFW/CFP-FP) e
+  `identificazione_1n.py` (1:N open-set su DigiFace/VGGFace2, metrica DIR@FPIR).
+- **`datasets/`** — dati scaricati (gitignorato): i `.bin` dei benchmark, DigiFace-1M,
+  VGGFace2. Rotte di download in `docs/benchmark_dataset.md`.
+- **`findings.md`** — il filo narrativo: risultati distillati (F0–F10 + prossimi
   passi) e la mappa completa della scaletta di Carnemolla.
+- **`docs/`** — note di riferimento: scelta dei dataset e dei modelli di embedding.
