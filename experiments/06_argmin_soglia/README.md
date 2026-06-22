@@ -10,8 +10,8 @@ col match. Per privacy l'argmin (e in prospettiva la soglia open-set) **deve sta
 server, sotto FHE**, così il client apprende solo *chi* è il match. Qui misuriamo
 semplicemente quanto costa farlo lì.
 
-Risposta scelta: **(A)** il server restituisce l'**indice/identità** del match (è un
-riconoscitore, non una verifica sì/no).
+Risposta scelta: **(A)** il server restituisce l'**indice/identità** del match oppure "nessun match 
+se nessun match è entro la soglia prefissata.
 
 ## Il costo
 
@@ -31,8 +31,19 @@ Concrete 2.11 fatica anche solo a compilare). Per riferimento, il solo calcolo d
 punteggi senza argmin (gradino 05) è ~31 ms/query.
 
 La caratterizzazione fine (a quale larghezza conviene girare) si fa sulla tecnica
-finale, sui parametri validi. La soglia open-set è un confronto cifrato in più,
-marginale rispetto agli N−1 dell'argmin.
+finale, sui parametri validi.
+
+## La soglia "nessun match" — funziona (con l'inputset giusto)
+
+Il circuito completo (`core/matching.py::circuito_distanza_argmin_soglia`) ritorna
+`(indice, è_match)`: la distanza² vera del match (`val_min + ‖a‖²`) è confrontata con
+la soglia → `è_match=0` significa **"nessun match"** (impostore/sconosciuto rifiutato).
+Verificato 10/10, coi rifiuti che si attivano davvero.
+
+⚠️ **Trappola (F11):** Concrete non ha `argmin` nativo (solo `min/max/where` → si
+costruisce da `<` + select), e il rifiuto si attiva solo se l'**inputset è
+rappresentativo dei probe reali**: con un inputset troppo stretto il confronto della
+soglia va in *overflow silenzioso* e dice sempre "match". Vedi `findings.md` F11.
 
 ## File
 

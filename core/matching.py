@@ -63,11 +63,10 @@ def circuito_distanza_argmin(galleria_q: np.ndarray):
     *chi* è il match, non le N distanze. È il confronto "pulito" prima/dopo rispetto
     al gradino 05 (lì l'argmin era sul client, in chiaro, senza PBS).
 
-    ATTENZIONE (vedi findings.md F6): tracciabile solo a punteggi *stretti*. La
-    riduzione è corretta su input piccoli, ma il costo raddoppia ~ad ogni bit di
-    larghezza del punteggio, e sui punteggi PCA reali (~14 bit) la compilazione di
-    Concrete 2.11 diventa intrattabile. Questa funzione resta come implementazione di
-    riferimento della decisione (argmin cifrato), da rivalutare sulla tecnica vera.
+    Nota (vedi findings.md F6): il costo raddoppia ~ad ogni bit di larghezza del
+    punteggio, quindi a larghezze realistiche pesa (la leva è tenere stretti i bit dei
+    punteggi). Versione "solo indice"; quella completa col rifiuto è
+    `circuito_distanza_argmin_soglia`.
     """
     B = galleria_q
     b_sq = np.sum(B ** 2, axis=1)
@@ -82,10 +81,41 @@ def circuito_distanza_argmin(galleria_q: np.ndarray):
     return match.compile([b for b in B])
 
 
-# Nota — soglia open-set (rifiuto impostori) sotto FHE: deve confrontare la distanza
-# *vera* del match con una soglia, quindi rimettere ‖a‖² (scartato per il ranking) e
-# fare un confronto cifrato in più. Un primo tentativo (`val_min + ‖a‖² < soglia`)
-# inciampa in un limite interno di Concrete 2.11 (assert sul bit-width nel "trick" di
-# np.minimum quando coesiste col termine ‖a‖²). È un costo marginale rispetto agli
-# N−1 confronti dell'argmin e non cambia le conclusioni del gradino 06, quindi è
-# rimandato alla tecnica vera (CNN) — vedi findings.md F6.
+def circuito_distanza_argmin_soglia(galleria_q: np.ndarray, soglia_dist_sq: int, inputset):
+    """Gradino 06 completo: argmin + soglia open-set sotto FHE → (indice, è_match).
+
+    È l'operazione vera del varco. Restituisce la coppia cifrata:
+      - `indice`  : argmin sui punteggi (chi è il più vicino in galleria);
+      - `è_match` : 1 se la distanza² vera del match è < soglia, altrimenti **0 =
+                    "nessun match"** (impostore/sconosciuto rifiutato).
+
+    La distanza² vera è `val_min + ‖a‖²`: il termine `‖a‖²` scartato per il ranking va
+    **rimesso** per confrontare con una soglia assoluta (`‖a‖²` è enc×enc → un PBS, una
+    volta). Si usa il **select** per portare avanti `val_min` (non `np.minimum`, che col
+    termine `+‖a‖²` inciampa in un assert interno di Concrete 2.11).
+
+    IMPORTANTE — `inputset` deve essere un campione **rappresentativo dei probe reali**
+    (non le sole righe della galleria): Concrete inferisce la larghezza in bit dei
+    valori cifrati dall'inputset, e se è troppo stretto il confronto della soglia va in
+    **overflow silenzioso** (il valore gira modulo) → il rifiuto non si attiva mai e
+    tutto sembra "match". Con un inputset adeguato il ramo "nessun match" è corretto.
+    """
+    B = galleria_q
+    b_sq = np.sum(B ** 2, axis=1)
+    N = len(B)
+
+    @fhe.compiler({"a": "encrypted"})
+    def match(a):
+        punteggi = b_sq - 2 * (B @ a)               # (N,) = dist² − ‖a‖²
+        a_sq = np.sum(a * a)                         # ‖a‖² (enc×enc, una volta)
+        idx_min = fhe.zeros(())
+        val_min = punteggi[0]
+        for i in range(1, N):
+            lt = (punteggi[i] < val_min).astype(np.int64)
+            idx_min = lt * i + (1 - lt) * idx_min        # select indice
+            val_min = lt * punteggi[i] + (1 - lt) * val_min  # select valore (no np.minimum)
+        dist_sq_min = val_min + a_sq                 # distanza² vera del match
+        e_match = (dist_sq_min < soglia_dist_sq).astype(np.int64)   # 1=match, 0=nessun match
+        return idx_min, e_match
+
+    return match.compile(inputset)

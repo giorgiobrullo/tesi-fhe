@@ -5,9 +5,7 @@ costa: la riduzione cifrata in funzione della **larghezza in bit dei punteggi**.
 costo raddoppia ~ad ogni bit → è la leva di progetto (tenere stretta la precisione).
 
 Confronto: il gradino 05 (argmin sul client, in chiaro) costa ~31 ms/query; spostarlo
-sul server lo fa passare da gratis a questo costo. NON facciamo uno sweep a tappeto su
-PCA (violerebbe il metodo: prima i parametri validi in chiaro, poi il costo FHE solo
-su quelli) — la caratterizzazione fine va sulla tecnica finale.
+sul server lo fa passare da gratis a questo costo.
 
 Esegui:  uv run python experiments/06_argmin_soglia/costo.py
          (default fino a 8 bit, ~1 min; oltre cresce ×2/bit e diventa lento)

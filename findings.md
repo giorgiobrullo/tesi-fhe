@@ -302,3 +302,34 @@ invariante a posa/luce/età è *esattamente* ciò che qui manca.
 - Anche su LFW i numeri sono bassi (~65%): scala di grigi grezza, nessun tuning per-set,
   PCA non supervisionata sulle immagini del set. Lo scopo non è il massimo assoluto ma
   il **trend**: le tecniche semplici non reggono la posa. (Le CNN qui fanno ~92-99%.)
+
+## F11 — Argmin + soglia ("nessun match") sotto FHE funziona; la trappola è l'inputset
+L'operazione vera del varco è **argmin + verifica soglia**: il server trova il più
+vicino e dice "match id=X" **oppure "nessun match"** se nessuno è entro la soglia
+(impostore/sconosciuto rifiutato). Due punti chiusi qui.
+
+**1. Concrete non ha un argmin nativo — confermato dal sorgente.** La lista
+`SUPPORTED_NUMPY_OPERATORS` di `concrete-python 2.11` contiene `np.dot, np.min,
+np.max, np.minimum, np.maximum, np.sum, np.where` — **non** `np.argmin`/`np.argmax`. Ha
+il *valore* minimo, non l'*indice*: coerente col modello a circuito/LUT (un indice non
+è un'operazione naturale sul cifrato). Quindi l'argmin si costruisce da `<` + select
+(`np.where`/aritmetica), in `core/matching.py`.
+
+**2. Il rifiuto "nessun match" funziona, ma serve l'inputset giusto.** Il circuito
+completo (`circuito_distanza_argmin_soglia`) ritorna `(indice, è_match)` dove la
+soglia confronta la distanza² **vera** `val_min + ‖a‖²` (il termine `‖a‖²` scartato per
+il ranking va rimesso per una soglia assoluta). All'inizio il ramo "nessun match" **non
+si attivava mai**: causa = **inputset troppo stretto**. Concrete inferisce la larghezza
+in bit dei valori cifrati *dall'inputset*; passando solo le righe della galleria, il
+range era insufficiente e il confronto della soglia andava in **overflow silenzioso**
+(il valore gira modulo a un numero piccolo → sempre "sotto soglia" → sempre "match").
+L'argmin restava giusto (i suoi valori erano nel range); solo la soglia sballava — un
+bug subdolo, niente errore, solo risultato sbagliato.
+
+Con un inputset **rappresentativo dei probe reali**, il circuito è corretto: verificato
+**10/10**, con i "nessun match" che si attivano davvero (4/10 nel test a soglia stretta).
+
+→ Lezione (cugina di F3/F6): **l'inputset definisce il range valido del circuito.** Va
+costruito coi probe reali (o un campione che ne copra la gamma), non con la sola
+galleria — altrimenti i confronti cifrati overflowano in silenzio. Vale per ogni
+circuito con soglie/somme che dipendono dal probe.
