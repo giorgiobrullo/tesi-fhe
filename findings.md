@@ -272,7 +272,8 @@ invariante a posa/luce/età è *esattamente* ciò che qui manca.
 Finalmente la misura che conta: PCA / LBP / HOG in **identificazione 1:N open-set**
 (galleria iscritti + probe noti + probe ignoti da **rifiutare**) sui dataset 1:N veri,
 DigiFace (sintetico) e VGGFace2 (reale). Cartella `benchmark/`
-(`identificazione_1n.py`, dati in `results/identificazione_1n.csv`). Galleria 50 id
+(`identificazione_1n.py`, dati in `results/identificazione_1n.csv`, figura
+`results/tecniche_1n.png`). Galleria 50 id
 iscritte, 50 id ignote, ~500/500/1000 immagini.
 
 `DIR@FPIR=1%` = punto di lavoro **sicuro** (soglia che lascia passare solo l'1% di

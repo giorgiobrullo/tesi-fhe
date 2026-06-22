@@ -102,6 +102,31 @@ def valuta(nome_dataset, carica_fn):
     return righe
 
 
+def figura(righe):
+    """Bar chart riassuntivo: tutte le tecniche pre-CNN sui benchmark 1:N."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    tecniche = ["PCA+eucl", "LDA+eucl", "LBP+χ²", "HOG+eucl"]
+    datasets = ["DigiFace (sintetico)", "VGGFace2 (reale)"]
+    col = {"DigiFace (sintetico)": "#8ecae6", "VGGFace2 (reale)": "#e76f51"}
+    val = lambda ds, te, k: next((r[k] for r in righe if r["dataset"] == ds and r["tecnica"] == te), 0)
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.5, 4.3))
+    x = np.arange(len(tecniche)); w = 0.38
+    for ax, k, tit in [(ax1, "rank1", "(A) Rank-1 (chi è il match)"),
+                       (ax2, "dir_fpir1", "(B) DIR@FPIR=1% (il varco sicuro)")]:
+        for i, ds in enumerate(datasets):
+            ax.bar(x + (i - .5) * w, [val(ds, t, k) * 100 for t in tecniche], w, label=ds, color=col[ds])
+        ax.set_xticks(x); ax.set_xticklabels([t.split("+")[0] for t in tecniche])
+        ax.set_ylabel("%"); ax.set_title(tit); ax.grid(True, axis="y", alpha=.3); ax.legend(fontsize=8)
+    ax2.axhline(2, ls="--", color="gray"); ax2.text(0, 2.3, "pavimento ~caso", fontsize=8, color="gray")
+    fig.suptitle("Tecniche pre-CNN sui benchmark 1:N (geometriche + descrittori locali)", fontweight="bold")
+    fig.tight_layout()
+    fig.savefig(OUT / "tecniche_1n.png", dpi=130); fig.savefig(OUT / "tecniche_1n.svg")
+    print(f"scritto {OUT/'tecniche_1n.png'}/.svg")
+
+
 def main():
     OUT.mkdir(exist_ok=True)
     righe = []
@@ -111,6 +136,7 @@ def main():
         w = csv.DictWriter(f, fieldnames=list(righe[0].keys()))
         w.writeheader(); w.writerows(righe)
     print(f"\nscritto {OUT / 'identificazione_1n.csv'}")
+    figura(righe)
 
 
 if __name__ == "__main__":
