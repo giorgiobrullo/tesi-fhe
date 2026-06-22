@@ -242,41 +242,6 @@ produce galleria (50 id iscritte) + probe noti (devono matchare) + probe ignoti 
 da rifiutare). La macchina 1:N del varco gira end-to-end. Pronti per la metrica
 TPIR@FPIR e il gradino 08.
 
-## F10 — Le tecniche attuali nel NOSTRO protocollo (1:N open-set): il varco non regge
-Finalmente la misura che conta: PCA / LBP / HOG in **identificazione 1:N open-set**
-(galleria iscritti + probe noti + probe ignoti da **rifiutare**) sui dataset 1:N veri,
-DigiFace (sintetico) e VGGFace2 (reale). Cartella `benchmark/`
-(`identificazione_1n.py`, dati in `results/identificazione_1n.csv`). Galleria 50 id
-iscritte, 50 id ignote, ~500/500/1000 immagini.
-
-`DIR@FPIR=1%` = punto di lavoro **sicuro** (soglia che lascia passare solo l'1% di
-impostori): a quella soglia, quanti **autorizzati** riconosci?
-
-| | | Rank-1 | **DIR@FPIR=1%** | DIR@FPIR=10% |
-|---|---|---|---|---|
-| DigiFace (sintetico) | PCA | 8,2% | 0,2% | 1,8% |
-| | LBP+χ² | 46,0% | 6,6% | 21,8% |
-| | HOG | 42,2% | 10,4% | 21,4% |
-| VGGFace2 (reale) | PCA | 8,6% | 0,6% | 2,6% |
-| | LBP+χ² | 18,4% | **1,8%** | 4,4% |
-| | HOG | 14,4% | **2,2%** | 3,8% |
-
-**Esito.** Al punto di lavoro sicuro (FPIR=1%), su volti reali il meglio è **~2%**: il
-varco negherebbe l'accesso al **~98% degli autorizzati** pur di tenere fuori gli
-impostori. Il "no match" open-set c'è, ma rifiutare *bene* richiede una separazione che
-queste feature non hanno (è la risposta, a numeri, alla domanda "il 50% non basta?": in
-1:N il caso è 1/N, e qui siamo vicini al pavimento).
-
-Due osservazioni:
-- **PCA è morta in 1:N reale**: Rank-1 ~8% su 50 identità (il caso è 2%), DIR ≈ 0.
-- **Reale ≫ sintetico in difficoltà**: VGGFace2 dimezza/triplica il calo rispetto a
-  DigiFace (LBP 46%→18%, HOG 42%→14%). I volti sintetici sono puliti/frontali; i reali
-  (posa, luce) distruggono le feature hand-crafted. → DigiFace è un set "di controllo"
-  facile, VGGFace2 è il duro vero.
-
-È la motivazione **misurata nel nostro protocollo** per il gradino 08 (embedding CNN):
-non un "sarebbe meglio", ma "così com'è il varco non funziona".
-
 ## F9 — Le tecniche hand-crafted crollano al caso sui benchmark duri (il pavimento)
 Prima di salire alla CNN, abbiamo misurato le tecniche **già fatte** (PCA del gradino
 05, LBP/HOG del gradino 07) sui benchmark duri **CPLFW** (cross-posa) e **CFP-FP**
@@ -302,6 +267,50 @@ invariante a posa/luce/età è *esattamente* ciò che qui manca.
 - Anche su LFW i numeri sono bassi (~65%): scala di grigi grezza, nessun tuning per-set,
   PCA non supervisionata sulle immagini del set. Lo scopo non è il massimo assoluto ma
   il **trend**: le tecniche semplici non reggono la posa. (Le CNN qui fanno ~92-99%.)
+
+## F10 — Le tecniche attuali nel NOSTRO protocollo (1:N open-set): il varco non regge
+Finalmente la misura che conta: PCA / LBP / HOG in **identificazione 1:N open-set**
+(galleria iscritti + probe noti + probe ignoti da **rifiutare**) sui dataset 1:N veri,
+DigiFace (sintetico) e VGGFace2 (reale). Cartella `benchmark/`
+(`identificazione_1n.py`, dati in `results/identificazione_1n.csv`). Galleria 50 id
+iscritte, 50 id ignote, ~500/500/1000 immagini.
+
+`DIR@FPIR=1%` = punto di lavoro **sicuro** (soglia che lascia passare solo l'1% di
+impostori): a quella soglia, quanti **autorizzati** riconosci?
+
+| | | Rank-1 | **DIR@FPIR=1%** | DIR@FPIR=10% |
+|---|---|---|---|---|
+| DigiFace (sintetico) | PCA | 8,2% | 0,2% | 1,8% |
+| | LDA/Fisherfaces | 16,6% | 0,2% | 1,2% |
+| | LBP+χ² | 46,0% | 6,6% | 21,8% |
+| | HOG | 42,2% | 10,4% | 21,4% |
+| VGGFace2 (reale) | PCA | 8,6% | 0,6% | 2,6% |
+| | LDA/Fisherfaces | 7,6% | 0,4% | 1,6% |
+| | LBP+χ² | 18,4% | **1,8%** | 4,4% |
+| | HOG | 14,4% | **2,2%** | 3,8% |
+
+**Esito.** Al punto di lavoro sicuro (FPIR=1%), su volti reali il meglio è **~2%**: il
+varco negherebbe l'accesso al **~98% degli autorizzati** pur di tenere fuori gli
+impostori. Il "no match" open-set c'è, ma rifiutare *bene* richiede una separazione che
+queste feature non hanno (è la risposta, a numeri, alla domanda "il 50% non basta?": in
+1:N il caso è 1/N, e qui siamo vicini al pavimento).
+
+Tre osservazioni:
+- **PCA è morta in 1:N reale**: Rank-1 ~8% su 50 identità (il caso è 2%), DIR ≈ 0.
+- **LDA/Fisherfaces (l'ultima geometrica) non salva.** La versione *supervisionata*
+  della PCA raddoppia la PCA sul sintetico (16,6% su DigiFace, pulito/frontale) ma **sui
+  volti reali non aiuta** (7,6%, perfino un filo sotto la PCA): le direzioni
+  discriminanti stimate sulla galleria non generalizzano alla variabilità reale. →
+  **lo scalino geometrico è esaurito** (PCA *e* LDA falliscono sul reale).
+- **Reale ≫ sintetico in difficoltà**: VGGFace2 dimezza/triplica il calo rispetto a
+  DigiFace (LBP 46%→18%, HOG 42%→14%). I volti sintetici sono puliti/frontali; i reali
+  (posa, luce) distruggono le feature hand-crafted. → DigiFace è un set "di controllo"
+  facile, VGGFace2 è il duro vero.
+
+È la motivazione **misurata nel nostro protocollo** per il gradino 08 (embedding CNN):
+abbiamo provato *tutte* le tecniche pre-CNN — geometriche (PCA, LDA) e descrittori
+locali (LBP, HOG) — e nessuna fa funzionare il varco su volti reali (DIR@FPIR=1% ≤ 2%).
+Non un "sarebbe meglio", ma "così com'è il varco non funziona, ed è il momento della CNN".
 
 ## F11 — Argmin + soglia ("nessun match") sotto FHE funziona; la trappola è l'inputset
 L'operazione vera del varco è **argmin + verifica soglia**: il server trova il più

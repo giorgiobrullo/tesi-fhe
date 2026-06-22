@@ -24,6 +24,7 @@ import time
 
 import numpy as np
 from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))  # repo root
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "07_descrittori_locali"))
@@ -74,8 +75,15 @@ def valuta(nome_dataset, carica_fn):
     # feature in chiaro per ciascuna tecnica
     flat = lambda A: A.reshape(len(A), -1)
     pca = PCA(n_components=min(150, len(Xg)), random_state=0).fit(flat(Xg))
+    # LDA/Fisherfaces: supervisionata (usa le etichette degli iscritti). n_componenti
+    # ≤ n_classi−1; per stabilità riduciamo prima con PCA, poi LDA (pipeline classica).
+    n_classi = len(set(yg.tolist()))
+    pca_pre = PCA(n_components=min(150, len(Xg) - n_classi), random_state=0).fit(flat(Xg))
+    lda = LDA(n_components=min(n_classi - 1, 150)).fit(pca_pre.transform(flat(Xg)), yg)
+    ldaT = lambda A: lda.transform(pca_pre.transform(flat(A)))
     feats = {
         "PCA+eucl":  (pca.transform(flat(Xg)), pca.transform(flat(Xpn)), pca.transform(flat(Xpi)), False),
+        "LDA+eucl":  (ldaT(Xg), ldaT(Xpn), ldaT(Xpi), False),
         "LBP+χ²":    (d.lbp(Xg), d.lbp(Xpn), d.lbp(Xpi), True),
         "HOG+eucl":  (d.hog_feat(Xg), d.hog_feat(Xpn), d.hog_feat(Xpi), False),
     }
