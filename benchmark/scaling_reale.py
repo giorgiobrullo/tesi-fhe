@@ -30,8 +30,8 @@ import embedding as ec                                 # noqa: E402
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 TRAIN = dataset._RADICE / "vggface2" / "train"
 PER_ID = 6                       # immagini per identità (poche → allineamento gestibile)
-MAX_ID = {"MobileFaceNet": 5000, "ResNet50": 2000}
-SWEEP_ISCRITTI = [250, 500, 1000, 2000]
+MAX_ID = {"MobileFaceNet": 8631, "ResNet50": 4000}   # tutte le identità VGGFace2 train
+SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000]
 EMB_CACHE = OUT / "_emb_reale.npz"
 
 

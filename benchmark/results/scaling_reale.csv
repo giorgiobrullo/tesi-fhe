@@ -1,8 +1,10 @@
 modello,iscritti,dir_fpir1
-MobileFaceNet,250,0.9093
-MobileFaceNet,500,0.914
-MobileFaceNet,1000,0.8983
-MobileFaceNet,2000,0.8715
-ResNet50,250,0.944
-ResNet50,500,0.954
-ResNet50,1000,0.9553
+MobileFaceNet,250,0.9333
+MobileFaceNet,500,0.9107
+MobileFaceNet,1000,0.9023
+MobileFaceNet,2000,0.884
+MobileFaceNet,4000,0.8658
+ResNet50,250,0.9627
+ResNet50,500,0.9553
+ResNet50,1000,0.9583
+ResNet50,2000,0.955

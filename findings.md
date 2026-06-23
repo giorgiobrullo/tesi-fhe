@@ -565,16 +565,21 @@ training dei modelli buffalo → numeri **onesti/difendibili**. Allineati 30.000
 (detection, ~35 min), embedding MFN + ResNet50, sweep galleria. Figure
 `scaling_reale.png` e — combinata reale vs sintetico — `scaling_combinato.png`.
 
+Spinto al **massimo di iscritti reali** (tutte le 8.631 identità di VGGFace2 train, 52k
+volti allineati):
+
 | iscritti | MobileFaceNet | ResNet50 |
 |---|---|---|
-| 250 | 90,9% | 94,4% |
-| 500 | 91,4% | 95,4% |
-| 1000 | 89,8% | **95,5%** |
-| 2000 | 87,2% | — |
+| 250 | 93,3% | 96,3% |
+| 1000 | 90,2% | 95,8% |
+| 2000 | 88,4% | **95,5%** |
+| 4000 | 86,6% | — |
 
-**Su volti reali il sistema scala molto meglio del sintetico.** ResNet50 **tiene ~95%
-fino a 1000 iscritti** reali (praticamente piatta); MobileFaceNet 91% → 87% a 2000. Il
-degrado c'è ma è dolce — molto meno del DigiFace OOD (che a 2000 era 77/85%).
+**Su volti reali il sistema scala molto meglio del sintetico.** ResNet50 è
+**praticamente piatta a ~95-96% fino a 2000 iscritti** reali (degrado trascurabile!);
+MobileFaceNet scende dolcemente 93% → 87% a **4000 iscritti**. Molto meglio del
+DigiFace OOD (che a 2000 era 77/85%). (ResNet50 ~20× più lenta da embeddare → sweep
+fino a 2000; MobileFaceNet fino a 4000.)
 
 **Quadro finale dello scaling (figura combinata):** la verità sta tra le due curve.
 - *Reale, in-distribuzione* (VGGFace2): ~87-95% anche a 1000-2000 iscritti → **regge**.
@@ -583,6 +588,17 @@ degrado c'è ma è dolce — molto meno del DigiFace OOD (che a 2000 era 77/85%)
   modello profondo è proprio sulle gallerie grandi, dove serve.
 
 → Risposta onesta e completa al sospetto di saturazione: il ~96% iniziale era a
-galleria piccola; allo scale su volti reali puliti il sistema **regge ~90-95%** con la
-profonda, con un degrado dolce. Su un dominio davvero ostile (sintetico/OOD) scende a
-~70-85%. Il varco è **realisticamente usabile** anche a migliaia di iscritti.
+galleria piccola; allo scale su volti reali puliti la profonda (ResNet50) **resta a
+~95% fino a 2000 iscritti** (quasi nessun calo), la leggera ~87% a 4000. Su un dominio
+davvero ostile (sintetico/OOD) si scende a ~70-85%. Il varco è **realisticamente
+usabile** anche a migliaia di iscritti reali — e il modello profondo lo fa quasi senza
+perdite.
+
+**Nota metodologica (importante):** non addestriamo nulla — la CNN è **pre-addestrata e
+congelata**, usata solo come estrattore. La separazione train/test è già garantita dal
+protocollo: **iscrizione ≠ probe** (foto diverse della stessa persona) e **iscritti ≠
+impostori** (identità disgiunte) → non si valuta mai su dati "visti". Per PCA/LDA, che
+si stimano sulla galleria, vale lo stesso (galleria = loro training, probe = test). Il
+solo residuo è la possibile sovrapposizione di *celebrità* tra VGGFace2 e il training
+originale della CNN — caveat standard del campo, non eliminabile senza il dataset di
+training del modello.
