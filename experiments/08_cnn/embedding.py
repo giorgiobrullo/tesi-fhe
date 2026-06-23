@@ -73,6 +73,28 @@ def _app(livello: str):
     return _app_cache[livello]
 
 
+def allinea(immagini_rgb, livello: str = "mobilefacenet") -> np.ndarray:
+    """Immagini RGB **grezze** -> crop 112×112 RGB **allineati** sui 5 landmark.
+
+    Separa l'allineamento dall'embedding, così si può riusare lo stesso allineamento
+    con più modelli (es. confronto MobileFaceNet vs ResNet) senza rifare la detection.
+    Fallback (resize) se non si rileva alcun volto.
+    """
+    from skimage.transform import resize
+    from insightface.utils import face_align
+    app = _app(livello)
+    out = []
+    for im in immagini_rgb:
+        bgr = im[..., ::-1]
+        faces = app.get(bgr)
+        if faces:
+            a = face_align.norm_crop(bgr, faces[0].kps)       # BGR 112×112 allineato
+            out.append(a[..., ::-1])                           # -> RGB
+        else:
+            out.append((resize(im, (112, 112), anti_aliasing=True) * 255).astype(np.uint8))
+    return np.array(out)
+
+
 def embedding_allineato(immagini_rgb, livello: str = "mobilefacenet") -> np.ndarray:
     """Immagini RGB **grezze** (a piena risoluzione, NON allineate) -> (N,512).
 

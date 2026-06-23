@@ -41,6 +41,8 @@ altre). I modelli si scaricano da soli al primo uso (`~/.insightface/models/`).
 Match cifrato a dim 512: **~63 ms/query** (< gradino 07, dim 3776), quantizzazione 6
 bit **senza perdita** (DIR=1% 89,3% float = quant). `costo.py`.
 
-## Prossimo
+## 08b — CNN profonda: fatto ✅ (F16)
 
-- **08b**: salire alla CNN profonda (ResNet, `buffalo_l`) per misurare il guadagno.
+ResNet50 (`buffalo_l`) vs MobileFaceNet sullo stesso protocollo: profonda **un filo
+meglio** (DIR@FPIR=1% VGGFace2 97,0% vs 96,0%; Rank-1 98,8% vs 97,8%), ma a parita' di
+dim 512 -> **stesso costo FHE**. Il salto vero resta hand-crafted -> CNN.

@@ -469,3 +469,29 @@ chiaro, quantizza (senza perdita), cifra; **server** calcola la distanza cifrata
 ~63 ms; il riconoscimento **funziona** (89–96% DIR@FPIR, F14). Resta aperto il solo
 argmin cifrato sul server (F6/F12) — da rendere praticabile con `truncate_bit_pattern`
 o tenendo l'embedding a pochi bit (qui 6 bit bastano e non costano accuratezza).
+
+## F16 — CNN profonda (ResNet50): un ritocco, e a costo FHE invariato
+Gradino 08b: salita all'**alta profondità** della scaletta — ResNet50 (InsightFace
+`buffalo_l`, `w600k_r50`, embedding 512-dim), confrontata con la leggera MobileFaceNet
+sullo stesso protocollo 1:N.
+
+| | | MobileFaceNet (leggera) | ResNet50 (profonda) |
+|---|---|---|---|
+| DigiFace (sintetico) | DIR@FPIR=1% | 94,2% | **97,2%** |
+| VGGFace2 (reale) | DIR@FPIR=1% | 96,0% | **97,0%** |
+| VGGFace2 | Rank-1 | 97,8% | **98,8%** |
+
+La profonda è **un filo meglio** (+1–3 punti DIR), ma su questo benchmark a 50 identità
+siamo già vicini al soffitto. Due conclusioni:
+
+1. **Il salto vero è hand-crafted → CNN** (~2% → 96%), non *leggera → profonda* (~1–3
+   punti). La CNN leggera prende già quasi tutto il guadagno.
+2. **A parità di dimensione (512), il costo FHE è identico.** L'embedding gira in chiaro
+   sul client, quindi salire alla ResNet costa di più solo *lì*, non sul cifrato. Per la
+   pipeline FHE la profonda è quindi un upgrade "gratis" (stesso match cifrato ~63 ms,
+   F15) che regala l'ultimo punto di accuratezza, se il client se la può permettere.
+
+→ La scaletta di Carnemolla è completa (geometriche → descrittori → CNN leggera →
+profonda), tutta su un'unica figura (`benchmark/results/tecniche_1n.png`) e nello stesso
+protocollo 1:N open-set. Il sistema privacy-preserving riconosce volti reali al ~97% al
+punto di lavoro sicuro, con match cifrato interattivo.

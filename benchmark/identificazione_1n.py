@@ -100,17 +100,17 @@ def valuta(nome_dataset, carica_fn, con_cnn=True, cnn_grezzo_fn=None):
         "HOG+eucl":  (d.hog_feat(Xg), d.hog_feat(Xpn), d.hog_feat(Xpi), False),
     }
     if con_cnn:
-        ec = embedding_cnn                               # gradino 08, MobileFaceNet
+        ec = embedding_cnn                               # gradino 08
+        # volti allineati a 112×112 (una volta sola): DigiFace è già allineato, VGGFace2
+        # va allineato dai grezzi (detection). Poi gli stessi crop alimentano più modelli.
         if cnn_grezzo_fn is None:
-            # volti già allineati (DigiFace): embedding diretto sui 112×112
-            feats["CNN (MobileFaceNet)"] = (ec.embedding(Rg), ec.embedding(Rpn), ec.embedding(Rpi), False)
+            Ag, Apn, Api = Rg, Rpn, Rpi                  # DigiFace: già allineato
         else:
-            # volti reali grezzi (VGGFace2): detection + allineamento, stesso split
             Xraw, yraw = cnn_grezzo_fn()
             sr = dataset.split_openset(Xraw, yraw, frazione_id_ignote=0.5, frazione_galleria=0.5, seed=0)
-            feats["CNN (MobileFaceNet)"] = (ec.embedding_allineato(sr["galleria"][0]),
-                                            ec.embedding_allineato(sr["probe_noti"][0]),
-                                            ec.embedding_allineato(sr["probe_ignoti"][0]), False)
+            Ag = ec.allinea(sr["galleria"][0]); Apn = ec.allinea(sr["probe_noti"][0]); Api = ec.allinea(sr["probe_ignoti"][0])
+        for liv, nome in [("mobilefacenet", "CNN MobileFaceNet"), ("resnet50", "CNN ResNet50")]:
+            feats[nome] = (ec.embedding(Ag, liv), ec.embedding(Apn, liv), ec.embedding(Api, liv), False)
     righe = []
     print(f"\n=== {nome_dataset} === galleria {len(yg)} img/{len(set(yg.tolist()))} id | "
           f"probe noti {len(ypn)} | probe ignoti {len(Xpi)}")
@@ -131,9 +131,9 @@ def figura(righe):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    ordine = ["PCA+eucl", "LDA+eucl", "LBP+χ²", "HOG+eucl", "CNN (MobileFaceNet)"]
+    ordine = ["PCA+eucl", "LDA+eucl", "LBP+χ²", "HOG+eucl", "CNN MobileFaceNet", "CNN ResNet50"]
     etichetta = {"PCA+eucl": "PCA", "LDA+eucl": "LDA", "LBP+χ²": "LBP", "HOG+eucl": "HOG",
-                 "CNN (MobileFaceNet)": "CNN\n(MobileFaceNet)"}
+                 "CNN MobileFaceNet": "CNN\nMobileFaceNet", "CNN ResNet50": "CNN\nResNet50"}
     tecniche = [t for t in ordine if any(r["tecnica"] == t for r in righe)]
     datasets = ["DigiFace (sintetico)", "VGGFace2 (reale)"]
     col = {"DigiFace (sintetico)": "#8ecae6", "VGGFace2 (reale)": "#e76f51"}
