@@ -276,8 +276,20 @@ DigiFace (sintetico) e VGGFace2 (reale). Cartella `benchmark/`
 `results/tecniche_1n.png`). Galleria 50 id
 iscritte, 50 id ignote, ~500/500/1000 immagini.
 
-`DIR@FPIR=1%` = punto di lavoro **sicuro** (soglia che lascia passare solo l'1% di
-impostori): a quella soglia, quanti **autorizzati** riconosci?
+**Le due metriche (non confonderle).** Rispondono a domande diverse:
+- **Rank-1** — la versione *facile*: "dato che la persona **è** iscritta, il volto più
+  vicino in galleria è il suo?". **Ignora la soglia** (dà sempre una risposta, non può
+  rifiutare). Su 50 identità il **caso** è 1/50 = **2%**, quindi un Rank-1 dell'8% è
+  solo ~4× il caso → sbaglia comunque l'identità del ~92% degli iscritti. *Generosa.*
+- **DIR@FPIR=1%** (Detection & Identification Rate a False Positive Identification Rate
+  = 1%) — la versione *vera*, il varco: a una soglia tarata perché **solo l'1% degli
+  impostori** entri, **quanti autorizzati riconosci e fai passare?**. Chiede due cose
+  insieme — identità giusta **e** sotto soglia — e include il "no match". È il numero
+  che conta per il controllo-accessi.
+
+Stesso esempio (PCA su VGGFace2): **Rank-1 8,6%** (appena sopra il caso) ma
+**DIR@FPIR=1% 0,6%** (≈ zero). La PCA fa pietà su *entrambe*; il Rank-1 sembra meno
+disastroso solo perché è la metrica indulgente.
 
 | | | Rank-1 | **DIR@FPIR=1%** | DIR@FPIR=10% |
 |---|---|---|---|---|
