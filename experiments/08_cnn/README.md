@@ -36,7 +36,11 @@ allineato (sintetico) → funziona diretto.
 La valutazione 1:N è in `benchmark/identificazione_1n.py` (la CNN è una tecnica come le
 altre). I modelli si scaricano da soli al primo uso (`~/.insightface/models/`).
 
+## Costo FHE: fatto ✅ (F15)
+
+Match cifrato a dim 512: **~63 ms/query** (< gradino 07, dim 3776), quantizzazione 6
+bit **senza perdita** (DIR=1% 89,3% float = quant). `costo.py`.
+
 ## Prossimo
 
-- **Costo FHE** della distanza cifrata a dim 512 (atteso < gradino 07, dim 3776).
 - **08b**: salire alla CNN profonda (ResNet, `buffalo_l`) per misurare il guadagno.

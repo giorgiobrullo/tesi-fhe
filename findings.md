@@ -450,3 +450,22 @@ della dimensione dei descrittori (gradino 07, dim 3776) → la distanza cifrata 
 *meno*, non di più. E siccome l'embedding gira in chiaro sul client, la potenza della
 CNN non tocca il costo FHE. La pipeline privacy-preserving con un riconoscimento che
 **funziona davvero** è quindi alla portata: prossimo passo, il costo FHE a dim 512.
+
+## F15 — Lato FHE della CNN: la quantizzazione non costa, il match è interattivo
+Chiusura del cerchio end-to-end (`experiments/08_cnn/costo.py`). Sugli embedding
+MobileFaceNet (DigiFace, dim 512):
+
+| | risultato |
+|---|---|
+| quantizzazione a 6 bit | **non perde**: DIR@FPIR=1% 89,3% (float) = 89,3% (quant) |
+| match cifrato (dim 512, N=25–50) | **~63 ms/query**, punteggi esatti (cifrato == quant) |
+
+**Più economico del gradino 07** (descrittori, dim 3776 → ~75–95 ms): l'embedding CNN è
+più piccolo → la distanza cifrata costa meno. Conferma l'intuizione: la potenza del
+modello (in chiaro sul client) non tocca l'FHE, conta solo la dimensione dell'embedding.
+
+→ La pipeline completa è coerente e interattiva: **client** calcola l'embedding CNN in
+chiaro, quantizza (senza perdita), cifra; **server** calcola la distanza cifrata in
+~63 ms; il riconoscimento **funziona** (89–96% DIR@FPIR, F14). Resta aperto il solo
+argmin cifrato sul server (F6/F12) — da rendere praticabile con `truncate_bit_pattern`
+o tenendo l'embedding a pochi bit (qui 6 bit bastano e non costano accuratezza).
