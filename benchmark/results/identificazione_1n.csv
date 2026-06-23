@@ -3,7 +3,9 @@ DigiFace (sintetico),PCA+eucl,0.082,0.002,0.018
 DigiFace (sintetico),LDA+eucl,0.166,0.002,0.012
 DigiFace (sintetico),LBP+χ²,0.46,0.066,0.218
 DigiFace (sintetico),HOG+eucl,0.422,0.104,0.214
+DigiFace (sintetico),CNN (MobileFaceNet),0.996,0.942,0.98
 VGGFace2 (reale),PCA+eucl,0.086,0.006,0.026
 VGGFace2 (reale),LDA+eucl,0.076,0.004,0.016
 VGGFace2 (reale),LBP+χ²,0.184,0.018,0.044
 VGGFace2 (reale),HOG+eucl,0.144,0.022,0.038
+VGGFace2 (reale),CNN (MobileFaceNet),0.978,0.96,0.968

@@ -416,3 +416,37 @@ privata** (punteggi larghi). Non c'è un punto di lavoro buono. È la motivazion
 numeri e su una figura, per (a) salire a un embedding migliore della PCA, e (b) per
 l'argmin: se la larghezza dei punteggi non si comprime "gratis", serve un troncamento
 esplicito (`truncate_bit_pattern`) o un embedding nativamente a pochi bit.
+
+## F14 — La CNN (anche leggera) sfonda il pavimento: il varco funziona
+Terzo gradino della scaletta (CNN), partendo dalla **bassa profondità**:
+**MobileFaceNet** (InsightFace `buffalo_s`, `w600k_mbf`, linea ArcFace, embedding
+512-dim, 13 MB), eseguito in chiaro sul client. Stesso protocollo 1:N open-set e stessa
+figura dei pre-CNN (`benchmark/results/tecniche_1n.png`, gradino
+`experiments/08_cnn/`).
+
+| | | Rank-1 | **DIR@FPIR=1%** |
+|---|---|---|---|
+| DigiFace (sintetico) | migliore pre-CNN (HOG) | 42,2% | 10,4% |
+| | **CNN MobileFaceNet** | **99,6%** | **94,2%** |
+| VGGFace2 (reale) | migliore pre-CNN (HOG) | 14,4% | 2,2% |
+| | **CNN MobileFaceNet** | **97,8%** | **96,0%** |
+
+**Il salto.** Su volti reali (VGGFace2), al punto di lavoro sicuro (FPIR=1%) si passa da
+**~2% a 96%**: il varco da inutilizzabile a **pienamente funzionante** — e con la CNN
+*leggera*, il primo gradino CNN di Carnemolla. Conferma tutto il filo: le tecniche
+semplici falliscono perché manca l'invarianza a posa/luce (F9–F13), la CNN ce l'ha.
+
+**Lezione (importante, vale come finding a sé): l'allineamento è critico per le CNN.**
+Al primo tentativo la CNN su VGGFace2 dava solo **10,4%** Rank-1 (peggio dei
+descrittori!), perché avevamo solo *ridimensionato* le immagini a 112×112. ArcFace/
+MobileFaceNet pretendono il volto **allineato sui 5 landmark** al template canonico:
+con la detection+allineamento di InsightFace (sui volti grezzi a piena risoluzione) la
+CNN sale a **97,8%**. DigiFace era già allineato (sintetico, frontale) → funzionava
+subito (99,6%). → Il preprocessing (detect+align) è parte integrante della pipeline CNN,
+non un dettaglio.
+
+**Implicazione FHE (gancio col seguito):** l'embedding è **512-dim** — più *piccolo*
+della dimensione dei descrittori (gradino 07, dim 3776) → la distanza cifrata costerà
+*meno*, non di più. E siccome l'embedding gira in chiaro sul client, la potenza della
+CNN non tocca il costo FHE. La pipeline privacy-preserving con un riconoscimento che
+**funziona davvero** è quindi alla portata: prossimo passo, il costo FHE a dim 512.

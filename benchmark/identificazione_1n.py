@@ -31,6 +31,14 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiment
 from core import dataset                               # noqa: E402
 import descrittori as d                                # noqa: E402
 
+# embedding CNN del gradino 08 (importato con alias per non collidere con descrittori)
+_P08 = pathlib.Path(__file__).resolve().parents[1] / "experiments" / "08_cnn"
+import importlib.util as _ilu                          # noqa: E402
+_spec = _ilu.spec_from_file_location("embedding_cnn", _P08 / "embedding.py")
+embedding_cnn = _ilu.module_from_spec(_spec)
+sys.modules["embedding_cnn"] = embedding_cnn
+_spec.loader.exec_module(embedding_cnn)
+
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 MAX_ID = 100            # identità totali (metà iscritte, metà ignote)
 MAX_PER_ID = 20         # foto per identità (limita tempo)
@@ -67,12 +75,16 @@ def open_set(featG, yG, featPn, yPn, featPi, chi2=False):
     return out
 
 
-def valuta(nome_dataset, carica_fn):
-    X, y = carica_fn(max_identita=MAX_ID, max_per_identita=MAX_PER_ID, grigio=True)
-    s = dataset.split_openset(X, y, frazione_id_ignote=0.5, frazione_galleria=0.5, seed=0)
-    (Xg, yg), (Xpn, ypn), (Xpi, _) = s["galleria"], s["probe_noti"], s["probe_ignoti"]
+def valuta(nome_dataset, carica_fn, con_cnn=True, cnn_grezzo_fn=None):
+    # Carico RGB (serve alla CNN); il grigio per PCA/LBP/HOG lo derivo, così tutte le
+    # tecniche condividono lo STESSO split open-set.
+    from skimage.color import rgb2gray
+    Xr, y = carica_fn(max_identita=MAX_ID, max_per_identita=MAX_PER_ID, grigio=False)
+    s = dataset.split_openset(Xr, y, frazione_id_ignote=0.5, frazione_galleria=0.5, seed=0)
+    (Rg, yg), (Rpn, ypn), (Rpi, _) = s["galleria"], s["probe_noti"], s["probe_ignoti"]
+    gray = lambda A: np.array([rgb2gray(im) for im in A])
+    Xg, Xpn, Xpi = gray(Rg), gray(Rpn), gray(Rpi)        # grigio per le tecniche classiche
 
-    # feature in chiaro per ciascuna tecnica
     flat = lambda A: A.reshape(len(A), -1)
     pca = PCA(n_components=min(150, len(Xg)), random_state=0).fit(flat(Xg))
     # LDA/Fisherfaces: supervisionata (usa le etichette degli iscritti). n_componenti
@@ -87,6 +99,18 @@ def valuta(nome_dataset, carica_fn):
         "LBP+χ²":    (d.lbp(Xg), d.lbp(Xpn), d.lbp(Xpi), True),
         "HOG+eucl":  (d.hog_feat(Xg), d.hog_feat(Xpn), d.hog_feat(Xpi), False),
     }
+    if con_cnn:
+        ec = embedding_cnn                               # gradino 08, MobileFaceNet
+        if cnn_grezzo_fn is None:
+            # volti già allineati (DigiFace): embedding diretto sui 112×112
+            feats["CNN (MobileFaceNet)"] = (ec.embedding(Rg), ec.embedding(Rpn), ec.embedding(Rpi), False)
+        else:
+            # volti reali grezzi (VGGFace2): detection + allineamento, stesso split
+            Xraw, yraw = cnn_grezzo_fn()
+            sr = dataset.split_openset(Xraw, yraw, frazione_id_ignote=0.5, frazione_galleria=0.5, seed=0)
+            feats["CNN (MobileFaceNet)"] = (ec.embedding_allineato(sr["galleria"][0]),
+                                            ec.embedding_allineato(sr["probe_noti"][0]),
+                                            ec.embedding_allineato(sr["probe_ignoti"][0]), False)
     righe = []
     print(f"\n=== {nome_dataset} === galleria {len(yg)} img/{len(set(yg.tolist()))} id | "
           f"probe noti {len(ypn)} | probe ignoti {len(Xpi)}")
@@ -103,25 +127,29 @@ def valuta(nome_dataset, carica_fn):
 
 
 def figura(righe):
-    """Bar chart riassuntivo: tutte le tecniche pre-CNN sui benchmark 1:N."""
+    """Bar chart riassuntivo: tutte le tecniche sui benchmark 1:N (incl. CNN)."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    tecniche = ["PCA+eucl", "LDA+eucl", "LBP+χ²", "HOG+eucl"]
+    ordine = ["PCA+eucl", "LDA+eucl", "LBP+χ²", "HOG+eucl", "CNN (MobileFaceNet)"]
+    etichetta = {"PCA+eucl": "PCA", "LDA+eucl": "LDA", "LBP+χ²": "LBP", "HOG+eucl": "HOG",
+                 "CNN (MobileFaceNet)": "CNN\n(MobileFaceNet)"}
+    tecniche = [t for t in ordine if any(r["tecnica"] == t for r in righe)]
     datasets = ["DigiFace (sintetico)", "VGGFace2 (reale)"]
     col = {"DigiFace (sintetico)": "#8ecae6", "VGGFace2 (reale)": "#e76f51"}
     val = lambda ds, te, k: next((r[k] for r in righe if r["dataset"] == ds and r["tecnica"] == te), 0)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.5, 4.3))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5))
     x = np.arange(len(tecniche)); w = 0.38
     for ax, k, tit in [(ax1, "rank1", "(A) Rank-1 (chi è il match)"),
                        (ax2, "dir_fpir1", "(B) DIR@FPIR=1% (il varco sicuro)")]:
         for i, ds in enumerate(datasets):
             ax.bar(x + (i - .5) * w, [val(ds, t, k) * 100 for t in tecniche], w, label=ds, color=col[ds])
-        ax.set_xticks(x); ax.set_xticklabels([t.split("+")[0] for t in tecniche])
+        ax.set_xticks(x); ax.set_xticklabels([etichetta[t] for t in tecniche], fontsize=8)
         ax.set_ylabel("%"); ax.set_title(tit); ax.grid(True, axis="y", alpha=.3); ax.legend(fontsize=8)
-    ax2.axhline(2, ls="--", color="gray"); ax2.text(0, 2.3, "pavimento ~caso", fontsize=8, color="gray")
-    fig.suptitle("Tecniche pre-CNN sui benchmark 1:N (geometriche + descrittori locali)", fontweight="bold")
+    ax2.axhline(2, ls="--", color="gray"); ax2.text(0, 3.5, "pavimento ~caso", fontsize=8, color="gray")
+    fig.suptitle("Riconoscimento 1:N: dalle geometriche alla CNN — il salto sui volti reali",
+                 fontweight="bold")
     fig.tight_layout()
     fig.savefig(OUT / "tecniche_1n.png", dpi=130); fig.savefig(OUT / "tecniche_1n.svg")
     print(f"scritto {OUT/'tecniche_1n.png'}/.svg")
@@ -129,9 +157,15 @@ def figura(righe):
 
 def main():
     OUT.mkdir(exist_ok=True)
+    # VGGFace2: la CNN ha bisogno dei volti ALLINEATI dai grezzi (no resize) → detection
+    def vgg_grezzo():
+        return dataset.carica_da_cartelle(
+            str(dataset._RADICE / "vggface2" / "test"),
+            max_identita=MAX_ID, max_per_identita=MAX_PER_ID, grigio=False, ridimensiona=None)
+
     righe = []
-    righe += valuta("DigiFace (sintetico)", dataset.carica_digiface)
-    righe += valuta("VGGFace2 (reale)", dataset.carica_vggface2_test)
+    righe += valuta("DigiFace (sintetico)", dataset.carica_digiface)         # già allineato
+    righe += valuta("VGGFace2 (reale)", dataset.carica_vggface2_test, cnn_grezzo_fn=vgg_grezzo)
     with open(OUT / "identificazione_1n.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(righe[0].keys()))
         w.writeheader(); w.writerows(righe)
