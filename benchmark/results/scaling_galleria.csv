@@ -1,0 +1,10 @@
+dataset,identita,iscritte,MobileFaceNet,ResNet50
+DigiFace (sintetico),50,25,0.832,0.936
+DigiFace (sintetico),100,50,0.892,0.964
+DigiFace (sintetico),250,125,0.8512,0.904
+DigiFace (sintetico),500,250,0.8416,0.92
+DigiFace (sintetico),1000,500,0.8076,0.8956
+VGGFace2 (reale),25,12,0.9231,0.9538
+VGGFace2 (reale),50,25,0.912,0.936
+VGGFace2 (reale),100,50,0.928,0.948
+VGGFace2 (reale),250,125,0.912,0.936

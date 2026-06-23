@@ -495,3 +495,36 @@ siamo già vicini al soffitto. Due conclusioni:
 profonda), tutta su un'unica figura (`benchmark/results/tecniche_1n.png`) e nello stesso
 protocollo 1:N open-set. Il sistema privacy-preserving riconosce volti reali al ~97% al
 punto di lavoro sicuro, con match cifrato interattivo.
+
+## F17 — Il benchmark è saturo? Test scalando la galleria
+Sospetto legittimo: a 50 identità la CNN fa ~96-97% e leggera≈profonda — segno che il
+benchmark è troppo facile e non distingue più i modelli. Test: far crescere il numero
+di identità iscritte e vedere se il DIR@FPIR scende (`scaling_galleria.py`, figura
+`results/scaling_galleria.png`).
+
+| galleria iscritte | DigiFace MFN | DigiFace RN50 | VGGFace2 MFN | VGGFace2 RN50 |
+|---|---|---|---|---|
+| 25 | 83% | 94% | 91% | 94% |
+| 50 | 89% | 96% | 93% | 95% |
+| 125 | 85% | 90% | 91% | 94% |
+| 250–500 | 84%→81% | 92%→90% | — | — |
+
+Tre risposte:
+
+1. **NON è saturo nel senso "tutto al 99%".** Il DIR **tiene** (80-96%) anche fino a 500
+   iscritti, scendendo solo lievemente. La CNN **scala davvero** a gallerie grandi — è
+   un risultato genuino, non un artefatto di galleria minuscola. (Buona notizia per il
+   varco reale.)
+
+2. **Ma a 50 id c'era saturazione "tra modelli".** Lì leggera e profonda pareggiavano;
+   **allo scale ResNet50 sta costantemente sopra MobileFaceNet** (~+5-10 punti su
+   DigiFace, ~+2-3 su VGGFace2). Quindi il benchmark *piccolo* non distingueva i modelli;
+   quello *grande* sì → il modello profondo si guadagna il suo posto solo quando il test
+   è abbastanza duro.
+
+3. **DigiFace (sintetico) è più duro di VGGFace2 (reale)** per la CNN — controintuitivo
+   ma logico: i modelli sono addestrati su volti reali (WebFace600K), quindi il sintetico
+   è **fuori-distribuzione** e fa da stress test. È il caveat di onestà sui numeri alti:
+   VGGFace2 è *in-distribuzione*; gallerie enormi (migliaia), condizioni out-of-domain e
+   non-cooperative abbasserebbero ancora il DIR. Entro ciò che possiamo testare, però, il
+   sistema è forte e scala.
