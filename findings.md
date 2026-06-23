@@ -557,3 +557,32 @@ Due cose:
   assoluti sarebbero più alti, ma la **forma** (degrado col crescere della galleria) è
   reale e attesa. Il sistema resta usabile (70-90%), ma "il varco funziona al 96%" va
   detto come "a galleria piccola"; a migliaia di iscritti è ~70-85%.
+
+## F19 — Scaling su volti REALI puliti (VGGFace2 train): regge bene allo scale
+Controparte reale di F18 (che era sintetico). Scaricato VGGFace2 **train** (8.631
+identità reali, 37 GB) — è il dataset che avevamo scelto (F8, `docs/`) e **non** è
+training dei modelli buffalo → numeri **onesti/difendibili**. Allineati 30.000 volti
+(detection, ~35 min), embedding MFN + ResNet50, sweep galleria. Figure
+`scaling_reale.png` e — combinata reale vs sintetico — `scaling_combinato.png`.
+
+| iscritti | MobileFaceNet | ResNet50 |
+|---|---|---|
+| 250 | 90,9% | 94,4% |
+| 500 | 91,4% | 95,4% |
+| 1000 | 89,8% | **95,5%** |
+| 2000 | 87,2% | — |
+
+**Su volti reali il sistema scala molto meglio del sintetico.** ResNet50 **tiene ~95%
+fino a 1000 iscritti** reali (praticamente piatta); MobileFaceNet 91% → 87% a 2000. Il
+degrado c'è ma è dolce — molto meno del DigiFace OOD (che a 2000 era 77/85%).
+
+**Quadro finale dello scaling (figura combinata):** la verità sta tra le due curve.
+- *Reale, in-distribuzione* (VGGFace2): ~87-95% anche a 1000-2000 iscritti → **regge**.
+- *Sintetico, OOD* (DigiFace): ~70-85% a migliaia → stress test pessimistico.
+- In entrambi: **la profonda (ResNet50) scala meglio della leggera** — il guadagno del
+  modello profondo è proprio sulle gallerie grandi, dove serve.
+
+→ Risposta onesta e completa al sospetto di saturazione: il ~96% iniziale era a
+galleria piccola; allo scale su volti reali puliti il sistema **regge ~90-95%** con la
+profonda, con un degrado dolce. Su un dominio davvero ostile (sintetico/OOD) scende a
+~70-85%. Il varco è **realisticamente usabile** anche a migliaia di iscritti.
