@@ -528,3 +528,32 @@ Tre risposte:
    VGGFace2 è *in-distribuzione*; gallerie enormi (migliaia), condizioni out-of-domain e
    non-cooperative abbasserebbero ancora il DIR. Entro ciò che possiamo testare, però, il
    sistema è forte e scala.
+
+## F18 — Scaling su larga scala: a migliaia di iscritti il DIR scende davvero
+Spinto oltre i 500 iscritti (richiesta di scalare ancora). Scaricata la parte DigiFace
+a **33.333 identità** (×5 img), sweep fino a **8000 iscritti** (sintetico = stress test
+out-of-distribution, F17). Figura `benchmark/results/scaling_grande.png`.
+
+| iscritti | MobileFaceNet | ResNet50 |
+|---|---|---|
+| 250 | 88,3% | 91,7% |
+| 1000 | 81,4% | 88,5% |
+| 2000 | 77,0% | 85,5% |
+| 4000 | 74,3% | — |
+| **8000** | **70,7%** | — |
+
+**Ora il calo si vede.** A galleria grande il DIR@FPIR=1% scende in modo netto e
+regolare: MobileFaceNet **88% → 71%** da 250 a 8000 iscritti. Conferma definitiva che
+**il ~96% a 50 identità era ottimistico/saturo**: il numero *onesto* a gallerie
+realistiche (migliaia di persone) è sensibilmente più basso. È la correzione che il
+sospetto di saturazione meritava — e un risultato di scalabilità vero per la tesi.
+
+Due cose:
+- **La profonda regge meglio allo scale.** ResNet50 degrada più dolcemente (92% → 85% a
+  2000 iscritti) di MobileFaceNet (84% → 77%): il modello profondo si guadagna il posto
+  proprio sulle gallerie grandi (coerente con F16/F17, ora marcato). NB: ResNet50 è
+  ~20× più lenta da embeddare (CPU), per questo il suo sweep si ferma a 2000.
+- **Caveat sul caveat:** è sintetico/OOD; su volti reali in-distribuzione i valori
+  assoluti sarebbero più alti, ma la **forma** (degrado col crescere della galleria) è
+  reale e attesa. Il sistema resta usabile (70-90%), ma "il varco funziona al 96%" va
+  detto come "a galleria piccola"; a migliaia di iscritti è ~70-85%.
