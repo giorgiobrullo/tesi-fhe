@@ -724,3 +724,11 @@ riconoscimento, punteggi più stretti (e match cifrato più economico, costo ~li
 nella dimensione). NB: per rendere l'argmin cifrato *tractabile* serve 128 dim **+**
 quantizzazione bassa (~4 bit) → punteggi ~14 bit → argmin lento (~minuti/query) ma non
 intrattabile. È l'operating point del server-argmin privato: lento, per basso throughput.
+
+**Velocità del match cifrato vs dimensione** (`velocita_dimensione.py`, figura
+`velocita_dimensione.png`): 512→152 ms, 256→65, 128→63, 64→59, 32→57. Il match
+(cifrato×chiaro, no PBS) è **economico e quasi piatto sotto 256** (~60 ms): dominano i
+costi fissi, non la dimensione. Ridurre l'embedding aiuta poco il *match* (già a terra),
+ma è la leva per rendere l'*argmin* cifrato fattibile (F21/F23). Quadro completo: la
+dimensione 128 è il punto dolce — accuratezza ~94% (ResNet50), match ~63 ms, e punteggi
+abbastanza stretti da avvicinare l'argmin privato al fattibile.
