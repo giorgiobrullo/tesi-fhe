@@ -1,3 +1,11 @@
+# Findings — diario del progetto
+
+Diario in ordine cronologico di cosa abbiamo fatto e capito, dal primo "hello world"
+FHE fino al sistema che riconosce volti reali. Ogni voce (F0, F1, …) è un passo: cosa
+abbiamo provato, cosa è venuto fuori, e perché. Si legge dall'alto. I concetti vengono
+ripresi ogni volta che servono, senza darli per scontati. Prima un ripasso dei termini,
+poi i passi.
+
 ## Concetti di base
 
 **FHE (cifratura completamente omomorfica).** Permette di fare *calcoli su dati
@@ -646,9 +654,11 @@ il cifrato dà i punteggi esatti per tutti e tre. → **Si può usare il modello
 riconoscimento è gratis lato FHE.
 
 ## F21 — Argmin cifrato sul server con embedding CNN: il muro, e cosa abbiamo provato
-L'argmin (e la soglia) **devono** stare sul server, sotto FHE: farli sul client vanifica
-la privacy (il client imparerebbe la distanza con ogni iscritto, F6). Ma sui punteggi
-degli embedding **CNN a 512 dimensioni** c'è un muro duro. Diario dei tentativi.
+A questo punto davamo per scontato che l'argmin (e la soglia) **dovessero** stare sul
+server, sotto FHE: farli sul client sembrava vanificare la privacy (il client imparerebbe
+la distanza con ogni iscritto, F6). *(In F22 ridimensioneremo questa premessa — dipende
+da quanto ci si fida del client. Ma intanto proviamo a farlo sul server.)* E sui punteggi
+degli embedding **CNN a 512 dimensioni** troviamo un muro duro. Diario dei tentativi.
 
 **Il problema.** Il punteggio `‖b‖² − 2·a·b` su 512 dimensioni quantizzate a 6 bit è
 largo **~18 bit**. Il confronto cifrato di Concrete 2.11 è limitato a **~16 bit**:
