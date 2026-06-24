@@ -4,7 +4,10 @@ MobileFaceNet,500,0.9107
 MobileFaceNet,1000,0.9023
 MobileFaceNet,2000,0.884
 MobileFaceNet,4000,0.8658
+MobileFaceNet,4300,0.8601
 ResNet50,250,0.9627
 ResNet50,500,0.9553
 ResNet50,1000,0.9583
 ResNet50,2000,0.955
+ResNet50,4000,0.9449
+ResNet50,4300,0.9425

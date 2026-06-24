@@ -572,14 +572,15 @@ volti allineati):
 |---|---|---|
 | 250 | 93,3% | 96,3% |
 | 1000 | 90,2% | 95,8% |
-| 2000 | 88,4% | **95,5%** |
-| 4000 | 86,6% | — |
+| 2000 | 88,4% | 95,5% |
+| 4000 | 86,6% | 94,5% |
+| **4300 (max)** | **86,0%** | **94,2%** |
 
-**Su volti reali il sistema scala molto meglio del sintetico.** ResNet50 è
-**praticamente piatta a ~95-96% fino a 2000 iscritti** reali (degrado trascurabile!);
-MobileFaceNet scende dolcemente 93% → 87% a **4000 iscritti**. Molto meglio del
-DigiFace OOD (che a 2000 era 77/85%). (ResNet50 ~20× più lenta da embeddare → sweep
-fino a 2000; MobileFaceNet fino a 4000.)
+**Su volti reali il sistema scala molto meglio del sintetico, fino al massimo.** Al
+**massimo di iscritti reali (4.300, tutte le identità VGGFace2 train)** ResNet50 tiene
+**94,2%** — cala solo ~2 punti da 250 a 4.300 (curva quasi orizzontale); MobileFaceNet
+**86,0%**, calo dolce e regolare. Molto meglio del DigiFace OOD (che a 2000 era 77/85%
+e a 8000 scende a 71%).
 
 **Quadro finale dello scaling (figura combinata):** la verità sta tra le due curve.
 - *Reale, in-distribuzione* (VGGFace2): ~87-95% anche a 1000-2000 iscritti → **regge**.
