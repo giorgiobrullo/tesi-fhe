@@ -862,3 +862,47 @@ su questo Mac); (d) privacy a livello di **protocollo**. Il sistema valido e vel
 quello con **argmin sul client** (~95%, ~100 ms, server cieco, F22). Il **server-argmin**
 privato anche verso il client **funziona** (F25, ~90% a ~2 min) ma **non è realtime su
 questo hardware**, e — ora verificato — **la GPU non lo rende realtime**.
+
+## F27 — Cosa fa la letteratura: il problema era lo schema (TFHE), non la FHE
+Dopo aver sbattuto sul muro dell'argmin, siamo andati a vedere **come lo risolvono gli
+altri** (rassegna della letteratura, dettagli citati in `letteratura.md`). La risposta è
+netta: per l'identificazione 1:N facciale **quasi tutti usano CKKS, non TFHE**. E questo
+spiega il nostro collo di bottiglia.
+
+**Perché CKKS e non TFHE.** CKKS lavora su vettori di reali e fa **packing SIMD**: una
+sola operazione cifrata agisce su centinaia di slot in parallelo. Si impacchettano
+*tutte* le similarità della galleria in un ciphertext e si batchano i confronti. TFHE
+(Concrete) è l'opposto: ottimo per funzioni non-lineari arbitrarie via PBS, ma ogni
+confronto è un'operazione a sé → l'argmin diventa una **riduzione sequenziale** lenta
+(F25), e su GPU peggio (F26). **Non era un limite della FHE: era lo schema sbagliato per
+questo compito.**
+
+**I lavori chiave, con numeri:**
+
+| sistema | schema | numeri | chi fa l'argmax | leakage |
+|---|---|---|---|---|
+| **Blind-Match** (CCS 2024) | CKKS (Lattigo) | **0,073 ms/identità**, **LFW 99,63%** (128-dim) | **client** (decifra 1 ciphertext compresso) | client vede i punteggi; server cieco |
+| **Mazzone et al.** (USENIX Sec '25) | CKKS | **argmax 128 elem. in 12,83 s**, profondità confronto **costante (2)** | **server** (privato) | nessuno |
+| **GROTE** (CODASPY 2023) | CKKS | confronti **n → ~2√n** (group testing) | server | nessuno |
+| **HERS** (Engelsma & Jain) | FHE | **100 M volti in 500 s**, 275× SOTA | server (ricerca) | nessuno |
+
+→ Per il nostro circuito di confronto: con TFHE l'argmin di **N=8** costa ~120 s; con
+CKKS-SIMD l'argmax di **N=128** costa ~13 s (Mazzone). È un altro ordine di grandezza,
+*e* su galleria più grande.
+
+**Le due strade pulite (e quale scegliere).**
+- **(A) "Client decide" — stile Blind-Match.** Il server impacchetta le similarità coseno
+  (CKKS), ritorna un ciphertext, **il client decifra e fa l'argmax in chiaro**. ~ms,
+  ~99,6%. **È esattamente il nostro F22** (server cieco), ma fatto con lo schema giusto.
+  Limite: il client vede i punteggi — leakage accettato in letteratura (server
+  honest-but-curious). **È il sistema veloce-e-accurato che cercavamo.**
+- **(B) "Client non fidato"** (il vincolo duro che ci ha bloccati). L'argmax resta sul
+  server, privato: **CKKS-SIMD argmax** (~13 s per N=128) **+ group testing GROTE**
+  (n→2√n) per tagliare i confronti. Server-side *e* in secondi, dove TFHE era a minuti.
+
+**Adottabilità nella tesi.** Concrete è TFHE → per questa parte servirebbe una libreria
+**CKKS** (OpenFHE / Lattigo / SEAL). Anche solo come risultato di tesi è forte: *abbiamo
+dimostrato (misurando) che TFHE/Concrete sbatte sul muro dell'argmax, mentre la
+letteratura lo risolve con CKKS+packing SIMD (+group testing) — ecco perché e con quali
+numeri*. Prossimo passo possibile: un prototipo CKKS della galleria-1:N (similarità coseno
+impacchettata) e confronto diretto col nostro TFHE.
