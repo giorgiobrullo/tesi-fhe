@@ -23,27 +23,55 @@ import numpy as np
 from insightface.model_zoo import get_model
 
 _MODELLI = {
-    "mobilefacenet": ("buffalo_s", "w600k_mbf.onnx"),     # 08a — bassa profondità
-    "resnet50":      ("buffalo_l", "w600k_r50.onnx"),     # 08b — alta profondità
+    "mobilefacenet": ("buffalo_s", "w600k_mbf.onnx"),     # 08a — bassa profondità (WebFace600K)
+    "resnet50":      ("buffalo_l", "w600k_r50.onnx"),     # 08b — alta profondità (WebFace600K)
+    "resnet100":     ("antelopev2", "glintr100.onnx"),    # 08c — più profonda (Glint360K)
 }
 _cache: dict = {}
 
 
 def _scarica_pack(pack: str):
-    """Assicura che il pack InsightFace sia scaricato (lo fa FaceAnalysis.prepare)."""
+    """Assicura che il pack InsightFace sia scaricato. Scarica lo zip direttamente
+    dalla release (più robusto di FaceAnalysis, che inciampa su pack senza detection
+    o con annidamento)."""
+    import urllib.request
+    import zipfile
     base = os.path.expanduser(f"~/.insightface/models/{pack}")
-    if not os.path.isdir(base):
-        from insightface.app import FaceAnalysis
-        FaceAnalysis(name=pack).prepare(ctx_id=-1)        # scarica il pack
+    if not _trova_onnx(base, ""):                          # nessun .onnx → scarica
+        os.makedirs(base, exist_ok=True)
+        zpath = base + ".zip"
+        if not os.path.exists(zpath):
+            url = f"https://github.com/deepinsight/insightface/releases/download/v0.7/{pack}.zip"
+            urllib.request.urlretrieve(url, zpath)
+        with zipfile.ZipFile(zpath) as z:
+            z.extractall(base)
     return base
+
+
+def _trova_onnx(base: str, file: str):
+    """Trova il file .onnx sotto `base`, gestendo l'annidamento. Se `file` è dato,
+    cerca quel nome; altrimenti ritorna il primo .onnx trovato (per testare presenza)."""
+    if not os.path.isdir(base):
+        return None
+    for radice, _, files in os.walk(base):
+        if file:
+            if file in files:
+                return os.path.join(radice, file)
+        else:
+            for f in files:
+                if f.endswith(".onnx"):
+                    return os.path.join(radice, f)
+    return None
 
 
 def carica(livello: str = "mobilefacenet"):
     """Carica (una volta) il modello di riconoscimento del livello scelto."""
     if livello not in _cache:
         pack, file = _MODELLI[livello]
-        base = _scarica_pack(pack)
-        rec = get_model(os.path.join(base, file)); rec.prepare(ctx_id=-1)
+        _scarica_pack(pack)
+        base = os.path.expanduser(f"~/.insightface/models/{pack}")
+        path = _trova_onnx(base, file)
+        rec = get_model(path); rec.prepare(ctx_id=-1)
         _cache[livello] = rec
     return _cache[livello]
 

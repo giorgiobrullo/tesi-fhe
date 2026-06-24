@@ -603,3 +603,36 @@ si stimano sulla galleria, vale lo stesso (galleria = loro training, probe = tes
 solo residuo è la possibile sovrapposizione di *celebrità* tra VGGFace2 e il training
 originale della CNN — caveat standard del campo, non eliminabile senza il dataset di
 training del modello.
+## F20 — Modelli più grandi: si sale, ma poco — il 99% non è di questo protocollo
+Domanda: salendo di modello (e con la distillazione, come da Carnemolla) si arriva al
+99%? Confronto tre profondità crescenti sullo stesso protocollo 1:N open-set reale
+(VGGFace2), embedding sempre in chiaro → **costo FHE invariato** (dim 512 per tutti).
+Figura `benchmark/results/scaling_modelli.png`.
+
+| iscritti | MobileFaceNet | ResNet50 | ResNet100 |
+|---|---|---|---|
+| 250 | 93,3% | 96,3% | **96,7%** |
+| 1000 | 90,2% | 95,8% | **96,5%** |
+| 4300 (max) | 86,0% | 94,2% | **95,5%** |
+
+**Salire di modello aiuta, ma poco.** ResNet100 (antelopev2, Glint360K) è il migliore e
+quasi piatto (96,7% → 95,5% da 250 a 4.300 iscritti), ma stacca ResNet50 solo di
+**+0,4 / +1,3 punti**. → Siamo **vicini al tetto pratico**: ~95-96% è il massimo per
+questo protocollo duro (1:N open-set, migliaia di iscritti).
+
+**Il 99% non è raggiungibile qui — ed è giusto così.** I "99,8%" che si citano sono
+**verifica 1:1 su LFW**, un compito molto più facile; il nostro 1:N open-set a migliaia
+di iscritti è duro, e anche i modelli SOTA stanno ~95-97%. Confermata la previsione: un
+modello più grande dà +1-3 punti, non il salto al 99%.
+
+**Sulla distillazione (chiarimento metodologico):** *non* serve per alzare
+l'accuratezza — lo student ≤ teacher (lo imita, non lo supera), quindi distillare
+ResNet100 darebbe al massimo ~95%. La distillazione serve solo se si vuole l'embedding
+**sotto FHE** (split inference): un modello piccolo *compilabile* in Concrete che imita
+il grande, per nascondere anche il modello al client. È un obiettivo di privacy, non di
+accuratezza. Per più accuratezza, lato nostro, basta un modello più grande **direttamente**
+(gratis lato FHE, gira in chiaro sul client).
+
+→ Conclusione: il sistema è **vicino al massimo pratico** (~95-96% con ResNet100 a
+migliaia di iscritti reali). Oltre non si va cambiando modello; servirebbe un protocollo
+più facile (verifica 1:1) o accettare che ~95% è l'ottimo onesto per il varco 1:N.
