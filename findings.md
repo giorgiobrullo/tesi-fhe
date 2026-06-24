@@ -906,3 +906,43 @@ dimostrato (misurando) che TFHE/Concrete sbatte sul muro dell'argmax, mentre la
 letteratura lo risolve con CKKS+packing SIMD (+group testing) — ecco perché e con quali
 numeri*. Prossimo passo possibile: un prototipo CKKS della galleria-1:N (similarità coseno
 impacchettata) e confronto diretto col nostro TFHE.
+
+## F28 — Ottimizzare l'argmin su Concrete: il torneo aiuta, ma il real-time resta fuori
+Prima di pensare a CKKS, abbiamo spremuto Concrete: si può rendere l'argmin server
+**veloce** cambiando struttura e attivando il parallelismo? Misurato (dettagli e CSV in
+`experiments/10_argmin_struttura/`).
+
+**Dove.** Sull'**home server Linux** (x86_64, 12 core), non sul Mac: il linker dell'M4 Max
+è rotto (manca l'SDK delle Command Line Tools) **e** il `dataflow_parallelize` di Concrete
+esiste solo su Linux. Parametri: dim 64, Q=±2 → ~8 bit, CHUNKED.
+
+**Confronto: argmin sequenziale (catena di N−1 confronti) vs a torneo (profondità log N),
+con e senza dataflow.**
+
+| N | sequenziale | seq+dataflow | **torneo** | torneo+dataflow |
+|---|---|---|---|---|
+| 4 | 78,3 s | 73,9 s | **36,1 s** | 33,2 s |
+| 8 | 180,4 s | 185,6 s | **69,1 s** | crash compilatore |
+
+Tre fatti:
+1. **Il torneo è la vera ottimizzazione.** 2,2× più veloce a N=4, **2,6× a N=8**: il
+   vantaggio **cresce** con la galleria (il sequenziale scala ×2,3 per raddoppio, il
+   torneo ×1,9). La catena sequenziale paga anche l'indice accumulato che si allarga;
+   l'albero no.
+2. **Il dataflow non è la leva.** Inutile sul sequenziale (niente da parallelizzare:
+   78→74, 180→186 = rumore), solo ~8% sul torneo a N=4, e a N=8 **fa crashare il
+   compilatore** Concrete (bug, assertion MLIR). Il parallelismo HW qui non salva.
+3. **Il pavimento.** La config migliore (torneo, N=8) è **69 s per soli 8 iscritti**. Il
+   costo è il **singolo confronto cifrato: ~26 s a 8 bit**. Nessuna struttura scende sotto
+   ~log(N)·(costo confronto) → decine di secondi anche per N piccolo.
+
+**Verdetto (risponde alla domanda "ottimizzando diventa real-time?").** **No.**
+Ottimizzare la struttura **aiuta sul serio** — il torneo è 2-2,6× più veloce e scala
+meglio, ed è un punto in più sulla "linea del tempo che scende", tutto in Concrete — ma il
+**pavimento è il costo del singolo PBS/confronto in TFHE** (decine di secondi a precisione
+utile). Per arrivare ai secondi bisognerebbe abbattere *quel* costo: precisione molto più
+bassa (accuratezza che crolla) o un altro schema (CKKS, F27). Quindi: argmin privato sul
+server con Concrete = **classe minuti/decine di secondi, non real-time**, anche ottimizzato.
+È la chiusura coerente di F25→F28: il sistema veloce-e-accurato resta quello con **argmin
+sul client** (F22); il server-argmin privato è un risultato di fattibilità con un costo
+caratterizzato, non un prodotto realtime.
