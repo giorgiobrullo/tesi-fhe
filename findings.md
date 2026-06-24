@@ -644,3 +644,41 @@ modello (l'embedding gira in chiaro sul client). La quantizzazione a 6 bit non p
 il cifrato dà i punteggi esatti per tutti e tre. → **Si può usare il modello migliore
 (ResNet100, ~95,5%) a costo cifrato identico al più leggero.** La potenza del
 riconoscimento è gratis lato FHE.
+
+## F21 — Argmin cifrato sul server con embedding CNN: il muro, e cosa abbiamo provato
+L'argmin (e la soglia) **devono** stare sul server, sotto FHE: farli sul client vanifica
+la privacy (il client imparerebbe la distanza con ogni iscritto, F6). Ma sui punteggi
+degli embedding **CNN a 512 dimensioni** c'è un muro duro. Diario dei tentativi.
+
+**Il problema.** Il punteggio `‖b‖² − 2·a·b` su 512 dimensioni quantizzate a 6 bit è
+largo **~18 bit**. Il confronto cifrato di Concrete 2.11 è limitato a **~16 bit**:
+l'argmin sui punteggi CNN **non compila** (`this 18-bit value is used as an operand to a
+comparison operation`). E i ~18 bit nascono dall'accumulatore su 512 dimensioni, non
+dalla precisione per-valore → non si abbassano facilmente.
+
+**Cosa abbiamo provato (e perché non basta):**
+1. **`round_bit_pattern`** (arrotonda via i bit bassi dei punteggi prima del confronto).
+   *No.* Azzera i bit bassi ma **non riduce il range**: il valore resta a 18 bit, quindi
+   il confronto è ancora su 18 bit → rifiutato. Lo strumento serve a far seguire una
+   tabella a precisione ridotta, non a stringere un confronto.
+2. **Dividere i punteggi** (`// 2^k`, per tagliare il range alla metà). *No.* L'operazione
+   stessa prende in input il valore a 18 bit → tabella su 18 bit → non compila. Qualunque
+   manipolazione *a valle* del punteggio largo è bloccata dallo stesso limite.
+3. **Comprimere l'embedding** (PCA a meno dimensioni + meno bit), per stringere i
+   punteggi **alla sorgente**. È l'unica leva che funziona, **ma**: per rendere l'argmin
+   *veloce* (secondi) serve comprimere così tanto (≤16-32 dim, 2-3 bit) da **distruggere
+   l'accuratezza** che la CNN ci aveva dato. Non è un'ottimizzazione, è un trade-off:
+   o accuratezza piena e argmin intrattabile, o argmin veloce e riconoscimento a pezzi.
+
+**Conclusione (onesta).** Non esiste una "linea che scende coi miglioramenti": l'argmin
+cifrato sul server **non scala agli embedding CNN ad alta dimensione** — è un **muro**
+(limite di bit-width del confronto in Concrete), non una discesa. Estende ed è il
+contraltare di F6/F12: lì il costo cresceva ~2×/bit; qui i bit sono troppi a priori.
+
+→ Come farlo davvero (da esplorare): (a) **punto di compromesso dimensione/accuratezza** —
+PCA dell'embedding a ~128-256 dim, argmin tractabile ma lento (~minuti/query) con qualche
+punto di accuratezza in meno; (b) **privacy a livello di protocollo** invece che di
+circuito — es. il server **mescola** i punteggi così il client vede solo distanze
+anonime + l'identità vincente, senza argmin cifrato; (c) un argmin **a torneo/gerarchico**
+che non materializzi mai il punteggio pieno. Il client-argmin (~100 ms) resta solo come
+*baseline funzionante ma non privata*, non come soluzione.
