@@ -636,3 +636,11 @@ accuratezza. Per più accuratezza, lato nostro, basta un modello più grande **d
 → Conclusione: il sistema è **vicino al massimo pratico** (~95-96% con ResNet100 a
 migliaia di iscritti reali). Oltre non si va cambiando modello; servirebbe un protocollo
 più facile (verifica 1:1) o accettare che ~95% è l'ottimo onesto per il varco 1:N.
+
+**Conferma a numeri — il costo FHE è indipendente dal modello** (`costo_modelli.py`):
+il match cifrato su DigiFace è ~102 ms (MobileFaceNet), ~111 ms (ResNet50), ~97 ms
+(ResNet100) — **uguale per tutti**, perché dipende solo dalla dimensione (512), non dal
+modello (l'embedding gira in chiaro sul client). La quantizzazione a 6 bit non perde e
+il cifrato dà i punteggi esatti per tutti e tre. → **Si può usare il modello migliore
+(ResNet100, ~95,5%) a costo cifrato identico al più leggero.** La potenza del
+riconoscimento è gratis lato FHE.
