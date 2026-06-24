@@ -809,3 +809,56 @@ in compilazione). Il PBS su GPU è ~50-100× più veloce → i ~2 min su CPU div
 **~secondi**. Non eseguibile su questo Mac (Apple Silicon, no CUDA), ma è la conclusione
 difendibile: **argmin server privato a ~90% di accuratezza, fattibile in ~2-3 s su GPU**
 (CHUNKED + dim 128). Resta da gestire lo scaling con N (galleria grande = più confronti).
+*(Ma è un'ipotesi non verificata: la GPU va misurata davvero — vedi F26, che la smentisce.)*
+
+## F26 — La verifica sul campo: la GPU NON è la leva (misurato su Tesla T4)
+F25 si chiudeva con un'**ipotesi**: «il PBS su GPU è ~50-100× più veloce → i ~2 min di
+argmin diventano ~2-3 s». L'abbiamo **messa alla prova davvero**, e il risultato la
+ribalta.
+
+**Come siamo arrivati su una GPU vera.** Su questo Mac non c'è CUDA (Apple Silicon), e il
+backend GPU di Concrete è **solo CUDA**; per di più compila per **compute capability ≥
+7.0 (Volta)**. La GTX 1060 del server di casa (raggiunto via Tailscale) è **sm_61
+(Pascal)** → *sotto* il minimo, non esegue i kernel FHE. La via pulita è la **Tesla T4 di
+Google Colab** (sm_75, 15 GB) — supportata — pilotata via il **Colab MCP** ufficiale
+(così le celle le ha eseguite direttamente l'agente). *(Ostacoli d'installazione reali: il
+certificato SSL di `pypi.zama.ai/gpu` era scaduto → `--trusted-host`; il wheel GPU vuole
+numpy 1.26 mentre Colab ha numpy 2 → pin numpy 1.26 + scipy 1.12 e riavvio kernel.)*
+
+**La misura** (stesso circuito di F25: argmin 1:N cifrato, N=8, strategia CHUNKED;
+quantizzazione bassa Q=±2 → punteggi 8-10 bit):
+
+| dim | bit | **GPU T4 (run)** | corretto |
+|---|---|---|---|
+| 64 | 8 | **629 s** | ✅ |
+| 128 | 9 | **1082 s** (18 min) | ✅ |
+| 256 | 10 | **1267 s** (21 min) | ✅ |
+
+Riferimento CPU: l'M4 Max (F25, ~bit 11) faceva dim 128 in **~123 s**. Sulla **stessa VM
+Colab** il baseline CPU a dim 128 ha girato **>17 min senza finire** → la T4 non ha dato
+praticamente **nessuno speedup** rispetto a una CPU debole, e perde nettamente contro una
+CPU desktop veloce.
+
+→ **La GPU è ~9× più LENTA, non più veloce. L'ipotesi di F25 è falsa, misurata.**
+
+**Perché** (ed è il vero contributo). L'accelerazione GPU di TFHE serve al **throughput in
+batch**: migliaia di bootstrap *indipendenti* che riempiono insieme i core della scheda.
+Il nostro argmin è l'opposto — una **riduzione sequenziale** (N−1 confronti, ognuno
+dipende dal risultato del precedente) su **una singola query**. Non c'è parallelismo da
+offrire alla GPU: ogni PBS minuscolo paga solo l'overhead di lancio del kernel +
+trasferimento delle chiavi, e una T4 modesta affoga. La GPU aiuterebbe a servire **molte
+persone contemporaneamente** (throughput), **non** la **latenza** del singolo al varco —
+che è esattamente ciò che serve a un controllo accessi.
+
+*(Caveat onesto: build GPU `2024.12.19`, query singola, strategia CHUNKED. Un backend più
+recente o il batch fra più query potrebbero cambiare i numeri assoluti, ma non l'asse del
+problema: latenza-singola vs throughput-in-batch.)*
+
+**Conclusione corretta.** Non esiste una **scorciatoia hardware** ai 2-3 s del singolo
+riconoscimento privato-verso-il-client. Le leve vere restano **algoritmiche**: (a) meno
+confronti / più economici; (b) **batch** tra più query se il caso d'uso è ad alto volume
+(lì la GPU tornerebbe utile); (c) un **argmin a torneo con parallelismo** (non percorribile
+su questo Mac); (d) privacy a livello di **protocollo**. Il sistema valido e veloce resta
+quello con **argmin sul client** (~95%, ~100 ms, server cieco, F22). Il **server-argmin**
+privato anche verso il client **funziona** (F25, ~90% a ~2 min) ma **non è realtime su
+questo hardware**, e — ora verificato — **la GPU non lo rende realtime**.
