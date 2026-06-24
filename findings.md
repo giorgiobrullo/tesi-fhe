@@ -732,3 +732,37 @@ costi fissi, non la dimensione. Ridurre l'embedding aiuta poco il *match* (già 
 ma è la leva per rendere l'*argmin* cifrato fattibile (F21/F23). Quadro completo: la
 dimensione 128 è il punto dolce — accuratezza ~94% (ResNet50), match ~63 ms, e punteggi
 abbastanza stretti da avvicinare l'argmin privato al fattibile.
+
+## F24 — Ottimizzare l'argmin server: niente hardware-lever, e la compressione aiuta al margine
+Tentativo di "ottimizzare fortissimo" l'argmin cifrato sul server. Due fatti duri.
+
+**Niente leve hardware su questa macchina.** Il parallelismo dataflow di Concrete
+**non è disponibile su macOS** (`Dataflow parallelism is not available in macOS`), e la
+GPU nemmeno (Apple Silicon, no CUDA). Quindi l'unica leva è **comprimere l'embedding**
+(meno bit nei punteggi). Numeri veri misurati (argmin su N=8, 4 bit):
+
+| dim PCA | accuratezza | argmin cifrato |
+|---|---|---|
+| 16 | ~14% | **42 s** (misurato) |
+| 32 | ~56% | minuti |
+| 64 | ~87% | **esplode la RAM in compilazione** (decine di GB) |
+| 128 | ~94% | intrattabile |
+| 512 | ~95% | muro (non compila) |
+
+→ Dove l'accuratezza è usabile (≥64 dim) l'argmin è intrattabile (tempo *o* memoria);
+dove è veloce (16 dim) l'accuratezza è inutile. Niente operating point buono.
+
+**La compressione migliore aiuta, ma non rompe la frontiera.** Abbiamo usato la PCA;
+provata anche la **LDA** (supervisionata, `compressione.py`, figura `compressione.png`):
+a dim bassa la LDA batte la PCA (dim 16: 25% vs 14%; dim 32: 65% vs 56%), sopra 64 la
+PCA torna avanti (la LDA si sovra-adatta agli iscritti). Ma anche con LDA, dim 32 = 65%
+(tractabile ma lento) e dim 64 = 84% (RAM esplode) → la compressione sposta i punti di
+qualche punto, **non sposta il muro**.
+
+**Conclusione (definitiva su questo hardware).** L'argmin cifrato sul server con
+embedding CNN di qualità è **non praticabile** ottimizzando software/compressione: serve
+**hardware diverso** (GPU / parallelismo) o un'**idea nuova** (proiezione *appresa* a
+bassa dimensione — distillazione dell'embedding; argmin a torneo *con* parallelismo;
+oppure privacy a livello di protocollo). Il sistema valido resta quello con **argmin sul
+client** (~95%, ~100 ms, server cieco), che è privacy-preserving sotto il modello di
+minaccia naturale (F22). Il server-argmin (difesa dal client non fidato) è lavoro futuro.
