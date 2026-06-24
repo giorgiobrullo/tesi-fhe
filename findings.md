@@ -682,3 +682,45 @@ circuito — es. il server **mescola** i punteggi così il client vede solo dist
 anonime + l'identità vincente, senza argmin cifrato; (c) un argmin **a torneo/gerarchico**
 che non materializzi mai il punteggio pieno. Il client-argmin (~100 ms) resta solo come
 *baseline funzionante ma non privata*, non come soluzione.
+
+## F22 — L'argmin server serve davvero? Dipende dal modello di minaccia
+Ripensando: con l'**argmin sul client** (la demo funzionante, ~100 ms) il server calcola
+i punteggi cifrati e li rimanda **senza mai decifrare**. Quindi il server **non impara
+nulla** — né il volto, né i punteggi, né l'esito. L'unico a vedere le distanze è il
+**client** (che ha la chiave). Conseguenza importante:
+
+- Sotto il modello di minaccia naturale del varco — **server honest-but-curious, client
+  fidato** (il terminale è del gestore) — il sistema **client-argmin a ~100 ms è già
+  privacy-preserving**: protegge il volto e l'esito dal server. Niente argmin cifrato.
+- L'argmin (e soglia) **sul server** serve **solo** se il **client non è fidato** (un
+  client malevolo non deve poter sondare la galleria imparando le distanze). È un
+  irrobustimento extra, ed è quello che sbatte sul muro FHE (F21).
+
+→ Quindi "l'argmin cifrato sul server è necessario" **non è assoluto**: dipende da quanto
+si fida il client. Il contributo della tesi può legittimamente fermarsi al sistema
+client-argmin (funziona, è privato verso il server, ~100 ms con ResNet100 al ~95%), e
+trattare il server-argmin come hardening per il caso untrusted-client (fattibile solo a
+dimensione ridotta, vedi F23).
+
+## F23 — Comprimere l'embedding: a 128 dim quasi gratis (la leva per l'FHE)
+Per stringere i punteggi (e avvicinare l'argmin cifrato al fattibile, F21) si riduce la
+**dimensione** dell'embedding con PCA. Misurato il trade-off accuratezza↔dimensione
+(`scaling_dimensione.py`, 1000 iscritti reali, figura `scaling_dimensione.png`):
+
+| dim | MobileFaceNet | ResNet50 |
+|---|---|---|
+| 512 | 90,4% | 95,8% |
+| 256 | 90,4% | 95,6% |
+| **128** | **88,6%** | **94,4%** |
+| 64 | 78,1% | 86,8% |
+| 32 | 47,9% | 55,9% |
+| 16 | 12,2% | 14,0% |
+| 8 | 0,6% | 1,0% |
+
+**Si comprime fino a 128 dimensioni quasi gratis** (ResNet50 −1,4 punti, MobileFaceNet
+−1,8), e 256 è identico a 512. Sotto c'è un **ginocchio netto**: 64 ancora usabile
+(~87%), a 32 dimezza, sotto 16 crolla. → **128 dim è il punto FHE-friendly**: stesso
+riconoscimento, punteggi più stretti (e match cifrato più economico, costo ~lineare
+nella dimensione). NB: per rendere l'argmin cifrato *tractabile* serve 128 dim **+**
+quantizzazione bassa (~4 bit) → punteggi ~14 bit → argmin lento (~minuti/query) ma non
+intrattabile. È l'operating point del server-argmin privato: lento, per basso throughput.
