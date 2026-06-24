@@ -21,3 +21,4 @@ figures/
 datasets/
 benchmark/results/_emb_reale.npz
 benchmark/results/_crops_reale.npz
+status.md
