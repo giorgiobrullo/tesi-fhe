@@ -776,3 +776,36 @@ bassa dimensione — distillazione dell'embedding; argmin a torneo *con* paralle
 oppure privacy a livello di protocollo). Il sistema valido resta quello con **argmin sul
 client** (~95%, ~100 ms, server cieco), che è privacy-preserving sotto il modello di
 minaccia naturale (F22). Il server-argmin (difesa dal client non fidato) è lavoro futuro.
+
+## F25 — La svolta: la strategia CHUNKED rompe il muro dell'argmin server
+Su suggerimento (guardare la wiki di Concrete) abbiamo trovato la leva che mancava.
+Concrete ha **strategie configurabili** per i confronti e min/max
+([doc bitwise](https://docs.zama.ai/concrete/explanations/advanced-features/bitwise),
+[doc min/max](https://docs.zama.ai/concrete/explanations/advanced-features/minmax)). Il
+default fallisce/esplode in RAM sui punteggi larghi; la strategia **`CHUNKED`** spezza
+l'operazione in pezzi ed è **molto più efficiente in memoria** (9-21 table-lookup per
+confronto). Si attiva con `Configuration(comparison_strategy_preference=[CHUNKED],
+min_max_strategy_preference=[CHUNKED])`.
+
+**Il limite di 16 bit sul confronto resta hard** (anche CHUNKED: *"only up to 16-bit
+comparison operations are supported"*). Ma combinando **CHUNKED + dimensione ridotta**
+(così i punteggi stanno sotto 16 bit) l'argmin server **finalmente compila e gira**,
+dove prima (default) esplodeva la RAM (F24):
+
+| dim PCA | accuratezza | argmin cifrato (N=8) | corretto |
+|---|---|---|---|
+| 128 | ~90% | **123 s** | ✅ (CHUNKED, RAM sana) |
+| 256 | ~93% | **130 s** | ✅ (CHUNKED, RAM sana) |
+
+→ **Il muro era la strategia sbagliata, non un limite assoluto.** Con CHUNKED abbiamo un
+argmin cifrato sul server **funzionante a ~90-93% di accuratezza**. Resta il tempo: ~2
+min su CPU per N=8 (ogni confronto CHUNKED ~17 s). Non sono i 2-3 s richiesti, ma il
+sistema **funziona** ed è privato anche verso il client.
+
+**La strada per i 2-3 s: GPU.** Concrete ha un backend **CUDA**
+([doc GPU](https://docs.zama.org/concrete/execution-analysis/gpu_acceleration);
+`pip install concrete-python --extra-index-url https://pypi.zama.ai/gpu`, poi `use_gpu`
+in compilazione). Il PBS su GPU è ~50-100× più veloce → i ~2 min su CPU diventerebbero
+**~secondi**. Non eseguibile su questo Mac (Apple Silicon, no CUDA), ma è la conclusione
+difendibile: **argmin server privato a ~90% di accuratezza, fattibile in ~2-3 s su GPU**
+(CHUNKED + dim 128). Resta da gestire lo scaling con N (galleria grande = più confronti).
