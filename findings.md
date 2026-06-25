@@ -993,3 +993,41 @@ dell'argmin (F25), la GPU che peggiora (F26), il torneo che aiuta ma non basta (
 **situato tutto questo nello stato dell'arte**: il muro è intrinseco allo schema/operazione,
 gli altri lo aggirano (client decide, soglia, approssimazione, due server), e **per il varco
 la soglia è la risposta giusta** — che è esattamente il pezzo che già funziona da noi.
+
+## F30 — Il varco a soglia misurato: più economico dell'argmin, ma scala lineare (non real-time)
+F29 dice che per un varco basta la **soglia/membership** (1 bit: "c'è un iscritto sotto
+soglia? → apri/non apri"), non l'argmin. E ha tre vantaggi teorici: i confronti
+`distanza < T` sono **indipendenti** (parallelizzabili, dove l'argmin sequenziale non
+poteva), il confronto è con una **costante in chiaro** (più economico), e la riduzione è
+una **somma di bit** (gratis, niente PBS). Misurato su Concrete (server Linux 12 core, dim
+64, ~bit 10, soglia in chiaro, `np.sum(p < T)`; dettagli in
+`experiments/10_argmin_struttura/`).
+
+| N (iscritti) | run (latenza/query) | vs argmin |
+|---|---|---|
+| 8 | **31,2 s** | argmin-torneo era 69 s → ~2,2× più veloce |
+| 64 | **347,6 s** (~6 min) | — |
+
+Tutti corretti (conteggio = atteso). Il dataflow non aiuta (31,2 vs 32,0 s a N=8).
+
+**Ma lo scaling è il punto:** 8→64 (×8 di galleria) = 31→348 s (**×11 di tempo**) →
+**~lineare in N**. La parallelizzazione dà solo un **fattore costante** (≈ numero di core),
+non spezza la linearità. Quindi la soglia **abbassa il costante** (è più economica
+dell'argmin, è il primitivo giusto, fa trapelare solo 1 bit) ma **non cambia la legge**:
+- N piccolo (un ufficio, decine) → minuti, plausibile;
+- estrapolando lineare: N=256 ≈ 23 min, N=1024 ≈ 1,5 h, N=1000+ = ore.
+
+In più il **keygen esplode con N**: a N=64 il processo usava **27 GB di RAM** (i confronti
+CHUNKED generano montagne di chiavi) → a N≥256 va in OOM su questo box. Setup una-tantum,
+ma è un secondo muro.
+
+**Verdetto (chiude la domanda "il varco a soglia è real-time?").** **No, a scala reale.**
+La soglia è la scelta giusta e più economica dell'argmin (e l'unica con leakage minimo: 1
+bit), ma in TFHE resta **N PBS indipendenti** → tempo **lineare in N**, e la parallelizzazione
+è solo un fattore costante. Operativamente: **varco TFHE + galleria-in-chiaro = pratico solo
+per gallerie piccole** (decine di iscritti, latenza minuti). Per centinaia/migliaia serve
+lo SIMD-packing di **CKKS** (F29: IDFace 1M/126ms), che batcha gli N confronti invece di
+pagarli uno per uno. È la conferma sperimentale, dal lato giusto del problema (la soglia,
+non l'argmin), della stessa conclusione di F25→F29: su TFHE/Concrete il match privato 1:N
+**non è realtime a scala**; lo è solo il caso piccolo, o spostando l'argmax/soglia fuori
+dal server (client decide, F22) o su un altro schema (CKKS).
