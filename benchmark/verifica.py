@@ -26,9 +26,11 @@ from sklearn.decomposition import PCA
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))  # repo root
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "07_descrittori_locali"))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "08_cnn"))
 import descrittori as d                                # noqa: E402  (LBP/HOG già fatti)
+import embedding as cnn                                # noqa: E402  (InsightFace, gradino 08)
 
-BENCH = ["lfw", "cplfw", "cfp_fp"]                     # facile → duri
+BENCH = ["lfw", "cplfw", "cfp_fp", "agedb_30", "calfw"]   # facile → duri (posa, profilo, età)
 DIR = pathlib.Path(__file__).resolve().parents[1] / "datasets" / "bench"
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 
@@ -72,8 +74,8 @@ def dist_coppie(feat: np.ndarray, distanza) -> np.ndarray:
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     righe = []
-    print(f"{'benchmark':>9} | {'PCA+eucl':>9} | {'LBP+χ²':>9} | {'LBP+eucl':>9} | {'HOG+eucl':>9}")
-    print("-" * 60)
+    print(f"{'benchmark':>9} | {'PCA':>6} | {'LBP+χ²':>6} | {'HOG':>6} | {'CNN-mfn':>7} | {'CNN-rn':>7}")
+    print("-" * 64)
     for nome in BENCH:
         if not (DIR / f"{nome}.bin").exists():
             print(f"{nome:>9} | (manca {nome}.bin in datasets/bench/)")
@@ -95,11 +97,19 @@ def main() -> None:
         hog = d.hog_feat(g)
         acc_hog, _ = acc_10fold(dist_coppie(hog, d.dist_euclidea), issame)
 
-        print(f"{nome:>9} | {acc_pca:>8.1%} | {acc_lbp_chi2:>8.1%} | "
-              f"{acc_lbp_eucl:>8.1%} | {acc_hog:>8.1%}")
+        # CNN (gradino 08): embedding InsightFace su RGB 112×112 già allineate.
+        # Embedding L2-normalizzati → distanza euclidea monotona col coseno.
+        acc_cnn = {}
+        for nm, liv in [("mfn", "mobilefacenet"), ("rn", "resnet50")]:
+            emb_cnn = cnn.embedding(imgs, liv)
+            acc_cnn[nm], _ = acc_10fold(dist_coppie(emb_cnn, d.dist_euclidea), issame)
+
+        print(f"{nome:>9} | {acc_pca:>6.1%} | {acc_lbp_chi2:>6.1%} | {acc_hog:>6.1%} | "
+              f"{acc_cnn['mfn']:>7.1%} | {acc_cnn['rn']:>7.1%}")
         righe.append({"benchmark": nome, "n_coppie": len(issame),
                       "pca_eucl": round(acc_pca, 4), "lbp_chi2": round(acc_lbp_chi2, 4),
-                      "lbp_eucl": round(acc_lbp_eucl, 4), "hog_eucl": round(acc_hog, 4)})
+                      "lbp_eucl": round(acc_lbp_eucl, 4), "hog_eucl": round(acc_hog, 4),
+                      "cnn_mfn": round(acc_cnn["mfn"], 4), "cnn_rn": round(acc_cnn["rn"], 4)})
 
     if righe:
         import csv

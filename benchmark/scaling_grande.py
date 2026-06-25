@@ -30,8 +30,8 @@ import embedding as ec                                 # noqa: E402
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 DIR5 = dataset._RADICE / "digiface" / "estratto_5img"
 # iscritti = id_totali/2. Cap per modello (RN50 è più lenta da embeddare).
-MAX_ID = {"MobileFaceNet": 16000, "ResNet50": 4000}
-SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 8000]
+MAX_ID = {"MobileFaceNet": 33333, "ResNet50": 16000}   # piena scala DigiFace 5-img
+SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 8000, 16000]   # MFN fino a 16k iscritti (33k id)
 
 
 def P(*a):
