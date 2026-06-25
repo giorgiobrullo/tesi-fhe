@@ -946,3 +946,50 @@ server con Concrete = **classe minuti/decine di secondi, non real-time**, anche 
 È la chiusura coerente di F25→F28: il sistema veloce-e-accurato resta quello con **argmin
 sul client** (F22); il server-argmin privato è un risultato di fattibilità con un costo
 caratterizzato, non un prodotto realtime.
+
+## F29 — Cosa fa davvero la letteratura: il quadro completo (e la correzione di F27)
+F27 aveva detto, sbrigativamente, "la quasi totalità usa CKKS". Falso, o almeno troppo
+grosso. Fatta una rassegna completa (16 sistemi unici, fonti lette dirette; mappa e
+citazioni in `letteratura.md`), il quadro è più ricco — e più utile.
+
+**1. Non è "tutto CKKS".** Gli schemi in campo:
+- **CKKS** (il più diffuso per la *similarità*): Blind-Match, GROTE, CryptoFace,
+  Lightweight/BSGS, Blind-Touch, Mazzone — packing SIMD + confronto/soglia *approssimati*.
+- **BFV/FV**: HERS, Boddeti — interi *esatti*, ma niente non-lineare → argmax al client.
+- **TFHE** (il *nostro*): Blind Counting Sort/Blind Top-k (PoPETs'25), RevoLUT, k-NN
+  simmetrico (PSD'22) — argmin/top-k via LUT e counting-sort. **Esiste una linea TFHE
+  proprio sul nostro problema: non eravamo fuori strada.**
+- **HE+MPC** (CryptoMask) e **template protection / 2 server** (IDFace).
+
+**2. Quasi nessuno fa un argmax cifrato *vero* sul server.** Lo evitano in 4 modi:
+(a) lo **scaricano sul client** che decifra tutti gli score e fa l'argmax in chiaro — HERS,
+Blind-Match, CryptoFace (= il nostro F22; il client vede gli score); (b) lo **riducono a una
+soglia/membership** — CryptoMask ritorna *1 bit*, BSGS ritorna *solo gli indici*; (c)
+**argmax approssimato sul server** — GROTE (group testing, confronti K→2√K), Mazzone
+(one-hot, argmin di 128 in ~13 s); (d) **due server** — IDFace (un Key Server decifra gli
+score): **1 M template in 126 ms** (ICCV 2025).
+
+**3. La lezione per il VARCO.** Per un controllo accessi **spesso non serve l'argmin**: basta
+"c'è qualcuno sopra soglia? → apri/non apri" (CryptoMask = 1 bit; BSGS = indici). È più
+economico e **fa trapelare meno** (il client non impara gli score né *chi* sei). E noi la
+soglia l'abbiamo già (F11). L'argmin serve solo se devi dire *quale* identità.
+
+**4. Dove siamo noi.** Quasi tutti cifrano *anche* la galleria (enc×enc). Il nostro **Mondo 1**
+(galleria in chiaro, solo probe cifrata → enc×plaintext, niente PBS sul dot product) è più
+leggero ma assume che il server veda la galleria. L'unico parente stretto è il **k-NN TFHE
+simmetrico PSD'22** (probe cifrata + galleria in chiaro, non-interattivo = *identico a noi*,
+ma con costo PBS quadratico). → il nostro è un punto **distinto e poco esplorato**: si
+compra velocità rinunciando alla privacy della galleria. Va dichiarato, non nascosto.
+
+**Numeri di riferimento** (per la tabella related-work): IDFace 1M/**126 ms** (Paillier/CKKS,
+2 server); Blind-Match LFW **99,63%**/0,74 s (CKKS); BSGS **99,99%** su 44K, sub-sec su GPU
+(CKKS); HERS **100 M**/500 s (BFV); GROTE **K→2√K**, 14,6 s (CKKS); Mazzone argmin-128 in
+**12,8 s** (CKKS); Blind Counting Sort k-NN ~**2,4 s** (TFHE).
+
+**Cosa abbiamo scoperto, in una riga.** Il nostro lavoro non è "scoprire CKKS in ritardo": è
+aver **costruito e misurato** un sistema 1:N privacy-preserving su Concrete/TFHE nel setup
+*galleria-in-chiaro* (poco battuto), aver **caratterizzato col cronometro** il muro
+dell'argmin (F25), la GPU che peggiora (F26), il torneo che aiuta ma non basta (F28), e aver
+**situato tutto questo nello stato dell'arte**: il muro è intrinseco allo schema/operazione,
+gli altri lo aggirano (client decide, soglia, approssimazione, due server), e **per il varco
+la soglia è la risposta giusta** — che è esattamente il pezzo che già funziona da noi.
