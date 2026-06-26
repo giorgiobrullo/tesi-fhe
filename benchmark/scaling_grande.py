@@ -30,8 +30,8 @@ import embedding as ec                                 # noqa: E402
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 DIR5 = dataset._RADICE / "digiface" / "estratto_5img"
 # iscritti = id_totali/2. Cap per modello (RN50 è più lenta da embeddare).
-MAX_ID = {"MobileFaceNet": 33333, "ResNet50": 16000}   # piena scala DigiFace 5-img
-SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 8000, 16000]   # MFN fino a 16k iscritti (33k id)
+MAX_ID = {"MobileFaceNet": 33333, "ResNet50": 32000}   # piena scala DigiFace 5-img (33k id → ~16k iscritti)
+SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 8000, 16000]   # tetto coi dati attuali: 16k iscritti (32k id)
 
 
 def P(*a):
@@ -56,13 +56,21 @@ def main():
     emb_cache = {}
     for modello, liv in [("MobileFaceNet", "mobilefacenet"), ("ResNet50", "resnet50")]:
         nid = MAX_ID[modello]
-        P(f"\n=== {modello}: carico+embeddo fino a {nid} identità (×5 img)... ===")
-        t = time.perf_counter()
-        X, y = dataset.carica_da_cartelle(str(DIR5), max_identita=nid, max_per_identita=5,
-                                          grigio=False, seed=0)
-        E = ec.embedding(X, liv)
+        # cache embedding: l'embedding è il pezzo lento; salvalo per (modello, nid) e riusalo
+        f_cache = DIR5.parent / f"_emb_5img_{liv}_{nid}.npz"
+        if f_cache.exists():
+            z = np.load(f_cache)
+            E, y = z["E"], z["y"]
+            P(f"\n=== {modello}: embedding da CACHE ({len(E)} img, {f_cache.name}) ===")
+        else:
+            P(f"\n=== {modello}: carico+embeddo fino a {nid} identità (×5 img)... ===")
+            t = time.perf_counter()
+            X, y = dataset.carica_da_cartelle(str(DIR5), max_identita=nid, max_per_identita=5,
+                                              grigio=False, seed=0)
+            E = ec.embedding(X, liv)
+            np.savez(f_cache, E=E, y=y)
+            P(f"  {len(X)} img embeddati in {time.perf_counter()-t:.0f}s (cache: {f_cache.name})")
         emb_cache[modello] = (E, y)
-        P(f"  {len(X)} img embeddati in {time.perf_counter()-t:.0f}s")
 
     for modello in MAX_ID:
         E, y = emb_cache[modello]
