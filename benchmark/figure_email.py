@@ -21,12 +21,13 @@ def figura_accuratezza():
            ("LBP", "lbp_chi2", "#7e8aa0"),
            ("HOG", "hog_eucl", "#5b6b8c"),
            ("CNN MobileFaceNet", "cnn_mfn", "#2a9d8f"),
-           ("CNN ResNet50", "cnn_rn", "#e76f51")]
-    x = np.arange(len(sets)); w = 0.16
-    fig, ax = plt.subplots(figsize=(9.5, 5.0))
+           ("CNN ResNet50", "cnn_rn", "#e76f51"),
+           ("CNN ResNet100", "cnn_rn100", "#6a4c93")]
+    x = np.arange(len(sets)); w = 0.14
+    fig, ax = plt.subplots(figsize=(10.5, 5.2))
     for i, (nome, col, c) in enumerate(tec):
         vals = [float(r[col]) * 100 for r in rows]
-        ax.bar(x + (i - 2) * w, vals, w, label=nome, color=c, edgecolor="white", linewidth=0.6)
+        ax.bar(x + (i - (len(tec) - 1) / 2) * w, vals, w, label=nome, color=c, edgecolor="white", linewidth=0.6)
     # linea del caso: sottile, etichetta nel margine destro (lontano dalle barre)
     ax.axhline(50, ls=(0, (4, 4)), lw=0.9, color="#bbb", zorder=0)
     ax.text(len(sets) - 0.42, 50, "caso\n(50%)", fontsize=8, color="#999", va="center", ha="left")
@@ -35,7 +36,7 @@ def figura_accuratezza():
     ax.set_xlim(-0.6, len(sets) - 0.05)
     ax.set_title("Geometriche e descrittori restano al caso; le CNN reggono sui set duri\n"
                  "→ l'accuratezza sale con la complessità della tecnica", fontsize=12)
-    ax.legend(ncol=5, fontsize=9, loc="lower center", bbox_to_anchor=(0.5, -0.2), frameon=False)
+    ax.legend(ncol=6, fontsize=8.5, loc="lower center", bbox_to_anchor=(0.5, -0.2), frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.tick_params(labelsize=9)
     fig.tight_layout()
@@ -96,14 +97,9 @@ def figura_costo_fhe():
     ax2.set_ylabel("tempo argmin (s) — dim 128"); ax2.set_ylim(0, 1250)
     ax2.set_title("La GPU non aiuta — anzi, peggiora", fontsize=10.5)
     ax2.spines[["top", "right"]].set_visible(False)
-    ax2.text(0.5, -0.30,
-             "Perché: la GPU-TFHE accelera il BATCH (migliaia di bootstrap in parallelo).\n"
-             "Il nostro argmin è una riduzione SEQUENZIALE su una SINGOLA query →\n"
-             "niente da parallelizzare, vince solo l'overhead di lancio dei kernel.",
-             transform=ax2.transAxes, fontsize=8.3, ha="center", va="top",
-             bbox=dict(boxstyle="round,pad=0.4", fc="#f7f7f7", ec="#ddd"))
+    # Nota: il "perché" (interpretazione) va nella DIDASCALIA, non nel chart (best practice).
 
-    fig.tight_layout(rect=[0, 0.06, 1, 1])
+    fig.tight_layout()
     for ext in ("png", "svg"):
         fig.savefig(R / f"costo_fhe.{ext}", dpi=DPI, bbox_inches="tight")
     print("scritto costo_fhe.png/svg @", DPI, "dpi")
