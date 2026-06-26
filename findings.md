@@ -850,9 +850,21 @@ trasferimento delle chiavi, e una T4 modesta affoga. La GPU aiuterebbe a servire
 persone contemporaneamente** (throughput), **non** la **latenza** del singolo al varco —
 che è esattamente ciò che serve a un controllo accessi.
 
-*(Caveat onesto: build GPU `2024.12.19`, query singola, strategia CHUNKED. Un backend più
-recente o il batch fra più query potrebbero cambiare i numeri assoluti, ma non l'asse del
-problema: latenza-singola vs throughput-in-batch.)*
+**La spiegazione è documentata, non una nostra ipotesi.** Zama stessa scrive che la GPU di
+TFHE-rs *privilegia un tradeoff tra latenza e throughput* perché "i casi d'uso reali
+raramente calcolano un singolo bootstrap", con l'utilizzo che sale solo a batch grandi
+([Zama, *Bootstrapping TFHE in <1ms*](https://www.zama.org/post/bootstrapping-tfhe-ciphertexts-in-less-than-one-millisecond);
+[TFHE-rs GPU docs](https://docs.zama.org/tfhe-rs/hardware-acceleration/run-on-gpu)). E la
+letteratura sugli acceleratori FHE-GPU dà il meccanismo preciso: l'overhead di lancio dei
+kernel (~2–10 µs) **serializza di fatto** le tante operazioni TFHE piccole, lasciando la GPU
+sotto-utilizzata; il rimedio è il *batching* in un'unica chiamata ([Theodosian,
+arXiv:2512.18345](https://arxiv.org/abs/2512.18345);
+[Chameleon, arXiv:2410.05934](https://arxiv.org/abs/2410.05934)). Il nostro argmin è
+**batch ≈ 1** → fuori dal regime in cui la GPU conviene.
+
+*(Caveat sui numeri assoluti: build GPU `2024.12.19`, strategia CHUNKED; un backend più
+recente cambierebbe i tempi assoluti, non l'asse del problema — latenza-singola vs
+throughput-in-batch.)*
 
 **Conclusione corretta.** Non esiste una **scorciatoia hardware** ai 2-3 s del singolo
 riconoscimento privato-verso-il-client. Le leve vere restano **algoritmiche**: (a) meno
