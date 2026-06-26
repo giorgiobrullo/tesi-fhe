@@ -30,8 +30,8 @@ import embedding as ec                                 # noqa: E402
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 DIR5 = dataset._RADICE / "digiface" / "estratto_5img"
 # iscritti = id_totali/2. Cap per modello (RN50 è più lenta da embeddare).
-MAX_ID = {"MobileFaceNet": 33333, "ResNet50": 32000}   # piena scala DigiFace 5-img (33k id → ~16k iscritti)
-SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 8000, 16000]   # tetto coi dati attuali: 16k iscritti (32k id)
+MAX_ID = {"MobileFaceNet": 99999, "ResNet50": 99999}   # piena scala DigiFace 5-img (100k id)
+SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 48000]   # tetto: ~48k iscritti (96k id)
 
 
 def P(*a):
@@ -57,7 +57,7 @@ def main():
     for modello, liv in [("MobileFaceNet", "mobilefacenet"), ("ResNet50", "resnet50")]:
         nid = MAX_ID[modello]
         # cache embedding: l'embedding è il pezzo lento; salvalo per (modello, nid) e riusalo
-        f_cache = DIR5.parent / f"_emb_5img_{liv}_{nid}.npz"
+        f_cache = DIR5.parent / f"_emb_5img_{liv}.npz"   # cache per-modello: embeddo il max una volta
         if f_cache.exists():
             z = np.load(f_cache)
             E, y = z["E"], z["y"]
