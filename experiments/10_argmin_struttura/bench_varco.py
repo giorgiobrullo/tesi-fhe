@@ -1,4 +1,4 @@
-"""Varco a soglia (membership, 1 bit) cifrato vs N — il primitivo che serve davvero al varco.
+"""Varco a soglia (membership, 1 bit) cifrato vs N: il primitivo che serve al varco.
 A differenza dell'argmin (catena sequenziale), qui gli N confronti distanza<soglia sono
 INDIPENDENTI -> dovrebbero parallelizzare sui 12 core. Misura tempo vs N, con/senza dataflow.
 CSV incrementale."""

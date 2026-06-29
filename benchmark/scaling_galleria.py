@@ -2,7 +2,7 @@
 
 Sospetto saturazione: a 50 identità la CNN fa ~96-97% e leggera≈profonda. Un varco
 reale ha molti più iscritti, e l'identificazione 1:N open-set diventa più dura al
-crescere della galleria (più distrattori → più falsi positivi a parità di soglia).
+crescere della galleria (più distrattori, quindi più falsi positivi a parità di soglia).
 Qui facciamo crescere il numero di identità e vediamo se il DIR@FPIR scende.
 
 - DigiFace (sintetico): fino a ~1000 identità (embedding veloce, già allineato).
@@ -98,7 +98,7 @@ def main():
         xs = [r["iscritte"] for r in rs]
         for mod in ("MobileFaceNet", "ResNet50"):
             ax.plot(xs, [r[mod] * 100 for r in rs], stile[nome] + "o", color=col[mod],
-                    label=f"{mod} — {nome.split()[0]}")
+                    label=f"{mod} ({nome.split()[0]})")
     ax.set_xlabel("identità iscritte in galleria"); ax.set_ylabel("DIR@FPIR=1% (%)")
     ax.set_title("È saturo? DIR@FPIR vs dimensione della galleria", fontweight="bold")
     ax.grid(True, alpha=.3); ax.legend(fontsize=8); ax.set_ylim(0, 100)

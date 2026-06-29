@@ -2,19 +2,19 @@
 
 Dalla più facile alla più realistica (vedi docs/benchmark_dataset.md per il perché):
 - Olivetti/ORL: 40 persone × 10 foto, 64×64, in laboratorio (volti allineati).
-- LFW (Labeled Faces in the Wild): volti reali "in natura"; saturo → solo sanity-check.
-- VGGFace2: volti reali 1:N a buona risoluzione (folder-per-identità) — il set duro.
+- LFW (Labeled Faces in the Wild): volti reali "in natura"; saturo, quindi solo sanity-check.
+- VGGFace2: volti reali 1:N a buona risoluzione (folder-per-identità), il set duro.
 - DigiFace-1M: volti **sintetici** (3D-render), license-clean, a tema privacy; tante
-  immagini per identità → ideale per costruire split galleria/probe 1:N.
+  immagini per identità, ideale per costruire split galleria/probe 1:N.
 
 I primi due si scaricano da soli via sklearn; gli ultimi due sono cartelle locali
-(una sottocartella per identità) — vedi `carica_da_cartelle`. Condiviso da tutti i
+(una sottocartella per identità), vedi `carica_da_cartelle`. Condiviso da tutti i
 gradini di riconoscimento (PCA, descrittori, CNN, …): la tecnica cambia, il dataset no.
 
 Due regimi di split:
 - `_dividi` / `carica*`: split chiuso (galleria + probe, tutte le identità note).
 - `split_openset`: split **open-set 1:N** (galleria + probe noti + probe sconosciuti da
-  rifiutare) — modella il controllo-accessi a un varco e serve alla metrica TPIR@FPIR
+  rifiutare), modella il controllo-accessi a un varco e serve alla metrica TPIR@FPIR
   del gradino 06.
 """
 
@@ -79,7 +79,7 @@ def carica_da_cartelle(
 ) -> tuple[np.ndarray, np.ndarray]:
     """Carica un dataset con layout **una sottocartella per identità** (VGGFace2,
     DigiFace-1M, o qualunque set scaricato in quel formato). Ritorna (immagini,
-    etichette) — niente split: usalo con `split_openset` o con `_dividi`.
+    etichette), niente split: usalo con `split_openset` o con `_dividi`.
 
     - `max_identita`     : campiona al più N identità (per gallerie maneggevoli).
     - `min_per_identita` : scarta le identità con troppe poche foto (servono ≥2 per
@@ -132,7 +132,7 @@ _RADICE = pathlib.Path(__file__).resolve().parents[1] / "datasets"
 
 
 def carica_digiface(max_identita=None, max_per_identita=None, grigio=False, seed=0):
-    """DigiFace-1M (sintetico, 112×112, già allineato). Folder-per-identità →
+    """DigiFace-1M (sintetico, 112×112, già allineato). Folder-per-identità,
     ideale per split open-set 1:N. Richiede i dati estratti in
     datasets/digiface/estratto/ (vedi docs/benchmark_dataset.md)."""
     return carica_da_cartelle(
@@ -143,7 +143,7 @@ def carica_digiface(max_identita=None, max_per_identita=None, grigio=False, seed
 
 def carica_vggface2_test(max_identita=None, max_per_identita=20, grigio=False,
                          ridimensiona=(112, 112), seed=0):
-    """VGGFace2 test (500 identità reali). Dimensioni variabili → ridimensiona a
+    """VGGFace2 test (500 identità reali). Dimensioni variabili, quindi ridimensiona a
     112×112. Folder-per-identità. Richiede i dati estratti in
     datasets/vggface2/test/ (vedi docs/benchmark_dataset.md)."""
     return carica_da_cartelle(
@@ -165,7 +165,7 @@ def split_openset(
     - `galleria`        : alcune foto delle identità iscritte (i volti registrati);
     - `probe_noti`      : le foto rimanenti delle iscritte (devono fare match);
     - `probe_ignoti`    : tutte le foto delle identità sconosciute (devono essere
-                          **rifiutate** — non sono in galleria).
+                          **rifiutate**, non sono in galleria).
 
     È ciò che serve per misurare la metrica giusta (TPIR@FPIR, gradino 06): il sistema
     deve identificare i noti *e* rifiutare gli ignoti. Ritorna un dict con

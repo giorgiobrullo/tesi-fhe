@@ -1,4 +1,4 @@
-"""Gradino 07 — ricerca dei parametri in chiaro (LBP, HOG).
+"""Gradino 07: ricerca dei parametri in chiaro (LBP, HOG).
 
 Metodo: PRIMA si trovano i parametri buoni in chiaro, POI si misura il costo FHE solo
 su quelli. Qui esploriamo lo spazio dei parametri su LFW (il dataset che discrimina;
@@ -6,7 +6,7 @@ su Olivetti è tutto saturo ~100%) e riportiamo accanto all'accuratezza la
 **dimensione** del descrittore, che guida il costo FHE.
 
 Per LBP confrontiamo χ² ed euclidea: se l'euclidea perde poco, evitiamo la divisione
-della χ² (ostica per l'FHE) — risultato utile di per sé.
+della χ² (ostica per l'FHE), risultato utile di per sé.
 
 Esegui:  uv run python experiments/07_descrittori_locali/ricerca_parametri.py
 """

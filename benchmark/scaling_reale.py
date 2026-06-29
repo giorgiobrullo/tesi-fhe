@@ -1,8 +1,8 @@
-"""Scaling su VGGFace2 REALE (train, 8631 identità) — DIR@FPIR vs galleria.
+"""Scaling su VGGFace2 REALE (train, 8631 identità): DIR@FPIR vs galleria.
 
 Controparte reale e pulita di F18 (che era sintetico/DigiFace). VGGFace2 è il nostro
-dataset reale scelto (docs/benchmark_dataset.md) e NON è training dei modelli buffalo
-→ numeri onesti. Scala gli iscritti reali ben oltre i 500 del test (F17).
+dataset reale scelto (docs/benchmark_dataset.md) e NON è training dei modelli buffalo,
+quindi numeri onesti. Scala gli iscritti reali ben oltre i 500 del test (F17).
 
 Costo: VGGFace2 va allineato (detection). Per renderlo gestibile sottocampioniamo le
 immagini per identità (poche bastano per galleria+probe) e cappiamo le identità.
@@ -29,7 +29,7 @@ import embedding as ec                                 # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 TRAIN = dataset._RADICE / "vggface2" / "train"
-PER_ID = 6                       # immagini per identità (poche → allineamento gestibile)
+PER_ID = 6                       # immagini per identità (poche, allineamento gestibile)
 MAX_ID = {"MobileFaceNet": 8631, "ResNet50": 8631}   # tutte le identità VGGFace2 train
 SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 4300]  # 4300 ≈ massimo (8631 id / 2)
 EMB_CACHE = OUT / "_emb_reale.npz"
@@ -69,7 +69,7 @@ def precompute():
 def main():
     OUT.mkdir(exist_ok=True)
     if not TRAIN.exists():
-        P(f"manca {TRAIN} — scarica/estrai VGGFace2 train prima."); return
+        P(f"manca {TRAIN}: scarica/estrai VGGFace2 train prima."); return
     P("=== VGGFace2 train (reale) ===")
     Emfn, Ern, y = precompute()
     ids = np.unique(y)

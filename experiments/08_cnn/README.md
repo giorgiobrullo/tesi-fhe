@@ -25,7 +25,7 @@ sull'allineamento in `findings.md` F14.
 ArcFace/MobileFaceNet pretendono il volto **allineato sui 5 landmark** a 112×112. Su
 VGGFace2 *ridimensionato* (non allineato) la CNN dava solo 10,4% (peggio dei
 descrittori!); con detection+allineamento di InsightFace sale a 97,8%. DigiFace è già
-allineato (sintetico) → funziona diretto.
+allineato (sintetico), quindi funziona diretto.
 
 ## File
 
@@ -44,5 +44,5 @@ bit **senza perdita** (DIR=1% 89,3% float = quant). `costo.py`.
 ## 08b — CNN profonda: fatto ✅ (F16)
 
 ResNet50 (`buffalo_l`) vs MobileFaceNet sullo stesso protocollo: profonda **un filo
-meglio** (DIR@FPIR=1% VGGFace2 97,0% vs 96,0%; Rank-1 98,8% vs 97,8%), ma a parita' di
-dim 512 -> **stesso costo FHE**. Il salto vero resta hand-crafted -> CNN.
+meglio** (DIR@FPIR=1% VGGFace2 97,0% vs 96,0%; Rank-1 98,8% vs 97,8%), ma a parità di
+dim 512, **stesso costo FHE**. Il salto resta hand-crafted -> CNN.

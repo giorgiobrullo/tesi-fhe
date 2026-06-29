@@ -1,4 +1,4 @@
-"""core — motore condiviso del progetto.
+"""core: motore condiviso del progetto.
 
 Una sola fonte di verità per ciò che vale su più gradini della scaletta:
 - `matching`  i circuiti FHE (la matematica cifrata): server e benchmark li

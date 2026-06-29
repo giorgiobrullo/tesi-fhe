@@ -1,9 +1,9 @@
-"""Compressione dell'embedding CNN: PCA vs LDA — quale tiene più accuratezza a dim bassa?
+"""Compressione dell'embedding CNN: PCA vs LDA, quale tiene più accuratezza a dim bassa?
 
 La PCA (usata finora) comprime per varianza, non supervisionata. La LDA usa le etichette
-degli iscritti → comprime per *discriminare* le identità. Se a dimensione bassa la LDA
+degli iscritti, così comprime per *discriminare* le identità. Se a dimensione bassa la LDA
 tiene più accuratezza, possiamo usare una dim più piccola (dove l'argmin cifrato è
-fattibile, F24) senza perdere troppo → sposta la frontiera velocità↔accuratezza.
+fattibile, F24) senza perdere troppo, spostando la frontiera velocità↔accuratezza.
 
 Confronto in chiaro: DIR@FPIR=1% vs dimensione, PCA vs LDA, su embedding ResNet50 reali
 (VGGFace2, dalla cache). Esegui:  uv run python benchmark/compressione.py

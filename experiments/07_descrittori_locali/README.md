@@ -18,13 +18,13 @@ locali **battono nettamente la PCA**:
 
 Leve dalla ricerca parametri: LBP `nri_uniform` (59 bin) ≫ `uniform` (65→75%);
 HOG a celle fini sale (55→65%) ma esplode in dimensione. χ² batte l'euclidea di pochi
-punti → **l'euclidea su LBP regge** e permette di evitare la divisione.
+punti, quindi **l'euclidea su LBP regge** e permette di evitare la divisione.
 
 ## Il bivio FHE — e l'esito
 
-- **LBP + χ²** — il più accurato (75%), ma la χ² ha una **divisione** per una quantità
-  che dipende dal probe cifrato → ostile all'FHE.
-- **LBP / HOG + euclidea** — **FHE-friendly**: riusano identico il circuito del gradino
+- **LBP + χ²**, il più accurato (75%), ma la χ² ha una **divisione** per una quantità
+  che dipende dal probe cifrato, quindi ostile all'FHE.
+- **LBP / HOG + euclidea**, **FHE-friendly**: riusano identico il circuito del gradino
   05 (`core/matching.py`), è solo un altro embedding. LBP+euclidea fa ~70%.
 
 Esito lato FHE (via FHE-friendly, LBP+euclidea, dim 3776):
@@ -35,8 +35,8 @@ Esito lato FHE (via FHE-friendly, LBP+euclidea, dim 3776):
 | match cifrato (N=10→50) | **~75 → 95 ms/query**, punteggi esatti |
 | compilazione | ~150 ms |
 
-La distanza è cifrato×chiaro (niente PBS) → resta **interattiva** anche a dimensione
-75× la PCA — il contrario dell'argmin del gradino 06. Pipeline FHE-friendly
+La distanza è cifrato×chiaro (niente PBS), quindi resta **interattiva** anche a dimensione
+75× la PCA, il contrario dell'argmin del gradino 06. Pipeline FHE-friendly
 **fattibile su volti reali a ~73%**. La χ² (75%) costerebbe la divisione cifrata: si
 paga solo se serve quell'1-2% in più. Dettagli e numeri in `findings.md` F7.
 

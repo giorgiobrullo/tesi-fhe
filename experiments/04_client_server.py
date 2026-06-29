@@ -1,9 +1,9 @@
 """
-Esperimento 04 — separazione client/server (il pattern di deploy ufficiale).
+Esperimento 04: separazione client/server (il pattern di deploy ufficiale).
 
 Fin qui (00–03) abbiamo guardato *cosa* si calcola sotto FHE e *quanto* costa,
 tenendo tutto in un processo solo. Qui separiamo
-davvero client e server, seguendo la deploy guide di Concrete.
+client e server, seguendo la deploy guide di Concrete.
 
   chi fa cosa:
       server  compila il circuito, lo salva, espone le "client specs"

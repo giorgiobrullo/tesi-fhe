@@ -1,10 +1,10 @@
 # Benchmark per "facce reali" — scelta dei dataset (nota di riferimento)
 
 Perché: LFW è **saturo** (CNN moderne >99% in verifica), quasi-frontale e
-sbilanciato → solo *sanity-check*. Serve un set più duro per il nostro scenario:
-**controllo accessi a un varco cooperativo** (la persona presenta il volto a uno
-scanner per entrare), identificazione **1:N open-set** con **rifiuto degli sconosciuti**
-(= la galleria + soglia del gradino 06).
+sbilanciato, quindi vale solo come *sanity-check*. Serve un set più duro per il nostro
+scenario: **controllo accessi a un varco cooperativo** (la persona presenta il volto a
+uno scanner per entrare), identificazione **1:N open-set** con **rifiuto degli
+sconosciuti** (= la galleria + soglia del gradino 06).
 
 > Basata su due ricerche approfondite multi-fonte con verifica adversariale dei
 > claim. Citazioni in fondo.
@@ -12,22 +12,22 @@ scanner per entrare), identificazione **1:N open-set** con **rifiuto degli scono
 ## Verdetto: "dal 2018 niente di più nuovo?" — confermato (e perché)
 
 Ricerca dedicata (24/25 claim verificati). **Dal 2018 nessun benchmark pubblico di
-volti REALI 1:N batte VGGFace2 per attualità + scaricabilità.** Non è pigrizia: è la
-forma del campo. Due cause documentate:
+volti REALI 1:N batte VGGFace2 per attualità + scaricabilità.** Non è una questione di
+pigrizia, ma della forma del campo. Due cause documentate:
 1. **Il progresso è andato su training e modelli, non sui benchmark.** Dataset enormi
    (WebFace260M, Glint360K) sono per *addestrare*; i benchmark di *valutazione* restano
    i vecchi perché sono i punti di confronto condivisi.
 2. **Ondata di ritiri per consenso/privacy** (MS-Celeb-1M 2019, MegaFace, host VGGFace2,
-   DukeMTMC) → il panorama pubblico si è **ristretto**, non ampliato.
+   DukeMTMC), così il panorama pubblico si è **ristretto**, non ampliato.
 
-**La vera novità post-2018 sono i dataset SINTETICI** (volti generati, niente persone
-reali → niente consenso) — e sono **tematicamente perfetti per una tesi sulla privacy**.
-Ma: sono pensati per il **training**, e le competizioni che li usano (FRCSyn, SDFR) sono
-di **verifica 1:1**, non 1:N. Nessun benchmark 1:N "pronto": lo split galleria/probe va
-**costruito a mano** (da VGGFace2 o da un sintetico).
+**La novità post-2018 sono i dataset SINTETICI** (volti generati, niente persone
+reali, quindi niente consenso), e sono **tematicamente perfetti per una tesi sulla
+privacy**. Però sono pensati per il **training**, e le competizioni che li usano
+(FRCSyn, SDFR) sono di **verifica 1:1**, non 1:N. Nessun benchmark 1:N "pronto": lo
+split galleria/probe va **costruito a mano** (da VGGFace2 o da un sintetico).
 
-→ **Decisione: VGGFace2 (reale 1:N) + LFW (sanity) + un sintetico moderno.** I sintetici
-non competono con VGGFace2, lo **affiancano** (reale-ma-vecchio vs sintetico-pulito-moderno);
+**Decisione: VGGFace2 (reale 1:N) + LFW (sanity) + un sintetico moderno.** I sintetici
+non competono con VGGFace2 ma lo **affiancano** (reale-ma-vecchio vs sintetico-pulito-moderno);
 la letteratura mostra che un sintetico illimitato può perfino superare un reale di pari
 scala, e la fusione migliora accuratezza *e* fairness.
 
@@ -41,8 +41,8 @@ scala, e la fusione migliora accuratezza *e* fairness.
 | IDiff-Face | diffusion, ICCV 2023 | 10K id × 50 | training, non 1:N | `fdbtrs/IDiff-Face` · CC BY-NC-SA |
 
 **Quale adottare:** **DigiFace-1M** è meccanicamente il migliore per il *nostro* 1:N
-(72 img/identità → galleria/probe banale, download diretto senza gate). **DCFace** se
-serve confrontabilità con la letteratura. **Vec2Face** se serve licenza MIT/pulita.
+(72 img/identità, quindi galleria/probe banale, download diretto senza gate). **DCFace**
+se serve confrontabilità con la letteratura. **Vec2Face** se serve licenza MIT/pulita.
 
 > Parte B (nuovi reali: BRIAR, IJB-S, TinyFace, WebFace260M-FRUITS, fairness RFW/BFW/
 > FairFace) **non verificata** in questa ricerca; BRIAR/IJB-S risultano comunque gated.
@@ -52,26 +52,26 @@ serve confrontabilità con la letteratura. **Vec2Face** se serve licenza MIT/pul
 
 Avevamo prima guardato i dataset di **sorveglianza** (QMUL-SurvFace, SCface,
 TinyFace): scartati. Un varco cooperativo cattura un volto a **risoluzione decente**
-(non un crop CCTV da 24 px), e quei dataset richiederebbero super-risoluzione — una
-pezza, non un benchmark pulito. L'asse di difficoltà giusto è quindi **posa /
+(non un crop CCTV da 24 px), e quei dataset richiederebbero super-risoluzione, cioè una
+pezza più che un benchmark pulito. L'asse di difficoltà giusto è quindi **posa /
 espressione / illuminazione / età / etnia**, a risoluzione buona.
 
 ## La metrica giusta: TPIR@FPIR (non Rank-k)
 
-Per il controllo-accessi open-set: **TPIR a un FPIR basso fisso** (es. `FPIR=0,01%`) —
-misura insieme le identificazioni corrette *e* il rifiuto degli sconosciuti. Il Rank-k
-closed-set (CMC) assume il probe sempre iscritto → inadatto. **Aggancio alla pipeline:**
-FPIR ↔ la soglia sulla distanza euclidea cifrata (gradino 06). (NIST FRVT, ISO/IEC
-19795-1.)
+Per il controllo-accessi open-set: **TPIR a un FPIR basso fisso** (es. `FPIR=0,01%`),
+che misura insieme le identificazioni corrette *e* il rifiuto degli sconosciuti. Il Rank-k
+closed-set (CMC) assume il probe sempre iscritto, quindi inadatto. **Aggancio alla
+pipeline:** FPIR corrisponde alla soglia sulla distanza euclidea cifrata (gradino 06).
+(NIST FRVT, ISO/IEC 19795-1.)
 
 ## Il bivio di FORMATO (decisivo per noi)
 
 - **Verifica 1:1 a coppie** (issame): CFP-FP, CPLFW, CALFW, AgeDB-30, RFW. **Pronti e
-  facili** da prendere (già allineati 112×112), quantificano subito la difficoltà — ma
+  facili** da prendere (già allineati 112×112), quantificano subito la difficoltà, ma
   NON sono il nostro 1:N. Per l'1:N vanno **spacchettati** e ricostruiti a mano.
-- **Folder-per-identità / 1:N nativo**: **VGGFace2** (molte img/persona → split
+- **Folder-per-identità / 1:N nativo**: **VGGFace2** (molte img/persona, quindi split
   galleria/probe banale) e **IJB-C** (protocollo open-set 1:N nativo). Questi sono ciò
-  che serve davvero al nostro scenario.
+  che serve al nostro scenario.
 
 ## Quanto sono più duri di LFW (stesso modello IR-50)
 
@@ -98,15 +98,15 @@ non-gated) contiene già `lfw/cfp_fp/cplfw/calfw/agedb_30 .bin` allineati 112×1
 
 **Scala di difficoltà** a buona risoluzione, tutta recuperabile:
 
-1. **LFW** — baseline/sanity (ce l'abbiamo).
-2. **CPLFW + CFP-FP** — misura-posa rapida: pronti all'uso (bundle HF, già allineati),
+1. **LFW**: baseline/sanity (ce l'abbiamo).
+2. **CPLFW + CFP-FP**: misura-posa rapida. Pronti all'uso (bundle HF, già allineati),
    quantificano il divario posa/età. Formato 1:1.
-3. **VGGFace2** — *il set 1:N reale*: folder-per-identità, tante img/persona → split
-   **galleria/probe open-set** che modella il varco. **Già allineato 112×112 = pronto
-   anche per la CNN** (gradino 08): due piccioni con una fava.
-4. **DigiFace-1M** (sintetico) — *complemento moderno license-clean a tema privacy*:
-   72 img/identità → 1:N banale, download diretto. Coppia perfetta col tema FHE.
-5. **IJB-C** — solo se otteniamo l'accesso: protocollo open-set 1:N nativo (riferimento).
+3. **VGGFace2**, *il set 1:N reale*: folder-per-identità, tante img/persona, quindi
+   split **galleria/probe open-set** che modella il varco. **Già allineato 112×112 =
+   pronto anche per la CNN** (gradino 08): due piccioni con una fava.
+4. **DigiFace-1M** (sintetico), *complemento moderno license-clean a tema privacy*:
+   72 img/identità, quindi 1:N banale, download diretto. Coppia perfetta col tema FHE.
+5. **IJB-C**, solo se otteniamo l'accesso: protocollo open-set 1:N nativo (riferimento).
 
 **Set duro principale accanto a LFW: VGGFace2** (l'unico 1:N reale a buona risoluzione,
 serve anche al gradino CNN), affiancato da **DigiFace-1M** come sintetico 1:N pulito.
@@ -141,7 +141,7 @@ tar xzf datasets/vggface2/vggface2_test.tar.gz -C datasets/vggface2
 
 ## Caveat onesti
 
-- **Formato**: CFP/CPLFW/CALFW/AgeDB/RFW sono verifica **1:1** → per l'1:N vanno
+- **Formato**: CFP/CPLFW/CALFW/AgeDB/RFW sono verifica **1:1**, quindi per l'1:N vanno
   spacchettati. Solo VGGFace2/IJB-C sono nativamente 1:N.
 - **Licenze/ritiri**: VGGFace2 ritirato (consenso/fairness) ma recuperabile;
   MS-Celeb-1M e MegaFace ritirati; Glint360K/MS1MV3 solo research non-commerciale.
@@ -149,15 +149,15 @@ tar xzf datasets/vggface2/vggface2_test.tar.gz -C datasets/vggface2
   torrent/HF. Glint360K **non** ha GDrive (Baidu/torrent/HF).
 - **Fairness/sintetici non verificati**: RFW utile come check etnia (ma 1:1);
   FairFace, BUPT-Balancedface, e i sintetici license-clean (DigiFace-1M, DCFace) non
-  coperti dalla verifica → da indagare se servono.
+  coperti dalla verifica, da indagare se servono.
 - **IJB-C**: protocollo open-set 1:N confermato, ma **rotta di download da verificare**.
 
 ## Per addestrare la CNN (gradino 08)
 
 Corpora di training (non benchmark), allineati 112×112, su mirror vivi: CASIA-WebFace
 (GDrive `1KxNCr…y1l`+Baidu), MS1MV3 (HF `gaunernst/ms1mv3-wds-gz`), Glint360K (HF
-`gaunernst/glint360k-wds-gz`; AT `e5f46ee…7b1e`). Ma per noi conviene un **modello già
-addestrato** (MobileFaceNet/ArcFace pre-trained), non addestrarne uno.
+`gaunernst/glint360k-wds-gz`; AT `e5f46ee…7b1e`). Per noi conviene comunque un **modello
+già addestrato** (MobileFaceNet/ArcFace pre-trained), invece di addestrarne uno.
 
 ## Fonti
 

@@ -39,7 +39,7 @@ def add(x, y):
 
 
 def main() -> None:
-    print("Hello, Concrete — somma di due interi cifrati\n")
+    print("Hello, Concrete: somma di due interi cifrati\n")
 
     inputset = [(i, j) for i in range(8) for j in range(8)]   # campione per i range (v. docstring)
 

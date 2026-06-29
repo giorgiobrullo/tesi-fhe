@@ -1,14 +1,16 @@
-"""Modelli più grandi: si sale verso il 99%? MobileFaceNet vs ResNet50 vs ResNet100.
+"""Modelli più grandi: si sale verso il 99%? MobileFaceNet vs ResNet50 vs ResNet100 vs AdaFace.
 
-L'embedding gira in chiaro sul client → modello più grande = più accuratezza a costo
+L'embedding gira in chiaro sul client, quindi un modello più grande dà più accuratezza a costo
 FHE invariato (conta solo la dim, 512 per tutti). Qui confrontiamo, sullo stesso
-protocollo 1:N open-set di F19 (VGGFace2 reale), tre profondità crescenti:
-  - MobileFaceNet (buffalo_s, WebFace600K) — leggera
-  - ResNet50      (buffalo_l, WebFace600K) — profonda
-  - ResNet100     (antelopev2, Glint360K)  — più profonda + training più grande
+protocollo 1:N open-set di F19 (VGGFace2 reale), profondità e ricette di training:
+  - MobileFaceNet (buffalo_s, WebFace600K), leggera
+  - ResNet50      (buffalo_l, WebFace600K), profonda
+  - ResNet100     (antelopev2, Glint360K),  più profonda + training più grande
+  - AdaFace IR101 (WebFace12M), stessa profondità di ResNet100 ma ricetta a margine
+                   adattivo alla qualità, pensata per i volti reali difficili
 
 NB: la distillazione NON serve qui (abbasserebbe, non alza: lo student ≤ teacher);
-serve solo se si vuole l'embedding *sotto* FHE. Per più accuratezza → modello più
+serve solo se si vuole l'embedding *sotto* FHE. Per più accuratezza serve un modello più
 grande, direttamente.
 
 Cache: allinea i volti UNA volta (crop su disco) così aggiungere modelli (es. AdaFace)
@@ -31,14 +33,17 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "08_cnn"))
 from core import dataset                               # noqa: E402
 import embedding as ec                                 # noqa: E402
+import adaface                                         # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 TRAIN = dataset._RADICE / "vggface2" / "train"
-PER_ID, MAXID = 6, 8631                                # stessi di F19 → cache compatibile
+PER_ID, MAXID = 6, 8631                                # stessi di F19, quindi cache compatibile
 SWEEP = [250, 500, 1000, 2000, 4000, 4300]
 CROPS = OUT / "_crops_reale.npz"
 EMB = OUT / "_emb_reale.npz"                           # ha già mfn, rn (resnet50), y
-COL = {"MobileFaceNet": "#2a9d8f", "ResNet50": "#e76f51", "ResNet100": "#6a4c93"}
+EXTRA = OUT / "_emb_reale_extra.npz"                   # resnet100 + adaface (calcolati una volta)
+COL = {"MobileFaceNet": "#2a9d8f", "ResNet50": "#e76f51",
+       "ResNet100": "#6a4c93", "AdaFace": "#e9a000"}
 
 
 def P(*a):
@@ -46,10 +51,20 @@ def P(*a):
 
 
 def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    sn = np.empty(len(Epn)); nn = np.empty(len(Epn), dtype=int)
-    for i, q in enumerate(Epn):
-        dd = np.sum((Eg - q) ** 2, axis=1); nn[i] = dd.argmin(); sn[i] = dd[nn[i]]
-    si = np.array([np.min(np.sum((Eg - q) ** 2, axis=1)) for q in Epi])
+    # distanza² ai vicini più prossimi via BLAS, a blocchi di probe (vedi scaling_grande)
+    gnorm = np.einsum("ij,ij->i", Eg, Eg)
+
+    def nn_dist(P):
+        sn = np.empty(len(P)); idx = np.empty(len(P), dtype=int)
+        for i in range(0, len(P), 1024):
+            Pb = P[i:i + 1024]
+            d = np.einsum("ij,ij->i", Pb, Pb)[:, None] - 2.0 * (Pb @ Eg.T) + gnorm[None, :]
+            j = d.argmin(1)
+            idx[i:i + len(Pb)] = j; sn[i:i + len(Pb)] = d[np.arange(len(Pb)), j]
+        return sn, idx
+
+    sn, nn = nn_dist(Epn)
+    si, _ = nn_dist(Epi)
     return float(np.mean((yg[nn] == ypn) & (sn <= np.quantile(si, fpir))))
 
 
@@ -65,7 +80,8 @@ def crops_e_y():
 
 
 def embeddings():
-    """dict modello -> (E, y). mfn+resnet50 da cache; resnet100 calcolato dai crop."""
+    """dict modello -> (E, y). mfn+resnet50 da _emb_reale.npz; resnet100+adaface da
+    _emb_reale_extra.npz (calcolati una volta dai crop, poi in cache)."""
     A, y = crops_e_y()
     out = {}
     if EMB.exists():
@@ -76,8 +92,18 @@ def embeddings():
     if "MobileFaceNet" not in out:
         out["MobileFaceNet"] = (ec.embedding(A, "mobilefacenet"), y)
         out["ResNet50"] = (ec.embedding(A, "resnet50"), y)
-    t = time.perf_counter(); P("  embedding ResNet100 (antelopev2)...")
-    out["ResNet100"] = (ec.embedding(A, "resnet100"), y); P(f"    fatto in {time.perf_counter()-t:.0f}s")
+    if EXTRA.exists():
+        d = np.load(EXTRA)
+        if np.array_equal(d["y"], y):
+            out["ResNet100"] = (d["rn100"], y); out["AdaFace"] = (d["ada"], y)
+            P("  (resnet100 + adaface da cache)")
+    if "ResNet100" not in out:
+        t = time.perf_counter(); P("  embedding ResNet100 (antelopev2)...")
+        e100 = ec.embedding(A, "resnet100"); P(f"    fatto in {time.perf_counter()-t:.0f}s")
+        t = time.perf_counter(); P("  embedding AdaFace IR101 (MPS)...")
+        eada = adaface.embedding_adaface(A); P(f"    fatto in {time.perf_counter()-t:.0f}s")
+        np.savez_compressed(EXTRA, rn100=e100.astype(np.float32), ada=eada.astype(np.float32), y=y)
+        out["ResNet100"] = (e100, y); out["AdaFace"] = (eada, y)
     return out
 
 
@@ -112,8 +138,10 @@ def main():
                     color=COL[modello], lw=2.3, ms=7, label=modello)
     ax.set_xscale("log"); ax.set_xlabel("identità iscritte (scala log)"); ax.set_ylabel("DIR@FPIR=1% (%)")
     ax.set_ylim(80, 100); ax.grid(True, alpha=.3); ax.legend()
-    ax.set_title("Modelli crescenti su VGGFace2 reale: si sale?", fontweight="bold")
-    fig.tight_layout(); fig.savefig(OUT / "scaling_modelli.png", dpi=130); fig.savefig(OUT / "scaling_modelli.svg")
+    ax.set_title("Modelli su VGGFace2 reale: da MobileFaceNet a ResNet e AdaFace", fontweight="bold")
+    fig.tight_layout()
+    fig.savefig(OUT / "scaling_modelli.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / "scaling_modelli.svg", bbox_inches="tight")
     P(f"\nscritto {OUT/'scaling_modelli.csv'} + scaling_modelli.png/.svg")
 
 

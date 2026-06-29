@@ -1,4 +1,4 @@
-"""1:N open-set a scala MegaFace — il test che usa la letteratura (HERS & co.: 1M distrattori).
+"""1:N open-set a scala MegaFace: il test che usa la letteratura (HERS & co.: 1M distrattori).
 
 Idea (semplificata, niente FaceScrub): le **probe** sono identità note che già abbiamo e
 allineate (LFW / VGGFace2 reali); i **distrattori** sono volti MegaFace (fino a 1M) che
@@ -6,10 +6,10 @@ allineate (LFW / VGGFace2 reali); i **distrattori** sono volti MegaFace (fino a 
 (10 → 100 → 1k → 10k → 100k → 1M): è la curva 1:N a scala reale, confrontabile con la
 letteratura.
 
-STATO: il PROTOCOLLO (sotto) è pronto e indipendente dal formato — opera su embedding.
+STATO: il PROTOCOLLO (sotto) è pronto e indipendente dal formato, opera su embedding.
 Manca solo il LOADER MegaFace (`carica_distrattori_megaface`), che scriverò quando i dati
 sono su disco (il formato dipende dal mirror: crop allineati vs immagini grezze da allineare).
-MegaFace è dietro auth UW (registrazione) → vedi README; una volta scaricato in
+MegaFace è dietro auth UW (registrazione), vedi README; una volta scaricato in
 datasets/megaface/, si riempie il loader e si lancia.
 """
 import sys, pathlib
@@ -38,7 +38,7 @@ def rank1_dir_con_distrattori(E_gal, y_gal, E_probe, y_probe, E_distr, n_distr,
     G = np.concatenate([E_gal, D], axis=0)             # galleria = noti + distrattori
     yG = np.concatenate([y_gal, np.full(len(D), -1)])  # -1 = distrattore (mai un match valido)
 
-    # distanza euclidea² (embedding L2-norm → monotona col coseno)
+    # distanza euclidea² (embedding L2-norm, monotona col coseno)
     # per ogni probe: nearest neighbor in G
     sim = E_probe @ G.T                                # coseno (più grande = più vicino)
     nn = sim.argmax(axis=1)
@@ -48,7 +48,7 @@ def rank1_dir_con_distrattori(E_gal, y_gal, E_probe, y_probe, E_distr, n_distr,
     rank1 = float(np.mean(nn_id == y_probe))           # closed-set: il più vicino è giusto?
 
     # open-set DIR@FPIR: soglia tale che solo `fpir` degli impostori (probe la cui vera
-    # identità NON è in galleria) superi. Qui tutte le probe sono note → usiamo i distrattori
+    # identità NON è in galleria) superi. Qui tutte le probe sono note, quindi usiamo i distrattori
     # come "impostori" campionando alcune probe-distrattore se disponibili; in mancanza,
     # riportiamo rank1 con soglia sul nn_sim dei match corretti.
     corretti = nn_id == y_probe
@@ -71,7 +71,7 @@ def sweep(E_gal, y_gal, E_probe, y_probe, E_distr,
     righe = []
     for n in distrattori:
         if n > len(E_distr):
-            print(f"{n:>12} | (solo {len(E_distr)} distrattori disponibili) — stop")
+            print(f"{n:>12} | (solo {len(E_distr)} distrattori disponibili), stop")
             break
         r1, dir1 = rank1_dir_con_distrattori(E_gal, y_gal, E_probe, y_probe, E_distr, n)
         print(f"{n:>12} | {r1:>6.1%} | {dir1:>9.1%}")
@@ -80,7 +80,7 @@ def sweep(E_gal, y_gal, E_probe, y_probe, E_distr,
 
 
 # ---------------------------------------------------------------------------
-# LOADER MegaFace — DA COMPLETARE quando i dati sono su disco.
+# LOADER MegaFace, DA COMPLETARE quando i dati sono su disco.
 # ---------------------------------------------------------------------------
 def carica_distrattori_megaface(livello="mobilefacenet", max_n=None):
     """Carica/allinea/embedda i distrattori MegaFace -> (N,512) L2-norm.
@@ -88,7 +88,7 @@ def carica_distrattori_megaface(livello="mobilefacenet", max_n=None):
     DA SCRIVERE in base al formato effettivo in datasets/megaface/:
       - se crop 112x112 già allineati: embedding diretto (08_cnn/embedding.embedding).
       - se immagini grezze: detect+align (08_cnn/embedding.embedding_allineato), poi embed.
-    Conviene cache-are gli embedding (datasets/megaface/_emb_<livello>.npz) — è il pezzo lento.
+    Conviene cache-are gli embedding (datasets/megaface/_emb_<livello>.npz), è il pezzo lento.
     """
     raise NotImplementedError(
         "Loader MegaFace da completare: mettere i dati in datasets/megaface/ e adattare al formato."

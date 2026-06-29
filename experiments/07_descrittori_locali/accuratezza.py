@@ -1,4 +1,4 @@
-"""Gradino 07 — accuratezza in chiaro dei descrittori locali (LBP, HOG).
+"""Gradino 07: accuratezza in chiaro dei descrittori locali (LBP, HOG).
 
 Metodo: PRIMA si valida l'accuratezza in chiaro, POI (solo se regge) si guarda il
 costo FHE. La domanda: i descrittori locali battono la PCA, soprattutto su LFW dove
@@ -6,7 +6,7 @@ la PCA crolla (F5)?
 
 Confronto a parità di protocollo (1-NN, split per persona) su entrambi i dataset:
   - PCA + euclidea        (la baseline del gradino 05)
-  - LBP + χ²              (la χ² ha una divisione → ostica per l'FHE)
+  - LBP + χ²              (la χ² ha una divisione, ostica per l'FHE)
   - HOG + euclidea        (riusa il circuito FHE del gradino 05)
 
 Esegui:  uv run python experiments/07_descrittori_locali/accuratezza.py [olivetti|lfw|both]

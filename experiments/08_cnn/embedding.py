@@ -5,13 +5,13 @@ come indicato: **MobileFaceNet** (InsightFace `buffalo_s`, modello `w600k_mbf`, 
 ArcFace, embedding 512-dim). Più avanti si salirà alla profonda (ResNet, `buffalo_l`).
 
 L'embedding gira **in chiaro sul client** (è fidato): quindi peso/profondità del modello
-non toccano il costo FHE — conta solo la **dimensione dell'embedding** (512). La parte
+non toccano il costo FHE, conta solo la **dimensione dell'embedding** (512). La parte
 cifrata (distanza in `core/matching.py`) resta identica ai gradini precedenti: a lei
 arriva solo un vettore, da qualunque embedding provenga.
 
 Due varianti di livello (per il confronto leggera→profonda):
-  - `mobilefacenet` (buffalo_s, ~13 MB)  — bassa profondità, il gradino 08a;
-  - `resnet50`      (buffalo_l, ~166 MB) — alta profondità, il gradino 08b.
+  - `mobilefacenet` (buffalo_s, ~13 MB),  bassa profondità, il gradino 08a;
+  - `resnet50`      (buffalo_l, ~166 MB), alta profondità, il gradino 08b.
 
 NB: i modelli si scaricano da soli al primo uso (~/.insightface/models/). Gli embedding
 sono L2-normalizzati. Input atteso: volti allineati 112×112 RGB.
@@ -23,9 +23,9 @@ import numpy as np
 from insightface.model_zoo import get_model
 
 _MODELLI = {
-    "mobilefacenet": ("buffalo_s", "w600k_mbf.onnx"),     # 08a — bassa profondità (WebFace600K)
-    "resnet50":      ("buffalo_l", "w600k_r50.onnx"),     # 08b — alta profondità (WebFace600K)
-    "resnet100":     ("antelopev2", "glintr100.onnx"),    # 08c — più profonda (Glint360K)
+    "mobilefacenet": ("buffalo_s", "w600k_mbf.onnx"),     # 08a, bassa profondità (WebFace600K)
+    "resnet50":      ("buffalo_l", "w600k_r50.onnx"),     # 08b, alta profondità (WebFace600K)
+    "resnet100":     ("antelopev2", "glintr100.onnx"),    # 08c, più profonda (Glint360K)
 }
 _cache: dict = {}
 
@@ -37,7 +37,7 @@ def _scarica_pack(pack: str):
     import urllib.request
     import zipfile
     base = os.path.expanduser(f"~/.insightface/models/{pack}")
-    if not _trova_onnx(base, ""):                          # nessun .onnx → scarica
+    if not _trova_onnx(base, ""):                          # nessun .onnx, scarica
         os.makedirs(base, exist_ok=True)
         zpath = base + ".zip"
         if not os.path.exists(zpath):
@@ -84,7 +84,10 @@ def embedding(immagini_rgb: np.ndarray, livello: str = "mobilefacenet") -> np.nd
     """
     rec = carica(livello)
     bgr = immagini_rgb[..., ::-1]                          # RGB -> BGR
-    E = np.array([rec.get_feat(im).flatten() for im in bgr])
+    # get_feat accetta un batch: inferenza a blocchi (~3x più veloce del per-immagine,
+    # embedding identici a meno del rumore float ~1e-6)
+    parti = [rec.get_feat(list(bgr[i:i + 256])) for i in range(0, len(bgr), 256)]
+    E = np.vstack(parti) if parti else np.empty((0, 512))
     return E / (np.linalg.norm(E, axis=1, keepdims=True) + 1e-9)
 
 

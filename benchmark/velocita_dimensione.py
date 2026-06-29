@@ -2,7 +2,7 @@
 
 Completa il quadro: F23 ha mostrato accuratezza vs dimensione; qui il **costo FHE** del
 match cifrato (distanza, cifrato×chiaro, niente PBS) al variare della dimensione. Il
-costo è ~lineare nella dimensione → ridurre l'embedding lo rende anche più veloce.
+costo è ~lineare nella dimensione, quindi ridurre l'embedding lo rende anche più veloce.
 
 Esegui:  uv run python benchmark/velocita_dimensione.py
 """

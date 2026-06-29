@@ -7,9 +7,9 @@ la **texture/forma in tante regioni** dell'immagine e concatenano le risposte.
 - **LBP** (Local Binary Patterns): per ogni pixel un codice binario dal confronto coi
   vicini; l'immagine è divisa in una griglia di blocchi, istogramma LBP per blocco,
   concatenato. Confronto fra volti con la distanza **χ²** (o euclidea). La χ² ha una
-  divisione → ostica per l'FHE.
+  divisione, ostica per l'FHE.
 - **HOG** (Histogram of Oriented Gradients): istogrammi delle orientazioni del
-  gradiente su celle, concatenati. Confronto **euclideo** → riusa il circuito FHE del
+  gradiente su celle, concatenati. Confronto **euclideo**, riusa il circuito FHE del
   gradino 05.
 
 Tutto in chiaro: serve alla ricerca dei parametri e alla validazione, prima di

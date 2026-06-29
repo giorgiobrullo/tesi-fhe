@@ -1,4 +1,4 @@
-"""Gradino 06 — prima/dopo: argmin sul client vs sul server (con figura).
+"""Gradino 06, prima/dopo: argmin sul client vs sul server (con figura).
 
 La domanda: spostando l'argmin dal client al server (per privacy), quanto si perde in
 tempo? Misuriamo sul prototipo PCA (Olivetti) il costo **per query**:
@@ -6,7 +6,7 @@ tempo? Misuriamo sul prototipo PCA (Olivetti) il costo **per query**:
   PRIMA (gradino 05): il server calcola gli N punteggi e li manda; il client decifra e
                       fa l'argmin in chiaro. Nessun PBS.
   DOPO  (gradino 06): il server fa l'argmin sotto FHE e manda solo l'indice. Confronti
-                      cifrati → PBS.
+                      cifrati, quindi PBS.
 
 Due assi (due pannelli nella figura):
   (A) vs dimensione galleria N, a precisione fissa (runnable).
@@ -16,7 +16,7 @@ Due assi (due pannelli nella figura):
 
 Nota: la PCA decente (50c/6bit, 98,8% su Olivetti) ha punteggi ~14 bit; a quella
 larghezza l'argmin cifrato esplode (F6). Per avere una curva (A) misurabile si riduce
-la precisione (meno componenti/bit) — la leva di progetto stessa di F6.
+la precisione (meno componenti/bit), la leva di progetto stessa di F6.
 
 Esegui:  uv run python experiments/06_argmin_soglia/prima_dopo.py
 """
@@ -38,7 +38,7 @@ import embedding                                       # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 N_SWEEP = [2, 4, 8, 16, 32]
-NC, BITS = 8, 3          # precisione ridotta → punteggi ~6 bit (runnable, vedi F6)
+NC, BITS = 8, 3          # precisione ridotta, punteggi ~6 bit (runnable, vedi F6)
 N_PROBE = 5
 
 
@@ -70,7 +70,7 @@ def main():
         # PRIMA: server calcola i punteggi (match) -> client decifra+argmin
         c_prima = matching.circuito_distanza(B)
         run_prima = media_run(c_prima, probe)
-        # client: decifra N punteggi + argmin in chiaro (numpy) — tempo trascurabile, misurato
+        # client: decifra N punteggi + argmin in chiaro (numpy), tempo trascurabile, misurato
         c_prima.keygen(); enc = c_prima.encrypt(probe)
         res = c_prima.run(enc)
         t = time.perf_counter()
@@ -105,8 +105,8 @@ def main():
                 bits_x.append(int(row["larghezza_bit"])); run_bits.append(float(row["run_ms"]))
 
     fig, (axA, axB) = plt.subplots(1, 2, figsize=(11, 4.2))
-    axA.plot(Ns, prima, "o-", label="PRIMA — argmin sul client", color="#2a9d8f")
-    axA.plot(Ns, dopo, "s-", label="DOPO — argmin sul server (FHE)", color="#e76f51")
+    axA.plot(Ns, prima, "o-", label="PRIMA: argmin sul client", color="#2a9d8f")
+    axA.plot(Ns, dopo, "s-", label="DOPO: argmin sul server (FHE)", color="#e76f51")
     axA.set_yscale("log"); axA.set_xlabel("dimensione galleria N"); axA.set_ylabel("tempo/query (ms)")
     axA.set_title(f"(A) prima/dopo vs N  (PCA {NC}c/{BITS}bit, ~6 bit)"); axA.legend(); axA.grid(True, alpha=.3)
 
@@ -117,10 +117,10 @@ def main():
         axB.set_yscale("log"); axB.set_xlabel("larghezza punteggi (bit)"); axB.set_ylabel("tempo/query (ms)")
         axB.set_title("(B) la leva: bit dei punteggi (N=10, F6)"); axB.legend(); axB.grid(True, alpha=.3)
 
-    fig.suptitle("Gradino 06 — costo di spostare l'argmin sul server (privacy)", fontweight="bold")
+    fig.suptitle("Gradino 06: costo di spostare l'argmin sul server (privacy)", fontweight="bold")
     fig.tight_layout()
-    fig.savefig(OUT / "prima_dopo.png", dpi=130)
-    fig.savefig(OUT / "prima_dopo.svg")
+    fig.savefig(OUT / "prima_dopo.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / "prima_dopo.svg", bbox_inches="tight")
     print(f"\nscritto {OUT/'prima_dopo.csv'} + prima_dopo.png/.svg")
 
 

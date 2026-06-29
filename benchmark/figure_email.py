@@ -16,7 +16,7 @@ EXP = pathlib.Path(__file__).resolve().parent.parent / "experiments" / "10_argmi
 def figura_accuratezza():
     rows = list(csv.DictReader(open(R / "verifica_duri.csv")))
     sets = [r["benchmark"].replace("_30", "-30").replace("_", "-").upper() for r in rows]
-    # colori: geometriche desaturate, CNN vivide (il colore stesso segna la complessità →)
+    # colori: geometriche desaturate, CNN vivide (il colore stesso segna la complessità crescente)
     tec = [("PCA", "pca_eucl", "#a8b0b8"),
            ("LBP", "lbp_chi2", "#7e8aa0"),
            ("HOG", "hog_eucl", "#5b6b8c"),
@@ -35,7 +35,7 @@ def figura_accuratezza():
     ax.set_ylabel("accuratezza di verifica 1:1 (%)"); ax.set_ylim(40, 103)
     ax.set_xlim(-0.6, len(sets) - 0.05)
     ax.set_title("Geometriche e descrittori restano al caso; le CNN reggono sui set duri\n"
-                 "→ l'accuratezza sale con la complessità della tecnica", fontsize=12)
+                 "quindi l'accuratezza sale con la complessità della tecnica", fontsize=12)
     ax.legend(ncol=6, fontsize=8.5, loc="lower center", bbox_to_anchor=(0.5, -0.2), frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.tick_params(labelsize=9)
@@ -94,8 +94,8 @@ def figura_costo_fhe():
     ax2.annotate("~9× più LENTA", xy=(1, 1082), xytext=(0.15, 760),
                  fontsize=10, color="#c0392b", fontweight="bold",
                  arrowprops=dict(arrowstyle="->", color="#c0392b", lw=1.6))
-    ax2.set_ylabel("tempo argmin (s) — dim 128"); ax2.set_ylim(0, 1250)
-    ax2.set_title("La GPU non aiuta — anzi, peggiora", fontsize=10.5)
+    ax2.set_ylabel("tempo argmin (s), dim 128"); ax2.set_ylim(0, 1250)
+    ax2.set_title("La GPU non aiuta, anzi peggiora", fontsize=10.5)
     ax2.spines[["top", "right"]].set_visible(False)
     # Nota: il "perché" (interpretazione) va nella DIDASCALIA, non nel chart (best practice).
 

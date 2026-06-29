@@ -1,21 +1,21 @@
-"""Circuiti FHE per il matching — la matematica cifrata, fonte unica.
+"""Circuiti FHE per il matching: la matematica cifrata, fonte unica.
 
 Qui vive l'unica definizione dei circuiti: il `Server` e gli script di benchmark li
 importano entrambi da qui, così prototipo e misura non possono divergere (è ciò che
 chiude il rischio "ma il prototipo userà davvero la formula giusta?").
 
-Gradino 05 — distanza euclidea al quadrato in forma espansa:
+Gradino 05: distanza euclidea al quadrato in forma espansa:
 
     punteggio_i = ‖b_i‖² − 2·a·b_i          (probe `a` cifrato, galleria `b` in chiaro)
 
-cioè la distanza ‖a−b_i‖² a meno della costante ‖a‖² (uguale per tutte le facce →
+cioè la distanza ‖a−b_i‖² a meno della costante ‖a‖² (uguale per tutte le facce,
 non cambia quale sia la più vicina, quindi si butta). `b` e `‖b‖²` sono costanti in
-chiaro dentro il circuito: sono tutte moltiplicazioni cifrato×chiaro → nessun
+chiaro dentro il circuito: sono tutte moltiplicazioni cifrato×chiaro, quindi nessun
 bootstrapping. L'argmin sui punteggi è ancora fuori dal circuito (lo fa il client).
 
-Gradino 06 (in arrivo) — argmin + soglia *dentro* il circuito, sotto FHE: il server
+Gradino 06 (in arrivo): argmin + soglia *dentro* il circuito, sotto FHE: il server
 riduce gli N punteggi al solo match e il client apprende l'esito, non le N distanze.
-Reintroduce i confronti cifrati → PBS. Vivrà qui, accanto a `circuito_distanza`.
+Reintroduce i confronti cifrati, quindi PBS. Vivrà qui, accanto a `circuito_distanza`.
 """
 
 import numpy as np
@@ -43,16 +43,16 @@ def _argmin_riduzione(punteggi, N):
     """argmin a riduzione su punteggi cifrati: porta avanti (indice, valore minimo).
 
     `np.argmin` non è supportato da Concrete. Ogni passo confronta il candidato col
-    minimo corrente (confronto cifrato → PBS) e seleziona indice e valore. Ritorna
+    minimo corrente (confronto cifrato, quindi PBS) e seleziona indice e valore. Ritorna
     (indice_min, valore_min), entrambi cifrati. È il centro di costo del gradino 06,
     dominato dalla larghezza in bit dei punteggi.
     """
     idx_min = fhe.zeros(())
     val_min = punteggi[0]
     for i in range(1, N):
-        piu_piccolo = (punteggi[i] < val_min).astype(np.int64)   # confronto cifrato → PBS
+        piu_piccolo = (punteggi[i] < val_min).astype(np.int64)   # confronto cifrato, quindi PBS
         idx_min = piu_piccolo * i + (1 - piu_piccolo) * idx_min  # select indice (enc×enc)
-        val_min = np.minimum(val_min, punteggi[i])               # → PBS
+        val_min = np.minimum(val_min, punteggi[i])               # costa un PBS
     return idx_min, val_min
 
 
@@ -90,14 +90,14 @@ def circuito_distanza_argmin_soglia(galleria_q: np.ndarray, soglia_dist_sq: int,
                     "nessun match"** (impostore/sconosciuto rifiutato).
 
     La distanza² vera è `val_min + ‖a‖²`: il termine `‖a‖²` scartato per il ranking va
-    **rimesso** per confrontare con una soglia assoluta (`‖a‖²` è enc×enc → un PBS, una
+    **rimesso** per confrontare con una soglia assoluta (`‖a‖²` è enc×enc, quindi un PBS, una
     volta). Si usa il **select** per portare avanti `val_min` (non `np.minimum`, che col
     termine `+‖a‖²` inciampa in un assert interno di Concrete 2.11).
 
-    IMPORTANTE — `inputset` deve essere un campione **rappresentativo dei probe reali**
+    IMPORTANTE: `inputset` deve essere un campione **rappresentativo dei probe reali**
     (non le sole righe della galleria): Concrete inferisce la larghezza in bit dei
     valori cifrati dall'inputset, e se è troppo stretto il confronto della soglia va in
-    **overflow silenzioso** (il valore gira modulo) → il rifiuto non si attiva mai e
+    **overflow silenzioso** (il valore gira modulo), quindi il rifiuto non si attiva mai e
     tutto sembra "match". Con un inputset adeguato il ramo "nessun match" è corretto.
     """
     B = galleria_q

@@ -1,14 +1,14 @@
-"""Gradino 06 — la frontiera dell'argmin cifrato: tempo vs dimensione (numeri VERI).
+"""Gradino 06, la frontiera dell'argmin cifrato: tempo vs dimensione (numeri VERI).
 
-Su questa macchina il parallelismo dataflow non c'è (solo macOS) e la GPU nemmeno →
-l'unica leva per velocizzare l'argmin cifrato sul server è **comprimere l'embedding**
-(meno dimensioni → punteggi più stretti → confronti più economici). Ma comprimere costa
+Su questa macchina il parallelismo dataflow non c'è (solo macOS) e la GPU nemmeno,
+quindi l'unica leva per velocizzare l'argmin cifrato sul server è **comprimere l'embedding**
+(meno dimensioni danno punteggi più stretti, quindi confronti più economici). Ma comprimere costa
 accuratezza (F23). Qui misuriamo il tempo FHE dell'argmin al variare della dimensione,
-con la larghezza-bit REALE dei punteggi — così la frontiera velocità↔accuratezza ha
+con la larghezza-bit REALE dei punteggi, così la frontiera velocità↔accuratezza ha
 numeri misurati, non stimati.
 
 Esegui:  uv run python experiments/06_argmin_soglia/frontiera.py
-         (dai dim piccoli ai grandi; i grandi sono lenti — interrompibile)
+         (dai dim piccoli ai grandi; i grandi sono lenti, interrompibile)
 """
 
 import csv

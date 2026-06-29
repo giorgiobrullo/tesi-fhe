@@ -1,13 +1,13 @@
 # Modelli di embedding moderni per il gradino CNN (nota di riferimento)
 
 Per il prossimo gradino (CNN) serve un **estrattore di embedding pre-addestrato**. Qui
-la rosa dei modelli moderni, con accesso, licenza e — la cosa che conta per noi —
-**dimensione dell'embedding**.
+la rosa dei modelli moderni, con accesso, licenza e **dimensione dell'embedding** (la
+cosa che conta per noi).
 
 > ⚠️ Onestà sulle fonti: la ricerca approfondita su questo tema si è interrotta a metà
 > per un limite di budget dell'org. I claim **verificati** (verifica adversariale 3-0 /
 > 2-1) sono marcati ✅; quelli **solo da fonte primaria** (model card HuggingFace / repo
-> GitHub citati verbatim, ma verifica non completata) sono marcati 📄 — affidabili come
+> GitHub citati verbatim, ma verifica non completata) sono marcati 📄: affidabili come
 > origine, ma da ricontrollare prima di dipenderne.
 
 ## L'intuizione che cambia tutto
@@ -19,7 +19,7 @@ sull'FHE è la **dimensione dell'embedding** (è ciò che viene cifrato e dato a
 di distanza): **512 è lo standard**, gestibile; più grande costa di più (è la leva
 lineare già vista nel gradino 07).
 
-→ Ribaltamento della scaletta: la "CNN leggera" non serve *per l'FHE*. Un modello
+Ribaltamento della scaletta: la "CNN leggera" non serve *per l'FHE*. Un modello
 leggero (MobileFaceNet/EdgeFace) resta interessante solo per (a) realismo edge e (b)
 l'opzione futura **split-inference** (alcuni layer dentro l'FHE).
 
@@ -45,29 +45,29 @@ l'opzione futura **split-inference** (alcuni layer dentro l'FHE).
 
 ## Raccomandazione
 
-1. **Primario — `buffalo_l` (InsightFace).** È il **drop-in più semplice in assoluto**:
+1. **Primario: `buffalo_l` (InsightFace).** È il **drop-in più semplice in assoluto**:
    `FaceAnalysis` fa detection + allineamento 112×112 + embedding in poche righe, scarica
    i pesi da solo, ONNX runtime (leggero). Verificato forte sui benchmark duri (IJB-C
    97,25), **emb 512** = la nostra leva FHE allo standard. Licenza *research
    non-commerciale* = **perfetta per una tesi** (accademica).
-2. **Edge — `EdgeFace-S`.** Per la traccia leggera/split-inference: minuscolo (3,65M),
+2. **Edge: `EdgeFace-S`.** Per la traccia leggera/split-inference: minuscolo (3,65M),
    peer-reviewed (vincitore EFaR 2023), buono sui duri. Stesso formato 112×112, emb 512.
-3. **Se serve licenza commerciale** (oltre la tesi): **LVFace** dichiara MIT 📄 — da
+3. **Se serve licenza commerciale** (oltre la tesi): **LVFace** dichiara MIT 📄, da
    verificare.
 
-Tutti vogliono **volti allineati 112×112 RGB** → step di allineamento (lo fa
-`insightface` stesso). L'embedding va poi **L2-normalizzato** e quantizzato come nel
-gradino 07; emb 512 → atteso costo del match cifrato simile/lievemente sopra il gradino
-07 (lì dim 3776; qui 512 → più piccolo!).
+Tutti vogliono **volti allineati 112×112 RGB**, quindi serve uno step di allineamento
+(lo fa `insightface` stesso). L'embedding va poi **L2-normalizzato** e quantizzato come
+nel gradino 07; emb 512, quindi un costo del match cifrato atteso simile o lievemente
+sopra il gradino 07 (lì dim 3776; qui 512, quindi più piccolo!).
 
 ## Dataset sintetici license-clean (complemento)
 
-Volti **generati** (niente persone reali → niente consenso): tematicamente perfetti per
-una tesi sulla *privacy*. Esistenza confermata (paper CVPR/WACV 2023 + repo), dettagli
+Volti **generati** (niente persone reali, quindi niente consenso): tematicamente perfetti
+per una tesi sulla *privacy*. Esistenza confermata (paper CVPR/WACV 2023 + repo), dettagli
 non verificati per lo stop di budget:
 
-- **DCFace** (CVPR 2023) 📄 — diffusion, repo `mk-minchul/dcface`.
-- **DigiFace-1M** (WACV 2023) 📄 — rendering 3D, repo `microsoft/DigiFace1M`, 1M immagini.
+- **DCFace** (CVPR 2023) 📄, diffusion, repo `mk-minchul/dcface`.
+- **DigiFace-1M** (WACV 2023) 📄, rendering 3D, repo `microsoft/DigiFace1M`, 1M immagini.
 
 Utili come complemento controllato/pulito, **non** come prova "facce vere" (l'accuratezza
 su sintetico ≠ mondo reale).
@@ -78,8 +78,8 @@ Confermato a metà: il progresso 2018→oggi è soprattutto su (a) **dati di tra
 larga scala** (WebFace600K/12M, Glint360K) e (b) **modelli migliori** (ArcFace→AdaFace→
 EdgeFace/LVFace), mentre molti dataset web sono stati **ritirati** (MS-Celeb-1M, MegaFace,
 host VGGFace2). Quindi i *modelli* sono molto migliorati ma i *benchmark pubblici* di
-valutazione restano i vecchi (LFW/CFP/CPLFW/AgeDB/IJB-C) → è giusto usarli, sapendo che
-per i modelli forti sono saturi e per la nostra pipeline leggera no.
+valutazione restano i vecchi (LFW/CFP/CPLFW/AgeDB/IJB-C), quindi è giusto usarli, sapendo
+che per i modelli forti sono saturi e per la nostra pipeline leggera no.
 
 ## Fonti
 
@@ -87,4 +87,4 @@ per i modelli forti sono saturi e per la nostra pipeline leggera no.
 - EdgeFace: github.com/otroshi/edgeface · HF `Idiap/EdgeFace-S-GAMMA` · IJCB 2023 / T-BIOM 2024 ✅
 - AdaFace: github.com/mk-minchul/AdaFace 📄
 - LVFace: huggingface.co/bytedance-research/LVFace · arXiv 2501.13420 📄
-- DCFace: CVPR 2023 · github.com/mk-minchul/dcface 📄 — DigiFace-1M: WACV 2023 · github.com/microsoft/DigiFace1M 📄
+- DCFace: CVPR 2023 · github.com/mk-minchul/dcface 📄; DigiFace-1M: WACV 2023 · github.com/microsoft/DigiFace1M 📄

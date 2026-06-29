@@ -1,9 +1,9 @@
-"""Gradino 07 — lato FHE: costo del match cifrato sui descrittori validati.
+"""Gradino 07, lato FHE: costo del match cifrato sui descrittori validati.
 
 Sui parametri trovati in chiaro (ricerca_parametri.py), misuriamo il costo FHE solo
 su quelli. Usiamo la via **FHE-friendly**: LBP + distanza **euclidea** (70% su LFW,
-meglio di HOG e senza la divisione χ²). È esattamente il circuito del gradino 05
-(`b_sq − 2·a·b`), ma a dimensione ~3776 invece di 50 → ci aspettiamo un costo lineare
+meglio di HOG e senza la divisione χ²). È il circuito del gradino 05
+(`b_sq − 2·a·b`), ma a dimensione ~3776 invece di 50, quindi ci aspettiamo un costo lineare
 nella dimensione (cifrato×chiaro, niente PBS).
 
 Due domande:

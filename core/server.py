@@ -2,7 +2,7 @@
 
 Il server non vede mai il volto né l'esito: riceve solo byte (chiave di valutazione
 + probe cifrato) e restituisce byte (punteggi cifrati), che solo il client può
-decifrare. Il plumbing è generico — la galleria è già un insieme di vettori interi,
+decifrare. Il plumbing è generico: la galleria è già un insieme di vettori interi,
 indipendentemente dalla tecnica di embedding. Il circuito viene dalla fonte unica
 `core.matching`; lo si può sostituire (es. col circuito argmin+soglia del gradino
 06) passando un altro costruttore, senza cambiare questo plumbing.

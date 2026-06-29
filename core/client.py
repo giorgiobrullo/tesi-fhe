@@ -6,7 +6,7 @@ valutazione + probe cifrato); riceve l'esito cifrato (byte) e lo decifra. Solo i
 client, con la sua chiave segreta, può leggere qualcosa.
 
 Generico rispetto all'embedding: riceve una `embedding_fn` (volto -> vettore float),
-non un modello specifico — così PCA e CNN riusano lo stesso client.
+non un modello specifico, così PCA e CNN riusano lo stesso client.
 """
 
 from typing import Callable
@@ -50,7 +50,7 @@ class Client:
         """Decifra i punteggi (byte) e ritorna l'identità della faccia più vicina.
 
         NB: l'argmin è qui sul client (gradino 05). Il client decifra tutti gli N
-        punteggi e prende il minimo — quindi vede le distanze con tutta la galleria.
+        punteggi e prende il minimo, quindi vede le distanze con tutta la galleria.
         Il gradino 06 sposterà argmin+soglia dentro il circuito, così il client
         apprenderà solo l'esito.
         """

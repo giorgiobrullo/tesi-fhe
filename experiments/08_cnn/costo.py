@@ -1,9 +1,9 @@
-"""Gradino 08 — lato FHE: costo del match cifrato con embedding CNN (dim 512).
+"""Gradino 08, lato FHE: costo del match cifrato con embedding CNN (dim 512).
 
 Chiude il cerchio: l'embedding CNN (MobileFaceNet) funziona (F14), ora misuriamo il
 costo FHE della distanza cifrata su quei vettori. È il circuito del gradino 05
 (`b_sq − 2·a·b`, cifrato×chiaro, niente PBS), ma a **dim 512** invece di 3776 (gradino
-07) → atteso *più economico*. L'embedding gira in chiaro sul client: la potenza della
+07), quindi atteso *più economico*. L'embedding gira in chiaro sul client: la potenza della
 CNN non tocca il costo FHE, conta solo la dimensione (512).
 
 Tre domande:
@@ -11,7 +11,7 @@ Tre domande:
   2. quanto costa il match cifrato a dim 512, al crescere di N? (FHE)
   3. il percorso cifrato dà le stesse predizioni del chiaro quantizzato? (correttezza)
 
-Usa DigiFace (già allineato → embedding veloce, no detection). Esegui:
+Usa DigiFace (già allineato, embedding veloce, no detection). Esegui:
   uv run python experiments/08_cnn/costo.py
 """
 

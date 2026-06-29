@@ -1,4 +1,4 @@
-"""Gradino 08 — demo end-to-end: riconoscimento facciale cifrato con embedding CNN.
+"""Gradino 08, demo end-to-end: riconoscimento facciale cifrato con embedding CNN.
 
 L'intera catena, con l'embedding CNN che ha sfondato il pavimento (F14/F16):
 
@@ -12,7 +12,7 @@ chiaro sul server (suoi dati). La "soglia open-set" rifiuta gli sconosciuti.
 
 NB (vedi findings): qui l'argmin+soglia li fa il **client** (versione funzionante e
 veloce). Spostarli sul server, sotto FHE, è il passo successivo (privacy piena) ed è
-quello che poi ottimizziamo — vedi `ottimizza_argmin.py`.
+quello che poi ottimizziamo, vedi `ottimizza_argmin.py`.
 
 Esegui:  uv run python experiments/08_cnn/demo.py [mobilefacenet|resnet50|resnet100]
 """

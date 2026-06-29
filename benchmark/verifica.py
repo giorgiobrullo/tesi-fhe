@@ -1,4 +1,4 @@
-"""Tecniche già fatte (PCA, LBP, HOG) sui benchmark DURI — consolidamento.
+"""Tecniche già fatte (PCA, LBP, HOG) sui benchmark DURI: consolidamento.
 
 Prima di salire alla CNN, misuriamo come reggono le tecniche che abbiamo già
 (eigenfaces del gradino 05, descrittori locali del gradino 07) su benchmark più duri
@@ -98,7 +98,7 @@ def main() -> None:
         acc_hog, _ = acc_10fold(dist_coppie(hog, d.dist_euclidea), issame)
 
         # CNN (gradino 08): embedding InsightFace su RGB 112×112 già allineate.
-        # Embedding L2-normalizzati → distanza euclidea monotona col coseno.
+        # Embedding L2-normalizzati, quindi distanza euclidea monotona col coseno.
         acc_cnn = {}
         for nm, liv in [("mfn", "mobilefacenet"), ("rn", "resnet50")]:
             emb_cnn = cnn.embedding(imgs, liv)

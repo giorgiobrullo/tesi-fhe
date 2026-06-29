@@ -1,14 +1,14 @@
-"""Tecniche già fatte (PCA, LBP, HOG) in IDENTIFICAZIONE 1:N OPEN-SET — il varco.
+"""Tecniche già fatte (PCA, LBP, HOG) in IDENTIFICAZIONE 1:N OPEN-SET: il varco.
 
 A differenza di `verifica.py` (1:1 a coppie), qui misuriamo nel protocollo che è
-davvero il nostro: **identificazione 1:N open-set** sui dataset 1:N (DigiFace,
+il nostro: **identificazione 1:N open-set** sui dataset 1:N (DigiFace,
 VGGFace2). Galleria di iscritti + probe noti (devono matchare) + probe ignoti (da
 **rifiutare**). È lo scenario del controllo-accessi a un varco.
 
 Metriche (stile NIST open-set):
 - **Rank-1 (closed)**  : tra i probe noti, quanti hanno come vicino in galleria
                          l'identità giusta (ignora la soglia).
-- **DIR@FPIR=x%**      : Detection & Identification Rate — frazione di probe noti
+- **DIR@FPIR=x%**      : Detection & Identification Rate, frazione di probe noti
                          identificati correttamente **e accettati** (distanza < soglia),
                          alla soglia che lascia passare solo x% di ignoti (FPIR).
                          È il numero che conta: identifica i noti *e* rifiuta gli ignoti.
@@ -68,7 +68,7 @@ def open_set(featG, yG, featPn, yPn, featPi, chi2=False):
 
     out = {"rank1": rank1}
     for fpir in (0.01, 0.10):
-        # soglia che fa accettare esattamente fpir% di ignoti (distanza < soglia)
+        # soglia che fa accettare fpir% di ignoti (distanza < soglia)
         soglia = np.quantile(score_i, fpir)
         dir_x = float(np.mean(corretto & (score_n <= soglia)))
         out[f"dir_fpir{int(fpir*100)}"] = dir_x
@@ -148,7 +148,7 @@ def figura(righe):
         ax.set_xticks(x); ax.set_xticklabels([etichetta[t] for t in tecniche], fontsize=8)
         ax.set_ylabel("%"); ax.set_title(tit); ax.grid(True, axis="y", alpha=.3); ax.legend(fontsize=8)
     ax2.axhline(2, ls="--", color="gray"); ax2.text(0, 3.5, "pavimento ~caso", fontsize=8, color="gray")
-    fig.suptitle("Riconoscimento 1:N: dalle geometriche alla CNN — il salto sui volti reali",
+    fig.suptitle("Riconoscimento 1:N: dalle geometriche alla CNN, il salto sui volti reali",
                  fontweight="bold")
     fig.tight_layout()
     fig.savefig(OUT / "tecniche_1n.png", dpi=130); fig.savefig(OUT / "tecniche_1n.svg")
@@ -157,7 +157,7 @@ def figura(righe):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    # VGGFace2: la CNN ha bisogno dei volti ALLINEATI dai grezzi (no resize) → detection
+    # VGGFace2: la CNN ha bisogno dei volti ALLINEATI dai grezzi (no resize), quindi detection
     def vgg_grezzo():
         return dataset.carica_da_cartelle(
             str(dataset._RADICE / "vggface2" / "test"),

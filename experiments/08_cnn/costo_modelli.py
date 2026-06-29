@@ -1,7 +1,7 @@
-"""Costo FHE per i tre modelli CNN: è davvero indipendente dal modello?
+"""Costo FHE per i tre modelli CNN: è indipendente dal modello?
 
 Tesi da verificare: il match cifrato dipende solo dalla **dimensione dell'embedding**
-(512 per tutti e tre i modelli), non dalla potenza del modello — perché l'embedding gira
+(512 per tutti e tre i modelli), non dalla potenza del modello, perché l'embedding gira
 in chiaro sul client, in FHE va solo la distanza. Quindi MobileFaceNet, ResNet50 e
 ResNet100 dovrebbero costare **lo stesso** (~quanto F15).
 
@@ -56,7 +56,7 @@ def main():
         ok = np.array_equal(np.array(got), atteso)
         P(f"{nome:>14} | {E.shape[1]:>4} | {str(quant_ok):>9} | {t_comp:>6.0f}ms | {np.mean(tempi):>11.0f}ms | {ok}")
 
-    P("\n→ stesso ~costo per tutti: il match cifrato dipende dalla dim (512), non dal modello.")
+    P("\nStesso ~costo per tutti: il match cifrato dipende dalla dim (512), non dal modello.")
     P("  La potenza della CNN (in chiaro sul client) è gratis lato FHE.")
 
 

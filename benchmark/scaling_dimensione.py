@@ -1,6 +1,6 @@
 """Come scala l'accuratezza con la DIMENSIONE dell'embedding (per modello).
 
-La dimensione è la leva FHE: meno dimensioni → punteggi più stretti → match cifrato più
+La dimensione è la leva FHE: meno dimensioni danno punteggi più stretti, quindi match cifrato più
 economico e argmin cifrato più vicino al fattibile (F21). Ma comprimere costa
 accuratezza. Qui misuriamo il trade-off: riduciamo l'embedding con PCA (512 → 8) e
 vediamo il DIR@FPIR, per MobileFaceNet e ResNet50 (dalla cache di F19).

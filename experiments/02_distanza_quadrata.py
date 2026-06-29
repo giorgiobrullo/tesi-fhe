@@ -1,5 +1,5 @@
 """
-Esperimento 02 — distanza euclidea al quadrato cifrata (l'operazione di matching).
+Esperimento 02: distanza euclidea al quadrato cifrata (l'operazione di matching).
 
 Sale di un gradino rispetto a 00/01: invece di una singola operazione calcola
 ‖a − b‖² = Σ(aᵢ − bᵢ)² tra due *vettori* interi, con entrambi gli operandi cifrati.
@@ -38,7 +38,7 @@ def main(dim: int = 8, value_max: int = 7) -> None:
           f"{'OK' if dec == atteso else 'ERRORE'}")
     print(f"  bit massimi nel circuito: {circuit.graph.maximum_integer_bit_width()}")
     print(f"  PBS nel circuito: {circuit.statistics['programmable_bootstrap_count']} "
-          f"(cifrato×cifrato: caro — l'Esp. 03 mostra come azzerarlo)")
+          f"(cifrato×cifrato: caro, l'Esp. 03 mostra come azzerarlo)")
 
 
 if __name__ == "__main__":

@@ -2,11 +2,11 @@
 
 Collega i due assi della tesi su un'unica figura:
   - **accuratezza** (Rank-1 1:N) della PCA al crescere delle componenti;
-  - **larghezza in bit dei punteggi** `‖b‖²−2ab` alle stesse componenti — è la leva di
+  - **larghezza in bit dei punteggi** `‖b‖²−2ab` alle stesse componenti, è la leva di
     costo dell'argmin cifrato sul server (F6/F12: il costo raddoppia ~ad ogni bit).
 
-Mostra la tensione di fondo: per avere accuratezza servono tante componenti → punteggi
-più larghi → argmin server più caro. Su tutti i dataset duri la PCA resta debole (lo
+Mostra la tensione di fondo: per avere accuratezza servono tante componenti, quindi
+punteggi più larghi e argmin server più caro. Su tutti i dataset duri la PCA resta debole (lo
 sapevamo, F5/F10): qui lo si vede insieme al prezzo FHE che pagherebbe.
 
 Esegui:  uv run python benchmark/pca_scaling.py

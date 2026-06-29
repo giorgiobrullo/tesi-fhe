@@ -8,10 +8,10 @@ omomorfica, basata su TFHE, aritmetica intera, modello a circuito).
 
 ## I due filoni
 
-1. **FHE (Concrete)** — capire il modello a circuito e i suoi vincoli (input
+1. **FHE (Concrete)**: capire il modello a circuito e i suoi vincoli (input
    interi a dimensione fissa), far girare il matching su dati cifrati e
    **misurare i tempi** (il costo che conta è la *valutazione* FHE per ogni query).
-2. **Riconoscimento facciale (ML)** — costruire un dataset di volti (split 80/20,
+2. **Riconoscimento facciale (ML)**: costruire un dataset di volti (split 80/20,
    foto diverse della stessa persona tra galleria e probe), implementare le
    tecniche dalla più semplice alla più complessa, ottenere accuratezze di base.
 
@@ -29,7 +29,7 @@ Il sistema separa nettamente i due ruoli:
   moltiplicazioni **cifrato×chiaro** (probe cifrato × galleria in chiaro), quindi
   **nessun PBS / bootstrapping**.
 - **In chiaro sul client:** l'embedding PCA del volto, la quantizzazione, la
-  cifratura e — ricevuti i punteggi cifrati — la decifratura e la scelta del più
+  cifratura e, ricevuti i punteggi cifrati, la decifratura e la scelta del più
   vicino.
 - **In chiaro sul server (precalcolato, fuori dal circuito):** `‖b‖²` per ogni
   faccia (dipende solo dalla galleria, nessun cifrato coinvolto).
@@ -50,8 +50,8 @@ il client visto che cambierebbe le ottimizzazioni disponibili.
 Il repo è **una sola salita**: la leggi dal basso e capisci tutto ciò che è stato
 fatto. Prima le **fondamenta FHE** (capire lo strumento), poi la **scaletta del
 riconoscimento** (di Carnemolla, dalla tecnica più semplice alla più complessa). Il
-bello è che i due assi salgono *insieme*: più potere di riconoscimento ⇒ più costo
-FHE — ed è proprio questa la curva di trade-off che la tesi misura. A ogni gradino
+bello è che i due assi salgono *insieme*: più potere di riconoscimento comporta più
+costo FHE, ed è questa la curva di trade-off che la tesi misura. A ogni gradino
 si riporta **(accuratezza in chiaro, costo FHE)**.
 
 | # | livello | gradino | adatta a FHE? |
@@ -67,8 +67,8 @@ si riporta **(accuratezza in chiaro, costo FHE)**.
 
 Si **sale un gradino alla volta** (scaletta di Carnemolla). Qualche gradino è
 saltabile (LDA), ma i numeri salgono lo stesso e la mappa completa coi salti
-motivati vive in `findings.md`. Il costo FHE non è un silo a parte: è il `costo.py`
-di ogni gradino, così sale *insieme* alla scaletta.
+motivati vive in `findings.md`. Il costo FHE non sta in un silo separato: è il
+`costo.py` di ogni gradino, e così sale *insieme* alla scaletta.
 
 ## Setup
 
@@ -101,18 +101,18 @@ uv run python experiments/05_pca/demo.py [olivetti|lfw]
 
 ## Com'è organizzato il repo
 
-- **`core/`** — il motore condiviso: i circuiti FHE (`matching.py`, *fonte unica*),
+- **`core/`**: il motore condiviso, con i circuiti FHE (`matching.py`, *fonte unica*),
   il plumbing client/server, quantizzazione e caricamento dataset. Ciò che vale su
   più gradini sta qui una volta sola.
-- **`experiments/NN_…`** — la scaletta **numerata** delle tecniche. Le fondamenta FHE
+- **`experiments/NN_…`**: la scaletta **numerata** delle tecniche. Le fondamenta FHE
   (`00`–`04`) sono script singoli; i gradini di riconoscimento (`05_pca`,
   `06_argmin_soglia`, `07_descrittori_locali`, …) sono cartelle con l'embedding
   specifico + demo/costo + un README. Ognuno importa da `core/`.
-- **`benchmark/`** — valutazione **trasversale** (non un gradino): misura le tecniche
+- **`benchmark/`**: valutazione **trasversale** (non un gradino) che misura le tecniche
   già fatte sui dataset duri. `verifica.py` (1:1 su CPLFW/CFP-FP) e
   `identificazione_1n.py` (1:N open-set su DigiFace/VGGFace2, metrica DIR@FPIR).
-- **`datasets/`** — dati scaricati (gitignorato): i `.bin` dei benchmark, DigiFace-1M,
+- **`datasets/`**: dati scaricati (gitignorato), cioè i `.bin` dei benchmark, DigiFace-1M,
   VGGFace2. Rotte di download in `docs/benchmark_dataset.md`.
-- **`findings.md`** — il filo narrativo: risultati distillati (F0–F10 + prossimi
+- **`findings.md`**: il filo narrativo, con i risultati distillati (F0–F10 + prossimi
   passi) e la mappa completa della scaletta di Carnemolla.
-- **`docs/`** — note di riferimento: scelta dei dataset e dei modelli di embedding.
+- **`docs/`**: note di riferimento sulla scelta dei dataset e dei modelli di embedding.

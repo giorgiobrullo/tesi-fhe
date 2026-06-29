@@ -1,8 +1,8 @@
-# Benchmark duri — tecniche già fatte su set più difficili di LFW
+# Benchmark duri -- tecniche già fatte su set più difficili di LFW
 
-Cartella **trasversale** (non un gradino nuovo): misura come reggono le tecniche che
-abbiamo già — **PCA/eigenfaces** (gradino 05) e **descrittori locali LBP/HOG**
-(gradino 07) — su benchmark più duri di LFW, prima di salire alla CNN.
+Cartella trasversale: misura come reggono le tecniche che
+abbiamo già, cioè **PCA/eigenfaces** (gradino 05) e **descrittori locali LBP/HOG**
+(gradino 07), su benchmark più duri di LFW, prima di salire alla CNN.
 
 ## I set
 
@@ -46,5 +46,5 @@ Per ogni set e tecnica: accuratezza di verifica 1:1 (10-fold). Output in
 
 `verifica.py` è il protocollo nativo dei benchmark `.bin` (confrontabile con la
 letteratura). `identificazione_1n.py` è il protocollo del **nostro** sistema:
-costruisce lo split open-set con `core.dataset.split_openset` e riporta il `DIR@FPIR`
-— il numero che conta per il controllo-accessi (vedi `findings.md` F9, F10).
+costruisce lo split open-set con `core.dataset.split_openset` e riporta il `DIR@FPIR`,
+il numero che conta per il controllo-accessi (vedi `findings.md` F9, F10).

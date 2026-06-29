@@ -1,8 +1,8 @@
-"""Gradino 06 — il muro dell'argmin cifrato sugli embedding CNN (riproduce F21).
+"""Gradino 06: il muro dell'argmin cifrato sugli embedding CNN (riproduce F21).
 
 I punteggi degli embedding CNN (512-dim) sono ~18 bit; il confronto cifrato di Concrete
 è limitato a ~16 bit. Qui riproduciamo il muro e i tentativi che NON bastano per
-aggirarlo (il diario di F21). Le compilazioni falliscono in fretta → script veloce.
+aggirarlo (il diario di F21). Le compilazioni falliscono in fretta, quindi script veloce.
 
 Esegui:  uv run python experiments/06_argmin_soglia/ottimizza.py
 """
@@ -73,7 +73,7 @@ def main():
     prova("argmin ingenuo (piena larghezza)", argmin_base, B)
     prova("+ round_bit_pattern (arrotonda i bit bassi)", argmin_round, B)
     prova("+ divisione // 64 (taglia il range)", argmin_div, B)
-    P("\n→ tutti contro il limite di bit-width del confronto: il punteggio largo non si")
+    P("\nTutti contro il limite di bit-width del confronto: il punteggio largo non si")
     P("  tocca. L'unica leva è comprimere l'embedding a monte (PCA), ma è un trade-off")
     P("  accuratezza↔velocità, non un'ottimizzazione. Vedi findings.md F21.")
 

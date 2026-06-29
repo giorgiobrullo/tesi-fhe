@@ -1,8 +1,8 @@
-"""Gradino 06 — costo dell'argmin cifrato sul server (evidenza di F6).
+"""Gradino 06: costo dell'argmin cifrato sul server (evidenza di F6).
 
 Per privacy l'argmin deve stare sul server, sotto FHE (vedi F6). Qui misuriamo quanto
 costa: la riduzione cifrata in funzione della **larghezza in bit dei punteggi**. Il
-costo raddoppia ~ad ogni bit → è la leva di progetto (tenere stretta la precisione).
+costo raddoppia ~ad ogni bit, ed è la leva di progetto (tenere stretta la precisione).
 
 Confronto: il gradino 05 (argmin sul client, in chiaro) costa ~31 ms/query; spostarlo
 sul server lo fa passare da gratis a questo costo.
@@ -38,7 +38,7 @@ def circuito_argmin(n):
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     righe = []
-    print(f"argmin cifrato a riduzione, N={N} — gradino 05 (client): ~31 ms/query\n")
+    print(f"argmin cifrato a riduzione, N={N}, gradino 05 (client): ~31 ms/query\n")
     print(f"{'larghezza':>9} | {'compile':>9} | {'run argmin':>11} | corretto")
     print("-" * 48)
     for bits in range(4, BIT_MAX + 1):
@@ -66,7 +66,7 @@ def main() -> None:
         w.writeheader()
         w.writerows(righe)
     print(f"\nscritto {csv_path}")
-    print("\nIl run raddoppia ~ad ogni bit. Punteggi PCA reali ≈ 14 bit → intrattabile (F6).")
+    print("\nIl run raddoppia ~ad ogni bit. Punteggi PCA reali ≈ 14 bit, quindi intrattabile (F6).")
 
 
 if __name__ == "__main__":
