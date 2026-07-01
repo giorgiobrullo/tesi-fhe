@@ -1,6 +1,6 @@
 """Gradino 08, demo end-to-end: riconoscimento facciale cifrato con embedding CNN.
 
-L'intera catena, con l'embedding CNN che ha sfondato il pavimento (F14/F16):
+L'intera catena, con l'embedding CNN che supera il livello del caso sui volti reali (F14/F16):
 
   client: volto -> CNN (in chiaro) -> quantizza -> cifra ----->  server
   server: punteggi cifrati  ‖b‖² - 2·a·b  (cifrato×chiaro, no PBS) -->  client
@@ -10,7 +10,7 @@ Il server non vede mai il volto né l'esito: riceve byte (chiave di valutazione 
 cifrato), restituisce byte (punteggi cifrati). Solo il client decide. La galleria è in
 chiaro sul server (suoi dati). La "soglia open-set" rifiuta gli sconosciuti.
 
-NB (vedi findings): qui l'argmin+soglia li fa il **client** (versione funzionante e
+NB (vedi findings): qui l'argmin+soglia li fa il client (versione funzionante e
 veloce). Spostarli sul server, sotto FHE, è il passo successivo (privacy piena) ed è
 quello che poi ottimizziamo, vedi `ottimizza_argmin.py`.
 

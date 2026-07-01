@@ -124,7 +124,7 @@ punteggio (di nuovo la leva di F1–F3, ora sull'argmin):
 |---|---|---|---|---|---|---|
 | run argmin | 4,2 s | 5,8 s | 12,7 s | 34 s | 82 s | 172 s |
 
-La seconda leva è N, ed è il prima/dopo: quanto rallenta spostare l'argmin dal client al
+La seconda leva è N, dove guardiamo il prima e il dopo, cioè quanto rallenta spostare l'argmin dal client al
 server al crescere della galleria (prototipo PCA su Olivetti; figura
 `experiments/06_argmin_soglia/results/prima_dopo.png`):
 
@@ -136,8 +136,8 @@ server al crescere della galleria (prototipo PCA su Olivetti; figura
 | 32 | 37 ms | 7.043 ms | 190× |
 
 Il client è piatto a ~37 ms/query (decifra gli N punteggi + un argmin numpy, nessun PBS); il
-server cresce con N (i confronti cifrati sono ~N−1), da 6× a 190× il costo del client nonostante N sia ancora molto basso. E
-attenzione: il "dopo" è a precisione ridotta (8 componenti, 3 bit, quindi punteggi ~6 bit) per
+server cresce con N (i confronti cifrati sono ~N−1), da 6× a 190× il costo del client nonostante N sia ancora molto basso. Va
+notato che il "dopo" è a precisione ridotta (8 componenti, 3 bit, quindi punteggi ~6 bit) per
 renderlo eseguibile; alla precisione della PCA decente (50 comp, ~14 bit) l'argmin server è
 fuori scala, quindi 6–190× è un limite inferiore.
 
@@ -296,7 +296,7 @@ disastroso solo perché è la metrica indulgente.
 | | LBP+χ² | 18,4% | 1,8% | 4,4% |
 | | HOG | 14,4% | 2,2% | 3,8% |
 
-Esito. Al punto di lavoro sicuro (FPIR=1%), su volti reali il meglio è ~2%: il
+Al punto di lavoro sicuro (FPIR=1%), su volti reali il meglio è ~2%: il
 varco negherebbe l'accesso al ~98% degli autorizzati pur di tenere fuori gli
 impostori. Il "no match" open-set c'è, ma rifiutare *bene* richiede una separazione che
 queste feature non hanno (è la risposta, a numeri, alla domanda "il 50% non basta?": in
@@ -326,8 +326,8 @@ vicino e dice "match id=X" oppure "nessun match" se nessuno è entro la soglia
 
 1. Concrete non ha un argmin nativo, confermato dal sorgente. La lista
 `SUPPORTED_NUMPY_OPERATORS` di `concrete-python 2.11` contiene `np.dot, np.min,
-np.max, np.minimum, np.maximum, np.sum, np.where`, ma non `np.argmin`/`np.argmax`. Ha
-il *valore* minimo, non l'*indice*: coerente col modello a circuito/LUT (un indice non
+np.max, np.minimum, np.maximum, np.sum, np.where`, ma non `np.argmin`/`np.argmax`. Restituisce
+il *valore* minimo e non l'*indice*, in linea col modello a circuito/LUT (un indice non
 è un'operazione naturale sul cifrato). Quindi l'argmin si costruisce da `<` + select
 (`np.where`/aritmetica), in `core/matching.py`.
 
@@ -335,17 +335,16 @@ il *valore* minimo, non l'*indice*: coerente col modello a circuito/LUT (un indi
 completo (`circuito_distanza_argmin_soglia`) ritorna `(indice, è_match)` dove la
 soglia confronta la distanza² vera `val_min + ‖a‖²` (il termine `‖a‖²` scartato per
 il ranking va rimesso per una soglia assoluta). All'inizio il ramo "nessun match" non
-si attivava mai: causa = inputset troppo stretto. Concrete inferisce la larghezza
+si attivava mai, perché l'inputset era troppo stretto. Concrete inferisce la larghezza
 in bit dei valori cifrati *dall'inputset*; passando solo le righe della galleria, il
 range era insufficiente e il confronto della soglia andava in overflow silenzioso
 (il valore gira modulo a un numero piccolo, quindi sempre "sotto soglia" e sempre "match").
-L'argmin restava giusto (i suoi valori erano nel range); solo la soglia sballava: un
-bug subdolo, niente errore, solo risultato sbagliato.
+L'argmin restava giusto, perché i suoi valori erano nel range, mentre solo la soglia sballava. Era un bug subdolo, senza alcun errore segnalato e con il solo sintomo di un risultato sbagliato.
 
 Con un inputset rappresentativo dei probe reali, il circuito è corretto: verificato
 10/10, con i "nessun match" che si attivano davvero (4/10 nel test a soglia stretta).
 
-Lezione (cugina di F3/F6): l'inputset definisce il range valido del circuito. Va
+La lezione, cugina di F3/F6, è che l'inputset definisce il range valido del circuito. Va
 costruito coi probe reali (o un campione che ne copra la gamma), non con la sola
 galleria, altrimenti i confronti cifrati overflowano in silenzio. Vale per ogni
 circuito con soglie/somme che dipendono dal probe.
@@ -397,7 +396,7 @@ figura dei pre-CNN (`benchmark/results/tecniche_1n.png`, gradino
 | VGGFace2 (reale) | migliore pre-CNN (HOG) | 14,4% | 2,2% |
 | | CNN MobileFaceNet | 97,8% | 96,0% |
 
-Il salto. Su volti reali (VGGFace2), al punto di lavoro sicuro (FPIR=1%) si passa da
+Su volti reali (VGGFace2), al punto di lavoro sicuro (FPIR=1%) si passa da
 ~2% a 96%: il varco da inutilizzabile a pienamente funzionante, e con la CNN
 *leggera*, il primo gradino CNN di Carnemolla. Conferma tutto il filo: le tecniche
 semplici falliscono perché manca l'invarianza a posa/luce (F9–F12), la CNN ce l'ha.
@@ -616,9 +615,9 @@ A questo punto davamo per scontato che l'argmin (e la soglia) dovessero stare su
 server, sotto FHE: farli sul client sembrava vanificare la privacy (il client imparerebbe
 la distanza con ogni iscritto, F6). *(In F21 ridimensioneremo questa premessa, dipende
 da quanto ci si fida del client. Ma intanto proviamo a farlo sul server.)* E sui punteggi
-degli embedding CNN a 512 dimensioni troviamo un limite netto. Diario dei tentativi.
+degli embedding CNN a 512 dimensioni troviamo un limite netto, e di seguito il diario dei tentativi.
 
-Il problema. Il punteggio `‖b‖² − 2·a·b` su 512 dimensioni quantizzate a 6 bit è
+Il problema è la larghezza in bit. Il punteggio `‖b‖² − 2·a·b` su 512 dimensioni quantizzate a 6 bit è
 largo ~18 bit. Il confronto cifrato di Concrete 2.11 è limitato a ~16 bit:
 l'argmin sui punteggi CNN non compila (`this 18-bit value is used as an operand to a
 comparison operation`). E i ~18 bit nascono dall'accumulatore su 512 dimensioni, non
@@ -626,40 +625,39 @@ dalla precisione per-valore, e non si abbassano facilmente.
 
 Cosa abbiamo provato (e perché non basta):
 1. `round_bit_pattern` (arrotonda via i bit bassi dei punteggi prima del confronto).
-   *No.* Azzera i bit bassi ma non riduce il range: il valore resta a 18 bit, quindi
+   Non funziona, perché azzera i bit bassi ma non riduce il range: il valore resta a 18 bit, quindi
    il confronto è ancora su 18 bit ed è rifiutato. Lo strumento serve a far seguire una
    tabella a precisione ridotta, non a stringere un confronto.
-2. Dividere i punteggi (`// 2^k`, per tagliare il range alla metà). *No.* L'operazione
+2. Dividere i punteggi (`// 2^k`, per tagliare il range alla metà). Di nuovo non basta, perché l'operazione
    stessa prende in input il valore a 18 bit, cioè una tabella su 18 bit, quindi non compila. Qualunque
    manipolazione *a valle* del punteggio largo è bloccata dallo stesso limite.
 3. Comprimere l'embedding (PCA a meno dimensioni + meno bit), per stringere i
-   punteggi alla sorgente. È l'unica leva che funziona, ma: per rendere l'argmin
+   punteggi alla sorgente. È l'unica leva che funziona, ma per rendere l'argmin
    *veloce* (secondi) serve comprimere così tanto (≤16-32 dim, 2-3 bit) da distruggere
    l'accuratezza che la CNN ci aveva dato. Più che un'ottimizzazione è un trade-off:
    o accuratezza piena e argmin intrattabile, o argmin veloce e riconoscimento a pezzi.
 
-Conclusione (onesta). Non esiste un calo progressivo coi miglioramenti: l'argmin
-cifrato sul server non scala agli embedding CNN ad alta dimensione: è un limite
-(limite di bit-width del confronto in Concrete), non una discesa. Estende ed è il
-contraltare di F6: lì il costo cresceva ~2×/bit; qui i bit sono troppi a priori.
+Tirando le somme, onestamente, non esiste un calo progressivo coi miglioramenti: l'argmin
+cifrato sul server non scala agli embedding CNN ad alta dimensione, perché è un limite
+(limite di bit-width del confronto in Concrete) e non una discesa. Estende ed è il
+contraltare di F6, dove il costo cresceva ~2×/bit mentre qui i bit sono troppi a priori.
 
 Come farlo davvero (da esplorare): (a) un punto di compromesso dimensione/accuratezza,
 cioè PCA dell'embedding a ~128-256 dim, argmin tractabile ma lento (~minuti/query) con qualche
 punto di accuratezza in meno; (b) privacy a livello di protocollo invece che di
 circuito, per esempio il server mescola i punteggi così il client vede solo distanze
 anonime + l'identità vincente, senza argmin cifrato; (c) un argmin a torneo/gerarchico
-che non materializzi mai il punteggio pieno. Il client-argmin (~100 ms) resta solo come
-*baseline funzionante ma non privata*, non come soluzione.
+che non materializzi mai il punteggio pieno. Il client-argmin (~100 ms) resta soltanto una *baseline funzionante ma non privata*, e non una soluzione.
 
 ## 🔴 F21 — L'argmin server serve davvero? Dipende dal modello di minaccia
-Ripensando: con l'argmin sul client (la demo funzionante, ~100 ms) il server calcola
+Ripensandoci, con l'argmin sul client (la demo funzionante, ~100 ms) il server calcola
 i punteggi cifrati e li rimanda senza mai decifrare. Quindi il server non impara
 nulla: né il volto, né i punteggi, né l'esito. L'unico a vedere le distanze è il
-client (che ha la chiave). Conseguenza importante:
+client (che ha la chiave). La conseguenza è importante:
 
 - Sotto il modello di minaccia naturale del varco (server honest-but-curious, client
   fidato, il terminale è del gestore) il sistema client-argmin a ~100 ms è già
-  privacy-preserving: protegge il volto e l'esito dal server. Niente argmin cifrato.
+  privacy-preserving, perché protegge il volto e l'esito dal server senza bisogno di argmin cifrato.
 - L'argmin (e soglia) sul server serve solo se il client non è fidato (un
   client malevolo non deve poter sondare la galleria imparando le distanze). È un
   irrobustimento extra, ed è quello che incontra il limite FHE (F20).
@@ -689,22 +687,22 @@ Si comprime fino a 128 dimensioni quasi gratis (ResNet50 −1,4 punti, MobileFac
 −1,8), e 256 è identico a 512. Sotto c'è un ginocchio netto: 64 ancora usabile
 (~87%), a 32 dimezza, sotto 16 crolla. 128 dim è il punto FHE-friendly: stesso
 riconoscimento, punteggi più stretti (e match cifrato più economico, costo ~lineare
-nella dimensione). NB: per rendere l'argmin cifrato *tractabile* serve 128 dim +
+nella dimensione). Da notare che per rendere l'argmin cifrato *tractabile* serve 128 dim +
 quantizzazione bassa (~4 bit), quindi punteggi ~14 bit e argmin lento (~minuti/query) ma non
-intrattabile. È l'operating point del server-argmin privato: lento, per basso throughput.
+intrattabile. È l'operating point del server-argmin privato, lento e adatto a basso throughput.
 
 Velocità del match cifrato vs dimensione (`velocita_dimensione.py`, figura
 `velocita_dimensione.png`): 512→152 ms, 256→65, 128→63, 64→59, 32→57. Il match
 (cifrato×chiaro, no PBS) è economico e quasi piatto sotto 256 (~60 ms): dominano i
 costi fissi, non la dimensione. Ridurre l'embedding aiuta poco il *match* (già a terra),
-ma è la leva per rendere l'*argmin* cifrato fattibile (F20/F22). Quadro completo: la
+ma è la leva per rendere l'*argmin* cifrato fattibile (F20/F22). Nel quadro completo la
 dimensione 128 è il punto dolce, accuratezza ~94% (ResNet50), match ~63 ms, e punteggi
 abbastanza stretti da avvicinare l'argmin privato al fattibile.
 
 ## 🔴 F23 — Ottimizzare l'argmin server: niente hardware-lever, e la compressione aiuta al margine
-Tentativo di "ottimizzare fortissimo" l'argmin cifrato sul server. Due fatti duri.
+Tentativo di "ottimizzare fortissimo" l'argmin cifrato sul server, da cui emergono due fatti duri.
 
-Niente leve hardware su questa macchina. Il parallelismo dataflow di Concrete
+Su questa macchina non ci sono leve hardware. Il parallelismo dataflow di Concrete
 non è disponibile su macOS (`Dataflow parallelism is not available in macOS`), e la
 GPU nemmeno (Apple Silicon, no CUDA). Quindi l'unica leva è comprimere l'embedding
 (meno bit nei punteggi). Numeri veri misurati (argmin su N=8, 4 bit):
@@ -718,17 +716,17 @@ GPU nemmeno (Apple Silicon, no CUDA). Quindi l'unica leva è comprimere l'embedd
 | 512 | ~95% | intrattabile (non compila) |
 
 Dove l'accuratezza è usabile (≥64 dim) l'argmin è intrattabile (tempo *o* memoria);
-dove è veloce (16 dim) l'accuratezza è inutile. Niente operating point buono.
+dove è veloce (16 dim) l'accuratezza è inutile, e così non c'è un operating point buono.
 
-La compressione migliore aiuta, ma non rompe la frontiera. Abbiamo usato la PCA;
+Una compressione migliore aiuta al margine senza rompere la frontiera. Abbiamo usato la PCA;
 provata anche la LDA (supervisionata, `compressione.py`, figura `compressione.png`):
 a dim bassa la LDA batte la PCA (dim 16: 25% vs 14%; dim 32: 65% vs 56%), sopra 64 la
 PCA torna avanti (la LDA si sovra-adatta agli iscritti). Ma anche con LDA, dim 32 = 65%
 (tractabile ma lento) e dim 64 = 84% (RAM esplode), e la compressione sposta i punti di
 qualche punto, non sposta il limite.
 
-Conclusione (definitiva su questo hardware). L'argmin cifrato sul server con
-embedding CNN di qualità è non praticabile ottimizzando software/compressione: serve
+La conclusione, definitiva su questo hardware, è che l'argmin cifrato sul server con
+embedding CNN di qualità non è praticabile ottimizzando software/compressione, e serve
 hardware diverso (GPU / parallelismo) o un'idea nuova (proiezione *appresa* a
 bassa dimensione, cioè distillazione dell'embedding; argmin a torneo *con* parallelismo;
 oppure privacy a livello di protocollo). Il sistema valido resta quello con argmin sul
@@ -755,7 +753,7 @@ default esplodeva la RAM (F23):
 | 128 | ~90% | 123 s |
 | 256 | ~93% | 130 s |
 
-Il limite, quindi, era la strategia sbagliata e non un limite della FHE: con CHUNKED l'argmin
+Il limite, quindi, era la strategia sbagliata e non un limite della FHE, perché con CHUNKED l'argmin
 sul server funziona, a circa 90-93% di accuratezza. Resta il problema del tempo: circa due
 minuti su CPU per N=8, perché ogni confronto CHUNKED costa una quindicina di secondi. Non sono
 i 2-3 secondi che vorremmo, ma il sistema funziona, ed è privato anche verso il client.
@@ -776,7 +774,7 @@ Google Colab (sm_75, 15 GB), pilotata via il Colab MCP ufficiale. (Ostacoli real
 d'installazione: cert SSL scaduto su `pypi.zama.ai/gpu`, risolto con `--trusted-host`; il wheel GPU
 vuole numpy 1.26 mentre Colab ha numpy 2, quindi pin numpy 1.26 + scipy 1.12 e riavvio kernel.)
 
-La misura, stesso circuito di F24 (argmin 1:N, N=8, CHUNKED, Q=±2, punteggi 8-10 bit):
+La misura usa lo stesso circuito di F24 (argmin 1:N, N=8, CHUNKED, Q=±2, punteggi 8-10 bit):
 
 | dim | bit | GPU T4 (run) |
 |---|---|---|
@@ -785,17 +783,17 @@ La misura, stesso circuito di F24 (argmin 1:N, N=8, CHUNKED, Q=±2, punteggi 8-1
 | 256 | 10 | 1267 s (21 min) |
 
 Per riferimento, l'M4 Max (F24) faceva dim 128 in ~123 s, e il baseline CPU sulla stessa VM
-Colab girava da oltre 17 minuti senza finire. Cioè: la T4 è ~9× più lenta della CPU desktop,
+Colab girava da oltre 17 minuti senza finire. In pratica la T4 è ~9× più lenta della CPU desktop,
 e non dà speedup nemmeno rispetto alla CPU debole della sua stessa macchina. L'ipotesi di
 F24 è falsa.
 
-Conta capire il perché. L'accelerazione GPU di TFHE serve al throughput in batch: tante
+Capire il perché è importante. L'accelerazione GPU di TFHE serve al throughput in batch: tante
 bootstrap indipendenti che riempiono insieme i core. Il nostro argmin è l'opposto, una
 riduzione sequenziale (N−1 confronti dipendenti) su una singola query, niente da
 parallelizzare, e ogni PBS minuscolo paga solo l'overhead di lancio del kernel. La GPU
 servirebbe a fare molte persone insieme (throughput), non la latenza del singolo al varco.
 
-E non è una congettura nostra. Zama stessa scrive che la GPU di TFHE-rs privilegia un
+Non è una congettura nostra. Zama stessa scrive che la GPU di TFHE-rs privilegia un
 tradeoff latenza/throughput perché "i casi reali raramente calcolano un singolo bootstrap"
 ([Zama](https://www.zama.org/post/bootstrapping-tfhe-ciphertexts-in-less-than-one-millisecond),
 [TFHE-rs GPU docs](https://docs.zama.org/tfhe-rs/hardware-acceleration/run-on-gpu)); e la
@@ -806,7 +804,7 @@ un'unica chiamata ([Theodosian](https://arxiv.org/abs/2512.18345),
 regime in cui la GPU conviene. (I numeri assoluti dipendono dalla build GPU 2024.12.19 e da
 CHUNKED; cambierebbero con un backend più recente, ma non l'asse del problema.)
 
-Conclusione: non c'è una scorciatoia hardware ai 2-3 s del riconoscimento privato-verso-il-
+In conclusione, non c'è una scorciatoia hardware ai 2-3 s del riconoscimento privato-verso-il-
 client. Le leve vere restano algoritmiche (meno confronti, batch tra query, torneo
 parallelo) o di protocollo. Il sistema veloce-e-accurato resta quello con argmin sul client
 (F21); il server-argmin privato funziona (F24, ~90% a ~2 min) ma non è realtime, e, ora
@@ -814,10 +812,9 @@ verificato, la GPU non lo rende tale.
 
 ## 🔴 F26 — Cosa fa la letteratura: non è tutto CKKS, e quasi nessuno fa l'argmax sul server
 Dopo aver incontrato il limite dell'argmin siamo andati a vedere come lo risolvono gli altri. La
-rassegna completa, 16 sistemi con le fonti lette direttamente, sta in `letteratura.md`; qui il
-succo.
+rassegna completa, 16 sistemi con le fonti lette direttamente, sta in `letteratura.md`, e qui ne riassumiamo il succo.
 
-Gli schemi. CKKS è il più diffuso per la similarità (Blind-Match, GROTE, CryptoFace, BSGS,
+Sul fronte degli schemi, CKKS è il più diffuso per la similarità (Blind-Match, GROTE, CryptoFace, BSGS,
 Mazzone): lavora su vettori di reali e fa packing SIMD, cioè una sola operazione cifrata agisce
 su centinaia di slot in parallelo, così impacchetta le similarità della galleria in un
 ciphertext e batcha i confronti. TFHE, il nostro, è l'opposto: ottimo per le funzioni
@@ -828,26 +825,29 @@ sul nostro stesso problema (Blind Counting Sort e Blind Top-k di PoPETs'25, Revo
 simmetrico di PSD'22, che fanno argmin e top-k via LUT e counting-sort). Quindi nello schema non
 eravamo fuori strada.
 
-La cosa importante: quasi nessuno calcola un argmax cifrato vero sul server. Lo evitano in
+La cosa importante è che quasi nessuno calcola un argmax cifrato vero sul server. Lo evitano in
 quattro modi. Lo scaricano sul client, che decifra tutti gli score e fa l'argmax in chiaro
 (HERS, Blind-Match, CryptoFace; è il nostro F21). Lo riducono a una soglia, un solo bit "c'è un
 match?" (CryptoMask) o i soli indici senza score (BSGS). Lo approssimano sul server con polinomi
 (GROTE col group testing, confronti K→2√K; Mazzone con un vettore one-hot, argmin di 128 in
-~13 s). Oppure usano due server, dove un Key Server decifra gli score (IDFace, 1M template in
-126 ms).
+~13 s). Oppure usano due server, dove un Key Server decifra gli score (IDFace, 1M sotto il secondo).
 
-Ordini di grandezza per il related-work: IDFace 1M in 126 ms (CKKS, due server); Blind-Match LFW
+Gli ordini di grandezza del related-work sono questi: IDFace 1M sotto il secondo (CKKS, due server); Blind-Match LFW
 99,63% in 0,74 s (CKKS); BSGS 99,99% su 44K, sub-secondo su GPU (CKKS); HERS 100 M in 500 s
 (BFV); GROTE 14,6 s a K=16.384 (CKKS); Mazzone argmin di 128 in 12,8 s (CKKS); Blind Counting
 Sort k-NN in ~2,4 s (TFHE).
 
-Dove siamo noi. Quasi tutti cifrano anche la galleria (enc×enc); il nostro Mondo 1 (galleria in
+Quanto a dove siamo noi, quasi tutti cifrano anche la galleria (enc×enc); il nostro Mondo 1 (galleria in
 chiaro, solo probe cifrata, quindi enc×plaintext senza PBS sul prodotto scalare) è più leggero,
-ma assume che il server veda la galleria. L'unico parente stretto è il k-NN TFHE simmetrico di
-PSD'22 (probe cifrata, galleria in chiaro, non-interattivo, identico a noi, ma con costo PBS
-quadratico). È un punto distinto e poco esplorato dello spazio, e va dichiarato.
+ma va detto con franchezza che è anche la metà più facile del problema: togliendo la cifratura
+della galleria togliamo la parte crittografica più costosa (la distanza enc×enc, pesante di
+PBS) e proteggiamo la probe di passaggio lasciando esposto l'archivio degli iscritti. La
+versione difficile, con galleria cifrata (Mondo 2), resta lavoro futuro. L'unico parente
+stretto è il k-NN TFHE simmetrico di PSD'22 (probe cifrata, galleria in chiaro, non-interattivo,
+identico a noi, ma con costo PBS quadratico). È un punto distinto e poco esplorato dello spazio,
+e va dichiarato.
 
-La lezione per il varco: spesso l'argmin non serve. A un controllo accessi basta "c'è qualcuno
+La lezione per il varco è che spesso l'argmin non serve. A un controllo accessi basta "c'è qualcuno
 sotto soglia? apri o non aprire", più economico e con meno leakage (il client non impara né gli
 score né chi sei). La soglia ce l'abbiamo già (F11); l'argmin serve solo per dire quale
 identità. Il nostro lavoro non è scoprire CKKS in ritardo, ma aver costruito e misurato un 1:N
@@ -878,7 +878,7 @@ crashare il compilatore (un bug, assertion MLIR).
 
 Ma c'è un limite inferiore. La config migliore, torneo a N=8, è 69 s per soli 8 iscritti, perché
 il singolo confronto cifrato costa ~26 s a 8 bit, e nessuna struttura scende sotto ~log(N)
-volte quel costo. Quindi: ottimizzare la struttura aiuta sul serio (un passo avanti verso
+volte quel costo. Quindi ottimizzare la struttura aiuta sul serio (un passo avanti verso
 tempi più bassi, tutto in Concrete), ma il limite inferiore resta il costo del PBS in
 TFHE. Per i secondi bisognerebbe abbattere *quello* (precisione molto più bassa, e
 l'accuratezza crolla) oppure cambiare schema (CKKS, F26). È la chiusura coerente di
@@ -898,8 +898,8 @@ bit (gratis, niente PBS). L'abbiamo misurato su Concrete (server Linux 12 core, 
 | 8 | 31,2 s | argmin a torneo era 69 s → ~2,2× più veloce |
 | 64 | 347,6 s (~6 min) | — |
 
-Tutti corretti (conteggio = atteso), e il dataflow non aiuta (31,2 vs 32,0 s a N=8). Ma
-conta lo scaling: 8→64 iscritti (×8) porta 31→348 s (×11), cioè ~lineare in N. La
+Tutti corretti (conteggio = atteso), e il dataflow non aiuta (31,2 vs 32,0 s a N=8). Conta
+però lo scaling: 8→64 iscritti (×8) porta 31→348 s (×11), cioè ~lineare in N. La
 parallelizzazione dà solo un fattore costante (≈ numero di core), non spezza la linearità.
 La soglia quindi abbassa il costante (è più economica dell'argmin, è il primitivo giusto,
 fa trapelare un solo bit) ma non cambia la legge: a un ufficio (decine di iscritti) è
@@ -907,14 +907,58 @@ plausibile, qualche minuto; estrapolando, N=256 ≈ 23 min, N=1024 ≈ 1,5 h. In
 esplode con N: a N=64 il processo usava 27 GB di RAM, e oltre va in OOM su questo box,
 quindi è un secondo limite, sul setup più che sulla query.
 
-Il verdetto chiude la domanda "il varco a soglia è realtime?": no, a scala reale. In TFHE
+Il verdetto chiude la domanda "il varco a soglia è realtime?", e la risposta è no, a scala reale. In TFHE
 restano N PBS indipendenti, tempo lineare in N, e la parallelizzazione è solo un fattore
 costante. Operativamente: varco TFHE con galleria in chiaro è pratico solo per gallerie
 piccole (decine di iscritti, latenza minuti); per centinaia o migliaia serve il packing SIMD
-di CKKS (F26: IDFace, 1M in 126 ms), che batcha gli N confronti invece di pagarli uno per
+di CKKS (F26: IDFace, 1M sotto il secondo), che batcha gli N confronti invece di pagarli uno per
 uno. È la conferma sperimentale, dal lato giusto del problema, della conclusione di F24→F27:
 su TFHE il match privato 1:N non è realtime a scala: lo è solo nel caso piccolo, o
 spostando la decisione fuori dal server (client, F21) o su un altro schema (CKKS).
+
+Aggiorniamo il quadro sul reale. Fin qui il varco l'avevamo misurato solo in tempo, su vettori
+sintetici, senza un numero di riconoscimento, e l'accuratezza (~95%) veniva da un percorso
+diverso, l'argmin sul client (F21, veloce ma il client vede gli score). Li abbiamo uniti: il
+varco a soglia cifrato fatto girare su embedding ResNet100 reali (VGGFace2), per misurare
+insieme esattezza, accuratezza e tempo (`benchmark/soglia_reale.py`).
+
+Descriviamo il setup. Una galleria di N iscritti (una foto ciascuno), probe genuine (le altre foto degli
+iscritti) e probe impostori (id non iscritti); il server calcola le N distanze cifrate
+(`‖g‖² − 2·g·a`, enc×plaintext, niente PBS sul prodotto scalare) e ritorna un bit: c'è un
+iscritto sotto soglia? La soglia è tarata per FPIR=1% sugli impostori, gli embedding
+quantizzati a 4 bit (obbligatorio a 512 dimensioni, F31). Un dettaglio che ci ha morso: per
+compilare correttamente, l'inputset di Concrete deve venire dai probe veri. Con vettori casuali
+sottostima il range (i probe genuini danno distanze piccole, valori estremi che il caso non
+mostra) e il circuito li tronca, dando esiti errati (12 su 24); con i probe veri il
+dimensionamento è giusto e l'esito torna esatto.
+
+| N | dim | TPIR@FPIR=1% cifrato | float | larghezza | PBS | tempo/probe |
+|---|---|---|---|---|---|---|
+| 8 | 512 | 97,5% | 95,0% | 14 bit | 8 | 12,5 s |
+| 8 | 128 | 92,5% | 92,5% | 12 bit | 8 | 10,0 s |
+| 8 | 64 | 90,0% | 90,0% | 11 bit | 8 | 8,4 s |
+| 64 | 512 | 92,5% | 92,5% | 14 bit | 64 | 91,7 s |
+| 64 | 64 | 86,6% | 86,2% | 11 bit | 64 | 61,9 s |
+
+L'esito è esatto ovunque: il bit decifrato coincide con la decisione in chiaro
+quantizzata in 16 casi su 16, a ogni N e dimensione, quindi il percorso privato non perde nulla
+rispetto al chiaro, privacy e accuratezza sono lo stesso numero. 512 dimensioni ci stanno: a 4
+bit il punteggio è 14 bit, sotto il limite di 16 del confronto (F31), quindi il varco esatto
+gira a piena dimensione, e ridurre costa accuratezza (a N=8, da 97,5% a 90,0% scendendo a 64
+dimensioni) risparmiando poco tempo. La quantizzazione a 4 bit non costa (i numeri cifrati
+combaciano col float a meno del rumore di campione). Il costo è quello dell'argmin meno la
+catena: N PBS (un confronto per iscritto con la soglia in chiaro) contro i 108 dell'argmin a
+512 dimensioni (F33). I 12,5 s a N=8 sono tutti negli 8 confronti (8 PBS a 14 bit, ~1,5 s
+l'uno), mentre il prodotto scalare cifrato è gratis (0 PBS, ~0,07 s, è una combinazione lineare
+sul cifrato con pesi in chiaro), come misurato nel breakdown di F33. Resta lineare in N
+(N=64: 64 PBS, ~92 s).
+
+Questo chiude i "due binari" privacy/accuratezza: esiste un sistema unico, privato e accurato,
+che misuriamo davvero. Il varco cifrato su volti reali decide accetta/rifiuta sotto cifratura,
+riproduce esattamente il chiaro, e riconosce al 97,5% (N=8) o 92,5% (N=64) con FPIR all'1%. A
+non essere realtime è solo la latenza, lo stesso limite di sopra. Messo accanto a F21, il quadro
+onesto è che nessun singolo sistema è insieme veloce, accurato e privato: l'argmin sul client è
+veloce e accurato ma non privato, il varco sul server è privato e accurato ma non veloce.
 
 ## 🔵 F29 — Scaling DigiFace completato fino a 48000: sul sintetico la profondità satura
 F17 era parziale: una sola parte di DigiFace (33.333 identità), due modelli, fermo a 8000
@@ -945,7 +989,7 @@ fuori dalla distribuzione di addestramento, F16), non la capacità del modello, 
 reti profonde incontrano lo stesso limite. Lo riprendiamo con AdaFace e il confronto
 reale in F30.
 
-Nota metodologica, perché senza non saremmo arrivati a 48000. L'embedding girava una
+Serve una nota metodologica, perché senza non saremmo arrivati a 48000. L'embedding girava una
 immagine per volta (ResNet50 ~9 h di CPU per 500k volti). Tre interventi: inferenza a batch
 (256 alla volta) per 3× di velocità, con embedding identici al per-immagine entro 1e-6;
 `dir_at_fpir` riscritto con algebra a blocchi (‖p‖² − 2·p·gᵀ + ‖g‖²) per ~44× sullo sweep,
@@ -959,7 +1003,7 @@ Aggiunto un quarto modello, AdaFace IR101 (WebFace12M), come controprova. Ha la 
 profondità di ResNet100 (architettura iresnet100) ma una ricetta di addestramento diversa,
 margine adattivo alla qualità invece di ArcFace. Pesi dal repo CVLface dell'autore
 (safetensors, ~249 MB), backbone vendorizzato, loader in `experiments/08_cnn/adaface.py`.
-Validato: carica strict 917/917 chiavi, 1:1 su DigiFace 98,9% (d'=4,98), quindi caricamento
+L'abbiamo validato: carica strict 917/917 chiavi, 1:1 su DigiFace 98,9% (d'=4,98), quindi caricamento
 e preprocessing sono corretti.
 
 Sul sintetico AdaFace non stacca. L'ho aggiunto a tutto lo sweep DigiFace fino a 48000,
@@ -979,11 +1023,14 @@ Sul reale (VGGFace2, estende F19 a quattro modelli):
 | 1000 | 90,2% | 95,8% | 96,5% | 96,0% |
 | 4300 | 86,0% | 94,2% | 95,5% | 95,0% |
 
-AdaFace pareggia ResNet100 sui piccoli N e gli scende appena sotto a scala, restando sempre
-sopra ResNet50. ResNet100 rimane il migliore. AdaFace è progettato per i volti reali di
-bassa qualità (sfocati, bassa risoluzione), e né VGGFace2 (volti web puliti) né DigiFace
-(render puliti) lo mettono alla prova, quindi resta alla pari con ResNet100. Per vederlo
-staccare servirebbe un set reale difficile, tipo TinyFace o IJB-C hard, che non abbiamo.
+AdaFace pareggia ResNet100 sui piccoli N e gli scende appena sotto a scala: a 4000-4300 il
+margine appaiato su 20 seed è −0,52 punti (IC95 ±0,04, negativo in 20 seed su 20) contro
+ResNet100 e +0,65 punti (IC95 ±0,04, positivo in 20/20) contro ResNet50, quindi entrambi
+piccoli ma reali, non rumore di split (per-seed in `benchmark/results/adaface_per_seed.csv`).
+ResNet100 rimane il migliore. AdaFace è progettato per i volti reali di bassa qualità (sfocati,
+bassa risoluzione), e né VGGFace2 (volti web puliti) né DigiFace (render puliti) lo mettono
+alla prova, quindi resta un soffio sotto ResNet100. Per vederlo staccare servirebbe un set
+reale difficile, tipo TinyFace o IJB-C hard, che non abbiamo.
 
 Il finding che conta è il confronto tra i due domini. A parità di galleria il reale sta
 molto più in alto del sintetico, e le curve hanno forma diversa, piatte sul reale e in
@@ -998,28 +1045,46 @@ Tra i 13 e i 15 punti di divario, costante. La scelta del modello vale 1-2 punti
 dominio ne vale quindici. Per la tesi il messaggio è che il finding "ResNet100 non è più
 forte" vale solo sul sintetico ed è un artefatto del dominio, non una verità sul modello:
 sul reale la gerarchia è netta (ResNet100 ≥ AdaFace > ResNet50, e tutti molto sopra
-MobileFaceNet). E la leva per renderlo più forte non è una rete diversa ma allineare il
-test al dominio d'uso reale. Quello che ancora manca è il reale a grande scala (MegaFace,
+MobileFaceNet). E la leva per renderlo più forte è allineare il test al dominio d'uso reale, più che cambiare rete. Quello che ancora manca è il reale a grande scala (MegaFace,
 1M), fermo sulle credenziali di download.
 
-Nota tecnica: embeddare AdaFace su tutte le 500k immagini DigiFace richiede attenzione alla
+Sul piano tecnico, embeddare AdaFace su tutte le 500k immagini DigiFace richiede attenzione alla
 memoria. Convertire l'intero array immagini in float32 in un colpo arriva a ~150 GB e manda
 in OOM; va fatto in streaming, caricando ed embeddando poche migliaia di immagini per volta
 (picco ~2 GB). Sui set più piccoli (VGGFace2 reale, ~50k crop) non si nota.
+
+Una controprova mostra che si tratta di dominio e non di allineamento. Un dubbio su questo divario: VGGFace2 passa per
+detection e `norm_crop` sul template canonico ArcFace, mentre DigiFace lo usavamo nativo a
+112×112 senza ri-allineare, quindi i 13-15 punti potevano essere in parte un artefatto di
+allineamento asimmetrico. L'abbiamo misurato: su 250 identità DigiFace (1.250 immagini, 5.000
+coppie) abbiamo ri-allineato i volti con lo stesso detector di VGGFace2 (buffalo_s, `det_500m`
+→ `norm_crop`), ri-embeddati con ResNet100, e confrontata la verifica 1:1.
+
+| allineamento | 1:1 acc | d' |
+|---|---|---|
+| nativo (DigiFace 112×112) | 98,84% | 4,46 |
+| ri-allineato (come VGGFace2) | 98,48% | 4,31 |
+
+Il detector trova il volto nel 98,3% delle immagini, quindi ha davvero ri-warpato i crop, non è
+caduto sul resize. La separabilità non migliora: il d' resta uguale, semmai cala di un soffio.
+I crop nativi di DigiFace sono già praticamente canonici (sintetico, frontale), quindi
+ri-allinearli al template ArcFace non aggiunge nulla. La separabilità 1:1 (il d') è la leva
+sottostante: se ri-allineare non la muove, non può sollevare la curva 1:N. Il divario regge
+come effetto di dominio, non come artefatto di pipeline, e la controprova lo rafforza.
 
 ## 🔴 F31 — Ottimizzare Concrete il più possibile: il limite è l'API, non TFHE
 Dopo F26 e F27 abbiamo voluto ottimizzare ancora l'argmin sul server e leggere bene la
 letteratura su come si fa l'argmin cifrato veloce. Il risultato corregge una cosa che avevamo
 detto sbrigativamente (F26: "il limite è TFHE").
 
-Cosa dice la letteratura. Il TFHE può fare l'argmin molto più veloce di noi. Chakraborty e
-Zuber (WAHC 2022, eprint 2022/622) fanno un argmin a torneo su 64 interi a 8 bit in 10,8 s
+Secondo la letteratura, il TFHE può fare l'argmin molto più veloce di noi. Zuber e
+Chakraborty (WAHC 2022, eprint 2022/622) fanno un argmin a torneo su 64 interi a 8 bit in 10,8 s
 single-thread su un laptop del 2016, cioè ~0,17 s per confronto, con un bootstrap che emette
 minimo e indice insieme in ~2 PBS. Azogagh et al. (Blind Counting Sort, PoPETs 2025) fanno
 argmin e sort senza confronti, via counting-sort su LUT (k-NN ~2,4 s a piccola scala). Ma
-entrambi sono scritti a mano sulle primitive TFHE a basso livello — Chakraborty sulla libreria
-TFHE originale in C/C++, Azogagh su tfhe-rs — non in Concrete-python. Per la scala vera
-resta CKKS con packing SIMD (IDFace, 1M in 126 ms), che è un altro schema.
+entrambi sono scritti a mano sulle primitive TFHE a basso livello (Chakraborty sulla libreria
+TFHE originale in C/C++, Azogagh su tfhe-rs), non in Concrete-python. Per la scala vera
+resta CKKS con packing SIMD (IDFace, 1M sotto il secondo), che è un altro schema.
 
 Cosa abbiamo provato su Concrete, e i verdetti:
 - Quantizzazione aggressiva. Sugli embedding CNN veri (ResNet50, DigiFace, N=1000) la
@@ -1036,16 +1101,16 @@ Cosa abbiamo provato su Concrete, e i verdetti:
   di bit-width dentro `np.minimum`.
 - Rounding approssimato (`round_bit_pattern`). Aggiunge un PBS suo che annulla il risparmio,
   rumoroso, e crasha anch'esso con `np.minimum`.
-Già fatte prima: torneo 2,6× (F27), soglia (F28), GPU 9× più lenta (F25), argmin sul client
+Alcune le avevamo già fatte prima: torneo 2,6× (F27), soglia (F28), GPU 9× più lenta (F25), argmin sul client
 (F21).
 
-Il numero che spiega tutto. Il nostro argmin sequenziale su 8 elementi compila in ~210
+Il numero che spiega tutto è questo: il nostro argmin sequenziale su 8 elementi compila in ~210
 bootstrap (PBS), ~30 per confronto, e gira in ~180 s, cioè ~0,85 s per bootstrap (misurato
 ricompilando il circuito e leggendo `programmable_bootstrap_count`). Chakraborty fa lo stesso
 su 8 elementi con ~14 PBS a ~0,09 s l'uno, ~1,2 s in tutto. Il divario di ~150× viene da due
 cose insieme: facciamo ~15× più bootstrap, e ognuno è ~10× più lento.
 
-Il perché. Concrete-python compila una funzione Python qualsiasi in automatico: scriviamo
+Il perché sta nel compilatore. Concrete-python compila una funzione Python qualsiasi in automatico: scriviamo
 `p[i] < val`, `np.minimum`, i select, e lui mette un PBS generico per ognuno. È comodo (si
 scrive Python, compila da solo, ottimo per uno studio di fattibilità), ma non lascia scrivere
 il bootstrap a mano. Chi nella letteratura va veloce ha fatto il contrario: ha scritto a mano
@@ -1054,7 +1119,7 @@ parametri. Quella leva in Concrete-python non c'è: decide il compilatore come i
 e `min`, non noi. Le nostre manopole (strategia, quantizzazione, rounding) stanno sopra questo
 collo di bottiglia, quindi non possono chiuderlo.
 
-La conclusione, che corregge F26 e F27. Il limite che abbiamo misurato non è il limite inferiore di TFHE,
+La conclusione corregge F26 e F27. Il limite che abbiamo misurato non è il limite inferiore di TFHE,
 è il limite inferiore di Concrete-python: la sua API ad alto livello, non lo schema. La frase giusta
 per la tesi è che il match 1:N privato in Concrete-python è classe-minuti, mentre lo stesso in
 TFHE scritto a basso livello (C/C++ originale o tfhe-rs) è classe-secondi a questa scala
@@ -1065,6 +1130,82 @@ dataflow di Linux, comunque fattore costante) e `fhe.multivariate` (fonde compar
 vuole operandi a 4-5 bit, i nostri punteggi sono 10-14), e nessuna delle due spezza il
 lineare-in-N.
 
-Nota infra. Concrete ora compila e gira sul Mac, che prima falliva sul linker (macOS beta, SDK
-fuori posto). Un wrapper di `ld` in PATH riscrive il path SDK cablato verso quello di Xcode,
-senza sudo e tutto in sessione, quindi questi esperimenti li abbiamo fatti in locale.
+Nota: questi esperimenti girano in locale, Concrete compila nativo sul Mac (su macOS beta serve
+un piccolo accorgimento sul linker).
+
+## 🔵 F32 — Il 100× misurato: lo stesso argmin in tfhe-rs sulla stessa macchina
+F31 conclude che il limite di velocità è l'API di Concrete-python, non lo schema TFHE né la
+macchina, ma lo deduceva da numeri di paper diversi (Chakraborty su un laptop del 2016).
+L'abbiamo misurato direttamente: lo stesso match 1:N cifrato (prodotto scalare più argmin
+sequenziale) scritto in tfhe-rs, la libreria TFHE nativa in Rust, alla stessa config del nostro
+circuito Concrete (DIM=64, valori in [-2,2], punteggi signed via FheInt16, che ha più bit dei
+~9-10 di Concrete, quindi semmai conservativo), compilato `--release` con `target-cpu=native`,
+sullo stesso M4 Max e con l'indice verificato contro il chiaro. Codice in
+`experiments/13_tfhe_rs_headtohead/`.
+
+Sull'argmin il divario è netto e confermato:
+
+| N | argmin Concrete | argmin tfhe-rs | rapporto |
+|---|---|---|---|
+| 4 | 78 s | 0,68 s | ~115× |
+| 8 | 180 s | 1,78 s | ~100× |
+| 64 | (non misurato, troppo lento) | 15,5 s | — |
+
+A N=8 l'argmin in tfhe-rs è 1,78 s contro i 180 s di Concrete, ~100× a parità di macchina e
+schema, tutto corretto. Il valore non cambia coi bit (a FheUint8 era 1,79 s) e combacia con
+Chakraborty (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
+~180 s non sono colpa dell'hardware né di TFHE, ma di come Concrete-python compila in automatico
+la riduzione (F31: ~210 PBS grandi contro i ~14 piccoli di un circuito a basso livello). E non
+serve nemmeno scrivere il bootstrap a mano: questi 1,78 s vengono già dall'API ad alto livello
+di tfhe-rs (`FheInt16`, `min`, `lt`, select).
+
+Misurando il pipeline intero, però, è saltata fuori una sfumatura che corregge una conclusione
+troppo facile. In tfhe-rs ad alto livello il prodotto scalare è carissimo: a N=8 il dot+argmin
+è 100,6 s, di cui l'argmin è 1,78 s, quindi il prodotto scalare da solo è ~99 s, perché l'API
+intera propaga i riporti delle somme via bootstrap (~0,1 s a operazione). In Concrete è
+l'opposto: il prodotto scalare enc×plaintext è leveled e gratis (0 PBS, ~0,07 s, F33). I due
+profili sono specchiati, Concrete con dot gratis e argmin caro, tfhe-rs ad alto livello con dot
+carissimo e argmin economico, e il pipeline intero naïf in tfhe-rs è solo ~1,8× più veloce di
+Concrete (100 contro 180 s), non 100×.
+
+La conclusione per la tesi, ora misurata e più onesta, è che il ~100× vale per l'argmin, la
+primitiva non lineare che è il vero collo di bottiglia algoritmico (quella che la letteratura
+evita), e a parità di config. Ma "basta riscrivere in tfhe-rs e si va 100× end-to-end" non
+regge: l'alto livello di tfhe-rs paga il lineare. Il sistema davvero veloce (Chakraborty) scrive
+a basso livello, dove sia le somme (leveled, in LWE) sia il confronto (un bootstrap) sono
+economiche. Portarlo lì è ingegneria crittografica fuori dallo scopo di questa tesi; per la
+scala resta CKKS col packing SIMD (IDFace, 1M sotto il secondo).
+
+## 🔵 F33 — Dove va il tempo: il breakdown end-to-end di una query privata
+Dopo F32 (l'argmin è ~100× più veloce in tfhe-rs, ma il pipeline intero dipende anche dal
+prodotto scalare) abbiamo voluto vedere il costo di ogni tappa di una query 1:N privata, non
+solo dell'argmin, alla config reale (512 dimensioni, 4 bit, embedding ResNet100 veri). Misure
+su M4 Max, codice in `benchmark/soglia_reale.py` e negli script di breakdown.
+
+| tappa | dove | costo (N=8, 512-dim) |
+|---|---|---|
+| embedding ResNet100 | client | 167 ms (135 ms/img in batch) |
+| quantizza e cifra | client | 16 ms |
+| prodotto scalare (N distanze) | server | 0,07 s (0 PBS) |
+| selezione con argmin | server | 455 s (108 PBS) |
+| selezione con soglia | server | 12,5 s (8 PBS) |
+| decifra l'esito | client | 1 ms |
+
+Tutto tranne la selezione sta sotto i 0,2 s: il lavoro del client (embedding, cifra, decifra) è
+classe-millisecondi, e il prodotto scalare cifrato è gratis. Il prodotto scalare ha 0 PBS perché
+la galleria è in chiaro (Mondo 1), quindi è una combinazione lineare sul ciphertext con pesi in
+chiaro, leveled, e non scala nemmeno con N (a N=64 resta 0,06 s). Questo corregge un'attribuzione
+sbagliata che avevamo dato al varco in F28: i suoi 12,5 s sono tutti negli 8 confronti, non nel
+prodotto scalare.
+
+L'intero costo della privacy è quindi la selezione cifrata, cioè i confronti. E il costo per
+confronto è dominato dalla precisione del punteggio, non dalla dimensione: un PBS a 9 bit (config
+64-dim) è ~0,85 s, a 13-14 bit (config 512-dim) è ~1,5-4 s. Per questo l'argmin reale a 512
+dimensioni (455 s, 108 PBS) è più lento dei 180 s del 64-dim pur avendo meno PBS.
+
+Per la tesi tutto il problema di un riconoscimento 1:N privato e veloce si riduce a una sola
+operazione, la selezione cifrata (argmin o soglia). Il riconoscimento (l'embedding) e il
+trasporto (cifra e decifra) non sono il collo di bottiglia, e con la galleria in chiaro nemmeno
+il prodotto scalare lo è. Il varco se la cava perché gli basta la soglia (8 confronti, 12,5 s)
+invece dell'argmin completo (108 confronti, 455 s); e l'unica leva per rendere veloce la
+selezione è il bootstrap scritto a basso livello (F32), o cambiare schema verso CKKS (F26).

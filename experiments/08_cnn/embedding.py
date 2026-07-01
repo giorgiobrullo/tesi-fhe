@@ -1,15 +1,15 @@
 """Embedding del gradino 08: CNN pre-addestrata (frozen), eseguita sul client.
 
-Terzo livello della scaletta di Carnemolla (CNN), partendo dalla **bassa profondità**
-come indicato: **MobileFaceNet** (InsightFace `buffalo_s`, modello `w600k_mbf`, linea
-ArcFace, embedding 512-dim). Più avanti si salirà alla profonda (ResNet, `buffalo_l`).
+Terzo livello della scaletta di Carnemolla (CNN), partendo dalla bassa profondità come
+indicato: MobileFaceNet (InsightFace `buffalo_s`, modello `w600k_mbf`, linea ArcFace,
+embedding 512-dim). Più avanti si salirà alla profonda (ResNet, `buffalo_l`).
 
-L'embedding gira **in chiaro sul client** (è fidato): quindi peso/profondità del modello
-non toccano il costo FHE, conta solo la **dimensione dell'embedding** (512). La parte
-cifrata (distanza in `core/matching.py`) resta identica ai gradini precedenti: a lei
-arriva solo un vettore, da qualunque embedding provenga.
+L'embedding gira in chiaro sul client (è fidato): quindi peso e profondità del modello
+non toccano il costo FHE, conta solo la dimensione dell'embedding (512). La parte cifrata
+(distanza in `core/matching.py`) resta identica ai gradini precedenti: a lei arriva solo
+un vettore, da qualunque embedding provenga.
 
-Due varianti di livello (per il confronto leggera→profonda):
+Due varianti di livello (per il confronto da leggera a profonda):
   - `mobilefacenet` (buffalo_s, ~13 MB),  bassa profondità, il gradino 08a;
   - `resnet50`      (buffalo_l, ~166 MB), alta profondità, il gradino 08b.
 

@@ -1,0 +1,10 @@
+[package]
+name = "argmin_tfhe_rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tfhe = { version = "0.11", features = ["integer"] }
+
+[profile.release]
+opt-level = 3

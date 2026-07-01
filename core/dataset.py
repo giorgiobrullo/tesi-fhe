@@ -187,7 +187,9 @@ def split_openset(
         else:
             k = max(1, int(round(len(idx) * frazione_galleria)))
             g_idx += list(idx[:k])                      # in galleria
-            pn_idx += list(idx[k:]) or [idx[0]]         # il resto tra i probe noti
+            pn_idx += list(idx[k:])                     # il resto tra i probe noti
+            # NB: niente fallback a idx[0] se l'id ha una sola foto: rimetterla tra i probe
+            # noti la duplicherebbe con la galleria (leakage). Meglio nessun probe per quell'id.
     return {
         "galleria": (X[g_idx], y[g_idx]),
         "probe_noti": (X[pn_idx], y[pn_idx]),

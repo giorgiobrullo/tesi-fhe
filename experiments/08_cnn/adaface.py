@@ -1,24 +1,25 @@
-"""AdaFace IR101 (ResNet100-class) pre-addestrato, **frozen**, eseguito sul client.
+"""AdaFace IR101 (classe ResNet100) pre-addestrato e frozen, eseguito sul client.
 
-Quarto modello di confronto del gradino 08 (oltre a MobileFaceNet / ResNet50 / ResNet100
-di InsightFace). Linea AdaFace invece di ArcFace: stessa idea (embedding 512-dim
-L2-normalizzato, volti allineati 112×112), margine adattivo alla qualità in addestramento.
+Quarto modello di confronto del gradino 08, accanto a MobileFaceNet, ResNet50 e ResNet100
+di InsightFace. Usa la linea AdaFace invece di ArcFace: stessa idea (embedding 512-dim
+L2-normalizzato, volti allineati 112x112), ma con un margine che si adatta alla qualità
+del volto in addestramento.
 
-- Backbone: IResNet `ir_101` (definizione classica da github.com/mk-minchul/AdaFace,
-  file net.py, vendorizzata qui in `_adaface_net.py`). `build_model('ir_101')` →
-  Backbone(input_size=(112,112), num_layers=100, mode='ir'). Il forward restituisce
-  (embedding, norma) con l'embedding già L2-normalizzato.
-- Pesi: checkpoint AdaFace IR101 addestrato su **WebFace12M**, ripreso dal repo CVLface
-  dell'autore (HuggingFace `minchul/cvlface_adaface_ir101_webface12m`, file
-  `model.safetensors`, ~249 MB). Le chiavi hanno prefisso `model.net.` da rimuovere:
-  così combaciano 1:1 (917 tensori, 0 mismatch) con `ir_101` classico.
+Il backbone è l'IResNet ir_101 nella definizione classica del repo dell'autore
+(github.com/mk-minchul/AdaFace, file net.py), vendorizzata qui in `_adaface_net.py`:
+`build_model('ir_101')` costruisce Backbone(input_size=(112,112), num_layers=100, mode='ir'),
+e il forward restituisce embedding (già L2-normalizzato) e norma. I pesi sono il checkpoint
+addestrato su WebFace12M, ripreso dal repo CVLface dell'autore (HuggingFace
+`minchul/cvlface_adaface_ir101_webface12m`, file `model.safetensors`, ~249 MB); le chiavi
+hanno un prefisso `model.net.` da togliere, dopodiché combaciano 1:1 con ir_101 (917
+tensori, 0 mismatch).
 
-Preprocessing: input 112×112, normalizzato `(x-127.5)/127.5` = `(x/255-0.5)/0.5`,
-layout NCHW; embedding finale L2-normalizzato. Ordine canali: il repo CVLface dichiara
-nel suo `config.json` `color_space: RGB` (niente color-flip interno), quindi questi pesi
-si alimentano in **RGB** (default `bgr=False`). NB: l'AdaFace "classico" da `.ckpt` su
-Drive vuole invece BGR; sul sintetico DigiFace entrambi superano comodamente la soglia
-(RGB acc 98.93% d'=4.98, BGR acc 98.67% d'=4.64), RGB leggermente meglio e fedele al repo.
+Il preprocessing è input 112x112 normalizzato `(x-127.5)/127.5`, layout NCHW, embedding
+finale L2-normalizzato. Per l'ordine dei canali il `config.json` di CVLface dichiara
+color_space RGB (nessun flip interno), quindi questi pesi vanno alimentati in RGB (default
+`bgr=False`). L'AdaFace classico da `.ckpt` su Drive vuole invece BGR; sul sintetico
+DigiFace entrambi superano la soglia (RGB acc 98.93% d'=4.98, BGR acc 98.67% d'=4.64), con
+RGB un filo meglio e fedele al repo.
 
 Gira in chiaro sul client (fidato): il modello non tocca il costo FHE, conta solo la
 dimensione dell'embedding (512), identica agli altri. Pesi gitignorati sotto datasets/.
@@ -77,7 +78,7 @@ def embedding_adaface(immagini_rgb_uint8: np.ndarray, bgr: bool = False,
 
     `bgr=False` (default, fedele al repo CVLface: color_space=RGB): RGB poi
     (x-127.5)/127.5. `bgr=True` applica RGB→BGR (preprocessing AdaFace classico da
-    .ckpt) — passa anch'esso la validazione, ma leggermente sotto.
+    .ckpt): passa anch'esso la validazione, ma resta leggermente sotto.
     """
     model = carica()
     dev = _device()
