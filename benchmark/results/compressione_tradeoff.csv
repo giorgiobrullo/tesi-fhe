@@ -1,0 +1,5 @@
+dim,accuratezza_reale,argmin_s,note
+512,95.47,457,"argmin_verifica.py (14 bit, 95 PBS)"
+256,95.47,,solo accuratezza (dim_sweep.py)
+128,94.53,542,"argmin_verifica.py (12 bit, 146 PBS)"
+64,84.87,586,"argmin_dim.py (11 bit, 183 PBS)"

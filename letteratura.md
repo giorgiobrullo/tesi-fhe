@@ -20,7 +20,7 @@ affronta direttamente il problema dell'argmin/top-k cifrato.
 
 ## 2. Gestione della selezione del match (argmax/argmin)
 Il pattern dominante tra i sistemi veloci consiste nell'evitare il calcolo dell'argmax esatto
-lato server: la linea TFHE (Zuber-Chakraborty, Azogagh) e questo stesso lavoro lo
+lato server: la linea TFHE (Chakraborty-Zuber, Azogagh) e questo stesso lavoro lo
 calcolano, ma a costo elevato. Si individuano quattro strategie di aggiramento.
 
 1. Scaricarlo sul client: il server calcola tutti gli score cifrati e il client li decifra
@@ -57,8 +57,9 @@ Template protection HE con architettura a due server: il Local Server detiene il
 chiave pubblica e calcola gli inner-product cifrati, mentre il Key Server detiene la sola
 secret key, decifra gli score ed esegue l'argmax in chiaro. La velocità viene da una
 trasformazione ternaria del template che rende il prodotto interno di sole addizioni, più un
-encoding che sfrutta il packing. Elabora 1 M template sotto il secondo (126 ms nella
-configurazione più veloce, fino a 753 ms; overhead 2× → 12× secondo l'accuratezza).
+encoding che sfrutta il packing. Elabora 1 M template sotto il secondo con la variante CKKS
+(126 ms nella configurazione più veloce, fino a 753 ms; overhead ~2× → ~12× secondo
+l'accuratezza; la variante Paillier resta nell'ordine dei secondi).
 
 **Blind-Match**, Choi et al., CIKM 2024. <https://arxiv.org/abs/2408.06167>
 CKKS (Lattigo). Calcola la cosine similarity con feature-splitting e packing SIMD; il server
@@ -75,11 +76,12 @@ argmax: il server ritorna la decisione o gli indici senza esporre gli score. Rag
 **HERS**, Engelsma, Jain, Boddeti, T-BIOM 2022. <https://arxiv.org/abs/2003.12197>
 Basato su BFV/FV (SEAL) anziché CKKS. Poiché max e argmax non sono supportati, il server
 calcola gli score cifrati e li rimanda tutti al client, che decifra ed esegue l'argmax
-(decifrare 100 M score richiede meno di 1 s e 100 MB). Elabora 100 M template in 500 s, con
+(decifrare 100 M score richiede meno di 1 s e 100 MB). Elabora 100 M template in ~500 s
+(dato dell'abstract; la misura puntuale nel corpo è 740 s per 100 M × 32-dim su 10 core), con
 accuratezza entro ~2% del chiaro. Gli autori dichiarano l'argmax in CKKS "computationally too
 prohibitive / future research". La riduzione di dimensionalità DeepMDS++ è riusabile.
 
-**GROTE**, Ibarrondo, Chabanne, Despiegel, Önen, CODASPY 2023. <https://www.eurecom.fr/en/publication/7213>
+**GROTE**, Ibarrondo, Chabanne, Despiegel, Önen, CODASPY 2023. <https://hal.science/hal-04000209>
 CKKS (Pyfhel+SEAL). Adotta una strategia di group testing che riduce i confronti non-lineari
 da K a 2√K (il vettore degli score è disposto in una matrice 2D e il massimo è approssimato
 con la α-norma); l'indice viene ricostruito con una somma lineare di vettori-indice. L'argmax
@@ -98,16 +100,18 @@ Ibrido BFV + MPC (secret sharing e secure comparison). Ritorna un solo bit (la p
 di un volto sopra soglia), senza che il client apprenda gli score né il numero di volti
 simili. Assume Cloud Server e Verifier semi-honest non collusi (MPC a due parti), più un Key
 Generator fidato. Scala fino a 100 M vettori,
-con TAR@FAR 98,7% (LFW).
+con TAR@FAR ~98,7% (LFW; la tabella di accuratezza è solo nella versione Springer, non
+verificabile sull'arXiv: da confermare prima di citarlo in tesi).
 
 **CryptoFace**, Ao, Boddeti, CVPR 2025. <https://arxiv.org/abs/2509.00332>
 CKKS full-FHE, con anche la CNN valutata in cifrato tramite bootstrapping. La verifica 1:1 è
 score−soglia, col client che decifra il segno del risultato e decide; l'1:N è dato come
 estensione naturale (nessun argmax lato server, il ranking ricade sul client che ha la chiave).
-Ottiene LFW fino a 99,18% (verifica) e rank-1 92,19% su 1:128 closed-set, con latenza di ~22-24
+Ottiene LFW 98,87% (verifica) col config principale (CryptoFaceNet4, input 64×64), fino a
+99,18% con la variante a 96×96 (Net9), e rank-1 92,19% su 1:128 closed-set, con latenza di ~22-24
 minuti per query (inclusa l'estrazione feature cifrata). Anche qui l'argmax non è sul server.
 
-**Blind Counting Sort / Blind Top-k**, Azogagh et al., PoPETs 2025. <https://eprint.iacr.org/2024/1894>
+**Blind Counting Sort / Blind Top-k** (dal paper "A non comparison oblivious sort and its application to k-NN"), Azogagh et al., PoPETs 2025. <https://eprint.iacr.org/2024/1894>
 TFHE (tfhe-rs e RevoLUT). Propone il primo sort cifrato senza confronti (counting sort via
 LUT) e, su di esso, un top-k a torneo per il k-NN. Impiega la distanza simmetrica
 ‖f‖²−2⟨f,m⟩+‖m‖². Sul k-NN MNIST ottiene ~2,4 s (k=3, d=40, 4 thread), dimostrando la
@@ -148,7 +152,7 @@ confronto/argmax approssimato in CKKS, su cui poggiano GROTE (max via α-norma) 
 ## 6. Fonti
 - HERS, T-BIOM 2022, <https://arxiv.org/abs/2003.12197>
 - Blind-Match, CIKM 2024, <https://arxiv.org/abs/2408.06167>
-- GROTE, CODASPY 2023, <https://www.eurecom.fr/en/publication/7213>
+- GROTE, CODASPY 2023, <https://hal.science/hal-04000209> (anche <https://www.eurecom.fr/en/publication/7213>)
 - Mazzone, Ranking/Sorting under CKKS, USENIX Sec 2025, <https://arxiv.org/abs/2412.15126>
 - CryptoFace, CVPR 2025, <https://arxiv.org/abs/2509.00332>
 - Lightweight/BSGS-Diagonal (HyDia), 2026, <https://arxiv.org/abs/2604.00546>
@@ -158,6 +162,7 @@ confronto/argmax approssimato in CKKS, su cui poggiano GROTE (max via α-norma) 
 - Cheon et al., Comparison (optimal complexity), ASIACRYPT 2020, <https://eprint.iacr.org/2019/1234>
 - Lee, Lee, No, Kim, Minimax sign-poly per confronto omomorfico, 2020, <https://eprint.iacr.org/2020/834>
 - Blind Counting Sort / private k-NN, PoPETs 2025, <https://eprint.iacr.org/2024/1894>
+- Chakraborty & Zuber, Efficient and Accurate Homomorphic Comparisons (argmin TFHE a torneo), WAHC 2022, <https://eprint.iacr.org/2022/622>
 - RevoLUT, 2024, <https://eprint.iacr.org/2024/1935>
 - k-NN simmetrico TFHE (Ameur, Aziz, Audigier, Bouzefrane), PSD 2022, <https://doi.org/10.1007/978-3-031-13945-1_11>
 - Blind-Touch, AAAI 2024, <https://ojs.aaai.org/index.php/AAAI/article/view/30200>

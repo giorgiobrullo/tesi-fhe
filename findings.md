@@ -487,7 +487,9 @@ Tre risposte:
    quello *grande* sì, e il modello profondo si guadagna il suo posto solo quando il test
    è abbastanza duro.
 
-3. DigiFace (sintetico) è più duro di VGGFace2 (reale) per la CNN, controintuitivo
+3. DigiFace (sintetico) è più duro di VGGFace2 (reale) per la CNN a galleria grande
+   (a 50 iscritti i due sono pari, ResNet50 97,2 vs 97,0%; il divario si apre scalando),
+   controintuitivo
    ma logico: i modelli sono addestrati su volti reali (WebFace600K), quindi il sintetico
    è fuori-distribuzione e fa da stress test. È il caveat di onestà sui numeri alti:
    VGGFace2 è *in-distribuzione*; gallerie enormi (migliaia), condizioni out-of-domain e
@@ -498,6 +500,10 @@ Tre risposte:
 Spinto oltre i 500 iscritti (richiesta di scalare ancora). Scaricata la parte DigiFace
 a 33.333 identità (×5 img), sweep fino a 8000 iscritti (sintetico = stress test
 out-of-distribution, F16). Figura `benchmark/results/scaling_grande.png`.
+
+Nota: il CSV e la figura `scaling_grande` sono stati poi riscritti in F29 col dataset intero
+(99.999 identità, 3 modelli), quindi i numeri qui sotto sono la misura parziale storica di questa
+iterazione e non combaciano più col CSV attuale. Per i numeri validi vedi F29.
 
 | iscritti | MobileFaceNet | ResNet50 |
 |---|---|---|
@@ -632,10 +638,12 @@ Cosa abbiamo provato (e perché non basta):
    stessa prende in input il valore a 18 bit, cioè una tabella su 18 bit, quindi non compila. Qualunque
    manipolazione *a valle* del punteggio largo è bloccata dallo stesso limite.
 3. Comprimere l'embedding (PCA a meno dimensioni + meno bit), per stringere i
-   punteggi alla sorgente. È l'unica leva che funziona, ma per rendere l'argmin
-   *veloce* (secondi) serve comprimere così tanto (≤16-32 dim, 2-3 bit) da distruggere
-   l'accuratezza che la CNN ci aveva dato. Più che un'ottimizzazione è un trade-off:
-   o accuratezza piena e argmin intrattabile, o argmin veloce e riconoscimento a pezzi.
+   punteggi alla sorgente. Sembrava la leva, ma non lo è (corretto in F31): misurato dopo, l'argmin
+   non scende con la dimensione (455/540/586 s a 512/128/64) e a tenere il confronto sotto i 16 bit
+   basta la quantizzazione a 4 bit, non la riduzione di dimensione. Resta vero che comprimere a
+   poche dimensioni o a 2-3 bit distrugge l'accuratezza della CNN. Più che un'ottimizzazione è
+   quindi un vicolo cieco: la compressione non rende l'argmin veloce e intanto rovina il
+   riconoscimento.
 
 Tirando le somme, onestamente, non esiste un calo progressivo coi miglioramenti: l'argmin
 cifrato sul server non scala agli embedding CNN ad alta dimensione, perché è un limite
@@ -668,7 +676,7 @@ client-argmin (funziona, è privato verso il server, ~100 ms con ResNet100 al ~9
 trattare il server-argmin come hardening per il caso untrusted-client (fattibile solo a
 dimensione ridotta, vedi F22).
 
-## 🔴 F22 — Comprimere l'embedding: a 128 dim quasi gratis (la leva per l'FHE)
+## 🔴 F22 — Comprimere l'embedding: a 128 dim quasi gratis in accuratezza (ma non è una leva FHE, corretto in F31)
 Per stringere i punteggi (e avvicinare l'argmin cifrato al fattibile, F20) si riduce la
 dimensione dell'embedding con PCA. Misurato il trade-off accuratezza↔dimensione
 (`scaling_dimensione.py`, 1000 iscritti reali, figura `scaling_dimensione.png`):
@@ -699,6 +707,14 @@ ma è la leva per rendere l'*argmin* cifrato fattibile (F20/F22). Nel quadro com
 dimensione 128 è il punto dolce, accuratezza ~94% (ResNet50), match ~63 ms, e punteggi
 abbastanza stretti da avvicinare l'argmin privato al fattibile.
 
+Correzione (F31, misura successiva). La parte accuratezza↔dimensione di questo finding regge (a
+128 dim il riconoscimento è quasi intatto). La parte FHE no. Misurando l'argmin cifrato a
+512/128/64 dim su embedding reali, il costo non scende con la dimensione (~457/540/590 s a N=8,
+piatto o peggio), quindi 128 dim non è la leva per l'FHE. A far compilare l'argmin è la
+quantizzazione a 4 bit (limite di 16 bit del confronto), non i 128 dim: 512 dim compila lo stesso,
+a ~457 s. La compressione aiuta il match (prodotto scalare, 152→63 ms), che è già gratis, non
+l'argmin, che è la selezione.
+
 ## 🔴 F23 — Ottimizzare l'argmin server: niente hardware-lever, e la compressione aiuta al margine
 Tentativo di "ottimizzare fortissimo" l'argmin cifrato sul server, da cui emergono due fatti duri.
 
@@ -717,6 +733,12 @@ GPU nemmeno (Apple Silicon, no CUDA). Quindi l'unica leva è comprimere l'embedd
 
 Dove l'accuratezza è usabile (≥64 dim) l'argmin è intrattabile (tempo *o* memoria);
 dove è veloce (16 dim) l'accuratezza è inutile, e così non c'è un operating point buono.
+
+Correzione (F31/F33). Questa tabella è pre-CHUNKED: con la strategia CHUNKED più la quantizzazione
+a 4 bit il 512 dim compila e gira a ~455 s (F33), non è intrattabile. E comprimere non abbassa il
+costo, l'argmin è ~indipendente dalla dimensione (455/540/586 s a 512/128/64), quindi "l'unica leva
+è comprimere" non regge: la dimensione non è una leva FHE, e il 42 s a 16 dim era il regime a ~9
+bit su embedding degeneri, non un punto operativo reale.
 
 Una compressione migliore aiuta al margine senza rompere la frontiera. Abbiamo usato la PCA;
 provata anche la LDA (supervisionata, `compressione.py`, figura `compressione.png`):
@@ -744,7 +766,7 @@ confronto). Si attiva con
 `Configuration(comparison_strategy_preference=[CHUNKED], min_max_strategy_preference=[CHUNKED])`.
 
 Il limite dei 16 bit sul confronto resta anche con CHUNKED (*"only up to 16-bit comparison
-operations are supported"*). Ma combinandolo con una dimensione ridotta, così che i punteggi
+operations are supported"*). Ma combinandolo con la quantizzazione a 4 bit, così che i punteggi
 stiano sotto i 16 bit, l'argmin sul server finalmente compila e gira, dove con la strategia di
 default esplodeva la RAM (F23):
 
@@ -757,6 +779,12 @@ Il limite, quindi, era la strategia sbagliata e non un limite della FHE, perché
 sul server funziona, a circa 90-93% di accuratezza. Resta il problema del tempo: circa due
 minuti su CPU per N=8, perché ogni confronto CHUNKED costa una quindicina di secondi. Non sono
 i 2-3 secondi che vorremmo, ma il sistema funziona, ed è privato anche verso il client.
+
+Correzione (F31/F33). Quei 123-130 s sono nel regime a ~9 bit (embedding sintetici, quantizzazione
+stretta), non la config reale. Sugli embedding reali a 512 dim e 4 bit l'argmin a N=8 è ~455 s
+(F33), e ridurre a 128 dim non lo abbassa (~540 s, F31): il tempo non dipende dalla dimensione. E
+l'argmin a 512 dim compila senza comprimere, quindi la compressione non era necessaria neanche per
+compilare: a tenere il confronto sotto i 16 bit è la quantizzazione a 4 bit, non la dimensione.
 
 A questo punto l'ipotesi naturale è la GPU: Concrete ha un backend CUDA, e il PBS su GPU
 dovrebbe essere 50-100 volte più veloce, quindi i due minuti diventerebbero secondi. Non
@@ -833,7 +861,7 @@ match?" (CryptoMask) o i soli indici senza score (BSGS). Lo approssimano sul ser
 ~13 s). Oppure usano due server, dove un Key Server decifra gli score (IDFace, 1M sotto il secondo).
 
 Gli ordini di grandezza del related-work sono questi: IDFace 1M sotto il secondo (CKKS, due server); Blind-Match LFW
-99,63% in 0,74 s (CKKS); BSGS 99,99% su 44K, sub-secondo su GPU (CKKS); HERS 100 M in 500 s
+99,63% in 0,74 s (CKKS); BSGS 99,99% su 44K, sub-secondo su GPU (CKKS); HERS 100 M in ~500-740 s
 (BFV); GROTE 14,6 s a K=16.384 (CKKS); Mazzone argmin di 128 in 12,8 s (CKKS); Blind Counting
 Sort k-NN in ~2,4 s (TFHE).
 
@@ -1010,18 +1038,35 @@ Sul sintetico AdaFace non stacca. L'ho aggiunto a tutto lo sweep DigiFace fino a
 quindi la figura `scaling_grande.png` ora ha quattro curve. AdaFace traccia vicino ai due
 modelli profondi, un soffio sopra a galleria piccola e media (93,9% a 250 contro 92,3% di
 ResNet50, 78,3% contro 77,4% a 8000) e converge al fondo scala (66,8% contro 67,1% a 48000).
-Mediando su 8 seed (per non confondere il vantaggio col rumore di seed, che a N piccolo è
-±1,5 punti) il margine su ResNet50 è ~+0,6 punti, costante e mai negativo ai size grandi a
-bassa varianza (4000, 8000): satura insieme agli altri. Conferma F29, sul sintetico la
-ricetta di addestramento, come la profondità, cambia poco.
+Il margine di AdaFace su ResNet50 è piccolo ed è a seed singolo (`scaling_grande.csv`): ~+1 punto a
+galleria media (93,9 contro 92,3% a 250), che si annulla al fondo scala. È dentro il rumore di seed,
+~±1,5 punti a N piccolo, e sul sintetico non abbiamo salvato un per-seed come per il reale, quindi
+qui non c'è un IC. Conferma F29, sul sintetico la ricetta di addestramento, come la profondità,
+cambia poco.
 
-Sul reale (VGGFace2, estende F19 a quattro modelli):
+Sul reale (VGGFace2, estende F19 a quattro modelli). La tabella l'abbiamo rimisurata con protocollo
+dichiarato e media su 15 seed con IC95, per non appoggiarci al seme singolo dei finding precedenti:
+open-set 1:N, metà identità ignote, metà foto in galleria, 6 immagini per identità (tutte quelle nel
+nostro estratto, 8.631 identità × 6). Codice `benchmark/rimisura_1n.py`, dati `rimisura_1n.csv`.
+DIR@FPIR=1% (media ± IC95):
 
 | iscritti | MobileFaceNet | ResNet50 | ResNet100 | AdaFace |
 |---|---|---|---|---|
-| 250 | 93,3% | 96,3% | 96,7% | 96,3% |
-| 1000 | 90,2% | 95,8% | 96,5% | 96,0% |
-| 4300 | 86,0% | 94,2% | 95,5% | 95,0% |
+| 50 | 94,6 ±0,7 | 96,4 ±0,7 | 96,7 ±0,7 | 96,6 ±0,8 |
+| 250 | 93,0 ±0,6 | 96,1 ±0,4 | 96,4 ±0,3 | 96,3 ±0,3 |
+| 1000 | 90,1 ±0,3 | 95,3 ±0,1 | 95,9 ±0,1 | 95,6 ±0,1 |
+| 2000 | 88,4 ±0,2 | 95,0 ±0,1 | 95,8 ±0,1 | 95,4 ±0,1 |
+| 4300 | 85,9 ±0,2 | 94,1 ±0,1 | 95,4 ±0,1 | 94,8 ±0,1 |
+
+Con gli IC in mano l'ordinamento a scala è netto e significativo: ResNet100 > AdaFace > ResNet50 >
+MobileFaceNet, con IC a ±0,1 a galleria grande. A galleria piccola (≤250) i tre modelli profondi
+hanno IC sovrapposti, quindi le differenze di 1-3 punti che i finding a seed singolo (F13-F19)
+riportavano tra loro erano dentro il rumore: vale solo che i profondi battono MobileFaceNet (~2
+punti, sempre significativo) e che ResNet100 è in testa a scala. Questa tabella sostituisce i valori
+puntuali a seed singolo di F13-F19. Il varco a 50 iscritti è 96,7 ±0,7% con ResNet100 e 94,6 ±0,7%
+con MobileFaceNet; il numero dipende dal protocollo (con 6 foto/id invece di 5 si guadagnano ~1
+punto su MobileFaceNet e ~0,4 sui profondi, e i "96%" a seed singolo di F13 usavano fino a 20 foto/id
+dal dataset grezzo, un filo ottimistici e non dichiarati).
 
 AdaFace pareggia ResNet100 sui piccoli N e gli scende appena sotto a scala: a 4000-4300 il
 margine appaiato su 20 seed è −0,52 punti (IC95 ±0,04, negativo in 20 seed su 20) contro
@@ -1077,10 +1122,11 @@ Dopo F26 e F27 abbiamo voluto ottimizzare ancora l'argmin sul server e leggere b
 letteratura su come si fa l'argmin cifrato veloce. Il risultato corregge una cosa che avevamo
 detto sbrigativamente (F26: "il limite è TFHE").
 
-Secondo la letteratura, il TFHE può fare l'argmin molto più veloce di noi. Zuber e
-Chakraborty (WAHC 2022, eprint 2022/622) fanno un argmin a torneo su 64 interi a 8 bit in 10,8 s
-single-thread su un laptop del 2016, cioè ~0,17 s per confronto, con un bootstrap che emette
-minimo e indice insieme in ~2 PBS. Azogagh et al. (Blind Counting Sort, PoPETs 2025) fanno
+Secondo la letteratura, il TFHE può fare l'argmin molto più veloce di noi. Chakraborty e
+Zuber (WAHC 2022, eprint 2022/622) fanno un argmin a torneo con un bootstrap che emette
+minimo e indice insieme in ~2 PBS, a ~0,17-0,18 s per confronto single-thread su un laptop
+del 2016; il paper misura tornei su 128 elementi (~10-24 s secondo la config), e i ~10,8 s
+su 64 interi a 8 bit che citiamo sono un'estrapolazione dal loro costo per confronto. Azogagh et al. (Blind Counting Sort, PoPETs 2025) fanno
 argmin e sort senza confronti, via counting-sort su LUT (k-NN ~2,4 s a piccola scala). Ma
 entrambi sono scritti a mano sulle primitive TFHE a basso livello (Chakraborty sulla libreria
 TFHE originale in C/C++, Azogagh su tfhe-rs), non in Concrete-python. Per la scala vera
@@ -1091,11 +1137,19 @@ Cosa abbiamo provato su Concrete, e i verdetti:
   quantizzazione a 3 bit è quasi gratis: DIR@FPIR 86,2% contro 86,7% del float; a 2 bit crolla
   a 61%. Ma non dà velocità: l'argmin a N=8 resta ~135-180 s per q = 2, 3, 4, persino
   non-monotòno. E a 512 dimensioni la quantizzazione a ≤4 bit è obbligatoria per compilare,
-  perché il confronto cifrato di Concrete è limitato a 16 bit e i punteggi a 6 bit lo superano (circa 17).
-- Riduzione di dimensione. Comprime i punteggi (meno bit) ma uccide l'accuratezza 1:N: da 512
-  a 64 dim il DIR scende da 86% a 68%. È la dimensione, non i bit per elemento, a guidare sia
-  il costo FHE (larghezza del punteggio) sia l'accuratezza, quindi non c'è un punto operativo
-  veloce e accurato insieme.
+  perché il confronto cifrato di Concrete è limitato a 16 bit e i punteggi a 6 bit lo superano (circa 18, F20).
+- Riduzione di dimensione. Non abbassa il costo dell'argmin, al contrario di quello che
+  pensavamo. Misurato su embedding reali (N=8, 4 bit, inputset dai probe veri): a 512 dim l'argmin
+  è ~457 s, a 128 dim ~470-540 s, a 64 dim ~590 s, cioè piatto se non peggio. Comprimendo, i bit del
+  punteggio calano (14→11) ma il compilatore emette più PBS (95→146→183), e il totale non scende. Il
+  costo dell'argmin sono gli N−1 confronti, non la dimensione; la dimensione vive nel prodotto
+  scalare, che è gratis (F33). In più comprimere costa accuratezza sul reale (DIR@FPIR: 512 = 95,5%,
+  128 = 94,5%, 64 = 84,9%). La dimensione quindi non è una leva per il costo FHE. Lo sarebbe la
+  larghezza del punteggio, che però la compressione non stringe abbastanza; la stringe il ternario
+  (valori ±1, ~7-8 bit) senza toccare le 512 dimensioni, e per questo mantiene l'accuratezza. Questo
+  corregge la lettura di F20/F22/F23/F24, dove la compressione sembrava la leva per rendere l'argmin
+  fattibile: a renderlo compilabile è la quantizzazione a 4 bit (limite di 16 bit del confronto), non
+  la riduzione di dimensione.
 - Strategie di confronto e min (ONE_TLU_PROMOTED, THREE_TLU_CASTED). Più lente del CHUNKED di
   default (28,9 s contro 20,9 s a N=8) o crashano, per un bug interno di Concrete su un assert
   di bit-width dentro `np.minimum`.
@@ -1106,8 +1160,9 @@ Alcune le avevamo già fatte prima: torneo 2,6× (F27), soglia (F28), GPU 9× pi
 
 Il numero che spiega tutto è questo: il nostro argmin sequenziale su 8 elementi compila in ~210
 bootstrap (PBS), ~30 per confronto, e gira in ~180 s, cioè ~0,85 s per bootstrap (misurato
-ricompilando il circuito e leggendo `programmable_bootstrap_count`). Chakraborty fa lo stesso
-su 8 elementi con ~14 PBS a ~0,09 s l'uno, ~1,2 s in tutto. Il divario di ~150× viene da due
+ricompilando il circuito e leggendo `programmable_bootstrap_count`). Chakraborty-Zuber fanno lo
+stesso su 8 elementi con ~14 PBS a ~0,09 s l'uno, ~1,2 s in tutto (stima dai loro costi per
+PBS: il paper misura a 128 elementi). Il divario di ~150× viene da due
 cose insieme: facciamo ~15× più bootstrap, e ognuno è ~10× più lento.
 
 Il perché sta nel compilatore. Concrete-python compila una funzione Python qualsiasi in automatico: scriviamo
@@ -1119,11 +1174,31 @@ parametri. Quella leva in Concrete-python non c'è: decide il compilatore come i
 e `min`, non noi. Le nostre manopole (strategia, quantizzazione, rounding) stanno sopra questo
 collo di bottiglia, quindi non possono chiuderlo.
 
+Scendendo di un livello si vede cosa fa davvero il compilatore, e perché comprimere non aiuta. La
+strategia CHUNKED spezza ogni confronto in chunk larghi metà del valore (nel sorgente
+`context.py`, `chunk_size = floor(w/2)` in `best_chunk_ranges`), non in tanti chunk da pochi bit.
+Così un confronto sta sempre in 2 chunk se la larghezza w del punteggio è pari, 3 se è dispari (il
+bit spaiato forza un terzo chunk). Il numero di chunk, e quindi di PBS, non dipende dalla
+magnitudine: un confronto a 16 bit e uno a 4 bit costano uguale, 7 PBS misurati ciascuno (un min
+15). È questa la ragione per cui stringere i punteggi non compra meno bootstrap. In più i bit
+dispari costano ~45% in più. Questi conteggi vengono da un argmin isolato su punteggi indipendenti
+(a N=8: ~150 PBS a larghezza pari, 149-153 da 8 a 14 bit; ~215 a dispari, 209-217 da 9 a 15 bit).
+Il nostro argmin reale compila a un conteggio più basso, perché il circuito deriva gli N punteggi
+da un solo probe cifrato, ma segue la stessa logica e comunque non risparmia comprimendo: 95 PBS a
+512 dim (14 bit, pari), 146 a 128 (12 bit, pari), 183 a 64 (11 bit, dispari). Il 64-dim reale,
+oltre a non risparmiare bootstrap, cadeva su una larghezza dispari, il caso peggiore. Corollario pratico e
+contro-intuitivo: conviene arrotondare la larghezza dei punteggi a un numero pari, perché
+aggiungere un bit per renderla pari fa scendere i PBS (da 13 a 14 bit scendono da ~209 a ~153,
+−27%) invece che salire. Spiega anche la variabilità che avevamo visto: lo stesso argmin a 512 dim
+usciva a volte a 13 bit (dispari, 108 PBS, ~455 s) a volte a 14 (pari, 95 PBS, ~457 s) a seconda
+dell'inputset, e con essa cambiavano PBS e tempo. È il conteggio che sta dietro i 108 PBS di F33.
+
 La conclusione corregge F26 e F27. Il limite che abbiamo misurato non è il limite inferiore di TFHE,
 è il limite inferiore di Concrete-python: la sua API ad alto livello, non lo schema. La frase giusta
 per la tesi è che il match 1:N privato in Concrete-python è classe-minuti, mentre lo stesso in
 TFHE scritto a basso livello (C/C++ originale o tfhe-rs) è classe-secondi a questa scala
-(Chakraborty: ~1 s a N=8, ~11 s a N=64), e in CKKS sub-secondo a un milione (IDFace); portarlo
+(Chakraborty-Zuber: ~1 s a N=8, ~11 s a N=64, stime dal loro costo per confronto), e in CKKS
+sub-secondo a un milione (IDFace); portarlo
 lì è ingegneria crittografica fuori dallo scopo di questa tesi. Le sole
 vie viste e non provate restano la delta-matrix one-hot (O(N²) confronti paralleli, serve il
 dataflow di Linux, comunque fattore costante) e `fhe.multivariate` (fonde compare e select ma
@@ -1135,7 +1210,7 @@ un piccolo accorgimento sul linker).
 
 ## 🔵 F32 — Il 100× misurato: lo stesso argmin in tfhe-rs sulla stessa macchina
 F31 conclude che il limite di velocità è l'API di Concrete-python, non lo schema TFHE né la
-macchina, ma lo deduceva da numeri di paper diversi (Chakraborty su un laptop del 2016).
+macchina, ma lo deduceva da numeri di paper diversi (Chakraborty-Zuber su un laptop del 2016).
 L'abbiamo misurato direttamente: lo stesso match 1:N cifrato (prodotto scalare più argmin
 sequenziale) scritto in tfhe-rs, la libreria TFHE nativa in Rust, alla stessa config del nostro
 circuito Concrete (DIM=64, valori in [-2,2], punteggi signed via FheInt16, che ha più bit dei
@@ -1153,7 +1228,7 @@ Sull'argmin il divario è netto e confermato:
 
 A N=8 l'argmin in tfhe-rs è 1,78 s contro i 180 s di Concrete, ~100× a parità di macchina e
 schema, tutto corretto. Il valore non cambia coi bit (a FheUint8 era 1,79 s) e combacia con
-Chakraborty (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
+le stime da Chakraborty-Zuber (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
 ~180 s non sono colpa dell'hardware né di TFHE, ma di come Concrete-python compila in automatico
 la riduzione (F31: ~210 PBS grandi contro i ~14 piccoli di un circuito a basso livello). E non
 serve nemmeno scrivere il bootstrap a mano: questi 1,78 s vengono già dall'API ad alto livello
@@ -1171,7 +1246,7 @@ Concrete (100 contro 180 s), non 100×.
 La conclusione per la tesi, ora misurata e più onesta, è che il ~100× vale per l'argmin, la
 primitiva non lineare che è il vero collo di bottiglia algoritmico (quella che la letteratura
 evita), e a parità di config. Ma "basta riscrivere in tfhe-rs e si va 100× end-to-end" non
-regge: l'alto livello di tfhe-rs paga il lineare. Il sistema davvero veloce (Chakraborty) scrive
+regge: l'alto livello di tfhe-rs paga il lineare. Il sistema davvero veloce (Chakraborty-Zuber) scrive
 a basso livello, dove sia le somme (leveled, in LWE) sia il confronto (un bootstrap) sono
 economiche. Portarlo lì è ingegneria crittografica fuori dallo scopo di questa tesi; per la
 scala resta CKKS col packing SIMD (IDFace, 1M sotto il secondo).
@@ -1199,9 +1274,14 @@ sbagliata che avevamo dato al varco in F28: i suoi 12,5 s sono tutti negli 8 con
 prodotto scalare.
 
 L'intero costo della privacy è quindi la selezione cifrata, cioè i confronti. E il costo per
-confronto è dominato dalla precisione del punteggio, non dalla dimensione: un PBS a 9 bit (config
-64-dim) è ~0,85 s, a 13-14 bit (config 512-dim) è ~1,5-4 s. Per questo l'argmin reale a 512
-dimensioni (455 s, 108 PBS) è più lento dei 180 s del 64-dim pur avendo meno PBS.
+confronto è dominato dalla precisione del punteggio, non dalla dimensione: un PBS a 9 bit è
+~0,85 s, a 13-14 bit è ~1,5-4 s. Attenzione però a non leggerlo come "comprimere la dimensione
+abbassa il costo". Il 64-dim a ~180 s è una misura sintetica, dove i punteggi cadono a 9 bit per
+via della distribuzione fortunata degli embedding sintetici. Sugli stessi embedding reali ridotti
+con PCA a 64 dim i punteggi sono a 11 bit e l'argmin sale a ~586 s, cioè più lento del 512 dim
+reale (457 s). Apples-to-apples (stessi dati, stessa macchina) l'argmin non scende con la
+dimensione: 512 = 457 s, 128 = ~540 s, 64 = ~586 s. La precisione per-confronto conta, ma
+comprimere la dimensione non la stringe abbastanza da aiutare, e intanto costa accuratezza (F31).
 
 Per la tesi tutto il problema di un riconoscimento 1:N privato e veloce si riduce a una sola
 operazione, la selezione cifrata (argmin o soglia). Il riconoscimento (l'embedding) e il

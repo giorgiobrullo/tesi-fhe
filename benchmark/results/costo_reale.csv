@@ -1,0 +1,7 @@
+tecnica,N,dim,run_s,note
+argmin,4,512,59.5,argmin_512.py
+argmin,8,512,455.0,argmin_512.py
+soglia,8,512,12.5,soglia_reale.py
+soglia,16,512,15.1,soglia_scala
+soglia,32,512,29.7,soglia_scala
+soglia,64,512,91.7,soglia_reale.py

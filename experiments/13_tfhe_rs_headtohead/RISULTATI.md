@@ -30,8 +30,9 @@ Pipeline intero in tfhe-rs (prodotto scalare più argmin):
    corretto. Quindi i ~180 s di Concrete a N=8 non sono colpa dell'hardware né di TFHE, ma di
    come Concrete-python compila in automatico la riduzione.
 2. Basta l'alto livello di un'altra libreria: gli 1,78 s vengono dall'API `FheInt16`/`min`/`lt`,
-   non da primitive tarate a mano. I numeri combaciano con Chakraborty–Zuber (N=8 ~1,2 s, N=64
-   ~10,8 s, eprint 2022/622), quindi la letteratura era riproducibile.
+   non da primitive tarate a mano. I numeri combaciano con le stime da Chakraborty–Zuber (N=8
+   ~1,2 s, N=64 ~10,8 s, estrapolate dal loro costo per confronto, eprint 2022/622), quindi la
+   letteratura era riproducibile.
 3. Ma il pipeline intero racconta una cosa in più: in tfhe-rs ad alto livello il prodotto scalare
    è carissimo (a N=8 il dot+argmin è 100,6 s, di cui l'argmin 1,78 s, quindi il dot product ~99
    s), perché le somme intere propagano i riporti via bootstrap. In Concrete è l'opposto, il
