@@ -9,6 +9,7 @@ import numpy as np
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from core import dataset                                  # noqa: E402
+from core.metriche import dir_at_fpir                     # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 A = np.load(OUT / "_emb_reale.npz")       # mfn, rn (resnet50), y
@@ -18,19 +19,6 @@ y = A["y"]
 EMB = {"mobilefacenet": A["mfn"], "resnet50": A["rn"], "resnet100": B["rn100"], "adaface": B["ada"]}
 ISCRITTI = [4000, 4300]
 SEEDS = list(range(20))
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    gnorm = np.einsum("ij,ij->i", Eg, Eg)
-    def nn(P):
-        sn = np.empty(len(P)); idx = np.empty(len(P), int)
-        for i in range(0, len(P), 1024):
-            Pb = P[i:i + 1024]
-            d = np.einsum("ij,ij->i", Pb, Pb)[:, None] - 2.0 * (Pb @ Eg.T) + gnorm[None, :]
-            j = d.argmin(1); idx[i:i + len(Pb)] = j; sn[i:i + len(Pb)] = d[np.arange(len(Pb)), j]
-        return sn, idx
-    sn, k = nn(Epn); si, _ = nn(Epi)
-    return float(np.mean((yg[k] == ypn) & (sn <= np.quantile(si, fpir))))
 
 
 ids = np.unique(y)

@@ -12,6 +12,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT))
 from core import dataset  # noqa: E402
+from core.metriche import dir_at_fpir  # noqa: E402
 
 A = np.load(ROOT / "benchmark" / "results" / "_emb_reale.npz")
 Bx = np.load(ROOT / "benchmark" / "results" / "_emb_reale_extra.npz")
@@ -26,20 +27,6 @@ MODELS = {"MobileFaceNet": l2(A["mfn"]), "ResNet50": l2(A["rn"]),
           "ResNet100": l2(Bx["rn100"]), "AdaFace": l2(Bx["ada"])}
 IDS_ALL = np.unique(y)
 ID2IDX = {pid: np.where(y == pid)[0] for pid in IDS_ALL}
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    g = np.einsum("ij,ij->i", Eg, Eg)
-
-    def nn(P):
-        sn = np.empty(len(P)); k = np.empty(len(P), int)
-        for i in range(0, len(P), 2048):
-            Pb = P[i:i + 2048]
-            dd = np.einsum("ij,ij->i", Pb, Pb)[:, None] - 2 * (Pb @ Eg.T) + g[None, :]
-            j = dd.argmin(1); k[i:i + len(Pb)] = j; sn[i:i + len(Pb)] = dd[np.arange(len(Pb)), j]
-        return sn, k
-    sn, kk = nn(Epn); si, _ = nn(Epi)
-    return float(np.mean((yg[kk] == ypn) & (sn <= np.quantile(si, fpir))))
 
 
 def scena(N, M, seed):
@@ -58,7 +45,7 @@ def valuta(E, N, M, K):
     for s in range(K):
         idx = scena(N, M, s)
         sp = dataset.split_openset(E[idx], y[idx], 0.5, 0.5, seed=s)
-        ds.append(dir_at_fpir(*sp["galleria"], *sp["probe_noti"], sp["probe_ignoti"][0]))
+        ds.append(dir_at_fpir(*sp["galleria"], *sp["probe_noti"], sp["probe_ignoti"][0], blocco=2048))
     return np.mean(ds), 1.96 * np.std(ds) / np.sqrt(K)
 
 

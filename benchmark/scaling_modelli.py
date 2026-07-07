@@ -32,6 +32,7 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "08_cnn"))
 from core import dataset                               # noqa: E402
+from core.metriche import dir_at_fpir                  # noqa: E402
 import embedding as ec                                 # noqa: E402
 import adaface                                         # noqa: E402
 
@@ -48,24 +49,6 @@ COL = {"MobileFaceNet": "#2a9d8f", "ResNet50": "#e76f51",
 
 def P(*a):
     print(*a, flush=True)
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    # distanza² ai vicini più prossimi via BLAS, a blocchi di probe (vedi scaling_grande)
-    gnorm = np.einsum("ij,ij->i", Eg, Eg)
-
-    def nn_dist(P):
-        sn = np.empty(len(P)); idx = np.empty(len(P), dtype=int)
-        for i in range(0, len(P), 1024):
-            Pb = P[i:i + 1024]
-            d = np.einsum("ij,ij->i", Pb, Pb)[:, None] - 2.0 * (Pb @ Eg.T) + gnorm[None, :]
-            j = d.argmin(1)
-            idx[i:i + len(Pb)] = j; sn[i:i + len(Pb)] = d[np.arange(len(Pb)), j]
-        return sn, idx
-
-    sn, nn = nn_dist(Epn)
-    si, _ = nn_dist(Epi)
-    return float(np.mean((yg[nn] == ypn) & (sn <= np.quantile(si, fpir))))
 
 
 def crops_e_y():

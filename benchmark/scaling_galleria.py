@@ -28,6 +28,7 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "08_cnn"))
 from core import dataset                               # noqa: E402
+from core.metriche import dir_at_fpir                  # noqa: E402
 import embedding as ec                                 # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
@@ -38,15 +39,6 @@ SWEEP = {"DigiFace (sintetico)": [50, 100, 250, 500, 1000],
 
 def P(*a):
     print(*a, flush=True)
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    dn = np.array([np.sum((Eg - q) ** 2, axis=1) for q in Epn])
-    di = np.array([np.sum((Eg - q) ** 2, axis=1) for q in Epi])
-    sn = np.min(dn, 1); nn = np.argmin(dn, 1); si = np.min(di, 1)
-    corretto = yg[nn] == ypn
-    soglia = np.quantile(si, fpir)
-    return float(np.mean(corretto & (sn <= soglia)))
 
 
 def precompute(nome):

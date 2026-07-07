@@ -22,6 +22,7 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from core import dataset                              # noqa: E402
+from core.metriche import dir_at_fpir                 # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 EMB = OUT / "_emb_reale.npz"
@@ -31,14 +32,6 @@ ISCRITTI = 1000
 
 def P(*a):
     print(*a, flush=True)
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    sn = np.empty(len(Epn)); nn = np.empty(len(Epn), dtype=int)
-    for i, q in enumerate(Epn):
-        dd = np.sum((Eg - q) ** 2, axis=1); nn[i] = dd.argmin(); sn[i] = dd[nn[i]]
-    si = np.array([np.min(np.sum((Eg - q) ** 2, axis=1)) for q in Epi])
-    return float(np.mean((yg[nn] == ypn) & (sn <= np.quantile(si, fpir))))
 
 
 def main():

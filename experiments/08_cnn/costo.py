@@ -24,6 +24,7 @@ import numpy as np
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
 from core import dataset, matching, quantize          # noqa: E402
+from core.metriche import dir_at_fpir                  # noqa: E402
 import embedding as ec                                 # noqa: E402  (gradino 08)
 
 
@@ -35,17 +36,6 @@ BITS = 6
 Q_MAX = 2 ** (BITS - 1) - 1
 N_SWEEP = [10, 25, 50]
 OUT = pathlib.Path(__file__).resolve().parent / "results"
-
-
-def dir_at_fpir(featG, yG, featPn, yPn, featPi, fpir=0.01):
-    """DIR@FPIR (euclidea): identifica i noti e rifiuta gli ignoti."""
-    dn = np.array([np.sum((featG - q) ** 2, axis=1) for q in featPn])
-    di = np.array([np.sum((featG - q) ** 2, axis=1) for q in featPi])
-    nn, sn = np.argmin(dn, 1), np.min(dn, 1)
-    si = np.min(di, 1)
-    corretto = yG[nn] == yPn
-    soglia = np.quantile(si, fpir)
-    return float(np.mean(corretto & (sn <= soglia)))
 
 
 def main():

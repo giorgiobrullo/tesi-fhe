@@ -12,25 +12,13 @@ from sklearn.decomposition import PCA
 import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from core.dataset import split_openset                  # noqa: E402
+from core.metriche import dir_at_fpir                   # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 DAT = pathlib.Path(__file__).resolve().parents[1] / "datasets" / "digiface"
 M = 8000 * 5
 z = np.load(DAT / "_emb_5img_resnet50.npz")
 E0, y = z["E"][:M].astype(np.float32), z["y"][:M]
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    g = np.einsum("ij,ij->i", Eg, Eg)
-    def nn(P):
-        sn = np.empty(len(P)); idx = np.empty(len(P), int)
-        for i in range(0, len(P), 1024):
-            Pb = P[i:i + 1024]
-            d = np.einsum("ij,ij->i", Pb, Pb)[:, None] - 2 * (Pb @ Eg.T) + g[None, :]
-            j = d.argmin(1); idx[i:i + len(Pb)] = j; sn[i:i + len(Pb)] = d[np.arange(len(Pb)), j]
-        return sn, idx
-    sn, k = nn(Epn); si, _ = nn(Epi)
-    return float(np.mean((yg[k] == ypn) & (sn <= np.quantile(si, fpir))))
 
 
 def quant(E, q):

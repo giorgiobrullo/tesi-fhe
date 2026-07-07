@@ -40,7 +40,8 @@ ragionamenti in `findings.md`; lo stato dell'arte in `letteratura.md`.
 ## Struttura
 
 - `core/`: il motore condiviso, con i circuiti FHE (`matching.py`), il plumbing client/server,
-  la quantizzazione e il caricamento dataset.
+  la quantizzazione, il caricamento dataset e la metrica 1:N (`metriche.py`, DIR@FPIR): circuiti
+  e metrica hanno un'unica definizione, così prototipo e benchmark non possono divergere.
 - `experiments/NN_…/`: la scaletta numerata, dalle fondamenta FHE (00–04) ai gradini di
   riconoscimento (05 PCA, 06 argmin e soglia, 07 descrittori locali, 08 CNN) fino agli
   approfondimenti sul costo cifrato (09 GPU, 10 struttura dell'argmin, 11 MegaFace, 13

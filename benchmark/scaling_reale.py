@@ -25,6 +25,7 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "08_cnn"))
 from core import dataset                               # noqa: E402
+from core.metriche import dir_at_fpir                  # noqa: E402
 import embedding as ec                                 # noqa: E402
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
@@ -37,15 +38,6 @@ EMB_CACHE = OUT / "_emb_reale.npz"
 
 def P(*a):
     print(*a, flush=True)
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    sn = np.empty(len(Epn)); nn = np.empty(len(Epn), dtype=int)
-    for i, q in enumerate(Epn):
-        dd = np.sum((Eg - q) ** 2, axis=1); nn[i] = dd.argmin(); sn[i] = dd[nn[i]]
-    si = np.array([np.min(np.sum((Eg - q) ** 2, axis=1)) for q in Epi])
-    soglia = np.quantile(si, fpir)
-    return float(np.mean((yg[nn] == ypn) & (sn <= soglia)))
 
 
 def precompute():

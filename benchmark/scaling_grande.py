@@ -27,6 +27,7 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "experiments" / "08_cnn"))
 from core import dataset                               # noqa: E402
+from core.metriche import dir_at_fpir                  # noqa: E402
 import embedding as ec                                 # noqa: E402
 import adaface                                         # noqa: E402
 
@@ -39,27 +40,6 @@ SWEEP_ISCRITTI = [250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 48000]   # tet
 
 def P(*a):
     print(*a, flush=True)
-
-
-def dir_at_fpir(Eg, yg, Epn, ypn, Epi, fpir=0.01):
-    # distanza² ai vicini più prossimi via BLAS (‖p‖² − 2 p·gᵀ + ‖g‖²), a blocchi di
-    # probe per non esplodere in memoria. Identico al calcolo per-probe a meno del rumore
-    # float, ma decine di volte più veloce su gallerie grandi.
-    gnorm = np.einsum("ij,ij->i", Eg, Eg)
-
-    def nn_dist(P):
-        sn = np.empty(len(P)); idx = np.empty(len(P), dtype=int)
-        for i in range(0, len(P), 1024):
-            Pb = P[i:i + 1024]
-            d = np.einsum("ij,ij->i", Pb, Pb)[:, None] - 2.0 * (Pb @ Eg.T) + gnorm[None, :]
-            j = d.argmin(1)
-            idx[i:i + len(Pb)] = j; sn[i:i + len(Pb)] = d[np.arange(len(Pb)), j]
-        return sn, idx
-
-    sn, nn = nn_dist(Epn)
-    si, _ = nn_dist(Epi)
-    soglia = np.quantile(si, fpir)
-    return float(np.mean((yg[nn] == ypn) & (sn <= soglia)))
 
 
 def main():
