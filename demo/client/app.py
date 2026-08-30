@@ -119,25 +119,33 @@ class Frames(BaseModel):
     sintetico: int | None = None
 
 
+def assicura_chiave():
+    """Consegna la chiave di VALUTAZIONE se il server non ce l'ha (anche dopo un suo riavvio).
+    La chiave segreta non lascia mai il client."""
+    stato, _ = srv("/stato")
+    if json.loads(stato)["chiave"]:
+        return False
+    log("mando al server la chiave di VALUTAZIONE (non la segreta), 119 MB...")
+    t0 = time.perf_counter()
+    srv("/chiave", (CHIAVI / "server.key").read_bytes(), timeout=600)
+    log(f"chiave consegnata in {time.perf_counter()-t0:.1f}s")
+    return True
+
+
 @app.on_event("startup")
 def avvio():
     CHIAVI.mkdir(parents=True, exist_ok=True)
     if not (CHIAVI / "client.key").exists():
         log("genero le chiavi (la segreta resta qui, sul client)...")
         log(str(_run("keygen", CHIAVI)))
-    for tent in range(30):
+    for _ in range(30):
         try:
             srv("/stato"); break
         except urllib.error.URLError:
             time.sleep(1)
     else:
         log(f"server non raggiungibile su {SERVER}"); return
-    stato, _ = srv("/stato")
-    if not json.loads(stato)["chiave"]:
-        log("mando al server la chiave di VALUTAZIONE (non la segreta), 119 MB...")
-        t0 = time.perf_counter()
-        srv("/chiave", (CHIAVI / "server.key").read_bytes(), timeout=600)
-        log(f"chiave consegnata in {time.perf_counter()-t0:.1f}s")
+    assicura_chiave()
     STATO["pronto"] = True
     log("pronto.")
 
@@ -162,6 +170,7 @@ def precarica(n: int = 127):
     """Iscrive n identita' SINTETICHE (DigiFace, gia' allineate): i 'colleghi' della galleria.
     Volti generati, non persone reali: la galleria della demo e' license-clean."""
     import imageio.v2 as imageio
+    assicura_chiave()
     cartelle = sorted([p for p in DIGIFACE.iterdir() if p.is_dir()])[:n]
     if not cartelle:
         return JSONResponse({"errore": f"manca {DIGIFACE}"}, status_code=400)
@@ -183,6 +192,7 @@ def iscrivi(req: Frames):
     del server (Mondo 1). Solo il volto della QUERY viaggia cifrato."""
     if not req.frames:
         return JSONResponse({"errore": "nessun frame"}, status_code=400)
+    assicura_chiave()
     q, det = embedding_fuso([da_dataurl(f) for f in req.frames])
     r, _ = srv("/iscrivi", f"{req.nome or 'io'}\n".encode() + " ".join(map(str, q)).encode(), "text/plain")
     return {"server": json.loads(r), **det, "template_primi": q[:12].tolist()}
@@ -204,6 +214,7 @@ def verifica(req: Frames):
         q, det = embedding_fuso([da_dataurl(f) for f in req.frames])
         atteso = None
 
+    assicura_chiave()
     t0 = time.perf_counter(); ct, info_c = cifra(q); t_cifra = (time.perf_counter() - t0) * 1000
     t0 = time.perf_counter(); esito, hdr = srv("/varco", ct); t_rete = (time.perf_counter() - t0) * 1000
     t0 = time.perf_counter(); dec = decifra(esito); t_dec = (time.perf_counter() - t0) * 1000
