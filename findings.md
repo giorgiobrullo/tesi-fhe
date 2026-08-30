@@ -1989,3 +1989,51 @@ N=128 e ~0,8 s a N=1024, banda σ≈4, esatto**.
 carico ideale del backend CUDA di tfhe-rs, l'opposto dell'argmin sequenziale di F25). Tutto il
 resto — schema, struttura, precisione del punteggio, parametri del PBS, quantizzazione — è
 misurato e al fondo. Sul solo CPU il varco è spremuto.
+
+## 🔵 F48 — La leva che avevamo ignorato: la fusione multi-frame porta il varco a ~99% GRATIS
+La domanda "abbiamo davvero esplorato tutti i modi di migliorarlo?" ha una risposta che avevamo
+mancato, perché per settimane "migliore" aveva voluto dire "più veloce lato FHE". Ma al cancello la
+telecamera dà una **raffica di frame**, non una foto, e ogni iscritto può registrarsi con più foto.
+Aggregare (media degli embedding, poi L2-normalizzazione) è lo standard biometrico, e qui è **gratis
+lato FHE**: il client media i k_probe frame in UN embedding *prima* di cifrare, e il server esegue
+lo stesso identico varco; il template della galleria (media di k_gal foto) è in chiaro sul server.
+Zero costo cifrato in più, zero PBS in più.
+
+Misurato in chiaro (`benchmark/multiframe.py`, ResNet100, VGGFace2 reale, foto di galleria e di
+probe **disgiunte** per non barare, 5 seed), DIR@FPIR=1% a 4000 iscritti:
+
+| | k_probe=1 | k_probe=2 | k_probe=3 |
+|---|---|---|---|
+| **k_gal=1** | 90,5% | 94,1% (+3,6) | 95,2% (+4,7) |
+| **k_gal=2** | 94,3% (+3,8) | 97,6% (+7,1) | 98,5% (+8,1) |
+| **k_gal=3** | 95,3% (+4,8) | 98,5% (+8,0) | **99,2% (+8,7)** |
+
+A N=1000 è ancora più netto: (2,2) 98,4%, (3,3) **99,2%**. Il guadagno è **+7-9 punti** e regge a
+scala (stesso salto a 1000 e a 4000). Due letture importanti per la tesi:
+
+1. **Il "99% non è di questo protocollo" (F19/F20) va corretto.** Lì avevamo concluso che sul 1:N
+   open-set a migliaia di iscritti il tetto era ~95-96% e il 99% apparteneva alla verifica 1:1
+   facile. Era vero *a frame singolo*. Con 2-3 frame per query e 2-3 foto per iscritto — la
+   condizione reale di un varco — il 1:N open-set arriva a **99,2% anche a 4000 iscritti**. Il
+   99% è raggiungibile su questo protocollo, e non serve un modello più grande (F44 dava +1-2
+   punti): serve usare più di una foto. La media riduce il rumore dell'embedding su entrambi i
+   lati (√k), che è esattamente ciò che serve al ginocchio della curva DIR-FPIR.
+
+2. **È la migliore leva dell'intero lavoro sul lato accuratezza, ed è gratis lato FHE.** +8 punti
+   contro i +1-2 del modello (F44) e gli 0 della compressione (F31); e a differenza di tutto il
+   resto non tocca il server. Il tradeoff è pratico: k_gal costa foto alla registrazione (una
+   volta), k_probe costa ~k·6,7 ms di embedding sul client e qualche decimo di secondo di
+   raffica al cancello, invisibili accanto agli 0,1 s del match. Il punto di equilibrio
+   ragionevole è **(2,2)**: 97,6% a 4000 iscritti, due foto in registrazione e due frame alla
+   sbarra, tutto sul client.
+
+Con F48 il sistema, nella sua configurazione realistica, è: varco privato in **0,10 s a N=128 /
+~0,8 s a N=1024** (F46/F47), accuratezza **97-99%** DIR@FPIR=1% a migliaia di iscritti reali
+(multi-frame), server cieco, client che vede solo l'esito. Questo, non il 91% a frame singolo, è
+il numero da portare in tesi.
+
+Nota su cosa NON aiuta, per completezza dell'esplorazione: la trasformazione ternaria (trucco
+IDFace, memoria [[fhe-compression-not-a-lever]]) stringe la larghezza del punteggio, ma F47 ha
+mostrato che la larghezza non governa più il costo del varco (lo governa la box size del PBS),
+quindi il ternario non dà velocità qui; e la compressione di dimensione non dà né velocità (F31)
+né accuratezza. La fusione multi-frame è invece la leva vera, sull'asse giusto.
