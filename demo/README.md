@@ -33,9 +33,13 @@ ruoli sono due processi (due container), e sul filo passano solo byte cifrati.
 |---|---|---|
 | embedding di 3 frame (ResNet100) | client, in chiaro | ~170 ms |
 | quantizzazione + cifratura (un GLWE) | client | ~10 ms |
-| **varco cifrato (127 soglie in parallelo)** | **server** | **~110 ms** |
+| **varco cifrato (127 soglie in parallelo)** | **server** | **~110 ms** (125 ms in container) |
 | decifratura dell'esito | client | ~8 ms |
-| **totale per query** | | **~300 ms** |
+| **totale per query** | | **~290 ms** |
+
+Verificato con il server **in container** (immagine 138 MB, solo il binario Rust): identità iscritte
+riconosciute con l'indice giusto, identità non iscritte rifiutate (`conteggio 0`).
+Schema dei ruoli e dei byte: `benchmark/results/architettura.png`.
 
 Byte sul filo: probe cifrato **20 KB**, esito cifrato **230 KB**, chiave di valutazione 119 MB
 (una volta sola, alla messa in servizio).
