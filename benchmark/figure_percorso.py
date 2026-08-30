@@ -67,7 +67,7 @@ passi = [
     ("Concrete\nsoglia", c_sog[8], "#7e8aa0"),
     ("tfhe-rs radix\ncatena\n(16 bit)", rad_seqF32[8], "#5b6b8c"),
     ("tfhe-rs radix\ntorneo\n(8 bit)", rad_tor[8], "#6a4c93"),
-    ("CKKS\npacking +\nsegno", ck[8], "#e9a000"),
+    ("CKKS\npacking + segno\n(confronto, F39)", ck[8], "#e9a000"),
     ("tfhe-rs\nleveled +\nsoglia parallela", lev16[8], "#2a9d8f"),
 ]
 x = np.arange(len(passi)); ys = [p[1] for p in passi]
@@ -78,7 +78,6 @@ ax1.set_yscale("log"); ax1.set_ylim(0.005, 3000)
 for i, (nome, y, c) in enumerate(passi):
     lab = f"{y:.0f} s" if y >= 10 else (f"{y:.1f} s" if y >= 1 else f"{y * 1000:.0f} ms")
     ax1.text(i, y * 1.35, lab, ha="center", fontsize=9.5, fontweight="bold", color=c if c != "#9aa3ad" else "#666")
-ax1.text(CONFRONTO, ys[CONFRONTO] * 0.42, "confronto\n(non un passo)", ha="center", fontsize=7.5, color="white", fontweight="bold")
 percorso = [i for i in range(len(passi)) if i != CONFRONTO]
 for a, b in zip(percorso, percorso[1:]):
     f = ys[a] / ys[b]
