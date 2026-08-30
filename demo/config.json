@@ -1,0 +1,15 @@
+{
+  "dim": 512,
+  "bit": 3,
+  "q_max": 3,
+  "scala": 0.04098006,
+  "T": 23,
+  "dominio_galleria": "sintetico",
+  "T_reale_vggface2": 269,
+  "T_sintetico_digiface": 23,
+  "log_delta": 52,
+  "k_galleria": 2,
+  "k_probe": 3,
+  "n_galleria_calibrazione": 128,
+  "modello": "resnet100"
+}

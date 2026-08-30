@@ -1,0 +1,46 @@
+# I due ruoli del varco come due container separati: sul filo passa solo cifrato.
+#
+#   client  il terminale fidato: telecamera, modello in chiaro, CHIAVE SEGRETA, pagina web
+#   server  la macchina remota: galleria in chiaro, chiave di valutazione, calcola alla cieca
+#
+# Si parlano solo sulla rete interna `varco`, e l'unica cosa che l'attraversa dopo la consegna
+# della chiave di valutazione sono byte cifrati (probe -> esito).
+#
+#   docker compose -f demo/docker-compose.yml up --build      poi http://localhost:8000
+#
+# Nota: il browser dà la telecamera solo su localhost o HTTPS; con questo compose la pagina è su
+# localhost, quindi funziona. Per usare il Mac come client (più veloce, niente build del modello):
+#   docker compose -f demo/docker-compose.yml up --build server
+#   uv run uvicorn demo.client.app:app --port 8000
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: demo/server/Dockerfile
+    environment:
+      DIM: 512
+      SOGLIA: 23        # dominio della galleria della demo (sintetica); volti reali: 269. Vedi demo/calibra.py
+      LOG_DELTA: 52
+    networks: [varco]
+    ports: ["9000:9000"]      # esposta solo per ispezionare /stato dall'esterno
+
+  client:
+    build:
+      context: ..
+      dockerfile: demo/client/Dockerfile
+    depends_on: [server]
+    environment:
+      VARCO_SERVER: http://server:9000
+    volumes:
+      - ../datasets/digiface/estratto:/app/datasets/digiface/estratto:ro   # volti sintetici della galleria
+      - modelli:/root/.insightface                                        # ResNet100 scaricata una volta
+      - chiavi:/app/chiavi                                                # la chiave segreta resta qui
+    networks: [varco]
+    ports: ["8000:8000"]
+
+networks:
+  varco:
+
+volumes:
+  modelli:
+  chiavi:

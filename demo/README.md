@@ -1,0 +1,87 @@
+# Demo end-to-end: il varco cifrato, con i ruoli separati davvero
+
+La dimostrazione del sistema della tesi in funzione: una telecamera al varco, un terminale che
+riconosce **senza mai mandare il volto**, e un server che decide **senza mai vedere nulla**. I due
+ruoli sono due processi (due container), e sul filo passano solo byte cifrati.
+
+```
+   browser (telecamera)          CLIENT — terminale fidato              SERVER — macchina remota
+   raffica di 3 frame  ──────►   ResNet100 in chiaro                    galleria IN CHIARO
+                                 fusione multi-frame (F48)              chiave di VALUTAZIONE
+                                 quantizzazione a 3 bit (F47)
+                                 CHIAVE SEGRETA                 20 KB   prodotto scalare leveled
+                                 cifra ──────────────────────────────►  + 1 bootstrap di segno
+                                                                          per iscritto (F37/F46)
+                                 decifra  ◄──────────────────────── 230 KB   esito cifrato
+                                 "aperto / negato"                      (non può decifrare niente)
+```
+
+## Cosa mostra (ed è il punto in tesi)
+
+- **Il server non ha la chiave segreta.** Riceve un GLWE da 20 KB, calcola, restituisce 230 KB
+  cifrati. La pagina mostra i byte che attraversano il filo: è tutto quello che il server vede.
+- **La galleria è in chiaro sul server** (Mondo 1: sono i suoi dati, raccolti alla registrazione).
+  Cifrata è solo la *query*.
+- **L'esito è un bit, mai una distanza** (F40): il client apprende "aperto/negato" e l'identità,
+  non quanto era vicino — la contromisura all'attacco per gradiente.
+- **La raffica di frame non è scenografia**: è la fusione multi-frame che porta l'accuratezza da
+  ~90% a ~98-99% (F48), e costa zero lato cifrato.
+
+## Numeri misurati (M4 Max, 16 thread, galleria da 127 iscritti)
+
+| tappa | dove | tempo |
+|---|---|---|
+| embedding di 3 frame (ResNet100) | client, in chiaro | ~170 ms |
+| quantizzazione + cifratura (un GLWE) | client | ~10 ms |
+| **varco cifrato (127 soglie in parallelo)** | **server** | **~110 ms** |
+| decifratura dell'esito | client | ~8 ms |
+| **totale per query** | | **~300 ms** |
+
+Byte sul filo: probe cifrato **20 KB**, esito cifrato **230 KB**, chiave di valutazione 119 MB
+(una volta sola, alla messa in servizio).
+
+## Come si lancia
+
+```bash
+# 0) calibrazione: scala di quantizzazione e soglia (una volta, dai dati della tesi)
+uv run python demo/calibra.py 128 sintetico
+
+# 1) tutto in container (consigliato per la dimostrazione: la separazione è fisica)
+docker compose -f demo/docker-compose.yml up --build       # poi http://localhost:8000
+
+# 2) oppure: server in container, client sul Mac (più veloce, usa il modello già scaricato)
+docker compose -f demo/docker-compose.yml up --build server
+uv run uvicorn demo.client.app:app --port 8000
+
+# 3) oppure tutto locale, due processi
+experiments/14_pipeline_tfhe_rs/target/release/varco_demo serve 9000 512 23 52 &
+uv run uvicorn demo.client.app:app --port 8000
+```
+
+Nella pagina: **Popola galleria** (127 identità sintetiche DigiFace: volti generati, nessuna
+persona reale nelle schermate) → **Registrami** (2 foto dalla telecamera) → **Apri il varco**
+(3 frame). Senza telecamera c'è **Prova senza telecamera**, che usa un volto sintetico.
+
+## La soglia è un parametro di installazione, non una costante
+
+`calibra.py` calcola la soglia a FPIR=1% su **due** domini e lo scrive in `config.json`:
+
+| dominio della galleria | soglia T | usando l'altra |
+|---|---|---|
+| volti reali (VGGFace2) | 269 | — |
+| volti sintetici (DigiFace, la galleria della demo) | 23 | con 269 entrerebbe il **91%** degli impostori |
+
+È il divario di dominio di F30 visto dal lato operativo: la stessa pipeline, tarata sul dominio
+sbagliato, apre a tutti. In tesi vale come avvertenza pratica.
+
+## I file
+
+- `calibra.py` — scala, soglie (reale e sintetica), Δ; scrive `config.json`
+- `client/app.py` — il terminale: telecamera → embedding → fusione → cifra → decifra
+- `client/static/index.html` — la pagina (tre colonne: client / filo / server)
+- `server/Dockerfile` — il server è **solo** il binario Rust `varco_demo serve`
+- `docker-compose.yml` — i due container e la rete tra loro
+
+Il varco vero e proprio è `experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs` (sottocomandi
+`keygen`/`encrypt`/`decrypt`/`serve`): stesso circuito dei findings F37/F41/F43/F46/F47,
+parametri `MESSAGE_1_CARRY_1` a 128 bit, uscita compatta a blocchi di 64.

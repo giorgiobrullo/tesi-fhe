@@ -2037,3 +2037,43 @@ IDFace, memoria [[fhe-compression-not-a-lever]]) stringe la larghezza del punteg
 mostrato che la larghezza non governa più il costo del varco (lo governa la box size del PBS),
 quindi il ternario non dà velocità qui; e la compressione di dimensione non dà né velocità (F31)
 né accuratezza. La fusione multi-frame è invece la leva vera, sull'asse giusto.
+
+## 🔵 F49 — La demo end-to-end: i due ruoli come due processi, e la soglia come parametro d'installazione
+Il sistema in funzione, non più come benchmark: una pagina con la telecamera, un **client** che è
+il terminale fidato e un **server** che è la macchina remota, in due processi separati (due
+container) che si parlano solo con byte cifrati. Codice in `demo/`, il servizio in
+`experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs` (sottocomandi `keygen`, `encrypt`,
+`decrypt`, `serve`; HTTP minimale con la sola libreria standard, nessuna dipendenza in più).
+
+Il giro completo, misurato su M4 Max con 127 iscritti:
+
+| tappa | dove | tempo |
+|---|---|---|
+| 3 frame → ResNet100 (in chiaro) | client | ~170 ms |
+| fusione multi-frame + quantizzazione 3 bit + cifratura (un GLWE) | client | ~10 ms |
+| **varco cifrato: 127 soglie in parallelo** | **server** | **~110 ms** |
+| decifratura dell'esito | client | ~8 ms |
+| **totale per query** | | **~300 ms** |
+
+Sul filo: probe cifrato **20 KB** (encoding polinomiale, F41), esito cifrato 230 KB, chiave di
+valutazione 119 MB una volta sola. Verificato: 4 identità iscritte su 4 riconosciute con
+l'indice giusto, 3 identità non iscritte su 3 rifiutate (`conteggio 0`). Il server, per
+costruzione, non ha la chiave segreta: la pagina mostra i byte che riceve, ed è tutto quello che
+vede.
+
+**Il risultato inatteso della demo: la soglia è un parametro di installazione, non una costante.**
+La prima esecuzione dava sistematicamente "ambiguo" (più iscritti sotto soglia). Il motivo: la
+galleria della demo è fatta di volti **sintetici** (DigiFace: volti generati, così nelle
+schermate della tesi non compaiono persone reali), mentre T=269 era calibrata sui volti **reali**
+di VGGFace2. Misurato: sul dominio sintetico la soglia corretta a FPIR=1% è **T=23**, e usando
+quella dei volti reali **il 91% degli impostori verrebbe accettato** (7,25 iscritti sotto soglia
+per query invece di 1). Con T=23 il varco sintetico torna a 98,4% di one-hot corretti e 1,1% di
+impostori. È il divario di dominio di F30 visto dal lato operativo, e per la tesi vale come
+avvertenza pratica: la stessa identica pipeline, tarata sul dominio sbagliato, apre a chiunque.
+`demo/calibra.py` ora calcola entrambe le soglie e scrive in `config.json` quella del dominio
+installato.
+
+Nota di ingegneria, non di crittografia: il client fa `keygen` all'avvio e consegna al server la
+sola chiave di **valutazione** (119 MB, 0,2 s su rete locale); la chiave segreta non lascia mai
+il container del client, ed è ciò che rende la separazione dei due processi una separazione vera
+e non una formalità.
