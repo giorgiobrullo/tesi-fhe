@@ -51,14 +51,15 @@ ragionamenti in `findings.md`; lo stato dell'arte in `letteratura.md`.
   riconoscimento (05 PCA, 06 argmin e soglia, 07 descrittori locali, 08 CNN) fino agli
   approfondimenti sul costo cifrato (09 GPU, 10 struttura dell'argmin, 11 MegaFace, 13
   head-to-head con tfhe-rs, 14 il pipeline in tfhe-rs coi parametri standard: torneo radix e
-  varco a soglia leveled, 15 lo stesso varco in CKKS). Ogni gradino importa da `core/` e porta il suo `costo.py`.
-- `benchmark/`: la valutazione trasversale sui dataset grandi, con la verifica 1:1
+  varco a soglia leveled e la CLI a tre ruoli `varco`, 15 lo stesso varco in CKKS). Ogni gradino importa da `core/` e porta il suo `costo.py`.
+- `benchmark/`: la valutazione trasversale sui dataset grandi, la figura del percorso
+  (`figure_percorso.py`, F42), con la verifica 1:1
   (`verifica.py`), l'identificazione 1:N a scala (`scaling_*.py`, `identificazione_1n.py`), il
   varco a soglia su volti reali (`soglia_reale.py`) e il breakdown end-to-end di una query
   (`breakdown_query.py`).
 - `datasets/`: i dati scaricati (gitignorato): i `.bin` dei benchmark, DigiFace-1M, VGGFace2.
   Rotte di download in `docs/benchmark_dataset.md`.
-- `findings.md`: il diario dei risultati, F0–F39.
+- `findings.md`: il diario dei risultati, F0–F42.
 - `letteratura.md`: lo stato dell'arte del riconoscimento biometrico cifrato 1:N.
 - `docs/`: note di riferimento su dataset e modelli di embedding.
 

@@ -1,1 +1,3 @@
 target/
+results/e2e/chiavi/
+results/e2e/*.ct

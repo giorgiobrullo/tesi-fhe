@@ -1638,3 +1638,127 @@ La tabella schema × operazione che chiedeva l'incontro (N=128 dove misurato, te
 | argmin + soglia sul vincitore | 455 s a N=8 | 4,7 s (16 thr) / 47 s (1 thr) | — | letteratura: ~13 s (Mazzone, 128) |
 | **varco intero** | 92 s a N=64 | — | **0,18 s** | **4,25 s** (1 thr) |
 | banda alla soglia | esatto (PBS larghi) | esatto | σ ≈ 12, probabilistica | ±10, deterministica |
+
+## 🔴 F40 — Cosa rivela il bit di esito: l'attacco con l'oracolo di appartenenza, misurato
+Il modello di minaccia dell'incontro (F35) vieta di restituire la distanza: un client malicious
+manda vettori arbitrari e con una distanza per tentativo scende per gradiente fino all'embedding
+di un iscritto. Ma anche il solo esito è un'informazione: ogni query è un **oracolo di
+appartenenza** ("il mio vettore è accettato per l'iscritto i?"). Quanto rivela, misurato in
+chiaro sulla scena reale (`experiments/14_pipeline_tfhe_rs/attacco_oracolo.py`).
+
+Un'osservazione prima dei numeri. Il server calcola s_i(v) = ‖g_i‖² − 2·g_i·v, senza ‖v‖²
+(i probe onesti sono L2-normalizzati e la soglia lo assorbe, F33). Per un client che manda v
+qualunque la regione di accettazione {v : s_i(v) ≤ T} non è una palla ma un **semispazio**
+g_i·v ≥ c_i: l'oracolo risponde a una disuguaglianza lineare in v. Vale per il design del prof
+(bit sul più vicino) esattamente come per il varco di F37 (bit per iscritto): per un v vicino a
+g_i il più vicino è i, e il bit è lo stesso.
+
+| risposta del server | partenza | query | risultato |
+|---|---|---|---|
+| distanza in chiaro | foto dell'iscritto (probe genuino) | **513** | embedding **esatto** 20/20 (2 query per coordinata) |
+| bit di esito | foto dell'iscritto | 1.000 | coseno 0,61 con g_i |
+| bit di esito | foto dell'iscritto | 3.000 | coseno 0,91 |
+| bit di esito | foto dell'iscritto | 10.000 | coseno 0,99 |
+| bit di esito | foto dell'iscritto | 30.000 | coseno 0,999 |
+| bit di esito | volto di un impostore, o vettore casuale | 20.000 | **nessuna accettazione**, l'oracolo dice sempre no |
+
+L'attacco col bit: si porta il probe sulla frontiera del semispazio per bisezione lungo il
+raggio (12 query), poi si interrogano perturbazioni sparse attorno a quel punto, adattandone
+l'ampiezza per tenere l'oracolo vicino al 50% (altrimenti le risposte non informano), e si
+stima la normale del semispazio con una regressione logistica sulle etichette. Con 30.000 query
+l'embedding è ricostruito a coseno 0,999, e già a 1.000 il vettore ricostruito viene accettato
+dal varco. Quindi:
+
+1. Il divieto della distanza **è giusto ma non basta**: la distanza rende l'attacco esatto in
+   513 query, il bit lo rende approssimato in migliaia. È un fattore 20-60, non un muro.
+2. **Il bit non parte da zero.** Senza un punto già accettato l'oracolo è muto: dai volti di 10
+   impostori e da 10 vettori casuali, 20.000 perturbazioni ciascuno non producono una sola
+   accettazione (gli impostori stanno a 130-750 unità dalla soglia, e una coordinata a 4 bit
+   sposta il punteggio di al più 14). L'attaccante deve già possedere un volto accettato
+   dell'iscritto, cioè una sua foto abbastanza buona: quello che ricava è l'**embedding** (il
+   template, riusabile altrove e collegabile), non l'accesso, che con la foto aveva già.
+3. La contromisura non è crittografica: **limitare le query** (blocco dopo pochi rifiuti, come
+   un PIN), perché l'attacco ne consuma migliaia e ne genera a decine rifiutate. Zuber e Sirdey
+   dicono la stessa cosa del loro k-NN ("this latter leakage is inherent to the service
+   provided… throttling the request rate"). È un punto da mettere nella tesi accanto al modello
+   di minaccia, non da lasciare implicito.
+4. La formula espansa senza ‖v‖² ha un costo qui: rende la regione un semispazio, più facile da
+   apprendere di una palla. Reintrodurre ‖v‖² cifrato costerebbe un prodotto cifrato×cifrato
+   (F2), oppure il client potrebbe inviarlo in chiaro e il server verificarne il range: un
+   vettore fuori norma viene rifiutato prima del match. È una mitigazione economica da
+   valutare, non l'abbiamo misurata.
+
+Letteratura, verificata sugli abstract e sui riassunti disponibili: gli attacchi *hill-climbing*
+ai sistemi biometrici sono noti da Adler (2003: ricostruzione di immagini dai template; 2004:
+rigenerazione da **punteggi quantizzati**) e Galbally, McCool et al. (Pattern Recognition 2010,
+attacco bayesiano alla verifica facciale), che trovano l'attacco robusto alla quantizzazione del
+punteggio: "even for the biggest value of quantization step, the success rate of the attack is
+still over 60%". Il bit di esito è il caso limite della quantizzazione, e il nostro risultato è
+coerente: rallenta, non ferma. Per il varco cifrato questo va detto come limite del modello,
+non come difetto del circuito: il server non impara nulla; il client impara ciò che qualunque
+varco accetta/rifiuta lascia imparare, e va rate-limitato.
+
+## 🔴 F41 — Il varco in forma consegnabile: tre ruoli, un GLWE da 33 KB, stessi 0,18 s
+Il caveat di F37 era il probe come 512 LWE grezzi, 8,4 MB per query. Chiuso con l'encoding
+polinomiale di Zuber-Sirdey in una CLI a tre ruoli (`experiments/14_pipeline_tfhe_rs/src/bin/varco.rs`:
+`keygen`, `encrypt`, `server`, `decrypt`, file su disco al posto della rete). Il client cifra il
+probe come **un solo GLWE** (k=1, N=2048: il polinomio A(X) = Σ a_j X^j sotto la chiave grande);
+il server, per l'iscritto i, moltiplica per il polinomio in chiaro P_i(X) = Σ (−2 g_ij) X^{511−j}
+(leveled, un prodotto di polinomi) ed estrae il coefficiente 511, che è −2·g_i·a in un LWE sotto
+la chiave grande: da lì la costante, il keyswitch, il PBS di segno e l'uscita compatta di F37.
+
+Misurato sulla scena reale (N=128, 512 dim, 16 thread): probe cifrato **32.800 byte**, esito
+(conteggio + 7 bit di indice) 131 KB, chiave client 23 KB, chiave server 130 MB (una volta, alla
+registrazione del dispositivo); cifratura 0,4 ms, server **0,18 s** (prodotti polinomiali 7-16
+ms, PBS 0,16-0,18 s), decifratura 0,03 ms. Esiti: probe genuino → conteggio 1, indice 104 =
+l'identità vera; impostore → conteggio 0. Il costo per query non cambia rispetto a F37 (i
+prodotti polinomiali costano quanto le combinazioni lineari), la banda passante scende di
+**250×**. È il pezzo di ingegneria che rende il varco un sistema e non un microbenchmark; non
+aggiunge idee, e in tesi va in una riga.
+
+## 🔴 F42 — Il percorso: cosa tenere e cosa scartare (la regola dell'incontro)
+Il prof, per la tesi: mostrare la baseline e le ottimizzazioni, "non serve riportare ogni singolo
+tentativo; riportiamo le tecniche principali che producono un miglioramento osservabile; se due
+tecniche danno più o meno lo stesso risultato non vale la pena soffermarsi su entrambe". Applicata
+a tutto quello che abbiamo provato da F6 in poi, con il guadagno misurato di ciascuna. La figura
+è `benchmark/results/percorso.png` (a: il percorso a N=8, un passo per tecnica; b: i design
+finali al crescere di N con i traguardi dei 10 e 5 s nel margine).
+
+**Da tenere** (ognuna cambia il numero di un fattore misurabile, e ha un perché):
+
+| passo | tecnica | guadagno misurato | dove |
+|---|---|---|---|
+| 1 | galleria in chiaro + formula espansa: il prodotto scalare è enc×chiaro, 0 PBS | il prodotto scalare sparisce dal costo (0,07 s, poi 0,007 s) | F2, F33 |
+| 2 | quantizzare l'embedding a 4 bit | lossless in accuratezza, e l'unico modo di far compilare il confronto (limite 16 bit) | F14, F31 |
+| 3 | la strategia CHUNKED | l'argmin server compila e gira invece di esplodere in RAM | F24 |
+| 4 | il torneo al posto della catena | 2,6× in Concrete, 2,3× in tfhe-rs a 16 thread | F27, F38 |
+| 5 | tfhe-rs al posto di Concrete-python | ~100× sull'argmin, a parità di macchina e schema | F32 |
+| 6 | 8 bit di punteggio bastano (validato in chiaro) | 1,5-2× su ogni confronto radix | F36 |
+| 7 | prodotto scalare leveled a basso livello | da 99 s a 0,2 ms (l'API radix propagava i riporti) | F34 |
+| 8 | la soglia per iscritto con un PBS di segno **al posto** della selezione | 27× sul torneo radix, ~1000× sulla soglia Concrete; profondità 1 | F37 |
+| 9 | i confronti indipendenti in parallelo | 10× (1,76 → 0,177 s a N=128) | F37 |
+| 10 | encoding polinomiale del probe | 250× sulla banda (8,4 MB → 33 KB), stesso tempo | F41 |
+
+**Da citare in una riga, non da sviluppare** (nessun guadagno osservabile, o equivalente a un
+altro passo):
+
+| tentativo | esito | dove |
+|---|---|---|
+| GPU (Tesla T4) sull'argmin | 9× **più lenta** della CPU: il PBS in batch non serve alla latenza di una query | F25 |
+| `dataflow_parallelize` di Concrete | nulla sul sequenziale, +8% sul torneo, crash a N=8 | F27 |
+| `round_bit_pattern`, strategie di confronto alternative | più lente o crash | F31 |
+| comprimere l'embedding (PCA/LDA) per abbassare l'argmin | il costo non scende (457 → 540 → 590 s), l'accuratezza sì | F31 |
+| togliere il `min` ridondante dalla catena | −25%: vero ma minore, assorbito dal torneo | F38 |
+| parametri multi-bit | 2,3× su un thread, nulla a 16 thread: stesso guadagno del parallelismo, non si somma | F38 |
+| one-hot contro indice | equivalenti per privacy e costo; l'uscita compatta dà entrambi | F37 |
+| cambiare schema (CKKS) | non è un'ottimizzazione del varco (4,2 s contro 0,18): resta come **confronto**, con la sua lettura | F39 |
+
+Due cose non sono ottimizzazioni ma vanno nel percorso perché lo delimitano: il **ponte**
+leveled→radix che coi parametri standard non c'è (F34), che spiega perché il passo 8 è una
+sostituzione e non un'aggiunta; e la **banda** del PBS di segno (σ ≈ 12 unità), misurata e
+innocua (F37), che è il prezzo del passo 8. E accanto al percorso il modello di minaccia con
+quello che il bit rivela (F40) e il conteggio da discutere col prof (F37).
+
+La figura del percorso mostra, a N=8, 455 s → 12,5 s → 1,1 s → 0,36 s → (CKKS 1,6 s) → 0,017 s:
+quattro ordini di grandezza in cinque passi, ciascuno con una tecnica e un motivo; a N=128 i
+design finali sotto i traguardi dell'incontro sono solo quelli tfhe-rs.

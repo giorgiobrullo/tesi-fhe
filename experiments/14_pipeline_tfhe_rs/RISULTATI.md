@@ -81,6 +81,22 @@ esattamente 2^54,6 / 2^51. Sui dati reali non scatta: nelle 20 scene le coppie (
 entro ±24 unità da T sono lo 0,003-0,006%, e simulando la sfocatura su tutte le decisioni la DIR
 resta identica (92,9 / 92,9 / 92,3% a N = 64 / 128 / 1000) con FPIR 0,97-0,99% contro 1,00%.
 
+## 3. La CLI a tre ruoli (`varco.rs`, F41)
+
+`varco keygen <dir>` · `varco encrypt <dir> probe.txt probe.ct` · `varco server <dir> galleria.txt
+probe.ct esito.ct` · `varco decrypt <dir> esito.ct`. Probe come un solo GLWE (encoding
+polinomiale): **32.800 byte** invece di 8,4 MB; esito 131 KB; chiavi 23 KB (client) e 130 MB
+(server). Server 0,18 s a N=128 (16 thread). Esempio in `results/e2e/` (galleria.txt = scena
+reale con LOG_DELTA=50, cioè |s−T| < 2^13 dichiarato): genuino → `{"conteggio": 1, "indice": 104}`,
+impostore → `{"conteggio": 0}`.
+
+## 4. Cosa rivela il bit (`attacco_oracolo.py`, F40)
+
+Oracolo di appartenenza simulato in chiaro: con la distanza l'embedding esce esatto in 513 query;
+col solo bit servono ~30.000 query per coseno 0,999 (1.000 per un vettore accettato), e solo
+partendo da un probe già accettato (una foto dell'iscritto); da impostori o vettori casuali
+20.000 query non producono un'accettazione. Contromisura: rate limiting.
+
 ## Riprodurre
 
 ```
@@ -91,6 +107,8 @@ cargo run --release --bin varco_leveled    # F37, ~1 min
 cargo run --release --bin banda_soglia     # banda, ~3 min
 uv run python effetto_banda.py             # effetto della banda, ~1 min
 RAYON_NUM_THREADS=1 cargo run --release --bin <bin>   # versione seriale
+uv run python attacco_oracolo.py                # F40, ~20 s
+cargo run --release --bin varco -- keygen results/e2e/chiavi   # poi encrypt/server/decrypt (F41)
 ```
 
 Su macOS beta, se il linker fallisce, anteporre il wrapper di `ld` (`PATH=/tmp/ldfix:$PATH`).
