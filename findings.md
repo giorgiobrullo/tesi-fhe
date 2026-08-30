@@ -1444,8 +1444,8 @@ T al quantile 1% dei minimi di 2000 impostori.
 Esattezza: **0 discrepanze su 31.744 confronti** cifrato/chiaro (128 probe × 248 iscritti
 complessivi), esito per probe identico al chiaro (58/64 genuini riconosciuti = 90,6%, 0/64
 impostori accettati), uscita compatta corretta 128/128 a ogni N in 0,2 ms. Su un thread solo il
-PBS costa 13,7 ms (misura in corso a N piccoli; a N=128 fa ~1,8 s per query, in linea, contro
-0,17 s a 16 thread: il parallelismo dei confronti indipendenti vale ~10× su 12 P-core).
+PBS costa 13,5-13,9 ms e la query a N=128 fa **1,76 s** (0,89 s a N=64), contro 0,177 s a 16
+thread: il parallelismo dei confronti indipendenti vale ~10× (12 P-core e 4 E-core).
 
 Il confronto con quello che avevamo. La soglia in Concrete (F28, F33) costava 12,5 s a N=8 e
 92 s a N=64: qui 0,017 e 0,094 s, **~700-1000×**. L'argmin Concrete a N=8, 455 s: **27.000×**.
@@ -1523,7 +1523,8 @@ thread con la sua server key), e il confronto scalare in più sul vincitore. Due
 | multi-bit, 16 bit | 128 | 14,88 s | 11,56 s | 9,86 s | 0,013 s |
 
 Tutti gli esiti verificati contro il chiaro (tabella completa e run single-thread in
-`experiments/14_pipeline_tfhe_rs/results/`). Cosa dicono:
+`experiments/14_pipeline_tfhe_rs/results/`). Su un thread solo: catena a 8 bit 48 s a N=128
+(torneo 47 s: senza core liberi non guadagna nulla), multi-bit 21 s, 16 bit 94 s. Cosa dicono:
 
 1. **La larghezza paga**: 8 bit contro 16 vale 1,5-2× su ogni variante. È il dividendo di F36.
 2. **Il `min` ridondante costa il 25%**: la catena di F32 faceva due confronti per passo.
@@ -1533,7 +1534,8 @@ Tutti gli esiti verificati contro il chiaro (tabella completa e run single-threa
    throughput, non profondità, una volta saturati i core. Per la stessa ragione il multi-bit
    accelera la catena sequenziale (−40%) ma non il torneo.
 4. Contro Concrete (F27, F32): torneo a N=8, 69 s contro 0,57 s a 16 bit (120×); catena
-   sequenziale 180 s contro 1,12 s.
+   sequenziale 180 s contro 1,12 s. Il multi-bit vale 2,3× su un thread (21 contro 48 s) ma
+   niente a 16 thread sul torneo: è un altro modo di spendere gli stessi core.
 5. **N=64 in 2,3 s e N=128 in 4,7 s**: il target dell'incontro è rispettato anche dalla strada
    "argmin poi soglia" che il prof aveva in mente. Ma con una condizione: questi numeri
    presuppongono i punteggi in forma radix, e portarceli dal prodotto scalare leveled è il

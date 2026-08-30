@@ -27,7 +27,18 @@ Punteggi casuali già in forma radix, argmin + soglia sul vincitore, 16 thread:
 | mb3/u8 | 128 | 8,27 s | 6,59 s | 4,84 s | 0,012 s |
 | mb3/u16 | 128 | 14,88 s | 11,56 s | 9,86 s | 0,013 s |
 
-(tabella completa in `results/selezione_16thread.txt`; single-thread in `selezione_1thread.txt`).
+(tabella completa in `results/selezione_16thread.txt`). Single-thread (`selezione_1thread.txt`):
+
+| param | N | seq-F32 | seq | torneo | +soglia |
+|---|---|---|---|---|---|
+| def/u8 | 8 | 2,86 s | 2,43 s | 2,36 s | 0,041 s |
+| def/u8 | 128 | 55,70 s | 48,20 s | 46,74 s | 0,040 s |
+| def/u16 | 128 | 112,56 s | 94,18 s | 90,45 s | 0,070 s |
+| mb3/u8 | 128 | 24,49 s | 21,09 s | 20,71 s | 0,018 s |
+| mb3/u16 | 128 | 48,11 s | 40,04 s | 38,53 s | 0,030 s |
+
+Su un thread il torneo non guadagna nulla (stesso lavoro, N−1 confronti) e il multi-bit vale
+2,3× da solo; è la combinazione 16 thread + torneo a portare i 48 s della catena a 4,7 s (~10×).
 Tutti gli esiti verificati contro il chiaro. Il torneo `FheUint8` sta nel target del prof (2,3 s
 a N=64, 4,7 s a N=128), **ma presuppone i punteggi in forma radix**, cioè il ponte dal punteggio
 leveled che coi parametri standard non c'è (F34).
@@ -49,7 +60,17 @@ indice in binario (log N somme leveled). Scena reale (`esporta_dati.py`: ResNet1
 
 Esattezza: **0 discrepanze su 31.744 confronti** cifrato/chiaro; esito per probe identico al
 chiaro (58/64 genuini riconosciuti = 90,6%, 0/64 impostori accettati); uscita compatta corretta
-128/128 a ogni N (0,2 ms). Single-thread in `results/varco_leveled_1thread.txt`.
+128/128 a ogni N (0,2 ms).
+
+Single-thread (`RAYON_NUM_THREADS=1`): il PBS costa 13,5-13,9 ms l'uno (meno che a 16 thread, dove
+i thread si contendono cache e E-core), e il totale scala lineare in N:
+
+| N | 8 | 16 | 32 | 64 | 128 |
+|---|---|---|---|---|---|
+| totale/query, 1 thread | 0,114 s | 0,225 s | 0,446 s | 0,887 s | **1,764 s** |
+| totale/query, 16 thread | 0,017 s | 0,029 s | 0,049 s | 0,094 s | **0,177 s** |
+
+Il parallelismo dei confronti indipendenti vale ~10× (12 P-core + 4 E-core).
 
 ### La banda di sfocatura (`banda_soglia.rs`, `effetto_banda.py`)
 

@@ -154,6 +154,7 @@ confronto/argmax approssimato in CKKS, su cui poggiano GROTE (max via α-norma) 
 - HERS, T-BIOM 2022, <https://arxiv.org/abs/2003.12197>
 - Blind-Match, CIKM 2024, <https://arxiv.org/abs/2408.06167>
 - GROTE, CODASPY 2023, <https://hal.science/hal-04000209> (anche <https://www.eurecom.fr/en/publication/7213>)
+- Cheon, Kim, Kim, Efficient Homomorphic Comparison Methods with Optimal Complexity, ASIACRYPT 2020, <https://eprint.iacr.org/2019/1234> (verificato sul testo: segno come polinomio composto f_n^(d_f)∘g_n^(d_g), f_1=(3x−x³)/2, g_1=(2126x−1359x³)/2¹⁰, ecc.; d_g ≈ log(1/ε)/log g'_n(0), d_f ≈ log α/log(n+1); usato per la soglia CKKS di F39)
 - Mazzone, Ranking/Sorting under CKKS, USENIX Sec 2025, <https://arxiv.org/abs/2412.15126>
 - CryptoFace, CVPR 2025, <https://arxiv.org/abs/2509.00332>
 - Lightweight/BSGS-Diagonal (HyDia), 2026, <https://arxiv.org/abs/2604.00546>

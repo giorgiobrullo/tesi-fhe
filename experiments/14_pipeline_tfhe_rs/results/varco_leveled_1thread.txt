@@ -1,0 +1,16 @@
+scena: DIM=512 N=128 probe=128 T=1375  |s-T| max 3562 -> 12 bit, Delta_s = 2^51, thread 1
+parametri: n_grande=2048 n_piccola=879 N_poly=2048 (128 bit, TUniform, default tfhe-rs)
+
+  N |      dot |    KS+PBS |    totale | PBS/thread | discrepanze (|s-T| delle sbagliate)
+  8 |   0.003s |    0.111s |    0.114s |      13.9ms | 0/1024 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 5/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.0 ms
+ 16 |   0.005s |    0.220s |    0.225s |      13.7ms | 0/2048 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 8/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.0 ms
+ 32 |   0.010s |    0.436s |    0.446s |      13.6ms | 0/4096 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 16/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.0 ms
+ 64 |   0.019s |    0.868s |    0.887s |      13.6ms | 0/8192 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 27/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.1 ms
+128 |   0.038s |    1.726s |    1.764s |      13.5ms | 0/16384 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 58/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.2 ms
+
+nessuna discrepanza cifrato/chiaro.
