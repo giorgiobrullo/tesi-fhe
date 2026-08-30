@@ -37,6 +37,7 @@ G = np.array([list(map(int, r.split())) for r in righe[1:1 + N]])
 PR = np.array([list(map(int, r.split())) for r in righe[1 + N:1 + N + NP]])
 labels, P = PR[:, 0], PR[:, 1:]
 bsq = (G * G).sum(1)
+P_norma_media = float(np.mean((P * P).sum(1)))   # per la variante "palla": la soglia assorbe ||v||^2 medio
 
 
 class Oracolo:
@@ -49,31 +50,39 @@ class Oracolo:
         self.query += 1
         return bsq[i] - 2 * int(G[i] @ v) <= T
 
+    def bit_palla(self, v, i):
+        """variante in cui il server include ||v||^2 nel punteggio (palla, non semispazio)."""
+        self.query += 1
+        return bsq[i] - 2 * int(G[i] @ v) + int(v @ v) <= T + int(P_norma_media)
+
     def distanza(self, v, i):
         self.query += 1
         return bsq[i] - 2 * int(G[i] @ v)
 
 
-def frontiera(o, i, v0):
+def frontiera(o, i, v0, interroga=None):
     """dal probe accettato v0, bisezione sul raggio alpha*v0 fino all'ultimo alpha accettato:
-    un punto a ridosso della frontiera del semispazio (margine < un passo del raggio)."""
-    lo, hi = 1.0, 0.0                                  # alpha=1 accettato, alpha=0 (v=0) rifiutato
-    assert o.bit(v0, i) and not o.bit(np.zeros(dim, dtype=int), i)
+    un punto a ridosso della frontiera (margine < un passo del raggio)."""
+    interroga = interroga or o.bit
+    lo, hi = 1.0, -1.0                                 # alpha=1 accettato, alpha=-1 (v=-v0) rifiutato
+    assert interroga(v0, i) and not interroga(-v0, i)
     while lo - hi > 1e-3:
         mid = (lo + hi) / 2
-        if o.bit(np.round(mid * v0).astype(int), i):
+        if interroga(np.round(mid * v0).astype(int), i):
             lo = mid
         else:
             hi = mid
     return np.round(lo * v0).astype(int)
 
 
-def attacco_bit(i, v0, n_query=3000, rng=None):
+def attacco_bit(i, v0, n_query=3000, rng=None, palla=False):
     """apprendimento del semispazio da query di appartenenza attorno alla frontiera. Le
     perturbazioni sono sparse e l'attaccante ne adatta l'ampiezza per tenere l'oracolo al 50%
     (altrimenti le risposte non portano informazione); poi regressione logistica -> normale ~ g_i."""
     from sklearn.linear_model import LogisticRegression
-    o = Oracolo(); vb = frontiera(o, i, v0)
+    o = Oracolo()
+    interroga = o.bit_palla if palla else o.bit
+    vb = frontiera(o, i, v0, interroga)
     X, y, nz = [], [], 48
     while o.query < n_query:
         lotto_y = []
@@ -81,7 +90,10 @@ def attacco_bit(i, v0, n_query=3000, rng=None):
             d = np.zeros(dim, dtype=int); idx = rng.choice(dim, nz, replace=False)
             d[idx] = rng.choice([-2, -1, 1, 2], size=nz)
             w = np.clip(vb + d, -Q, Q)
-            b = int(o.bit(w, i)); X.append(w - vb); y.append(b); lotto_y.append(b)
+            b = int(interroga(w, i)); lotto_y.append(b); y.append(b)
+            # con la palla il punteggio e' ||v||^2 - 2 g.v + c: lineare nelle incognite (g, c) se
+            # l'attaccante aggiunge la feature ||v||^2, che conosce (e' il suo vettore)
+            X.append(np.append(w - vb, float(w @ w - vb @ vb)) if palla else (w - vb))
         tasso = np.mean(lotto_y)                     # adatta l'ampiezza verso il 50%
         if tasso > 0.6:
             nz = min(dim, int(nz * 1.5) + 1)
@@ -91,10 +103,10 @@ def attacco_bit(i, v0, n_query=3000, rng=None):
     if y.min() == y.max():
         return o.query, 0.0, False, float(y.mean())
     clf = LogisticRegression(C=10.0, max_iter=3000, fit_intercept=True).fit(X, y)
-    g_hat = clf.coef_[0]
+    g_hat = clf.coef_[0][:dim]
     cos = float(g_hat @ G[i] / (np.linalg.norm(g_hat) * np.linalg.norm(G[i])))
     v_att = np.clip(np.round(g_hat / np.abs(g_hat).max() * Q), -Q, Q).astype(int)
-    acc = Oracolo().bit(v_att, i)
+    acc = (Oracolo().bit_palla if palla else Oracolo().bit)(v_att, i)
     return o.query, cos, acc, float(y.mean())
 
 
@@ -132,6 +144,17 @@ if __name__ == "__main__":
             ris.append(attacco_bit(i, P[k], n_query=nq, rng=rng))
         ris = np.array(ris)
         print(f"   {nq:>7} | {ris[:, 1].mean():>13.3f} ({ris[:, 1].min():.3f}) | {int(ris[:, 2].sum()):>12}/{len(ris):<9} | {ris[:, 3].mean():.0%}")
+
+    print("\nD. oracolo a 1 BIT con ||v||^2 DENTRO il punteggio (palla invece di semispazio), stessa partenza")
+    ris = []
+    for k in gen[:12]:
+        i = labels[k]
+        if bsq[i] - 2 * int(G[i] @ P[k]) + int(P[k] @ P[k]) > T + P_norma_media:
+            continue
+        ris.append(attacco_bit(i, P[k], n_query=10000, rng=rng, palla=True))
+    ris = np.array(ris)
+    print(f"   {len(ris)} attacchi da 10.000 query: coseno {ris[:, 1].mean():.3f} (min {ris[:, 1].min():.3f}), "
+          f"ricostruito accettato {int(ris[:, 2].sum())}/{len(ris)}")
 
     print("\nB. DISTANZA in chiaro, stessa partenza")
     ris = np.array([attacco_distanza(labels[k], P[k]) for k in gen[:20]])

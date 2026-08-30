@@ -162,27 +162,32 @@ fn main() {
                 .collect();
             let t_pbs = t0.elapsed().as_secs_f64();
 
-            // tappa 3: uscita compatta, conteggio + indice in binario (leveled)
+            // tappa 3: uscita compatta a blocchi di 64 (conteggio + indice locale in binario, leveled);
+            // somme corte per tenere il rumore del PBS (~2^48 x sqrt(addendi)) lontano dal margine 2^55
             let t0 = Instant::now();
-            let nbit = (usize::BITS - (n - 1).leading_zeros()) as usize;
-            let mut cnt = allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus);
-            let mut idx: Vec<LweCiphertextOwned<u64>> = (0..nbit)
-                .map(|_| allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus))
-                .collect();
-            for i in 0..n {
-                lwe_ciphertext_add_assign(&mut cnt, &bits[i]);
-                for b in 0..nbit {
-                    if (i >> b) & 1 == 1 {
-                        lwe_ciphertext_add_assign(&mut idx[b], &bits[i]);
+            const BLOCCO: usize = 64;
+            let nbit = (usize::BITS - (BLOCCO - 1).leading_zeros()) as usize;
+            let nblocchi = (n + BLOCCO - 1) / BLOCCO;
+            let mut cts: Vec<LweCiphertextOwned<u64>> = Vec::with_capacity(nblocchi * (1 + nbit));
+            for b in 0..nblocchi {
+                let mut cnt = allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus);
+                let mut idx: Vec<LweCiphertextOwned<u64>> = (0..nbit)
+                    .map(|_| allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus))
+                    .collect();
+                for i in b * BLOCCO..((b + 1) * BLOCCO).min(n) {
+                    lwe_ciphertext_add_assign(&mut cnt, &bits[i]);
+                    let loc = i - b * BLOCCO;
+                    for k in 0..nbit {
+                        if (loc >> k) & 1 == 1 {
+                            lwe_ciphertext_add_assign(&mut idx[k], &bits[i]);
+                        }
                     }
                 }
+                cts.push(cnt); cts.extend(idx);
             }
             let t_comp = t0.elapsed().as_secs_f64();
-            let mut dati: Vec<&[u64]> = vec![cnt.as_ref()];
-            for c in &idx {
-                dati.push(c.as_ref());
-            }
-            scrivi_u64(out, &[n as u64, nbit as u64, big_size.0 as u64], &dati);
+            let dati: Vec<&[u64]> = cts.iter().map(|c| c.as_ref()).collect();
+            scrivi_u64(out, &[n as u64, nbit as u64, big_size.0 as u64, BLOCCO as u64], &dati);
             println!("{{\"n\": {n}, \"t_dot_s\": {t_dot:.4}, \"t_pbs_s\": {t_pbs:.4}, \"t_compatta_s\": {t_comp:.5}, \
                       \"threads\": {}, \"esito_ct_bytes\": {}}}", rayon::current_num_threads(), fs::metadata(out).unwrap().len());
         }
@@ -193,14 +198,22 @@ fn main() {
             let sck = ick.into_raw_parts();
             let (enc_key, _) = sck.encryption_key_and_noise();
             let (hdr, dati) = leggi_u64(ct_path);
-            let (n, nbit, size) = (hdr[0] as usize, hdr[1] as usize, hdr[2] as usize);
+            let (n, nbit, size, blocco) = (hdr[0] as usize, hdr[1] as usize, hdr[2] as usize, hdr[3] as usize);
             let t0 = Instant::now();
             let dec8 = |sl: &[u64]| {
                 let ct = LweCiphertext::from_container(sl.to_vec(), modulus);
                 (decrypt_lwe_ciphertext(&enc_key, &ct).0.wrapping_add(1u64 << (LOG_DO - 1)) >> LOG_DO) & 0xFF
             };
-            let cnt = dec8(&dati[0..size]) as usize;
-            let idx: usize = (0..nbit).map(|b| (dec8(&dati[(b + 1) * size..(b + 2) * size]) as usize) << b).sum();
+            let nblocchi = (n + blocco - 1) / blocco;
+            let (mut cnt, mut idx) = (0usize, 0usize);
+            for b in 0..nblocchi {
+                let base = b * (1 + nbit) * size;
+                let c = dec8(&dati[base..base + size]) as usize;
+                cnt += c;
+                if c == 1 {
+                    idx = b * blocco + (0..nbit).map(|k| (dec8(&dati[base + (k + 1) * size..base + (k + 2) * size]) as usize) << k).sum::<usize>();
+                }
+            }
             println!("{{\"n\": {n}, \"conteggio\": {cnt}, \"indice\": {}, \"decrypt_s\": {:.5}}}",
                      if cnt == 1 { idx as i64 } else { -1 }, t0.elapsed().as_secs_f64());
         }

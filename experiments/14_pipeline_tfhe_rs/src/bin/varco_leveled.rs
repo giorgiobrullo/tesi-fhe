@@ -26,9 +26,9 @@ use std::fs;
 use std::time::Instant;
 use tfhe::core_crypto::prelude::*;
 use tfhe::shortint::server_key::ShortintBootstrappingKey;
+use tfhe::shortint::parameters::V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64;
 use tfhe::{generate_keys, ConfigBuilder};
 
-const NS: [usize; 5] = [8, 16, 32, 64, 128];
 
 struct Scena {
     dim: usize,
@@ -59,26 +59,42 @@ fn carica(path: &str) -> Scena {
 }
 
 fn main() {
-    let scena = carica(concat!(env!("CARGO_MANIFEST_DIR"), "/results/scena_reale.txt"));
+    // argv[1]: scena (default results/scena_reale.txt); argv[2]: N minimo (default 8); le N raddoppiano fino alla galleria
+    let args: Vec<String> = std::env::args().collect();
+    let default_scena = concat!(env!("CARGO_MANIFEST_DIR"), "/results/scena_reale.txt").to_string();
+    let scena = carica(args.get(1).unwrap_or(&default_scena));
+    let n_min: usize = args.get(2).map(|s| s.parse().unwrap()).unwrap_or(8);
+    let mut ns: Vec<usize> = Vec::new();
+    let mut n = n_min;
+    while n <= scena.g.len() { ns.push(n); n *= 2; }
     let threads = rayon::current_num_threads();
+    // --multibit: parametri multi-bit (group 3) e PBS multi-bit; --mb-threads K forza i thread interni del PBS
+    let multibit = args.iter().any(|a| a == "--multibit");
+    let mb_threads: Option<usize> = args.iter().position(|a| a == "--mb-threads").map(|i| args[i + 1].parse().unwrap());
 
     // --- chiavi standard dall'API ad alto livello, poi le parti grezze ---
-    let (ck_hl, sk_hl) = generate_keys(ConfigBuilder::default().build());
+    let cfg = if multibit {
+        ConfigBuilder::with_custom_parameters(V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64).build()
+    } else {
+        ConfigBuilder::default().build()
+    };
+    let (ck_hl, sk_hl) = generate_keys(cfg);
     let (ick, _, _, _) = ck_hl.into_raw_parts();
     let sck = ick.into_raw_parts();
     let (isk, _, _, _, _) = sk_hl.into_raw_parts();
     let ssk = isk.into_raw_parts();
     let (enc_key, noise) = sck.encryption_key_and_noise();
     let ksk = &ssk.key_switching_key;
-    let fbsk = match &ssk.bootstrapping_key {
-        ShortintBootstrappingKey::Classic(k) => k,
-        _ => panic!("attesa bootstrapping key classica"),
-    };
     let modulus = CiphertextModulus::<u64>::new_native();
     let big_size = enc_key.lwe_dimension().to_lwe_size();
     let small_size = ksk.output_key_lwe_dimension().to_lwe_size();
-    let poly = fbsk.polynomial_size();
-    let glwe_size = fbsk.glwe_size();
+    let poly = ssk.bootstrapping_key.polynomial_size();
+    let glwe_size = ssk.bootstrapping_key.glwe_size();
+    let variante = match &ssk.bootstrapping_key {
+        ShortintBootstrappingKey::Classic(_) => "PBS classico, TUniform, default tfhe-rs".to_string(),
+        ShortintBootstrappingKey::MultiBit { thread_count, .. } =>
+            format!("PBS multi-bit group 3, thread interni {}", mb_threads.unwrap_or(thread_count.0)),
+    };
 
     // --- encoding del punteggio: Delta_s massimo tale che |s - T| * Delta_s < 2^63 ---
     let mut max_abs = 0i64;
@@ -93,7 +109,7 @@ fn main() {
     let delta: u64 = 1u64 << log_delta;
     println!("scena: DIM={} N={} probe={} T={}  |s-T| max {} -> {} bit, Delta_s = 2^{}, thread {}",
              scena.dim, scena.g.len(), scena.probe.len(), scena.t, max_abs, w, log_delta, threads);
-    println!("parametri: n_grande={} n_piccola={} N_poly={} (128 bit, TUniform, default tfhe-rs)\n",
+    println!("parametri: n_grande={} n_piccola={} N_poly={} (128 bit, {variante})\n",
              big_size.to_lwe_dimension().0, small_size.to_lwe_dimension().0, poly.0);
 
     // accumulatore costante -2^55: dopo il PBS vale -2^55 se x in [0, 2^63) (s > T), +2^55 se
@@ -104,6 +120,12 @@ fn main() {
     let c: u64 = (1u64 << (LOG_DO - 1)).wrapping_neg();
     let acc = allocate_and_trivially_encrypt_new_glwe_ciphertext(
         glwe_size, &PlaintextList::new(c, PlaintextCount(poly.0)), modulus);
+    let pbs = |ks: &LweCiphertextOwned<u64>, out: &mut LweCiphertextOwned<u64>| match &ssk.bootstrapping_key {
+        ShortintBootstrappingKey::Classic(k) => programmable_bootstrap_lwe_ciphertext(ks, out, &acc, k),
+        ShortintBootstrappingKey::MultiBit { fourier_bsk, thread_count, deterministic_execution } =>
+            multi_bit_programmable_bootstrap_lwe_ciphertext(ks, out, &acc, fourier_bsk,
+                                                            ThreadCount(mb_threads.unwrap_or(thread_count.0)), *deterministic_execution),
+    };
 
     let mut boxed_seeder = new_seeder();
     let seeder = boxed_seeder.as_mut();
@@ -112,7 +134,7 @@ fn main() {
     println!("{:>3} | {:>8} | {:>9} | {:>9} | {:>10} | discrepanze (|s-T| delle sbagliate)",
              "N", "dot", "KS+PBS", "totale", "PBS/thread");
     let mut banda: Vec<i64> = Vec::new();
-    for &n in &NS {
+    for &n in &ns {
         let mut tot_dot = 0f64;
         let mut tot_pbs = 0f64;
         let mut tot_compatta = 0f64;
@@ -156,36 +178,52 @@ fn main() {
                     let mut ks = LweCiphertext::new(0u64, small_size, modulus);
                     keyswitch_lwe_ciphertext(ksk, x, &mut ks);
                     let mut out = LweCiphertext::new(0u64, big_size, modulus);
-                    programmable_bootstrap_lwe_ciphertext(&ks, &mut out, &acc, fbsk);
+                    pbs(&ks, &mut out);
                     lwe_ciphertext_plaintext_add_assign(&mut out, Plaintext(1u64 << (LOG_DO - 1)));
                     out
                 })
                 .collect();
             tot_pbs += t0.elapsed().as_secs_f64();
 
-            // server, tappa 3 (opzionale): uscita compatta = conteggio sum b_i + indice in BINARIO,
-            // bit k = sum dei b_i con il bit k di i acceso. Coefficienti solo 0/1: il rumore del PBS
-            // (~2^48) cresce come sqrt(N), non come sum i^2 (con sum i*b_i l'indice sbagliava gia' a N=32).
+            // server, tappa 3 (opzionale): uscita compatta = per ogni BLOCCO di 64 iscritti il conteggio
+            // sum b_i e l'indice in binario (bit k = sum dei b_i con il bit k di i acceso). Coefficienti
+            // 0/1 e al piu' 64 addendi: il rumore del PBS (~2^48) resta sotto 2^51 contro un margine di
+            // 2^55 (con somme su tutti gli N, a N=1024 arrivava a ~2^53 e sbagliava 8 probe su 128).
+            // Il client somma i blocchi in chiaro: conteggio totale, e indice = blocco*64 + indice locale.
+            const BLOCCO: usize = 64;
             let t0 = Instant::now();
-            let nbit = (usize::BITS - (n - 1).leading_zeros()) as usize;
-            let mut cnt_ct = allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus);
-            let mut idx_ct: Vec<LweCiphertextOwned<u64>> = (0..nbit)
-                .map(|_| allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus))
-                .collect();
-            for i in 0..n {
-                lwe_ciphertext_add_assign(&mut cnt_ct, &bits[i]);
-                for k in 0..nbit {
-                    if (i >> k) & 1 == 1 {
-                        lwe_ciphertext_add_assign(&mut idx_ct[k], &bits[i]);
+            let nbit = (usize::BITS - (BLOCCO - 1).leading_zeros()) as usize;
+            let nblocchi = (n + BLOCCO - 1) / BLOCCO;
+            let mut cnt_ct: Vec<LweCiphertextOwned<u64>> = Vec::with_capacity(nblocchi);
+            let mut idx_ct: Vec<Vec<LweCiphertextOwned<u64>>> = Vec::with_capacity(nblocchi);
+            for b in 0..nblocchi {
+                let mut cnt = allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus);
+                let mut idx: Vec<LweCiphertextOwned<u64>> = (0..nbit)
+                    .map(|_| allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus))
+                    .collect();
+                for i in b * BLOCCO..((b + 1) * BLOCCO).min(n) {
+                    lwe_ciphertext_add_assign(&mut cnt, &bits[i]);
+                    let loc = i - b * BLOCCO;
+                    for k in 0..nbit {
+                        if (loc >> k) & 1 == 1 {
+                            lwe_ciphertext_add_assign(&mut idx[k], &bits[i]);
+                        }
                     }
                 }
+                cnt_ct.push(cnt); idx_ct.push(idx);
             }
             tot_compatta += t0.elapsed().as_secs_f64();
             let dec8 = |ct: &LweCiphertextOwned<u64>| {
                 (decrypt_lwe_ciphertext(&enc_key, ct).0.wrapping_add(1u64 << (LOG_DO - 1)) >> LOG_DO) & 0xFF
             };
-            let cnt_dec = dec8(&cnt_ct) as usize;
-            let idx_dec: usize = (0..nbit).map(|k| (dec8(&idx_ct[k]) as usize) << k).sum();
+            let (mut cnt_dec, mut idx_dec) = (0usize, 0usize);
+            for b in 0..nblocchi {
+                let c = dec8(&cnt_ct[b]) as usize;
+                cnt_dec += c;
+                if c == 1 {
+                    idx_dec = b * BLOCCO + (0..nbit).map(|k| (dec8(&idx_ct[b][k]) as usize) << k).sum::<usize>();
+                }
+            }
 
             // client: decifra gli N bit, confronto col chiaro
             let mut sotto: Vec<usize> = Vec::new();

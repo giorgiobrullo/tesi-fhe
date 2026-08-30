@@ -22,7 +22,8 @@ OUT.mkdir(exist_ok=True)
 
 B = np.load(ROOT / "benchmark" / "results" / "_emb_reale_extra.npz")
 E_full, y_full = B["rn100"].astype(np.float32), B["y"]
-N, N_GEN, N_IMP, N_IMP_TARA, Q = 128, 64, 64, 2000, 4
+N = int(sys.argv[1]) if len(sys.argv) > 1 else 128      # es. 1024 per la scala
+N_GEN, N_IMP, N_IMP_TARA, Q = 64, 64, 2000, 4
 
 
 def quant_fit(pool, q=Q):
@@ -60,7 +61,8 @@ P = np.array(probes)
 S = bsq[None, :] - 2 * (P @ G.T)
 smin, smax = int(S.min()), int(S.max())
 
-with open(OUT / "scena_reale.txt", "w") as fp:
+NOME = "scena_reale.txt" if N == 128 else f"scena_reale_{N}.txt"
+with open(OUT / NOME, "w") as fp:
     fp.write(f"{G.shape[1]} {N} {len(P)} {T}\n")
     for g in G:
         fp.write(" ".join(map(str, g)) + "\n")
@@ -69,7 +71,7 @@ with open(OUT / "scena_reale.txt", "w") as fp:
 
 jm = S.argmin(1); mn = S[np.arange(len(S)), jm]; lab = np.array(labels)
 gen = lab >= 0
-print(f"scritto {OUT / 'scena_reale.txt'}: DIM={G.shape[1]} N={N} probe={len(P)} T={T}")
+print(f"scritto {OUT / NOME}: DIM={G.shape[1]} N={N} probe={len(P)} T={T}")
 print(f"punteggi in [{smin}, {smax}] -> {int(np.ceil(np.log2(max(abs(smin), abs(smax)) + 1))) + 1} bit signed")
 print(f"in chiaro: genuini riconosciuti {np.mean((jm[gen] == lab[gen]) & (mn[gen] <= T)):.1%}, "
       f"impostori accettati {np.mean(mn[~gen] <= T):.1%}; "

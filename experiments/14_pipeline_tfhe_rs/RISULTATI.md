@@ -72,6 +72,13 @@ i thread si contendono cache e E-core), e il totale scala lineare in N:
 
 Il parallelismo dei confronti indipendenti vale ~10× (12 P-core + 4 E-core).
 
+Scala (`scena_reale_1024.txt`, `varco_leveled_16thread_1024.txt`, F43): N=256 0,34 s, 512 0,70 s,
+**1024 1,41 s**, 0 discrepanze su 131.072 confronti, esito per probe come in chiaro (96,9%).
+Uscita compatta **a blocchi di 64** (conteggio + indice locale): 128/128 a ogni N; con le somme su
+tutti gli N sbagliava 8/128 a N=1024 (rumore ~√N). PBS multi-bit (`--multibit`, `--mb-threads K`):
+0,198 s (7 thread interni) e 0,210 s (1) contro 0,177 s del classico: nessun guadagno
+(`varco_leveled_16thread_multibit.txt`).
+
 ### La banda di sfocatura (`banda_soglia.rs`, `effetto_banda.py`)
 
 Il PBS di segno decide dopo il modulus switch a 2N, che aggiunge un errore ~√(n/24)·q/2N =
@@ -85,7 +92,7 @@ resta identica (92,9 / 92,9 / 92,3% a N = 64 / 128 / 1000) con FPIR 0,97-0,99% c
 
 `varco keygen <dir>` · `varco encrypt <dir> probe.txt probe.ct` · `varco server <dir> galleria.txt
 probe.ct esito.ct` · `varco decrypt <dir> esito.ct`. Probe come un solo GLWE (encoding
-polinomiale): **32.800 byte** invece di 8,4 MB; esito 131 KB; chiavi 23 KB (client) e 130 MB
+polinomiale): **32.800 byte** invece di 8,4 MB; esito 229 KB (a blocchi di 64); chiavi 23 KB (client) e 130 MB
 (server). Server 0,18 s a N=128 (16 thread). Esempio in `results/e2e/` (galleria.txt = scena
 reale con LOG_DELTA=50, cioè |s−T| < 2^13 dichiarato): genuino → `{"conteggio": 1, "indice": 104}`,
 impostore → `{"conteggio": 0}`.
@@ -95,7 +102,9 @@ impostore → `{"conteggio": 0}`.
 Oracolo di appartenenza simulato in chiaro: con la distanza l'embedding esce esatto in 513 query;
 col solo bit servono ~30.000 query per coseno 0,999 (1.000 per un vettore accettato), e solo
 partendo da un probe già accettato (una foto dell'iscritto); da impostori o vettori casuali
-20.000 query non producono un'accettazione. Contromisura: rate limiting.
+20.000 query non producono un'accettazione. Mettere ‖v‖² nel punteggio (palla invece di
+semispazio) non aiuta: coseno 0,995 in 10.000 query, perché l'attaccante conosce la norma del
+proprio vettore e il punteggio resta lineare nelle incognite. Contromisura: rate limiting.
 
 ## Riprodurre
 
@@ -103,7 +112,8 @@ partendo da un probe già accettato (una foto dell'iscritto); da impostori o vet
 uv run python precisione_punteggio.py      # F36, ~30 s
 uv run python esporta_dati.py              # scena reale per i binari Rust
 cargo run --release --bin selezione        # F38, ~4 min a 16 thread
-cargo run --release --bin varco_leveled    # F37, ~1 min
+cargo run --release --bin varco_leveled    # F37, ~1 min  (args: [scena] [N_min] [--multibit] [--mb-threads K])
+uv run python esporta_dati.py 1024 && cargo run --release --bin varco_leveled -- results/scena_reale_1024.txt 256   # F43, ~6 min
 cargo run --release --bin banda_soglia     # banda, ~3 min
 uv run python effetto_banda.py             # effetto della banda, ~1 min
 RAYON_NUM_THREADS=1 cargo run --release --bin <bin>   # versione seriale

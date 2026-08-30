@@ -1682,11 +1682,14 @@ dal varco. Quindi:
    dicono la stessa cosa del loro k-NN ("this latter leakage is inherent to the service
    provided… throttling the request rate"). È un punto da mettere nella tesi accanto al modello
    di minaccia, non da lasciare implicito.
-4. La formula espansa senza ‖v‖² ha un costo qui: rende la regione un semispazio, più facile da
-   apprendere di una palla. Reintrodurre ‖v‖² cifrato costerebbe un prodotto cifrato×cifrato
-   (F2), oppure il client potrebbe inviarlo in chiaro e il server verificarne il range: un
-   vettore fuori norma viene rifiutato prima del match. È una mitigazione economica da
-   valutare, non l'abbiamo misurata.
+4. La formula espansa senza ‖v‖² rende la regione un semispazio invece di una palla, e viene
+   da chiedersi se rimettere ‖v‖² nel punteggio (cifrato, un prodotto cifrato×cifrato in più,
+   F2) renderebbe l'attacco più difficile. **No, misurato**: con la palla l'attaccante, che
+   conosce la norma del proprio vettore, aggiunge ‖v‖² come feature e il punteggio torna
+   lineare nelle incognite (g, c); a 10.000 query il coseno è 0,995 contro 0,989 del
+   semispazio. E far dichiarare ‖v‖² in chiaro al client non serve: un client malicious
+   dichiara quello che vuole. La geometria del punteggio non è una leva di difesa; lo è solo
+   il numero di query.
 
 Letteratura, verificata sugli abstract e sui riassunti disponibili: gli attacchi *hill-climbing*
 ai sistemi biometrici sono noti da Adler (2003: ricostruzione di immagini dai template; 2004:
@@ -1708,7 +1711,7 @@ il server, per l'iscritto i, moltiplica per il polinomio in chiaro P_i(X) = Σ (
 la chiave grande: da lì la costante, il keyswitch, il PBS di segno e l'uscita compatta di F37.
 
 Misurato sulla scena reale (N=128, 512 dim, 16 thread): probe cifrato **32.800 byte**, esito
-(conteggio + 7 bit di indice) 131 KB, chiave client 23 KB, chiave server 130 MB (una volta, alla
+(conteggio + indice, a blocchi di 64 da F43) 229 KB, chiave client 23 KB, chiave server 130 MB (una volta, alla
 registrazione del dispositivo); cifratura 0,4 ms, server **0,18 s** (prodotti polinomiali 7-16
 ms, PBS 0,16-0,18 s), decifratura 0,03 ms. Esiti: probe genuino → conteggio 1, indice 104 =
 l'identità vera; impostore → conteggio 0. Il costo per query non cambia rispetto a F37 (i
@@ -1762,3 +1765,40 @@ quello che il bit rivela (F40) e il conteggio da discutere col prof (F37).
 La figura del percorso mostra, a N=8, 455 s → 12,5 s → 1,1 s → 0,36 s → (CKKS 1,6 s) → 0,017 s:
 quattro ordini di grandezza in cinque passi, ciascuno con una tecnica e un motivo; a N=128 i
 design finali sotto i traguardi dell'incontro sono solo quelli tfhe-rs.
+
+## 🔴 F43 — Scala e rifiniture: N=1024 in 1,4 s, l'uscita compatta a blocchi, il multi-bit non serve
+Tre verifiche dopo il percorso, sulla stessa scena reale (ResNet100, VGGFace2, 4 bit), con una
+galleria portata a **1024 iscritti** (`esporta_dati.py 1024`, T al quantile 1% di 2000 impostori):
+
+| N | totale per query (16 thread) | per PBS per thread | discrepanze |
+|---|---|---|---|
+| 128 | 0,19 s | 22 ms | 0 / 16.384 |
+| 256 | 0,34 s | 21 ms | 0 / 32.768 |
+| 512 | 0,70 s | 21 ms | 0 / 65.536 |
+| **1024** | **1,41 s** | 22 ms | **0 / 131.072** |
+
+Esito per probe uguale al chiaro (62/64 genuini = 96,9%, 0/64 impostori). Il varco è lineare
+in N con lo stesso costo per iscritto di F37, e a mille iscritti — il numero che all'incontro
+sembrava "molto" — sta a 1,4 s, un terzo dei 5 s accettabili. La scala non è più una domanda.
+
+**L'uscita compatta a blocchi.** A N=1024 la prima versione dell'uscita compatta (conteggio e
+indice come somme leveled su tutti gli N bit) sbagliava 8 probe su 128 (uno su 128 a N=512): il
+rumore del PBS (~2^48) sommato su N addendi cresce come √N e a 1024 arriva a ~2^53, contro un
+margine di decodifica di 2^55, cioè ~4σ. Corretto sommando **per blocchi di 64** (conteggio e
+indice locale per blocco, il client somma i blocchi in chiaro): rumore ≤ 2^51, 16σ di margine,
+**128/128 corretto a ogni N**, 1,5 ms a N=1024. L'esito pesa 16 KB per LWE, quindi 229 KB a
+N=128 e 1,8 MB a N=1024 (contro 16 MB degli N bit). Lezione da diario: le somme leveled sui bit
+freschi non sono gratis in rumore, e il conteggio del numero di addendi va fatto prima, non
+dopo (è la stessa regola con cui Zuber-Sirdey limitano gli addendi tra un bootstrap e l'altro).
+
+**Il PBS multi-bit non aiuta il varco.** Con i parametri multi-bit (group 3, n=909, N=2048) e
+i 7 thread interni scelti da tfhe-rs, N=128 fa 0,198 s contro 0,177 s del PBS classico; con 1
+thread interno 0,210 s. Come in F38: il varco è già parallelo su N con tutti i core occupati, e
+il multi-bit è un altro modo di spendere gli stessi core, non un guadagno che si somma. Va in
+una riga nel percorso (F42), tra le cose provate senza effetto.
+
+Da F40, riportato qui perché chiude la stessa lista: rimettere ‖v‖² nel punteggio (la palla
+invece del semispazio) **non** difende dall'attacco con l'oracolo (coseno 0,995 in 10.000
+query): l'attaccante conosce la norma del suo vettore. GhostFaceNet (Carnemolla) resta non
+provato: per l'FHE il modello è indifferente, e per l'accuratezza F30 dice che la scelta della
+rete vale 1-2 punti contro i 15 del dominio; se servirà, è una riga nel harness di F30.

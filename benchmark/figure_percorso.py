@@ -40,11 +40,15 @@ def selezione(param, col):
 
 
 def varco(thread):
+    """unisce il run sulla scena da 128 e, se c'e', quello sulla scena da 1024 (N = 256…1024)."""
     out = {}
-    for line in open(E14 / f"varco_leveled_{thread}thread.txt"):
-        m = re.match(r"\s*(\d+) \|\s*([\d.]+)s \|\s*([\d.]+)s \|\s*([\d.]+)s", line)
-        if m:
-            out[int(m.group(1))] = float(m.group(4))
+    for nome in (f"varco_leveled_{thread}thread.txt", f"varco_leveled_{thread}thread_1024.txt"):
+        if not (E14 / nome).exists():
+            continue
+        for line in open(E14 / nome):
+            m = re.match(r"\s*(\d+) \|\s*([\d.]+)s \|\s*([\d.]+)s \|\s*([\d.]+)s", line)
+            if m:
+                out.setdefault(int(m.group(1)), float(m.group(4)))
     return out
 
 
@@ -109,13 +113,13 @@ for nome, d, c, mk, dy in serie:
     ax2.annotate(lab, (n_last, v_last), xytext=(7, dy), textcoords="offset points", fontsize=8.5,
                  color=c, fontweight="bold", va="center")
 ax2.set_xscale("log", base=2); ax2.set_yscale("log")
-ax2.set_xticks([8, 16, 32, 64, 128]); ax2.set_xticklabels(["8", "16", "32", "64", "128"])
-ax2.set_ylim(0.008, 400); ax2.set_xlim(7, 300)
+ax2.set_xticks([8, 16, 32, 64, 128, 256, 512, 1024]); ax2.set_xticklabels(["8", "16", "32", "64", "128", "256", "512", "1024"])
+ax2.set_ylim(0.008, 400); ax2.set_xlim(7, 2600)
 for y, t in ((10, "10 s"), (5, "5 s")):
     ax2.axhline(y, ls=(0, (4, 4)), lw=0.9, color="#bbb", zorder=0)
-    ax2.text(210, y, t, fontsize=8, color="#999", va="center", ha="left")
+    ax2.text(1700, y, t, fontsize=8, color="#999", va="center", ha="left")
 ax2.set_xlabel("iscritti in galleria N"); ax2.set_ylabel("tempo per query (s, scala log)")
-ax2.set_title("(b) I design finali al crescere della galleria\nConcrete supera i 10 s da N=32; il varco leveled sta 25× sotto i 5 s", fontsize=11)
+ax2.set_title("(b) I design finali al crescere della galleria\nConcrete supera i 10 s da N=32; il varco leveled resta sotto i 5 s fino a N=1024", fontsize=11)
 ax2.legend(fontsize=7.8, loc="upper left", frameon=False)
 ax2.spines[["top", "right"]].set_visible(False); ax2.tick_params(labelsize=9)
 
