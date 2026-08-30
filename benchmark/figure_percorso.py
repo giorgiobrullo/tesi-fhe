@@ -63,7 +63,7 @@ rad_seqF32, rad_seq, rad_tor = selezione("def/u16", 2), selezione("def/u16", 3),
 lev16, lev1 = varco(16), varco(1)
 ck = ckks(32768, 6, 2)
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5.4), gridspec_kw={"width_ratios": [1.15, 1]})
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.4), gridspec_kw={"width_ratios": [1.1, 1]})
 
 # ---------------- (a) il percorso a N=8: un punto per passo, scala log
 passi = [
@@ -71,8 +71,8 @@ passi = [
     ("Concrete\nsoglia", c_sog[8], "#7e8aa0"),
     ("tfhe-rs radix\ncatena\n(16 bit)", rad_seqF32[8], "#5b6b8c"),
     ("tfhe-rs radix\ntorneo\n(8 bit)", rad_tor[8], "#6a4c93"),
-    ("CKKS\npacking + segno\n(confronto, F39)", ck[8], "#e9a000"),
-    ("tfhe-rs\nleveled +\nsoglia parallela", lev16[8], "#2a9d8f"),
+    ("CKKS\npacking+segno\n(confronto)", ck[8], "#e9a000"),
+    ("tfhe-rs leveled\n+ soglia\nparallela", lev16[8], "#2a9d8f"),
 ]
 x = np.arange(len(passi)); ys = [p[1] for p in passi]
 CONFRONTO = 4                      # la barra CKKS e' un confronto (F39), non un passo del percorso
@@ -120,7 +120,7 @@ for y, t in ((10, "10 s"), (5, "5 s")):
     ax2.text(1700, y, t, fontsize=8, color="#999", va="center", ha="left")
 ax2.set_xlabel("iscritti in galleria N"); ax2.set_ylabel("tempo per query (s, scala log)")
 ax2.set_title("(b) I design finali al crescere della galleria\nConcrete supera i 10 s da N=32; il varco leveled resta sotto i 5 s fino a N=1024", fontsize=11)
-ax2.legend(fontsize=7.8, loc="upper left", frameon=False)
+ax2.legend(fontsize=7.8, loc="lower right", frameon=False)
 ax2.spines[["top", "right"]].set_visible(False); ax2.tick_params(labelsize=9)
 
 fig.tight_layout()
