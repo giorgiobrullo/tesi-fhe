@@ -3,127 +3,68 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Varco cifrato — demo end-to-end</title>
+<title>Varco</title>
 <style>
-  :root{
-    --sfondo:#0f1417; --pannello:#171e22; --bordo:#26313a; --testo:#e6edf1; --tenue:#8fa3b0;
-    --client:#2a9d8f; --server:#e9a000; --filo:#6a4c93; --ok:#2a9d8f; --no:#c0392b;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
-  }
+  :root{ --testo:#1c1c1a; --tenue:#8a8a84; --linea:#dedcd7; --si:#2f6b5e; --no:#a04030; }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--sfondo);color:var(--testo);font-size:14px;line-height:1.45}
-  header{padding:18px 24px;border-bottom:1px solid var(--bordo);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
-  h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px}
-  .sub{color:var(--tenue);font-size:12.5px}
-  .stato{margin-left:auto;color:var(--tenue);font-size:12px;font-variant-numeric:tabular-nums}
-  .stato b{color:var(--testo);font-weight:600}
-  main{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:16px 24px 8px;align-items:start}
-  @media(max-width:1100px){main{grid-template-columns:1fr}}
-  .col{background:var(--pannello);border:1px solid var(--bordo);border-radius:10px;padding:14px 16px;min-height:220px}
-  .col h2{font-size:12px;text-transform:uppercase;letter-spacing:.9px;margin:0 0 4px;font-weight:600}
-  .col.c h2{color:var(--client)} .col.f h2{color:var(--filo)} .col.s h2{color:var(--server)}
-  .col .nota{color:var(--tenue);font-size:11.5px;margin:0 0 12px;min-height:32px}
-  video,canvas{width:100%;border-radius:8px;background:#000;display:block}
-  .frames{display:flex;gap:6px;margin-top:8px;min-height:52px}
-  .frames img{width:52px;height:52px;object-fit:cover;border-radius:6px;border:1px solid var(--bordo)}
-  button{background:var(--client);color:#06231f;border:0;border-radius:7px;padding:9px 14px;font-size:13px;
-         font-weight:600;cursor:pointer;font-family:inherit}
-  button.sec{background:#22303a;color:var(--testo)}
-  button:disabled{opacity:.45;cursor:default}
-  .bottoni{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-  input{background:#101619;border:1px solid var(--bordo);color:var(--testo);border-radius:7px;padding:8px 10px;
-        font-family:inherit;font-size:13px;width:130px}
-  .passo{border-left:2px solid var(--bordo);padding:0 0 12px 12px;margin-left:3px;position:relative}
-  .passo:last-child{padding-bottom:0}
-  .passo b{font-weight:600;font-size:12.5px}
-  .passo .val{color:var(--tenue);font-size:11.5px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-              word-break:break-all;margin-top:2px}
-  .passo.attivo{border-left-color:var(--client)}
-  .col.s .passo.attivo{border-left-color:var(--server)}
-  .cifrato{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--filo);
-           background:#12181c;border:1px solid var(--bordo);border-radius:6px;padding:8px;word-break:break-all;
-           line-height:1.6}
-  .lucchetto{color:var(--filo);font-size:12px;margin-bottom:6px}
-  footer{padding:8px 24px 26px}
-  .verdetto{background:var(--pannello);border:1px solid var(--bordo);border-radius:10px;padding:16px 18px;
-            display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-  .badge{font-size:22px;font-weight:700;padding:8px 18px;border-radius:8px;letter-spacing:.3px}
-  .badge.ok{background:rgba(42,157,143,.16);color:var(--ok);border:1px solid rgba(42,157,143,.4)}
-  .badge.no{background:rgba(192,57,43,.14);color:var(--no);border:1px solid rgba(192,57,43,.4)}
-  .badge.wait{background:#22303a;color:var(--tenue)}
-  .tempi{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--tenue)}
-  .tempi div b{display:block;color:var(--testo);font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
-  .barra{display:flex;height:8px;border-radius:4px;overflow:hidden;width:100%;margin-top:10px;background:#22303a}
-  .barra i{display:block;height:100%}
-  .legenda{font-size:11px;color:var(--tenue);margin-top:6px;display:flex;gap:14px;flex-wrap:wrap}
-  .legenda span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
-  .err{color:var(--no);font-size:12px;margin-top:8px}
+  html,body{height:100%}
+  body{margin:0;background:#f3f2ef;color:var(--testo);display:flex;align-items:center;
+       justify-content:center;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  main{width:340px;text-align:center}
+  .vetro{width:340px;height:340px;border-radius:3px;overflow:hidden;background:#e6e4df;position:relative}
+  video{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
+  .vetro.scatto::after{content:"";position:absolute;inset:0;background:#fff;animation:flash .22s ease-out}
+  @keyframes flash{from{opacity:.85}to{opacity:0}}
+  .azione{margin-top:22px}
+  button{background:none;border:1px solid var(--linea);border-radius:2px;padding:10px 22px;font:inherit;
+         font-size:14px;color:var(--testo);cursor:pointer;letter-spacing:.2px}
+  button:hover:not(:disabled){border-color:#b9b6ae}
+  button:disabled{color:var(--tenue);cursor:default}
+  .esito{margin-top:26px;min-height:52px}
+  .esito b{display:block;font-size:19px;font-weight:500;letter-spacing:.3px}
+  .esito span{display:block;font-size:13px;color:var(--tenue);margin-top:3px}
+  .si b{color:var(--si)} .no b{color:var(--no)}
+  .nota{margin-top:30px;font-size:11.5px;color:var(--tenue);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+        letter-spacing:-.1px;min-height:16px}
+  .altro{margin-top:34px;font-size:12px;color:var(--tenue)}
+  .altro a{color:var(--tenue);text-decoration:none;border-bottom:1px solid var(--linea);cursor:pointer;
+           padding-bottom:1px;margin:0 7px}
+  .altro a:hover{color:var(--testo)}
+  input{border:0;border-bottom:1px solid var(--linea);background:none;font:inherit;font-size:12px;
+        width:76px;text-align:center;color:var(--testo);padding:1px 0}
+  input:focus{outline:none;border-color:#b9b6ae}
 </style>
 </head>
 <body>
-<header>
-  <h1>Varco cifrato</h1>
-  <span class="sub">il server riconosce senza vedere: solo byte cifrati attraversano il filo</span>
-  <span class="stato" id="stato">…</span>
-</header>
-
 <main>
-  <!-- ───────────────────────────── client -->
-  <section class="col c">
-    <h2>Terminale (client)</h2>
-    <p class="nota">Ha la chiave segreta. Calcola l'embedding <b>in chiaro</b>, fonde i frame, quantizza e cifra.</p>
-    <video id="video" autoplay playsinline muted></video>
-    <div class="frames" id="frames"></div>
-    <div class="bottoni">
-      <input id="nome" placeholder="il tuo nome" value="io">
-      <button id="btn-iscrivi">Registrami</button>
-      <button id="btn-verifica">Apri il varco</button>
-    </div>
-    <div class="bottoni">
-      <button class="sec" id="btn-precarica">Popola galleria (127 sintetici)</button>
-      <button class="sec" id="btn-sintetico">Prova senza telecamera</button>
-    </div>
-    <div id="errore" class="err"></div>
-    <div id="passi-client" style="margin-top:14px"></div>
-  </section>
+  <div class="vetro" id="vetro"><video id="video" autoplay playsinline muted></video></div>
 
-  <!-- ───────────────────────────── filo -->
-  <section class="col f">
-    <h2>Sul filo</h2>
-    <p class="nota">Quello che il server riceve davvero. Nessuna chiave segreta, nessun volto, nessun punteggio.</p>
-    <div class="lucchetto">probe cifrato — <span id="dim-probe">—</span></div>
-    <div class="cifrato" id="hex">in attesa…</div>
-    <div class="lucchetto" style="margin-top:14px">esito cifrato di ritorno — <span id="dim-esito">—</span></div>
-    <div class="cifrato" id="hex2">in attesa…</div>
-  </section>
+  <div class="azione"><button id="apri">Apri il varco</button></div>
 
-  <!-- ───────────────────────────── server -->
-  <section class="col s">
-    <h2>Server (macchina remota)</h2>
-    <p class="nota">Ha la galleria in chiaro e la chiave di <b>valutazione</b>. Calcola sul cifrato: non può decifrare nulla.</p>
-    <div id="passi-server"></div>
-  </section>
-</main>
+  <div class="esito" id="esito"></div>
+  <div class="nota" id="nota"></div>
 
-<footer>
-  <div class="verdetto">
-    <span class="badge wait" id="badge">in attesa</span>
-    <div id="dettaglio" class="sub" style="min-width:180px">Registrati, poi apri il varco.</div>
-    <div class="tempi" id="tempi"></div>
+  <div class="altro">
+    <a id="registra">registrami come</a><input id="nome" value="io">
+    <a id="popola">popola galleria</a>
+    <a id="senza">senza telecamera</a>
   </div>
-  <div class="barra" id="barra"></div>
-  <div class="legenda" id="legenda"></div>
-</footer>
+</main>
 
 <script>
 const $ = s => document.querySelector(s);
-const COL = {embedding:"#2a9d8f", cifratura:"#3fb6a6", rete_e_server:"#e9a000", decifratura:"#6a4c93"};
-let CFG = null, frames = [];
+let CFG = null;
 
-// ── telecamera
 navigator.mediaDevices?.getUserMedia({video:{width:640,height:480}})
   .then(s => $("#video").srcObject = s)
-  .catch(() => { $("#errore").textContent = "Telecamera non disponibile: usa «Prova senza telecamera»."; });
+  .catch(() => nota("telecamera non disponibile — usa «senza telecamera»"));
+
+const nota = t => $("#nota").textContent = t;
+function esito(classe, titolo, sotto=""){
+  $("#esito").className = "esito " + classe;
+  $("#esito").innerHTML = `<b>${titolo}</b>${sotto ? `<span>${sotto}</span>` : ""}`;
+}
 
 function scatta(){
   const v = $("#video"), c = document.createElement("canvas");
@@ -131,109 +72,65 @@ function scatta(){
   c.getContext("2d").drawImage(v, 0, 0, c.width, c.height);
   return c.toDataURL("image/jpeg", 0.92);
 }
-async function raffica(n){                    // la raffica di frame: è la fusione multi-frame
-  frames = [];
-  $("#frames").innerHTML = "";
+async function raffica(n){                 // la raffica: è la fusione multi-frame
+  const f = [];
   for (let i = 0; i < n; i++){
-    const d = scatta(); frames.push(d);
-    const im = document.createElement("img"); im.src = d; $("#frames").appendChild(im);
-    await new Promise(r => setTimeout(r, 220));
+    f.push(scatta());
+    $("#vetro").classList.add("scatto");
+    setTimeout(() => $("#vetro").classList.remove("scatto"), 220);
+    await new Promise(r => setTimeout(r, 240));
   }
-  return frames;
-}
-
-function passi(dove, lista){
-  dove.innerHTML = lista.map(p =>
-    `<div class="passo ${p.attivo?"attivo":""}"><b>${p.t}</b>${p.v?`<div class="val">${p.v}</div>`:""}</div>`).join("");
+  return f;
 }
 
 async function api(path, body){
   const r = await fetch(path, {method:"POST", headers:{"Content-Type":"application/json"},
-                               body: JSON.stringify(body||{})});
+                               body: JSON.stringify(body || {})});
   const j = await r.json();
   if (!r.ok) throw new Error(j.errore || "errore");
   return j;
 }
 
-async function aggiornaStato(){
+async function stato(){
   try{
     const s = await (await fetch("/api/stato")).json();
     CFG = s.client.config;
-    $("#stato").innerHTML = `galleria <b>${s.server.iscritti}</b> iscritti · soglia <b>${s.server.soglia}</b> · `
-      + `${CFG.bit} bit · fusione <b>${CFG.k_galleria}+${CFG.k_probe}</b> · chiave sul server: `
-      + `<b>${s.server.chiave ? "valutazione" : "assente"}</b>`;
-  }catch(e){ $("#stato").textContent = "server non raggiungibile"; }
+    if (!$("#esito").textContent) nota(`${s.server.iscritti} iscritti in galleria`);
+  }catch(e){ nota("server non raggiungibile"); }
 }
 
 function mostra(r){
-  const ok = r.esito === "aperto";
-  $("#badge").className = "badge " + (ok ? "ok" : "no");
-  $("#badge").textContent = ok ? "APERTO" : (r.esito === "negato" ? "NEGATO" : "AMBIGUO");
-  $("#dettaglio").innerHTML = ok
-    ? `identità <b>${r.identita}</b>${r.atteso ? (r.identita===r.atteso ? " ✓" : ` (atteso ${r.atteso}) ✗`) : ""}`
-    : `nessun iscritto sotto soglia (conteggio ${r.conteggio})`;
-
   const t = r.tempi_ms, tot = t.embedding + t.cifratura + t.rete_e_server + t.decifratura;
-  $("#tempi").innerHTML = Object.entries({embedding:t.embedding, cifratura:t.cifratura,
-      "rete + server":t.rete_e_server, decifratura:t.decifratura, totale:tot})
-    .map(([k,v]) => `<div>${k}<b>${v.toFixed(0)} ms</b></div>`).join("");
-  $("#barra").innerHTML = ["embedding","cifratura","rete_e_server","decifratura"]
-    .map(k => `<i style="width:${100*t[k]/tot}%;background:${COL[k]}"></i>`).join("");
-  $("#legenda").innerHTML = ["embedding","cifratura","rete_e_server","decifratura"]
-    .map(k => `<span style="--c:${COL[k]}"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${COL[k]};margin-right:5px"></span>${k.replace(/_/g," ")}</span>`).join("");
-
-  $("#dim-probe").textContent = (r.byte.probe_cifrato/1024).toFixed(1) + " KB";
-  $("#dim-esito").textContent = (r.byte.esito_cifrato/1024).toFixed(0) + " KB";
-  $("#hex").textContent = r.cifrato_primi.match(/.{1,2}/g).join(" ") + " …";
-  $("#hex2").textContent = "…" + " (" + r.byte.esito_cifrato.toLocaleString("it") + " byte: conteggio e indice, cifrati)";
-
-  passi($("#passi-client"), [
-    {t:`${r.frame} frame → ResNet100 in chiaro`, v:`${t.embedding.toFixed(0)} ms`},
-    {t:"fusione multi-frame + quantizzazione 3 bit", v:"[" + r.template_primi.join(", ") + ", …]"},
-    {t:"cifratura (un GLWE)", v:`${t.cifratura.toFixed(0)} ms → ${(r.byte.probe_cifrato/1024).toFixed(1)} KB`, attivo:true},
-    {t:"decifratura dell'esito", v:`${t.decifratura.toFixed(1)} ms → ${ok ? "aperto" : "negato"}`},
-  ]);
-  passi($("#passi-server"), [
-    {t:"riceve byte cifrati", v:`${r.byte.probe_cifrato.toLocaleString("it")} byte`},
-    {t:"prodotto scalare cifrato × galleria in chiaro", v:"leveled, 0 bootstrap"},
-    {t:`una soglia cifrata per iscritto`, v:`${r.pbs} bootstrap in parallelo`, attivo:true},
-    {t:"restituisce l'esito cifrato", v:`${t.server.toFixed(0)} ms sul server`},
-  ]);
+  if (r.esito === "aperto") esito("si", "Aperto", r.identita);
+  else if (r.esito === "negato") esito("no", "Negato", "nessun iscritto riconosciuto");
+  else esito("no", "Ambiguo", `${r.conteggio} iscritti sotto soglia`);
+  nota(`${Math.round(tot)} ms · il server ha visto ${(r.byte.probe_cifrato/1024).toFixed(0)} KB cifrati `
+     + `· ${r.pbs} confronti sul cifrato in ${Math.round(t.server)} ms`);
 }
 
-async function conAttesa(testo, fn){
-  $("#errore").textContent = "";
-  $("#badge").className = "badge wait"; $("#badge").textContent = testo;
-  document.querySelectorAll("button").forEach(b => b.disabled = true);
+async function con(testo, fn){
+  document.querySelectorAll("button,a").forEach(b => b.style.pointerEvents = "none");
+  $("#apri").disabled = true;
+  esito("", testo); nota("");
   try{ await fn(); }
-  catch(e){ $("#errore").textContent = e.message; $("#badge").textContent = "errore"; }
-  finally{ document.querySelectorAll("button").forEach(b => b.disabled = false); aggiornaStato(); }
+  catch(e){ esito("no", "Errore", e.message); }
+  finally{ document.querySelectorAll("button,a").forEach(b => b.style.pointerEvents = ""); $("#apri").disabled = false; }
 }
 
-$("#btn-iscrivi").onclick = () => conAttesa("registro…", async () => {
-  const f = await raffica(CFG.k_galleria);
-  const r = await api("/api/iscrivi", {frames:f, nome:$("#nome").value});
-  $("#dettaglio").innerHTML = `registrato come <b>${$("#nome").value}</b> `
-    + `(${r.frame} foto fuse, template in chiaro sul server: è la sua galleria)`;
-  $("#badge").className = "badge ok"; $("#badge").textContent = "REGISTRATO";
+$("#apri").onclick = () => con("…", async () => mostra(await api("/api/verifica", {frames: await raffica(CFG.k_probe)})));
+$("#senza").onclick = () => con("…", async () => mostra(await api("/api/verifica", {sintetico: Math.floor(Math.random()*20)})));
+$("#registra").onclick = () => con("…", async () => {
+  const r = await api("/api/iscrivi", {frames: await raffica(CFG.k_galleria), nome: $("#nome").value});
+  esito("", "Registrato", $("#nome").value);
+  nota(`${r.frame} foto fuse in un template · in chiaro sul server, è la sua galleria`);
 });
-
-$("#btn-verifica").onclick = () => conAttesa("apro il varco…", async () => {
-  const f = await raffica(CFG.k_probe);
-  mostra(await api("/api/verifica", {frames:f}));
-});
-
-$("#btn-sintetico").onclick = () => conAttesa("volto sintetico…", async () => {
-  $("#frames").innerHTML = "";
-  mostra(await api("/api/verifica", {sintetico: Math.floor(Math.random()*20)}));
-});
-
-$("#btn-precarica").onclick = () => conAttesa("popolo la galleria…", async () => {
+$("#popola").onclick = () => con("…", async () => {
   const r = await api("/api/precarica");
-  $("#dettaglio").innerHTML = `galleria: <b>${r.iscritti}</b> iscritti (volti sintetici, ${r.secondi}s)`;
+  esito("", "Galleria pronta", `${r.iscritti} iscritti`);
+  nota(`volti sintetici · ${r.secondi}s`);
 });
 
-aggiornaStato(); setInterval(aggiornaStato, 5000);
+stato(); setInterval(stato, 8000);
 </script>
 </body>
 </html>

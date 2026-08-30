@@ -62,9 +62,11 @@ experiments/14_pipeline_tfhe_rs/target/release/varco_demo serve 9000 512 23 52 &
 uv run uvicorn demo.client.app:app --port 8000
 ```
 
-Nella pagina: **Popola galleria** (127 identità sintetiche DigiFace: volti generati, nessuna
-persona reale nelle schermate) → **Registrami** (2 foto dalla telecamera) → **Apri il varco**
-(3 frame). Senza telecamera c'è **Prova senza telecamera**, che usa un volto sintetico.
+Nella pagina, in basso e in piccolo: **popola galleria** (127 identità sintetiche DigiFace: volti
+generati, nessuna persona reale nelle schermate) → **registrami come …** (2 foto) → poi il solo
+pulsante al centro, **Apri il varco** (3 frame). Senza telecamera c'è **senza telecamera**, che usa
+un volto sintetico. Sotto l'esito, una riga sola:
+`310 ms · il server ha visto 20 KB cifrati · 127 confronti sul cifrato in 125 ms`.
 
 ## La soglia è un parametro di installazione, non una costante
 
@@ -82,7 +84,8 @@ sbagliato, apre a tutti. In tesi vale come avvertenza pratica.
 
 - `calibra.py` — scala, soglie (reale e sintetica), Δ; scrive `config.json`
 - `client/app.py` — il terminale: telecamera → embedding → fusione → cifra → decifra
-- `client/static/index.html` — la pagina (tre colonne: client / filo / server)
+- `client/static/index.html` — la pagina: minimale, una cosa sola al centro (il vetro della
+  telecamera, un pulsante, l'esito) e una riga sobria coi numeri della query
 - `server/Dockerfile` — il server è **solo** il binario Rust `varco_demo serve`
 - `docker-compose.yml` — i due container e la rete tra loro
 
