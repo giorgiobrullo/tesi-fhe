@@ -106,6 +106,16 @@ partendo da un probe già accettato (una foto dell'iscritto); da impostori o vet
 semispazio) non aiuta: coseno 0,995 in 10.000 query, perché l'attaccante conosce la norma del
 proprio vettore e il punteggio resta lineare nelle incognite. Contromisura: rate limiting.
 
+## 4b. Spremere i parametri (`--params`, F46)
+
+Il PBS di segno vuole solo 1 bit di LUT: i set piccoli di tfhe-rs (128 bit, p-fail 2⁻⁶⁴) sono più
+veloci. **MESSAGE_1_CARRY_1** (N=512): N=128 **0,100 s**, N=1024 **0,72 s** (~2× sul default),
+esatto (0/131.072 a N=1024), banda σ≈50 innocua (DIR invariata in `effetto_banda.py`, anche a σ=100).
+`2_1` sta in mezzo (0,134 s a N=128, σ≈30). `2_0`/`1_0` (N≤512, GLWE rumoroso) crollano: banda
+~1900, metà confronti errati — il varco vive del budget di rumore leveled. Il numero finale del
+sistema: **0,10 s a N=128, 0,72 s a N=1024**. `results/varco_leveled_16thread_params.txt`,
+`banda_soglia_{1_1,2_1}.txt`. Non spremuto: GPU con tfhe-rs (lotto di N PBS indipendenti; serve NVIDIA).
+
 ## 5. La strada del ponte (`pbs_largo.rs`, `argmin_delta.rs`, F45)
 
 PBS largo (unità di costo del ponte), un thread: 4 bit / N=2048 **13,9 ms**; 8 bit / N=32768
@@ -128,6 +138,8 @@ RAYON_NUM_THREADS=1 cargo run --release --bin <bin>   # versione seriale
 uv run python attacco_oracolo.py                # F40, ~40 s
 cargo run --release --bin argmin_delta -- results/scena_reale.txt 8 16   # F45, ~5 min
 cargo run --release --bin pbs_largo             # F45, ~6 min
+cargo run --release --bin varco_leveled -- results/scena_reale.txt 8 --params 1_1   # F46, varco 2x
+cargo run --release --bin banda_soglia -- --params 1_1 --d 200                      # F46, banda del set 1_1
 cargo run --release --bin varco -- keygen results/e2e/chiavi   # poi encrypt/server/decrypt (F41)
 ```
 

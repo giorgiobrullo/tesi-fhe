@@ -12,17 +12,27 @@
 use rayon::prelude::*;
 use tfhe::core_crypto::prelude::*;
 use tfhe::shortint::server_key::ShortintBootstrappingKey;
-use tfhe::{generate_keys, ConfigBuilder};
+use tfhe::shortint::parameters::{V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64, V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_1_CARRY_0_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_2_CARRY_0_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_2_CARRY_1_KS_PBS_GAUSSIAN_2M64};
+use tfhe::shortint::{ClientKey as ShortintClientKey, ServerKey as ShortintServerKey};
 
-const D: i64 = 48;
-const PROVE: usize = 400;
+const PROVE: usize = 200;
 
 fn main() {
-    let (ck_hl, sk_hl) = generate_keys(ConfigBuilder::default().build());
-    let (ick, _, _, _) = ck_hl.into_raw_parts();
-    let sck = ick.into_raw_parts();
-    let (isk, _, _, _, _) = sk_hl.into_raw_parts();
-    let ssk = isk.into_raw_parts();
+    // argv: [--params NOME] [--d AMPIEZZA]: set di parametri e semi-ampiezza dello sweep in unita' di punteggio
+    let args: Vec<String> = std::env::args().collect();
+    let nome_params = args.iter().position(|a| a == "--params").map(|i| args[i + 1].clone()).unwrap_or("default".to_string());
+    let d_max: i64 = args.iter().position(|a| a == "--d").map(|i| args[i + 1].parse().unwrap()).unwrap_or(48);
+    let sck = match nome_params.as_str() {
+        "default" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64),
+        "1_0" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_0_KS_PBS_GAUSSIAN_2M64),
+        "1_1" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64),
+        "2_0" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_0_KS_PBS_GAUSSIAN_2M64),
+        "2_1" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_1_KS_PBS_GAUSSIAN_2M64),
+        altro => panic!("--params sconosciuto: {altro}"),
+    };
+    let ssk = ShortintServerKey::new(&sck);
+    println!("set {nome_params}: n_piccola={} k*N={} sweep d in [-{d_max}, {d_max}]", ssk.key_switching_key.output_key_lwe_dimension().0, sck.encryption_key_and_noise().0.lwe_dimension().0);
+    let (D, ..) = (d_max,);
     let (enc_key, noise) = sck.encryption_key_and_noise();
     let ksk = &ssk.key_switching_key;
     let fbsk = match &ssk.bootstrapping_key {
@@ -41,9 +51,9 @@ fn main() {
     let seeder = boxed_seeder.as_mut();
     let mut enc_gen = EncryptionRandomGenerator::<DefaultRandomGenerator>::new(seeder.seed(), seeder);
 
-    println!("n_piccola={} N={} -> errore teorico del modulus switch ~ sqrt(n/24)*2^(64-12) = 2^{:.1}",
+    println!("n_piccola={} N={} -> errore teorico del modulus switch ~ sqrt(n/24)*q/2N = 2^{:.1}",
              small_size.to_lwe_dimension().0, fbsk.polynomial_size().0,
-             52.0 + ((small_size.to_lwe_dimension().0 as f64) / 24.0).sqrt().log2());
+             64.0 - 1.0 - (fbsk.polynomial_size().0 as f64).log2() + ((small_size.to_lwe_dimension().0 as f64) / 24.0).sqrt().log2());
     for &log_delta in &[50u32, 51, 52] {
         let delta = 1u64 << log_delta;
         // cifra: PROVE cifrati per ogni d (il rumore fresco e' trascurabile rispetto al mod switch)
@@ -84,7 +94,8 @@ fn main() {
                 prima_err = prima_err.min(d);
                 ultima_err = ultima_err.max(d);
             }
-            if d % 4 == 0 || (-8..=8).contains(&d) {
+            let passo = (D / 12).max(4);
+            if d % passo == 0 || (-8..=8).contains(&d) {
                 riga.push_str(&format!("d={d:>3}: {p:.2}  "));
                 if riga.len() > 96 { println!("  {riga}"); riga.clear(); }
             }

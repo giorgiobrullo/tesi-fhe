@@ -1916,3 +1916,41 @@ dalla stessa banda del varco. **Il varco resta il design**; l'argmin a matrice �
 offrire al prof se il conteggio nell'uscita non gli va bene, con il suo prezzo scritto accanto.
 Per la tesi il percorso guadagna un punto: "argmin esatto sul server a N=64 in 3,7 s, senza
 scrivere un bootstrap a mano".
+
+## 🔴 F46 — Spremere i parametri: il PBS di segno vuole 1 bit, non 4 → varco 2× più veloce
+Il varco (F37) usava il set `MESSAGE_2_CARRY_2` (LUT a 4 bit, N=2048), ereditato dall'API ad alto
+livello. Ma la soglia calcola un **segno**: gli basta una LUT a 1 bit. I set "piccoli" di tfhe-rs
+(sempre validati a 128 bit, p-fail 2⁻⁶⁴) hanno polinomi più corti e un PBS più economico. Aggiunti
+al varco (`--params`, `varco_leveled.rs`) e misurati sulla scena reale, 16 thread:
+
+| set | LUT | N (poly) | N=128 | N=1024 | esattezza | banda σ (a Δ=2^51) |
+|---|---|---|---|---|---|---|
+| MESSAGE_2_CARRY_2 (era il nostro) | 4 bit | 2048 | 0,177 s | 1,41 s | esatto | 12 |
+| MESSAGE_2_CARRY_1 | 3 bit | 1024 | 0,134 s | ~0,9 s | esatto | ~30 |
+| **MESSAGE_1_CARRY_1** | **2 bit** | **512** | **0,100 s** | **0,72 s** | **esatto** | **~50** |
+| MESSAGE_2_CARRY_0 | 2 bit | 512 | 0,083 s | — | **ROTTO** (banda ~1900) | — |
+| MESSAGE_1_CARRY_0 | 1 bit | 256 | 0,072 s | — | **ROTTO** (banda ~1900) | — |
+
+Il salto di qualità è a **MESSAGE_1_CARRY_1**: PBS a 12 ms (era 22), N=128 in **0,100 s** e
+N=1024 in **0,72 s**, cioè **~2×** su tutta la linea, con 0 discrepanze su 131.072 confronti a
+N=1024. La banda si allarga (σ ≈ 50 unità invece di 12), ma resta due ordini di grandezza sotto
+i gap reali: simulata sulle 20 scene di F36 (`effetto_banda.py`), DIR@FPIR=1% invariata
+(92,8-93,0% contro 92,9%), FPIR 1,01% — e persino a σ=100 la DIR scende solo di 0,1-0,2 punti.
+
+Il muro è netto. `MESSAGE_2_CARRY_0` e `MESSAGE_1_CARRY_0` (N=512 e 256) **crollano**: banda
+mediana ~1900 unità, metà dei confronti sbagliati. Non è il numero di bit della LUT (2_0 ha gli
+stessi 2 bit di 1_1), è il **rumore GLWE** del set: 2_0/1_0 hanno std relativa 2⁻³⁵·⁶ contro
+2⁻⁴⁸·³ di 1_1, e dopo l'accumulo del prodotto scalare (×~2^12) il rumore arriva a ~2^40, vicino
+al Δ/2 = 2^50 che separa "sotto soglia" da "sopra". La regola che ne esce, per la tesi: il varco
+vive del **budget di rumore leveled**, e i set con GLWE rumoroso (pensati per circuiti corti) non
+lo reggono; tra quelli abbastanza silenziosi, il più piccolo (1_1, N=512) è il migliore. Sotto
+non si scende senza uno schema di gestione del rumore diverso.
+
+Con questo il varco è **0,10 s a N=128 e 0,72 s a N=1024**: il numero finale del sistema. Il
+default resta 2_2 (banda più stretta, margine più comodo); 1_1 è l'operativo veloce, e la scelta
+tra i due è un cursore banda/velocità, entrambi esatti sui dati reali.
+
+**Ancora non spremuto**: la GPU con tfhe-rs. Il test di F25 (GPU 9× più lenta) era su Concrete e
+sull'argmin *sequenziale*, il caso peggiore per una GPU; il varco è N PBS **indipendenti in un
+lotto**, il carico per cui il backend CUDA di tfhe-rs è progettato. Serve una NVIDIA (via Colab,
+come in F25): esperimento su hardware esterno, non fatto in questa sessione.

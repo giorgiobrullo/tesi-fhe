@@ -1,0 +1,4 @@
+parametri: n_grande=2048 n_piccola=781 N_poly=512 (128 bit, set 1_1, PBS classico, k=4)
+1024 |   0.028s |    0.688s |    0.716s |      10.8ms | 0/131072 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 62/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 1.4 ms
+nessuna discrepanza cifrato/chiaro.

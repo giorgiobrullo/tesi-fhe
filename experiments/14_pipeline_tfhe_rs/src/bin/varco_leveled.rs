@@ -26,8 +26,8 @@ use std::fs;
 use std::time::Instant;
 use tfhe::core_crypto::prelude::*;
 use tfhe::shortint::server_key::ShortintBootstrappingKey;
-use tfhe::shortint::parameters::V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64;
-use tfhe::{generate_keys, ConfigBuilder};
+use tfhe::shortint::parameters::{V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64, V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_1_CARRY_0_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_2_CARRY_0_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_2_CARRY_1_KS_PBS_GAUSSIAN_2M64};
+use tfhe::shortint::{ClientKey as ShortintClientKey, ServerKey as ShortintServerKey};
 
 
 struct Scena {
@@ -68,21 +68,23 @@ fn main() {
     let mut n = n_min;
     while n <= scena.g.len() { ns.push(n); n *= 2; }
     let threads = rayon::current_num_threads();
-    // --multibit: parametri multi-bit (group 3) e PBS multi-bit; --mb-threads K forza i thread interni del PBS
+    // --params NOME: set di parametri (128 bit) per il PBS di segno. Al varco serve solo un segno, quindi
+    // i set "piccoli" (LUT a 1-2 bit, N=256-1024) sono candidati: PBS piu' economico, banda piu' larga.
+    // --multibit equivale a --params multibit; --mb-threads K forza i thread interni del PBS multi-bit.
     let multibit = args.iter().any(|a| a == "--multibit");
     let mb_threads: Option<usize> = args.iter().position(|a| a == "--mb-threads").map(|i| args[i + 1].parse().unwrap());
-
-    // --- chiavi standard dall'API ad alto livello, poi le parti grezze ---
-    let cfg = if multibit {
-        ConfigBuilder::with_custom_parameters(V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64).build()
-    } else {
-        ConfigBuilder::default().build()
+    let nome_params = args.iter().position(|a| a == "--params").map(|i| args[i + 1].clone())
+        .unwrap_or_else(|| if multibit { "multibit".to_string() } else { "default".to_string() });
+    let sck = match nome_params.as_str() {
+        "default" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64),
+        "multibit" => ShortintClientKey::new(V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64),
+        "1_0" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_0_KS_PBS_GAUSSIAN_2M64),
+        "1_1" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64),
+        "2_0" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_0_KS_PBS_GAUSSIAN_2M64),
+        "2_1" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_1_KS_PBS_GAUSSIAN_2M64),
+        altro => panic!("--params sconosciuto: {altro} (default|multibit|1_0|1_1|2_0|2_1)"),
     };
-    let (ck_hl, sk_hl) = generate_keys(cfg);
-    let (ick, _, _, _) = ck_hl.into_raw_parts();
-    let sck = ick.into_raw_parts();
-    let (isk, _, _, _, _) = sk_hl.into_raw_parts();
-    let ssk = isk.into_raw_parts();
+    let ssk = ShortintServerKey::new(&sck);
     let (enc_key, noise) = sck.encryption_key_and_noise();
     let ksk = &ssk.key_switching_key;
     let modulus = CiphertextModulus::<u64>::new_native();
@@ -91,9 +93,9 @@ fn main() {
     let poly = ssk.bootstrapping_key.polynomial_size();
     let glwe_size = ssk.bootstrapping_key.glwe_size();
     let variante = match &ssk.bootstrapping_key {
-        ShortintBootstrappingKey::Classic(_) => "PBS classico, TUniform, default tfhe-rs".to_string(),
+        ShortintBootstrappingKey::Classic(_) => format!("set {nome_params}, PBS classico, k={}", glwe_size.to_glwe_dimension().0),
         ShortintBootstrappingKey::MultiBit { thread_count, .. } =>
-            format!("PBS multi-bit group 3, thread interni {}", mb_threads.unwrap_or(thread_count.0)),
+            format!("set {nome_params}, PBS multi-bit group 3, thread interni {}", mb_threads.unwrap_or(thread_count.0)),
     };
 
     // --- encoding del punteggio: Delta_s massimo tale che |s - T| * Delta_s < 2^63 ---

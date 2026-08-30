@@ -24,6 +24,8 @@ from precisione_punteggio import E_full, y_full, quant_fit, quant, scena, punteg
 
 OUT = pathlib.Path(__file__).resolve().parent / "results"
 SIGME = {"2^52": 6.5, "2^51": 12.0, "2^50": 25.0}
+if len(sys.argv) > 1:      # es. "set 2_1:30 set 1_1:50" -> bande misurate di altri set di parametri (F46)
+    SIGME = {a.split(":")[0]: float(a.split(":")[1]) for a in sys.argv[1:]}
 RIP = 5   # ripetizioni del lancio per scena
 
 

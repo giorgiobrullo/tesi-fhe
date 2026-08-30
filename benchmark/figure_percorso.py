@@ -73,6 +73,24 @@ rad_seqF32, rad_seq, rad_tor = selezione("def/u16", 2), selezione("def/u16", 3),
 lev16, lev1 = varco(16), varco(1)
 ck = ckks(32768, 6, 2)
 
+def varco_1_1():   # set MESSAGE_1_CARRY_1 (F46): 128 dal file --params, 256..1024 dal file dedicato
+    out = {}
+    f1 = E14 / "varco_leveled_16thread_params.txt"
+    if f1.exists():
+        blocco = None
+        for line in open(f1):
+            if "set 1_1" in line: blocco = True
+            elif line.startswith("==="): blocco = False
+            m = re.match(r"\s*(\d+) \|\s*[\d.]+s \|\s*[\d.]+s \|\s*([\d.]+)s", line)
+            if blocco and m: out[int(m.group(1))] = float(m.group(2))
+    f2 = E14 / "varco_leveled_16thread_1024_1_1.txt"
+    if f2.exists():
+        for line in open(f2):
+            m = re.match(r"\s*(\d+) \|\s*[\d.]+s \|\s*[\d.]+s \|\s*([\d.]+)s", line)
+            if m: out.setdefault(int(m.group(1)), float(m.group(2)))
+    return out
+lev16_11 = varco_1_1()
+
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.4), gridspec_kw={"width_ratios": [1.1, 1]})
 
 # ---------------- (a) il percorso a N=8: un punto per passo, scala log
@@ -114,7 +132,8 @@ serie = [
     ("tfhe-rs radix, torneo 8 bit, 16 thread (F38)", rad_tor, "#6a4c93", "D", -1),
     ("CKKS, packing + segno, 1 thread (F39)", ck, "#e9a000", "^", -9),
     ("tfhe-rs leveled + soglia, 1 thread (F37)", lev1, "#2a9d8f", "o", 0),
-    ("tfhe-rs leveled + soglia, 16 thread (F37)", lev16, "#1b6f65", "o", 0),
+    ("tfhe-rs leveled, set 2_2, 16 thread (F37)", lev16, "#1b6f65", "o", 8),
+    ("tfhe-rs leveled, set 1_1, 16 thread (F46)", lev16_11, "#16302c", "*", -8),
 ]
 for nome, d, c, mk, dy in serie:
     if not d:
@@ -132,7 +151,7 @@ for y, t in ((10, "10 s"), (5, "5 s")):
     ax2.axhline(y, ls=(0, (4, 4)), lw=0.9, color="#bbb", zorder=0)
     ax2.text(1700, y, t, fontsize=8, color="#999", va="center", ha="left")
 ax2.set_xlabel("iscritti in galleria N"); ax2.set_ylabel("tempo per query (s, scala log)")
-ax2.set_title("(b) I design finali al crescere della galleria\nConcrete supera i 10 s da N=32; il varco leveled resta sotto i 5 s fino a N=1024", fontsize=11)
+ax2.set_title("(b) I design finali al crescere della galleria\nvarco leveled 0,10 s a N=128, 0,72 s a N=1024 (set 1_1); esatto sui dati reali", fontsize=11)
 ax2.legend(fontsize=7.8, loc="lower right", frameon=False)
 ax2.spines[["top", "right"]].set_visible(False); ax2.tick_params(labelsize=9)
 
