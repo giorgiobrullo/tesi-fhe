@@ -20,7 +20,7 @@ futuro.
 ### Riconoscimento
 
 Dalle tecniche geometriche (PCA, eigenfaces) ai descrittori hand-crafted (LBP, HOG) alle CNN
-pre-addestrate (MobileFaceNet, ResNet50, ResNet100, AdaFace), confrontate prima in verifica
+pre-addestrate (MobileFaceNet, GhostFaceNet, ResNet50, ResNet100, AdaFace), confrontate prima in verifica
 1:1 su benchmark via via più duri, poi in identificazione 1:N open-set (metrica DIR@FPIR). Le
 tecniche semplici crollano al livello del caso sui volti difficili, le CNN reggono. A scala,
 sui volti reali il sistema tiene circa il 95% fino a migliaia di iscritti; sul sintetico cala,
@@ -59,7 +59,7 @@ ragionamenti in `findings.md`; lo stato dell'arte in `letteratura.md`.
   (`breakdown_query.py`).
 - `datasets/`: i dati scaricati (gitignorato): i `.bin` dei benchmark, DigiFace-1M, VGGFace2.
   Rotte di download in `docs/benchmark_dataset.md`.
-- `findings.md`: il diario dei risultati, F0–F43.
+- `findings.md`: il diario dei risultati, F0–F44.
 - `letteratura.md`: lo stato dell'arte del riconoscimento biometrico cifrato 1:N.
 - `docs/`: note di riferimento su dataset e modelli di embedding.
 

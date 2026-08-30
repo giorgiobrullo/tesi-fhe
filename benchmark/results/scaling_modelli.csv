@@ -5,6 +5,12 @@ MobileFaceNet,1000,0.9023
 MobileFaceNet,2000,0.884
 MobileFaceNet,4000,0.8658
 MobileFaceNet,4300,0.8601
+GhostFaceNet,250,0.936
+GhostFaceNet,500,0.9187
+GhostFaceNet,1000,0.911
+GhostFaceNet,2000,0.901
+GhostFaceNet,4000,0.8801
+GhostFaceNet,4300,0.8719
 ResNet50,250,0.9627
 ResNet50,500,0.9553
 ResNet50,1000,0.9583

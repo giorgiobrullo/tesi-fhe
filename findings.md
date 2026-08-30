@@ -1799,6 +1799,61 @@ una riga nel percorso (F42), tra le cose provate senza effetto.
 
 Da F40, riportato qui perché chiude la stessa lista: rimettere ‖v‖² nel punteggio (la palla
 invece del semispazio) **non** difende dall'attacco con l'oracolo (coseno 0,995 in 10.000
-query): l'attaccante conosce la norma del suo vettore. GhostFaceNet (Carnemolla) resta non
-provato: per l'FHE il modello è indifferente, e per l'accuratezza F30 dice che la scelta della
-rete vale 1-2 punti contro i 15 del dominio; se servirà, è una riga nel harness di F30.
+query): l'attaccante conosce la norma del suo vettore. GhostFaceNet (Carnemolla) è misurato in F44: indifferente per l'FHE, non per l'accuratezza
+(+1 su MobileFaceNet, −7-8 sui profondi a 4300 iscritti).
+
+## 🔵 F44 — GhostFaceNet, misurato: "indifferente" vale per l'FHE, non per l'accuratezza
+All'incontro Carnemolla aveva proposto GhostFaceNet come modello "economico dal punto di vista
+computazionale ma con buona accuratezza", aggiungendo che "un modello o l'altro cambia
+relativamente poco". Lo avevamo lasciato in coda come indifferente: una deduzione (per l'FHE conta
+solo la dimensione dell'embedding, 512 per tutti), non una misura. Misurato.
+
+Modello: GhostFaceNetV1 W1.3 S1 ArcFace addestrato su MS1MV3, pesi ufficiali `.h5` (Keras 2) dal
+repo degli autori (Alansari et al., *GhostFaceNets: Lightweight Face Recognition Model From Cheap
+Operations*, IEEE Access 2023), **4,09 M parametri**, embedding 512, preprocessing preso dal loro
+`evals.py` ((x − 127,5)·0,0078125, RGB, somma con l'immagine specchiata, L2-normalizzazione). Gira
+in un venv TensorFlow separato dal progetto (`experiments/08_cnn/ghostfacenet_embed.py`,
+`ghostfacenet_bench.py`), 6,7 ms per immagine su CPU; gli embedding vanno in cache e il resto è
+il harness di sempre (`benchmark/verifica_ghost.py`, `scaling_modelli.py`).
+
+Verifica 1:1 (stessi `.bin`, 10-fold, distanza euclidea sugli embedding L2-normalizzati):
+
+| | LFW | CPLFW | CFP-FP | AgeDB-30 | CALFW |
+|---|---|---|---|---|---|
+| MobileFaceNet | 99,7 | 92,5 | 97,8 | 96,6 | 95,5 |
+| **GhostFaceNet** | **99,7** | **91,8** | **97,9** | **97,8** | **95,8** |
+| ResNet50 | 99,8 | 94,4 | 99,3 | 98,1 | 96,1 |
+| ResNet100 | 99,8 | 94,5 | 99,1 | 98,4 | 96,2 |
+
+I numeri dichiarati dagli autori (LFW 99,73, CFP-FP 96,83, AgeDB-30 98,0) tornano: la
+riproduzione è sana. Identificazione 1:N open-set su VGGFace2 reale (DIR@FPIR=1%, protocollo
+di F19, iscritti da 250 a 4300):
+
+| iscritti | 250 | 1000 | 2000 | 4000 | 4300 |
+|---|---|---|---|---|---|
+| MobileFaceNet | 93,3 | 90,2 | 88,4 | 86,6 | 86,0 |
+| **GhostFaceNet** | **93,6** | **91,1** | **90,1** | **88,0** | **87,2** |
+| ResNet50 | 96,3 | 95,8 | 95,5 | 94,5 | 94,2 |
+| ResNet100 | 96,7 | 96,5 | 96,4 | 95,5 | 95,5 |
+| AdaFace | 96,3 | 96,0 | 96,0 | 95,0 | 94,9 |
+
+Lettura, in tre righe:
+
+1. **Rispetto a MobileFaceNet**, GhostFaceNet è un filo meglio ovunque sull'1:N (+0,3 a 250,
+   +1,7 a 2000, +1,2 a 4300) e pari sull'1:1 (±1 punto, sotto su CPLFW). Carnemolla aveva
+   ragione: dentro la classe dei modelli leggeri "cambia relativamente poco", e Ghost è la
+   scelta migliore di quella classe.
+2. **Rispetto ai profondi**, restano 7-8 punti a 4300 iscritti (87,2 contro 94,2-95,5). Il
+   divario che conta non è tra un leggero e l'altro, è tra la classe leggera e quella profonda,
+   e F19/F20 lo dicevano già per MobileFaceNet. La frase di F30 ("la rete vale 1-2 punti") vale
+   tra i profondi; tra leggero e profondo vale 7-8, cioè metà del divario di dominio.
+3. **Per l'FHE è davvero indifferente**: 512 dimensioni, stesso encoding, stesso varco (F37/F41),
+   stesso costo. La scelta del modello è un tradeoff tutto sul **client** (4 M parametri e 6,7 ms
+   contro le decine di milioni delle ResNet), non sul server. Se il terminale è un dispositivo
+   embedded, GhostFaceNet è il candidato; se può eseguire una ResNet, i 7-8 punti sono gratis
+   lato cifrato e vanno presi.
+
+Per la tesi: la figura dei modelli (`scaling_modelli.png`) ha ora cinque curve e quella
+dell'accuratezza per tecnica (`accuratezza_tecniche.png`) quattro CNN; la conclusione del
+gradino 08 non cambia, ma ora la proposta dell'incontro ha il suo numero invece di una
+supposizione.

@@ -43,7 +43,8 @@ SWEEP = [250, 500, 1000, 2000, 4000, 4300]
 CROPS = OUT / "_crops_reale.npz"
 EMB = OUT / "_emb_reale.npz"                           # ha già mfn, rn (resnet50), y
 EXTRA = OUT / "_emb_reale_extra.npz"                   # resnet100 + adaface (calcolati una volta)
-COL = {"MobileFaceNet": "#2a9d8f", "ResNet50": "#e76f51",
+GHOST = OUT / "_emb_reale_ghost.npz"                   # GhostFaceNet (experiments/08_cnn/ghostfacenet_embed.py, venv TF)
+COL = {"MobileFaceNet": "#2a9d8f", "GhostFaceNet": "#1b6f65", "ResNet50": "#e76f51",
        "ResNet100": "#6a4c93", "AdaFace": "#e9a000"}
 
 
@@ -87,7 +88,15 @@ def embeddings():
         eada = adaface.embedding_adaface(A); P(f"    fatto in {time.perf_counter()-t:.0f}s")
         np.savez_compressed(EXTRA, rn100=e100.astype(np.float32), ada=eada.astype(np.float32), y=y)
         out["ResNet100"] = (e100, y); out["AdaFace"] = (eada, y)
-    return out
+    if GHOST.exists():
+        d = np.load(GHOST)
+        if np.array_equal(d["y"], y):
+            out["GhostFaceNet"] = (d["ghost"], y); P("  (ghostfacenet da cache)")
+    else:
+        P("  (GhostFaceNet assente: lancia experiments/08_cnn/ghostfacenet_embed.py nel venv TF)")
+    # ordine di profondita'/costo per la figura
+    ordine = ["MobileFaceNet", "GhostFaceNet", "ResNet50", "ResNet100", "AdaFace"]
+    return {k: out[k] for k in ordine if k in out}
 
 
 def main():
@@ -121,7 +130,7 @@ def main():
                     color=COL[modello], lw=2.3, ms=7, label=modello)
     ax.set_xscale("log"); ax.set_xlabel("identità iscritte (scala log)"); ax.set_ylabel("DIR@FPIR=1% (%)")
     ax.set_ylim(80, 100); ax.grid(True, alpha=.3); ax.legend()
-    ax.set_title("Modelli su VGGFace2 reale: da MobileFaceNet a ResNet e AdaFace", fontweight="bold")
+    ax.set_title("Modelli su VGGFace2 reale: da MobileFaceNet e GhostFaceNet a ResNet e AdaFace", fontweight="bold")
     fig.tight_layout()
     fig.savefig(OUT / "scaling_modelli.png", dpi=300, bbox_inches="tight")
     fig.savefig(OUT / "scaling_modelli.svg", bbox_inches="tight")

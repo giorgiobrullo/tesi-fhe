@@ -21,9 +21,10 @@ def figura_accuratezza():
            ("LBP", "lbp_chi2", "#7e8aa0"),
            ("HOG", "hog_eucl", "#5b6b8c"),
            ("CNN MobileFaceNet", "cnn_mfn", "#2a9d8f"),
+           ("CNN GhostFaceNet", "cnn_ghost", "#1b6f65"),
            ("CNN ResNet50", "cnn_rn", "#e76f51"),
            ("CNN ResNet100", "cnn_rn100", "#6a4c93")]
-    x = np.arange(len(sets)); w = 0.14
+    x = np.arange(len(sets)); w = 0.125
     fig, ax = plt.subplots(figsize=(10.5, 5.2))
     for i, (nome, col, c) in enumerate(tec):
         vals = [float(r[col]) * 100 for r in rows]
@@ -36,7 +37,7 @@ def figura_accuratezza():
     ax.set_xlim(-0.6, len(sets) - 0.05)
     ax.set_title("Geometriche e descrittori restano al caso; le CNN reggono sui set duri\n"
                  "quindi l'accuratezza sale con la complessità della tecnica", fontsize=12)
-    ax.legend(ncol=6, fontsize=8.5, loc="lower center", bbox_to_anchor=(0.5, -0.2), frameon=False)
+    ax.legend(ncol=7, fontsize=8.2, loc="lower center", bbox_to_anchor=(0.5, -0.2), frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     ax.tick_params(labelsize=9)
     fig.tight_layout()

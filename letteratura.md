@@ -151,6 +151,7 @@ confronto/argmax approssimato in CKKS, su cui poggiano GROTE (max via α-norma) 
 
 ## 6. Fonti
 - Zuber, Sirdey, Efficient homomorphic evaluation of k-NN classifiers, PoPETs 2021(2), <https://petsymposium.org/popets/2021/popets-2021-0020.php> (verificato sul testo: query cifrata vs modello in chiaro, distanza quadratica leveled con encoding polinomiale, sign bootstrapping con "zone rosse" di esito casuale, (d²−d)/2 bootstrap; d=10 in 4 s, d=457 in 71 min sequenziali, libreria TFHE, λ=110; base del varco a soglia di F37)
+- Alansari, Hay, Javed, Shoufan, Zweiri, Werghi, GhostFaceNets: Lightweight Face Recognition Model From Cheap Operations, IEEE Access 11, 2023, doi 10.1109/ACCESS.2023.3266068; pesi ufficiali <https://github.com/HamadYA/GhostFaceNets> (release v1.2, W1.3 S1 ArcFace MS1MV3; dichiarati LFW 99,73 / CFP-FP 96,83 / AgeDB-30 98,0; riprodotti in F44)
 - HERS, T-BIOM 2022, <https://arxiv.org/abs/2003.12197>
 - Blind-Match, CIKM 2024, <https://arxiv.org/abs/2408.06167>
 - GROTE, CODASPY 2023, <https://hal.science/hal-04000209> (anche <https://www.eurecom.fr/en/publication/7213>)
