@@ -48,3 +48,34 @@ cargo run --release
 ```
 
 Su macOS beta, se il linker fallisce, anteporre un wrapper di `ld` (`PATH=/tmp/ldfix:$PATH`).
+
+## Dopo l'incontro di luglio: i due binari in `src/bin/` (misurati il 30 agosto 2026, F34)
+
+`basso_livello.rs`: lo stesso prodotto scalare scritto sulle primitive `core_crypto` (LWE
+grezzi, combinazione lineare a coefficienti in chiaro, zero bootstrap), DIM=64, valori in [−2,2].
+
+| N | dot (tutti i punteggi) | esito |
+|---|---|---|
+| 4 | 0,1 ms | OK |
+| 8 | 0,2 ms | OK |
+| 16 | 0,3 ms | OK |
+| 32 | 1,1 ms | OK |
+| 64 | 2,0 ms | OK |
+
+Contro i ~99 s dell'alto livello (`FheInt16`, riporti propagati via bootstrap): la lentezza del
+prodotto scalare in F32 era dell'API radix, non di TFHE. Caveat: parametri LWE scelti a mano
+(n=1024, rumore ~2^−44) per 12 bit leveled, non un set validato a 128 bit; l'esperimento 14 rifà
+il conto coi parametri standard di tfhe-rs.
+
+`correttezza.rs`: l'argmin cifrato (lt + select + min) contro il chiaro su 208 casi (N = 4, 8,
+16, 32; 15 vettori casuali su tre range, 12 bit / largo / estremi di i16, più 7 casi avversari
+per N: tutti uguali, pareggio al minimo, crescente, decrescente, minimo in coda, in testa,
+alternato): **208/208 corretti**, pareggi risolti come in chiaro (vince il primo), 462 s.
+
+```
+cargo run --release --bin basso_livello
+cargo run --release --bin correttezza
+```
+
+Il seguito (pipeline intero coi parametri standard, torneo, soglia leveled) è in
+`experiments/14_pipeline_tfhe_rs/`.

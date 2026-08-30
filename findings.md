@@ -1289,3 +1289,261 @@ trasporto (cifra e decifra) non sono il collo di bottiglia, e con la galleria in
 il prodotto scalare lo è. Il varco se la cava perché gli basta la soglia (8 confronti, 12,5 s)
 invece dell'argmin completo (108 confronti, 455 s); e l'unica leva per rendere veloce la
 selezione è il bootstrap scritto a basso livello (F32), o cambiare schema verso CKKS (F26).
+
+## 🔴 F34 — "Si può avere entrambi": il prodotto scalare leveled a basso livello, e l'argmin esatto
+F32 lasciava una sfumatura scomoda: in tfhe-rs l'argmin è ~100× più veloce di Concrete, ma il
+prodotto scalare ad alto livello (`FheInt16`) costa ~99 s a N=8, perché l'API radix propaga i
+riporti di ogni somma via bootstrap. Ne veniva un pipeline intero solo ~1,8× più veloce di
+Concrete. Dopo l'incontro di luglio ("quindi Rust") abbiamo chiuso la sfumatura con due binari in
+`experiments/13_tfhe_rs_headtohead/src/bin/`, misurati il 30 agosto sull'M4 Max.
+
+`basso_livello.rs`: lo stesso prodotto scalare scritto sulle primitive `core_crypto` di tfhe-rs.
+Il probe è una manciata di cifrati LWE grezzi, e il punteggio p_i = ‖g_i‖² − 2·g_i·a è una pura
+combinazione lineare a coefficienti in chiaro: moltiplicazioni per uno scalare e somme sul
+cifrato, operazioni leveled, zero bootstrap. Alla config dell'head-to-head (DIM=64, valori in
+[−2,2]) costa **0,1 ms a N=4, 0,2 ms a N=8, 2 ms a N=64**, sempre corretto alla decifratura.
+Contro i ~99 s dell'alto livello sono cinque ordini di grandezza, e si torna al profilo di
+Concrete (dot gratis, F33): la lentezza di F32 era dell'API `FheInt`, non di TFHE. Caveat onesto:
+questo binario usa parametri LWE scelti a mano (n=1024, rumore ~2^−44) per far decifrare 12 bit
+dopo l'accumulo, non un set validato a 128 bit; il costo delle operazioni leveled però dipende da
+n·DIM·N e non dal rumore, quindi l'ordine di grandezza regge, e il passo successivo (F37) rifà
+il conto coi parametri standard di tfhe-rs.
+
+`correttezza.rs`: l'argmin cifrato di tfhe-rs (lt + select + min, la catena dell'head-to-head) è
+esatto o va veloce perché sbaglia? TFHE è aritmetica esatta, l'unico errore possibile è l'overflow
+di bit-width. Confronto con il chiaro su **208 casi**: per N = 4, 8, 16, 32 quindici vettori
+casuali su tre range (12 bit, largo, estremi di i16) più sette casi avversari per N (tutti uguali,
+pareggio al minimo, crescente, decrescente, minimo in coda, in testa, alternato). **208/208
+corretti**, pareggi risolti come in chiaro (vince il primo), 462 s in tutto. Il 100× è esatto.
+
+Il punto che resta, ed è il vero nodo tecnico. I due pezzi veloci vivono in due rappresentazioni
+diverse: il punteggio leveled è **un solo LWE con un messaggio largo** (13-14 bit alla config
+reale, F31), mentre l'argmin economico lavora su cifrati **radix**, blocchi da 2 bit ciascuno
+in un LWE proprio. Per unirli bisognerebbe estrarre le cifre del punteggio largo con dei PBS, ed
+è qui che i parametri standard di tfhe-rs (N=2048, pensati per LUT a 4 bit) non bastano: il
+modulus switch del bootstrap risolve ~12 bit del torus e i bit bassi del punteggio, che sono
+dati e non rumore, mangiano il margine di errore della LUT. È lo stesso motivo per cui Concrete,
+che fa esattamente questa estrazione (CHUNKED, F31), sceglie polinomi enormi e paga 1,5-4 s a
+PBS (F33). Quindi "dot leveled + argmin radix" non è gratis: o si paga il ponte con PBS a
+precisione larga (la strada di Concrete), o si evita il ponte. F36 e F37 fanno la seconda cosa.
+
+## 🔴 F35 — Le decisioni dell'incontro di luglio: il design da chiudere
+Incontro con il prof. Di Raimondo e Carnemolla a metà luglio 2026, dopo l'email con F0–F33. Le
+decisioni, che da qui in poi trattiamo come vincoli di progetto:
+
+- **Obiettivo numerico**: galleria da azienda piccola, **N = 64 e 128** (numeri omogenei), e
+  **latenza sotto i 10 s**, 5 s "accettabili" con un'animazione di attesa. I 455 s a N=8 di
+  F33 sono "il tempo di prepararsi un caffè".
+- **Strada tecnica**: "quindi Rust". La funzione è semplice (distanze, minimo, soglia), il
+  convertitore Python ad alto livello non aggiunge valore: si scrive il match con le funzioni di
+  tfhe-rs. Limite esplicito del prof: non un'implementazione crittografica ottimale da zero, non
+  è l'obiettivo della tesi. Carnemolla: fare comunque un **confronto con CKKS** per misurare
+  quanto vale lo schema (packing SIMD sulle distanze indipendenti).
+- **Ordine delle operazioni**: prima la selezione, poi la **soglia sul solo vincitore**. Il
+  ragionamento del prof: la computazione è blind, applicare la soglia a ogni distanza non fa
+  saltare nessun elemento (si trattano comunque tutti e N), quindi non accelera la selezione; il
+  suo unico vantaggio sarebbe che quei confronti sono indipendenti e parallelizzabili.
+- **Uscita**: solo l'esito (identità più vicina e match/no-match), **mai la distanza**. Un
+  client malicious non parte da un volto: manda vettori arbitrari, e con una distanza per
+  tentativo scende per gradiente fino a un embedding della galleria. Con l'esito a soglia
+  questo attacco non c'è. One-hot o indice sono equivalenti per la privacy (rivelano al più N).
+- **Modello di minaccia**, formalizzato. Tre attori: il server (ha la galleria), il client (il
+  dispositivo al varco: calcola l'embedding in chiaro, cifra, apre il cancello), la persona.
+  Client honest-but-curious: la persona non manomette il dispositivo, la sicurezza è quella
+  biometrica; il client segue il protocollo e cancella i dati; il server non deve capire chi si
+  autentica. Client malicious: la persona compromette il dispositivo; non si può impedirle di
+  aprire il cancello fisicamente, si deve impedire che **estragga gli embedding degli iscritti**.
+  Per questo la galleria sta sul server e la selezione avviene sul server: non è un hardening
+  opzionale (come lo avevamo inquadrato in F21/F22), è il design. Server honest-but-curious:
+  ci protegge la FHE (chi entra, correlare gli accessi della stessa persona).
+- **Struttura della selezione**: torneo a profondità log N con i confronti di ogni livello in
+  parallelo; galleria non potenza di due → completare l'albero con sentinelle (massimo del
+  dominio). Il parallelismo hardware (thread sui confronti indipendenti) è accettabile "se rende
+  il sistema fattibile"; non è il packing, che dipende dallo schema.
+- **Metrica**: la distanza euclidea al quadrato va bene, è già un polinomio di grado due senza
+  radice, non si approssima nulla. Si cambia solo se la letteratura mostra un guadagno di
+  accuratezza in chiaro. Embedding sul client confermato; il modello è indifferente per l'FHE.
+- **Metodo**: microbenchmark con vettori casuali della dimensione e precisione reali (la
+  correttezza non conta, la complessità sì). Per la tesi: mostrare il percorso naïve →
+  ottimizzato, solo le tecniche con miglioramento osservabile.
+
+Nota di lettura per la tesi: quanto segue (F36 in poi) è la chiusura di questo design.
+
+## 🔵 F36 — Quanti bit del punteggio servono davvero? Otto (validato in chiaro)
+Prima di misurare il costo cifrato della selezione, il metodo dell'incontro: validare in chiaro.
+Il costo di un confronto in tfhe-rs cresce con la larghezza del punteggio (FheUint8 = 4 blocchi,
+FheUint16 = 8), e il punteggio reale a 512 dimensioni e 4 bit occupa 13-14 bit (F31). Ma per
+decidere (chi è il più vicino, e sta sotto soglia?) forse bastano i bit alti. Misura in
+`experiments/14_pipeline_tfhe_rs/precisione_punteggio.py`: embedding ResNet100 su VGGFace2
+(volti reali), quantizzazione a 4 bit, punteggio reso non-negativo con un offset in chiaro e
+troncato ai suoi k bit più significativi (s' = ⌊(s + C) / 2^t⌋), poi argmin (vince il primo
+minimo, come la catena cifrata) e soglia sul minimo, tarata al quantile 1% dei minimi di 2000
+impostori. Venti scene per N = 64, 128 (i target) e 1000 (riferimento stabile).
+
+| bit tenuti | N=64: DIR | FPIR eff. | N=128: DIR | FPIR eff. | N=1000: DIR | FPIR eff. |
+|---|---|---|---|---|---|---|
+| tutti (13-14) | 94,0% | 1,01% | 93,8% | 1,00% | 93,2% | 1,00% |
+| 10 | 94,0% | 1,04% | 93,8% | 1,03% | 93,2% | 1,02% |
+| 8 | 94,0% | 1,12% | 93,9% | 1,13% | 93,3% | 1,15% |
+| 7 | 94,0% | 1,22% | 93,9% | 1,23% | 93,3% | 1,34% |
+| 6 | 94,1% | 1,52% | 93,9% | 1,39% | 93,5% | 2,37% |
+| 5 | 94,1% | 2,47% | 94,0% | 2,35% | 93,6% | 8,57% |
+| 4 | 94,4% | 9,84% | 94,2% | 7,92% | 93,5% | 53,75% |
+
+(float, senza quantizzazione: 94,0 / 93,8 / 93,2%; deviazione tra scene ±1,3-1,8 punti a
+N=64-128, ±0,5 a 1000.)
+
+La DIR non si muove, nemmeno a 4 bit. Quello che degrada è il controllo della FPIR: troncando,
+molti punteggi collassano sullo stesso valore e la soglia, che è un valore osservato, accetta
+per pareggio più impostori di quanto tarato (a 4 bit su N=1000 la metà). A **8 bit** la FPIR
+effettiva resta 1,1-1,15% con DIR invariata: è il punto operativo. Sotto i 6 bit no.
+
+Conseguenza per l'FHE: la selezione può lavorare su punteggi a 8 bit (`FheUint8`, 4 blocchi)
+invece che a 14 (`FheInt16`, 8 blocchi), quindi circa la metà del costo per confronto, e
+qualunque "ponte" dal punteggio leveled dovrebbe estrarne solo le 4 cifre alte. Nota di
+metodo: questa è la seconda volta che il conto in chiaro sposta il costo FHE più di
+un'ottimizzazione del circuito (la prima era la quantizzazione a 4 bit, F31).
+
+## 🔴 F37 — Il varco senza ponte: una soglia parallela sul punteggio leveled, 0,18 s a N=128
+F34 lascia il nodo: il punteggio leveled è un LWE largo, il confronto economico è radix, e il
+ponte tra i due coi parametri standard non è affidabile. La via d'uscita è non costruire il
+ponte. Per decidere "s_i ≤ T?" non serve conoscere le cifre di s_i: serve il **segno** di
+s_i − T, e il segno di un LWE largo si legge con **un solo bootstrap negaciclico ad
+accumulatore costante**, qualunque sia la larghezza del messaggio (il PBS guarda in quale metà
+del torus cade il valore). Il circuito del varco diventa quindi, per ogni iscritto i:
+
+1. server, leveled (0 PBS): x_i = (s_i − T)·Δ_s − Δ_s/2, con s_i = ‖g_i‖² − 2·g_i·a calcolato
+   come combinazione lineare del probe cifrato (la formula espansa di F2), T la soglia in
+   chiaro (la conosce il server: è tarata all'iscrizione) e il −Δ_s/2 che centra la frontiera
+   tra s_i = T e s_i = T+1;
+2. server, un keyswitch e un PBS: b_i = [x_i nella metà negativa] = [s_i ≤ T];
+3. client: decifra gli N bit. Se uno solo è acceso, è l'identità (one-hot, la forma che
+   Carnemolla ha proposto e il prof ha accettato: "rivela al massimo quanti elementi").
+
+Gli N confronti sono indipendenti: **profondità 1**, tutti in parallelo. In più c'è un'uscita
+compatta, tutta leveled sui bit freschi del PBS: il conteggio Σ b_i e l'indice in binario (bit k
+= Σ dei b_i con il bit k di i acceso), log₂N + 1 cifrati invece di N. Codice in
+`experiments/14_pipeline_tfhe_rs/varco_leveled.rs`.
+
+Parametri: quelli **standard** di tfhe-rs, `PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`
+(132 bit di sicurezza, n=879, N=2048, k=1), presi dalle chiavi dell'API ad alto livello con
+`into_raw_parts`. Il probe è cifrato sotto la chiave grande (n=2048, rumore GLWE) con Δ_s = 2^51,
+scelto dal range reale dei punteggi (|s − T| < 2^12: il server lo conosce dalle norme della
+galleria e dai limiti di quantizzazione, senza guardare nessun probe). Dati: la scena reale di
+`esporta_dati.py`, ResNet100 su VGGFace2, 4 bit, 128 iscritti, 64 probe genuini e 64 impostori,
+T al quantile 1% dei minimi di 2000 impostori.
+
+| N | dot leveled | KS+PBS ×N (16 thread) | **totale per query** | per PBS, per thread |
+|---|---|---|---|---|
+| 8 | 0,001 s | 0,016 s | **0,017 s** | 32 ms |
+| 16 | 0,002 s | 0,027 s | **0,029 s** | 27 ms |
+| 32 | 0,002 s | 0,047 s | **0,049 s** | 23 ms |
+| 64 | 0,005 s | 0,089 s | **0,094 s** | 22 ms |
+| 128 | 0,007 s | 0,170 s | **0,177 s** | 21 ms |
+
+Esattezza: **0 discrepanze su 31.744 confronti** cifrato/chiaro (128 probe × 248 iscritti
+complessivi), esito per probe identico al chiaro (58/64 genuini riconosciuti = 90,6%, 0/64
+impostori accettati), uscita compatta corretta 128/128 a ogni N in 0,2 ms. Su un thread solo il
+PBS costa 13,7 ms (misura in corso a N piccoli; a N=128 fa ~1,8 s per query, in linea, contro
+0,17 s a 16 thread: il parallelismo dei confronti indipendenti vale ~10× su 12 P-core).
+
+Il confronto con quello che avevamo. La soglia in Concrete (F28, F33) costava 12,5 s a N=8 e
+92 s a N=64: qui 0,017 e 0,094 s, **~700-1000×**. L'argmin Concrete a N=8, 455 s: **27.000×**.
+Il torneo radix in tfhe-rs (F38), che è il meglio che si ottiene *con* la rappresentazione
+radix, 4,7 s a N=128: **27×**, ed è già dentro il target del prof. Il target dell'incontro (N =
+64 e 128 sotto i 10 s, 5 accettabili) è superato di due ordini di grandezza, con parametri
+standard a 128 bit, senza toccare i bootstrap a mano e senza cambiare schema.
+
+**La banda di sfocatura.** Zero discrepanze non vuol dire esatto. Il PBS decide dopo il modulus
+switch a 2N = 4096, che aggiunge al valore un errore di deviazione ~√(n/24)·q/2N = 2^54,6
+(la stima standard di TFHE): in unità di punteggio a Δ_s = 2^51 fa 2^3,6 ≈ 12. Misurato
+apposta a cavallo della soglia (`banda_soglia.rs`: 400 prove per ogni d = s − T da −48 a +48):
+P(match | d) è una sigmoide con σ ≈ 12 unità a 2^51, 6,5 a 2^52, 25 a 2^50, esattamente come
+previsto. È lo stesso fenomeno delle "zone rosse" del sign bootstrapping di Zuber e Sirdey. Sui
+dati reali non scatta mai: nelle 20 scene di F36 le coppie (probe, iscritto) entro ±24 unità da
+T sono lo 0,003-0,006% (i punteggi dei genuini stanno a centinaia di unità sotto T, quelli
+degli impostori sopra), e simulando la sfocatura su ogni decisione (`effetto_banda.py`) la
+DIR resta identica (92,9 / 92,9 / 92,3% a N = 64 / 128 / 1000, la variante one-hot di F36) con
+FPIR effettiva 0,97-0,99% contro 1,00%. La banda esiste, è misurata e non tocca la decisione.
+Se servisse stringerla, Δ_s più grande la dimezza a ogni bit (2^52: σ 6,5) al prezzo di un range
+di punteggio più stretto.
+
+**Perché non contraddice il prof.** All'incontro il ragionamento era: applicare la soglia a
+ogni distanza non accelera la selezione, perché la computazione è blind e gli N elementi vanno
+trattati comunque; l'unico vantaggio sarebbe che quei confronti sono indipendenti e
+parallelizzabili. È esattamente quello che succede qui, con un passo in più: la soglia non
+precede la selezione, **la sostituisce**. La selezione (argmin, log N livelli di confronti
+dipendenti) sparisce, resta il lotto parallelo di N confronti che lui aveva previsto, e su un
+multicore con un PBS da 20 ms quel lotto è tutto il costo. L'identità viene dal one-hot. Il
+delta di privacy rispetto ad "argmin poi soglia sul vincitore" è il conteggio: il client vede
+quanti iscritti stanno sotto soglia (nella scena reale al massimo uno), che è la stessa cosa
+che il prof aveva concesso al one-hot. Per il client malicious non cambia nulla: riceve bit di
+soglia, mai distanze, quindi nessuna discesa per gradiente verso un embedding della galleria.
+
+**Letteratura (verificata sul testo).** Il precedente diretto è Zuber e Sirdey, *Efficient
+homomorphic evaluation of k-NN classifiers* (PoPETs 2021): query cifrata contro modello in
+chiaro (o viceversa), distanza quadratica calcolata leveled con l'encoding polinomiale, e il
+confronto fatto con un "sign bootstrapping" che ha "una zona di input (le zone rosse) per cui
+l'operazione non dà necessariamente il valore corretto: dà un valore casuale", accettata
+perché il k-NN a maggioranza la tollera (sul loro dataset il 4% delle differenze cade sotto la
+precisione del segno). La differenza è cosa si confronta: loro il segno di ogni differenza
+d_i² − d_j², cioè (d² − d)/2 bootstrap e complessità quadratica (d=10 modelli in 4 s, d=457 in
+71 minuti sequenziali sulla libreria TFHE originale, λ=110), perché vogliono i k più vicini;
+il varco confronta ogni distanza con una **costante**, quindi N bootstrap, profondità 1, e
+lineare in N. La stessa idea è alla base del loro lavoro precedente sul riconoscimento del
+parlante (Zuber, Carpov, Sirdey 2019). La primitiva "un bit per iscritto" è quella che
+la rassegna F26 indicava come la più naturale per un varco (CryptoMask restituisce un bit;
+BSGS gli indici).
+
+Due note oneste. Il probe cifrato come 512 LWE grezzi sotto la chiave grande pesa 8,4 MB per
+query: è la forma più semplice, non la più compatta; l'encoding polinomiale di Zuber-Sirdey (una
+sola TRLWE, ~16 KB, con il prodotto scalare come moltiplicazione di polinomi, sempre leveled) o
+i cifrati "seeded" di tfhe-rs lo riducono di tre ordini di grandezza, e sono un passo di
+ingegneria, non di idea. E la garanzia sulla banda è empirica più la formula standard del
+modulus switch, non una p-fail formale: per la tesi va detto così.
+
+## 🔴 F38 — La selezione radix in tfhe-rs: il torneo a 8 bit fa 4,7 s a N=128, ma vuole il ponte
+Il microbenchmark che l'incontro chiedeva, nella forma "punteggi già in radix": vettori casuali
+della precisione reale, argmin poi soglia sul vincitore, in `selezione.rs`. Quattro varianti in
+ordine di percorso: la catena sequenziale di F32 (lt + min + select), la stessa senza il `min`
+ridondante (il select del valore basta), il torneo con i livelli in parallelo (rayon, ogni
+thread con la sua server key), e il confronto scalare in più sul vincitore. Due larghezze
+(FheUint8, che F36 dice sufficiente; FheUint16, la larghezza intera) e due set di parametri a
+128 bit: il default e il multi-bit group 3, il PBS che Zama pensa per il multicore. 16 thread.
+
+| param | N | seq-F32 | seq | **torneo** | +soglia |
+|---|---|---|---|---|---|
+| default, 8 bit | 8 | 0,82 s | 0,61 s | **0,36 s** | 0,029 s |
+| default, 8 bit | 64 | 7,36 s | 5,50 s | **2,32 s** | 0,028 s |
+| default, 8 bit | 128 | 14,57 s | 10,81 s | **4,69 s** | 0,029 s |
+| default, 16 bit | 8 | 1,12 s | 0,82 s | 0,57 s | 0,029 s |
+| default, 16 bit | 64 | 10,23 s | 7,65 s | 4,55 s | 0,028 s |
+| default, 16 bit | 128 | 20,78 s | 14,98 s | 9,07 s | 0,029 s |
+| multi-bit, 8 bit | 128 | 8,27 s | 6,59 s | 4,84 s | 0,012 s |
+| multi-bit, 16 bit | 128 | 14,88 s | 11,56 s | 9,86 s | 0,013 s |
+
+Tutti gli esiti verificati contro il chiaro (tabella completa e run single-thread in
+`experiments/14_pipeline_tfhe_rs/results/`). Cosa dicono:
+
+1. **La larghezza paga**: 8 bit contro 16 vale 1,5-2× su ogni variante. È il dividendo di F36.
+2. **Il `min` ridondante costa il 25%**: la catena di F32 faceva due confronti per passo.
+3. **Il torneo vale 2,3×** a N=128, non i 127/7 del rapporto di profondità: le operazioni radix
+   di tfhe-rs sono già parallele al loro interno (sui blocchi), e con 16 core i due parallelismi
+   si contendono le stesse CPU. Il lavoro totale resta N−1 confronti; il torneo compra
+   throughput, non profondità, una volta saturati i core. Per la stessa ragione il multi-bit
+   accelera la catena sequenziale (−40%) ma non il torneo.
+4. Contro Concrete (F27, F32): torneo a N=8, 69 s contro 0,57 s a 16 bit (120×); catena
+   sequenziale 180 s contro 1,12 s.
+5. **N=64 in 2,3 s e N=128 in 4,7 s**: il target dell'incontro è rispettato anche dalla strada
+   "argmin poi soglia" che il prof aveva in mente. Ma con una condizione: questi numeri
+   presuppongono i punteggi in forma radix, e portarceli dal prodotto scalare leveled è il
+   ponte che F34 dice non affidabile coi parametri standard (o costoso con parametri larghi
+   alla Concrete). La cosa onesta da scrivere in tesi è che il torneo radix è il costo della
+   *selezione*, non del pipeline; il pipeline intero che sta nel target senza ponte è il varco
+   leveled di F37, 27× più economico.
+
+Il "percorso" per la figura della tesi, a N=8 dove abbiamo tutti i punti: Concrete sequenziale
+180 s → Concrete torneo 69 s → tfhe-rs sequenziale 1,1 s → tfhe-rs torneo 0,57 s (16 bit) /
+0,36 s (8 bit) → varco leveled 0,017 s. A N=64: soglia Concrete 92 s → torneo radix 2,3 s →
+varco leveled 0,094 s. A N=128: 4,7 s → 0,177 s. Cinque ordini di grandezza dal punto di
+partenza, ognuno con una ragione misurata.

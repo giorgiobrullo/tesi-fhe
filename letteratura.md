@@ -10,7 +10,7 @@ template biometrici, con particolare attenzione al modo in cui viene deciso il m
 |---|---|---|
 | **CKKS** (più diffuso) | Blind-Match, GROTE, CryptoFace, Lightweight/BSGS, Blind-Touch, Mazzone, Cheon-comparison | similarità coseno in packing SIMD, con confronto/soglia approssimati (sign-poly) |
 | **BFV/FV** | HERS, Boddeti "Secure Face Matching" | aritmetica intera esatta, senza operazioni non-lineari; argmax scaricato al client |
-| **TFHE** | Blind Counting Sort / Blind Top-k, RevoLUT, k-NN simmetrico (PSD'22) | argmin/top-k/sort via LUT e counting-sort, senza comparatori |
+| **TFHE** | Blind Counting Sort / Blind Top-k, RevoLUT, k-NN simmetrico (PSD'22), **k-NN Zuber-Sirdey (PoPETs 2021)** | argmin/top-k/sort via LUT e counting-sort, senza comparatori; Zuber-Sirdey: distanza leveled + segno di ogni differenza via *sign bootstrapping* (con zona di errore attorno alla frontiera), O(d²) |
 | **HE + MPC ibrido** | CryptoMask (BFV + secret sharing) | ritorna 1 bit (esiste un match?) |
 | **Template protection / 2 server** | IDFace (Paillier/CKKS), cancelable biometrics | split-trust: un Key Server decifra gli score |
 
@@ -150,6 +150,7 @@ confronto/argmax approssimato in CKKS, su cui poggiano GROTE (max via α-norma) 
    template mantenendo la galleria cifrata.
 
 ## 6. Fonti
+- Zuber, Sirdey, Efficient homomorphic evaluation of k-NN classifiers, PoPETs 2021(2), <https://petsymposium.org/popets/2021/popets-2021-0020.php> (verificato sul testo: query cifrata vs modello in chiaro, distanza quadratica leveled con encoding polinomiale, sign bootstrapping con "zone rosse" di esito casuale, (d²−d)/2 bootstrap; d=10 in 4 s, d=457 in 71 min sequenziali, libreria TFHE, λ=110; base del varco a soglia di F37)
 - HERS, T-BIOM 2022, <https://arxiv.org/abs/2003.12197>
 - Blind-Match, CIKM 2024, <https://arxiv.org/abs/2408.06167>
 - GROTE, CODASPY 2023, <https://hal.science/hal-04000209> (anche <https://www.eurecom.fr/en/publication/7213>)
