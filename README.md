@@ -59,7 +59,7 @@ ragionamenti in `findings.md`; lo stato dell'arte in `letteratura.md`.
   (`breakdown_query.py`).
 - `datasets/`: i dati scaricati (gitignorato): i `.bin` dei benchmark, DigiFace-1M, VGGFace2.
   Rotte di download in `docs/benchmark_dataset.md`.
-- `findings.md`: il diario dei risultati, F0–F44.
+- `findings.md`: il diario dei risultati, F0–F45.
 - `letteratura.md`: lo stato dell'arte del riconoscimento biometrico cifrato 1:N.
 - `docs/`: note di riferimento su dataset e modelli di embedding.
 

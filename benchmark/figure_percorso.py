@@ -52,6 +52,16 @@ def varco(thread):
     return out
 
 
+def argmin_delta():
+    out = {}
+    if (E14 / "argmin_delta_16thread.txt").exists():
+        for line in open(E14 / "argmin_delta_16thread.txt"):
+            m = re.match(r"\s*(\d+) \|\s*([\d.]+)s \|\s*([\d.]+)s \|\s*([\d.]+)s \|\s*([\d.]+)s \|\s*([\d.]+)s", line)
+            if m:
+                out[int(m.group(1))] = float(m.group(6))
+    return out
+
+
 def ckks(poly, dg, df):
     rows = csv.DictReader(open(E15 / "ckks_varco.csv"))
     return {int(r["N"]): float(r["t_distanze"]) + float(r["t_soglia"]) for r in rows
@@ -100,12 +110,15 @@ ax1.spines[["top", "right"]].set_visible(False); ax1.tick_params(labelsize=9)
 # ---------------- (b) i design finali al crescere di N
 serie = [
     ("Concrete, soglia (F28)", c_sog, "#7e8aa0", "s", 0),
-    ("tfhe-rs radix, torneo 8 bit, 16 thread (F38)", rad_tor, "#6a4c93", "D", 7),
-    ("CKKS, packing + segno, 1 thread (F39)", ck, "#e9a000", "^", -8),
+    ("tfhe-rs argmin esatto a matrice, 16 thread (F45)", argmin_delta(), "#c0392b", "v", 7),
+    ("tfhe-rs radix, torneo 8 bit, 16 thread (F38)", rad_tor, "#6a4c93", "D", -1),
+    ("CKKS, packing + segno, 1 thread (F39)", ck, "#e9a000", "^", -9),
     ("tfhe-rs leveled + soglia, 1 thread (F37)", lev1, "#2a9d8f", "o", 0),
     ("tfhe-rs leveled + soglia, 16 thread (F37)", lev16, "#1b6f65", "o", 0),
 ]
 for nome, d, c, mk, dy in serie:
+    if not d:
+        continue
     ns = sorted(d); vals = [d[n] for n in ns]
     ax2.plot(ns, vals, mk + "-", color=c, label=nome, lw=2, ms=6.5)
     n_last, v_last = ns[-1], vals[-1]

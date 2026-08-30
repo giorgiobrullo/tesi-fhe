@@ -106,6 +106,14 @@ partendo da un probe già accettato (una foto dell'iscritto); da impostori o vet
 semispazio) non aiuta: coseno 0,995 in 10.000 query, perché l'attaccante conosce la norma del
 proprio vettore e il punteggio resta lineare nelle incognite. Contromisura: rate limiting.
 
+## 5. La strada del ponte (`pbs_largo.rs`, `argmin_delta.rs`, F45)
+
+PBS largo (unità di costo del ponte), un thread: 4 bit / N=2048 **13,9 ms**; 8 bit / N=32768
+**548 ms** (chiave 2,2 GB); 13-14 bit senza set validati (Concrete: 1,5-4 s). Ponte a N=128 stimato
+60-70 s. Argmin esatto senza ponte (matrice dei confronti a coppie, `argmin_delta_16thread.txt`):
+0,09 s (N=8), 0,97 s (32), **3,66 s (64)**, **14,4 s (128)**, 10.816 PBS a 128; match sempre
+giusto, vincitore esatto quando il minimo dista dal secondo più della banda (σ≈25 a Δ=2^50).
+
 ## Riprodurre
 
 ```
@@ -117,7 +125,9 @@ uv run python esporta_dati.py 1024 && cargo run --release --bin varco_leveled --
 cargo run --release --bin banda_soglia     # banda, ~3 min
 uv run python effetto_banda.py             # effetto della banda, ~1 min
 RAYON_NUM_THREADS=1 cargo run --release --bin <bin>   # versione seriale
-uv run python attacco_oracolo.py                # F40, ~20 s
+uv run python attacco_oracolo.py                # F40, ~40 s
+cargo run --release --bin argmin_delta -- results/scena_reale.txt 8 16   # F45, ~5 min
+cargo run --release --bin pbs_largo             # F45, ~6 min
 cargo run --release --bin varco -- keygen results/e2e/chiavi   # poi encrypt/server/decrypt (F41)
 ```
 

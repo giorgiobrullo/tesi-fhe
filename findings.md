@@ -1857,3 +1857,62 @@ Per la tesi: la figura dei modelli (`scaling_modelli.png`) ha ora cinque curve e
 dell'accuratezza per tecnica (`accuratezza_tecniche.png`) quattro CNN; la conclusione del
 gradino 08 non cambia, ma ora la proposta dell'incontro ha il suo numero invece di una
 supposizione.
+
+## 🔴 F45 — La strada del ponte, esplorata: l'argmin esatto senza cifre costa 14 s, il ponte vero 70
+Dopo F37 la domanda naturale: si può avere di più del varco, cioè l'**argmin esatto sul server**
+(il design dell'incontro: indice del più vicino, poi soglia solo su di lui, niente conteggio
+rivelato, pareggi risolti)? Due strade, entrambe misurate.
+
+**1. Il ponte vero: quanto costa un PBS largo.** Il ponte leveled→radix deve estrarre le cifre di
+un punteggio a 13-14 bit, e per farlo il PBS deve risolvere tutti quei bit (F34). tfhe-rs offre
+set di parametri validati a 128 bit fino a **8 bit** di precisione; misurati sulla stessa
+macchina, un thread (`pbs_largo.rs`, LUT identità verificata su tutto il dominio):
+
+| set | precisione | N | keyswitch + PBS | chiave di bootstrap |
+|---|---|---|---|---|
+| MESSAGE_2_CARRY_2 (il nostro) | 4 bit | 2048 | **13,9 ms** | 54 MB |
+| MESSAGE_8_CARRY_0 | 8 bit | 32768 | **548 ms** | 2,2 GB |
+| MESSAGE_4_CARRY_4 | 8 bit | 32768 | 715 ms | 3,3 GB |
+
+Da 4 a 8 bit il PBS costa **40×** e la chiave 40×. A 13-14 bit non c'è un set validato; il costo
+cresce almeno come N·log N e Concrete, che quei bit li risolve, paga 1,5-4 s a PBS (F33). Il
+conto del ponte a N=128: 4 cifre per punteggio × 128 punteggi = 512 PBS larghi ≈ 512 × ~2 s / 16
+thread ≈ **60-70 s**, più i 4,7 s del torneo radix (F38). Contro 0,18 s: il ponte, se anche lo
+costruissimo, riporterebbe il sistema sopra i 10 s dell'incontro. Chiuso con un numero.
+
+**2. L'argmin esatto senza ponte: la matrice dei confronti.** Il confronto tra due punteggi larghi
+è un segno, come la soglia: a_ij = [s_i ≤ s_j] costa **un PBS da 14 ms**, nessuna cifra. Con tutte
+le N(N−1)/2 coppie si ha la matrice; la riga del primo minimo (s_i < s_j per j<i, s_i ≤ s_j per
+j>i) è tutta a uno, e "tutti a uno" si verifica a blocchi di 8 con una LUT a 4 bit (~19 PBS per
+riga a N=128). Poi la soglia solo sul vincitore: match = Σ_i AND(w_i, t_i). È la δ-matrix di
+Zuber-Sirdey con i nostri parametri, in `argmin_delta.rs`; scena reale, 16 thread, 16 probe:
+
+| N | coppie | vincitore | soglia | **totale** | PBS | one-hot esatto | match |
+|---|---|---|---|---|---|---|---|
+| 8 | 0,05 s | 0,02 s | 0,03 s | **0,09 s** | 52 | 16/16 | 16/16 |
+| 16 | 0,17 s | 0,07 s | 0,05 s | **0,29 s** | 200 | 14/16 | 16/16 |
+| 32 | 0,64 s | 0,24 s | 0,09 s | **0,97 s** | 720 | 16/16 | 16/16 |
+| 64 | 2,67 s | 0,80 s | 0,18 s | **3,66 s** | 2.720 | 15/16 | 16/16 |
+| 128 | 10,73 s | 3,31 s | 0,34 s | **14,4 s** | 10.816 | 16/16 | 16/16 |
+
+Funziona: il vincitore esce esatto, con i pareggi risolti come in chiaro, e il bit di match è
+sempre giusto. I tre one-hot sbagliati sono la **banda** (F37): le differenze s_i − s_j vogliono
+un bit in più di range (Δ = 2^50, σ ≈ 25 unità), e nei tre casi il minimo e il secondo distavano
+10-24 unità — probe impostori, con la vera identità fuori dai primi N, il cui "più vicino" è
+uno qualunque tra punteggi quasi uguali. In quei casi la riga vincente ha uno zero e l'uscita è
+"nessun vincitore", che il client vede (Σ w_i = 0) e che per il varco è comunque un rifiuto
+corretto. Quando il minimo è isolato di più della banda (sempre, per un genuino), l'argmin è
+esatto.
+
+Il costo è quadratico: **3,7 s a N=64** (dentro i 5 s), **14,4 s a N=128** (fuori dai 10 s),
+lineare nella riga, N²/2 nelle coppie. Contro il varco: 40× a N=64, 80× a N=128, per togliere
+il conteggio dall'uscita e scegliere il più vicino tra due sotto soglia. È lo stesso rapporto
+che la letteratura paga: Zuber-Sirdey sono quadratici per la stessa ragione.
+
+**Cosa succederebbe, quindi.** Il ponte non conviene: la sua unità di costo è 40× la nostra a 8
+bit e ~150× a 14, e riporterebbe il sistema a un minuto. L'argmin esatto senza ponte esiste,
+costa 40-80× il varco, sta nel target del prof a N=64 e non a N=128, e la sua esattezza dipende
+dalla stessa banda del varco. **Il varco resta il design**; l'argmin a matrice è l'opzione da
+offrire al prof se il conteggio nell'uscita non gli va bene, con il suo prezzo scritto accanto.
+Per la tesi il percorso guadagna un punto: "argmin esatto sul server a N=64 in 3,7 s, senza
+scrivere un bootstrap a mano".

@@ -1,0 +1,7 @@
+scena: N=128 probe=128 T=1375 | Delta confronti 2^50 (|s_i-s_j| < 6440), Delta soglia 2^51 | thread 16
+   N |     dot |   coppie |  vincit. |   soglia |   totale |    PBS | esatto (indice, match)
+   8 |  0.001s |    0.05s |    0.02s |    0.03s |    0.09s |     52 | one-hot 16/16, indice 16/16, match 16/16
+  16 |  0.002s |    0.17s |    0.07s |    0.05s |    0.29s |    200 | one-hot 14/16, indice 14/16, match 16/16
+  32 |  0.002s |    0.64s |    0.24s |    0.09s |    0.97s |    720 | one-hot 16/16, indice 16/16, match 16/16
+  64 |  0.008s |    2.67s |    0.80s |    0.18s |    3.66s |   2720 | one-hot 15/16, indice 15/16, match 16/16
+ 128 |  0.009s |   10.73s |    3.31s |    0.34s |   14.39s |  10816 | one-hot 16/16, indice 16/16, match 16/16

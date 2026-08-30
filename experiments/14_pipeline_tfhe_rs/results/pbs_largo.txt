@@ -1,0 +1,7 @@
+un thread per PBS (single-thread), M4 Max
+
+MESSAGE_2_CARRY_2 (nostro) |  4 bit | N= 2048 n= 879 l=1 | keygen   0.5s | KS+PBS    13.9 ms | chiave bootstrap    54 MB | LUT identita' esatta 16/16
+     MESSAGE_8_CARRY_0 |  8 bit | N=32768 n=1110 l=2 | keygen  18.6s | KS+PBS   548.2 ms | chiave bootstrap  2220 MB | LUT identita' esatta 256/256
+     MESSAGE_4_CARRY_4 |  8 bit | N=32768 n=1112 l=3 | keygen  25.0s | KS+PBS   714.9 ms | chiave bootstrap  3336 MB | LUT identita' esatta 256/256
+
+Il ponte vorrebbe 13-14 bit: nessun set validato in tfhe-rs; Concrete li paga 1,5-4 s a PBS (F33).
