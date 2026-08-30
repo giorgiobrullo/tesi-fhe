@@ -1,0 +1,3 @@
+scena: DIM=512 N=1024 probe=128 T=237  |s-T| max 770 -> 10 bit, Delta_s = 2^53, thread 16
+1024 |   0.024s |    0.808s |    0.833s |      12.6ms | 0/131072 []
+nessuna discrepanza cifrato/chiaro.

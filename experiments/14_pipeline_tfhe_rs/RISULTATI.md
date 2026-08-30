@@ -116,6 +116,15 @@ esatto (0/131.072 a N=1024), banda σ≈50 innocua (DIR invariata in `effetto_ba
 sistema: **0,10 s a N=128, 0,72 s a N=1024**. `results/varco_leveled_16thread_params.txt`,
 `banda_soglia_{1_1,2_1}.txt`. Non spremuto: GPU con tfhe-rs (lotto di N PBS indipendenti; serve NVIDIA).
 
+## 4c. Il fondo locale: 3 bit e il muro spiegato (`esporta_dati.py N 3`, F47)
+
+3-bit quant dimezza il range -> Delta da 2^51 a 2^53. Set 1_1 a 3 bit: N=1024 0,83 s, **0 discrepanze**,
+banda da sigma~50 a **sigma~4** (robustezza gratis, accuratezza in chiaro identica). 2_0/1_0 restano rotti:
+non per Delta ma per la **box size del PBS** = N/message_modulus, la ridondanza contro il rumore del
+modulus switch. 1_1 (N=512, box 256) e' il piu' piccolo set validato che tiene; sotto la scatola scende
+a 128 e crolla. Punto operativo finale: **3 bit, set 1_1, 0,10 s a N=128, ~0,8 s a N=1024, banda sigma~4,
+esatto**. Leva ancora aperta ovunque: GPU (lotto di N PBS, serve NVIDIA).
+
 ## 5. La strada del ponte (`pbs_largo.rs`, `argmin_delta.rs`, F45)
 
 PBS largo (unità di costo del ponte), un thread: 4 bit / N=2048 **13,9 ms**; 8 bit / N=32768

@@ -23,7 +23,8 @@ OUT.mkdir(exist_ok=True)
 B = np.load(ROOT / "benchmark" / "results" / "_emb_reale_extra.npz")
 E_full, y_full = B["rn100"].astype(np.float32), B["y"]
 N = int(sys.argv[1]) if len(sys.argv) > 1 else 128      # es. 1024 per la scala
-N_GEN, N_IMP, N_IMP_TARA, Q = 64, 64, 2000, 4
+N_GEN, N_IMP, N_IMP_TARA = 64, 64, 2000
+Q = int(sys.argv[2]) if len(sys.argv) > 2 else 4      # bit di quantizzazione (3 stringe il range, F47)
 
 
 def quant_fit(pool, q=Q):
@@ -61,7 +62,8 @@ P = np.array(probes)
 S = bsq[None, :] - 2 * (P @ G.T)
 smin, smax = int(S.min()), int(S.max())
 
-NOME = "scena_reale.txt" if N == 128 else f"scena_reale_{N}.txt"
+suff = "" if Q == 4 else f"_q{Q}"
+NOME = f"scena_reale{suff}.txt" if N == 128 else f"scena_reale_{N}{suff}.txt"
 with open(OUT / NOME, "w") as fp:
     fp.write(f"{G.shape[1]} {N} {len(P)} {T}\n")
     for g in G:

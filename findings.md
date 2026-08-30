@@ -1954,3 +1954,38 @@ tra i due è un cursore banda/velocità, entrambi esatti sui dati reali.
 sull'argmin *sequenziale*, il caso peggiore per una GPU; il varco è N PBS **indipendenti in un
 lotto**, il carico per cui il backend CUDA di tfhe-rs è progettato. Serve una NVIDIA (via Colab,
 come in F25): esperimento su hardware esterno, non fatto in questa sessione.
+
+## 🔴 F47 — Il fondo della spremitura locale: perché 1_1 è il muro, e i 3 bit come bonus di robustezza
+Dopo F46 l'ipotesi: i set più piccoli (2_0 N=512, 1_0 N=256) crollano perché Δ è limitato dal
+range del punteggio; quantizzando l'embedding a **3 bit** invece di 4 il range si dimezza (da |s−T|
+< 2^13 a < 2^10), Δ sale da 2^51 a 2^53, e forse i set veloci diventano esatti. Provato
+(`esporta_dati.py 128 3`; accuratezza in chiaro identica: 90,6% a N=128, 96,9% a N=1024, come F31).
+
+**L'ipotesi era sbagliata, e lo sbaglio spiega il muro.** A 3 bit e Δ=2^53:
+- **1_1** (N=512): banda da σ≈50 a **σ≈4** (Δ 4× più grande), N=1024 in 0,83 s, **0 discrepanze**;
+- **2_0** e **1_0**: ancora rotti, banda mediana ~344 unità, un terzo dei confronti sbagliato.
+
+La banda di 2_0/1_0 è scesa con Δ (1878→344, ~5×), quindi il modulus switch non è il problema: se
+lo fosse, a Δ=2^53 sarebbero esatti come 1_1. La differenza vera è la **box size dell'accumulatore
+del PBS**: la LUT vive in un polinomio di grado N diviso in `message_modulus` scatole, e la scatola
+dà la ridondanza che assorbe il rumore del modulus switch. Box = N / message_modulus:
+- 1_1: N=512, message 2 (1 bit) → **box 256** (funziona);
+- 1_0: N=256, message 2 → box 128 (crolla);
+- 2_0: N=512, message 4 (2 bit) → box 128 (crolla), anche se ha lo stesso N di 1_1.
+
+Cioè: per il PBS di **segno** serve un messaggio a 1 bit (2_0 con 2 bit dimezza la scatola a parità
+di N) e il polinomio più grande possibile; tra i set validati a 128 bit, **1_1 (N=512, box 256) è il
+più piccolo che tiene**, e sotto non si scende senza cambiare il modo in cui il rumore è gestito.
+È il fondo della spremitura *locale* del singolo PBS, con il meccanismo, non solo il numero.
+
+Cosa resta dei 3 bit: non velocità (il conteggio dei PBS e la loro dimensione non cambiano: 0,72 s
+a N=1024 come i 4 bit), ma **robustezza gratis**. La banda scende da σ≈50 a σ≈4, cioè il varco
+sbaglia solo entro ±4 unità di punteggio da T invece di ±50, con l'accuratezza in chiaro invariata.
+Per la tesi: i 3 bit sono la scelta migliore per il varco veloce (set 1_1), perché stringono la
+banda di un ordine di grandezza a costo zero. Il punto operativo finale: **3 bit, set 1_1, 0,10 s a
+N=128 e ~0,8 s a N=1024, banda σ≈4, esatto**.
+
+**La sola leva di velocità ancora aperta, ovunque, è la GPU** (un lotto di N PBS indipendenti è il
+carico ideale del backend CUDA di tfhe-rs, l'opposto dell'argmin sequenziale di F25). Tutto il
+resto — schema, struttura, precisione del punteggio, parametri del PBS, quantizzazione — è
+misurato e al fondo. Sul solo CPU il varco è spremuto.
