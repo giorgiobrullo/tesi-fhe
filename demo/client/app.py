@@ -98,18 +98,40 @@ def da_dataurl(d):
     return imageio.imread(io.BytesIO(base64.b64decode(d.split(",", 1)[1])))[..., :3]
 
 
+def allinea(frames_rgb):
+    """Rileva e allinea sui 5 landmark, tenendo il volto piu' grande (chi e' davanti al varco).
+
+    Il rilevatore e' quello di buffalo_s: l'allineamento e' lo stesso template canonico per tutti i
+    modelli ArcFace, quindi si puo' usare un rilevatore leggero e poi l'embedding col modello scelto
+    (e' esattamente quello che fa la pipeline dei benchmark, che allinea una volta e riusa i crop).
+    Torna None se in nessun frame c'e' un volto."""
+    from insightface.utils import face_align
+    ec = modello()
+    det = ec._app("mobilefacenet")
+    out = []
+    for im in frames_rgb:
+        bgr = im[..., ::-1]
+        volti = det.get(bgr)
+        if volti:
+            v = max(volti, key=lambda f: (f.bbox[2] - f.bbox[0]) * (f.bbox[3] - f.bbox[1]))
+            out.append(face_align.norm_crop(bgr, v.kps)[..., ::-1])
+    return np.array(out) if out else None
+
+
 def embedding_fuso(frames_rgb, gia_allineati=False):
     """Multi-frame (F48): allinea, embedda, media, L2. Torna (vettore quantizzato, dettagli)."""
     ec = modello()
     t0 = time.perf_counter()
-    X = np.array(frames_rgb) if gia_allineati else ec.allinea(np.array(frames_rgb), CFG["modello"])
+    X = np.array(frames_rgb) if gia_allineati else allinea(frames_rgb)
+    if X is None:
+        raise ValueError("nessun volto rilevato: inquadra il viso e riprova")
     E = ec.embedding(X, CFG["modello"])
     t_emb = (time.perf_counter() - t0) * 1000
     v = E.mean(0)
     v = v / (np.linalg.norm(v) + 1e-9)
     qm = CFG["q_max"]
     q = np.clip(np.round(v / CFG["scala"]), -qm, qm).astype(int)
-    return q, {"frame": len(frames_rgb), "embedding_ms": round(t_emb, 1)}
+    return q, {"frame": len(X), "embedding_ms": round(t_emb, 1)}
 
 
 # ---------------------------------------------------------------- API
@@ -148,6 +170,12 @@ def avvio():
     assicura_chiave()
     STATO["pronto"] = True
     log("pronto.")
+
+
+@app.exception_handler(Exception)
+def errori(request, exc):
+    """La pagina deve ricevere sempre JSON: un 500 HTML diventerebbe un errore di parsing."""
+    return JSONResponse({"errore": str(exc) or exc.__class__.__name__}, status_code=500)
 
 
 @app.get("/")
