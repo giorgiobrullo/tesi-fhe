@@ -1475,10 +1475,20 @@ parallelizzabili. È esattamente quello che succede qui, con un passo in più: l
 precede la selezione, **la sostituisce**. La selezione (argmin, log N livelli di confronti
 dipendenti) sparisce, resta il lotto parallelo di N confronti che lui aveva previsto, e su un
 multicore con un PBS da 20 ms quel lotto è tutto il costo. L'identità viene dal one-hot. Il
-delta di privacy rispetto ad "argmin poi soglia sul vincitore" è il conteggio: il client vede
-quanti iscritti stanno sotto soglia (nella scena reale al massimo uno), che è la stessa cosa
-che il prof aveva concesso al one-hot. Per il client malicious non cambia nulla: riceve bit di
-soglia, mai distanze, quindi nessuna discesa per gradiente verso un embedding della galleria.
+delta di privacy rispetto ad "argmin poi soglia sul vincitore" va detto con precisione, perché
+NON è stato discusso all'incontro: il prof ha accettato la one-hot *dell'argmax* ("al massimo si
+rivela quanti elementi sono entrati nel benchmark", cioè N), non un bit di soglia per ogni
+iscritto. Con gli N bit il client riceve fino a N oracoli di appartenenza per query invece di
+uno; con l'uscita compatta riceve ciò che chiedeva il prof (indice ed esito) più il **conteggio**
+dei sotto-soglia (nei dati reali sempre 0 o 1; un client malicious può però costruire vettori a
+metà tra due iscritti e vederne 2). In nessun caso riceve distanze, quindi la discesa per
+gradiente verso un embedding della galleria non c'è; resta l'attacco lento al bordo della
+palla di raggio T, che è inerente a qualunque accetta/rifiuta biometrico (anche al design del
+prof; Zuber-Sirdey lo dicono e rimandano al rate limiting). Il conteggio è un punto da portare
+al prof, non un punto acquisito; l'alternativa che lo azzera è scegliere il vincitore tra i
+sotto-soglia, cioè rimettere un argmin, cioè il ponte. E c'è un costo di accuratezza, non di
+privacy: la regola "esattamente uno sotto soglia" rifiuta quando due iscritti sono sotto T
+invece di scegliere il più vicino, ~1 punto di DIR (92,9% contro 94,0% di F36).
 
 **Letteratura (verificata sul testo).** Il precedente diretto è Zuber e Sirdey, *Efficient
 homomorphic evaluation of k-NN classifiers* (PoPETs 2021): query cifrata contro modello in
@@ -1549,3 +1559,82 @@ Il "percorso" per la figura della tesi, a N=8 dove abbiamo tutti i punti: Concre
 0,36 s (8 bit) → varco leveled 0,017 s. A N=64: soglia Concrete 92 s → torneo radix 2,3 s →
 varco leveled 0,094 s. A N=128: 4,7 s → 0,177 s. Cinque ordini di grandezza dal punto di
 partenza, ognuno con una ragione misurata.
+
+## 🔴 F39 — Lo stesso varco in CKKS: quanto vale lo schema (il confronto chiesto da Carnemolla)
+All'incontro Carnemolla ha chiesto di misurare il beneficio dello schema, non di dedurlo dai paper:
+CKKS col packing SIMD è ciò che usa quasi tutta la letteratura (F26). Abbiamo quindi rifatto il
+varco di F37 in CKKS (Microsoft SEAL via TenSEAL `sealapi`, parametri a 128 bit), stessa scena
+reale, stessa uscita, in `experiments/15_ckks_confronto/ckks_varco.py`. Il packing è quello
+classico: il probe (512 valori) replicato R = slot/512 volte in **un solo cifrato**; per ogni
+blocco di R iscritti una moltiplicazione per il plaintext −2·G, poi rotate-and-sum (9 rotazioni)
+che porta il prodotto scalare nello slot 512k; una maschera e una rotazione per blocco
+compattano tutti gli N punteggi in un cifrato. La soglia è il **segno** di (T + ½ − s)/RANGE
+calcolato come polinomio composto g_n^{d_g} poi f_n^{d_f} di Cheon, Kim e Kim (ASIACRYPT 2020,
+coefficienti verificati sul testo: f₁ = (3x − x³)/2, g₁ = (2126x − 1359x³)/2¹⁰, …): **una sola
+valutazione per tutti gli N punteggi insieme**, è questo il vantaggio SIMD. Il prezzo è la
+profondità: ogni composizione consuma 2 livelli (grado 3) o 4 (grado 7), i livelli vogliono
+primi in più nel modulo, e con più primi ogni operazione costa di più. SEAL è single-thread.
+
+| parametri (poly, livelli) | segno | banda | N=8 | N=64 | **N=128** | di cui distanze | di cui segno |
+|---|---|---|---|---|---|---|---|
+| 16384, 9 | g₁²f₁ | ±293 | 0,17 s | 0,53 s | 1,01 s | 0,96 s (8 blocchi) | 0,05 s |
+| 32768, 13 | g₁⁴f₁ | ±67 | 0,71 s | 1,19 s | 2,14 s | 1,88 s (4 blocchi) | 0,26 s |
+| 32768, 19 | g₁⁶f₁² | **±10** | 1,63 s | 2,51 s | **4,25 s** | 3,54 s (4 blocchi) | 0,71 s |
+| 32768, 19 | g₃³f₃ | ±9 | 1,83 s | 2,72 s | 4,44 s | 3,46 s | 0,98 s |
+
+Tempi per query, un thread, M4 Max. La banda è misurata direttamente: uno sweep di d = s − T su
+tutti gli slot, una valutazione = tutta la curva; è l'intervallo dove l'uscita non è ancora ±1, e
+fuori da lì il segno è **deterministicamente** giusto (diverso dalla banda di TFHE, che è
+probabilistica con σ ≈ 12). Esattezza sui probe reali: **0 discrepanze su 4096** confronti a
+N=128 per ogni configurazione (32 probe; errore CKKS sui punteggi interi ≤ 0,03, quindi esatti
+dopo l'arrotondamento), esito per probe uguale al chiaro.
+
+Cosa dicono i numeri, con onestà in entrambe le direzioni:
+
+1. **Il packing mantiene la promessa sul segno.** La soglia costa lo stesso a N=8 e a N=128
+   (0,71 s), e coprirebbe fino a 16.384 iscritti con una valutazione. In TFHE è un PBS per
+   iscritto: 13,7 ms × N. Su questa operazione CKKS scala meglio, come dice la letteratura.
+2. **Ma le distanze non sono gratis come in TFHE.** Ogni blocco di 32 iscritti costa una
+   moltiplicazione e nove rotazioni, e una rotazione a 32768 con 20 primi vale ~90 ms: 0,86 s per
+   blocco, **27 ms per iscritto**, contro i 13,7 ms per iscritto dell'intero varco TFHE (PBS
+   compreso) e i 0,05 ms del suo prodotto scalare leveled. Le rotazioni sono key-switching, e il
+   key-switching cresce con il numero di primi, cioè con la profondità del segno.
+3. **Il tradeoff banda/tempo è la profondità.** A 9 livelli il varco fa 1 s ma la banda è ±293
+   unità (8% del range: inutilizzabile); a 13 livelli ±67 e 2,1 s; a 19 livelli ±10 e 4,2 s.
+   Due composizioni di g₁ in più (4 livelli) stringono la banda ~6× e costano il doppio su
+   tutto, perché i primi in più rincarano anche le distanze. È il Corollario 3 di Cheon-Kim-Kim
+   (d_g ≈ log(1/ε)/log g'(0)) visto dal lato del portafoglio.
+4. **Il confronto a parità di thread.** A N=128, un thread: TFHE leveled 1,76 s, CKKS 4,25 s
+   con banda paragonabile (±10 contro σ 12). A 16 thread TFHE fa 0,177 s; i 4 blocchi CKKS sono
+   indipendenti e si parallelizzerebbero (stima ~1,6 s con 4 thread), il segno no. A questa
+   scala **lo schema TFHE vince** sul varco, e vince perché la sua operazione non lineare (il
+   PBS) costa poco e non impone parametri grandi al resto.
+5. **Dove CKKS vincerebbe, e perché la letteratura va veloce.** Il punto di pareggio per il
+   solo segno è alto (migliaia di iscritti), ma le distanze CKKS restano 2× più care per
+   iscritto del varco TFHE intero finché servono parametri profondi. I sistemi CKKS veloci della
+   rassegna (Blind-Match: 6.144 template in 0,74 s; HERS; CryptoFace) sono veloci perché **non
+   fanno il confronto cifrato**: restituiscono i punteggi e l'argmax lo fa il client (F26,
+   strategia 1). Senza il segno la profondità è 1, i parametri sono piccoli, le rotazioni
+   costano 11 ms e il packing rende: a 16384 le nostre distanze fanno 7,5 ms per iscritto. Chi
+   invece fa la selezione sul server in CKKS paga con approssimazioni e bootstrapping (GROTE
+   ~16.000 volti in ~15 s, Mazzone argmin di 128 in ~13 s), cioè numeri della stessa classe dei
+   nostri 4 s, non dei nostri 0,18 s.
+6. Dimensioni: il probe CKKS è un cifrato da ~11 MB a 32768 (2,6 MB misurati a 16384), contro gli
+   8,4 MB dei 512 LWE grezzi di F37 (riducibili a ~16 KB con l'encoding polinomiale); le chiavi di
+   rotazione CKKS pesano gigabyte a 32768.
+
+La frase per la tesi: **la scelta dello schema vale meno della scelta dell'operazione**. Il
+varco 1:N con esito cifrato costa, in ordine, Concrete-python 92 s (N=64) → CKKS 4,2 s (N=128,
+un thread) → TFHE radix a torneo 4,7 s (N=128, 16 thread, e vuole il ponte) → TFHE leveled
+0,18 s (N=128, 16 thread). CKKS ha il packing, TFHE ha il bootstrap economico; per un varco
+da decine o centinaia di iscritti, dove la decisione è una soglia per iscritto, conta il secondo.
+
+La tabella schema × operazione che chiedeva l'incontro (N=128 dove misurato, tempi per query):
+
+| operazione | Concrete-python (F28/F33) | tfhe-rs radix (F38) | tfhe-rs leveled (F37) | CKKS/SEAL (F39) |
+|---|---|---|---|---|
+| prodotto scalare ×N | 0,07 s (0 PBS) | — (vuole il ponte) | 0,007 s (0 PBS) | 3,5 s (rotazioni) |
+| soglia per iscritto | 92 s a N=64 | — | 0,17 s (16 thr) / 1,76 s (1 thr) | 0,7 s, indipendente da N |
+| argmin + soglia sul vincitore | 455 s a N=8 | 4,7 s (16 thr) / 47 s (1 thr) | — | letteratura: ~13 s (Mazzone, 128) |
+| **varco intero** | 92 s a N=64 | — | **0,18 s** | **4,25 s** (1 thr) |
+| banda alla soglia | esatto (PBS larghi) | esatto | σ ≈ 12, probabilistica | ±10, deterministica |

@@ -1,0 +1,39 @@
+
+=== poly 16384, 9 livelli, n=1 g^2 f^1: keygen 0.18s, galois 0.83s, slot 8192, 16 iscritti/cifrato, RANGE 3562 ===
+  segno (tutti gli slot insieme): 0.09s; banda d in [-293, 294] (588 valori ambigui su 8192), livello finale 9->9
+  N=  8: distanze 0.117s (1 blocchi), soglia 0.05s, totale 0.17s | errore CKKS sui punteggi: 0.018
+  N= 16: distanze 0.116s (1 blocchi), soglia 0.05s, totale 0.16s | errore CKKS sui punteggi: 0.135
+  N= 32: distanze 0.233s (2 blocchi), soglia 0.05s, totale 0.28s | errore CKKS sui punteggi: 0.135
+  N= 64: distanze 0.483s (4 blocchi), soglia 0.05s, totale 0.53s | errore CKKS sui punteggi: 0.135
+  N=128: distanze 0.963s (8 blocchi), soglia 0.05s, totale 1.01s | errore CKKS sui punteggi: 0.135
+  esattezza a N=128 su 32 probe: 0/4096 discrepanze []; genuini one-hot giusto 30/32, impostori accettati 0/0
+
+=== poly 32768, 13 livelli, n=1 g^4 f^1: keygen 0.44s, galois 2.47s, slot 16384, 32 iscritti/cifrato, RANGE 3562 ===
+  segno (tutti gli slot insieme): 0.44s; banda d in [-67, 68] (136 valori ambigui su 16384), livello finale 13->13
+  N=  8: distanze 0.445s (1 blocchi), soglia 0.27s, totale 0.71s | errore CKKS sui punteggi: 0.004
+  N= 16: distanze 0.442s (1 blocchi), soglia 0.27s, totale 0.71s | errore CKKS sui punteggi: 0.027
+  N= 32: distanze 0.443s (1 blocchi), soglia 0.27s, totale 0.71s | errore CKKS sui punteggi: 0.027
+  N= 64: distanze 0.926s (2 blocchi), soglia 0.26s, totale 1.19s | errore CKKS sui punteggi: 0.027
+  N=128: distanze 1.877s (4 blocchi), soglia 0.26s, totale 2.14s | errore CKKS sui punteggi: 0.027
+  esattezza a N=128 su 32 probe: 0/4096 discrepanze []; genuini one-hot giusto 30/32, impostori accettati 0/0
+
+=== poly 32768, 19 livelli, n=1 g^6 f^2: keygen 0.82s, galois 4.98s, slot 16384, 32 iscritti/cifrato, RANGE 3562 ===
+  segno (tutti gli slot insieme): 1.08s; banda d in [-10, 11] (22 valori ambigui su 16384), livello finale 19->19
+  N=  8: distanze 0.887s (1 blocchi), soglia 0.74s, totale 1.63s | errore CKKS sui punteggi: 0.004
+  N= 16: distanze 0.861s (1 blocchi), soglia 0.74s, totale 1.60s | errore CKKS sui punteggi: 0.027
+  N= 32: distanze 0.862s (1 blocchi), soglia 0.74s, totale 1.60s | errore CKKS sui punteggi: 0.027
+  N= 64: distanze 1.778s (2 blocchi), soglia 0.74s, totale 2.51s | errore CKKS sui punteggi: 0.027
+  N=128: distanze 3.538s (4 blocchi), soglia 0.71s, totale 4.25s | errore CKKS sui punteggi: 0.027
+  esattezza a N=128 su 32 probe: 0/4096 discrepanze []; genuini one-hot giusto 30/32, impostori accettati 0/0
+
+=== poly 32768, 19 livelli, n=3 g^3 f^1: keygen 0.73s, galois 4.46s, slot 16384, 32 iscritti/cifrato, RANGE 3562 ===
+  segno (tutti gli slot insieme): 1.45s; banda d in [-9, 10] (20 valori ambigui su 16384), livello finale 19->19
+  N=  8: distanze 0.826s (1 blocchi), soglia 1.01s, totale 1.83s | errore CKKS sui punteggi: 0.004
+  N= 16: distanze 0.829s (1 blocchi), soglia 1.00s, totale 1.83s | errore CKKS sui punteggi: 0.027
+  N= 32: distanze 0.822s (1 blocchi), soglia 1.00s, totale 1.82s | errore CKKS sui punteggi: 0.027
+  N= 64: distanze 1.720s (2 blocchi), soglia 1.00s, totale 2.72s | errore CKKS sui punteggi: 0.027
+  N=128: distanze 3.457s (4 blocchi), soglia 0.98s, totale 4.44s | errore CKKS sui punteggi: 0.027
+  esattezza a N=128 su 32 probe: 0/4096 discrepanze []; genuini one-hot giusto 30/32, impostori accettati 0/0
+
+scritto /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/15_ckks_confronto/results/ckks_varco.csv
+EXIT 0

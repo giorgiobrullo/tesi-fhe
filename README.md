@@ -36,8 +36,10 @@ Concrete-python, che compila l'argmin in molti bootstrap: lo stesso argmin scrit
 circa 100 volte più veloce (torneo a 8 bit: 2,3 s a N=64, 4,7 s a N=128). E se al posto
 dell'argmin basta la soglia con esito one-hot, il prodotto scalare leveled più un solo bootstrap
 di segno per iscritto, tutti in parallelo, decide in 0,18 s a N=128 con i parametri standard a
-128 bit (esperimento 14). Per la scala CKKS col packing SIMD arriva a milioni di template sotto
-il secondo (evitando o approssimando il confronto cifrato). Numeri e
+128 bit (esperimento 14). Lo stesso varco in CKKS (SEAL, packing SIMD, segno
+come polinomio composto) fa 4,2 s a N=128 su un thread: il packing rende sul confronto ma le
+rotazioni pagano la profondità del segno (esperimento 15). Per la scala CKKS arriva a milioni di
+template sotto il secondo, ma evitando o approssimando il confronto cifrato. Numeri e
 ragionamenti in `findings.md`; lo stato dell'arte in `letteratura.md`.
 
 ## Struttura
@@ -49,14 +51,14 @@ ragionamenti in `findings.md`; lo stato dell'arte in `letteratura.md`.
   riconoscimento (05 PCA, 06 argmin e soglia, 07 descrittori locali, 08 CNN) fino agli
   approfondimenti sul costo cifrato (09 GPU, 10 struttura dell'argmin, 11 MegaFace, 13
   head-to-head con tfhe-rs, 14 il pipeline in tfhe-rs coi parametri standard: torneo radix e
-  varco a soglia leveled). Ogni gradino importa da `core/` e porta il suo `costo.py`.
+  varco a soglia leveled, 15 lo stesso varco in CKKS). Ogni gradino importa da `core/` e porta il suo `costo.py`.
 - `benchmark/`: la valutazione trasversale sui dataset grandi, con la verifica 1:1
   (`verifica.py`), l'identificazione 1:N a scala (`scaling_*.py`, `identificazione_1n.py`), il
   varco a soglia su volti reali (`soglia_reale.py`) e il breakdown end-to-end di una query
   (`breakdown_query.py`).
 - `datasets/`: i dati scaricati (gitignorato): i `.bin` dei benchmark, DigiFace-1M, VGGFace2.
   Rotte di download in `docs/benchmark_dataset.md`.
-- `findings.md`: il diario dei risultati, F0–F38.
+- `findings.md`: il diario dei risultati, F0–F39.
 - `letteratura.md`: lo stato dell'arte del riconoscimento biometrico cifrato 1:N.
 - `docs/`: note di riferimento su dataset e modelli di embedding.
 
