@@ -1,0 +1,7 @@
+keygen 0.5s
+
+  N |   dot+argmin |     argmin |  confr. | esito
+  4 |       24.24s |      0.45s |       3 | OK
+  8 |       49.86s |      1.05s |       7 | OK
+ 16 |       98.49s |      2.27s |      15 | OK
+ 32 |      199.28s |      4.66s |      31 | OK

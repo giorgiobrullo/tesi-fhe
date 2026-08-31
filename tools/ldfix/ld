@@ -1,0 +1,13 @@
+#!/bin/sh
+# Wrapper di ld per Concrete su macOS: la libreria hardcoda il percorso SDK di
+# CommandLineTools, che su questa macchina non esiste (l'SDK sta dentro Xcode.app).
+# Sostituisce quel -L con il percorso vero e chiama il linker di sistema.
+SDK=$(xcrun --show-sdk-path 2>/dev/null)
+ARGS=""
+for a in "$@"; do
+  case "$a" in
+    /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib) a="$SDK/usr/lib" ;;
+  esac
+  ARGS="$ARGS \"$a\""
+done
+eval exec /usr/bin/ld $ARGS
