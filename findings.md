@@ -717,13 +717,16 @@ ma è la leva per rendere l'*argmin* cifrato fattibile (F20/F22). Nel quadro com
 dimensione 128 è il punto dolce, accuratezza ~94% (ResNet50), match ~63 ms, e punteggi
 abbastanza stretti da avvicinare l'argmin privato al fattibile.
 
-Correzione (F31, misura successiva). La parte accuratezza↔dimensione di questo finding regge (a
-128 dim il riconoscimento è quasi intatto). La parte FHE no. Misurando l'argmin cifrato a
-512/128/64 dim su embedding reali, il costo non scende con la dimensione (~457/540/590 s a N=8,
-piatto o peggio), quindi 128 dim non è la leva per l'FHE. A far compilare l'argmin è la
-quantizzazione a 4 bit (limite di 16 bit del confronto), non i 128 dim: 512 dim compila lo stesso,
-a ~457 s. La compressione aiuta il match (prodotto scalare, 152→63 ms), che è già gratis, non
-l'argmin, che è la selezione.
+⚠️ **Ma la dimensione non è una leva per l'FHE, e questa è la parte che conta.** La conclusione
+accuratezza↔dimensione qui sopra regge (a 128 dim il riconoscimento è quasi intatto); quella sul
+costo cifrato no. Misurando l'argmin cifrato al variare della dimensione su embedding reali
+(`benchmark/argmin_dimensione.py`, Concrete, CHUNKED, 4 bit, N=4) il costo **non scende**, e non è
+nemmeno monotono: **512 dim → 158,7 s con 44 PBS, 128 dim → 237,9 s con 81 PBS** (cioè *peggio*),
+64 dim → 74,8 s ma con **risultato errato**. A far compilare l'argmin è la quantizzazione a 4 bit
+(limite di 16 bit del confronto), non la riduzione di dimensione: 512 dim compila lo stesso.
+
+La compressione aiuta il **match** (prodotto scalare, 152 → 63 ms), che però è già gratis; non
+aiuta l'**argmin**, che è la selezione ed è dove sta tutto il costo.
 
 ## 🔴 F23 — Ottimizzare l'argmin server: niente hardware-lever, e la compressione aiuta al margine
 Tentativo di "ottimizzare fortissimo" l'argmin cifrato sul server, da cui emergono due fatti duri.
@@ -744,11 +747,14 @@ GPU nemmeno (Apple Silicon, no CUDA). Quindi l'unica leva è comprimere l'embedd
 Dove l'accuratezza è usabile (≥64 dim) l'argmin è intrattabile (tempo *o* memoria);
 dove è veloce (16 dim) l'accuratezza è inutile, e così non c'è un operating point buono.
 
-Correzione (F31/F33). Questa tabella è pre-CHUNKED: con la strategia CHUNKED più la quantizzazione
-a 4 bit il 512 dim compila e gira a ~455 s (F33), non è intrattabile. E comprimere non abbassa il
-costo, l'argmin è ~indipendente dalla dimensione (455/540/586 s a 512/128/64), quindi "l'unica leva
-è comprimere" non regge: la dimensione non è una leva FHE, e il 42 s a 16 dim era il regime a ~9
-bit su embedding degeneri, non un punto operativo reale.
+⚠️ **Questa tabella è pre-CHUNKED e le sue conclusioni non reggono.** Con la strategia CHUNKED più
+la quantizzazione a 4 bit il 512 dim **compila e gira**, quindi non è «intrattabile»; e comprimere
+**non abbassa il costo** — l'argmin è quasi indipendente dalla dimensione, e a 128 dim costa
+addirittura di più (158,7 s a 512 dim contro 237,9 s a 128, misurati in
+`benchmark/argmin_dimensione.py`). Quindi «l'unica leva è comprimere» è falso: **la dimensione non è
+una leva FHE**. Il 42 s a 16 dim era il regime a ~9 bit su embedding degeneri, non un punto
+operativo reale. Quello che resta valido di questo finding è il primo fatto: su questa macchina non
+ci sono leve hardware.
 
 Una compressione migliore aiuta al margine senza rompere la frontiera. Abbiamo usato la PCA;
 provata anche la LDA (supervisionata, `compressione.py`, figura `compressione.png`):
@@ -1620,15 +1626,12 @@ Tempi per query, un thread, M4 Max. La banda è misurata direttamente: uno sweep
 tutti gli slot, una valutazione = tutta la curva; è l'intervallo dove l'uscita non è ancora ±1, e
 fuori da lì il segno è **deterministicamente** giusto (diverso dalla banda di TFHE, che è
 probabilistica con σ ≈ 12). Esattezza sui probe reali: **0 discrepanze su 4096** confronti a
-N=128 per ogni configurazione (32 probe; errore CKKS sui punteggi interi ≤ 0,03, quindi esatti
-dopo l'arrotondamento), esito per probe uguale al chiaro.
-
-**Correzione (F62).** La prima versione di questa misura prendeva `P[:32]`, e la scena mette prima
-tutti i genuini e poi tutti gli impostori: erano **32 probe genuini**, e infatti la colonna
-«impostori accettati» leggeva `0/0` — un vuoto, non uno zero. Rifatta con un campione **bilanciato**
-(16 genuini + 16 impostori), il risultato regge e ora significa qualcosa: **0 discrepanze su 4.096,
-genuini one-hot giusto 14/16, impostori accettati 0/16** in tutte e tre le configurazioni a 32768.
-Il confronto di tempo non cambia; quello di accuratezza ora esiste.
+N=128 per ogni configurazione, su un campione **bilanciato** di 32 probe (16 genuini + 16
+impostori — la scena elenca prima tutti i genuini, quindi un `P[:32]` ingenuo non conterrebbe nessun
+impostore e la colonna «impostori accettati» risulterebbe vuota, non zero). Risultato: **0
+discrepanze su 4.096, genuini one-hot giusto 14/16, impostori accettati 0/16** in tutte e tre le
+configurazioni a 32768; errore CKKS sui punteggi interi ≤ 0,03, quindi esatti dopo l'arrotondamento
+ed esito per probe uguale al chiaro.
 
 Cosa dicono i numeri, con onestà in entrambe le direzioni:
 
@@ -2345,9 +2348,6 @@ M4 Max, 16 thread, scena reale a 3 bit, confronti di ogni livello in parallelo:
 | 32 | 0,002 s | 0,482 s | **0,484 s** | 31 | 14/16 | 11/13 | **5/5** | 0,97 s |
 | 64 | 0,003 s | 0,747 s | **0,750 s** | 63 | 15/16 | 14/14 | **7/7** | 3,66 s |
 | **128** | 0,006 s | 1,267 s | **1,273 s** | 127 | **16/16** | 16/16 | **14/14** | **14,4 s** |
-
-*(tabella riallineata all'artefatto `results/argmin_torneo.txt`: la versione precedente aveva le
-colonne "indice esatto" e "divario > 20" sfasate di una riga — correzione da F61.)*
 
 **Tre riserve, da dire prima che le dica un revisore.** (1) L'indice esatto è **73/80**, non 80/80;
 e la matrice di F45, sugli stessi probe, fa **77/80**. Il torneo è quindi **più veloce e meno
