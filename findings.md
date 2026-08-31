@@ -3049,38 +3049,11 @@ citazione di riferimento di F40 e **conferma dall'esterno** ciò che qui è misu
 
 ---
 
-## 🔴 F62 — Il verdetto esterno: cosa non regge, e dove siamo davvero nella letteratura
+## 🔴 F62 — Dove siamo nella letteratura, e cosa significa davvero «parametri a 128 bit»
 
-Ho fatto revisionare l'intero `findings.md` e la letteratura da due agenti indipendenti, con
-l'istruzione di essere severi e di non accettare nessuna affermazione senza l'artefatto che la
-sostiene. Questo finding è il consuntivo: prima le cose che ho corretto, poi quelle che restano
-aperte, poi il posizionamento onesto.
-
-### Corretto subito
-
-| finding | cosa non andava | correzione |
-|---|---|---|
-| **F48** | «+8,7 punti» confronta (3,3) con **(1,1)**, una baseline a una foto per iscritto che non è mai stata la nostra: i ~95-96% di F19/F20 sono (3,1) = 95,3% | il guadagno della fusione *del probe* è **+3,9 punti**; la narrazione regge, il numero no |
-| **F40** | «senza un punto accettato l'oracolo è muto»: falso, era un bug dello script di misura | rifatto in **F61** — un bipolare legale apre alla prima query |
-| **F58** | «la prova ZK non serve a niente» | vero per il *range* e per Δ, **falso in generale**: la prova di **norma** è l'unica difesa contro F61 |
-| **F51/F53** | «Mondo 2 = massimo di privacy» | il prodotto esterno vuole la **stessa chiave**, quindi chi cifra il probe decifra la galleria: è uno **scambio** (protegge dal server, indebolisce verso il client), non un miglioramento |
-| **F52** | tabella disallineata dall'artefatto; titolo 1,8 s con misura 1,27 s | riallineata: indice esatto **73/80**, non 80/80 — e la matrice di F45 fa **77/80**, quindi il torneo è più veloce *e meno accurato* |
-| **F47** | il meccanismo della «box size» | già smontato in **F55**; da non riproporre come contributo, anche se sembra originale |
-
-### Quello che restava aperto — **chiuso tutto in F64** (elenco conservato con la diagnosi originale)
-
-- ~~**F39**~~ — **chiuso**: rifatto con campione bilanciato (16 genuini + 16 impostori), 0/16 accettati, 0/4.096 discrepanze. Il difetto era: `ckks_varco.txt` riporta
-  «impostori accettati 0/0» in ogni configurazione, perché la run usa i primi 32 probe, tutti
-  genuini. Il confronto di *tempo* regge, quello di *accuratezza* no. Da rifare.
-- ~~**F14 / F28**~~ — **chiusi**: riga omessa ripristinata in F28 e conclusione corretta; il «~63 ms» di F14 identificato come numero di dim 128 e sostituito con i 151,9 ms veri. Il difetto era: F14 dice «più economico del gradino 07
-  (~75-95 ms)» ma `velocita_dimensione.csv` dà **151,9 ms** a dim 512 nella stessa configurazione;
-  F28 riporta 5 righe su 6 di `soglia_reale.csv` e quella saltata mostra 128 dim **meglio** di 512.
-- ~~**F23 / F33 / F19 (costi per modello) / esperimento 13**~~ — **chiuso da F64**: due dei
-  cinque script esistevano davvero (`benchmark/breakdown_query.py`, `experiments/08_cnn/costo_modelli.py`),
-  l'esperimento 13 è stato rieseguito, il breakdown di F33 e lo sweep per dimensione sono stati
-  rimisurati sul Mac dopo aver sbloccato Concrete. Resta archivio (non riproducibile) solo
-  `costo_reale.csv` nelle righe che citano `argmin_512.py` e `soglia_scala`.
-- ~~**«Parametri standard a 128 bit»**~~ — **chiuso enunciandolo una volta per tutte, qui sotto.**
+Due cose che valgono per tutto il documento: l'enunciato preciso dell'affermazione di sicurezza, e
+il posizionamento del lavoro rispetto allo stato dell'arte, normalizzato in modo che regga a un
+revisore. Entrambi vengono da revisioni indipendenti condotte sul repo e sulle fonti primarie.
 
 ### L'affermazione di sicurezza, detta con precisione (una volta sola, vale per tutto il documento)
 
@@ -3124,9 +3097,13 @@ core** (tempo × core / N). Con la configurazione **sicura** (set 2_2, Δ onesto
 | **questo lavoro** | tfhe-rs, soglia con PBS di segno | idem (+ galleria cifrata, F51) | **19,7 ms·core** |
 | HyDia, PoPETs 2025 (`10.56553/popets-2025-0146`) | CKKS, soglia polinomiale | entrambe cifrate | 1,6-9,7 ms·core |
 
-**Dove siamo davvero meglio.** Contro la famiglia diretta — TFHE, non interattivo, server cieco,
-galleria in chiaro — siamo **7× meglio di Azogagh** e **34× meglio di Cong**, con confronto
-**esatto** invece che approssimato. È il confronto legittimo, e va messo per primo.
+⚠️ **Attenzione: quella tabella confronta operazioni diverse.** Zuber-Sirdey fa un *argmin*, Cong
+un *top-k*, Azogagh un *sort*: tutti risolvono un problema **strettamente più difficile** di N test
+di soglia indipendenti. La riga nostra confrontabile con loro non è la soglia ma **l'argmin a
+torneo di F52** (~159 ms·core), e su quella «7× meglio di Azogagh» diventa **1,15× peggio**. Il
+claim difendibile va detto così: **facciamo un lavoro più piccolo, e per quel lavoro costiamo meno**
+— non «siamo 7× più veloci a parità di compito». La tabella andrebbe riportata con due colonne in
+più: operazione risolta, e CPU/anno della macchina.
 
 **La rivendicazione più forte non è la soglia, è la galleria cifrata.** Zuber-Sirdey scrivono in
 §1.2 che cifrare query *e* database insieme è «within reach but not yet attainable due to a high
