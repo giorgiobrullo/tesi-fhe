@@ -3397,9 +3397,12 @@ single-thread**):
 | Paiva et al., TCHES 2025 (`2025/696`) | 584,7 ms | 1024 | 599 s, 50 GB |
 | BatchBoot, USENIX Sec 2026 | **3,71 ms** | 512-1024 | **2,11-3,86 s** |
 
-**La lettura onesta, che è meno trionfale di come verrebbe da scriverla.** Il nostro PBS costa 12 ms
-su un thread — quindi *per costo ammortizzato* le tecniche migliori (3,7-4,3 ms) sono **3× più
-economiche della nostra**, e sarebbe disonesto nascondersi dietro il totale. Quello che le rende
+**La lettura onesta, che è meno trionfale di come verrebbe da scriverla.** Il nostro PBS costa
+**18,8-19,0 ms di tempo-thread** nella configurazione sicura (il numero si ricava dalla colonna
+«PBS/thread» di F56: 0,150 s × 16 thread / 128 = 18,8 ms, e resta 19,0 ms fino a N=4096) — quindi
+*per costo ammortizzato* le tecniche migliori (3,7-4,3 ms) sono **~5× più economiche della nostra**,
+e sarebbe disonesto nascondersi dietro il totale. (Col set veloce 1_1, quello che F56 ha dovuto
+scartare per sicurezza, saremmo a 12 ms e il divario sarebbe 3×.) Quello che le rende
 inutili qui è la **latenza** e il **batch**: la nostra galleria a N=1024 nella configurazione sicura
 fa **1,258 s di parete su 16 thread**, mentre BatchBoot — la migliore — chiede un batch di 512-1024
 e paga 2,11-3,86 s **di latenza**, cioè 2-3× la nostra risposta completa, per fare *solo* i
