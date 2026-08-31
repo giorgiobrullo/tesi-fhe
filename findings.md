@@ -2728,7 +2728,10 @@ sono *esattamente* il risultato del calcolo in chiaro. E con lui l'attacco è **
 
 Il conto vero del prezzo, quindi, è più preciso di come sembrava: **la difesa in sé non costa
 nulla** (con il set 2_2, il Δ onesto dà gli stessi 0,152 s e la stessa accuratezza del Δ tarato sui
-dati); quello che costa è **non poter usare il set piccolo**, cioè 0,064 → 0,152 s, **2,4×**.
+dati); quello che costa è **non poter usare il set piccolo con questa galleria**, cioè
+0,064 → 0,152 s, **2,4×**. F58 mostra però che quel 2,4× è convertibile: limitando la norma ‖g‖₁
+della galleria all'iscrizione il Δ guadagna due bit, il set piccolo torna utilizzabile **restando
+difendibile**, e il prezzo diventa 0,4-0,9 punti di DIR invece che 2,4× di tempo.
 
 **La configurazione sicura, quindi:** set 2_2 (N=2048), Δ = 2^63 / (2·q·max‖g‖₁ + max‖g‖² + |T|),
 quantizzazione a 3 bit, fusione 2+3 frame. **0,152 s a N=128**, accuratezza identica al calcolo in
@@ -2876,7 +2879,7 @@ dello stesso protocollo**, e messi in cascata danno la risposta dell'argmin al c
 
 ## 🔴 F58 — Stringere il bound onesto: due bit, limitando la norma della galleria — e bastano
 
-F56 lascia una domanda aperta e sgradevole: la sicurezza contro un client malicious costa **2,4×**
+F56 lascia una domanda: la sicurezza contro un client malicious sembra costare **2,4×**
 (0,064 → 0,153 s a N=128) perché obbliga al set 2_2 invece del set piccolo 1_1. Il collo di
 bottiglia è uno solo — il Δ deve coprire il bound |s−T| ≤ 2q·max‖g_i‖₁ + max‖g_i‖² + |T| = 3.647,
 mentre i punteggi veri stanno dentro ±757. **Un fattore 4,8 di margine sprecato.** Se si potesse
