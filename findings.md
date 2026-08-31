@@ -2874,7 +2874,7 @@ dello stesso protocollo**, e messi in cascata danno la risposta dell'argmin al c
 
 ---
 
-## 🔵 F58 — Quanto si può ancora stringere il bound onesto: un bit, e non basta
+## 🔴 F58 — Stringere il bound onesto: due bit, limitando la norma della galleria — e bastano
 
 F56 lascia una domanda aperta e sgradevole: la sicurezza contro un client malicious costa **2,4×**
 (0,064 → 0,153 s a N=128) perché obbliga al set 2_2 invece del set piccolo 1_1. Il collo di
@@ -2903,7 +2903,7 @@ ha norma da embedding vero, ‖a‖₂ ≤ A, e usare Cauchy-Schwarz al posto de
 La prova di norma stringe il bound del 39% e **non cambia il Δ**, perché il logaritmo si arrotonda
 allo stesso intero. Una macchina crittografica in più per zero bit.
 
-**Leva C — sparsificare la galleria: un bit, quasi gratis.** Il termine che domina è 2q·‖g‖₁, e
+**Leva C — limitare la norma della galleria: due bit, e sono quelli che servono.** Il termine che domina è 2q·‖g‖₁, e
 ‖g‖₁ è una proprietà della *galleria*, che il server conosce e può modificare all'iscrizione. Primo
 fatto, che non sapevo: **i template a 3 bit sono già sparsi** — 331 coefficienti non nulli su 512.
 Secondo: i coefficienti a ±1 sono la maggioranza in numero ma portano poco segnale. Azzerandoli
@@ -2916,17 +2916,43 @@ Secondo: i coefficienti a ±1 sono la maggioranza in numero ma portano poco segn
 | 1024 | tutti | 331 | 3.630 | 2^51 | 98,9% |
 | 1024 | \|g\| ≥ 2 | 85 | **1.812** | **2^52** | 98,6% |
 
-Il bound si **dimezza** e il Δ guadagna **un bit intero**, al prezzo di 0,2-0,3 punti di DIR. Con la
-banda simulata al Δ risultante, il set veloce 1_1 passa da **4,4% a 1,6% di FPIR** — molto meglio,
-ma ancora sopra l'1% a cui la soglia è tarata. Quindi migliora, e non basta.
+Il bound si **dimezza** e il Δ guadagna un bit, al prezzo di ~0,2 punti di DIR.
 
-**Il tetto, e perché un bit è tutto quello che c'è.** Per rendere 1_1 equivalente a 2_2 serve
-dividere la banda per 4,4, cioè **2,1 bit**. Ma il bound ha un pavimento: con |g| ≥ 2 il solo
-termine costante ‖g‖² + |T| vale già ~580, e per arrivare a Δ = 2^53 il bound totale deve stare
-sotto 1.024 — restano 440 per il termine di prodotto scalare, cioè ‖g‖₁ ≤ 73, che è il regime
-|g| ≥ 3 dove la DIR **crolla al 65%**. Il conto si chiude: **il massimo ottenibile è un bit, e ne
-servirebbero due.** Il 2,4× non è pigrizia implementativa, è il prezzo strutturale del modello di
-minaccia con questo encoding — e ora ha un numero e una dimostrazione, non un'impressione.
+**Ma la soglia sul modulo è lo strumento sbagliato: quello giusto è un tetto sulla norma.** Invece
+di azzerare i coefficienti sotto un modulo fisso, si azzerano i più piccoli **finché ‖g‖₁ scende
+sotto un tetto scelto** — è la stessa operazione, fatta all'iscrizione e in chiaro, ma controlla
+direttamente la quantità che entra nel bound. Misurato col protocollo completo
+(`benchmark/norma_limitata.py`, ResNet100 su VGGFace2, 3 bit, fusione 2+3, 10 semi):
+
+| N | tetto su ‖g‖₁ | non nulli | bound | Δ | DIR@FPIR=1% | costo |
+|---|---|---|---|---|---|---|
+| 128 | nessuno | 331 | 3.652 | 2^51 | 99,4% | — |
+| 128 | 200 | 104 | 1.793 | 2^52 | 99,2% | −0,2 |
+| **128** | **110** | **50** | **1.008** | **2^53** | **99,0%** | **−0,4** |
+| 1024 | nessuno | 331 | 3.630 | 2^51 | 98,9% | — |
+| 1024 | 200 | 105 | 1.762 | 2^52 | 98,6% | −0,3 |
+| **1024** | **110** | **50** | **991** | **2^53** | **98,0%** | **−0,9** |
+
+**Due bit, al prezzo di 0,4 punti di DIR a N=128 e 0,9 a N=1024.** E due bit sono esattamente quelli
+che servivano: con Δ = 2^53 la banda in unità di punteggio si divide per quattro, e i set piccoli
+tornano utilizzabili **restando nel modello di minaccia malicious**, perché il Δ continua a uscire
+da un bound indipendente dal probe. Misurato sul cifrato, N=128, galleria con ‖g‖₁ ≤ 110:
+
+| set | totale | discrepanze su 16.384 | |s−T| degli errori |
+|---|---|---|---|
+| **2_0** | **0,081 s** | **1** | 2 |
+| 1_0 | 0,081 s | 3 | 0, 14, 40 |
+| 1_1 | 0,111 s | 2 | 0, 2 |
+| 2_2 (il set "sicuro" di F56) | 0,192 s | 1 | 2 |
+
+Il set 2_0 fa **0,081 s con un solo errore, a |s−T| = 2**, cioè dentro la banda. Contro i **0,152 s**
+del set 2_2 sulla galleria non limitata: **1,9× più veloce, e sicuro**.
+
+**Il che riscrive il prezzo della sicurezza.** F56 conclude che difendersi da un client malicious
+costa 2,4× perché obbliga al set grande. Non è così: costa **0,4-0,9 punti di DIR**, e in cambio si
+tiene un set piccolo. Le due grandezze sono scambiabili, e l'installatore può scegliere dove stare.
+Il tetto vero non è un bit — è che sotto ‖g‖₁ ≈ 90 la DIR comincia a cedere davvero (97,5% a
+N=1024) senza guadagnare un altro bit.
 
 **Un bug latente trovato per strada.** `varco_leveled` calcolava il q del bound dalla **galleria**
 invece che dal dominio dichiarato del **probe**. Qui coincidono (entrambi 3) e il risultato non
