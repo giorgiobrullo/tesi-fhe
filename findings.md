@@ -2503,32 +2503,52 @@ Resta comunque adottabile: costa zero e non peggiora mai la T-norm. Confronto co
 accuratezza provate: fusione multi-frame **+8 punti** (F48), modello più grande +1-2 (F44, F20),
 compressione 0 o negativa (F31), soglia per template +0,3 (qui).
 
-## 🔴 F55 — La revisione smonta il "muro" di F46/F47: non era il set di parametri, era il mio margine
-Una revisione critica sistematica di `findings.md` (fatta da un revisore indipendente sul repo, con
-il mandato esplicito di cercare un errore vero) ha trovato una falla nel finding che presentavamo
-come "il meccanismo, non solo il numero". L'argomento è aritmetico e non richiede nuove misure:
+## 🔴 F55 — Il modello di rumore dei set di parametri: quale regge, quale no, e perché
+Perché i set piccoli (2_0 con N=512, 1_0 con N=256) sbagliano un quinto dei confronti mentre 1_1
+con lo **stesso** N=512 è esatto? La risposta si calcola dai parametri del crate, non si indovina, e
+distingue **due** quantità che è facile confondere: la banda **pre-PBS** (resto del keyswitch più
+drift del modulus switch, che scala come 1/Δ) e il **rumore in uscita** dal blind rotate (piatto,
+invariante in Δ).
 
-F47 diceva che i set 2_0 e 1_0 sbagliano per la **box size** del PBS, e lo deduceva dal fatto che
-la "banda" dei loro errori scende da 1878 a 344 unità passando da Δ=2^51 a Δ=2^53. Ma
-1878/344 = 5,459 e il rapporto fra i **range dei punteggi** delle due scene è 3562/653 = 5,455: quel
-numero non misurava una banda, misurava metà del range della scena. Cioè **gli errori erano uniformi
-in |s−T|**, non concentrati attorno alla soglia — la firma di un guasto per-PBS indipendente dal
-dato, non di un confine sfocato. Conferma decisiva, sempre dai dati già in archivio: il **tasso**
-d'errore non scende quadruplicando Δ (2_0: 20,7% → 19,0%; 1_0: 17,5% → 17,2%) ed è costante in N.
-Se fosse stata una banda in ingresso, doveva scendere ~4×.
+| set | n | k | N | pbs_base_log | σ_glwe rel. | banda prevista (Δ=2^51) | σ in uscita | margine col bit a 2^55 |
+|---|---|---|---|---|---|---|---|---|
+| 2_2 | 834 | 1 | 2048 | 23 | 2^−48,3 | **12** | 2^49,2 | 57σ |
+| 2_1 | 857 | 2 | 1024 | 23 | 2^−48,3 | **24** | 2^49,2 | 57σ |
+| 1_1 | 781 | 4 | 512 | 23 | 2^−48,3 | **49** | 2^49,1 | 60σ |
+| 2_0 | 775 | 3 | 512 | **17** | **2^−35,6** | 48 | **2^55,0** | **1,0σ** |
+| 1_0 | 720 | 6 | 256 | **17** | **2^−35,6** | 89 | **2^54,9** | **1,1σ** |
 
-E la spiegazione della box size era sbagliata a monte: il nostro accumulatore è un **polinomio
-costante** (`varco_leveled.rs`), quindi il PBS negaciclico guarda solo in quale metà del toro cade
-il valore — `message_modulus` non entra da nessuna parte e di scatole non ce ne sono. La regola
-"box = N/message_modulus ≥ 256" classificava correttamente i cinque set osservati, ma per
-coincidenza.
+Le bande previste per 2_2, 2_1 e 1_1 (12 / 24 / 49) **combaciano con quelle misurate** in F46
+(12 / ~30 / ~50): il modello è validato dove sappiamo la risposta. E dice una cosa netta: **2_0 ha
+la stessa banda di 1_1**, quindi non fallisce per la banda. Fallisce perché ha `pbs_base_log=17` con
+`pbs_level=1` **e** una chiave GLWE 2^12,7 volte più rumorosa (con k·N=1536 i 128 bit richiedono
+σ_rel = 2^−35,6): i due termini del rumore del prodotto esterno si bilanciano a **σ_out = 2^55**,
+che è **esattamente l'ampiezza con cui `LOG_DO = 56` codificava il bit**. Il bit usciva annegato nel
+proprio rumore, con **1σ di margine** — errori casuali, cioè quel quinto di confronti sbagliati.
 
-**La causa vera, e il fatto che era colpa mia.** Il bit d'esito lo codificavo a 2^56 (`LOG_DO = 56`)
-per lasciare 8 bit di franco alle somme dell'uscita compatta a blocchi di 64: margine di
-decodifica 2^55. I set 2_0 e 1_0 hanno un rumore GLWE 1,95·10⁻¹¹ contro 2,85·10⁻¹⁵ e una
-decomposizione del PBS più povera (base 2^17 contro 2^23, un livello): il rumore **in uscita** dal
-loro PBS è dell'ordine di 2^54, cioè ~1,5σ dal margine — e la *decodifica del bit* falla nel ~20%
-dei casi, qualunque sia l'ingresso. Non era il segno a sbagliare: era la lettura del risultato.
+Verificato anche che a ℓ=1 `base_log=17` è **già l'ottimo** per quei set (minimo di σ_out su tutti i
+base_log): non è aggiustabile lì, e salire a ℓ=2 raddoppia il lavoro e annulla il guadagno.
+
+**Due indizi che confermano che si tratta di errori uniformi e non di una banda.** Primo: la mediana
+di |s−T| degli errori scende da 1878 a 344 passando da Δ=2^51 a Δ=2^53, ma 1878/344 = 5,459 e il
+rapporto fra i **range dei punteggi** delle due scene è 3562/653 = 5,455 — quel numero misura il
+range, non una banda, ed è proprio ciò che ci si aspetta se gli errori sono indipendenti da |s−T|.
+Secondo: il **tasso** d'errore non scende quadruplicando Δ (2_0: 20,7% → 19,0%; 1_0: 17,5% → 17,2%)
+ed è costante in N.
+Se fosse una banda in ingresso, il tasso dovrebbe scendere ~4×.
+
+**Una spiegazione alternativa che sembra funzionare e non funziona.** Verrebbe da attribuire il
+crollo alla *box size* dell'accumulatore (N / `message_modulus`), e la regola «box ≥ 256»
+classifica correttamente tutti e cinque i set osservati. È però una coincidenza: il nostro
+accumulatore è un **polinomio costante** (`varco_leveled.rs`), quindi il PBS negaciclico guarda solo
+in quale metà del toro cade il valore — `message_modulus` non entra nel circuito e di scatole non ce
+ne sono. Vale la pena registrarlo perché è un caso di scuola: **una regola che classifica bene i
+dati non è per questo la causa**.
+
+**Non è il segno a sbagliare: è la lettura del risultato.** Il bit d'esito era codificato a 2^56
+(`LOG_DO = 56`) per lasciare 8 bit di franco alle somme dell'uscita compatta a blocchi di 64, cioè
+un margine di decodifica di 2^55 — contro il σ_out = 2^55 della tabella. È una scelta di codifica,
+non un limite dei parametri.
 
 **Verificato, ed è un guadagno.** Basta alzare il margine: `--log-do 60 --blocco 8` (blocchi da 8
 invece che da 64 → servono 4 bit di franco invece di 8 → il bit può stare a 2^60, margine 2^59).
@@ -2536,13 +2556,13 @@ Misurato sulla stessa scena, N=128, macchina scarica:
 
 | set | prima (`log-do 56`, blocco 64) | **ora (`log-do 60`, blocco 8)** | PBS/thread | errori |
 |---|---|---|---|---|
-| 1_1 (il preteso "muro") | 0,100 s, 0 errori | 0,089 s | 10,8 ms | 0/16.384 |
+| 1_1 | 0,100 s, 0 errori | 0,089 s | 10,8 ms | 0/16.384 |
 | 2_1 | 0,134 s | 0,119 s | 14,5 ms | 0/16.384 |
 | 2_0 | 0,083 s, **3.118 errori** | **0,072 s** | 8,7 ms | 1/16.384 (a d=22) |
 | **1_0** (N=256) | 0,072 s, **2.824 errori** | **0,064 s** | **7,8 ms** | **0/16.384** |
 
 **Il varco più veloce non è quello che credevamo: è il set 1_0, con N=256, a 0,064 s a N=128** —
-un altro **28%** sotto il minimo dichiarato in F46/F47, e con l'uscita compatta corretta 128/128.
+un altro **28%** sotto il minimo di F46, e con l'uscita compatta corretta 128/128.
 E regge a scala, con zero errori dove il set "buono" ne faceva tre:
 
 | N | 1_1 (il preteso muro) | **1_0 (`--log-do 60 --blocco 8`)** | guadagno | errori 1_0 |
@@ -3489,93 +3509,9 @@ non combacia».
 
 ---
 
-## 🔴 F66 — Il modello di rumore che spiega tutto, la galleria cifrata che è più VELOCE, e la GPU
+## 🔴 F66 — La GPU è l'unica leva di velocità rimasta, e sublineare in N non si scende
 
-Tre risultati che vengono da una verifica indipendente sulle fonti primarie e sul sorgente del
-crate, tutti e tre con conseguenze pratiche.
-
-### 1. Il modello quantitativo che chiude F46/F47/F55
-
-F55 aveva smontato il meccanismo sbagliato della «box size» e indicato la causa giusta — il rumore
-in **uscita** dal PBS contro il margine di `LOG_DO` — ma qualitativamente. Ricalcolando dai
-parametri veri del crate (`tfhe-0.11.3`, `classic/gaussian/p_fail_2_minus_64/ks_pbs.rs`) le due
-quantità separate — banda *pre*-PBS (resto del keyswitch + drift del modulus switch) e **σ in
-uscita** del blind rotate — il conto si chiude:
-
-| set | n | k | N | pbs_base_log | σ_glwe rel. | banda prevista (Δ=2^51) | σ in uscita | margine col bit a 2^55 |
-|---|---|---|---|---|---|---|---|---|
-| 2_2 | 834 | 1 | 2048 | 23 | 2^−48,3 | **12** | 2^49,2 | 57σ |
-| 2_1 | 857 | 2 | 1024 | 23 | 2^−48,3 | **24** | 2^49,2 | 57σ |
-| 1_1 | 781 | 4 | 512 | 23 | 2^−48,3 | **49** | 2^49,1 | 60σ |
-| 2_0 | 775 | 3 | 512 | **17** | **2^−35,6** | 48 | **2^55,0** | **1,0σ** |
-| 1_0 | 720 | 6 | 256 | **17** | **2^−35,6** | 89 | **2^54,9** | **1,1σ** |
-
-Le bande previste per 2_2, 2_1 e 1_1 (12 / 24 / 49) **combaciano con quelle misurate** in F46
-(12 / ~30 / ~50): il modello è validato dove sappiamo la risposta. E lì dove F47 vedeva un muro
-dice una cosa precisa: **2_0 ha la stessa banda di 1_1** — quindi non fallisce per la banda. Fallisce
-perché ha `pbs_base_log=17` con `pbs_level=1` **e** una chiave GLWE 2^12,7 volte più rumorosa (con
-k·N=1536 i 128 bit richiedono σ_rel = 2^−35,6), e i due termini del rumore del prodotto esterno si
-bilanciano a σ_out = 2^55 — **esattamente l'ampiezza con cui `LOG_DO = 56` codificava il bit**. Il
-bit usciva annegato nel proprio rumore con **1σ di margine**: errori casuali, cioè la «metà dei
-confronti sbagliati» che F46 aveva osservato. Anche l'artefatto è spiegato: se gli errori sono
-uniformi, la mediana di |s−T| degli sbagliati coincide con la mediana su *tutte* le coppie, e il
-famoso 1878 → 344 è il rapporto delle scale (5,5×), la firma di errori casuali.
-
-Verificato anche che a ℓ=1 `base_log=17` è **già l'ottimo** per quei set (minimo di σ_out su tutti i
-base_log): non è aggiustabile lì, e salire a ℓ=2 raddoppia il lavoro e annulla il guadagno. Il
-guadagno di velocità che F46 aveva scartato come «ROTTO» è **1,39×** (0,100 → 0,072 s a N=128,
-coerente col lavoro del blind rotate ∝ n·(k+1)·N·ℓ: 2,00M vs 1,29M) — ed è esattamente quello che
-F55 ha poi recuperato alzando `--log-do`. **F56 però lo rende comunque inutilizzabile**: con il Δ
-onesto quei set hanno bande di 48-89 unità, fuori uso contro un client malicious. Resta un risultato
-di metodo: la spiegazione giusta era calcolabile dai parametri, non serviva indovinarla.
-
-**E l'ho provato fino in fondo, perché il packing toglieva l'obiezione.** Il prezzo che rendeva
-impraticabili i set piccoli — alzare `LOG_DO` costringe a blocchi piccoli, quindi l'uscita cresce da
-229 KB a ~790 KB — **sparisce con F59**: senza somme non c'è nessun vincolo, `LOG_DO` sta a 62 e
-l'uscita è una GLWE. E secondo F61 il varco fisico è proprio lo scenario honest-but-curious dove
-quei set sarebbero legittimi. Quindi valeva la pena misurare la combinazione, che nessuno aveva
-provato: **set piccolo + Δ onesto + LOG_DO 62 + uscita impacchettata**, N=128, tutti i 128 probe:
-
-| set | KS+PBS | packing | uscita | bit sbagliati / 16.384 | |s−T| degli errori |
-|---|---|---|---|---|---|
-| 2_0 | **0,066 s** | 0,008 s | 0,02 MB | **7** | −4, **45, 47, 77, 83, 87, 156** |
-| 1_1 | 0,090 s | 0,013 s | 0,02 MB | **3** | **57, 72, 150** |
-| **2_2** | 0,152 s | 0,022 s | 0,03 MB | **1** | −4 |
-
-**Risposta: no.** Il set 2_0 sarebbe **2,3× più veloce** del sicuro, ma sbaglia sette volte, e — il
-punto che conta — gli errori stanno a |s−T| = 45÷156, cioè **ben fuori dalla banda**: non sono casi
-marginali vicino alla soglia, sono decisioni sbagliate su punteggi che in chiaro non erano affatto
-dubbi. Un errore a 156 unità è un impostore che entra o un iscritto che resta fuori senza alcuna
-ambiguità. Solo il 2_2 tiene, con l'unico errore a |s−T| = 4, cioè dentro la banda prevista.
-
-Il quadro completo, che chiude la questione dei parametri per sempre: **con il Δ tarato sui dati
-(insicuro) i set piccoli sono esatti e i più veloci** (F55); **con il Δ onesto la banda si allarga 4×
-e solo il 2_2 sopravvive** (F56, ora esteso anche a 2_0 e con il packing a togliere di mezzo il
-confondimento di `LOG_DO`/blocco). Non è una questione di codifica dell'uscita né di taratura: è la
-banda di rumore pre-PBS contro l'ampiezza del Δ difendibile.
-
-### 2. La galleria cifrata non è «gratis»: è più economica del chiaro
-
-Il costo del prodotto esterno non è una stima ma **contabilità esatta**, perché un PBS *è* n
-prodotti esterni: la blind rotation esegue una CMux per ciascuno degli n coefficienti della
-maschera, e ogni CMux è un GGSW ⊡ GLWE sulle stesse (k, N). Con n = 781 e un PBS da 12 ms:
-
-> **1 prodotto esterno = 1/781 di PBS = 15,4 µs** a ℓ=1; il conto delle FFT dà 1/491 a ℓ=2
-> (24 µs) e **1/358 a ℓ=3 → 34 µs**, che è il nostro caso (gadget 2^10×3).
-
-Il confronto che conta non è col PBS ma con **ciò che sostituisce**: F41 misura i prodotti
-polinomiali *in chiaro* a 7-16 ms per 128 iscritti, cioè **55-125 µs per iscritto**, perché
-`polynomial_wrapping_add_mul_assign` usa Karatsuba. Il prodotto esterno lavora in **dominio di
-Fourier**: 34 µs contro 55-125 µs, cioè **2-4× più economico**. Ed è precisamente il conto che
-spiega il numero misurato in F51: a N=128 su 16 thread il prodotto scalare scende da ~10 ms a
-~0,3 ms, cioè −7÷−16 ms, e infatti la misura dà **0,094 s con galleria cifrata contro 0,100 s con
-galleria in chiaro**. Torna.
-
-Quindi la formulazione corretta di F51 non è «cifrare la galleria costa quanto niente», è: **cifrare
-la galleria rende il prodotto scalare più veloce**, e il prezzo si paga altrove — 200-300 KB di
-storage per iscritto e la banda in salita della GGSW. Sul totale i PBS restano il 99%.
-
-### 3. La GPU: è la leva più grande rimasta, e le API sono già lì
+### La GPU: la leva più grande rimasta, e le API sono già lì
 
 `tfhe-0.11.3` contiene già `src/core_crypto/gpu/algorithms/` con **tutta** la pipeline del varco —
 `lwe_programmable_bootstrapping.rs`, `lwe_keyswitch.rs`, `glwe_sample_extraction.rs`,
@@ -3601,9 +3537,9 @@ dipendenza, una sola LUT — ed è il carico per cui quelle API sono scritte. **
 velocità rimasta aperta dopo che ammortizzato (F65), multi-bit (F60), decomposizione del CB (F63),
 compressione (F64) e keyswitch (F56) sono stati misurati e chiusi.**
 
-### 4. Sublineare in N: chiuso, ma l'argomento che usavamo era sbagliato
+### Sublineare in N: non si scende, e il motivo non è il lower bound del PIR
 
-Non si scende sotto il lineare — e il motivo **non** è il lower bound del PIR: Beimel-Ishai-Malkin
+Non si scende sotto il lineare, e il motivo **non** è il lower bound del PIR: Beimel-Ishai-Malkin
 parla di *retrieval* con indice segreto del client, mentre qui la galleria il server **la conosce**.
 L'inquadramento giusto è **RAM-FHE** (Lin, Mook, Wichs, `2022/1703`, §1.1 caso 1, «encrypted queries
 over a public database») e la barriera è il **modello a circuiti**, non la privacy: il problema è
