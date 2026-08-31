@@ -1230,7 +1230,7 @@ aggiungere un bit per renderla pari fa scendere i PBS (da 13 a 14 bit scendono d
 usciva a volte a 13 bit (dispari, 108 PBS, ~455 s) a volte a 14 (pari, 95 PBS, ~457 s) a seconda
 dell'inputset, e con essa cambiavano PBS e tempo. È il conteggio che sta dietro i 108 PBS di F33.
 
-La conclusione corregge F26 e F27. Il limite che abbiamo misurato non è il limite inferiore di TFHE,
+Il limite misurato in F26/F27 non è il limite inferiore di TFHE,
 è il limite inferiore di Concrete-python: la sua API ad alto livello, non lo schema. La frase giusta
 per la tesi è che il match 1:N privato in Concrete-python è classe-minuti, mentre lo stesso in
 TFHE scritto a basso livello (C/C++ originale o tfhe-rs) è classe-secondi a questa scala
@@ -2613,11 +2613,11 @@ Il minimo vero, su questo hardware e con questa libreria, è **0,064 s a N=128**
 **Nota di metodo, che vale quanto il numero.** Il finding sbagliato era proprio quello che
 raccontava di aver trovato "il meccanismo". È il rischio tipico di una spiegazione che *classifica
 correttamente i dati osservati* (box ≥ 256 separava i set buoni dai cattivi) senza essere la causa:
-cinque punti, due classi, tante regole che li separano. La revisione ha smontato l'inferenza con
+cinque punti, due classi, tante regole che li separano. L'inferenza si smonta con
 un rapporto fra numeri già presenti nei file, senza rifare un solo esperimento.
 
 ## 🔴 F56 — Una vulnerabilità vera: il client malicious apre il varco in una query (e il costo della difesa)
-La stessa revisione critica che ha smontato F47 ha trovato una cosa più seria: **un difetto di
+La stessa revisione critica ha trovato una cosa più seria: **un difetto di
 sicurezza nel sistema**, non un errore di racconto. Verificata end-to-end, e qui c'è anche la
 difesa, con il suo prezzo misurato.
 
@@ -2877,7 +2877,7 @@ varco produce N bit cifrati, uno per iscritto, e ogni bit è un LWE sotto la chi
 u64, cioè 16,4 KB *l'uno*. A N=4096 sono 67 MB per una singola interrogazione. L'uscita compatta di
 F43 (conteggio + indice locale in binario, per blocchi di B iscritti) li somma e scende a 7,3 MB con
 B=64, ma è stretta fra due vincoli opposti: le somme accumulano il rumore in uscita dal PBS — è la
-trappola che F55 ha smontato, e che obbliga a blocchi *piccoli* — mentre la dimensione vuole blocchi
+trappola descritta in F55, che obbliga a blocchi *piccoli* — mentre la dimensione vuole blocchi
 *grandi*. Non c'è una scelta buona, solo un compromesso.
 
 **Il vincolo era finto.** Un LWE si può spostare dentro un *coefficiente* di una GLWE con un
@@ -3008,9 +3008,9 @@ che la domanda presuppone che `a` sia un volto, e niente lo impone.
 
 1. **Vincolare la norma del probe: risolutiva.** Ripetendo lo stesso attacco con i vettori
    rinormalizzati alla norma di un embedding vero: **0 successi su 2.000, a ogni N**. È l'unica
-   difesa completa che ho trovato. E **corregge F58**: lì avevo concluso che una prova ZK non serve
-   a niente. Vero per la prova di *range* e vero per il bound su Δ — ma una prova sulla **norma**
-   serve eccome, solo non per il motivo che avevo in mente. Non è però disponibile a scaffale: il
+   difesa completa che ho trovato. Attenzione a non confonderla con la prova ZK di *range* di F58,
+   che per il bound su Δ non serve a niente: qui serve una prova sulla **norma**, che è un'altra
+   cosa e difende da un altro attacco. Non è però disponibile a scaffale: il
    modulo `zk` di tfhe-rs prova il range del messaggio, cioè un vincolo per coefficiente, mentre
    ‖a‖₂ ≤ A è una forma quadratica. Resta lavoro futuro, ma ora con una ragione precisa.
 2. **Un pavimento sul punteggio (accetta sse T_basso ≤ s ≤ T): non funziona.** Sembrava naturale —
