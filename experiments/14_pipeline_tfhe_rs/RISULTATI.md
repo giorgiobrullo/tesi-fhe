@@ -144,6 +144,16 @@ Varco completo sulla scena reale: **0,094 s a N=128** (contro 0,10-0,12 s con ga
 Il prodotto scalare passa da 11 ms a 1,1 ms (FFT invece di Karatsuba). Prezzo: 200-300 KB per
 iscritto (37 MB a N=128) invece di 4 KB. Mondo 2 senza cambiare schema e senza cifrato x cifrato.
 
+## 4f. Argmin ESATTO a torneo con circuit bootstrapping (`argmin_torneo.rs`, F52)
+
+`circuit_bootstrap_boolean` (LWE -> GGSW) rende possibile il CMUX, quindi il torneo: N-1 confronti
+invece di N^2/2. Candidato = un GLWE con il punteggio al coeff dim-1 e l'indice al coeff N-1 (dove il
+prodotto e' zero). Serve un PBS di segno PRIMA del circuit bootstrap. Parametri LEGACY_WOPBS.
+**1,32 s a N=128** (contro 14,4 s della matrice, F45), 0,75 s a N=64. Indice esatto 69/80 in generale
+ma **31/31 quando il minimo e' sotto soglia**, cioe' sempre quando il varco apre; gli errori sono
+quasi-pareggi fra impostori. Con `--cifrata` (galleria GGSW di F51): **1,21 s a N=128**, il server non
+conosce ne' galleria ne' soglia ne' esito e restituisce l'indice esatto.
+
 ## 5. La strada del ponte (`pbs_largo.rs`, `argmin_delta.rs`, F45)
 
 PBS largo (unità di costo del ponte), un thread: 4 bit / N=2048 **13,9 ms**; 8 bit / N=32768
@@ -168,6 +178,7 @@ cargo run --release --bin argmin_delta -- results/scena_reale.txt 8 16   # F45, 
 cargo run --release --bin pbs_largo             # F45, ~6 min
 cargo run --release --bin rumore -- --params 1_1 --log-delta 52   # F50, bilancio del rumore, ~1 min
 cargo run --release --bin galleria_cifrata                        # F51, galleria cifrata, ~2 min
+cargo run --release --bin argmin_torneo -- --probe 16 [--cifrata]  # F52, argmin esatto a torneo, ~5 min
 cargo run --release --bin varco_leveled -- results/scena_reale.txt 8 --params 1_1   # F46, varco 2x
 cargo run --release --bin banda_soglia -- --params 1_1 --d 200                      # F46, banda del set 1_1
 cargo run --release --bin varco -- keygen results/e2e/chiavi   # poi encrypt/server/decrypt (F41)

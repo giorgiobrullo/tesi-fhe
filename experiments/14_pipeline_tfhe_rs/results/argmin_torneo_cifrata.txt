@@ -1,0 +1,10 @@
+
+    N |       dot |    torneo |    totale |  cfr | indice | divario |  sotto | rum. | costo | F45
+      |           |           |           |      | esatto |    >20 | soglia | sul s | errore | (N^2)
+    8 |   0.000 s |   0.260 s |   0.260 s |    7 |  7/8   |  5/6   |  0/0   |  6.3 |  38.0 | 0,09 s
+   16 |   0.000 s |   0.349 s |   0.350 s |   15 |  8/8   |  6/6   |  1/1   |  1.7 |   0.0 | 0,29 s
+   32 |   0.000 s |   0.478 s |   0.478 s |   31 |  7/8   |  5/6   |  3/3   |  4.7 |  25.0 | 0,97 s
+   64 |   0.000 s |   0.728 s |   0.729 s |   63 |  8/8   |  7/7   |  4/4   |  2.3 |   0.0 | 3,66 s
+  128 |   0.001 s |   1.204 s |   1.205 s |  127 |  8/8   |  8/8   |  7/7   |  1.7 |   0.0 | 14,4 s
+
+(l'ultima colonna e' l'argmin esatto a matrice di F45, quadratico, sulla stessa scena)
