@@ -225,7 +225,12 @@ def esegui(cfg, dim, Gal, labels, P, T, n_probe_esatto):
 
     # --- 2) distanze e pipeline per N, tempi su alcuni probe; esattezza sui probe reali a N=128 ---
     righe = []
-    for N in (8, 16, 32, 64, 128):
+    # la lista delle N era cablata a 128: ora arriva fino alla galleria della scena (serve per
+    # misurare dove il packing CKKS comincia ad ammortizzare, F67)
+    _ns = [8, 16, 32, 64, 128]
+    while _ns[-1] * 2 <= Gal.shape[0]:
+        _ns.append(_ns[-1] * 2)
+    for N in _ns:
         tt_d, tt_s = [], []
         for a in P[:4]:
             ct_a = cifra_probe(a)
@@ -277,7 +282,10 @@ if __name__ == "__main__":
     ]
     n_probe = int(sys.argv[1]) if len(sys.argv) > 1 else 32
     tutte = []
-    for cfg in CONFIG:
+    # CFG_FHE=indice per girare una sola configurazione (le altre costano minuti di keygen)
+    _sel = _os.environ.get("CFG_FHE")
+    _cfgs = [CONFIG[int(_sel)]] if _sel is not None else CONFIG
+    for cfg in _cfgs:
         tutte += esegui(cfg, dim, Gal, labels, P, T, n_probe)
     with open(OUT / "ckks_varco.csv", "w", newline="") as fp:
         w = csv.DictWriter(fp, fieldnames=list(tutte[0].keys())); w.writeheader(); w.writerows(tutte)

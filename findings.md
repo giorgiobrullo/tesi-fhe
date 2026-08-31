@@ -3600,3 +3600,138 @@ p ≤ 2⁸; IDFace lo scrive («grows linearly with respect to the number of enr
 Tiptoe clusterizza in √N ma **scandisce tutto**. I sistemi che sono davvero sublineari rompono un
 vincolo: Wally usa **differential privacy**, Pacmann fa scaricare il database, Compass mette i dati
 dal client. Nessuno dei tre è accettabile qui.
+
+---
+
+## 🔴 F67 — La baseline CKKS era paglia: rifatta, ci batte sul tempo-CPU dentro il regime che rivendichiamo
+
+Questo finding nasce da un'obiezione dell'utente a una mia frase. Avevo scritto che dopo F65/F66
+«restava solo la GPU», e nel confronto con CKKS avevo aggiunto en passant che la nostra baseline
+«non è lo stato dell'arte sul prodotto interno». Sono due affermazioni incompatibili: se la baseline
+è depotenziata, allora una leva c'è, ed è contro di noi. Ho fatto verificare il punto da
+un'indagine strutturata e poi ho rimisurato di persona. **Il risultato ribalta il confronto.**
+
+### Il packing: eravamo depotenziati fino a 7,6×
+
+`ckks_varco.py` replica il probe R = slot/dim = 32 volte e fa pagare a **ogni blocco** il suo
+rotate-and-sum: log₂(512) = 9 rotazioni, più una maschera e una rotazione di compattamento. Le
+rotazioni sono quindi ~10·⌈N/32⌉, **lineari in N**. Esiste un layout migliore — lo stesso di
+Halevi-Shoup in versione ibrida: si danno a ogni iscritto W = slot/N slot contigui, si ruota il
+**probe** di W·j per j = 0…ρ−1 con ρ = N·dim/slot (e quelle rotazioni sono **condivise da tutti gli
+iscritti**), si moltiplica per la galleria riordinata, e si chiude con log₂(W) rotazioni di
+collasso. Rotazioni: ρ + log₂(W).
+
+Misurato da me, stessa macchina, stessa scena, stessi parametri, **stesso errore sui punteggi e
+stesso livello d'uscita** (`experiments/15_ckks_confronto/ckks_packing_forte.py`):
+
+| N | rotazioni ora | tempo ora | rotazioni giuste | **tempo giusto** | guadagno | chiavi di Galois |
+|---|---|---|---|---|---|---|
+| 128 | 40 | 3,529 s | 11 | **0,963 s** | 3,7× | 2.099 MB |
+| 256 | 80 | 7,094 s | 14 | **1,304 s** | 5,4× | 3.229 MB |
+| 512 | 160 | 14,352 s | 21 | **2,101 s** | 6,8× | 5.651 MB |
+| 1024 | 320 | 28,827 s | 36 | **3,772 s** | **7,6×** | 10.656 MB |
+
+Il guadagno **cresce con N**, perché il costo giusto è quasi piatto mentre il nostro cresceva
+lineare. I 4,25 s di F39 erano un artefatto del nostro packing, non una proprietà dello schema.
+
+### Il confronto onesto, ed è peggio di come l'avevamo scritto
+
+Aggiungendo il segno (0,71 s, indipendente da N) la baseline CKKS **corretta** costa **1,67 s a
+N=128** e **4,48 s a N=1024**, single-thread. Il nostro varco sicuro costa 0,153 s e 1,258 s su
+**16 thread**, cioè 2,45 e 20,1 s·core.
+
+| | CKKS corretto (1 thread) | varco TFHE (16 thread) | tempo-CPU | parete |
+|---|---|---|---|---|
+| N=128 | 1,67 s | 0,153 s (2,45 s·core) | **CKKS 1,5× meglio** | noi 11× meglio |
+| N=1024 | 4,48 s | 1,258 s (20,1 s·core) | **CKKS 4,5× meglio** | noi 3,6× meglio |
+
+**Sul tempo-CPU perdiamo già dentro il regime che rivendichiamo**, e il pareggio sta intorno a
+N≈60. La ragione è strutturale e va scritta senza girarci intorno: la soglia CKKS costa **O(1) in
+N** — una sola valutazione del segno per tutti gli iscritti insieme — mentre i nostri PBS costano
+**O(N)**. Non è un dettaglio di implementazione, è la differenza fra SIMD e non-SIMD.
+
+### Cosa regge davvero, e sono tre cose misurate
+
+1. **La profondità, che è l'unico asse dove il vantaggio cresce con la macchina invece di
+   consumarsi.** La nostra decisione è **un** PBS di segno, 18,9 ms, con N istanze indipendenti: la
+   latenza scende linearmente coi core fino a un pavimento di 19 ms, e lo scaling misurato è quasi
+   perfetto (128 × 18,9/16 = 151 ms previsti contro 153 misurati). Il CKKS ha una catena
+   **sequenziale irriducibile** — le log₂(slot/N) rotazioni di collasso più le 12-16 moltiplicazioni
+   ct×ct del polinomio di segno — che nessun numero di core accorcia. A 16 core vinciamo in latenza
+   fino a N≈500, a 64 core fino a N≈2000.
+2. **Il materiale di chiave, misurato qui sopra: 2,1 GB a N=128 e 10,7 GB a N=1024** di sole chiavi
+   di Galois, contro i nostri 119 MB di chiave di valutazione più 67 MB di packing. È **10-90× a
+   nostro favore**, non dipende da nessuna ottimizzazione dell'avversario, e per un varco che deve
+   girare su hardware ordinario conta quanto il tempo.
+3. **La parte lineare**: le nostre distanze leveled costano 3 ms su 153 (il 2%), le loro 0,96-3,77 s.
+   ~100× a nostro favore e robusto a qualunque ottimizzazione. **Il nostro punto debole non sono le
+   distanze, è la soglia** — ed è meglio dirlo noi.
+
+### La formulazione da mettere in tesi
+
+> Il confronto con CKKS non si decide su un numero: si decide su una metrica e su un intervallo.
+> Con la baseline CKKS scritta col packing corretto per questa forma, sul **tempo-CPU** il varco
+> perde già a N=128 (2,45 s·core contro 1,67 s) e il pareggio sta a N≈60, perché la soglia CKKS è
+> O(1) in N e i nostri PBS sono O(N). Sulla **latenza a parità di hardware ordinario** il varco
+> vince in tutto il regime rivendicato, ma il motivo non è che TFHE sia più veloce: è che la nostra
+> operazione non lineare ha **profondità uno**, quindi la latenza si compra coi core fino a 19 ms,
+> mentre CKKS ha una catena sequenziale di ~20 operazioni che nessun core accorcia. A questo si
+> aggiungono due argomenti indipendenti dalla velocità e misurati: il materiale di chiave (2,1-10,7
+> GB contro 186 MB) e la natura dell'uscita (un bit esatto contro un valore graduato). Per un varco
+> fisico — poche centinaia di iscritti, una query alla volta, latenza come specifica, chiavi che
+> devono stare sulla macchina — la scelta giusta è il varco TFHE. Per gallerie da migliaia di
+> iscritti, o dove conta il costo per query invece della latenza, la scelta giusta è CKKS.
+
+### Due bug nostri, trovati per strada
+
+**(a) `argmin_torneo.rs` aveva ancora la vulnerabilità di F56.** Usava `log_ds = 52`, cioè un
+precipizio di wrap a 2^63/2^52 = **2048**, mentre il bound onesto della stessa scena è **3646**: un
+probe legale con s−T nella finestra [2048, 3646] avvolgeva il toro. La falla che F56 aveva chiuso
+nel varco era rimasta **viva nel percorso dell'argmin esatto**. Corretto: ora il Δ si calcola dal
+bound come in `varco_leveled.rs`. **E la correzione costa**: a N=128 l'indice esatto scende da
+16/16 a 13/16 e — quel che conta di più — la colonna «minimo sotto soglia» da **14/14 a 12/14**,
+perché a Δ=2^51 il rumore sul punteggio raddoppia. La rivendicazione di F52 («argmin esatto») **non
+sopravvive al Δ onesto** e va riscritta.
+
+**(b) `galleria_cifrata.rs` misura il Mondo 2 con la configurazione insicura.** Usa il set
+`MESSAGE_1_CARRY_1` e `log_delta = 53`: esattamente il set e il Δ che F56 ha dichiarato
+inutilizzabili contro un client malicious. Quindi i numeri di testa di F51 e F66 — «0,094 s a N=128,
+0,734 s a N=1024» — sono misurati fuori dal modello di minaccia che il resto del lavoro adotta. Il
+claim **strutturale** sopravvive di certo (il prodotto esterno è il 34 µs contro i 18,9 ms del PBS,
+quindi invisibile), ma il numero va rifatto e sarà ~0,153 s e ~1,26 s, cioè **identico al Mondo 1,
+non più veloce**.
+
+### E c'era altro: diciannove punti, sei che cambiano una conclusione
+
+L'audit ha trovato altri punti in cui ci confrontiamo con una versione depotenziata di qualcosa —
+inclusi noi stessi. I più gravi, oltre ai due bug qui sopra e al packing CKKS:
+
+- **F45, il ponte, costato ~10× di troppo.** «60-70 s a N=128» viene da un PBS *gigante* a 13-14
+  bit. Nessuno fa il ponte così: si fa con la **bit extraction del WoP-PBS** (b PBS piccoli più
+  keyswitch, uno per bit), che tfhe-rs **espone già**
+  (`extract_bits_from_lwe_ciphertext_mem_optimized`). Stima col nostro stesso costo per PBS WOPBS:
+  ~2,6 s più i 4,7 s del torneo radix di F38 = **~7,3 s**, non 60-70. Una direzione chiusa su un
+  numero sbagliato di un ordine di grandezza.
+- **F62, la tabella normalizzata, confronta operazioni diverse.** Mette la nostra *soglia*
+  (19,7 ms·core) accanto ad argmin (Zuber-Sirdey), top-k (Cong) e sort (Azogagh), che risolvono un
+  problema **strettamente più difficile**. La riga confrontabile è il nostro argmin a torneo, e su
+  quella «7× meglio di Azogagh» diventa **1,15× peggio**.
+- **F39, il polinomio di segno è quello subottimo.** Usiamo Cheon-Kim-Kim mentre `letteratura.md`
+  registra già che il minimax composito di Lee-Lee-No-Kim (`2020/834`) è la versione a complessità
+  ottima: 19 → ~13 livelli per la stessa banda, cioè un altro ~1,8× **a favore di CKKS**.
+- **F52, i parametri WOPBS non sono stati scelti, sono stati ereditati.** Il crate ne contiene 43,
+  tutti a 123-128 bit; cambiare solo la geometria vale ~2× sul torneo.
+- **F32/F64, il ~100× contro Concrete non è normalizzato sui thread**: Concrete gira mono-core su
+  macOS (niente dataflow) mentre il lato tfhe-rs usa l'API alta, che parallelizza su 16 core. Per
+  core il rapporto scende plausibilmente a 6-30×. La conclusione qualitativa regge (F31 la sostiene
+  col conteggio dei PBS), il numero no.
+- **Funshade non è mai stato prezzato.** `findings.md` lo cita due volte solo per escluderlo, ma
+  calcola *esattamente* la nostra funzione a **9,3 µs per decisione di soglia** contro i nostri
+  18,9 ms — 5.000 iscritti in 47,9 ms su un core. L'esclusione (due server non colludenti, un round
+  di comunicazione) è corretta e difendibile, ma finché non la scriviamo **col loro numero accanto**
+  non abbiamo rivendicato niente: abbiamo evitato la domanda.
+
+**La lezione di metodo, che è la stessa di F55 e F56 e questa volta l'ha vista l'utente prima di
+me**: una baseline che non è stata ottimizzata non è una baseline, è un fantoccio; e un confronto
+vinto contro un fantoccio non è un risultato. Vale anche quando il fantoccio è una configurazione
+vecchia del nostro stesso sistema.

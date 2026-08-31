@@ -101,8 +101,19 @@ fn main() {
     let cifrata = a.iter().any(|x| x == "--cifrata");   // galleria CIFRATA (F51) invece che in chiaro
     let sc = carica(&scena_path);
 
-    // il punteggio sta al coefficiente dim-1, l'indice al coefficiente 0: due Delta indipendenti
-    let log_ds = 52u32;                 // punteggio (range ~2^11 a 3 bit): margine per il rumore dei CMUX
+    // il punteggio sta al coefficiente dim-1, l'indice al coefficiente 0: due Delta indipendenti.
+    // Delta ONESTO (F56): il 52 fisso lasciava un precipizio di wrap a 2^63/2^52 = 2048 mentre il
+    // bound indipendente dal probe di questa scena vale 3646 -> un probe legale poteva far
+    // avvolgere il punteggio, cioe' la stessa vulnerabilita' che F56 ha chiuso nel varco era
+    // rimasta viva qui. --log-ds L lo forza (per riprodurre le misure vecchie).
+    let q_max = sc.g.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap()
+        .max(sc.probe.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap());
+    let l1_max = sc.g.iter().map(|v| v.iter().map(|x| x.abs()).sum::<i64>()).max().unwrap();
+    let bound_onesto = 2 * q_max * l1_max + sc.bsq.iter().cloned().max().unwrap() + sc.t.abs();
+    let log_ds = a.iter().position(|x| x == "--log-ds").map(|i| a[i + 1].parse().unwrap())
+        .unwrap_or_else(|| 63 - (64 - (bound_onesto as u64).leading_zeros()));
+    println!("Delta del punteggio: bound onesto {bound_onesto} -> 2^{log_ds} (precipizio di wrap {})",
+             1u64 << (63 - log_ds));
     let ds = 1u64 << log_ds;
     let log_di = 56u32;                 // indice (<= 1023)
     let di = 1u64 << log_di;
