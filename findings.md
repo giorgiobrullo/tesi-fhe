@@ -383,6 +383,8 @@ l'argmin: se la larghezza dei punteggi non si comprime "gratis", serve un tronca
 esplicito (`truncate_bit_pattern`) o un embedding nativamente a pochi bit.
 
 ## 🔵 F13 — La CNN (anche leggera) supera il livello del caso: il varco funziona
+
+*Numeri a **seed singolo**: indicativi. Le misure definitive dello stesso protocollo, su 15 semi con intervallo di confidenza al 95%, sono in F29 (scala) e F30 (modelli); dove i due divergono vale F29/F30.*
 Terzo gradino della scaletta (CNN), partendo dalla bassa profondità:
 MobileFaceNet (InsightFace `buffalo_s`, `w600k_mbf`, linea ArcFace, embedding
 512-dim, 13 MB), eseguito in chiaro sul client. Stesso protocollo 1:N open-set e stessa
@@ -446,6 +448,8 @@ argmin cifrato sul server (F6), da rendere praticabile con `truncate_bit_pattern
 o tenendo l'embedding a pochi bit (qui 6 bit bastano e non costano accuratezza).
 
 ## 🔵 F15 — CNN profonda (ResNet50): un ritocco, e a costo FHE invariato
+
+*Numeri a **seed singolo**: indicativi. Le misure definitive dello stesso protocollo, su 15 semi con intervallo di confidenza al 95%, sono in F29 (scala) e F30 (modelli); dove i due divergono vale F29/F30.*
 Gradino 08b: salita all'alta profondità della scaletta, ResNet50 (InsightFace
 `buffalo_l`, `w600k_r50`, embedding 512-dim), confrontata con la leggera MobileFaceNet
 sullo stesso protocollo 1:N.
@@ -472,6 +476,8 @@ protocollo 1:N open-set. Il sistema privacy-preserving riconosce volti reali al 
 punto di lavoro sicuro, con match cifrato interattivo.
 
 ## 🔵 F16 — Il benchmark è saturo? Test scalando la galleria
+
+*Numeri a **seed singolo**: indicativi. Le misure definitive dello stesso protocollo, su 15 semi con intervallo di confidenza al 95%, sono in F29 (scala) e F30 (modelli); dove i due divergono vale F29/F30.*
 Sospetto legittimo: a 50 identità la CNN fa ~96-97% e leggera≈profonda, segno che il
 benchmark è troppo facile e non distingue più i modelli. Test: far crescere il numero
 di identità iscritte e vedere se il DIR@FPIR scende (`scaling_galleria.py`, figura
@@ -507,6 +513,8 @@ Tre risposte:
    sistema è forte e scala.
 
 ## 🔵 F17 — Scaling su larga scala: a migliaia di iscritti il DIR scende davvero
+
+*Numeri a **seed singolo**: indicativi. Le misure definitive dello stesso protocollo, su 15 semi con intervallo di confidenza al 95%, sono in F29 (scala) e F30 (modelli); dove i due divergono vale F29/F30.*
 Spinto oltre i 500 iscritti (richiesta di scalare ancora). Scaricata la parte DigiFace
 a 33.333 identità (×5 img), sweep fino a 8000 iscritti (sintetico = stress test
 out-of-distribution, F16). Figura `benchmark/results/scaling_grande.png`.
@@ -540,6 +548,8 @@ Due cose:
   detto come "a galleria piccola"; a migliaia di iscritti è ~70-85%.
 
 ## 🔵 F18 — Scaling su volti REALI puliti (VGGFace2 train): regge bene allo scale
+
+*Numeri a **seed singolo**: indicativi. Le misure definitive dello stesso protocollo, su 15 semi con intervallo di confidenza al 95%, sono in F29 (scala) e F30 (modelli); dove i due divergono vale F29/F30.*
 Controparte reale di F17 (che era sintetico). Scaricato VGGFace2 train (8.631
 identità reali, 37 GB), è il dataset che avevamo scelto (F8, `docs/`) e non è
 training dei modelli buffalo, quindi numeri onesti/difendibili. Allineati 30.000 volti
@@ -585,6 +595,8 @@ solo residuo è la possibile sovrapposizione di *celebrità* tra VGGFace2 e il t
 originale della CNN, caveat standard del campo, non eliminabile senza il dataset di
 training del modello.
 ## 🔵 F19 — Modelli più grandi: si sale, ma poco — il 99% non è di questo protocollo
+
+*Numeri a **seed singolo**: indicativi. Le misure definitive dello stesso protocollo, su 15 semi con intervallo di confidenza al 95%, sono in F29 (scala) e F30 (modelli); dove i due divergono vale F29/F30.*
 Domanda: salendo di modello (e con la distillazione, come da Carnemolla) si arriva al
 99%? Confronto tre profondità crescenti sullo stesso protocollo 1:N open-set reale
 (VGGFace2), embedding sempre in chiaro, quindi costo FHE invariato (dim 512 per tutti).
