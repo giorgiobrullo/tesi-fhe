@@ -3009,7 +3009,7 @@ aperte, poi il posizionamento onesto.
 | **F52** | tabella disallineata dall'artefatto; titolo 1,8 s con misura 1,27 s | riallineata: indice esatto **73/80**, non 80/80 — e la matrice di F45 fa **77/80**, quindi il torneo è più veloce *e meno accurato* |
 | **F47** | il meccanismo della «box size» | già smontato in **F55**; da non riproporre come contributo, anche se sembra originale |
 
-### Resta aperto (elenco, per non perderlo)
+### Quello che restava aperto — **chiuso tutto in F64** (elenco conservato con la diagnosi originale)
 
 - ~~**F39**~~ — **chiuso**: rifatto con campione bilanciato (16 genuini + 16 impostori), 0/16 accettati, 0/4.096 discrepanze. Il difetto era: `ckks_varco.txt` riporta
   «impostori accettati 0/0» in ogni configurazione, perché la run usa i primi 32 probe, tutti
