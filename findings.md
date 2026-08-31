@@ -1754,6 +1754,7 @@ altro passo):
 | togliere il `min` ridondante dalla catena | −25%: vero ma minore, assorbito dal torneo | F38 |
 | parametri multi-bit | 2,3× su un thread, nulla a 16 thread: stesso guadagno del parallelismo, non si somma | F38 |
 | one-hot contro indice | equivalenti per privacy e costo; l'uscita compatta dà entrambi | F37 |
+| soglia per template (T-norm/Z-norm) | gratis ma +0,3 punti: gli embedding ArcFace sono già normalizzati | F54 |
 | cambiare schema (CKKS) | non è un'ottimizzazione del varco (4,2 s contro 0,18): resta come **confronto**, con la sua lettura | F39 |
 
 Due cose non sono ottimizzazioni ma vanno nel percorso perché lo delimitano: il **ponte**
@@ -2365,3 +2366,31 @@ deviazione sostanziale (punto 1) che oggi è una scelta e non più una necessit�
 discutere (2 e 3). Il numero che riassume tutto: si era chiesto **meno di 10 secondi a 128
 iscritti**; il sistema fa **0,094 s** con la galleria in chiaro, **0,094 s** con la galleria
 cifrata, e **1,3 s** se si pretende anche l'argmin esatto invece della soglia.
+
+## 🔵 F54 — Soglia per template (Z-norm): gratis, ma vale poco — e si capisce perché
+Un'idea che sembrava un guadagno gratuito. In biometria è noto che i template non sono
+equivalenti: alcuni attirano punteggi bassi da chiunque ("lupi") e alzano i falsi positivi. La
+normalizzazione di coorte corregge questo, e nel nostro circuito **sarebbe gratis**: la condizione
+s_i ≤ T con soglia unica diventa s_i ≤ μ_i + σ_i·T, cioè solo un'altra costante per iscritto — e la
+costante per iscritto il circuito la calcola già (‖g_i‖² − T). Stesso numero di operazioni, stesso
+costo cifrato. Misurato in chiaro (`benchmark/soglia_per_template.py`, ResNet100 su VGGFace2, 3 bit,
+coorte di 300 identità disgiunte dalla galleria e dagli impostori del test, 10 scene):
+
+| N | fusione | soglia unica | −μ_i (T-norm) | (s−μ)/σ (Z-norm) |
+|---|---|---|---|---|
+| 128 | 1+1 | 90,4% | 90,9% (+0,5) | 90,9% (+0,5) |
+| 128 | 2+3 | 98,4% | 98,7% (+0,3) | 98,2% (−0,2) |
+| 1000 | 1+1 | 90,0% | 90,3% (+0,3) | 90,2% (+0,1) |
+| 1000 | 2+3 | 97,8% | 97,9% (+0,1) | 98,0% (+0,1) |
+
+**+0,3 punti in media, e la Z-norm piena non aggiunge nulla sopra la sola T-norm.** Per la regola
+dell'incontro (in tesi solo le tecniche con un miglioramento osservabile) questa va nella lista da
+citare in una riga, non da sviluppare. Ma la spiegazione è interessante e vale la riga: gli
+embedding ArcFace/ResNet100 sono **già normalizzati per costruzione** — L2 sulla sfera e margine
+angolare in addestramento rendono le distribuzioni dei template molto più omogenee di quanto fossero
+ai tempi in cui T-norm e Z-norm furono inventate (sistemi a GMM/eigenface). La normalizzazione di
+coorte trova poco da correggere perché il lavoro l'ha già fatto la rete.
+
+Resta comunque adottabile: costa zero e non peggiora mai la T-norm. Confronto con le altre leve di
+accuratezza provate: fusione multi-frame **+8 punti** (F48), modello più grande +1-2 (F44, F20),
+compressione 0 o negativa (F31), soglia per template +0,3 (qui).
