@@ -24,6 +24,22 @@ E14 = ROOT / "experiments" / "14_pipeline_tfhe_rs" / "results"
 E15 = ROOT / "experiments" / "15_ckks_confronto" / "results"
 
 
+def leggi_tabella(nome, col):
+    """legge una tabella 'N | c1 | c2 | ...' da un file di risultati di experiments/14."""
+    out = {}
+    f = E14 / nome
+    if not f.exists():
+        return out
+    for line in open(f):
+        parti = [x.strip() for x in line.split("|")]
+        if len(parti) > col and parti[0].isdigit():
+            try:
+                out[int(parti[0])] = float(parti[col].replace("s", "").strip())
+            except ValueError:
+                pass
+    return out
+
+
 def concrete(tec):
     rows = csv.DictReader(open(R / "costo_reale.csv"))
     return {int(r["N"]): float(r["run_s"]) for r in rows if r["tecnica"] == tec}
@@ -49,22 +65,6 @@ def varco(thread):
             m = re.match(r"\s*(\d+) \|\s*([\d.]+)s \|\s*([\d.]+)s \|\s*([\d.]+)s", line)
             if m:
                 out.setdefault(int(m.group(1)), float(m.group(4)))
-    return out
-
-
-def leggi_tabella(nome, col):
-    """legge una tabella 'N | c1 | c2 | ...' da un file di risultati di experiments/14."""
-    out = {}
-    f = E14 / nome
-    if not f.exists():
-        return out
-    for line in open(f):
-        parti = [x.strip() for x in line.split("|")]
-        if len(parti) > col and parti[0].isdigit():
-            try:
-                out[int(parti[0])] = float(parti[col].replace("s", "").strip())
-            except ValueError:
-                pass
     return out
 
 
@@ -116,7 +116,7 @@ passi = [
     ("tfhe-rs radix\ncatena\n(16 bit)", rad_seqF32[8], "#5b6b8c"),
     ("tfhe-rs radix\ntorneo\n(8 bit)", rad_tor[8], "#6a4c93"),
     ("CKKS\npacking+segno\n(confronto)", ck[8], "#e9a000"),
-    ("tfhe-rs leveled\n+ soglia\nparallela", lev16[8], "#2a9d8f"),
+    ("tfhe-rs leveled\n+ soglia parallela\n(set migliore)", leggi_tabella("varco_1_0_sweep.txt", 3).get(8, lev16[8]), "#1b6f65"),
 ]
 x = np.arange(len(passi)); ys = [p[1] for p in passi]
 CONFRONTO = 4                      # la barra CKKS e' un confronto (F39), non un passo del percorso
@@ -138,7 +138,7 @@ ax1.text(len(passi) - 0.45, 10, "10 s", fontsize=8, color="#999", va="center", h
 ax1.set_xticks(x); ax1.set_xticklabels([p[0] for p in passi], fontsize=8.6)
 ax1.set_xlim(-0.6, len(passi) - 0.2)
 ax1.set_ylabel("tempo per query sul server (s, scala log)")
-ax1.set_title("(a) Il percorso a N = 8: da 455 s a 17 ms\nogni passo è una tecnica con un guadagno misurato", fontsize=11)
+ax1.set_title("(a) Il percorso a N = 8: da 455 s a 7 ms\nogni passo è una tecnica con un guadagno misurato", fontsize=11)
 ax1.spines[["top", "right"]].set_visible(False); ax1.tick_params(labelsize=9)
 
 # ---------------- (b) i design finali al crescere di N
@@ -147,7 +147,8 @@ serie = [
     ("tfhe-rs argmin a matrice, N^2 (F45)", argmin_delta(), "#e07a5f", "v", 7),
     ("tfhe-rs radix, torneo 8 bit, 16 thread (F38)", rad_tor, "#6a4c93", "D", -1),
     ("CKKS, packing + segno, 1 thread (F39)", ck, "#e9a000", "^", -9),
-    ("tfhe-rs leveled + soglia (F37/F46)", lev16, "#1b6f65", "o", 8),
+    ("tfhe-rs leveled + soglia (F37/F46)", lev16, "#8ecfc4", "o", 8),
+    ("tfhe-rs, il piu' veloce: set 1_0 (F55)", leggi_tabella("varco_1_0_sweep.txt", 3), "#1b6f65", "o", -9),
     ("tfhe-rs, galleria CIFRATA (F51)", leggi_tabella("galleria_cifrata_1024.txt", 3), "#2a9d8f", "s", 9),
     ("tfhe-rs, argmin ESATTO a torneo (F52)", leggi_tabella("argmin_torneo.txt", 3), "#c0392b", "^", -9),
 ]
@@ -161,13 +162,13 @@ for nome, d, c, mk, dy in serie:
     ax2.annotate(lab, (n_last, v_last), xytext=(7, dy), textcoords="offset points", fontsize=8.5,
                  color=c, fontweight="bold", va="center")
 ax2.set_xscale("log", base=2); ax2.set_yscale("log")
-ax2.set_xticks([8, 16, 32, 64, 128, 256, 512, 1024]); ax2.set_xticklabels(["8", "16", "32", "64", "128", "256", "512", "1024"])
-ax2.set_ylim(0.008, 400); ax2.set_xlim(7, 2600)
+ax2.set_xticks([8, 32, 128, 512, 2048]); ax2.set_xticklabels(["8", "32", "128", "512", "2048"])
+ax2.set_ylim(0.004, 400); ax2.set_xlim(7, 9000)
 for y, t in ((10, "10 s"), (5, "5 s")):
     ax2.axhline(y, ls=(0, (4, 4)), lw=0.9, color="#bbb", zorder=0)
-    ax2.text(1700, y, t, fontsize=8, color="#999", va="center", ha="left")
+    ax2.text(5200, y, t, fontsize=8, color="#999", va="center", ha="left")
 ax2.set_xlabel("iscritti in galleria N"); ax2.set_ylabel("tempo per query (s, scala log)")
-ax2.set_title("(b) I design finali al crescere della galleria\ncifrare la galleria non costa nulla; l'argmin esatto a torneo rientra nel budget", fontsize=11)
+ax2.set_title("(b) I design finali al crescere della galleria\ncifrare la galleria non costa nulla; l'argmin esatto rientra nel budget", fontsize=11)
 ax2.legend(fontsize=7.6, loc="lower right", frameon=False)
 ax2.spines[["top", "right"]].set_visible(False); ax2.tick_params(labelsize=9)
 
