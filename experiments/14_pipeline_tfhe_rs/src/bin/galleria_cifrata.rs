@@ -33,7 +33,8 @@ use tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::{add_external_product_assi
                                                         FourierGgswCiphertext};
 use tfhe::core_crypto::commons::math::decomposition::DecompositionLevel;
 use tfhe::core_crypto::prelude::*;
-use tfhe::shortint::parameters::V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64 as PARAMS;
+use tfhe::shortint::parameters::{V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64,
+                                 V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64};
 use tfhe::shortint::ClientKey;
 
 const DIM: usize = 512;
@@ -112,10 +113,22 @@ fn main() {
     let m: usize = a.iter().position(|x| x == "--campioni").map(|i| a[i + 1].parse().unwrap()).unwrap_or(25);
     let scena_path = a.iter().position(|x| x == "--scena").map(|i| a[i + 1].clone())
         .unwrap_or(concat!(env!("CARGO_MANIFEST_DIR"), "/results/scena_reale_q3.txt").to_string());
-    let log_delta = 53u32;                     // come la scena a 3 bit (F47)
+    // Configurazione: il set e il Delta devono essere quelli SICURI (F56), cioe' 2_2 con Delta dal
+    // bound indipendente dal probe. --veloce ripristina la vecchia coppia (1_1, 2^53) per riprodurre
+    // le misure precedenti, ma quella coppia non regge contro un client malicious.
+    let veloce = a.iter().any(|x| x == "--veloce");
+    let sc_bound = carica(&scena_path);
+    let q_max = sc_bound.g.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap()
+        .max(sc_bound.probe.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap_or(3));
+    let l1_max = sc_bound.g.iter().map(|v| v.iter().map(|x| x.abs()).sum::<i64>()).max().unwrap();
+    let bound_onesto = 2 * q_max * l1_max + sc_bound.bsq.iter().cloned().max().unwrap() + sc_bound.t.abs();
+    let log_delta: u32 = if veloce { 53 } else { 63 - (64 - (bound_onesto as u64).leading_zeros()) };
     let delta = 1u64 << log_delta;
+    println!("configurazione: set {} | bound onesto {bound_onesto} -> Delta 2^{log_delta}",
+             if veloce { "1_1 (VELOCE, non sicuro: F56)" } else { "2_2 (sicuro)" });
 
-    let ck = ClientKey::new(PARAMS);
+    let ck = ClientKey::new(if veloce { V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64 }
+                            else { V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64 });
     let sk_short = ck.clone();
     let (sk, lwe_sk, par) = ck.into_raw_parts();
     let ssk = tfhe::shortint::ServerKey::new(&sk_short);
