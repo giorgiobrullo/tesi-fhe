@@ -8,6 +8,7 @@ tfhe = { version = "0.11", features = ["integer"] }
 rayon = "1"
 bincode = "1"
 dyn-stack = "0.11"
+aligned-vec = "0.6"
 
 [profile.release]
 opt-level = 3

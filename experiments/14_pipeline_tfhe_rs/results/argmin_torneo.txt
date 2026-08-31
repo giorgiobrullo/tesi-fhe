@@ -1,8 +1,12 @@
 Argmin ESATTO a torneo con circuit bootstrapping — N_poly=2048 k=1 n=769
-chiavi generate in 1.0s (bsk + ksk + pfpksk del circuit bootstrap)
+chiavi generate in 0.7s (bsk + ksk + pfpksk del circuit bootstrap)
 
-    N |        dot |     torneo |     totale |  confr. | indice | rumore sul   | vs matrice
-      |            |            |            |         | esatto | punteggio    | F45 (N^2)
-    8 |    0.008 s |    0.292 s |    0.300 s |       7 | 13/16 |  4.70 unita | 0,09 s
-   16 |    0.021 s |    0.416 s |    0.436 s |      15 | 13/16 |  4.11 unita | 0,29 s
-   32 |    0.012 s |    0.678 s |    0.689 s |      31 | 13/16 |  9.60 unita | 0,97 s
+    N |       dot |    torneo |    totale |  cfr | indice | divario |  sotto | rum. | costo | F45
+      |           |           |           |      | esatto |    >20 | soglia | sul s | errore | (N^2)
+    8 |   0.001 s |   0.259 s |   0.260 s |    7 | 15/16  | 12/12  |  2/2   |  2.8 |  27.0 | 0,09 s
+   16 |   0.001 s |   0.346 s |   0.347 s |   15 | 13/16  |  9/12  |  3/3   |  5.6 |  26.0 | 0,29 s
+   32 |   0.002 s |   0.482 s |   0.484 s |   31 | 14/16  | 11/13  |  5/5   |  5.1 |  27.5 | 0,97 s
+   64 |   0.003 s |   0.747 s |   0.750 s |   63 | 15/16  | 14/14  |  7/7   |  1.5 |   4.0 | 3,66 s
+  128 |   0.006 s |   1.267 s |   1.273 s |  127 | 16/16  | 16/16  | 14/14  |  1.5 |   0.0 | 14,4 s
+
+(l'ultima colonna e' l'argmin esatto a matrice di F45, quadratico, sulla stessa scena)

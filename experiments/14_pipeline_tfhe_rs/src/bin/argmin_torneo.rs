@@ -27,7 +27,11 @@ use dyn_stack::{GlobalPodBuffer, PodStack, StackReq};
 use rayon::prelude::*;
 use std::time::Instant;
 use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_add_mul_assign;
-use tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::{cmux, cmux_scratch, FourierGgswCiphertext};
+use tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::{add_external_product_assign,
+                                                       add_external_product_assign_scratch, cmux,
+                                                       cmux_scratch, FourierGgswCiphertext};
+use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_mul;
+use tfhe::core_crypto::commons::math::decomposition::DecompositionLevel;
 use tfhe::core_crypto::fft_impl::fft64::crypto::wop_pbs::{circuit_bootstrap_boolean,
                                                           circuit_bootstrap_boolean_scratch};
 use tfhe::core_crypto::prelude::*;
@@ -56,11 +60,45 @@ fn carica(path: &str) -> Scena {
     Scena { dim, g, bsq, probe, t }
 }
 
+/// GGSW di un messaggio polinomiale (vedi F51 e galleria_cifrata.rs).
+fn ggsw_polinomiale<Gen: ByteRandomGenerator>(
+    sk: &GlweSecretKeyOwned<u64>, mu: &Polynomial<Vec<u64>>, base_log: DecompositionBaseLog,
+    livelli: DecompositionLevelCount, rumore: DynamicDistribution<u64>,
+    gen: &mut EncryptionRandomGenerator<Gen>,
+) -> GgswCiphertextOwned<u64> {
+    let (poly, k) = (sk.polynomial_size(), sk.glwe_dimension());
+    let modulus = CiphertextModulus::<u64>::new_native();
+    let mut ggsw = GgswCiphertext::new(0u64, k.to_glwe_size(), poly, base_log, livelli, modulus);
+    for (idx, mut livello) in ggsw.iter_mut().enumerate() {
+        let l = DecompositionLevel(livelli.0 - idx);
+        let fattore = ggsw_encryption_multiplicative_factor(modulus, l, base_log, Cleartext(1u64));
+        let ultima = livello.glwe_size().0 - 1;
+        for (riga, mut glwe) in livello.as_mut_glwe_list().iter_mut().enumerate() {
+            {
+                let mut corpo = glwe.get_mut_body();
+                if riga < ultima {
+                    let chiavi = sk.as_polynomial_list();
+                    let sp = chiavi.get(riga);
+                    let mut prod = Polynomial::new(0u64, poly);
+                    polynomial_wrapping_mul(&mut prod, &sp, mu);
+                    for (b, pv) in corpo.as_mut().iter_mut().zip(prod.as_ref()) { *b = pv.wrapping_mul(fattore); }
+                } else {
+                    let f = fattore.wrapping_neg();
+                    for (b, mv) in corpo.as_mut().iter_mut().zip(mu.as_ref()) { *b = mv.wrapping_mul(f); }
+                }
+            }
+            encrypt_glwe_ciphertext_assign(sk, &mut glwe, rumore, gen);
+        }
+    }
+    ggsw
+}
+
 fn main() {
     let a: Vec<String> = std::env::args().collect();
     let scena_path = a.iter().position(|x| x == "--scena").map(|i| a[i + 1].clone())
         .unwrap_or(concat!(env!("CARGO_MANIFEST_DIR"), "/results/scena_reale_q3.txt").to_string());
     let n_probe: usize = a.iter().position(|x| x == "--probe").map(|i| a[i + 1].parse().unwrap()).unwrap_or(8);
+    let cifrata = a.iter().any(|x| x == "--cifrata");   // galleria CIFRATA (F51) invece che in chiaro
     let sc = carica(&scena_path);
 
     // il punteggio sta al coefficiente dim-1, l'indice al coefficiente 0: due Delta indipendenti
@@ -108,12 +146,34 @@ fn main() {
     let big_size = LweSize(K * N_POLY + 1);
     let small_size = LweSize(N_LWE + 1);
 
-    println!("{:>5} | {:>10} | {:>10} | {:>10} | {:>7} | indice | rumore sul   | vs matrice", "N", "dot", "torneo", "totale", "confr.");
-    println!("{:>5} | {:>10} | {:>10} | {:>10} | {:>7} | esatto | punteggio    | F45 (N^2)", "", "", "", "", "");
+    // galleria CIFRATA: ogni template diventa una GGSW in dominio di Fourier (una volta, all'iscrizione)
+    let (gg_bl, gg_lv) = (DecompositionBaseLog(10), DecompositionLevelCount(3));
+    let galleria: Vec<FourierGgswCiphertext<aligned_vec::ABox<[tfhe::core_crypto::fft_impl::fft64::c64]>>> = if cifrata {
+        let mut req = GlobalPodBuffer::new(
+            tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::fill_with_forward_fourier_scratch(fft).unwrap());
+        let stack = PodStack::new(&mut req);
+        (0..sc.g.len()).map(|i| {
+            let mut pol = vec![0u64; N_POLY];
+            for j in 0..sc.dim { pol[sc.dim - 1 - j] = (-2 * sc.g[i][j]) as u64; }
+            let g = ggsw_polinomiale(&glwe_sk, &Polynomial::from_container(pol), gg_bl, gg_lv, noise_glwe, &mut gen);
+            let mut fg = FourierGgswCiphertext::new(glwe_size, poly, gg_bl, gg_lv);
+            fg.as_mut_view().fill_with_forward_fourier(g.as_view(), fft, stack);
+            fg
+        }).collect()
+    } else { Vec::new() };
+    if cifrata { println!("galleria CIFRATA (GGSW 2^10x3): {} MB\n",
+        galleria.len() * galleria[0].as_view().data().len() * 16 / (1 << 20)); }
+
+    println!("{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | {}",
+             "N", "dot", "torneo", "totale", "cfr", "indice", "divario", "sotto", "rum.", "costo", "F45");
+    println!("{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | {}",
+             "", "", "", "", "", "esatto", ">20", "soglia", "sul s", "errore", "(N^2)");
     for &n in &[8usize, 16, 32, 64, 128] {
         if n > sc.g.len() { continue; }
         let (mut t_dot, mut t_tor, mut ok, mut ok_s) = (0f64, 0f64, 0usize, 0usize);
         let mut rumore: Vec<f64> = Vec::new();
+        let mut sbagliati: Vec<(f64, f64)> = Vec::new();
+        let (mut facili, mut ok_facili, mut accettati, mut ok_accettati) = (0usize, 0usize, 0usize, 0usize);
         for p in sc.probe.iter().take(n_probe) {
             // ---- client: probe come GLWE (encoding polinomiale)
             let mut coeff = vec![0u64; N_POLY];
@@ -127,9 +187,18 @@ fn main() {
                 let mut pol = vec![0u64; N_POLY];
                 for j in 0..sc.dim { pol[sc.dim - 1 - j] = (-2 * sc.g[i][j]) as u64; }
                 let pol = Polynomial::from_container(pol);
+                let _ = &pol;
                 let mut out = GlweCiphertext::new(0u64, glwe_size, poly, modulus);
-                for (mut o, c) in out.as_mut_polynomial_list().iter_mut().zip(glwe.as_polynomial_list().iter()) {
-                    polynomial_wrapping_add_mul_assign(&mut o, &c, &pol);
+                if cifrata {
+                    // Mondo 2: prodotto ESTERNO con la GGSW del template (F51), leveled
+                    let mut req = GlobalPodBuffer::new(
+                        add_external_product_assign_scratch::<u64>(glwe_size, poly, fft).unwrap());
+                    let stack = PodStack::new(&mut req);
+                    add_external_product_assign(out.as_mut_view(), galleria[i].as_view(), glwe.as_view(), fft, stack);
+                } else {
+                    for (mut o, c) in out.as_mut_polynomial_list().iter_mut().zip(glwe.as_polynomial_list().iter()) {
+                        polynomial_wrapping_add_mul_assign(&mut o, &c, &pol);
+                    }
                 }
                 // costante in chiaro: ||g_i||^2 sul coefficiente del punteggio, indice sul coefficiente 0
                 let mut corpo = out.get_mut_body();
@@ -201,7 +270,12 @@ fn main() {
             let s: Vec<i64> = (0..n).map(|i| sc.bsq[i] - 2 * (0..sc.dim).map(|j| sc.g[i][j] * p[j]).sum::<i64>()).collect();
             let mut best = 0usize;
             for i in 1..n { if s[i] < s[best] { best = i; } }
-            if idx == best { ok += 1; }
+            // divario fra il minimo e il secondo: e' lui a dire se il confronto e' "facile"
+            let mut ord = s.clone(); ord.sort();
+            let divario = if n > 1 { (ord[1] - ord[0]) as f64 } else { 1e9 };
+            if idx == best { ok += 1; } else { sbagliati.push((divario, (s[idx] - s[best]) as f64)); }
+            if divario > 20.0 { facili += 1; if idx == best { ok_facili += 1; } }
+            if s[best] <= sc.t { accettati += 1; if idx == best { ok_accettati += 1; } }
             // quanto rumore ha accumulato il punteggio del vincitore attraverso i log N CMUX?
             let e = decrypt_lwe_ciphertext(&big_sk, &xs).0
                 .wrapping_sub((s[best] as u64).wrapping_mul(ds)) as i64 as f64 / ds as f64;
@@ -211,9 +285,12 @@ fn main() {
         }
         let np = sc.probe.len().min(n_probe) as f64;
         let f45 = match n { 8 => "0,09 s", 16 => "0,29 s", 32 => "0,97 s", 64 => "3,66 s", 128 => "14,4 s", _ => "-" };
-        println!("{:>5} | {:>8.3} s | {:>8.3} s | {:>8.3} s | {:>7} | {:>2}/{:<2} | {:>5.2} unita | {}",
+        let med = if sbagliati.is_empty() { 0.0 } else {
+            sbagliati.iter().map(|x| x.1).sum::<f64>() / sbagliati.len() as f64 };
+        println!("{:>5} | {:>7.3} s | {:>7.3} s | {:>7.3} s | {:>4} | {:>2}/{:<3} | {:>2}/{:<3} | {:>2}/{:<3} | {:>4.1} | {:>5.1} | {}",
                  n, t_dot / np, t_tor / np, (t_dot + t_tor) / np, n - 1, ok, np as usize,
-                 rumore.iter().sum::<f64>() / rumore.len() as f64, f45);
+                 ok_facili, facili, ok_accettati, accettati,
+                 rumore.iter().sum::<f64>() / rumore.len() as f64, med, f45);
         let _ = ok_s;
     }
     println!("\n(l'ultima colonna e' l'argmin esatto a matrice di F45, quadratico, sulla stessa scena)");

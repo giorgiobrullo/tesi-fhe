@@ -2251,29 +2251,36 @@ Parametri: `LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS` di tfhe-rs (128 bit, N=
 livelli, CBS 2^5×3, PFKS 2^15×2) — gli unici del set pensati per il circuit bootstrapping. Misure su
 M4 Max, 16 thread, scena reale a 3 bit, confronti di ogni livello in parallelo:
 
-| N | prodotto scalare | torneo | **totale** | confronti | indice esatto | rumore sul punteggio | matrice F45 |
-|---|---|---|---|---|---|---|---|
-| 8 | 0,001 s | 0,259 s | **0,260 s** | 7 | 8/8 | 1,4 unità | 0,09 s |
-| 16 | 0,001 s | 0,347 s | **0,348 s** | 15 | 7/8 | 5,6 unità | 0,29 s |
-| 32 | 0,002 s | 0,481 s | **0,483 s** | 31 | 8/8 | 1,1 unità | 0,97 s |
-| 64 | 0,003 s | 0,774 s | **0,777 s** | 63 | 8/8 | 1,6 unità | 3,66 s |
-| **128** | 0,015 s | 1,740 s | **1,756 s** | 127 | 8/8 | 0,8 unità | **14,4 s** |
+| N | prodotto scalare | torneo | **totale** | confronti | indice esatto | …se il divario > 20 | **…se il minimo è sotto soglia** | matrice F45 |
+|---|---|---|---|---|---|---|---|---|
+| 8 | 0,001 s | 0,259 s | **0,260 s** | 7 | 12/16 | 9/12 | **2/2** | 0,09 s |
+| 16 | 0,001 s | 0,346 s | **0,347 s** | 15 | 14/16 | 11/12 | **3/3** | 0,29 s |
+| 32 | 0,002 s | 0,481 s | **0,483 s** | 31 | 12/16 | 12/13 | **5/5** | 0,97 s |
+| 64 | 0,003 s | 0,742 s | **0,745 s** | 63 | 15/16 | 14/14 | **7/7** | 3,66 s |
+| **128** | 0,006 s | 1,310 s | **1,316 s** | 127 | **16/16** | 16/16 | **14/14** | **14,4 s** |
 
 **Il risultato corregge F45.** L'argmin esatto sul server non è quadratico per necessità: con il
-circuit bootstrapping è **lineare in N con profondità log N**, e a N=128 costa **1,76 s invece di
-14,4 s — 8× meno — cioè dentro il budget dei 10 s (e dei 5 s) dell'incontro**. A N=64 fa 0,78 s. Il
+circuit bootstrapping è **lineare in N con profondità log N**, e a N=128 costa **1,3 s invece di
+14,4 s — 11× meno — cioè dentro il budget dei 10 s (e dei 5 s) dell'incontro**. A N=64 fa 0,75 s. (Su una macchina carica gli stessi run danno 1,8-2,2 s a N=128: i tempi qui
+sono a macchina scarica.) Il
 punto di pareggio con la matrice sta fra N=16 e N=32: sotto, la matrice vince perché i suoi confronti
 usano PBS piccoli, mentre il torneo paga i parametri WOPBS, più pesanti; sopra, vince il torneo
 perché N−1 ≪ N²/2.
 
-Onestà sui limiti. (a) 39 indici esatti su 40: l'unico errore è a N=16, e il meccanismo è lo stesso
-della banda di F50 — quando due punteggi distano meno del rumore, il confronto può ribaltarsi; il
-rumore misurato sul punteggio del vincitore dopo i log N CMUX è 0,8-5,6 unità su un range di ~1300,
-quindi l'errore capita solo su quasi-pareggi, dove peraltro "sbagliare" significa scegliere un
-candidato praticamente equidistante. (b) Restano **18× più lento** del varco a soglia (0,094 s a
+Onestà sui limiti, e qui la statistica dice una cosa precisa. L'indice esatto è 69 su 80 in
+generale, ma **31 su 31 quando il minimo sta sotto soglia**, cioè in tutti i casi in cui il varco
+apre davvero. Gli errori stanno tutti sui probe **impostori**, dove il "vincitore" è un candidato
+qualunque fra punteggi lontanissimi dalla soglia e quasi appaiati fra loro: il costo medio
+dell'errore (differenza fra il punteggio scelto e il minimo vero) va da 30 unità a N=8 a **0 a
+N=128**, su un range di ~1300, e in quei casi il varco rifiuta comunque. È lo stesso meccanismo
+della banda di F50: quando due punteggi distano meno del rumore (misurato sul vincitore dopo i log N
+CMUX: 1,5-8,7 unità), il confronto può ribaltarsi. Nota controintuitiva ma sensata: **la precisione
+migliora al crescere di N** (16/16 a N=128), perché con più candidati il minimo è più
+distintamente separato dal secondo. (b) Restano **18× più lento** del varco a soglia (0,094 s a
 N=128, F51): per un varco la soglia resta il design giusto, e F37/F43 mostrano che su dati reali il
 caso "due iscritti sotto soglia" non capita mai. (c) La costruzione usa il set WOPBS legacy della
-libreria, non parametri tarati da noi.
+libreria, non parametri tarati da noi. (d) Il PBS di segno finale contro la soglia va aggiunto
+(un PBS in più, ~40 ms).
 
 **Cosa cambia per la conclusione della tesi.** All'incontro il prof aveva chiesto argmin poi soglia
 sul vincitore; noi abbiamo consegnato la soglia per iscritto, motivandolo con il costo dell'argmin.
