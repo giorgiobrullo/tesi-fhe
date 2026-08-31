@@ -2805,6 +2805,13 @@ punti** di DIR, che è esattamente l'accuratezza che si otterrebbe eseguendo l'a
 cascata non è un'approssimazione dell'argmin, gli è **equivalente**, perché quando il conteggio è 1
 l'unico accettato *è* il minimo.
 
+⚠️ Con una precisazione che va fatta qui e non altrove: il secondo stadio della cascata è l'argmin
+di F52, e **con il Δ onesto l'argmin non è esatto al 100%** — su 32 probe l'indice è corretto 134
+volte su 160. Quello che conta però è *quali* casi sbaglia: sui probe in cui il minimo è davvero
+sotto soglia — gli unici in cui la cascata invoca il secondo stadio — l'indice è corretto **68 volte
+su 68**, e a N=128 32/32. La cascata è quindi affidabile nel regime in cui viene usata, ma la parola
+«equivalente» va intesa in quel senso, non come esattezza incondizionata.
+
 **Il conto del costo atteso**, con i tempi misurati su questa macchina (varco: set 2_2 con Δ onesto,
 F56; argmin: F52 a N=128, estrapolato con la retta 0,216 + 0,0086·N a N=1024):
 
