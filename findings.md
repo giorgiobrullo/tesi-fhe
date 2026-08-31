@@ -2858,3 +2858,89 @@ nostro carico *facile*: i N PBS sono **già indipendenti** e saturano i 16 threa
 parallelismo interno del multi-bit non ha core liberi da usare, e resta solo il suo costo. È un set
 pensato per il caso opposto al nostro — pochi PBS da fare in fretta, non tantissimi da fare in
 parallelo. Registrato come **negativo**, così non lo si riprova.
+
+---
+
+## 🔴 F61 — Il probe non è un volto: un vettore legale apre il varco in una query (e la difesa è la norma)
+
+Una revisione critica indipendente ha rimesso in discussione il punto 2 di F40 — «il bit non parte
+da zero: senza un punto già accettato l'oracolo è muto» — e aveva ragione. Peggio: il difetto non è
+nell'attacco, è **nello script che lo misurava**. `attacco_oracolo.py::da_fuori` faceva due cose che
+un attaccante non farebbe: perturbava sempre lo **stesso** punto rifiutato (la variabile `v` non
+veniva mai aggiornata, quindi erano 20.000 campioni i.i.d. attorno a un punto fisso) e interrogava
+**una sola identità a caso**, mentre l'uscita vera del varco dà l'esito su **tutti** gli N iscritti.
+Con quei due vincoli l'attacco falliva 0/10, e da lì la conclusione sbagliata.
+
+**Rifatto senza i due vincoli, e restando dentro il protocollo** (interi in [−q, q], esattamente ciò
+che il client è autorizzato a mandare), sulla scena a 4 bit di F40:
+
+| attacco | esito |
+|---|---|
+| bipolari casuali, leggendo l'uscita completa | **200/200 aperti, query mediana 1** |
+| bipolari casuali, mirati su un iscritto | 10/10 aperti, query mediana 43 |
+| come nello script originale (punto fisso, un iscritto) | 0/10 |
+
+**E colpisce la configurazione attuale, non solo quella vecchia.** Sulla scena a 3 bit con il set
+sicuro, provando 2.000 vettori bipolari ±3:
+
+| N | il bipolare apre | con la norma vincolata a quella di un embedding vero |
+|---|---|---|
+| 128 | **15,2%** (≈ 7 tentativi) | **0,00%** |
+| 1024 | **67,7%** (≈ 1,5 tentativi) | **0,00%** |
+| 4096 | **98,2%** (**una query**) | **0,00%** |
+
+**Perché funziona, in una riga.** Il punteggio s_i = ‖g_i‖² − 2 g_i·a è un **semispazio**: illimitato
+nella direzione di g_i. Un vettore con tutti i coefficienti a ±q ha norma q·√dim = 67,9, cioè
+**2,7× quella di un embedding vero quantizzato** (25,2); il prodotto g_i·a ha allora deviazione
+q·‖g_i‖₂ ≈ 79, e serve g_i·a ≥ (‖g_i‖²−T)/2 per aprire. È un evento a ~3σ per *singolo* iscritto,
+ma con N iscritti basta che **uno** ci arrivi — e la probabilità che nessuno ci arrivi crolla con N.
+**L'attacco migliora con la dimensione della galleria**, che è esattamente il contrario di quello
+che si vorrebbe.
+
+**Non è l'overflow di F56.** Lì il punteggio era calcolato male (wrap mod 2^64). Qui il cifrato fa
+tutto correttamente: è il **punteggio stesso** a scendere sotto soglia. Nessun Δ onesto lo ferma,
+perché non c'è niente da fermare — il circuito sta rispondendo alla domanda giusta. Il problema è
+che la domanda presuppone che `a` sia un volto, e niente lo impone.
+
+**Le difese, misurate.**
+
+1. **Vincolare la norma del probe: risolutiva.** Ripetendo lo stesso attacco con i vettori
+   rinormalizzati alla norma di un embedding vero: **0 successi su 2.000, a ogni N**. È l'unica
+   difesa completa che ho trovato. E **corregge F58**: lì avevo concluso che una prova ZK non serve
+   a niente. Vero per la prova di *range* e vero per il bound su Δ — ma una prova sulla **norma**
+   serve eccome, solo non per il motivo che avevo in mente. Non è però disponibile a scaffale: il
+   modulo `zk` di tfhe-rs prova il range del messaggio, cioè un vincolo per coefficiente, mentre
+   ‖a‖₂ ≤ A è una forma quadratica. Resta lavoro futuro, ma ora con una ragione precisa.
+2. **Un pavimento sul punteggio (accetta sse T_basso ≤ s ≤ T): non funziona.** Sembrava naturale —
+   il bipolare spinge s molto sotto — e costerebbe solo un secondo PBS di segno, gratis come
+   struttura. Ma i tentativi che *riescono* atterrano fra −373 e 0 rispetto a T, cioè **più vicini
+   alla soglia dei genuini** (mediana −340): la ricerca casuale trova le soglie che si attraversano
+   di poco, non quelle che si sfondano. Il pavimento taglia il lato sbagliato. Misurato e scartato.
+3. **Stringere la soglia: parziale, e il prezzo cresce con N.** Con un offset di −200 unità:
+
+   | N | DIR genuini | attacco bipolare |
+   |---|---|---|
+   | 128 | 100% (invariata) | 14,7% → **0,1%** |
+   | 1024 | 100% → 85,7% | 68,3% → 0,5% |
+   | 4096 | 96,9% → 82,8% | 98,0% → 1,8% |
+
+   A N=128 è **gratis** e chiude l'attacco; a N=4096 costa **14 punti** di DIR. Esattamente il
+   contrario di come dovrebbe scalare una difesa.
+4. **Rate limiting**: da F40 era una nota, va promosso a **requisito**; ma con una query su quattro
+   che apre a N=1024 non basta da solo.
+
+**La lettura onesta per la tesi, ed è quella che regge.** Il modello di minaccia va detto con
+precisione, e allora tutto torna: nel **varco fisico** — che è lo scenario del lavoro — il client
+non è una parte arbitraria, è **la telecamera al cancello**, hardware che l'installatore controlla e
+che produce embedding veri per costruzione. Lì l'attacco è fuori modello, e il sistema è sano.
+Diventa reale quando lo stesso servizio è esposto come **API remota** a client qualunque: in quel
+caso servono, insieme, una prova di buona formazione del probe e il rate limiting. Non è una
+scappatoia: è la differenza fra i due deployment, e va scritta nel capitolo del modello di minaccia
+invece di essere lasciata implicita.
+
+**Da citare, perché ci arriva addosso.** Rahimi, Osadchy, Dunkelman, IJCB 2025 (arXiv `2601.17620`):
+l'attaccante che osserva **solo accettato/rifiutato** ricostruisce il template con perdita
+trascurabile e, per inversione generativa, ottiene immagini che passano **oltre il 98%** delle
+volte; gli autori dichiarano esplicitamente che vale «for any protection mechanism that maintains
+the accuracy of the recognition», FHE inclusa. Sostituisce Adler 2003/04 e Galbally 2010 come
+citazione di riferimento di F40 e **conferma dall'esterno** ciò che qui è misurato.
