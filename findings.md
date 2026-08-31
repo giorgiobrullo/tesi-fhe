@@ -2246,77 +2246,69 @@ L'abbiamo costruita con la stessa formula della libreria, generalizzata: le righ
 GLWE(−S_i·μ·q/Bʲ) per i<k e GLWE(μ·q/Bʲ) per i=k, con il prodotto negaciclico al posto del prodotto
 per scalare. La correttezza non è argomentata, è **verificata decifrando**.
 
-**Il prodotto scalare, per iscritto** (dim 512, Δ = 2^53, k=4, N=512):
 
-| gadget della GGSW | dimensione | tempo | banda aggiunta | contro le ~22 unità del PBS |
+**Il prodotto scalare, per iscritto** (dim 512, configurazione sicura: set 2_2, Δ = 2^51 dal bound
+onesto di F56):
+
+| gadget della GGSW | dimensione | tempo | banda aggiunta | verdetto |
 |---|---|---|---|---|
-| 2^8 × 2 | 200 KB | 0,015 ms | 35,6 unità | domina: inutilizzabile |
-| **2^12 × 2** | **200 KB** | **0,014 ms** | **0,10 unità** | trascurabile |
-| **2^10 × 3** | **300 KB** | **0,020 ms** | **~0 unità** | trascurabile |
-| 2^16 × 1 | 100 KB | 0,009 ms | 20,0 unità | confrontabile: no |
-| *(galleria in chiaro, per confronto)* | *4 KB* | *0,089 ms* | *0* | — |
+| 2^8 × 2 | 128 KB | 0,025 ms | 57,21 unità | domina la banda: inutilizzabile |
+| 2^12 × 2 | 128 KB | 0,022 ms | 0,44 unità | trascurabile |
+| **2^10 × 3** | **192 KB** | **0,030 ms** | **0,01 unità** | **la scelta** |
+| 2^16 × 1 | 64 KB | 0,015 ms | 134,68 unità | domina la banda: no |
 
-**Il varco completo sulla scena reale, con galleria cifrata** (16 probe, decisioni confrontate col
-chiaro, gadget 2^10×3):
+**Il varco completo con galleria cifrata** (scena reale a 3 bit, 16 probe, gadget 2^10×3, decisioni
+confrontate col chiaro):
 
 | N | prodotto scalare cifrato | PBS di segno | **totale** | galleria cifrata | decisioni corrette |
 |---|---|---|---|---|---|
-| 8 | 0,0002 s | 0,0085 s | **0,009 s** | 2 MB | 128/128 |
-| 32 | 0,0015 s | 0,0261 s | **0,028 s** | 9 MB | 512/512 |
-| 128 | 0,0011 s | 0,0928 s | **0,094 s** | 37 MB | **2048/2048** |
-| 512 | 0,0040 s | 0,3723 s | **0,376 s** | 150 MB | **8192/8192** |
-| 1024 | 0,0058 s | 0,7284 s | **0,734 s** | 300 MB | **16384/16384** |
+| 8 | 0,0001 s | 0,0155 s | **0,016 s** | 1 MB | 128/128 |
+| 32 | 0,0003 s | 0,0522 s | **0,053 s** | 6 MB | 512/512 |
+| 128 | 0,0014 s | 0,1905 s | **0,192 s** | 24 MB | **2048/2048** |
+| 512 | 0,0032 s | 0,7974 s | **0,801 s** | 96 MB | **8192/8192** |
+| 1024 | 0,0059 s | 1,5315 s | **1,537 s** | 192 MB | **16384/16384** |
 
-**Il risultato: cifrare la galleria non costa nulla — costa meno.** A N=128 il varco con galleria
-cifrata fa 0,094 s contro 0,10-0,12 s con la galleria in chiaro (F46/F47), perché il prodotto
-esterno usa la FFT mentre la nostra moltiplicazione per polinomio in chiaro era una Karatsuba
-O(N^1,58): il prodotto scalare passa da 11 ms a 1,1 ms, **10× più veloce**. Per onestà va detto che
-anche il Mondo 1 potrebbe usare la FFT (precalcolando la trasformata del polinomio in chiaro) e
-tornerebbe il più veloce dei due, di circa 3×: il confronto 0,094 contro 0,10 s è fra le nostre due
-implementazioni, mentre l'affermazione strutturale — e quella che conta — è che **entrambi i prodotti
-scalari sono invisibili accanto ai 12 ms del PBS di segno**. Il PBS di segno, che è
-il vero costo, non cambia di una virgola. E le decisioni sono **tutte** identiche al chiaro.
+**Il risultato: cifrare la galleria non costa niente in tempo.** Misurato fianco a fianco, stessa
+macchina e stesso momento, sulla stessa scena e nella stessa configurazione sicura: a N=128 il varco
+con galleria **cifrata** fa 0,192 s contro gli **0,195 s** con galleria in chiaro. Sono lo stesso
+numero. Il motivo è che il costo è tutto nel PBS di segno (il 99%), e il PBS non sa né gli importa
+se la galleria è cifrata.
 
-A **N=1024** il varco con galleria cifrata fa **0,734 s** contro gli 0,72 s della galleria in chiaro:
-identico, con 16.384 decisioni su 16.384 corrette. Il prezzo vero è la **memoria**: 200-300 KB per
-iscritto contro 4 KB in chiaro, cioè 37 MB per 128 iscritti e 300 MB per 1024. È il costo di tenere una galleria cifrata, e a queste scale è
-pagabile (con 2^12×2, 200 KB, la banda resta 0,10 unità: è la scelta pratica).
+Anzi, il pezzo che cambia va nella direzione opposta a quella che ci si aspetterebbe: il prodotto
+scalare **cifrato** costa **1,4 ms** contro i **4 ms** di quello in chiaro, cioè è ~3× più
+economico. Non è un paradosso — il prodotto esterno lavora in dominio di Fourier, mentre la nostra
+moltiplicazione per polinomio in chiaro (`polynomial_wrapping_add_mul_assign`) usa Karatsuba. Il
+conto torna anche in astratto: un PBS *è* n prodotti esterni, quindi con n=781 un prodotto esterno
+costa 1/781 di PBS a ℓ=1 e ~1/358 a ℓ=3, cioè **~34 µs**, contro i 55-125 µs per iscritto del
+polinomio in chiaro (F41). Per onestà: anche il Mondo 1 potrebbe usare la FFT precalcolando la
+trasformata del polinomio in chiaro, e tornerebbe il più veloce dei due. L'affermazione che conta è
+strutturale e non dipende da quale delle due implementazioni è meglio ottimizzata: **entrambi i
+prodotti scalari sono invisibili accanto al PBS**.
 
-**Cosa cambia per la tesi.** Il modello di minaccia non è più un vincolo subìto ma una scelta con
-due punti misurati sullo stesso codice:
-- **Mondo 1** (galleria in chiaro): 0,10 s a N=128, galleria 0,5 MB. Il server conosce gli iscritti.
-- **Mondo 2** (galleria cifrata): 0,094 s a N=128, galleria 37 MB. Il server **non conosce nulla**:
-  né il volto, né i template, né la soglia (che entra nella costante cifrata), né l'esito.
+**Il prezzo vero è la memoria**: 192 KB per iscritto contro 4 KB in chiaro, cioè 24 MB a N=128 e
+**192 MB a N=1024**. È il costo di tenere una galleria cifrata, e a queste scale è pagabile.
 
-E la seconda riga è quella che la letteratura non ha: gli altri, per avere la galleria cifrata,
-cambiano schema e pagano il prodotto cifrato×cifrato; qui la si ottiene restando in TFHE, con
-un'operazione leveled, allo stesso costo. Da verificare in letteratura se qualcuno abbia già usato
-il prodotto esterno in questo modo per la biometria — l'uso è noto nel PIR basato su CGGI (Onion-PIR,
-Spiral), ma non risulta applicato al match biometrico 1:N.
+**Cosa cambia per il modello di minaccia — ed è uno scambio, non un miglioramento.** Il prodotto
+esterno **richiede** che galleria e probe stiano sotto la **stessa chiave**: non è un dettaglio
+implementativo, è il vincolo dell'operazione. Quindi chiunque possa cifrare il probe può
+**decifrare la galleria**. Ne segue che i due mondi proteggono da parti diverse:
 
-Caveat onesti: (a) la costruzione della GGSW polinomiale l'abbiamo scritta noi (poche righe, sulla
-formula della libreria, verificata per decifratura, ma non è codice di libreria); (b) la scelta del
-gadget è un parametro nostro e va dichiarata; (c) la sicurezza non cambia — la GGSW è un insieme di
-cifrature GLWE con la stessa distribuzione di rumore del set standard, quindi valgono gli stessi
-128 bit; va però detto con precisione che **le righe della GGSW cifrano termini che dipendono dalla
-chiave segreta** (−S_i·μ·q/Bʲ), quindi la costruzione poggia sull'ipotesi di *circular security* —
-ma è esattamente la stessa ipotesi che TFHE fa già per la chiave di bootstrap e che la GGSW costante
-della libreria fa a sua volta: non ne aggiungiamo una nuova; (d) in Mondo 2 la galleria è cifrata sotto la chiave del **client**, cioè lo scenario è
-"il proprietario della galleria affida calcolo e archiviazione a un server non fidato", che è
-esattamente lo scenario di HERS e affini.
+- **Mondo 1** (galleria in chiaro): 0,195 s a N=128, galleria 0,5 MB. Il server conosce i template
+  degli iscritti. Ma il terminale la galleria non la vede **mai**, quindi un client malicious che
+  volesse estrarre gli embedding degli iscritti — la minaccia primaria secondo F35 — è bloccato per
+  costruzione.
+- **Mondo 2** (galleria cifrata): 0,192 s a N=128, galleria 24 MB. Il server **non conosce nulla**:
+  né il volto, né i template, né la soglia (che entra nella costante cifrata), né l'esito. Ma la
+  galleria è cifrata **sotto la chiave del client**, quindi lo scenario è «il proprietario della
+  galleria affida calcolo e archiviazione a un server non fidato» — ed è più debole del Mondo 1
+  sull'asse del client.
 
-**Correzione importante (revisione critica, F61): il Mondo 2 non è "più privacy", è privacy
-*diversa*.** Il prodotto esterno GGSW⊡GLWE **richiede** che galleria e probe stiano sotto la stessa
-chiave — non è un dettaglio implementativo, è il vincolo dell'operazione. Quindi chiunque possa
-cifrare il probe può **decifrare la galleria**. Ma la minaccia primaria che F35 identifica è proprio
-il **client malicious che vuole estrarre gli embedding degli iscritti**, e il Mondo 1 la blocca per
-costruzione: il terminale la galleria non la vede mai. Il Mondo 2 protegge **dal server** e
-**indebolisce la protezione dal client**. La formulazione giusta è quindi «galleria cifrata *verso
-il server*, in uno scenario a proprietario terzo» — non «massimo di privacy». F53, dove scrivevo
-«client malicious ⇒ selezione sul server: rispettato; *e* la galleria può stare cifrata», presenta
-come rafforzativo ciò che sull'asse del client è un passo indietro: va letto come uno **scambio**,
-non come un miglioramento su tutti i fronti. In più, in Mondo 2 il problema di overflow di F56
-peggiora: con ‖g_i‖² cifrato il server non può più calcolare il bound onesto sulla galleria.
+La formulazione giusta è quindi «galleria cifrata **verso il server**, in uno scenario a
+proprietario terzo», non «massimo di privacy». Va aggiunto che in Mondo 2 la difesa di F56 si
+indebolisce: con ‖g_i‖² cifrato il server non può più calcolare il bound onesto sulla galleria.
+
+Codice: `experiments/14_pipeline_tfhe_rs/src/bin/galleria_cifrata.rs` (il flag `--veloce` riproduce
+le misure fatte col set 1_1 e Δ=2^53, che però non reggono contro un client malicious).
 
 ## 🔴 F52 — L'argmin esatto del prof, reso praticabile: torneo con circuit bootstrapping, 1,3 s a N=128
 F45 aveva chiuso la strada dell'argmin esatto sul server con un numero: la matrice di tutti i
@@ -2699,13 +2691,17 @@ un iscritto genuino con margine 127 unità viene *negato*, perché a quel Δ la 
 sicurezza: sotto il bound onesto si perde accuratezza, sopra si apre l'overflow. Il bound stretto
 mette il sistema **esattamente sul massimo consentito**, che è anche il punto di rumore minimo.
 
-**Una via che sembrava di principio e non lo è (correzione, vedi F58).** Avevo scritto qui che il
-modo pulito di riavere il Δ stretto fosse una **prova a conoscenza zero di range** sul probe
-(tfhe-rs ha il modulo `zk`), da verificare prima del match. È sbagliato, e vale la pena dire
-perché: l'attacco di F56 usa un probe con **tutti i valori già legali** — è tarato, non fuori
-range. Il bound onesto assume *già* che ogni coefficiente stia in [−q, q]; una prova che lo
-certifica non toglie e non aggiunge niente. Servirebbe una prova su una *norma* del probe, e F58
-mostra col conto che nemmeno quella basterebbe.
+**Perché una prova ZK di *range* non servirebbe a niente.** Verrebbe da pensare che il modo pulito
+di riavere il Δ stretto sia far allegare al client una prova a conoscenza zero che il probe sta nel
+dominio dichiarato (tfhe-rs ha il modulo `zk`, che prova esattamente il range del messaggio). Non
+serve: l'attacco qui sopra usa un probe con **tutti i valori già legali** — è tarato, non fuori
+range — e il bound onesto assume *già* che ogni coefficiente stia in [−q, q]. Una prova che
+certifica ciò che il bound assume non toglie e non aggiunge nulla, e F58 mostra col conto che
+nemmeno una prova sulla *norma* sposterebbe il Δ.
+
+Il che non vuol dire che la norma sia irrilevante: **serve, ma contro un altro attacco** (F61), dove
+è l'unica difesa completa. Le due cose vanno tenute distinte — il Δ si difende con il bound, il
+punteggio si difende con la norma.
 
 **Cosa correggere nei finding precedenti.** F37 dice che Δ è scelto «senza guardare nessun probe»:
 è falso, il codice li guarda tutti. F35 dice che con l'esito a soglia l'attacco per gradiente «non

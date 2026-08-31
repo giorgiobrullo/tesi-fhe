@@ -263,5 +263,5 @@ fn main() {
         println!("{:>5} | {:>9.4} s | {:>9.4} s | {:>7.3} s | {:>9} MB | {}/{} corrette",
                  n, t_dot / np, t_pbs / np, (t_dot + t_pbs) / np, byte_gal / (1 << 20), ok, tot);
     }
-    println!("\nConfronto: in Mondo 1 (galleria in chiaro) lo stesso varco fa 0,12 s a N=128 (F46/F47).");
+    println!("\nConfronto: rilanciare varco_leveled sulla stessa scena e nello stesso momento (F51: 0,195 s a N=128).");
 }
