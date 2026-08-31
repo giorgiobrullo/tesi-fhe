@@ -1469,8 +1469,11 @@ compatta, tutta leveled sui bit freschi del PBS: il conteggio Σ b_i e l'indice 
 Parametri: quelli **standard** di tfhe-rs, `PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`
 (132 bit di sicurezza, n=879, N=2048, k=1), presi dalle chiavi dell'API ad alto livello con
 `into_raw_parts`. Il probe è cifrato sotto la chiave grande (n=2048, rumore GLWE) con Δ_s = 2^51,
-scelto dal range reale dei punteggi (|s − T| < 2^12: il server lo conosce dalle norme della
-galleria e dai limiti di quantizzazione, senza guardare nessun probe). Dati: la scena reale di
+scelto dal range **osservato** dei punteggi (|s − T| < 2^12). ⚠️ Questa scelta è comoda ma non
+difendibile: il codice guarda i probe della scena per fissarlo, e F56 mostra che un client malicious
+lo sfrutta per aprire il varco in una query. Il Δ da usare è quello del **bound indipendente dal
+probe** (2q·max‖g_i‖₁ + max‖g_i‖² + |T|), e con quello i tempi qui sotto vanno letti nella
+configurazione sicura di F56 (0,153 s a N=128 invece di 0,177 s). Dati: la scena reale di
 `esporta_dati.py`, ResNet100 su VGGFace2, 4 bit, 128 iscritti, 64 probe genuini e 64 impostori,
 T al quantile 1% dei minimi di 2000 impostori.
 
@@ -1707,7 +1710,7 @@ g_i il più vicino è i, e il bit è lo stesso.
 | bit di esito | foto dell'iscritto | 3.000 | coseno 0,91 |
 | bit di esito | foto dell'iscritto | 10.000 | coseno 0,99 |
 | bit di esito | foto dell'iscritto | 30.000 | coseno 0,999 |
-| bit di esito | volto di un impostore, o vettore casuale | 20.000 | **nessuna accettazione**, l'oracolo dice sempre no |
+| bit di esito | vettore **bipolare** ±q, nessuna foto | **1** | **apre**, 200 volte su 200 (F61) |
 
 L'attacco col bit: si porta il probe sulla frontiera del semispazio per bisezione lungo il
 raggio (12 query), poi si interrogano perturbazioni sparse attorno a quel punto, adattandone
@@ -1718,12 +1721,13 @@ dal varco. Quindi:
 
 1. Il divieto della distanza **è giusto ma non basta**: la distanza rende l'attacco esatto in
    513 query, il bit lo rende approssimato in migliaia. È un fattore 20-60, non un muro.
-2. **Il bit non parte da zero.** Senza un punto già accettato l'oracolo è muto: dai volti di 10
-   impostori e da 10 vettori casuali, 20.000 perturbazioni ciascuno non producono una sola
-   accettazione (gli impostori stanno a 130-750 unità dalla soglia, e una coordinata a 4 bit
-   sposta il punteggio di al più 14). L'attaccante deve già possedere un volto accettato
-   dell'iscritto, cioè una sua foto abbastanza buona: quello che ricava è l'**embedding** (il
-   template, riusabile altrove e collegabile), non l'accesso, che con la foto aveva già.
+2. **Il bit parte da zero, e questo è il punto grave.** Non serve possedere un volto accettato:
+   basta un vettore **bipolare** ±q — tutti i valori legali — per aprire il varco alla prima query
+   (F61 lo misura: 200 volte su 200 a 4 bit; 15,2% a N=128 e 98,2% a N=4096 nella configurazione a
+   3 bit). Perturbare un punto già rifiutato non funziona, ed è per questo che una prima versione
+   di questa misura concludeva il contrario — ma un attaccante non perturba, sceglie la direzione.
+   Quindi quello che l'attaccante ricava non è solo l'**embedding**: è **l'accesso**, e a costo
+   quasi nullo. La difesa è vincolare la **norma** del probe (F61).
 3. La contromisura non è crittografica: **limitare le query** (blocco dopo pochi rifiuti, come
    un PIN), perché l'attacco ne consuma migliaia e ne genera a decine rifiutate. Zuber e Sirdey
    dicono la stessa cosa del loro k-NN ("this latter leakage is inherent to the service
