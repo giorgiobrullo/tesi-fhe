@@ -16,7 +16,12 @@
 //   cargo run --release --bin uscita_impacchettata -- [--scena F] [--pks BASE LIVELLI] [--probe M]
 use rayon::prelude::*;
 use std::fs;
+use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::Instant;
+
+// tempo-thread cumulato di keyswitch e blind rotate, per sapere quanto pesa davvero il KS
+static T_KS: AtomicU64 = AtomicU64::new(0);
+static T_BR: AtomicU64 = AtomicU64::new(0);
 use tfhe::core_crypto::prelude::*;
 use tfhe::shortint::parameters::V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64;
 use tfhe::shortint::server_key::ShortintBootstrappingKey;
@@ -107,9 +112,14 @@ fn main() {
                     lwe_ciphertext_add_assign(&mut x, &term);
                 }
                 let mut ks = LweCiphertext::new(0u64, small, modulus);
+                let tk = Instant::now();
                 keyswitch_lwe_ciphertext(ksk, &x, &mut ks);
+                let dks = tk.elapsed().as_secs_f64();
                 let mut o = LweCiphertext::new(0u64, big, modulus);
+                let tb = Instant::now();
                 programmable_bootstrap_lwe_ciphertext(&ks, &mut o, &acc, fbsk);
+                T_KS.fetch_add((dks * 1e9) as u64, Ordering::Relaxed);
+                T_BR.fetch_add((tb.elapsed().as_secs_f64() * 1e9) as u64, Ordering::Relaxed);
                 lwe_ciphertext_plaintext_add_assign(&mut o, Plaintext(1u64 << (LOG_DO - 1)));
                 o
             }).collect();
@@ -151,6 +161,9 @@ fn main() {
                 tot += 1;
             }
         }
+        let (aks, abr) = (T_KS.swap(0, Ordering::Relaxed) as f64 / 1e6, T_BR.swap(0, Ordering::Relaxed) as f64 / 1e6);
+        println!("      tempo-thread: keyswitch {:.1} ms ({:.1}%), blind rotate {:.1} ms ({:.1}%)",
+                 aks, 100.0 * aks / (aks + abr), abr, 100.0 * abr / (aks + abr));
         let byte_pack = ((n + poly.0 - 1) / poly.0) * glwe_size.0 * poly.0 * 8;
         let byte_blocchi = ((n + 63) / 64) * 7 * big.0 * 8;
         println!("{n:>5} | {:>8.3}s | {:>8.3}s | {:>7} | {:>8.2} MB | {:>18.2} MB ({:>4.0}x) | {sbagliati}/{tot} {dist:?}",

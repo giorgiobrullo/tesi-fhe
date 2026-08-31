@@ -2665,6 +2665,14 @@ scena reale ResNet100/VGGFace2 a 3 bit, `--log-do 60 --blocco 8`):
 | 2048 | 0,042 s | 2,421 s | **2,463 s** | 18,9 ms | 1 / 262.144 |
 | 4096 | 0,081 s | 4,869 s | **4,950 s** | 19,0 ms | 2 / 524.288 |
 
+**Dove va il tempo dentro la colonna «KS + PBS»**, misurato strumentando il ciclo (tempo-thread
+cumulato, N=128): **keyswitch 890 ms (9,9%), blind rotate 8.119 ms (90,1%)**. Serve a chiudere una
+scorciatoia che sembra ovvia: il keyswitch esiste perché il prodotto scalare è calcolato sotto la
+chiave *grande* mentre il PBS vuole quella *piccola*, e verrebbe da cifrare il probe direttamente
+sotto la chiave piccola per saltarlo. Il tetto di quel guadagno è **1,11×** — e si pagherebbe con il
+rumore più alto della chiave piccola amplificato su 512 termini. Non vale: il costo è il blind
+rotate, e il blind rotate non si sconta.
+
 Lineare esatta (il tempo per PBS resta 19 ms a ogni scala: i thread non si saturano), e
 **3 errori su 1.031.072 confronti**, tutti con |s−T| ≤ 4 — cioè dentro la banda di ~10 unità, dove
 il modello di rumore di F50 dice che devono stare. A N=4096 il varco sicuro sta in **5 secondi**,
