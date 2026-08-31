@@ -1,0 +1,4 @@
+N,dim,compila_s,argmin_s,pbs,bit_punteggio,corretto
+4,512,29.5,158.7,44,14,1
+4,128,55.4,237.9,81,12,1
+4,64,18.1,74.8,22,12,0

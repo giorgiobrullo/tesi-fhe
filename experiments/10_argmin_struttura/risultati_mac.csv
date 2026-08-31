@@ -1,0 +1,9 @@
+struttura,N,dataflow,compile_s,run_s,argmin,atteso,ok
+seq,4,0,19.1,47.35,3,3,1
+seq,4,1,ERR,ERR,,,RuntimeError('Dataflow parallelism is not available in macOS')
+tour,4,0,10.4,63.31,3,3,1
+tour,4,1,ERR,ERR,,,RuntimeError('Dataflow parallelism is not available in macOS')
+seq,8,0,9.8,98.29,3,3,1
+seq,8,1,ERR,ERR,,,RuntimeError('Dataflow parallelism is not available in macOS')
+tour,8,0,31.2,102.44,3,3,1
+tour,8,1,ERR,ERR,,,RuntimeError('Dataflow parallelism is not available in macOS')

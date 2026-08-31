@@ -7,7 +7,10 @@ from concrete import fhe
 
 DIM = 64           # dimensione embedding (bit ~8, accuratezza ~87% da F23)
 Q = 2              # quantizzazione +/-2
-CSV = "/home/cursedadmin/fhe-bench/risultati.csv"
+import pathlib as _pl
+# era hardcodato su /home/cursedadmin (home server Linux): ora relativo al repo,
+# cosi' gira anche sul Mac con tools/ldfix nel PATH (vedi tools/README.md)
+CSV = str(_pl.Path(__file__).resolve().parent / "risultati_mac.csv")
 
 def gallery(N):
     rng = np.random.RandomState(0)
@@ -63,7 +66,9 @@ def measure(mk, G, b_sq, N, df):
 def main():
     f = open(CSV, "w")
     f.write("struttura,N,dataflow,compile_s,run_s,argmin,atteso,ok\n"); f.flush()
-    for N in [4, 8, 16, 32]:
+    import os
+    _ns = os.environ.get("BENCH_N")
+    for N in ([int(x) for x in _ns.split(",")] if _ns else [4, 8, 16, 32]):
         G, b_sq = gallery(N)
         a = np.random.RandomState(123).randint(-Q, Q + 1, size=DIM).astype(np.int64)
         atteso = int(np.argmin(b_sq - 2 * (G @ a)))

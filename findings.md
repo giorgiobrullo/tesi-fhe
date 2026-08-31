@@ -3214,3 +3214,105 @@ del 2015**: senza le colonne CPU, thread, bit ed esattezza il confronto non regg
 regge. Resta comunque il design: il varco fa 0,094 s contro 1,27 s, **14×**, e l'argmin esatto va
 offerto come l'opzione che toglie il conteggio dall'uscita, col prezzo scritto accanto — come in
 F45, solo che ora il prezzo è 14× invece di 150×.
+
+---
+
+## 🔴 F64 — Concrete funziona sul Mac: i numeri non riproducibili, rifatti (e il 100× finalmente dimostrato)
+
+F62 chiudeva con una lista di cifre che nessuno script sapeva più produrre. Elencarle non è
+risolverle, quindi le ho affrontate una per una — e la prima cosa che ho trovato è che il muro non
+era dove credevamo.
+
+**Il muro era un percorso sbagliato, non una libreria.** Da F25 in poi il progetto dà per assodato
+che *Concrete non gira su questa macchina*: qualunque compilazione FHE muore con
+`ld: library 'System' not found`, e per questo tutti i benchmark Concrete sono stati fatti
+sull'home server Linux — che è poi il motivo per cui i confronti Concrete/tfhe-rs **non erano a
+parità di macchina** (l'accusa di F62). Guardando l'errore per esteso, Concrete invoca `ld` con
+`-L /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib`, che su questo Mac **non esiste**:
+l'SDK sta dentro `Xcode.app`. Un wrapper di `ld` che sostituisce quel percorso con
+`xcrun --show-sdk-path` risolve tutto — niente sudo, niente modifiche a `/Library`, reversibile
+togliendo una directory dal PATH (`tools/ldfix`, con le istruzioni in `tools/README.md`).
+
+Non è un dettaglio di comodità: **rende confrontabili sulla stessa macchina due anni di misure che
+erano su macchine diverse.**
+
+### Il ~100× di F32, ora dimostrato
+
+Stesso circuito (DIM=64, valori in [−2,2], argmin sequenziale), stessa macchina (M4 Max), tutti
+gli indici verificati contro il chiaro:
+
+| N | Concrete (`bench_struttura.py`) | tfhe-rs (`argmin_tfhe_rs`) | rapporto |
+|---|---|---|---|
+| 4 | 47,35 s | **0,45 s** | **105×** |
+| 8 | 98,29 s | **1,05 s** | **94×** |
+
+Il ~100× che F32 rivendicava **era giusto**, semplicemente non era dimostrato: i 78 s e 180 s
+venivano dal server Linux. Ora il confronto è pulito, e la frase «a parità di macchina» si può
+scrivere davvero (F62 diceva di toglierla: si può invece tenerla, dopo averla resa vera).
+
+### Ma il torneo di F27 non regge senza dataflow
+
+Nella stessa esecuzione ho misurato anche la variante a torneo:
+
+| N | sequenziale | torneo |
+|---|---|---|
+| 4 | **47,35 s** | 63,31 s |
+| 8 | **98,29 s** | 102,44 s |
+
+**Il torneo è più lento**, non 2,2× più veloce come dice F27. La spiegazione è nella colonna che su
+macOS non esiste: `Dataflow parallelism is not available in macOS`. Il vantaggio del torneo è la
+**profondità**, e la profondità si incassa solo se c'è parallelismo che la sfrutti; senza, restano
+solo i suoi confronti in più. Quindi F27 va letto così: **il 2,2× era del dataflow, non della
+struttura**. (Il che, di rimbalzo, rafforza F52: il nostro torneo in tfhe-rs guadagna perché rayon
+esegue davvero i livelli in parallelo.)
+
+### Il breakdown di F33, rifatto
+
+`benchmark/breakdown_query.py` **esiste** — la revisione diceva che 4 righe su 6 non avevano un
+file, e su questo si sbagliava (come si sbagliava su `experiments/08_cnn/costo_modelli.py`, anch'esso
+presente). Rieseguito qui:
+
+| tappa | F33 (home server) | **rifatto (M4 Max)** |
+|---|---|---|
+| embedding ResNet100 | 167 ms (135 ms/img batch) | **84 ms (26 ms/img batch)** |
+| quantizza e cifra | 16 ms | **15 ms** |
+| prodotto scalare, N=8 | 0,07 s (0 PBS) | **0,07 s (0 PBS)** |
+| prodotto scalare, N=64 | 0,06 s | **0,04 s** |
+| decifra | 1 ms | **1 ms** |
+| argmin N=8 | 455 s (108 PBS) | **207 s (57 PBS)** |
+
+Quattro righe su sei combaciano. L'embedding è 2× più veloce (macchina diversa) e **l'argmin è
+diverso in modo sostanziale**: 207 s contro 455 s, ma soprattutto **57 PBS contro 108** — un
+conteggio di PBS diverso significa che il *circuito* è diverso, non solo la macchina, quindi c'è di
+mezzo anche una versione diversa di Concrete. La conclusione qualitativa di F33 non cambia e anzi si
+rafforza: tutto tranne la selezione sta sotto i 0,2 s, e il prodotto scalare è gratis (0 PBS).
+
+### Lo sweep per dimensione, ricostruito da zero
+
+Questo era il buco vero: `compressione_tradeoff.csv` riportava 457 / 542 / 586 s a 512 / 128 / 64
+dimensioni citando tre script (`argmin_verifica.py`, `dim_sweep.py`, `argmin_dim.py`) che **non
+esistono né nel repo né nella storia git** — i numeri c'erano, il codice mai. L'ho riscritto
+(`benchmark/argmin_dimensione.py`, PCA + stesso circuito CHUNKED, 4 bit, N=4):
+
+| dim | compila | **argmin** | PBS | bit del punteggio | esito |
+|---|---|---|---|---|---|
+| 512 | 29,5 s | **158,7 s** | 44 | 14 | OK |
+| 128 | 55,4 s | **237,9 s** | 81 | 12 | OK |
+| 64 | 18,1 s | 74,8 s | 22 | 12 | **ERRATO** |
+
+La conclusione di F23/F31 — «comprimere non è una leva FHE» — **regge, e più forte dei numeri
+perduti**: scendere da 512 a 128 dimensioni non fa risparmiare, fa costare **1,5× di più**
+(158,7 → 237,9 s), perché il circuito che ne esce ha quasi il doppio dei PBS. E a 64 dimensioni il
+risultato cifrato **non coincide col chiaro**: più economico e sbagliato, che non è un punto
+operativo. Il vecchio 457/542/586 raccontava una crescita lenta e monotona; il dato vero è
+**non monotono**, e la lezione resta la stessa — la leva è la **precisione per valore**, non la
+dimensione.
+
+### Stato della lista di F62
+
+Chiusi: esperimento 13 (rieseguito, `results/argmin_tfhe_rs.txt`, indici verificati a ogni N fino a
+64), F33, F23/F31, F32/F42 («a parità di macchina» ora è vero), F19 (lo script c'è). Restano
+**davvero** senza codice solo le righe di `costo_reale.csv` che citano `argmin_512.py` e
+`soglia_scala` (59,5 s a N=4 e i 15,1 / 29,7 s della soglia a N=16/32): quelle vanno lette come
+*registrazioni d'archivio*, non come misure riproducibili, e nella tesi non vanno usate — tanto più
+che il percorso è passato a tfhe-rs, dove gli stessi numeri sono misurati e riproducibili.

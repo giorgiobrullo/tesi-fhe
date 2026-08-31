@@ -1,3 +1,4 @@
+# ARCHIVIO (F64): superato da argmin_dimensione.csv, misurato con benchmark/argmin_dimensione.py -> usare quello
 dim,accuratezza_reale,argmin_s,note
 512,95.47,457,"argmin_verifica.py (14 bit, 95 PBS)"
 256,95.47,,solo accuratezza (dim_sweep.py)
