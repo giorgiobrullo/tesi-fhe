@@ -2023,8 +2023,17 @@ scala (stesso salto a 1000 e a 4000). Due letture importanti per la tesi:
    punti): serve usare più di una foto. La media riduce il rumore dell'embedding su entrambi i
    lati (√k), che è esattamente ciò che serve al ginocchio della curva DIR-FPIR.
 
-2. **È la migliore leva dell'intero lavoro sul lato accuratezza, ed è gratis lato FHE.** +8 punti
-   contro i +1-2 del modello (F44) e gli 0 della compressione (F31); e a differenza di tutto il
+   **Ma il "+8,7" è gonfiato, e va detto (correzione da una revisione critica, F61).** Quel numero
+   confronta (3,3) con **(1,1)**, cioè con una baseline a *una sola foto per iscritto* che non è
+   mai stata la nostra: i ~95-96% di F19/F20 corrispondono a (3,1), che qui misura **95,3%**. Il
+   guadagno vero della fusione *del probe* — l'unica cosa nuova, perché le foto multiple in
+   galleria la tesi le usava già — è **95,3% → 99,2% = +3,9 punti**. Restano i +4,8 dovuti a
+   passare da una a tre foto in registrazione, che però erano già acquisiti. La narrazione regge
+   (il 99% si raggiunge, e serve la raffica), il numero da citare è **+3,9**.
+
+2. **È la migliore leva dell'intero lavoro sul lato accuratezza, ed è gratis lato FHE.** +3,9 punti
+   sulla baseline vera (+8,7 su quella a una foto) contro i +1-2 del modello (F44) e gli 0 della
+   compressione (F31); e a differenza di tutto il
    resto non tocca il server. Il tradeoff è pratico: k_gal costa foto alla registrazione (una
    volta), k_probe costa ~k·6,7 ms di embedding sul client e qualche decimo di secondo di
    raffica al cancello, invisibili accanto agli 0,1 s del match. Il punto di equilibrio
@@ -2243,6 +2252,19 @@ ma è esattamente la stessa ipotesi che TFHE fa già per la chiave di bootstrap 
 della libreria fa a sua volta: non ne aggiungiamo una nuova; (d) in Mondo 2 la galleria è cifrata sotto la chiave del **client**, cioè lo scenario è
 "il proprietario della galleria affida calcolo e archiviazione a un server non fidato", che è
 esattamente lo scenario di HERS e affini.
+
+**Correzione importante (revisione critica, F61): il Mondo 2 non è "più privacy", è privacy
+*diversa*.** Il prodotto esterno GGSW⊡GLWE **richiede** che galleria e probe stiano sotto la stessa
+chiave — non è un dettaglio implementativo, è il vincolo dell'operazione. Quindi chiunque possa
+cifrare il probe può **decifrare la galleria**. Ma la minaccia primaria che F35 identifica è proprio
+il **client malicious che vuole estrarre gli embedding degli iscritti**, e il Mondo 1 la blocca per
+costruzione: il terminale la galleria non la vede mai. Il Mondo 2 protegge **dal server** e
+**indebolisce la protezione dal client**. La formulazione giusta è quindi «galleria cifrata *verso
+il server*, in uno scenario a proprietario terzo» — non «massimo di privacy». F53, dove scrivevo
+«client malicious ⇒ selezione sul server: rispettato; *e* la galleria può stare cifrata», presenta
+come rafforzativo ciò che sull'asse del client è un passo indietro: va letto come uno **scambio**,
+non come un miglioramento su tutti i fronti. In più, in Mondo 2 il problema di overflow di F56
+peggiora: con ‖g_i‖² cifrato il server non può più calcolare il bound onesto sulla galleria.
 
 ## 🔴 F52 — L'argmin esatto del prof, reso praticabile: torneo con circuit bootstrapping, 1,8 s a N=128
 F45 aveva chiuso la strada dell'argmin esatto sul server con un numero: la matrice di tutti i
