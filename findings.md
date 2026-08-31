@@ -3011,10 +3011,10 @@ aperte, poi il posizionamento onesto.
 
 ### Resta aperto (elenco, per non perderlo)
 
-- **F39** — il confronto CKKS non ha **mai testato un impostore**: `ckks_varco.txt` riporta
+- ~~**F39**~~ — **chiuso**: rifatto con campione bilanciato (16 genuini + 16 impostori), 0/16 accettati, 0/4.096 discrepanze. Il difetto era: `ckks_varco.txt` riporta
   «impostori accettati 0/0» in ogni configurazione, perché la run usa i primi 32 probe, tutti
   genuini. Il confronto di *tempo* regge, quello di *accuratezza* no. Da rifare.
-- **F14 / F28** — contraddetti da CSV dello stesso repo: F14 dice «più economico del gradino 07
+- ~~**F14 / F28**~~ — **chiusi**: riga omessa ripristinata in F28 e conclusione corretta; il «~63 ms» di F14 identificato come numero di dim 128 e sostituito con i 151,9 ms veri. Il difetto era: F14 dice «più economico del gradino 07
   (~75-95 ms)» ma `velocita_dimensione.csv` dà **151,9 ms** a dim 512 nella stessa configurazione;
   F28 riporta 5 righe su 6 di `soglia_reale.csv` e quella saltata mostra 128 dim **meglio** di 512.
 - ~~**F23 / F33 / F19 (costi per modello) / esperimento 13**~~ — **chiuso da F64**: due dei
@@ -3022,10 +3022,30 @@ aperte, poi il posizionamento onesto.
   l'esperimento 13 è stato rieseguito, il breakdown di F33 e lo sweep per dimensione sono stati
   rimisurati sul Mac dopo aver sbloccato Concrete. Resta archivio (non riproducibile) solo
   `costo_reale.csv` nelle righe che citano `argmin_512.py` e `soglia_scala`.
-- **«Parametri standard a 128 bit»** — vero per la sicurezza IND-CPA, **non** per la p-fail (che è
-  calcolata per il carico shortint, non per un input che ha attraversato 512 termini), e falso in
-  due punti: `basso_livello.rs` usa un set che sta a ~70 bit, e il WOPBS di F52 è dichiarato
-  «123-128 bit» senza `log2_p_fail`.
+- ~~**«Parametri standard a 128 bit»**~~ — **chiuso enunciandolo una volta per tutte, qui sotto.**
+
+### L'affermazione di sicurezza, detta con precisione (una volta sola, vale per tutto il documento)
+
+Dove nel documento si legge «parametri standard a 128 bit», va inteso così:
+
+1. **La sicurezza IND-CPA c'è, ed è quella dei set standard di tfhe-rs.** Il varco usa
+   `V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64` (e gli altri set `V0_11_*` nei confronti),
+   presi dalle chiavi dell'API alta via `into_raw_parts`, con chiave e distribuzione di rumore
+   invariate. Le operazioni che aggiungiamo — somme e moltiplicazioni per costanti in chiaro — non
+   cambiano né la dimensione della chiave né la distribuzione: la riduzione di sicurezza è quella
+   della libreria, senza asterischi.
+2. **La p-fail 2⁻⁶⁴ NON si trasferisce.** È calcolata per il carico *shortint* (un input con
+   `max_noise_level` fra 1 e 5); da noi l'ingresso al PBS ha attraversato **512 termini** leveled,
+   quindi quella cifra non dice nulla sul nostro circuito. Il sostituto legittimo è la **misura**:
+   F50 dà il modello di rumore in forma chiusa e F56 conta **3 errori su 1.031.072 confronti**,
+   tutti a |s−T| ≤ 4, cioè dentro la banda prevista. Va citata quella, non la p-fail della libreria.
+3. **Due punti dove «128 bit» è proprio falso**, e vanno detti: `experiments/13/src/bin/basso_livello.rs`
+   usa `LweDimension(1024)` con `StandardDev(4·10⁻¹⁴) ≈ 2⁻⁴⁴`, che a quella dimensione vale **~70
+   bit** — è un microbenchmark di costo, non un pezzo del sistema, e come tale va etichettato; e il
+   set `LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS` di F52 è dichiarato dalla libreria stessa
+   «security between **123 and 128** bits» e non espone `log2_p_fail`.
+
+Il sistema che proponiamo — varco leveled, set 2_2, Δ onesto — sta interamente dentro il punto 1.
 - ~~**F32/F42 «a parità di macchina»**~~ — **chiuso da F64**, e non togliendo la frase ma
   rendendola vera: Concrete ora gira sul Mac, e il confronto rifatto sullo stesso hardware dà
   **105× a N=4 e 94× a N=8**.
