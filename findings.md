@@ -2731,6 +2731,26 @@ dati); quello che costa è **non poter usare il set piccolo con questa galleria*
 della galleria all'iscrizione il Δ guadagna due bit, il set piccolo torna utilizzabile **restando
 difendibile**, e il prezzo diventa 0,4-0,9 punti di DIR invece che 2,4× di tempo.
 
+**La difesa va messa anche sull'ISCRIZIONE, non solo sul Δ.** Il bound assume che ogni template
+stia nel dominio dichiarato (|g_j| ≤ q e ‖g‖₁ sotto un massimo). Se l'iscrizione accetta un
+template qualunque, quell'ipotesi salta e con essa il Δ: la falla si apre **dal percorso di
+iscrizione**, che è più facile da raggiungere di quello della query. Nella demo l'handler
+`POST /iscrivi` controllava solo la **lunghezza** del vettore, quindi un template con tutti i
+coefficienti a 3 (‖g‖₁ = 1.536, contro i ~450 di un volto vero) sarebbe stato accettato e avrebbe
+mandato il bound da 3.646 a oltre 9.700, ben oltre il precipizio di wrap a 4.096.
+
+Corretto: la guardia è ora dieci righe in `varco_demo.rs`, e trasforma l'ipotesi in un invariante
+verificato. Testata:
+
+```
+template legale (‖g‖₁ = 400)      -> {"ok":true,"indice":0,"iscritti":1}
+tutti i coefficienti a 3 (1.536)  -> {"errore":"norma L1 del template 1536 oltre il massimo 600"}
+un coefficiente a 7               -> {"errore":"template fuori dal dominio dichiarato"}
+```
+
+È il tipo di controllo che in un sistema vero non è opzionale: il Δ è sicuro **solo se** qualcuno
+verifica le ipotesi da cui è calcolato.
+
 **La configurazione sicura, quindi:** set 2_2 (N=2048), Δ = 2^63 / (2·q·max‖g‖₁ + max‖g‖² + |T|),
 quantizzazione a 3 bit, fusione 2+3 frame. **0,152 s a N=128**, accuratezza identica al calcolo in
 chiaro, e nessun probe costruito ad arte riesce ad aprire. Resta due ordini di grandezza sotto i 10 s dell'incontro: il

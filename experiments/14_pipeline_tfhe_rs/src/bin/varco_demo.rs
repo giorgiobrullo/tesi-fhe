@@ -34,6 +34,11 @@ use tfhe::shortint::server_key::ShortintBootstrappingKey;
 use tfhe::shortint::{ClientKey, ServerKey};
 
 const LOG_DO: u32 = 56; // bit d'esito: 0 oppure 2^56
+// Dominio dichiarato dei template, verificato all'iscrizione: e' cio' che il bound del Delta
+// assume (F56). Q_MAX viene dalla quantizzazione a 3 bit; L1_MAX dalla galleria di calibrazione
+// (demo/calibra.py) con margine.
+const Q_MAX: i64 = 3;
+const L1_MAX: i64 = 600;
 const BLOCCO: usize = 64; // addendi per blocco nell'uscita compatta (F43)
 
 // ---------------------------------------------------------------- utilita' di formato
@@ -215,9 +220,21 @@ fn gestisci(mut s: TcpStream, stato: &Mutex<Galleria>, modulus: CiphertextModulu
             let nome = righe.next().unwrap_or("?").trim().to_string();
             let v: Vec<i64> = righe.next().unwrap_or("").split_whitespace().filter_map(|x| x.parse().ok()).collect();
             let mut g = stato.lock().unwrap();
+            // Il Delta e' calcolato da un bound che assume |v_j| <= Q_MAX e ||v||_1 <= L1_MAX
+            // (F56). Se l'iscrizione accettasse un template qualunque, il bound salterebbe e con
+            // esso la difesa contro il wrap: la falla si aprirebbe dall'ISCRIZIONE invece che
+            // dalla query. Qui il vincolo diventa un invariante verificato, non un'ipotesi.
+            let fuori_range = v.iter().any(|x| x.abs() > Q_MAX);
+            let l1: i64 = v.iter().map(|x| x.abs()).sum();
             if v.len() != g.dim {
                 (400, "application/json", String::new(),
                  format!("{{\"errore\":\"attesi {} valori, ricevuti {}\"}}", g.dim, v.len()).into_bytes())
+            } else if fuori_range {
+                (400, "application/json", String::new(),
+                 format!("{{\"errore\":\"template fuori dal dominio dichiarato: valori ammessi [-{Q_MAX}, {Q_MAX}]\"}}").into_bytes())
+            } else if l1 > L1_MAX {
+                (400, "application/json", String::new(),
+                 format!("{{\"errore\":\"norma L1 del template {l1} oltre il massimo {L1_MAX}: il bound del Delta non reggerebbe\"}}").into_bytes())
             } else {
                 let bsq = v.iter().map(|x| x * x).sum();
                 g.iscritti.push((nome.clone(), v, bsq));

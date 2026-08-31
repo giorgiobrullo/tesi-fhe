@@ -1,0 +1,16 @@
+19:46  up 1 day,  6:01, 12 users, load averages: 109,78 68,94 50,49
+scena: DIM=512 N=1024 probe=128 T=70 | |s-T| max sui probe 366 (9 bit) | bound onesto 1004 | Delta_s = 2^53 -> precipizio di wrap 1024 | thread 16
+parametri: n_grande=2048 n_piccola=879 N_poly=2048 (128 bit, set default, PBS classico, k=1) | bit d'esito 2^60, blocco 8
+
+  N |      dot |    KS+PBS |    totale | PBS/thread | discrepanze (|s-T| delle sbagliate)
+128 |   0.015s |    0.585s |    0.600s |      73.1ms | 0/16384 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 4/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.3 ms
+256 |   0.015s |    0.816s |    0.831s |      51.0ms | 0/32768 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 10/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.5 ms
+512 |   0.021s |    1.225s |    1.246s |      38.3ms | 0/65536 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 20/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.8 ms
+1024 |   0.023s |    2.228s |    2.251s |      34.8ms | 1/131072 [1]
+      esito per probe: genuini riconosciuti (one-hot giusto) 61/64, impostori accettati 1/64; uscita compatta (indice, conteggio) corretta 128/128 in 1.9 ms
+
+banda di sfocatura: 1 discrepanze, |s-T| mediana 1 max 1 (punteggio in unita' intere, 13-14 bit)
+FATTO
