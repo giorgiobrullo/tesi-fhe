@@ -1904,7 +1904,7 @@ dell'accuratezza per tecnica (`accuratezza_tecniche.png`) quattro CNN; la conclu
 gradino 08 non cambia, ma ora la proposta dell'incontro ha il suo numero invece di una
 supposizione.
 
-## 🔴 F45 — La strada del ponte, esplorata: l'argmin esatto senza cifre costa 14 s, il ponte vero 70
+## 🔴 F45 — La strada del ponte, esplorata: l'argmin esatto senza cifre costa 14 s, il ponte molto di più
 Dopo F37 la domanda naturale: si può avere di più del varco, cioè l'**argmin esatto sul server**
 (il design dell'incontro: indice del più vicino, poi soglia solo su di lui, niente conteggio
 rivelato, pareggi risolti)? Due strade, entrambe misurate.
@@ -1922,9 +1922,19 @@ macchina, un thread (`pbs_largo.rs`, LUT identità verificata su tutto il domini
 
 Da 4 a 8 bit il PBS costa **40×** e la chiave 40×. A 13-14 bit non c'è un set validato; il costo
 cresce almeno come N·log N e Concrete, che quei bit li risolve, paga 1,5-4 s a PBS (F33). Il
-conto del ponte a N=128: 4 cifre per punteggio × 128 punteggi = 512 PBS larghi ≈ 512 × ~2 s / 16
-thread ≈ **60-70 s**, più i 4,7 s del torneo radix (F38). Contro 0,18 s: il ponte, se anche lo
-costruissimo, riporterebbe il sistema sopra i 10 s dell'incontro. Chiuso con un numero.
+conto del ponte a N=128, **fatto con un PBS largo per cifra**: 4 cifre × 128 punteggi = 512 PBS
+larghi ≈ 512 × ~2 s / 16 thread ≈ **60-70 s**, più i 4,7 s del torneo radix (F38). Contro 0,18 s:
+il ponte riporterebbe il sistema abbondantemente sopra i 10 s dell'incontro.
+
+❓ **Domanda aperta: il ponte con un PBS largo per cifra è il modo più caro di farlo.** Nessuno lo
+costruisce così: si usa la **bit extraction del WoP-PBS**, che è *b* PBS **piccoli** più un
+keyswitch, uno per bit, e tfhe-rs la espone già
+(`extract_bits_from_lwe_ciphertext_mem_optimized`). Stimando col nostro stesso costo per PBS WOPBS
+(~40 ms di tempo-thread, ricavabile da F52), 8 bit × 40 ms × 128 punteggi / 16 thread ≈ **2,6 s**,
+più i 4,7 s del torneo radix = **~7,3 s**, cioè **un ordine di grandezza meno** dei 60-70 s qui
+sopra. **Non l'ho misurato**, e finché non lo misuro questo finding chiude la strada del ponte su
+una stima pessimistica. La conclusione operativa non cambia — 7,3 s restano ~47× il varco a soglia
+(0,153 s) — ma il margine con cui la strada è chiusa sì, e va detto.
 
 **2. L'argmin esatto senza ponte: la matrice dei confronti.** Il confronto tra due punteggi larghi
 è un segno, come la soglia: a_ij = [s_i ≤ s_j] costa **un PBS da 14 ms**, nessuna cifra. Con tutte
@@ -3472,8 +3482,9 @@ lotto sarebbe pieno al 6% (1.024 slot su 16.384), perché in un varco le query a
 volta** e non c'è niente con cui riempirlo. **Il formato**, che è il blocco vero: BinBoot fa
 bootstrap di **bit**, valuta porte binarie. Il nostro PBS non è una porta binaria — è l'estrazione
 del **segno di un punteggio leveled a 13-14 bit**. Per dargli in pasto i nostri punteggi servirebbe
-il ponte leveled→radix, che F45 ha già misurato: **40× a 8 bit, 60-70 s a N=128 a 14 bit**. Il ponte
-costa più di quello che la tecnica farebbe risparmiare, e il conto non si chiude nemmeno da lontano.
+il ponte leveled→radix, che F45 costa fra **~7,3 s** (con la bit extraction del WoP-PBS, stima) e
+**60-70 s** (con un PBS largo per cifra, misurato). In entrambi i casi il ponte costa più di quello
+che la tecnica farebbe risparmiare, e il conto non si chiude.
 
 Registrato così perché è la domanda che un revisore farebbe per prima, e la risposta non è «non
 l'abbiamo provato» ma «ecco la loro soglia applicata ai nostri numeri, ed ecco perché il formato
