@@ -2315,3 +2315,53 @@ misurato e sta nel budget. La conclusione onesta non è più "l'argmin non si pu
 **si può fare, costa 18× il varco a soglia, e serve solo se si vuole il vincitore anche quando più
 iscritti sono sotto soglia** — cioè quasi mai, sui dati veri. È una scelta di progetto con due
 numeri, non un limite tecnologico.
+
+## 🔴 F53 — Il consuntivo dell'incontro: cosa era stato chiesto, cosa c'è, dove abbiamo deviato
+Verifica sistematica del percorso contro le decisioni prese con il prof. Di Raimondo e Carnemolla
+(F35), perché una tesi si giudica anche su quanto ha fatto ciò che si era detto di fare.
+
+| chiesto all'incontro | stato | dove |
+|---|---|---|
+| embedding sul client, in chiaro; il modello conta poco | fatto; e GhostFaceNet, che era la sua proposta, è misurato: +1 punto su MobileFaceNet, −7/−8 sui profondi | F44 |
+| il fulcro del lavoro è la **selezione** cifrata | è stato il fulcro: F34, F37, F38, F45, F46, F47, F52 | — |
+| galleria realistica: **N = 64 e 128** | fatto, e oltre: fino a 1024 misurato, 4096 in verifica | F43, F51 |
+| **meno di 10 s**, 5 accettabili | **0,094 s a N=128**, 0,73 s a N=1024 — due ordini di grandezza sotto | F46, F51 |
+| «quindi Rust»: usare le funzioni di tfhe-rs, non scrivere crittografia da zero | tutto in tfhe-rs; le uniche righe "nostre" sono la GGSW polinomiale di F51, costruita sulla formula della libreria | F37-F52 |
+| Carnemolla: **confrontare con CKKS** | fatto e misurato, con la lettura del perché | F39 |
+| torneo con i confronti di ogni livello **in parallelo** | fatto in tre versioni: radix, matrice, e torneo vero con circuit bootstrapping | F38, F45, F52 |
+| distanza euclidea al quadrato, niente approssimazioni | invariata | — |
+| microbenchmark con vettori della dimensione e precisione reali | metodo seguito in tutti gli esperimenti | F36, F38, F50 |
+| in tesi: percorso naïve → ottimizzato, solo le tecniche con guadagno osservabile | fatto, con figura e lista tieni/scarta | F42 |
+| **mai restituire la distanza** al client | rispettato ovunque; e ora sappiamo *quanto* rivela il solo bit | F40 |
+| client malicious ⇒ la **selezione sta sul server** | rispettato; e la galleria può stare cifrata, cosa che nemmeno l'incontro chiedeva | F51 |
+
+**Le tre deviazioni, dichiarate.**
+
+1. **Soglia per iscritto al posto di «argmin, poi soglia sul vincitore».** È la deviazione vera.
+   La motivazione data finora — l'argmin esatto costa troppo — era corretta per la matrice
+   quadratica (F45: 14,4 s a N=128) ma **non è più vera in assoluto**: F52 mostra che con il
+   circuit bootstrapping il torneo lo porta a 1,3 s, dentro il budget. Quindi la formulazione
+   onesta cambia: non «l'argmin non si può fare», ma «la soglia costa 18× meno e sui dati reali
+   dà la stessa risposta, perché il caso in cui due iscritti stanno sotto soglia non capita mai
+   (F37, F43); l'argmin esatto resta disponibile a 1,3 s se lo si vuole». È una scelta di
+   progetto documentata da due numeri, ed è la cosa da mettere davanti al prof.
+2. **Il conteggio nell'uscita compatta.** Il varco restituisce quanti iscritti sono sotto soglia,
+   non solo il vincitore. All'incontro era stata accettata la one-hot dell'**argmax** («rivela al
+   massimo quanti elementi»), non un bit per iscritto: il delta non è stato discusso e va portato.
+   Se il conteggio non piace, l'alternativa è esattamente il punto 1 (argmin esatto, 1,3 s).
+3. **Il rate limiting entra nel modello di minaccia.** F40 misura che il solo bit di esito è un
+   oracolo di appartenenza: con una foto dell'iscritto e ~30.000 query si ricostruisce il suo
+   embedding. Non è un difetto del nostro circuito (vale per qualunque varco accetta/rifiuta, e
+   la letteratura lo dice), ma è una contromisura non crittografica che il modello di minaccia
+   dell'incontro non nominava e che va aggiunta.
+
+**Una cosa in più rispetto a quanto chiesto:** all'inizio il Mondo 1 (galleria in chiaro sul
+server) era un vincolo accettato. F51 lo toglie: la galleria si può cifrare **allo stesso costo**,
+con il prodotto esterno GGSW⊡GLWE. Il risultato non era nel programma dell'incontro ed è la
+risposta alla critica più prevedibile di un revisore.
+
+**Verdetto sul percorso.** Le decisioni dell'incontro sono state rispettate o superate, con una
+deviazione sostanziale (punto 1) che oggi è una scelta e non più una necessità, e due punti da
+discutere (2 e 3). Il numero che riassume tutto: si era chiesto **meno di 10 secondi a 128
+iscritti**; il sistema fa **0,094 s** con la galleria in chiaro, **0,094 s** con la galleria
+cifrata, e **1,3 s** se si pretende anche l'argmin esatto invece della soglia.

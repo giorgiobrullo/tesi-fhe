@@ -2,3 +2,5 @@ scena: DIM=512 N=4096 probe=128 T=175  |s-T| max 851 -> 10 bit, Delta_s = 2^53, 
 parametri: n_grande=2048 n_piccola=781 N_poly=512 (128 bit, set 1_1, PBS classico, k=4)
 
   N |      dot |    KS+PBS |    totale | PBS/thread | discrepanze (|s-T| delle sbagliate)
+2048 |   0.045s |    1.543s |    1.588s |      12.1ms | 2/262144 [3, 4]
+      esito per probe: genuini riconosciuti (one-hot giusto) 25/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 2.8 ms
