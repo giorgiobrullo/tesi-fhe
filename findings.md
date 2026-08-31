@@ -2219,7 +2219,10 @@ Caveat onesti: (a) la costruzione della GGSW polinomiale l'abbiamo scritta noi (
 formula della libreria, verificata per decifratura, ma non è codice di libreria); (b) la scelta del
 gadget è un parametro nostro e va dichiarata; (c) la sicurezza non cambia — la GGSW è un insieme di
 cifrature GLWE con la stessa distribuzione di rumore del set standard, quindi valgono gli stessi
-128 bit; (d) in Mondo 2 la galleria è cifrata sotto la chiave del **client**, cioè lo scenario è
+128 bit; va però detto con precisione che **le righe della GGSW cifrano termini che dipendono dalla
+chiave segreta** (−S_i·μ·q/Bʲ), quindi la costruzione poggia sull'ipotesi di *circular security* —
+ma è esattamente la stessa ipotesi che TFHE fa già per la chiave di bootstrap e che la GGSW costante
+della libreria fa a sua volta: non ne aggiungiamo una nuova; (d) in Mondo 2 la galleria è cifrata sotto la chiave del **client**, cioè lo scenario è
 "il proprietario della galleria affida calcolo e archiviazione a un server non fidato", che è
 esattamente lo scenario di HERS e affini.
 
