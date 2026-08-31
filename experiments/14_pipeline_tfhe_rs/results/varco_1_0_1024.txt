@@ -2,3 +2,16 @@ scena: DIM=512 N=1024 probe=128 T=237  |s-T| max 770 -> 10 bit, Delta_s = 2^53, 
 parametri: n_grande=1536 n_piccola=720 N_poly=256 (128 bit, set 1_0, PBS classico, k=6) | bit d'esito 2^60, blocco 8
 
   N |      dot |    KS+PBS |    totale | PBS/thread | discrepanze (|s-T| delle sbagliate)
+1024 |   0.016s |    0.490s |    0.505s |       7.6ms | 0/131072 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 62/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 1.0 ms
+
+nessuna discrepanza cifrato/chiaro.
+scena: DIM=512 N=4096 probe=128 T=175  |s-T| max 851 -> 10 bit, Delta_s = 2^53, thread 16
+parametri: n_grande=1536 n_piccola=720 N_poly=256 (128 bit, set 1_0, PBS classico, k=6) | bit d'esito 2^60, blocco 8
+
+  N |      dot |    KS+PBS |    totale | PBS/thread | discrepanze (|s-T| delle sbagliate)
+4096 |   0.064s |    2.009s |    2.073s |       7.8ms | 0/524288 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 62/64, impostori accettati 1/64; uscita compatta (indice, conteggio) corretta 128/128 in 3.5 ms
+
+nessuna discrepanza cifrato/chiaro.
+EXIT 0

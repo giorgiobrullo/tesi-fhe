@@ -2452,6 +2452,16 @@ Misurato sulla stessa scena, N=128, macchina scarica:
 
 **Il varco più veloce non è quello che credevamo: è il set 1_0, con N=256, a 0,064 s a N=128** —
 un altro **28%** sotto il minimo dichiarato in F46/F47, e con l'uscita compatta corretta 128/128.
+E regge a scala, con zero errori dove il set "buono" ne faceva tre:
+
+| N | 1_1 (il preteso muro) | **1_0 (`--log-do 60 --blocco 8`)** | guadagno | errori 1_0 |
+|---|---|---|---|---|
+| 128 | 0,089 s | **0,064 s** | −28% | 0 / 16.384 |
+| 1024 | 0,72 s | **0,505 s** | −30% | 0 / 131.072 |
+| 4096 | 3,07 s | **2,073 s** | −32% | **0 / 524.288** |
+
+Il costo per bootstrap scende da 12 ms a **7,6 ms**: il set 1_0 ha il polinomio più corto (N=256) e
+la chiave più piccola (n=720), quindi FFT e keyswitch costano meno.
 Il prezzo è la banda: 1_0 ha N=256, e per la regola di F50 (banda ∝ 1/N) la sua banda è il doppio
 di quella di 1_1, ~22 unità invece di ~11 a Δ=2^53 — sempre due ordini di grandezza sotto i divari
 reali (300-3600 unità), come conferma lo 0/16.384 misurato. L'altro prezzo è la banda passante
