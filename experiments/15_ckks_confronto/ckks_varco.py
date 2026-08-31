@@ -239,7 +239,15 @@ def esegui(cfg, dim, Gal, labels, P, T, n_probe_esatto):
                       "err_punteggi": round(float(err_dist), 4), "keygen_s": round(t_key + t_gal, 2)})
     # esattezza: tutti i probe a N=128
     N = N_max; errori = 0; conf = 0; err_d = []; gen_ok = gen_tot = imp_acc = imp_tot = 0
-    for a, lab, s_row in zip(P[:n_probe_esatto], labels[:n_probe_esatto], S_all[:n_probe_esatto]):
+    # ATTENZIONE (correzione F62): la scena mette prima tutti i genuini e poi tutti gli impostori,
+    # quindi P[:n] erano SOLO genuini e la colonna "impostori accettati" leggeva 0/0. Si prende un
+    # campione bilanciato: meta' genuini e meta' impostori.
+    import numpy as _np
+    _lab = _np.asarray(labels)
+    _g = _np.where(_lab >= 0)[0][: n_probe_esatto // 2]
+    _i = _np.where(_lab < 0)[0][: n_probe_esatto - len(_g)]
+    _sel = _np.concatenate([_g, _i])
+    for a, lab, s_row in zip([P[k] for k in _sel], [labels[k] for k in _sel], [S_all[k] for k in _sel]):
         bit = leggi(soglia(distanze(cifra_probe(a), N), N), N) > 0
         att = s_row[:N] <= T
         conf += N; errori += int((bit != att).sum()); err_d += [int(abs(d)) for d in (s_row[:N] - T)[bit != att]]

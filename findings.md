@@ -1589,6 +1589,13 @@ probabilistica con σ ≈ 12). Esattezza sui probe reali: **0 discrepanze su 409
 N=128 per ogni configurazione (32 probe; errore CKKS sui punteggi interi ≤ 0,03, quindi esatti
 dopo l'arrotondamento), esito per probe uguale al chiaro.
 
+**Correzione (F62).** La prima versione di questa misura prendeva `P[:32]`, e la scena mette prima
+tutti i genuini e poi tutti gli impostori: erano **32 probe genuini**, e infatti la colonna
+«impostori accettati» leggeva `0/0` — un vuoto, non uno zero. Rifatta con un campione **bilanciato**
+(16 genuini + 16 impostori), il risultato regge e ora significa qualcosa: **0 discrepanze su 4.096,
+genuini one-hot giusto 14/16, impostori accettati 0/16** in tutte e tre le configurazioni a 32768.
+Il confronto di tempo non cambia; quello di accuratezza ora esiste.
+
 Cosa dicono i numeri, con onestà in entrambe le direzioni:
 
 1. **Il packing mantiene la promessa sul segno.** La soglia costa lo stesso a N=8 e a N=128
