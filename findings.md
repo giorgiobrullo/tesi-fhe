@@ -2475,6 +2475,20 @@ tenere il set 1_1 (N=512) e il probe da 20 KB a 0,089 s, oppure spezzare il prob
 256 coefficienti e sommare i due contributi estratti (28 KB, 0,064 s). Non è un problema di
 principio, è una scelta di impacchettamento; la demo tiene 1_1 perché lì il collo di bottiglia è
 l'embedding sul client (170 ms), non i 25 ms di differenza.
+
+**C'è però una terza via, ed è la migliore: ridurre l'embedding a 256 dimensioni.** F23 lo diceva
+già («512→128 quasi gratis») e qui è misurato nella configurazione finale (ResNet100, 3 bit,
+N=1000 iscritti): a 256 dimensioni la DIR@FPIR=1% è **95,6% contro 95,7%** a frame singolo e
+**99,1% contro 99,2%** con la fusione multi-frame — un decimo di punto. A 128 si perde 1 punto, e
+non serve. Con dim = 256 il probe entra in **un solo** GLWE del set più veloce (N=256): probe da
+**14,3 KB**, varco a **0,064 s**, accuratezza intatta. L'aritmetica regge anche al caso limite
+dim = N: il prodotto negaciclico ha grado massimo 2·dim−2 = 510 < N+dim−1 = 511, quindi il
+coefficiente dim−1 non riceve termini di wraparound — verificato su 200 prove casuali per ognuna
+delle tre combinazioni (256/256, 512/512, 512/2048), sempre esatto.
+
+**La configurazione consigliata che ne esce**: embedding 256-dim, quantizzazione a 3 bit, fusione
+2+3 frame, set di parametri 1_0 con `--log-do 60 --blocco 8`. Probe 14 KB, **0,064 s a N=128** e
+**0,5 s a N=1024** sul server, **99,1%** di DIR@FPIR=1%.
 Il prezzo è la banda: 1_0 ha N=256, e per la regola di F50 (banda ∝ 1/N) la sua banda è il doppio
 di quella di 1_1, ~22 unità invece di ~11 a Δ=2^53 — sempre due ordini di grandezza sotto i divari
 reali (300-3600 unità), come conferma lo 0/16.384 misurato. L'altro prezzo è la banda passante
