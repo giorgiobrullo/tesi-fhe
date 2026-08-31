@@ -2948,8 +2948,16 @@ da un bound indipendente dal probe. Misurato sul cifrato, N=128, galleria con �
 | 1_1 | 0,111 s | 2 | 0, 2 |
 | 2_2 (il set "sicuro" di F56) | 0,192 s | 1 | 2 |
 
-Il set 2_0 fa **0,081 s con un solo errore, a |s−T| = 2**, cioè dentro la banda. Contro i **0,152 s**
-del set 2_2 sulla galleria non limitata: **1,9× più veloce, e sicuro**.
+Il set 2_0 fa **0,081 s con un solo errore, a |s−T| = 2**, cioè dentro la banda, contro i **0,152 s**
+del set 2_2 sulla galleria non limitata.
+
+⚠️ **Sul fattore di velocità serve cautela**: i due numeri vengono da run a carico di macchina
+diverso, e la dispersione documentata è del 3-5% — ma qui il divario apparente è 1,9×, e una
+rimisura del set 2_0 a N=512 su macchina carica ha dato 24,6 ms per PBS contro i 9,9 ms della prima
+rilevazione, cioè un fattore 2,5 di solo carico. **Il guadagno di velocità va rimisurato a macchina
+scarica prima di essere citato.** Quello che invece NON dipende dal carico, ed è il risultato solido
+di questo finding, è: il bound scende a 1.008 → Δ = 2^53 (due bit), la DIR costa 0,4-0,9 punti, e
+sul cifrato gli errori restano dentro la banda.
 
 **Il che riscrive il prezzo della sicurezza.** F56 conclude che difendersi da un client malicious
 costa 2,4× perché obbliga al set grande. Non è così: costa **0,4-0,9 punti di DIR**, e in cambio si

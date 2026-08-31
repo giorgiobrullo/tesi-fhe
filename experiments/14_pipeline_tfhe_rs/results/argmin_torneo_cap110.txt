@@ -1,0 +1,15 @@
+Delta del punteggio: bound onesto 990 -> 2^53 (precipizio di wrap 1024)
+Argmin ESATTO a torneo con circuit bootstrapping — N_poly=2048 k=1 n=769
+chiavi generate in 0.7s (bsk + ksk + pfpksk del circuit bootstrap)
+
+circuit bootstrap: gadget 2^5 x 3 livelli (4 PBS per confronto)
+
+    N |       dot |    torneo |    totale |  cfr | indice | divario |  sotto | rum. | costo | F45
+      |           |           |           |      | esatto |    >20 | soglia | sul s | errore | (N^2)
+    8 |   0.001 s |   0.259 s |   0.259 s |    7 | 29/32  | 17/17  |  3/3   |  1.1 |   5.3 | 0,09 s
+   16 |   0.001 s |   0.355 s |   0.357 s |   15 | 30/32  | 17/17  |  5/5   |  1.1 |   6.0 | 0,29 s
+   32 |   0.002 s |   0.523 s |   0.525 s |   31 | 29/32  | 16/16  | 12/12  |  1.6 |   7.3 | 0,97 s
+   64 |   0.004 s |   0.841 s |   0.845 s |   63 | 27/32  | 18/18  | 16/16  |  1.4 |   4.6 | 3,66 s
+  128 |   0.007 s |   1.418 s |   1.425 s |  127 | 31/32  | 31/31  | 30/30  |  1.1 |   9.0 | 14,4 s
+
+(l'ultima colonna e' l'argmin esatto a matrice di F45, quadratico, sulla stessa scena)
