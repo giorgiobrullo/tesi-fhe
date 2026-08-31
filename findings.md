@@ -401,6 +401,9 @@ MobileFaceNet (InsightFace `buffalo_s`, `w600k_mbf`, linea ArcFace, embedding
 figura dei pre-CNN (`benchmark/results/tecniche_1n.png`, gradino
 `experiments/08_cnn/`).
 
+Protocollo: 100 identità, **20 foto ciascuna**, metà identità ignote, metà foto in galleria, seed 0
+(`benchmark/identificazione_1n.py`).
+
 | | | Rank-1 | DIR@FPIR=1% |
 |---|---|---|---|
 | DigiFace (sintetico) | migliore pre-CNN (HOG) | 42,2% | 10,4% |
@@ -430,7 +433,9 @@ funziona davvero è quindi alla portata: prossimo passo, il costo FHE a dim 512.
 
 ## 🔴 F14 — Lato FHE della CNN: la quantizzazione non costa, il match è interattivo
 Chiusura del cerchio end-to-end (`experiments/08_cnn/costo.py`). Sugli embedding
-MobileFaceNet (DigiFace, dim 512):
+MobileFaceNet (DigiFace, dim 512; 100 identità, **12 foto ciascuna**, metà in galleria — con 20
+foto, come in F13, la stessa misura dà 94,2%: il numero di foto in galleria è il motivo per cui i
+due finding riportano cifre diverse per lo stesso modello e lo stesso dataset):
 
 | | risultato |
 |---|---|
