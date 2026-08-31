@@ -2013,8 +2013,7 @@ sull'argmin *sequenziale*, il caso peggiore per una GPU; il varco è N PBS **ind
 lotto**, il carico per cui il backend CUDA di tfhe-rs è progettato. Serve una NVIDIA (via Colab,
 come in F25): esperimento su hardware esterno, non fatto in questa sessione.
 
-## 🔴 F47 — Il fondo della spremitura locale: perché 1_1 è il muro, e i 3 bit come bonus di robustezza
-*(CORRETTO IN F55: il muro non esiste, la spiegazione della box size è sbagliata; i 3 bit restano validi)*
+## 🔴 F47 — I 3 bit come bonus di robustezza, e perché i set piccoli sbagliano
 Dopo F46 l'ipotesi: i set più piccoli (2_0 N=512, 1_0 N=256) crollano perché Δ è limitato dal
 range del punteggio; quantizzando l'embedding a **3 bit** invece di 4 il range si dimezza (da |s−T|
 < 2^13 a < 2^10), Δ sale da 2^51 a 2^53, e forse i set veloci diventano esatti. Provato
@@ -2024,18 +2023,17 @@ range del punteggio; quantizzando l'embedding a **3 bit** invece di 4 il range s
 - **1_1** (N=512): banda da σ≈50 a **σ≈4** (Δ 4× più grande), N=1024 in 0,83 s, **0 discrepanze**;
 - **2_0** e **1_0**: ancora rotti, banda mediana ~344 unità, un terzo dei confronti sbagliato.
 
-La banda di 2_0/1_0 è scesa con Δ (1878→344, ~5×), quindi il modulus switch non è il problema: se
-lo fosse, a Δ=2^53 sarebbero esatti come 1_1. La differenza vera è la **box size dell'accumulatore
-del PBS**: la LUT vive in un polinomio di grado N diviso in `message_modulus` scatole, e la scatola
-dà la ridondanza che assorbe il rumore del modulus switch. Box = N / message_modulus:
-- 1_1: N=512, message 2 (1 bit) → **box 256** (funziona);
-- 1_0: N=256, message 2 → box 128 (crolla);
-- 2_0: N=512, message 4 (2 bit) → box 128 (crolla), anche se ha lo stesso N di 1_1.
+**Perché 2_0 e 1_0 sbagliano** — la spiegazione, calcolata dai parametri del crate, è in **F55**:
+non è la banda pre-PBS (che per 2_0 è *uguale* a quella di 1_1) ma il **rumore in uscita** dal blind
+rotate, σ = 2^55 per entrambi, contro l'ampiezza 2^55 con cui `LOG_DO = 56` codificava il bit: il
+bit usciva annegato nel proprio rumore con 1σ di margine. È una scelta di **codifica dell'uscita**,
+non un limite dei set: alzando `LOG_DO` quei set diventano esatti (F55) — salvo poi non poter essere
+usati lo stesso, per il Δ onesto di F56.
 
-Cioè: per il PBS di **segno** serve un messaggio a 1 bit (2_0 con 2 bit dimezza la scatola a parità
-di N) e il polinomio più grande possibile; tra i set validati a 128 bit, **1_1 (N=512, box 256) è il
-più piccolo che tiene**, e sotto non si scende senza cambiare il modo in cui il rumore è gestito.
-È il fondo della spremitura *locale* del singolo PBS, con il meccanismo, non solo il numero.
+Attenzione a un'inferenza che sembra naturale e non lo è: la banda mediana degli errori scende con Δ
+(1878 → 344, ~5×) **non** perché la banda si stringa, ma perché gli errori sono **uniformi** — con
+errori indipendenti da |s−T| la mediana degli sbagliati coincide con la mediana su tutte le coppie,
+e 1878/344 = 5,5 è semplicemente il rapporto fra le scale dei punteggi a 4 e a 3 bit.
 
 Cosa resta dei 3 bit: non velocità (il conteggio dei PBS e la loro dimensione non cambiano: 0,72 s
 a N=1024 come i 4 bit), ma **robustezza gratis**. La banda si dimezza (σ da ~22 a ~11 unità a Δ=2^53, F50), cioè il varco
