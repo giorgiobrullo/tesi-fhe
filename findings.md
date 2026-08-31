@@ -1920,6 +1920,7 @@ Per la tesi il percorso guadagna un punto: "argmin esatto sul server a N=64 in 3
 scrivere un bootstrap a mano".
 
 ## 🔴 F46 — Spremere i parametri: il PBS di segno vuole 1 bit, non 4 → varco 2× più veloce
+*(la lettura del "muro" data qui è sbagliata: vedi la correzione in F55 — il minimo vero è 0,064 s)*
 Il varco (F37) usava il set `MESSAGE_2_CARRY_2` (LUT a 4 bit, N=2048), ereditato dall'API ad alto
 livello. Ma la soglia calcola un **segno**: gli basta una LUT a 1 bit. I set "piccoli" di tfhe-rs
 (sempre validati a 128 bit, p-fail 2⁻⁶⁴) hanno polinomi più corti e un PBS più economico. Aggiunti
@@ -1958,6 +1959,7 @@ lotto**, il carico per cui il backend CUDA di tfhe-rs è progettato. Serve una N
 come in F25): esperimento su hardware esterno, non fatto in questa sessione.
 
 ## 🔴 F47 — Il fondo della spremitura locale: perché 1_1 è il muro, e i 3 bit come bonus di robustezza
+*(CORRETTO IN F55: il muro non esiste, la spiegazione della box size è sbagliata; i 3 bit restano validi)*
 Dopo F46 l'ipotesi: i set più piccoli (2_0 N=512, 1_0 N=256) crollano perché Δ è limitato dal
 range del punteggio; quantizzando l'embedding a **3 bit** invece di 4 il range si dimezza (da |s−T|
 < 2^13 a < 2^10), Δ sale da 2^51 a 2^53, e forse i set veloci diventano esatti. Provato
@@ -2394,3 +2396,62 @@ coorte trova poco da correggere perché il lavoro l'ha già fatto la rete.
 Resta comunque adottabile: costa zero e non peggiora mai la T-norm. Confronto con le altre leve di
 accuratezza provate: fusione multi-frame **+8 punti** (F48), modello più grande +1-2 (F44, F20),
 compressione 0 o negativa (F31), soglia per template +0,3 (qui).
+
+## 🔴 F55 — La revisione smonta il "muro" di F46/F47: non era il set di parametri, era il mio margine
+Una revisione critica sistematica di `findings.md` (fatta da un revisore indipendente sul repo, con
+il mandato esplicito di cercare un errore vero) ha trovato una falla nel finding che presentavamo
+come "il meccanismo, non solo il numero". L'argomento è aritmetico e non richiede nuove misure:
+
+F47 diceva che i set 2_0 e 1_0 sbagliano per la **box size** del PBS, e lo deduceva dal fatto che
+la "banda" dei loro errori scende da 1878 a 344 unità passando da Δ=2^51 a Δ=2^53. Ma
+1878/344 = 5,459 e il rapporto fra i **range dei punteggi** delle due scene è 3562/653 = 5,455: quel
+numero non misurava una banda, misurava metà del range della scena. Cioè **gli errori erano uniformi
+in |s−T|**, non concentrati attorno alla soglia — la firma di un guasto per-PBS indipendente dal
+dato, non di un confine sfocato. Conferma decisiva, sempre dai dati già in archivio: il **tasso**
+d'errore non scende quadruplicando Δ (2_0: 20,7% → 19,0%; 1_0: 17,5% → 17,2%) ed è costante in N.
+Se fosse stata una banda in ingresso, doveva scendere ~4×.
+
+E la spiegazione della box size era sbagliata a monte: il nostro accumulatore è un **polinomio
+costante** (`varco_leveled.rs`), quindi il PBS negaciclico guarda solo in quale metà del toro cade
+il valore — `message_modulus` non entra da nessuna parte e di scatole non ce ne sono. La regola
+"box = N/message_modulus ≥ 256" classificava correttamente i cinque set osservati, ma per
+coincidenza.
+
+**La causa vera, e il fatto che era colpa mia.** Il bit d'esito lo codificavo a 2^56 (`LOG_DO = 56`)
+per lasciare 8 bit di franco alle somme dell'uscita compatta a blocchi di 64: margine di
+decodifica 2^55. I set 2_0 e 1_0 hanno un rumore GLWE 1,95·10⁻¹¹ contro 2,85·10⁻¹⁵ e una
+decomposizione del PBS più povera (base 2^17 contro 2^23, un livello): il rumore **in uscita** dal
+loro PBS è dell'ordine di 2^54, cioè ~1,5σ dal margine — e la *decodifica del bit* falla nel ~20%
+dei casi, qualunque sia l'ingresso. Non era il segno a sbagliare: era la lettura del risultato.
+
+**Verificato, ed è un guadagno.** Basta alzare il margine: `--log-do 60 --blocco 8` (blocchi da 8
+invece che da 64 → servono 4 bit di franco invece di 8 → il bit può stare a 2^60, margine 2^59).
+Misurato sulla stessa scena, N=128, macchina scarica:
+
+| set | prima (`log-do 56`, blocco 64) | **ora (`log-do 60`, blocco 8)** | PBS/thread | errori |
+|---|---|---|---|---|
+| 1_1 (il preteso "muro") | 0,100 s, 0 errori | 0,089 s | 10,8 ms | 0/16.384 |
+| 2_1 | 0,134 s | 0,119 s | 14,5 ms | 0/16.384 |
+| 2_0 | 0,083 s, **3.118 errori** | **0,072 s** | 8,7 ms | 1/16.384 (a d=22) |
+| **1_0** (N=256) | 0,072 s, **2.824 errori** | **0,064 s** | **7,8 ms** | **0/16.384** |
+
+**Il varco più veloce non è quello che credevamo: è il set 1_0, con N=256, a 0,064 s a N=128** —
+un altro **28%** sotto il minimo dichiarato in F46/F47, e con l'uscita compatta corretta 128/128.
+Il prezzo è la banda: 1_0 ha N=256, e per la regola di F50 (banda ∝ 1/N) la sua banda è il doppio
+di quella di 1_1, ~22 unità invece di ~11 a Δ=2^53 — sempre due ordini di grandezza sotto i divari
+reali (300-3600 unità), come conferma lo 0/16.384 misurato. L'altro prezzo è la banda passante
+dell'esito: blocchi da 8 invece che da 64 significa ~4,5× più cifrati in uscita (1 MB invece di
+229 KB a N=128), che resta molto meno degli N bit separati.
+
+**Cosa resta valido di F46/F47 e cosa no.** Resta vero il fatto misurato (con `LOG_DO=56` quei set
+sbagliano) e resta valido tutto F50, che misura il rumore **in ingresso** al PBS e da cui viene la
+banda: sono due fenomeni distinti che convivono — la banda in ingresso sfoca la decisione *vicino
+alla soglia*, il rumore in uscita rompe la *lettura del bit* ovunque. Cade invece la spiegazione
+(la box size) e cade la conclusione ("1_1 è il più piccolo set che tiene", "sotto non si scende").
+Il minimo vero, su questo hardware e con questa libreria, è **0,064 s a N=128**.
+
+**Nota di metodo, che vale quanto il numero.** Il finding sbagliato era proprio quello che
+raccontava di aver trovato "il meccanismo". È il rischio tipico di una spiegazione che *classifica
+correttamente i dati osservati* (box ≥ 256 separava i set buoni dai cattivi) senza essere la causa:
+cinque punti, due classi, tante regole che li separano. La revisione ha smontato l'inferenza con
+un rapporto fra numeri già presenti nei file, senza rifare un solo esperimento.

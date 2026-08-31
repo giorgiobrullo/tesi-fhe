@@ -4,3 +4,8 @@ parametri: n_grande=2048 n_piccola=781 N_poly=512 (128 bit, set 1_1, PBS classic
   N |      dot |    KS+PBS |    totale | PBS/thread | discrepanze (|s-T| delle sbagliate)
 2048 |   0.045s |    1.543s |    1.588s |      12.1ms | 2/262144 [3, 4]
       esito per probe: genuini riconosciuti (one-hot giusto) 25/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 2.8 ms
+4096 |   0.091s |    2.974s |    3.065s |      11.6ms | 3/524288 [4, 4, 13]
+      esito per probe: genuini riconosciuti (one-hot giusto) 60/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 5.5 ms
+
+banda di sfocatura: 5 discrepanze, |s-T| mediana 4 max 13 (punteggio in unita' intere, 13-14 bit)
+EXIT 0

@@ -111,14 +111,20 @@ fn main() {
     let delta: u64 = 1u64 << log_delta;
     println!("scena: DIM={} N={} probe={} T={}  |s-T| max {} -> {} bit, Delta_s = 2^{}, thread {}",
              scena.dim, scena.g.len(), scena.probe.len(), scena.t, max_abs, w, log_delta, threads);
-    println!("parametri: n_grande={} n_piccola={} N_poly={} (128 bit, {variante})\n",
+    // --log-do L  e  --blocco B: il bit d'esito vale 2^L e l'uscita compatta somma B bit per blocco.
+    // Servono log2(B)+1 bit di franco sopra L, quindi L <= 64 - log2(B) - 1. Piu' L e' alto, piu'
+    // margine ha la DECODIFICA del bit contro il rumore in uscita del PBS (vedi la revisione di F47).
+    let blocco: usize = args.iter().position(|x| x == "--blocco").map(|i| args[i + 1].parse().unwrap()).unwrap_or(64);
+    let log_do: u32 = args.iter().position(|x| x == "--log-do").map(|i| args[i + 1].parse().unwrap()).unwrap_or(56);
+    assert!(log_do as usize + (usize::BITS - (blocco - 1).leading_zeros()) as usize + 1 <= 64, "log-do troppo alto per il blocco");
+    let LOG_DO: u32 = log_do;
+    println!("parametri: n_grande={} n_piccola={} N_poly={} (128 bit, {variante}) | bit d'esito 2^{log_do}, blocco {blocco}\n",
              big_size.to_lwe_dimension().0, small_size.to_lwe_dimension().0, poly.0);
 
     // accumulatore costante -2^55: dopo il PBS vale -2^55 se x in [0, 2^63) (s > T), +2^55 se
     // x in [2^63, 2^64) (s <= T); sommando 2^55 si ottiene 0 oppure 2^56 = il bit "match", con
     // 8 bit di spazio sopra per le somme dell'uscita compatta (indice = sum i*b_i, conteggio =
     // sum b_i, entrambe leveled sui bit freschi del PBS).
-    const LOG_DO: u32 = 56;
     let c: u64 = (1u64 << (LOG_DO - 1)).wrapping_neg();
     let acc = allocate_and_trivially_encrypt_new_glwe_ciphertext(
         glwe_size, &PlaintextList::new(c, PlaintextCount(poly.0)), modulus);
@@ -192,10 +198,10 @@ fn main() {
             // 0/1 e al piu' 64 addendi: il rumore del PBS (~2^48) resta sotto 2^51 contro un margine di
             // 2^55 (con somme su tutti gli N, a N=1024 arrivava a ~2^53 e sbagliava 8 probe su 128).
             // Il client somma i blocchi in chiaro: conteggio totale, e indice = blocco*64 + indice locale.
-            const BLOCCO: usize = 64;
+            let blocco_i = blocco;
             let t0 = Instant::now();
-            let nbit = (usize::BITS - (BLOCCO - 1).leading_zeros()) as usize;
-            let nblocchi = (n + BLOCCO - 1) / BLOCCO;
+            let nbit = (usize::BITS - (blocco_i - 1).leading_zeros()) as usize;
+            let nblocchi = (n + blocco_i - 1) / blocco_i;
             let mut cnt_ct: Vec<LweCiphertextOwned<u64>> = Vec::with_capacity(nblocchi);
             let mut idx_ct: Vec<Vec<LweCiphertextOwned<u64>>> = Vec::with_capacity(nblocchi);
             for b in 0..nblocchi {
@@ -203,9 +209,9 @@ fn main() {
                 let mut idx: Vec<LweCiphertextOwned<u64>> = (0..nbit)
                     .map(|_| allocate_and_trivially_encrypt_new_lwe_ciphertext(big_size, Plaintext(0u64), modulus))
                     .collect();
-                for i in b * BLOCCO..((b + 1) * BLOCCO).min(n) {
+                for i in b * blocco_i..((b + 1) * blocco_i).min(n) {
                     lwe_ciphertext_add_assign(&mut cnt, &bits[i]);
-                    let loc = i - b * BLOCCO;
+                    let loc = i - b * blocco_i;
                     for k in 0..nbit {
                         if (loc >> k) & 1 == 1 {
                             lwe_ciphertext_add_assign(&mut idx[k], &bits[i]);
@@ -223,7 +229,7 @@ fn main() {
                 let c = dec8(&cnt_ct[b]) as usize;
                 cnt_dec += c;
                 if c == 1 {
-                    idx_dec = b * BLOCCO + (0..nbit).map(|k| (dec8(&idx_ct[b][k]) as usize) << k).sum::<usize>();
+                    idx_dec = b * blocco_i + (0..nbit).map(|k| (dec8(&idx_ct[b][k]) as usize) << k).sum::<usize>();
                 }
             }
 
