@@ -1330,7 +1330,7 @@ su M4 Max, codice in `benchmark/soglia_reale.py` e negli script di breakdown.
 | embedding ResNet100 | client | 84 ms (26 ms/img in batch) |
 | quantizza e cifra | client | 16 ms |
 | prodotto scalare (N distanze) | server | 0,07 s (0 PBS) |
-| selezione con argmin | server | 455 s (108 PBS) |
+| selezione con argmin | server | **207 s (57 PBS)** |
 | selezione con soglia | server | 12,5 s (8 PBS) |
 | decifra l'esito | client | 1 ms |
 
@@ -1355,7 +1355,7 @@ Per la tesi tutto il problema di un riconoscimento 1:N privato e veloce si riduc
 operazione, la selezione cifrata (argmin o soglia). Il riconoscimento (l'embedding) e il
 trasporto (cifra e decifra) non sono il collo di bottiglia, e con la galleria in chiaro nemmeno
 il prodotto scalare lo è. Il varco se la cava perché gli basta la soglia (8 confronti, 12,5 s)
-invece dell'argmin completo (108 confronti, 455 s); e l'unica leva per rendere veloce la
+invece dell'argmin completo (57 PBS, 207 s); e l'unica leva per rendere veloce la
 selezione è il bootstrap scritto a basso livello (F32), o cambiare schema verso CKKS (F26).
 
 ## 🔴 F34 — "Si può avere entrambi": il prodotto scalare leveled a basso livello, e l'argmin esatto
@@ -1521,7 +1521,7 @@ PBS costa 13,5-13,9 ms e la query a N=128 fa **1,76 s** (0,89 s a N=64), contro 
 thread: il parallelismo dei confronti indipendenti vale ~10× (12 P-core e 4 E-core).
 
 Il confronto con quello che avevamo. La soglia in Concrete (F28, F33) costava 12,5 s a N=8 e
-92 s a N=64: qui 0,017 e 0,094 s, **~700-1000×**. L'argmin Concrete a N=8, 455 s: **27.000×**.
+92 s a N=64: qui 0,017 e 0,094 s (set 1_1, Δ tarato sui dati), **~700-1000×**. L'argmin Concrete a N=8, 207 s: **12.000×**.
 Il torneo radix in tfhe-rs (F38), che è il meglio che si ottiene *con* la rappresentazione
 radix, 4,7 s a N=128: **27×**, ed è già dentro il target del prof. Il target dell'incontro (N =
 64 e 128 sotto i 10 s, 5 accettabili) è superato di due ordini di grandezza, con parametri
@@ -1630,7 +1630,7 @@ Tutti gli esiti verificati contro il chiaro (tabella completa e run single-threa
 Il "percorso" per la figura della tesi, a N=8 dove abbiamo tutti i punti: Concrete sequenziale
 98 s → Concrete torneo 102 s (il torneo non guadagna senza dataflow) → tfhe-rs sequenziale 1,1 s → tfhe-rs torneo 0,57 s (16 bit) /
 0,36 s (8 bit) → varco leveled 0,017 s. A N=64: soglia Concrete 92 s → torneo radix 2,3 s →
-varco leveled 0,094 s. A N=128: 4,7 s → 0,177 s. Cinque ordini di grandezza dal punto di
+varco leveled 0,094 s (set 1_1; nella configurazione sicura di F56, 0,153 s a N=128). A N=128: 4,7 s → 0,177 s. Cinque ordini di grandezza dal punto di
 partenza, ognuno con una ragione misurata.
 
 ## 🔴 F39 — Lo stesso varco in CKKS: quanto vale lo schema (il confronto chiesto da Carnemolla)
@@ -2056,7 +2056,7 @@ range del punteggio; quantizzando l'embedding a **3 bit** invece di 4 il range s
 < 2^13 a < 2^10), Δ sale da 2^51 a 2^53, e forse i set veloci diventano esatti. Provato
 (`esporta_dati.py 128 3`; accuratezza in chiaro identica: 90,6% a N=128, 96,9% a N=1024, come F31).
 
-**L'ipotesi era sbagliata, e lo sbaglio spiega il muro.** A 3 bit e Δ=2^53:
+**L'ipotesi non si verifica, e il motivo è istruttivo.** A 3 bit e Δ=2^53:
 - **1_1** (N=512): banda da σ≈50 a **σ≈4** (Δ 4× più grande), N=1024 in 0,83 s, **0 discrepanze**;
 - **2_0** e **1_0**: ancora rotti, banda mediana ~344 unità, un terzo dei confronti sbagliato.
 
