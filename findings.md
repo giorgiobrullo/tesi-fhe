@@ -2184,15 +2184,22 @@ chiaro, gadget 2^10×3):
 | 8 | 0,0002 s | 0,0085 s | **0,009 s** | 2 MB | 128/128 |
 | 32 | 0,0015 s | 0,0261 s | **0,028 s** | 9 MB | 512/512 |
 | 128 | 0,0011 s | 0,0928 s | **0,094 s** | 37 MB | **2048/2048** |
+| 512 | 0,0040 s | 0,3723 s | **0,376 s** | 150 MB | **8192/8192** |
+| 1024 | 0,0058 s | 0,7284 s | **0,734 s** | 300 MB | **16384/16384** |
 
 **Il risultato: cifrare la galleria non costa nulla — costa meno.** A N=128 il varco con galleria
 cifrata fa 0,094 s contro 0,10-0,12 s con la galleria in chiaro (F46/F47), perché il prodotto
 esterno usa la FFT mentre la nostra moltiplicazione per polinomio in chiaro era una Karatsuba
-O(N^1,58): il prodotto scalare passa da 11 ms a 1,1 ms, **10× più veloce**. Il PBS di segno, che è
+O(N^1,58): il prodotto scalare passa da 11 ms a 1,1 ms, **10× più veloce**. Per onestà va detto che
+anche il Mondo 1 potrebbe usare la FFT (precalcolando la trasformata del polinomio in chiaro) e
+tornerebbe il più veloce dei due, di circa 3×: il confronto 0,094 contro 0,10 s è fra le nostre due
+implementazioni, mentre l'affermazione strutturale — e quella che conta — è che **entrambi i prodotti
+scalari sono invisibili accanto ai 12 ms del PBS di segno**. Il PBS di segno, che è
 il vero costo, non cambia di una virgola. E le decisioni sono **tutte** identiche al chiaro.
 
-Il prezzo vero è la **memoria**: 200-300 KB per iscritto contro 4 KB in chiaro, cioè 25-37 MB per
-128 iscritti e ~200-300 MB per 1024. È il costo di tenere una galleria cifrata, e a queste scale è
+A **N=1024** il varco con galleria cifrata fa **0,734 s** contro gli 0,72 s della galleria in chiaro:
+identico, con 16.384 decisioni su 16.384 corrette. Il prezzo vero è la **memoria**: 200-300 KB per
+iscritto contro 4 KB in chiaro, cioè 37 MB per 128 iscritti e 300 MB per 1024. È il costo di tenere una galleria cifrata, e a queste scale è
 pagabile (con 2^12×2, 200 KB, la banda resta 0,10 unità: è la scelta pratica).
 
 **Cosa cambia per la tesi.** Il modello di minaccia non è più un vincolo subìto ma una scelta con
