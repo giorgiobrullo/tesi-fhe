@@ -138,7 +138,12 @@ fn main() {
         &big_sk, &glwe_sk, DecompositionBaseLog(15), DecompositionLevelCount(2), noise_glwe, modulus, &mut gen);
     println!("chiavi generate in {:.1}s (bsk + ksk + pfpksk del circuit bootstrap)\n", t0.elapsed().as_secs_f64());
 
-    let (cbs_bl, cbs_lv) = (DecompositionBaseLog(5), DecompositionLevelCount(3));
+    // --cbs BASE LIVELLI: la decomposizione della GGSW prodotta dal circuit bootstrap. Ogni livello
+    // costa un PBS, quindi meno livelli = torneo piu' veloce, ma GGSW piu' rumorosa nel CMUX.
+    let cbs_b = a.iter().position(|x| x == "--cbs").map(|i| a[i + 1].parse().unwrap()).unwrap_or(5usize);
+    let cbs_l = a.iter().position(|x| x == "--cbs").map(|i| a[i + 2].parse().unwrap()).unwrap_or(3usize);
+    let (cbs_bl, cbs_lv) = (DecompositionBaseLog(cbs_b), DecompositionLevelCount(cbs_l));
+    println!("circuit bootstrap: gadget 2^{cbs_b} x {cbs_l} livelli ({} PBS per confronto)\n", cbs_l + 1);
     // accumulatore costante -2^62: il PBS lo restituisce con segno opposto a seconda della meta' del
     // toro in cui cade la fase, quindi +2^62 dopo la somma di 2^62 -> bit 1 in cima
     let acc_segno = allocate_and_trivially_encrypt_new_glwe_ciphertext(

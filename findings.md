@@ -2300,7 +2300,11 @@ migliora al crescere di N** (16/16 a N=128), perché con più candidati il minim
 distintamente separato dal secondo. (b) Restano **18× più lento** del varco a soglia (0,094 s a
 N=128, F51): per un varco la soglia resta il design giusto, e F37/F43 mostrano che su dati reali il
 caso "due iscritti sotto soglia" non capita mai. (c) La costruzione usa il set WOPBS legacy della
-libreria, non parametri tarati da noi. (d) Il PBS di segno finale contro la soglia va aggiunto
+libreria, non parametri tarati da noi; il gadget del circuit bootstrap è quello standard (2^5×3, cioè
+3 PBS per confronto). Provato a scendere a 2 livelli (2^7×2): il torneo va **31% più veloce**
+(0,90 s invece di 1,31 s a N=128) ma la GGSW più rumorosa produce errori **veri**, non
+quasi-pareggi — uno con costo 345 unità di punteggio contro le 0-30 del gadget standard. Non è
+un compromesso che vale: si tengono i 3 livelli. (d) Il PBS di segno finale contro la soglia va aggiunto
 (un PBS in più, ~40 ms).
 
 **E si combina con F51: la configurazione di massima privacy.** L'opzione `--cifrata` usa la
