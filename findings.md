@@ -2897,7 +2897,25 @@ confrontabile direttamente. Sulla stessa scena e con lo stesso Δ onesto:
 | 1024 | **1,258 s** | 1,329 s | +6% |
 | 2048 | **2,463 s** | 2,674 s | +9% |
 
-Sempre più lento, mai più veloce (per PBS: 20,6 ms contro 18,9). La ragione è la stessa che rende il
+Sempre più lento, mai più veloce (per PBS: 20,6 ms contro 18,9).
+
+**Obiezione ovvia, chiusa con la misura**: il multi-bit ha un parallelismo *interno* al singolo PBS,
+e lasciarlo al valore di default può farlo competere con rayon invece che aiutarlo. Ho quindi
+spazzato il numero di thread interni a N=128 (`--mb-threads`), sulla stessa scena e con lo stesso
+Δ onesto:
+
+| configurazione | totale | per PBS | discrepanze |
+|---|---|---|---|
+| multi-bit, 1 thread interno | 0,193 s | 23,7 ms | 0 / 16.384 |
+| multi-bit, 2 | 0,175 s | 21,4 ms | 0 / 16.384 |
+| multi-bit, 4 | 0,160 s | 19,6 ms | 2 / 16.384 (|s−T| = 4, **28**) |
+| multi-bit, 8 | 0,165 s | 20,2 ms | 1 / 16.384 |
+| **PBS classico** | **0,154 s** | **18,9 ms** | 1 / 16.384 |
+
+Il minimo del multi-bit (4 thread interni, 0,160 s) resta **sopra** il classico, e per giunta con
+una banda un po' peggiore — la discrepanza a |s−T| = 28 è fuori dalle ~10 unità che il set TUniform
+ci dà, coerente col fatto che il set multi-bit disponibile è Gaussian. La leva non esiste in nessuna
+taratura. La ragione è la stessa che rende il
 nostro carico *facile*: i N PBS sono **già indipendenti** e saturano i 16 thread da soli. Il
 parallelismo interno del multi-bit non ha core liberi da usare, e resta solo il suo costo. È un set
 pensato per il caso opposto al nostro — pochi PBS da fare in fretta, non tantissimi da fare in
