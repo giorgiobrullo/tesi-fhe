@@ -2168,7 +2168,7 @@ crittografia. Le operazioni vere, misurate dentro il binario in F41, sono **0,4 
 cifratura e **0,03 ms** per la decifratura. Il totale resta quello che l'utente percepisce, ma le
 due righe non vanno citate come costo del cifrato.
 
-Sul filo: probe cifrato **20 KB** (encoding polinomiale, F41), esito cifrato 230 KB, chiave di
+Sul filo: probe cifrato **32,8 KB** (encoding polinomiale, F41), esito cifrato 115 KB a 48 iscritti (230 KB a 127, perché cresce a blocchi di 64), chiave di
 valutazione **130 MB** una volta sola. Verificato: 4 identità iscritte su 4 riconosciute con
 l'indice giusto, 3 identità non iscritte su 3 rifiutate (`conteggio 0`). Il server, per
 costruzione, non ha la chiave segreta: la pagina mostra i byte che riceve, ed è tutto quello che
