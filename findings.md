@@ -1386,8 +1386,10 @@ decisioni, che da qui in poi trattiamo come vincoli di progetto:
   suo unico vantaggio sarebbe che quei confronti sono indipendenti e parallelizzabili.
 - **Uscita**: solo l'esito (identità più vicina e match/no-match), **mai la distanza**. Un
   client malicious non parte da un volto: manda vettori arbitrari, e con una distanza per
-  tentativo scende per gradiente fino a un embedding della galleria. Con l'esito a soglia
-  questo attacco non c'è. One-hot o indice sono equivalenti per la privacy (rivelano al più N).
+  tentativo scende per gradiente fino a un embedding della galleria. L'esito a soglia rende
+  l'attacco molto più costoso, ma ⚠️ **non lo elimina**: F56 mostra che con un Δ tarato sui dati
+  il varco si apre in una query, e F61 che anche col Δ onesto un vettore bipolare legale apre.
+  One-hot o indice sono equivalenti per la privacy (rivelano al più N).
 - **Modello di minaccia**, formalizzato. Tre attori: il server (ha la galleria), il client (il
   dispositivo al varco: calcola l'embedding in chiaro, cifra, apre il cancello), la persona.
   Client honest-but-curious: la persona non manomette il dispositivo, la sicurezza è quella
@@ -1762,7 +1764,7 @@ il server, per l'iscritto i, moltiplica per il polinomio in chiaro P_i(X) = Σ (
 la chiave grande: da lì la costante, il keyswitch, il PBS di segno e l'uscita compatta di F37.
 
 Misurato sulla scena reale (N=128, 512 dim, 16 thread): probe cifrato **32.800 byte**, esito
-(conteggio + indice, a blocchi di 64 da F43) 229 KB, chiave client 23 KB, chiave server 130 MB (una volta, alla
+(conteggio + indice, a blocchi di 64) 229 KB — che con il packing keyswitch di F59 scendono a **32 KB**, una sola GLWE — chiave client 23 KB, chiave server 130 MB (una volta, alla
 registrazione del dispositivo); cifratura 0,4 ms, server **0,18 s** (prodotti polinomiali 7-16
 ms, PBS 0,16-0,18 s), decifratura 0,03 ms. Esiti: probe genuino → conteggio 1, indice 104 =
 l'identità vera; impostore → conteggio 0. Il costo per query non cambia rispetto a F37 (i
@@ -1785,7 +1787,7 @@ finali al crescere di N con i traguardi dei 10 e 5 s nel margine).
 | 1 | galleria in chiaro + formula espansa: il prodotto scalare è enc×chiaro, 0 PBS | il prodotto scalare sparisce dal costo (0,07 s, poi 0,007 s) | F2, F33 |
 | 2 | quantizzare l'embedding a 4 bit | lossless in accuratezza, e l'unico modo di far compilare il confronto (limite 16 bit) | F14, F31 |
 | 3 | la strategia CHUNKED | l'argmin server compila e gira invece di esplodere in RAM | F24 |
-| 4 | il torneo al posto della catena | 2,6× in Concrete, 2,3× in tfhe-rs a 16 thread | F27, F38 |
+| 4 | il torneo al posto della catena | 2,3× in tfhe-rs a 16 thread; in Concrete solo col dataflow, senza è più lento | F27, F38, F64 |
 | 5 | tfhe-rs al posto di Concrete-python | **105× / 94×** sull'argmin, verificato a parità di macchina (F64) | F32 |
 | 6 | 8 bit di punteggio bastano (validato in chiaro) | 1,5-2× su ogni confronto radix | F36 |
 | 7 | prodotto scalare leveled a basso livello | da 99 s a 0,2 ms (l'API radix propagava i riporti) | F34 |
@@ -1818,7 +1820,7 @@ La figura del percorso mostra, a N=8, 455 s → 12,5 s → 1,1 s → 0,36 s → 
 quattro ordini di grandezza in cinque passi, ciascuno con una tecnica e un motivo; a N=128 i
 design finali sotto i traguardi dell'incontro sono solo quelli tfhe-rs.
 
-## 🔴 F43 — Scala e rifiniture: N=1024 in 1,4 s, l'uscita compatta a blocchi, il multi-bit non serve
+## 🔴 F43 — Scala e rifiniture: il varco fino a N=1024, l'uscita compatta a blocchi, il multi-bit non serve
 Tre verifiche dopo il percorso, sulla stessa scena reale (ResNet100, VGGFace2, 4 bit), con una
 galleria portata a **1024 iscritti** (`esporta_dati.py 1024`, T al quantile 1% di 2000 impostori):
 
@@ -1992,8 +1994,8 @@ al varco (`--params`, `varco_leveled.rs`) e misurati sulla scena reale, 16 threa
 | MESSAGE_2_CARRY_2 (era il nostro) | 4 bit | 2048 | 0,177 s | 1,41 s | esatto | 12 |
 | MESSAGE_2_CARRY_1 | 3 bit | 1024 | 0,134 s | ~0,9 s | esatto | ~30 |
 | **MESSAGE_1_CARRY_1** | **2 bit** | **512** | **0,100 s** | **0,72 s** | **esatto** | **~50** |
-| MESSAGE_2_CARRY_0 | 2 bit | 512 | 0,083 s | — | **ROTTO** (banda ~1900) | — |
-| MESSAGE_1_CARRY_0 | 1 bit | 256 | 0,072 s | — | **ROTTO** (banda ~1900) | — |
+| MESSAGE_2_CARRY_0 | 2 bit | 512 | 0,083 s | — | errori (vedi sotto) | — |
+| MESSAGE_1_CARRY_0 | 1 bit | 256 | 0,072 s | — | errori (vedi sotto) | — |
 
 Il salto di qualità è a **MESSAGE_1_CARRY_1**: PBS a 12 ms (era 22), N=128 in **0,100 s** e
 N=1024 in **0,72 s**, cioè **~2×** su tutta la linea, con 0 discrepanze su 131.072 confronti a
@@ -2001,14 +2003,16 @@ N=1024. La banda si allarga (σ ≈ 50 unità invece di 12), ma resta due ordini
 i gap reali: simulata sulle 20 scene di F36 (`effetto_banda.py`), DIR@FPIR=1% invariata
 (92,8-93,0% contro 92,9%), FPIR 1,01% — e persino a σ=100 la DIR scende solo di 0,1-0,2 punti.
 
-Il muro è netto. `MESSAGE_2_CARRY_0` e `MESSAGE_1_CARRY_0` (N=512 e 256) **crollano**: banda
-mediana ~1900 unità, metà dei confronti sbagliati. Non è il numero di bit della LUT (2_0 ha gli
-stessi 2 bit di 1_1), è il **rumore GLWE** del set: 2_0/1_0 hanno std relativa 2⁻³⁵·⁶ contro
-2⁻⁴⁸·³ di 1_1, e dopo l'accumulo del prodotto scalare (×~2^12) il rumore arriva a ~2^40, vicino
-al Δ/2 = 2^50 che separa "sotto soglia" da "sopra". La regola che ne esce, per la tesi: il varco
-vive del **budget di rumore leveled**, e i set con GLWE rumoroso (pensati per circuiti corti) non
-lo reggono; tra quelli abbastanza silenziosi, il più piccolo (1_1, N=512) è il migliore. Sotto
-non si scende senza uno schema di gestione del rumore diverso.
+`MESSAGE_2_CARRY_0` e `MESSAGE_1_CARRY_0` (N=512 e 256) qui **sbagliano metà dei confronti**, con
+gli errori distribuiti uniformemente in |s−T| invece che concentrati sulla soglia. Non è il numero
+di bit della LUT (2_0 ha gli stessi 2 bit di 1_1) e non è la banda in ingresso: **F55 mostra che è
+la codifica dell'uscita** — quei due set hanno un rumore in uscita dal PBS σ = 2^55, contro
+l'ampiezza 2^55 con cui `LOG_DO = 56` codificava il bit, cioè 1σ di margine. Alzando il margine
+(`--log-do 60 --blocco 8`) diventano esatti, e sono anzi **i più veloci**: 1_0 fa 0,064 s a N=128.
+
+Il che non li rende utilizzabili, per un motivo diverso e successivo: con il Δ onesto imposto da
+F56 la loro banda in unità di punteggio si allarga fino a 48-89, e producono decisioni sbagliate
+lontano dalla soglia. **La configurazione che regge è il set 2_2**, ed è quella di F56.
 
 Con questo il varco è **0,10 s a N=128 e 0,72 s a N=1024**: il numero finale del sistema. Il
 default resta 2_2 (banda più stretta, margine più comodo); 1_1 è l'operativo veloce, e la scelta
@@ -2451,7 +2455,7 @@ Verifica sistematica del percorso contro le decisioni prese con il prof. Di Raim
 | microbenchmark con vettori della dimensione e precisione reali | metodo seguito in tutti gli esperimenti | F36, F38, F50 |
 | in tesi: percorso naïve → ottimizzato, solo le tecniche con guadagno osservabile | fatto, con figura e lista tieni/scarta | F42 |
 | **mai restituire la distanza** al client | rispettato ovunque; e ora sappiamo *quanto* rivela il solo bit | F40 |
-| client malicious ⇒ la **selezione sta sul server** | rispettato; e la galleria può stare cifrata, cosa che nemmeno l'incontro chiedeva | F51 |
+| client malicious ⇒ la **selezione sta sul server** | rispettato. La galleria può anche stare cifrata (F51), ma è uno **scambio**: protegge dal server e indebolisce verso il client, perché il prodotto esterno vuole la stessa chiave | F51 |
 
 **Le tre deviazioni, dichiarate.**
 
