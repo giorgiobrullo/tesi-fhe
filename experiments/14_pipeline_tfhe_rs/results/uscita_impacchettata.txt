@@ -1,0 +1,18 @@
+18:48  up 1 day,  5:03, 12 users, load averages: 87,15 274,32 275,43
+set di parametri: default
+packing keyswitch: base 2^23 x 1 livelli | chiave 67.1 MB in 0.5s | bound onesto 3613 -> Delta 2^51 | bit d'esito 2^62
+
+    N |    KS+PBS |   packing |     GLWE |      uscita |       confronto blocchi 64 | bit sbagliati
+      tempo-thread: keyswitch 2003.2 ms (10.7%), blind rotate 16641.8 ms (89.3%)
+  128 |    0.157s |    0.024s |       1 |     0.03 MB |               0.23 MB (   7x) | 0/1024 []
+      tempo-thread: keyswitch 3727.0 ms (9.7%), blind rotate 34840.0 ms (90.3%)
+  256 |    0.318s |    0.043s |       1 |     0.03 MB |               0.46 MB (  14x) | 0/2048 []
+      tempo-thread: keyswitch 7334.1 ms (9.6%), blind rotate 69086.2 ms (90.4%)
+  512 |    0.617s |    0.083s |       1 |     0.03 MB |               0.92 MB (  28x) | 0/4096 []
+      tempo-thread: keyswitch 14724.8 ms (9.6%), blind rotate 138254.6 ms (90.4%)
+ 1024 |    1.228s |    0.171s |       1 |     0.03 MB |               1.84 MB (  56x) | 0/8192 []
+      tempo-thread: keyswitch 28886.9 ms (9.6%), blind rotate 272293.5 ms (90.4%)
+ 2048 |    2.425s |    0.360s |       1 |     0.03 MB |               3.67 MB ( 112x) | 0/16384 []
+      tempo-thread: keyswitch 59304.8 ms (9.4%), blind rotate 570813.2 ms (90.6%)
+ 4096 |    5.054s |    0.728s |       2 |     0.07 MB |               7.34 MB ( 112x) | 1/32768 [-3]
+FATTO

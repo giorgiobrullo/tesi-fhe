@@ -2736,12 +2736,18 @@ scena reale ResNet100/VGGFace2 a 3 bit, `--log-do 60 --blocco 8`):
 
 | N | prodotto scalare | KS + PBS | **totale** | per PBS | discrepanze |
 |---|---|---|---|---|---|
-| 128 | 0,003 s | 0,150 s | **0,153 s** | 18,8 ms | 0 / 16.384 |
-| 256 | 0,006 s | 0,309 s | **0,315 s** | 19,3 ms | 0 / 32.768 |
-| 512 | 0,010 s | 0,595 s | **0,605 s** | 18,6 ms | 0 / 65.536 |
-| 1024 | 0,021 s | 1,237 s | **1,258 s** | 19,3 ms | 0 / 131.072 |
-| 2048 | 0,042 s | 2,421 s | **2,463 s** | 18,9 ms | 1 / 262.144 |
-| 4096 | 0,081 s | 4,869 s | **4,950 s** | 19,0 ms | 2 / 524.288 |
+| 128 | 0,003 s | 0,150 s | **0,152 s** | 18,7 ms | 0 / 16.384 |
+| 256 | 0,006 s | 0,291 s | **0,296 s** | 18,2 ms | 0 / 32.768 |
+| 512 | 0,012 s | 0,581 s | **0,593 s** | 18,2 ms | 0 / 65.536 |
+| 1024 | 0,020 s | 1,184 s | **1,204 s** | 18,5 ms | 0 / 131.072 |
+| 2048 | 0,039 s | 2,330 s | **2,369 s** | 18,2 ms | 1 / 262.144 |
+| 4096 | 0,082 s | 5,099 s | **5,181 s** | 19,9 ms | 0 / 524.288 |
+
+Log: `experiments/14_pipeline_tfhe_rs/results/varco_sicuro_2_2.txt` (il file riporta anche il carico
+della macchina al momento del run). ⚠️ **La dispersione fra run è del 3-5%** — una rilevazione
+precedente dava 0,153 / 0,315 / 0,605 / 1,258 / 2,463 / 4,950 s — quindi questi numeri vanno citati
+con una cifra significativa in meno di quante ne hanno, e i confronti fini vanno fatti dentro lo
+stesso run.
 
 **Dove va il tempo dentro la colonna «KS + PBS»**, misurato strumentando il ciclo (tempo-thread
 cumulato, N=128): **keyswitch 890 ms (9,9%), blind rotate 8.119 ms (90,1%)**. Serve a chiudere una
@@ -2752,7 +2758,7 @@ rumore più alto della chiave piccola amplificato su 512 termini. Non vale: il c
 rotate, e il blind rotate non si sconta.
 
 Lineare esatta (il tempo per PBS resta 19 ms a ogni scala: i thread non si saturano), e
-**3 errori su 1.032.192 confronti**, tutti con |s−T| ≤ 4 — cioè dentro la banda di ~10 unità, dove
+**1 errore su 1.032.192 confronti**, a |s−T| = 4 (in un run precedente 3 errori, tutti a |s−T| ≤ 4) — cioè dentro la banda di ~10 unità, dove
 il modello di rumore di F50 dice che devono stare. A N=4096 il varco sicuro sta in **5 secondi**,
 dentro il budget dei 10 s dell'incontro con la galleria più grande che abbiamo.
 

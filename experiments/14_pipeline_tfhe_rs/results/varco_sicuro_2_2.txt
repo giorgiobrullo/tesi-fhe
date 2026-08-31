@@ -9,3 +9,11 @@ parametri: n_grande=2048 n_piccola=879 N_poly=2048 (128 bit, set default, PBS cl
       esito per probe: genuini riconosciuti (one-hot giusto) 6/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.3 ms
 512 |   0.012s |    0.581s |    0.593s |      18.2ms | 0/65536 []
       esito per probe: genuini riconosciuti (one-hot giusto) 10/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.6 ms
+1024 |   0.020s |    1.184s |    1.204s |      18.5ms | 0/131072 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 14/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 1.2 ms
+2048 |   0.039s |    2.330s |    2.369s |      18.2ms | 1/262144 [4]
+      esito per probe: genuini riconosciuti (one-hot giusto) 26/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 2.5 ms
+4096 |   0.082s |    5.099s |    5.181s |      19.9ms | 0/524288 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 62/64, impostori accettati 1/64; uscita compatta (indice, conteggio) corretta 128/128 in 6.0 ms
+
+banda di sfocatura: 1 discrepanze, |s-T| mediana 4 max 4 (punteggio in unita' intere, 13-14 bit)
