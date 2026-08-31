@@ -2064,13 +2064,12 @@ scala (stesso salto a 1000 e a 4000). Due letture importanti per la tesi:
    punti): serve usare più di una foto. La media riduce il rumore dell'embedding su entrambi i
    lati (√k), che è esattamente ciò che serve al ginocchio della curva DIR-FPIR.
 
-   **Ma il "+8,7" è gonfiato, e va detto (correzione da una revisione critica, F61).** Quel numero
-   confronta (3,3) con **(1,1)**, cioè con una baseline a *una sola foto per iscritto* che non è
-   mai stata la nostra: i ~95-96% di F19/F20 corrispondono a (3,1), che qui misura **95,3%**. Il
-   guadagno vero della fusione *del probe* — l'unica cosa nuova, perché le foto multiple in
-   galleria la tesi le usava già — è **95,3% → 99,2% = +3,9 punti**. Restano i +4,8 dovuti a
-   passare da una a tre foto in registrazione, che però erano già acquisiti. La narrazione regge
-   (il 99% si raggiunge, e serve la raffica), il numero da citare è **+3,9**.
+   **Il numero da citare è +3,9, non +8,7.** La colonna dei "+" nella tabella è misurata contro
+   (1,1), cioè contro una baseline a *una sola foto per iscritto*, che non è mai stata la nostra:
+   i ~95-96% di F19/F20 corrispondono a **(3,1) = 95,3%**. Il guadagno della fusione *del probe* —
+   l'unica cosa nuova qui, perché le foto multiple in galleria la tesi le usava già — è quindi
+   **95,3% → 99,2% = +3,9 punti**; gli altri +4,8 vengono dal passare da una a tre foto in
+   registrazione, ed erano già acquisiti.
 
 2. **È la migliore leva dell'intero lavoro sul lato accuratezza, ed è gratis lato FHE.** +3,9 punti
    sulla baseline vera (+8,7 su quella a una foto) contro i +1-2 del modello (F44) e gli 0 della
