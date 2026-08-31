@@ -3079,3 +3079,119 @@ E vanno esclusi anche CryptoFace (i 22 minuti sono la CNN cifrata, il matching �
 (query **in chiaro**, il Key Server decifra ogni punteggio), Funshade/Monchi (2PC interattivo con
 non-collusione), HERS e Blind-Match (l'argmax lo fa il client dopo aver visto tutti i punteggi),
 CryptoMask (**non pubblica tempi assoluti**).
+
+---
+
+## 🔴 F63 — Verifica di novità sulle fonti primarie: cosa possiamo davvero rivendicare
+
+F62 dice dove siamo nella letteratura; questo dice cosa possiamo **rivendicare come nuovo**, con le
+citazioni verificate sui PDF originali e non su riassunti.
+
+### (a) La galleria cifrata via GGSW⊡GLWE — **nuova, se formulata dentro CGGI**
+
+Due frasi, verificate verbatim sui PDF, reggono la rivendicazione. La prima è del prior art più
+vicino, **Zuber & Sirdey, PoPETs 2021(2) §1.2 p. 114**:
+
+> «Achieving encryption for **both the query and the database** is within reach but **not yet
+> attainable due to a high noise propagation issue**.»
+
+La seconda è più forte, perché è del loro **successore diretto**, sulla **stessa libreria**, nel
+**2025** — Azogagh, Killijian, Larose-Gervais, PoPETs 2025(3), §2.2.1:
+
+> «**Absorption**: (★, ⟦★⟧GLWE) → ⟦★⟧GLWE. This operation multiplies a **plaintext value m** with a
+> GLWE ciphertext […] Note that **this is the only multiplication that can be performed in TFHE**
+> (i.e. the multiplication of two GLWE ciphertexts is not supported).»
+
+Cioè: nel 2025, nella stessa linea di ricerca, si scrive come **fatto dello schema** ciò che F51
+misura. Tecnicamente è una semplificazione — il prodotto esterno *è* una moltiplicazione
+cifrato×cifrato, solo asimmetrica — ed è esattamente il varco che abbiamo attraversato.
+
+**Cosa è prior art e va citato, non rivendicato.** L'encoding polinomiale negaciclico per ⟨f,m⟩ con
+sample extract è di Zuber, Carpov, Sirdey (ICICS 2020, `10.1007/978-3-030-61078-4_23`); lo split
+‖f‖² − 2⟨f,m⟩ + ‖m‖² con un lato precalcolato è della stessa linea; il PBS di segno per la soglia
+loro lo chiamano «sign bootstrapping» (§3.4). **«Probe e galleria entrambi cifrati» non è nuovo in
+sé**: è la norma in CKKS/BFV, dove ct×ct è nativa (HERS, Blind-Match, IDFace, De Micheli). E il
+prodotto esterno contro un database cifrato **esiste** — Onion Ring ORAM (`2019/736`), Panacea — ma
+lì la GGSW cifra sempre un **bit di selezione**, mai i dati. Infine la GGSW a messaggio polinomiale
+**è già definita** (CGGI Def. 3.8 ammette µ ∈ R; Joye, `2021/1402`, definisce TGGSW_s(m) per m
+polinomio) — e subito dopo si legge «the main application of the external product in TFHE is the
+"controlled" multiplexer». La primitiva c'è: **nessuno ci aveva messo dentro dei dati densi.**
+
+Ricerche full-text a supporto: `"GGSW" "polynomial message"` → **0**; `"GGSW" "Euclidean distance"`
+→ 0; `"external product" "biometric"` → 0; `"circuit bootstrapping" "biometric"` → 0; contro
+`"external product" "TFHE"` → 48 (tutte CMux/bootstrapping), che è il controllo che l'indice
+funzioni.
+
+**Il rischio residuo era uno solo, ed è chiuso.** Wang, Ha, Shen, Lu, Chen, Wang, Lee, *Refined TFHE
+Leveled Homomorphic Evaluation and Its Application*, **CCS 2025** (`2024/1318`) era il posto più
+plausibile per una tecnica sovrapposta sul CGGI leveled, e non era stato leggibile durante la
+ricerca (eprint rispondeva 429). L'ho letto: è un lavoro sul **circuit bootstrapping più veloce**
+(pre-processing + split FFT, fino a 12,1× su WWL+, chiave 33× più piccola). Nel testo:
+«polynomial message» **0** occorrenze, «dot product» 0, «encrypted database» 0. **Nessuna
+sovrapposizione** — anzi, è un regalo per il punto (b).
+
+**Tre cautele nella formulazione**, che vanno rispettate o la rivendicazione si sgonfia: (1)
+delimitare **allo schema** — «in CGGI», mai «nessuno cifra entrambi i lati»; (2) dire che la GGSW
+polinomiale è nella **Definizione 3.8 di CGGI**, cioè abbiamo implementato una primitiva *definita e
+non esposta*, non inventato un costrutto; (3) mettere il **rumore** al centro: la crescita del
+prodotto esterno scala con ‖µ‖ del messaggio GGSW, e un messaggio denso a 512 coefficienti è
+precisamente il caso che si dava per perso — quindi la quantizzazione a 3 bit che limita ‖µ‖ va
+presentata come **nucleo tecnico** con il bound esplicito, non come un dettaglio dei tempi.
+
+### (b) L'argmin a torneo — **ripresa di una via scartata, non algoritmo nuovo**
+
+Il torneo è di **Chakraborty & Zuber, WAHC 2022** (`10.1145/3560827.3563375`, `2022/622`), §3.1
+«Tournament Method» — e il loro nodo è **diverso dal nostro**: un bootstrap funzionale *privato* con
+vettore di test **cifrato**, che impacchetta (x_i, x_j, i/b, j/b) in quattro quarti del polinomio e
+con una sola blind rotation produce minimo **e** indice. Niente circuit bootstrapping, niente GGSW,
+niente CMUX.
+
+**Ma nello stesso lavoro, §1.2, scrivono** (verbatim):
+
+> «We omit the solution using **levelled CMUX gates** from [6]: although they allow for a **very fast
+> comparison of 2 integers (much faster than any other solution presented here)** their performance
+> decreases dramatically […] **This is due to the necessary use of the circuit bootstrapping
+> operation.**»
+
+Non possiamo quindi rivendicare di esserci arrivati per primi. Ma **la loro obiezione ha due gambe e
+si sono rotte entrambe dopo il 2022**:
+
+1. **Il costo del CB**: 137 ms (CGGI 2020) → 88,6 ms NTT / 44,4 ms AVX-512 (Eurocrypt 2024,
+   `2024/323`) → **13,3-19,4 ms** (CCS 2025, `2024/1318`, misurato proprio su tfhe-rs). Fino a 65×.
+2. **La scalabilità**: il criterio lo danno loro — «whether the computation is fully homomorphic
+   (**the parameters do not depend on the number of inputs**) or levelled is important». Ciò che
+   scartano è la soluzione **leveled e bit-a-bit** di CGGI §5 (automa det-WFA, 5d CMUX su d bit, il
+   rumore si accumula). **Il nostro non è quella**: un PBS di segno su un LWE largo, **un solo**
+   circuit bootstrap per nodo, e il PBS di ogni livello **rinfresca**. I parametri non dipendono da
+   N: per la loro stessa definizione, è fully homomorphic. **La loro obiezione, letteralmente, non
+   ci tocca.**
+
+La formulazione onesta è quindi **«ripresa di una via scartata + prima implementazione + prima
+misura»**, che è molto più difficile da attaccare di «algoritmo nuovo», e trasforma la frase di
+Chakraborty-Zuber da minaccia in motivazione.
+
+**RevoLUT e il Blind Counting Sort sono ortogonali, non concorrenti** (e sono **due lavori diversi**,
+`2024/1935` con 5 autori, non pubblicato, e `2024/1894` con 3 autori → PoPETs 2025). La loro
+primitiva è blind rotation su LUT impacchettata: niente confronti — «the first known sorting
+algorithm for encrypted data that does not rely on comparisons» — e con un limite dichiarato in
+§4.3: «**p has to be lower than 2⁸**», «**we cannot natively process arrays larger than 256**», e gli
+errori «may accumulate throughout the tournament and could result in an **incorrect top-k result**».
+Su punteggi a 13-14 bit e gallerie oltre 256 **non è applicabile**: regimi disgiunti.
+
+### (c) Due cose concrete che ne escono
+
+**C'è probabilmente un 2-3× ancora sul tavolo nel torneo.** `tfhe-rs 0.11.3` espone solo il circuit
+bootstrapping **classico** CGGI (`circuit_bootstrap_boolean` in `fft_impl::fft64::crypto::wop_pbs`),
+cioè ℓ_cb PBS **più** (k+1)·ℓ_cb private functional packing keyswitch per bit — non la versione
+raffinata di CCS 2025. Il conto teorico del nostro torneo a N=128 su 16 thread è
+Σ_livelli ⌈nodi/16⌉ = 4+2+1+1+1+1+1 = **11 round**: con un CB da ~19 ms verrebbe **~0,35 s**, con il
+CB classico da 40-60 ms per nodo **0,44-0,66 s**. Ne misuriamo **1,27**. Vale la pena profilare: il
+sospettato numero uno è la **coda del torneo**, dove gli ultimi 4 livelli usano 1-8 core su 16.
+
+**E il numero di testa, con l'avvertenza accanto.** 1,27 s a N=128 sarebbe l'argmin TFHE esatto più
+veloce pubblicato a quella taglia, e con **13-14 bit** di precisione contro i **2-4 bit** di
+Chakraborty-Zuber — che è più interessante del tempo. Ma loro girano **single-thread su un ultrabook
+del 2015**: senza le colonne CPU, thread, bit ed esattezza il confronto non regge, e con quelle
+regge. Resta comunque il design: il varco fa 0,094 s contro 1,27 s, **14×**, e l'argmin esatto va
+offerto come l'opzione che toglie il conteggio dall'uscita, col prezzo scritto accanto — come in
+F45, solo che ora il prezzo è 14× invece di 150×.
