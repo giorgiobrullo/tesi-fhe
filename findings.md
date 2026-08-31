@@ -2319,20 +2319,24 @@ confrontate col chiaro):
 
 | N | prodotto scalare cifrato | PBS di segno | **totale** | galleria cifrata | decisioni corrette |
 |---|---|---|---|---|---|
-| 8 | 0,0001 s | 0,0155 s | **0,016 s** | 1 MB | 128/128 |
-| 32 | 0,0003 s | 0,0522 s | **0,053 s** | 6 MB | 512/512 |
-| 128 | 0,0014 s | 0,1905 s | **0,192 s** | 24 MB | **2048/2048** |
-| 512 | 0,0032 s | 0,7974 s | **0,801 s** | 96 MB | **8192/8192** |
-| 1024 | 0,0059 s | 1,5315 s | **1,537 s** | 192 MB | **16384/16384** |
+| 8 | 0,0001 s | 0,0139 s | **0,014 s** | 1 MB | 128/128 |
+| 32 | 0,0003 s | 0,0455 s | **0,046 s** | 6 MB | 512/512 |
+| 128 | 0,0012 s | 0,1774 s | **0,179 s** | 24 MB | **2048/2048** |
+| 512 | 0,0038 s | 0,6424 s | **0,646 s** | 96 MB | **8192/8192** |
+| 1024 | 0,0070 s | 1,2074 s | **1,214 s** | 192 MB | **16384/16384** |
+
+Log: `experiments/14_pipeline_tfhe_rs/results/galleria_cifrata_2_2.txt`.
 
 **Il risultato: cifrare la galleria non costa niente in tempo.** Misurato fianco a fianco, stessa
 macchina e stesso momento, sulla stessa scena e nella stessa configurazione sicura: a N=128 il varco
-con galleria **cifrata** fa 0,192 s contro gli **0,195 s** con galleria in chiaro. Sono lo stesso
-numero. Il motivo è che il costo è tutto nel PBS di segno (il 99%), e il PBS non sa né gli importa
+con galleria **cifrata** fa **0,179 s** contro gli **0,152 s** con galleria in chiaro, e a N=1024
+**1,214 s** contro **1,204 s**. A N=1024 sono lo stesso numero; a N=128 il Mondo 2 è ~18% più
+lento, ma la dispersione fra run è del 3-5% e i due run non sono simultanei, quindi il divario è al
+limite di ciò che questa misura può risolvere. Il motivo è che il costo è tutto nel PBS di segno (il 99%), e il PBS non sa né gli importa
 se la galleria è cifrata.
 
 Anzi, il pezzo che cambia va nella direzione opposta a quella che ci si aspetterebbe: il prodotto
-scalare **cifrato** costa **1,4 ms** contro i **4 ms** di quello in chiaro, cioè è ~3× più
+scalare **cifrato** costa **1,2 ms** contro i **3 ms** di quello in chiaro, cioè è ~2,5× più
 economico. Non è un paradosso — il prodotto esterno lavora in dominio di Fourier, mentre la nostra
 moltiplicazione per polinomio in chiaro (`polynomial_wrapping_add_mul_assign`) usa Karatsuba. Il
 conto torna anche in astratto: un PBS *è* n prodotti esterni, quindi con n=781 un prodotto esterno
@@ -2404,11 +2408,11 @@ M4 Max, 16 thread, scena reale a 3 bit, confronti di ogni livello in parallelo:
 | **128** | 0,006 s | 1,267 s | **1,273 s** | 127 | **16/16** | 16/16 | **14/14** | **14,4 s** |
 
 **Tre riserve, da dire prima che le dica un revisore.** (1) L'indice **non è sempre esatto**, e con
-il Δ onesto lo è ancora meno: su 32 probe l'indice è corretto **134 volte su 160** (84%), contro le
-77/80 che la matrice di F45 fa sugli stessi probe. Il torneo è quindi **più veloce e meno accurato**
-della cosa che sostituisce. Conta però *quali* casi sbaglia: sui probe in cui il minimo è davvero
-sotto soglia — gli unici che aprono il varco — l'indice è corretto **68 volte su 68**, e a N=128
-32/32. (2) Il "31 su 31" della
+il Δ onesto lo è ancora meno: su 32 probe l'indice è corretto **136 volte su 160** (85%), contro le 77/80 (96%) che la matrice
+di F45 fa su 16 probe. Il torneo è quindi **più veloce e meno accurato** della cosa che
+sostituisce. Conta però *quali* casi sbaglia: sui probe in cui il minimo è davvero sotto soglia —
+gli unici che aprono il varco — l'indice è corretto **68 volte su 68**, e a N=128 **32/32**.
+Log: `results/argmin_torneo_onesto.txt`. (2) Il "31 su 31" della
 colonna «minimo sotto soglia» è una selezione **a posteriori sull'esito in chiaro**, e le numerosità
 sono 2, 3, 5, 7, 14: su 14/14 l'intervallo di Wilson al 95% parte da ~78%. È un indizio, non una
 misura. (3) I parametri `LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS` sono dichiarati dalla libreria
@@ -2821,11 +2825,12 @@ cascata non è un'approssimazione dell'argmin, gli è **equivalente**, perché q
 l'unico accettato *è* il minimo.
 
 ⚠️ Con una precisazione che va fatta qui e non altrove: il secondo stadio della cascata è l'argmin
-di F52, e **con il Δ onesto l'argmin non è esatto al 100%** — su 32 probe l'indice è corretto 134
+di F52, e **con il Δ onesto l'argmin non è esatto al 100%** — su 32 probe l'indice è corretto 136
 volte su 160. Quello che conta però è *quali* casi sbaglia: sui probe in cui il minimo è davvero
 sotto soglia — gli unici in cui la cascata invoca il secondo stadio — l'indice è corretto **68 volte
 su 68**, e a N=128 32/32. La cascata è quindi affidabile nel regime in cui viene usata, ma la parola
 «equivalente» va intesa in quel senso, non come esattezza incondizionata.
+Log: `experiments/14_pipeline_tfhe_rs/results/argmin_torneo_onesto.txt`.
 
 **Il conto del costo atteso**, con i tempi misurati su questa macchina (varco: set 2_2 con Δ onesto,
 F56; argmin: F52 a N=128, estrapolato con la retta 0,216 + 0,0086·N a N=1024):
