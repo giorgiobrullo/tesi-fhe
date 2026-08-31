@@ -135,6 +135,15 @@ modulus switch, cioe' dalle tappe che qualunque PBS fa comunque. Regola in forma
 misurato coincide con 2048/512. Probabilita' d'errore a distanza d dalla soglia: 1,3e-2 a d=50,
 4e-6 a d=100, 3e-19 a d=200; sui dati reali le distanze sono 300-3600.
 
+## 4e. Galleria CIFRATA a costo leveled (`galleria_cifrata.rs`, F51)
+
+GGSW(template) (x) GLWE(probe) = prodotto scalare su galleria **cifrata**, leveled. GGSW polinomiale
+costruita a mano sulla formula di tfhe-rs (la libreria cifra solo costanti) e verificata decifrando.
+Varco completo sulla scena reale: **0,094 s a N=128** (contro 0,10-0,12 s con galleria in chiaro),
+**2048/2048 decisioni corrette**, banda aggiunta ~0 col gadget 2^10x3 (0,10 unita' col 2^12x2, 200 KB).
+Il prodotto scalare passa da 11 ms a 1,1 ms (FFT invece di Karatsuba). Prezzo: 200-300 KB per
+iscritto (37 MB a N=128) invece di 4 KB. Mondo 2 senza cambiare schema e senza cifrato x cifrato.
+
 ## 5. La strada del ponte (`pbs_largo.rs`, `argmin_delta.rs`, F45)
 
 PBS largo (unità di costo del ponte), un thread: 4 bit / N=2048 **13,9 ms**; 8 bit / N=32768
@@ -158,6 +167,7 @@ uv run python attacco_oracolo.py                # F40, ~40 s
 cargo run --release --bin argmin_delta -- results/scena_reale.txt 8 16   # F45, ~5 min
 cargo run --release --bin pbs_largo             # F45, ~6 min
 cargo run --release --bin rumore -- --params 1_1 --log-delta 52   # F50, bilancio del rumore, ~1 min
+cargo run --release --bin galleria_cifrata                        # F51, galleria cifrata, ~2 min
 cargo run --release --bin varco_leveled -- results/scena_reale.txt 8 --params 1_1   # F46, varco 2x
 cargo run --release --bin banda_soglia -- --params 1_1 --d 200                      # F46, banda del set 1_1
 cargo run --release --bin varco -- keygen results/e2e/chiavi   # poi encrypt/server/decrypt (F41)

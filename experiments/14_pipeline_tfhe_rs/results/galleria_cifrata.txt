@@ -1,0 +1,18 @@
+Galleria CIFRATA via prodotto esterno GGSW (x) GLWE — k=4 N=512 Delta=2^53
+
+A) il prodotto scalare su galleria cifrata (per iscritto):
+  gadget |       GGSW |       tempo | banda aggiunta |  vs banda del PBS (22)
+   2^8x2 |     200 KB |    0.015 ms |     35.55 unita |                 domina
+  2^12x2 |     200 KB |    0.014 ms |      0.10 unita |           trascurabile
+  2^10x3 |     300 KB |    0.020 ms |      0.00 unita |           trascurabile
+  2^16x1 |     100 KB |    0.009 ms |     19.95 unita |          confrontabile
+
+  gadget scelto: 2^10x3 (banda 0.00 unita)
+
+B) varco completo su scena reale (dim 512, T 288): galleria CIFRATA vs IN CHIARO
+    N |  dot cifrato |          PBS |     totale |     galleria | decisioni vs chiaro
+    8 |    0.0002 s |    0.0085 s |   0.009 s |         2 MB | 128/128 corrette
+   32 |    0.0015 s |    0.0261 s |   0.028 s |         9 MB | 512/512 corrette
+  128 |    0.0011 s |    0.0928 s |   0.094 s |        37 MB | 2048/2048 corrette
+
+Confronto: in Mondo 1 (galleria in chiaro) lo stesso varco fa 0,12 s a N=128 (F46/F47).

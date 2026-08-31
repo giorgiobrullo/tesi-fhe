@@ -302,6 +302,7 @@ name = "pipeline_tfhe_rs"
 version = "0.1.0"
 dependencies = [
  "bincode",
+ "dyn-stack",
  "rayon",
  "tfhe",
 ]

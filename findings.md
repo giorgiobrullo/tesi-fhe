@@ -2144,3 +2144,73 @@ che il client manda è una cifratura GLWE fresca con la distribuzione standard d
 parametri. Il server non fa che aggiungere rumore. Quindi i 128 bit di sicurezza dichiarati dal
 set valgono senza asterischi; l'asterisco, se c'è, è solo sulla *correttezza*, ed è quello che
 questa misura quantifica.
+
+## 🔴 F51 — La galleria si può CIFRARE gratis: il prodotto esterno GGSW⊡GLWE (Mondo 2 a costo leveled)
+Il limite dichiarato di tutto il lavoro, e la prima cosa che un revisore attaccherebbe, è che la
+galleria sta **in chiaro** sul server (Mondo 1, F1): il prodotto scalare è cifrato×chiaro, quindi
+leveled e gratis, ma il server vede i template degli iscritti. Tutta la letteratura che cifra anche
+la galleria (HERS/Boddeti in BFV, Blind-Match e GROTE in CKKS) paga moltiplicazioni
+**cifrato×cifrato**, con relinearizzazione e rescaling, ed è il motivo per cui i loro prodotti
+scalari costano. In TFHE però esiste una terza via che quella letteratura non usa: il **prodotto
+esterno**.
+
+Se il template è cifrato come **GGSW** e la probe come GLWE, allora GGSW(P_i) ⊡ GLWE(A) = GLWE(P_i·A)
+è un'operazione **leveled**: è lo stesso mattone con cui il blind rotate fa i suoi CMUX, e un blind
+rotate ne incatena ~800. Quindi il prodotto scalare su galleria **cifrata** dovrebbe costare
+~1/800 di un PBS, cioè niente rispetto al PBS di segno che paghiamo comunque. Provato e misurato
+(`experiments/14_pipeline_tfhe_rs/src/bin/galleria_cifrata.rs`).
+
+Un ostacolo pratico: tfhe-rs sa cifrare in GGSW solo messaggi **costanti**
+(`encrypt_constant_ggsw_ciphertext`), mentre a noi serve la GGSW di un **polinomio** (il template).
+L'abbiamo costruita con la stessa formula della libreria, generalizzata: le righe del gadget sono
+GLWE(−S_i·μ·q/Bʲ) per i<k e GLWE(μ·q/Bʲ) per i=k, con il prodotto negaciclico al posto del prodotto
+per scalare. La correttezza non è argomentata, è **verificata decifrando**.
+
+**Il prodotto scalare, per iscritto** (dim 512, Δ = 2^53, k=4, N=512):
+
+| gadget della GGSW | dimensione | tempo | banda aggiunta | contro le ~22 unità del PBS |
+|---|---|---|---|---|
+| 2^8 × 2 | 200 KB | 0,015 ms | 35,6 unità | domina: inutilizzabile |
+| **2^12 × 2** | **200 KB** | **0,014 ms** | **0,10 unità** | trascurabile |
+| **2^10 × 3** | **300 KB** | **0,020 ms** | **~0 unità** | trascurabile |
+| 2^16 × 1 | 100 KB | 0,009 ms | 20,0 unità | confrontabile: no |
+| *(galleria in chiaro, per confronto)* | *4 KB* | *0,089 ms* | *0* | — |
+
+**Il varco completo sulla scena reale, con galleria cifrata** (16 probe, decisioni confrontate col
+chiaro, gadget 2^10×3):
+
+| N | prodotto scalare cifrato | PBS di segno | **totale** | galleria cifrata | decisioni corrette |
+|---|---|---|---|---|---|
+| 8 | 0,0002 s | 0,0085 s | **0,009 s** | 2 MB | 128/128 |
+| 32 | 0,0015 s | 0,0261 s | **0,028 s** | 9 MB | 512/512 |
+| 128 | 0,0011 s | 0,0928 s | **0,094 s** | 37 MB | **2048/2048** |
+
+**Il risultato: cifrare la galleria non costa nulla — costa meno.** A N=128 il varco con galleria
+cifrata fa 0,094 s contro 0,10-0,12 s con la galleria in chiaro (F46/F47), perché il prodotto
+esterno usa la FFT mentre la nostra moltiplicazione per polinomio in chiaro era una Karatsuba
+O(N^1,58): il prodotto scalare passa da 11 ms a 1,1 ms, **10× più veloce**. Il PBS di segno, che è
+il vero costo, non cambia di una virgola. E le decisioni sono **tutte** identiche al chiaro.
+
+Il prezzo vero è la **memoria**: 200-300 KB per iscritto contro 4 KB in chiaro, cioè 25-37 MB per
+128 iscritti e ~200-300 MB per 1024. È il costo di tenere una galleria cifrata, e a queste scale è
+pagabile (con 2^12×2, 200 KB, la banda resta 0,10 unità: è la scelta pratica).
+
+**Cosa cambia per la tesi.** Il modello di minaccia non è più un vincolo subìto ma una scelta con
+due punti misurati sullo stesso codice:
+- **Mondo 1** (galleria in chiaro): 0,10 s a N=128, galleria 0,5 MB. Il server conosce gli iscritti.
+- **Mondo 2** (galleria cifrata): 0,094 s a N=128, galleria 37 MB. Il server **non conosce nulla**:
+  né il volto, né i template, né la soglia (che entra nella costante cifrata), né l'esito.
+
+E la seconda riga è quella che la letteratura non ha: gli altri, per avere la galleria cifrata,
+cambiano schema e pagano il prodotto cifrato×cifrato; qui la si ottiene restando in TFHE, con
+un'operazione leveled, allo stesso costo. Da verificare in letteratura se qualcuno abbia già usato
+il prodotto esterno in questo modo per la biometria — l'uso è noto nel PIR basato su CGGI (Onion-PIR,
+Spiral), ma non risulta applicato al match biometrico 1:N.
+
+Caveat onesti: (a) la costruzione della GGSW polinomiale l'abbiamo scritta noi (poche righe, sulla
+formula della libreria, verificata per decifratura, ma non è codice di libreria); (b) la scelta del
+gadget è un parametro nostro e va dichiarata; (c) la sicurezza non cambia — la GGSW è un insieme di
+cifrature GLWE con la stessa distribuzione di rumore del set standard, quindi valgono gli stessi
+128 bit; (d) in Mondo 2 la galleria è cifrata sotto la chiave del **client**, cioè lo scenario è
+"il proprietario della galleria affida calcolo e archiviazione a un server non fidato", che è
+esattamente lo scenario di HERS e affini.
