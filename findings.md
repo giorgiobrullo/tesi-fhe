@@ -796,11 +796,12 @@ sul server funziona, a circa 90-93% di accuratezza. Resta il problema del tempo:
 minuti su CPU per N=8, perché ogni confronto CHUNKED costa una quindicina di secondi. Non sono
 i 2-3 secondi che vorremmo, ma il sistema funziona, ed è privato anche verso il client.
 
-Correzione (F31/F33). Quei 123-130 s sono nel regime a ~9 bit (embedding sintetici, quantizzazione
-stretta), non la config reale. Sugli embedding reali a 512 dim e 4 bit l'argmin a N=8 è ~455 s
-(F33), e ridurre a 128 dim non lo abbassa (~540 s, F31): il tempo non dipende dalla dimensione. E
-l'argmin a 512 dim compila senza comprimere, quindi la compressione non era necessaria neanche per
-compilare: a tenere il confronto sotto i 16 bit è la quantizzazione a 4 bit, non la dimensione.
+⚠️ **Quei 123-130 s valgono solo nel regime a ~9 bit** (embedding sintetici, quantizzazione
+stretta), non nella configurazione reale. Sugli embedding reali a 512 dim e 4 bit l'argmin a N=8 sta
+in classe-minuti, e **ridurre la dimensione non lo abbassa**: il tempo dipende dalla larghezza del
+punteggio, non dalla dimensione. E l'argmin a 512 dim **compila senza comprimere**, quindi la
+compressione non serviva nemmeno a far compilare: a tenere il confronto sotto i 16 bit è la
+quantizzazione a 4 bit.
 
 A questo punto l'ipotesi naturale è la GPU: Concrete ha un backend CUDA, e il PBS su GPU
 dovrebbe essere 50-100 volte più veloce, quindi i due minuti diventerebbero secondi. Non
@@ -2359,7 +2360,7 @@ misura. (3) I parametri `LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS` sono dichi
 impreciso. E un vincolo strutturale: l'indice sta al coefficiente N_poly−1, che funziona solo se
 N_poly ≥ 2·dim−1 — quindi il torneo **non è portabile** sul set veloce 1_1 (N=512) con dim=512.
 
-**Il risultato corregge F45.** L'argmin esatto sul server non è quadratico per necessità: con il
+**L'argmin esatto sul server non è quadratico per necessità**: con il
 circuit bootstrapping è **lineare in N con profondità log N**, e a N=128 costa **1,3 s invece di
 14,4 s — 11× meno — cioè dentro il budget dei 10 s (e dei 5 s) dell'incontro**. A N=64 fa 0,75 s. (Su una macchina carica gli stessi run danno 1,8-2,2 s a N=128: i tempi qui
 sono a macchina scarica.) Il
