@@ -187,6 +187,7 @@ fn main() {
     for &n in &[8usize, 16, 32, 64, 128] {
         if n > sc.g.len() { continue; }
         let (mut t_dot, mut t_tor, mut ok, mut ok_s) = (0f64, 0f64, 0usize, 0usize);
+        let mut fuori = 0usize;   // indici decifrati fuori range (decomposizione CB troppo grossolana)
         let mut rumore: Vec<f64> = Vec::new();
         let mut sbagliati: Vec<(f64, f64)> = Vec::new();
         let (mut facili, mut ok_facili, mut accettati, mut ok_accettati) = (0usize, 0usize, 0usize, 0usize);
@@ -297,9 +298,12 @@ fn main() {
             // divario fra il minimo e il secondo: e' lui a dire se il confronto e' "facile"
             let mut ord = s.clone(); ord.sort();
             let divario = if n > 1 { (ord[1] - ord[0]) as f64 } else { 1e9 };
-            if idx == best { ok += 1; } else { sbagliati.push((divario, (s[idx] - s[best]) as f64)); }
-            if divario > 20.0 { facili += 1; if idx == best { ok_facili += 1; } }
-            if s[best] <= sc.t { accettati += 1; if idx == best { ok_accettati += 1; } }
+            // l'indice decifrato puo' finire FUORI RANGE se la decomposizione del circuit
+            // bootstrap e' troppo grossolana: va contato come errore, non fatto esplodere
+            if idx >= n { fuori += 1; sbagliati.push((divario, f64::NAN)); }
+            else if idx == best { ok += 1; } else { sbagliati.push((divario, (s[idx] - s[best]) as f64)); }
+            if divario > 20.0 { facili += 1; if idx == best && idx < n { ok_facili += 1; } }
+            if s[best] <= sc.t { accettati += 1; if idx == best && idx < n { ok_accettati += 1; } }
             // quanto rumore ha accumulato il punteggio del vincitore attraverso i log N CMUX?
             let e = decrypt_lwe_ciphertext(&big_sk, &xs).0
                 .wrapping_sub((s[best] as u64).wrapping_mul(ds)) as i64 as f64 / ds as f64;

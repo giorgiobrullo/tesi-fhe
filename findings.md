@@ -3188,6 +3188,25 @@ raffinata di CCS 2025. Il conto teorico del nostro torneo a N=128 su 16 thread �
 CB classico da 40-60 ms per nodo **0,44-0,66 s**. Ne misuriamo **1,27**. Vale la pena profilare: il
 sospettato numero uno è la **coda del torneo**, dove gli ultimi 4 livelli usano 1-8 core su 16.
 
+**Provato subito, e il 2-3× non è lì.** La prima ipotesi era la decomposizione del circuit
+bootstrap (il binario la espone con `--cbs BASE LIVELLI`, default 2^5 × 3 = 4 PBS per confronto).
+Scendere a 2 livelli toglie un PBS per nodo e si vede:
+
+| gadget CB | PBS/confronto | torneo a N=128 | indice esatto (8 probe, N=8/16/32) |
+|---|---|---|---|
+| **2^5 × 3** (default) | 4 | 1,249 s | **8/8 · 8/8 · 8/8** |
+| 2^6 × 3 | 4 | 1,25 s | 8/8 · 7/8 · 6/8 |
+| 2^4 × 4 | 5 | 1,6 s (stimato da N≤32) | 7/8 · 7/8 · 7/8 |
+| 2^7 × 2 | 3 | **0,882 s (−29%)** | 6/8 · 7/8 · 7/8 |
+| 2^9 × 2 | 3 | 0,88 s | 6/8 · **4/8** · 5/8 |
+
+A 2 livelli il torneo è **29% più veloce e sbaglia di più**, e con base grossa l'indice decifrato
+finisce anche **fuori range** (il binario ora lo conta come errore invece di andare in panic:
+prima esplodeva, ed è un difetto di robustezza che era rimasto nascosto). **Il default 2^5 × 3 è
+già la scelta giusta**: non c'è margine gratis nella decomposizione. Quello che resta è la coda del
+torneo — un problema di *occupazione dei core*, non di parametri — e si aggredisce con il batching
+fra query, non ritoccando il CB.
+
 **E il numero di testa, con l'avvertenza accanto.** 1,27 s a N=128 sarebbe l'argmin TFHE esatto più
 veloce pubblicato a quella taglia, e con **13-14 bit** di precisione contro i **2-4 bit** di
 Chakraborty-Zuber — che è più interessante del tempo. Ma loro girano **single-thread su un ultrabook
