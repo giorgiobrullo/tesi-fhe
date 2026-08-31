@@ -2944,3 +2944,102 @@ trascurabile e, per inversione generativa, ottiene immagini che passano **oltre 
 volte; gli autori dichiarano esplicitamente che vale «for any protection mechanism that maintains
 the accuracy of the recognition», FHE inclusa. Sostituisce Adler 2003/04 e Galbally 2010 come
 citazione di riferimento di F40 e **conferma dall'esterno** ciò che qui è misurato.
+
+---
+
+## 🔴 F62 — Il verdetto esterno: cosa non regge, e dove siamo davvero nella letteratura
+
+Ho fatto revisionare l'intero `findings.md` e la letteratura da due agenti indipendenti, con
+l'istruzione di essere severi e di non accettare nessuna affermazione senza l'artefatto che la
+sostiene. Questo finding è il consuntivo: prima le cose che ho corretto, poi quelle che restano
+aperte, poi il posizionamento onesto.
+
+### Corretto subito
+
+| finding | cosa non andava | correzione |
+|---|---|---|
+| **F48** | «+8,7 punti» confronta (3,3) con **(1,1)**, una baseline a una foto per iscritto che non è mai stata la nostra: i ~95-96% di F19/F20 sono (3,1) = 95,3% | il guadagno della fusione *del probe* è **+3,9 punti**; la narrazione regge, il numero no |
+| **F40** | «senza un punto accettato l'oracolo è muto»: falso, era un bug dello script di misura | rifatto in **F61** — un bipolare legale apre alla prima query |
+| **F58** | «la prova ZK non serve a niente» | vero per il *range* e per Δ, **falso in generale**: la prova di **norma** è l'unica difesa contro F61 |
+| **F51/F53** | «Mondo 2 = massimo di privacy» | il prodotto esterno vuole la **stessa chiave**, quindi chi cifra il probe decifra la galleria: è uno **scambio** (protegge dal server, indebolisce verso il client), non un miglioramento |
+| **F52** | tabella disallineata dall'artefatto; titolo 1,8 s con misura 1,27 s | riallineata: indice esatto **73/80**, non 80/80 — e la matrice di F45 fa **77/80**, quindi il torneo è più veloce *e meno accurato* |
+| **F47** | il meccanismo della «box size» | già smontato in **F55**; da non riproporre come contributo, anche se sembra originale |
+
+### Resta aperto (elenco, per non perderlo)
+
+- **F39** — il confronto CKKS non ha **mai testato un impostore**: `ckks_varco.txt` riporta
+  «impostori accettati 0/0» in ogni configurazione, perché la run usa i primi 32 probe, tutti
+  genuini. Il confronto di *tempo* regge, quello di *accuratezza* no. Da rifare.
+- **F14 / F28** — contraddetti da CSV dello stesso repo: F14 dice «più economico del gradino 07
+  (~75-95 ms)» ma `velocita_dimensione.csv` dà **151,9 ms** a dim 512 nella stessa configurazione;
+  F28 riporta 5 righe su 6 di `soglia_reale.csv` e quella saltata mostra 128 dim **meglio** di 512.
+- **F23 / F33 / F19 (costi per modello) / esperimento 13** — le cifre non hanno uno script che le
+  produca; `compressione_tradeoff.csv` e `costo_reale.csv` citano cinque script che **non esistono
+  né nel repo né nella storia git**. Da rifare o da togliere: non sono riproducibili.
+- **«Parametri standard a 128 bit»** — vero per la sicurezza IND-CPA, **non** per la p-fail (che è
+  calcolata per il carico shortint, non per un input che ha attraversato 512 termini), e falso in
+  due punti: `basso_livello.rs` usa un set che sta a ~70 bit, e il WOPBS di F52 è dichiarato
+  «123-128 bit» senza `log2_p_fail`.
+- **F32/F42 «a parità di macchina»** — falso: i tempi Concrete vengono dall'home server Linux a 12
+  core, tfhe-rs gira su M4 Max. La conclusione regge lo stesso (F31 la argomenta col conteggio dei
+  PBS, ~210 contro ~14), ma la frase va tolta.
+- **F49** — quattro numeri della demo non sono prodotti da nessuno script, e i «10 ms cifratura / 8
+  ms decifratura» cronometrano `subprocess.run` di un binario Rust: i valori crittografici veri sono
+  0,4 ms e 0,03 ms (F41). E «4/4 e 3/3» è una prova di funzionamento, non una misura (Wilson 95%
+  su 4/4: [51%, 100%]).
+
+### Il posizionamento, normalizzato
+
+Il solo numero che rende confrontabili macchine e thread diversi è il **costo per template per
+core** (tempo × core / N). Con la configurazione **sicura** (set 2_2, Δ onesto, 1,258 s a N=1024):
+
+| lavoro | schema | modello di minaccia | costo per template per core |
+|---|---|---|---|
+| Zuber & Sirdey, PoPETs 2021 (`10.2478/popets-2021-0020`) | TFHE, δ-matrix O(N²) | probe cifrato, galleria in chiaro | ~9.300 ms·core |
+| Cong et al., SAC 2024 (`2023/852`) | tfhe-rs, top-k O(N log²k) | idem | 672 ms·core |
+| Azogagh et al., PoPETs 2025 (`2024/1894`) | tfhe-rs, blind counting sort | idem | 139 ms·core |
+| **questo lavoro** | tfhe-rs, soglia con PBS di segno | idem (+ galleria cifrata, F51) | **19,7 ms·core** |
+| HyDia, PoPETs 2025 (`10.56553/popets-2025-0146`) | CKKS, soglia polinomiale | entrambe cifrate | 1,6-9,7 ms·core |
+
+**Dove siamo davvero meglio.** Contro la famiglia diretta — TFHE, non interattivo, server cieco,
+galleria in chiaro — siamo **7× meglio di Azogagh** e **34× meglio di Cong**, con confronto
+**esatto** invece che approssimato. È il confronto legittimo, e va messo per primo.
+
+**La rivendicazione più forte non è la soglia, è la galleria cifrata.** Zuber-Sirdey scrivono in
+§1.2 che cifrare query *e* database insieme è «within reach but not yet attainable due to a high
+noise propagation issue». Il prodotto esterno GGSW⊡GLWE ha crescita di rumore **additiva**, e F51 lo
+misura a costo quasi nullo: è la risposta a un problema che il prior art più vicino dichiara aperto.
+
+**Dove siamo alla pari o peggio, senza girarci intorno.**
+- Contro HyDia siamo **2-12× peggio** per template per core, ma a parità di modello di minaccia e
+  con confronto esatto e profondità 1 invece di κ=10 livelli di approssimazione polinomiale.
+- **Sopra N ≈ 10⁴ perdiamo e basta**: IDFace fa 1M in 0,126 s (arXiv `2507.12050`), perché uno slot
+  CKKS impacchettato costa ordini di grandezza meno di un PBS. Il regime operativo da dichiarare è
+  **N ∈ [10², 10³]**, e la questione si chiude lì.
+- **L'argmin a torneo non è un progresso sullo stato dell'arte**: Chakraborty & Zuber (`2022/622`)
+  fanno l'argmin di 128 valori in 17 s **single-thread su un i7-6600U del 2016**; i nostri 1,3 s ×
+  16 thread sono 20,8 s·core su M4 Max. Normalizzando siamo **peggio**. La difesa vera è di
+  *applicabilità*: loro sono esatti su interi a 4 bit, noi operiamo sul punteggio leveled a
+  larghezza piena senza rappresentazione radix e senza ponte.
+
+**Cosa NON è nostro, e va citato invece che rivendicato.**
+- Il **PBS di segno con accumulatore costante come test di soglia parallelo è il neurone di
+  FHE-DiNN** (Bourse, Minelli, Minihold, Paillier, CRYPTO 2018, `2017/1114`): pesi in chiaro, somma
+  con sole addizioni omomorfe, bias assorbito come costante — cioè la nostra soglia — segno dal test
+  vector, profondità 1, neuroni indipendenti. Uno strato DiNN con pesi = template e bias = −T **è il
+  nostro varco**. Rivendichiamo l'istanziazione biometrica, che nessuno ha fatto; non la primitiva.
+- **L'uscita compatta senza punteggi, motivata dagli attacchi di ricostruzione, è HyDia**, con la
+  stessa motivazione scritta quasi con le stesse parole. È la nostra F40/F43, pubblicata prima.
+- **«Per il varco basta la soglia, l'argmin non serve»** è l'argomento di Funshade
+  (`10.56553/popets-2023-0096`), Monchi (`2024/654`) e del deployment World ID (`2024/705`).
+- Il setting probe-cifrato/galleria-in-chiaro risale a **Erkin et al., PETS 2009**.
+- La baseline negativa da citare per giustificare «leveled + 1 PBS» è **Pradel & Mitchell**
+  (arXiv `2111.12372`): 34.308 s per un match **1:1** con gate bootstrapping bit-a-bit.
+
+**Confronti da NON fare.** L'accuratezza non va confrontata con nessuno: il nostro 97-99%
+DIR@FPIR=1% è open-set, il 99,63% rank-1 di Blind-Match è closed-set, il TAR@FAR di CryptoMask è
+verifica 1:1. Tutte quelle cifre misurano il **modello di riconoscimento**, non la crittografia.
+E vanno esclusi anche CryptoFace (i 22 minuti sono la CNN cifrata, il matching è 0,3 s), IDFace
+(query **in chiaro**, il Key Server decifra ogni punteggio), Funshade/Monchi (2PC interattivo con
+non-collusione), HERS e Blind-Match (l'argmax lo fa il client dopo aver visto tutti i punteggi),
+CryptoMask (**non pubblica tempi assoluti**).
