@@ -2486,8 +2486,9 @@ dim = N: il prodotto negaciclico ha grado massimo 2·dim−2 = 510 < N+dim−1 =
 coefficiente dim−1 non riceve termini di wraparound — verificato su 200 prove casuali per ognuna
 delle tre combinazioni (256/256, 512/512, 512/2048), sempre esatto.
 
-**La configurazione consigliata che ne esce**: embedding 256-dim, quantizzazione a 3 bit, fusione
-2+3 frame, set di parametri 1_0 con `--log-do 60 --blocco 8`. Probe 14 KB, **0,064 s a N=128** e
+**La configurazione consigliata che ne esce** *(valida solo contro un client honest-but-curious:
+vedi F56, che contro un client malicious impone il set 2_2 e un Δ più conservativo)*: embedding
+256-dim, quantizzazione a 3 bit, fusione 2+3 frame, set di parametri 1_0 con `--log-do 60 --blocco 8`. Probe 14 KB, **0,064 s a N=128** e
 **0,5 s a N=1024** sul server, **99,1%** di DIR@FPIR=1%.
 Il prezzo è la banda: 1_0 ha N=256, e per la regola di F50 (banda ∝ 1/N) la sua banda è il doppio
 di quella di 1_1, ~22 unità invece di ~11 a Δ=2^53 — sempre due ordini di grandezza sotto i divari
@@ -2507,3 +2508,70 @@ raccontava di aver trovato "il meccanismo". È il rischio tipico di una spiegazi
 correttamente i dati osservati* (box ≥ 256 separava i set buoni dai cattivi) senza essere la causa:
 cinque punti, due classi, tante regole che li separano. La revisione ha smontato l'inferenza con
 un rapporto fra numeri già presenti nei file, senza rifare un solo esperimento.
+
+## 🔴 F56 — Una vulnerabilità vera: il client malicious apre il varco in una query (e il costo della difesa)
+La stessa revisione critica che ha smontato F47 ha trovato una cosa più seria: **un difetto di
+sicurezza nel sistema**, non un errore di racconto. Verificata end-to-end, e qui c'è anche la
+difesa, con il suo prezzo misurato.
+
+**Il difetto.** Il punteggio viaggia codificato come (s−T)·Δ sul toro a 64 bit, e Δ lo sceglievamo
+*guardando i punteggi dei probe della scena* (`varco_leveled.rs` scorre tutti i probe per trovare
+il massimo |s−T|). È un iperparametro tarato sul test set, e lascia un margine minimo: sulla scena
+a 4 bit il massimo osservato è 3561 contro un **precipizio di wrap a 4096** — l'87% del budget.
+Oltre quel valore (s−T)·Δ avvolge modulo 2^64 e il PBS di segno legge la **metà sbagliata del
+toro**: risponde "match".
+
+E un client malicious ci arriva senza sforzo, perché non manda un volto: manda un vettore. Basta
+sceglierlo con s−T dentro la finestra [periodo/2, periodo), dove periodo = 2^64/Δ. Sui dati veri,
+con valori tutti dentro il dominio legale a 3 bit:
+
+| probe costruito | s−T | sotto soglia **in chiaro** | esito del **varco cifrato** |
+|---|---|---|---|
+| bersaglio 0 | 1026 | **0 iscritti** | accettato |
+| bersaglio 5 | 1037 | **0 iscritti** | accettato |
+| bersaglio 17 | 1027 | **0 iscritti** | rifiutato |
+
+Tre probe che in chiaro non somigliano a nessuno, e il varco ne accetta **due su tre**, con
+discrepanze di 1027 e 1037 unità — cento volte la banda (≈11). **Una query, nessun oracolo, nessuna
+foto**: il cancello si apre.
+
+**Perché è grave anche per F40.** Il modello di minaccia (F35) diceva che il client malicious non
+può fare di meglio che tentare, e F40 aggiungeva che senza una foto dell'iscritto l'oracolo a un bit
+è muto. Con il wrap, l'attaccante ottiene qualcosa di molto più forte: **spazzolando la finestra**
+può misurare s_i(v) per un v qualunque, cioè un oracolo sul *punteggio*, non sul bit — e F40 misura
+che con il punteggio l'embedding si ricostruisce in **513 query**, non 30.000, e **senza partire da
+una foto**. La frase di F35 «con l'esito a soglia questo attacco non c'è» era quindi troppo forte.
+
+**La difesa: Δ da un bound indipendente dai dati.** L'unico Δ difendibile è quello che copre tutto
+ciò che un client *qualunque* può produrre: |s−T| ≤ 2·dim·q² + max‖g‖² + |T|, che sulla scena a
+3 bit vale 10.168 → Δ = 2^49 (invece di 2^53). Non è gratis, perché la banda è σ_assoluto/Δ e
+quindi si allarga di 16×. Misurato:
+
+| set di parametri | banda a Δ=2^49 | DIR@FPIR=1% (simulata su 5 scene) | tempo a N=128 | sotto attacco |
+|---|---|---|---|---|
+| 1_1 (N=512), il veloce | **178 unità** | **0,0%** — inutilizzabile | 0,088 s | — |
+| **2_2 (N=2048)** | **40 unità** | **97,5%** (contro 98,5% esatta) | **0,151 s** | **0/3 accettati** |
+
+Il set piccolo, che F55 aveva eletto campione, **non sopravvive al Δ onesto**: la sua banda diventa
+più larga dei divari reali e il varco decide a caso. Il set grande regge: perde **un punto** di
+accuratezza e costa **2,4×** (0,151 s invece di 0,064 s a N=128), e con lui l'attacco è **bloccato
+completamente** — 0 accettati su 3, 0 discrepanze.
+
+**La configurazione sicura, quindi:** set 2_2 (N=2048), Δ = 2^63 / (2·dim·q² + max‖g‖² + |T|),
+quantizzazione a 3 bit, fusione 2+3 frame. **0,151 s a N=128**, DIR ≈ 97,5%, e nessun probe
+costruito ad arte riesce ad aprire. Resta due ordini di grandezza sotto i 10 s dell'incontro: il
+prezzo della sicurezza si paga senza uscire dal budget.
+
+**La via di principio, non implementata.** Il modo pulito di riavere il Δ stretto (e quindi la
+velocità e l'accuratezza piene) è **verificare** che il probe stia nel dominio dichiarato, invece di
+sperarlo: tfhe-rs ha un modulo `zk` con prove a conoscenza zero di cifratura corretta e di
+*range* del messaggio, pensate proprio per i cifrati che arrivano da un client non fidato. Il client
+allegherebbe la prova, il server la verificherebbe prima del match, e il wrap tornerebbe
+impossibile per costruzione. È la cosa giusta da indicare come lavoro immediato successivo.
+
+**Cosa correggere nei finding precedenti.** F37 dice che Δ è scelto «senza guardare nessun probe»:
+è falso, il codice li guarda tutti. F35 dice che con l'esito a soglia l'attacco per gradiente «non
+c'è»: vero solo se Δ è onesto. F55 elegge il set 1_0 come il più veloce: vero, ma solo nel modello
+di minaccia *honest-but-curious sul client*; contro un client malicious il campione è il 2_2. La
+lezione di metodo, di nuovo: **un iperparametro tarato sul test set non è solo un peccato
+statistico — qui era un buco di sicurezza.**

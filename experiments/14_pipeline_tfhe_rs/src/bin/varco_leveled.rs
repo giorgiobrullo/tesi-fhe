@@ -107,10 +107,19 @@ fn main() {
         }
     }
     let w = 64 - (max_abs as u64).leading_zeros(); // bit necessari per |d|
-    let log_delta = 63 - w; // Delta_s = 2^log_delta
+    // --log-delta L forza Delta (per studiare l'overflow: vedi F56); --delta-onesto usa il bound
+    // indipendente dai dati 2*dim*q^2 + max||g||^2 + |T|, l'unico difendibile contro un client malicious
+    let q_max = scena.g.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap_or(3);
+    let bound_onesto = 2 * (scena.dim as i64) * q_max * q_max
+        + scena.bsq.iter().cloned().max().unwrap_or(0) + scena.t.abs();
+    let log_delta = if args.iter().any(|x| x == "--delta-onesto") {
+        63 - (64 - (bound_onesto as u64).leading_zeros())
+    } else if let Some(i) = args.iter().position(|x| x == "--log-delta") {
+        args[i + 1].parse().unwrap()
+    } else { 63 - w };
     let delta: u64 = 1u64 << log_delta;
-    println!("scena: DIM={} N={} probe={} T={}  |s-T| max {} -> {} bit, Delta_s = 2^{}, thread {}",
-             scena.dim, scena.g.len(), scena.probe.len(), scena.t, max_abs, w, log_delta, threads);
+    println!("scena: DIM={} N={} probe={} T={} | |s-T| max sui probe {} ({} bit) | bound onesto {} | Delta_s = 2^{} -> precipizio di wrap {} | thread {}",
+             scena.dim, scena.g.len(), scena.probe.len(), scena.t, max_abs, w, bound_onesto, log_delta, 1u64 << (63 - log_delta), threads);
     // --log-do L  e  --blocco B: il bit d'esito vale 2^L e l'uscita compatta somma B bit per blocco.
     // Servono log2(B)+1 bit di franco sopra L, quindi L <= 64 - log2(B) - 1. Piu' L e' alto, piu'
     // margine ha la DECODIFICA del bit contro il rumore in uscita del PBS (vedi la revisione di F47).
