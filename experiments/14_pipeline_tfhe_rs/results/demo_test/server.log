@@ -1,0 +1,2 @@
+varco in ascolto su :9099 | dim=512 T=288 Delta=2^53 | parametri MessageModulus(2), 128 bit
+il server NON ha la chiave segreta: riceve byte cifrati e ne restituisce altri.

@@ -52,6 +52,22 @@ def varco(thread):
     return out
 
 
+def leggi_tabella(nome, col):
+    """legge una tabella 'N | c1 | c2 | ...' da un file di risultati di experiments/14."""
+    out = {}
+    f = E14 / nome
+    if not f.exists():
+        return out
+    for line in open(f):
+        parti = [x.strip() for x in line.split("|")]
+        if len(parti) > col and parti[0].isdigit():
+            try:
+                out[int(parti[0])] = float(parti[col].replace("s", "").strip())
+            except ValueError:
+                pass
+    return out
+
+
 def argmin_delta():
     out = {}
     if (E14 / "argmin_delta_16thread.txt").exists():
@@ -128,12 +144,12 @@ ax1.spines[["top", "right"]].set_visible(False); ax1.tick_params(labelsize=9)
 # ---------------- (b) i design finali al crescere di N
 serie = [
     ("Concrete, soglia (F28)", c_sog, "#7e8aa0", "s", 0),
-    ("tfhe-rs argmin esatto a matrice, 16 thread (F45)", argmin_delta(), "#c0392b", "v", 7),
+    ("tfhe-rs argmin a matrice, N^2 (F45)", argmin_delta(), "#e07a5f", "v", 7),
     ("tfhe-rs radix, torneo 8 bit, 16 thread (F38)", rad_tor, "#6a4c93", "D", -1),
     ("CKKS, packing + segno, 1 thread (F39)", ck, "#e9a000", "^", -9),
-    ("tfhe-rs leveled + soglia, 1 thread (F37)", lev1, "#2a9d8f", "o", 0),
-    ("tfhe-rs leveled, set 2_2, 16 thread (F37)", lev16, "#1b6f65", "o", 8),
-    ("tfhe-rs leveled, set 1_1, 16 thread (F46)", lev16_11, "#16302c", "*", -8),
+    ("tfhe-rs leveled + soglia (F37/F46)", lev16, "#1b6f65", "o", 8),
+    ("tfhe-rs, galleria CIFRATA (F51)", leggi_tabella("galleria_cifrata_1024.txt", 3), "#2a9d8f", "s", 9),
+    ("tfhe-rs, argmin ESATTO a torneo (F52)", leggi_tabella("argmin_torneo.txt", 3), "#c0392b", "^", -9),
 ]
 for nome, d, c, mk, dy in serie:
     if not d:
@@ -151,8 +167,8 @@ for y, t in ((10, "10 s"), (5, "5 s")):
     ax2.axhline(y, ls=(0, (4, 4)), lw=0.9, color="#bbb", zorder=0)
     ax2.text(1700, y, t, fontsize=8, color="#999", va="center", ha="left")
 ax2.set_xlabel("iscritti in galleria N"); ax2.set_ylabel("tempo per query (s, scala log)")
-ax2.set_title("(b) I design finali al crescere della galleria\nvarco leveled 0,10 s a N=128, 0,72 s a N=1024 (set 1_1); esatto sui dati reali", fontsize=11)
-ax2.legend(fontsize=7.8, loc="lower right", frameon=False)
+ax2.set_title("(b) I design finali al crescere della galleria\ncifrare la galleria non costa nulla; l'argmin esatto a torneo rientra nel budget", fontsize=11)
+ax2.legend(fontsize=7.6, loc="lower right", frameon=False)
 ax2.spines[["top", "right"]].set_visible(False); ax2.tick_params(labelsize=9)
 
 fig.tight_layout()
