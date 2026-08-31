@@ -906,6 +906,14 @@ con e senza dataflow:
 | 4 | 78,3 s | 73,9 s | 36,1 s | 33,2 s |
 | 8 | 180,4 s | 185,6 s | 69,1 s | crash compilatore |
 
+**Correzione (F64): quel 2,2× è del dataflow, non della struttura.** Rimisurato su M4 Max, dove
+`Dataflow parallelism is not available in macOS`, il torneo è **più lento** del sequenziale —
+63,31 s contro 47,35 s a N=4, 102,44 contro 98,29 a N=8. Ha senso: il vantaggio del torneo è la
+**profondità**, e la profondità si incassa solo se qualcosa esegue in parallelo i confronti dello
+stesso livello; senza, restano solo le sue operazioni in più. Di rimbalzo questo rafforza F52, dove
+il torneo in tfhe-rs guadagna davvero perché rayon i livelli li esegue in parallelo. Il testo
+originale, valido sul server Linux **con** dataflow, diceva:
+
 L'ottimizzazione che conta è il torneo: 2,2× più veloce a N=4, 2,6× a N=8, e il vantaggio cresce
 con la galleria (il sequenziale scala ×2,3 per raddoppio, il torneo ×1,9). La catena paga
 anche l'indice accumulato che si allarga, mentre l'albero no. Il dataflow invece non è la leva:
@@ -3009,20 +3017,21 @@ aperte, poi il posizionamento onesto.
 - **F14 / F28** — contraddetti da CSV dello stesso repo: F14 dice «più economico del gradino 07
   (~75-95 ms)» ma `velocita_dimensione.csv` dà **151,9 ms** a dim 512 nella stessa configurazione;
   F28 riporta 5 righe su 6 di `soglia_reale.csv` e quella saltata mostra 128 dim **meglio** di 512.
-- **F23 / F33 / F19 (costi per modello) / esperimento 13** — le cifre non hanno uno script che le
-  produca; `compressione_tradeoff.csv` e `costo_reale.csv` citano cinque script che **non esistono
-  né nel repo né nella storia git**. Da rifare o da togliere: non sono riproducibili.
+- ~~**F23 / F33 / F19 (costi per modello) / esperimento 13**~~ — **chiuso da F64**: due dei
+  cinque script esistevano davvero (`benchmark/breakdown_query.py`, `experiments/08_cnn/costo_modelli.py`),
+  l'esperimento 13 è stato rieseguito, il breakdown di F33 e lo sweep per dimensione sono stati
+  rimisurati sul Mac dopo aver sbloccato Concrete. Resta archivio (non riproducibile) solo
+  `costo_reale.csv` nelle righe che citano `argmin_512.py` e `soglia_scala`.
 - **«Parametri standard a 128 bit»** — vero per la sicurezza IND-CPA, **non** per la p-fail (che è
   calcolata per il carico shortint, non per un input che ha attraversato 512 termini), e falso in
   due punti: `basso_livello.rs` usa un set che sta a ~70 bit, e il WOPBS di F52 è dichiarato
   «123-128 bit» senza `log2_p_fail`.
-- **F32/F42 «a parità di macchina»** — falso: i tempi Concrete vengono dall'home server Linux a 12
-  core, tfhe-rs gira su M4 Max. La conclusione regge lo stesso (F31 la argomenta col conteggio dei
-  PBS, ~210 contro ~14), ma la frase va tolta.
-- **F49** — quattro numeri della demo non sono prodotti da nessuno script, e i «10 ms cifratura / 8
-  ms decifratura» cronometrano `subprocess.run` di un binario Rust: i valori crittografici veri sono
-  0,4 ms e 0,03 ms (F41). E «4/4 e 3/3» è una prova di funzionamento, non una misura (Wilson 95%
-  su 4/4: [51%, 100%]).
+- ~~**F32/F42 «a parità di macchina»**~~ — **chiuso da F64**, e non togliendo la frase ma
+  rendendola vera: Concrete ora gira sul Mac, e il confronto rifatto sullo stesso hardware dà
+  **105× a N=4 e 94× a N=8**.
+- ~~**F49**~~ — **chiuso**: i quattro numeri sono ora prodotti da `benchmark/soglia_dominio.py` e
+  i tempi client sono attribuiti correttamente. Resta valido il rilievo che «4/4 e 3/3» è una prova
+  di funzionamento, non una misura (Wilson 95% su 4/4: [51%, 100%]).
 
 ### Il posizionamento, normalizzato
 
