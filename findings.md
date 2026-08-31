@@ -2046,9 +2046,10 @@ Il che non li rende utilizzabili, per un motivo diverso e successivo: con il Δ 
 F56 la loro banda in unità di punteggio si allarga fino a 48-89, e producono decisioni sbagliate
 lontano dalla soglia. **La configurazione che regge è il set 2_2**, ed è quella di F56.
 
-Con questo il varco è **0,10 s a N=128 e 0,72 s a N=1024**: il numero finale del sistema. Il
-default resta 2_2 (banda più stretta, margine più comodo); 1_1 è l'operativo veloce, e la scelta
-tra i due è un cursore banda/velocità, entrambi esatti sui dati reali.
+Con il set 1_1 il varco è **0,10 s a N=128 e 0,72 s a N=1024**. ⚠️ Non è però il numero del
+sistema: quel set regge solo se il client è fidato. Con il Δ difendibile contro un client malicious
+(F56) la sua banda si allarga a 44 unità e accetta 4 impostori su 64, quindi la configurazione da
+portare in tesi è il **set 2_2**, che costa **0,152 s a N=128** ed è esatto.
 
 **Ancora non spremuto**: la GPU con tfhe-rs. Il test di F25 (GPU 9× più lenta) era su Concrete e
 sull'argmin *sequenziale*, il caso peggiore per una GPU; il varco è N PBS **indipendenti in un
@@ -2081,8 +2082,9 @@ Cosa resta dei 3 bit: non velocità (il conteggio dei PBS e la loro dimensione n
 a N=1024 come i 4 bit), ma **robustezza gratis**. La banda si dimezza (σ da ~22 a ~11 unità a Δ=2^53, F50), cioè il varco
 sbaglia solo entro poche unità di punteggio da T, con l'accuratezza in chiaro invariata.
 Per la tesi: i 3 bit sono la scelta migliore per il varco veloce (set 1_1), perché stringono la
-banda di un ordine di grandezza a costo zero. Il punto operativo finale: **3 bit, set 1_1, 0,10 s a
-N=128 e ~0,8 s a N=1024, banda σ≈4, esatto**.
+banda di un ordine di grandezza a costo zero. Il punto operativo con client fidato è **3 bit, set
+1_1, 0,10 s a N=128**; quello difendibile contro un client malicious è **3 bit, set 2_2, 0,152 s**
+(F56), ed è quello che va in tesi.
 
 **La sola leva di velocità ancora aperta, ovunque, è la GPU** (un lotto di N PBS indipendenti è il
 carico ideale del backend CUDA di tfhe-rs, l'opposto dell'argmin sequenziale di F25). Tutto il
@@ -2134,15 +2136,17 @@ scala (stesso salto a 1000 e a 4000). Due letture importanti per la tesi:
    ragionevole è **(2,2)**: 97,6% a 4000 iscritti, due foto in registrazione e due frame alla
    sbarra, tutto sul client.
 
-Con F48 il sistema, nella sua configurazione realistica, è: varco privato in **0,10 s a N=128 /
-~0,8 s a N=1024** (F46/F47), accuratezza **97-99%** DIR@FPIR=1% a migliaia di iscritti reali
-(multi-frame), server cieco, client che vede solo l'esito. Questo, non il 91% a frame singolo, è
-il numero da portare in tesi.
+Con F48 il sistema, nella sua configurazione difendibile, è: varco privato in **0,152 s a N=128 /
+1,26 s a N=1024** (set 2_2 con Δ onesto, F56), accuratezza **97-99%** DIR@FPIR=1% a migliaia di
+iscritti reali grazie al multi-frame, server cieco, client che vede solo l'esito. È il numero da
+portare in tesi.
 
 Nota su cosa NON aiuta, per completezza dell'esplorazione: la trasformazione ternaria (trucco
 IDFace, memoria [[fhe-compression-not-a-lever]]) stringe la larghezza del punteggio, ma F47 ha
-mostrato che la larghezza non governa più il costo del varco (lo governa la box size del PBS),
-quindi il ternario non dà velocità qui; e la compressione di dimensione non dà né velocità (F31)
+mostrato che la larghezza non governa il costo del varco,
+quindi il ternario non dà velocità qui — il motivo è che l'accumulatore del PBS di segno è
+**costante**, quindi il costo è quello di un PBS e non dipende dalla larghezza del messaggio (F55);
+e la compressione di dimensione non dà né velocità (F31)
 né accuratezza. La fusione multi-frame è invece la leva vera, sull'asse giusto.
 
 ## 🔵 F49 — La demo end-to-end: i due ruoli come due processi, e la soglia come parametro d'installazione
