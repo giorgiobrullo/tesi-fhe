@@ -2965,6 +2965,23 @@ tiene un set piccolo. Le due grandezze sono scambiabili, e l'installatore può s
 Il tetto vero non è un bit — è che sotto ‖g‖₁ ≈ 90 la DIR comincia a cedere davvero (97,5% a
 N=1024) senza guadagnare un altro bit.
 
+**E il guadagno si compone: anche l'argmin diventa più accurato.** Il Δ più grande dimezza due volte
+il rumore in unità di punteggio, e l'argmin a torneo di F52 — che soffre proprio di quello — ne
+beneficia direttamente. Stesso binario, stessi 32 probe, unica differenza la galleria limitata
+(log: `results/argmin_torneo_cap110.txt` contro `results/argmin_torneo_onesto.txt`):
+
+| | galleria intera (Δ=2^51) | **galleria con ‖g‖₁ ≤ 110 (Δ=2^53)** |
+|---|---|---|
+| indice esatto | 136/160 (85%) | **146/160 (91%)** |
+| indice esatto quando il divario > 20 | 117/136 (86%) | **99/99 (100%)** |
+| minimo sotto soglia | 68/68 | 66/66 |
+| rumore sul punteggio dopo log N CMUX | 3,5-11,8 unità | **1,1-1,6 unità** |
+
+La riga che conta è la seconda: **con la galleria limitata il torneo non sbaglia mai un confronto
+non ambiguo**. Gli errori residui sono tutti su quasi-pareggi, dove sbagliare non ha conseguenze
+operative. La stessa leva che rende difendibile il set piccolo rende esatto l'argmin: è il rumore
+in unità di punteggio a governare entrambi, e il Δ lo governa.
+
 **Un bug latente trovato per strada.** `varco_leveled` calcolava il q del bound dalla **galleria**
 invece che dal dominio dichiarato del **probe**. Qui coincidono (entrambi 3) e il risultato non
 cambia, ma è sbagliato in principio: se la galleria fosse più stretta del dominio che il client può
