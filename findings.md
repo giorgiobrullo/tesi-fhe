@@ -2793,3 +2793,33 @@ informazione *sua*: è lui che ha la chiave) ed è esattamente ciò che serve al
 sa subito se il caso è ambiguo e quali iscritti sono coinvolti.
 
 Codice: `experiments/14_pipeline_tfhe_rs/src/bin/uscita_impacchettata.rs`.
+
+**Quando conviene davvero (e quando no).** La chiave di packing è un costo *una tantum* di 67 MB, il
+risparmio è *per interrogazione*. A N=128 si risparmiano 0,2 MB a query, quindi il pareggio arriva
+dopo ~335 query: per la demo, che ha 48 iscritti e si usa a mano, non vale la pena cambiarla. A
+N=4096 si risparmiano 7,3 MB a query e il pareggio arriva alla **nona**. È una tecnica che va accesa
+quando la galleria è grande, che è esattamente il caso in cui la banda diventava insostenibile.
+
+---
+
+## 🔵 F60 — Il PBS multi-bit non aiuta: 6-9% più lento a ogni scala
+
+Ultima leva di pura velocità rimasta sul tavolo prima della GPU: il set di parametri **multi-bit**
+(`V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2`), che raggruppa 3 bit di chiave per iterazione del
+blind rotate e in teoria taglia il numero di iterazioni, in cambio di una chiave di bootstrap più
+grande e di parallelismo *interno* al singolo PBS. Stesso message/carry del set sicuro, quindi
+confrontabile direttamente. Sulla stessa scena e con lo stesso Δ onesto:
+
+| N | classico (set 2_2) | multi-bit | |
+|---|---|---|---|
+| 128 | **0,153 s** | 0,173 s | +13% |
+| 256 | **0,315 s** | 0,325 s | +3% |
+| 512 | **0,605 s** | 0,669 s | +11% |
+| 1024 | **1,258 s** | 1,329 s | +6% |
+| 2048 | **2,463 s** | 2,674 s | +9% |
+
+Sempre più lento, mai più veloce (per PBS: 20,6 ms contro 18,9). La ragione è la stessa che rende il
+nostro carico *facile*: i N PBS sono **già indipendenti** e saturano i 16 thread da soli. Il
+parallelismo interno del multi-bit non ha core liberi da usare, e resta solo il suo costo. È un set
+pensato per il caso opposto al nostro — pochi PBS da fare in fretta, non tantissimi da fare in
+parallelo. Registrato come **negativo**, così non lo si riprova.
