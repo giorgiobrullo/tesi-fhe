@@ -1649,11 +1649,13 @@ Cosa dicono i numeri, con onestà in entrambe le direzioni:
    Due composizioni di g₁ in più (4 livelli) stringono la banda ~6× e costano il doppio su
    tutto, perché i primi in più rincarano anche le distanze. È il Corollario 3 di Cheon-Kim-Kim
    (d_g ≈ log(1/ε)/log g'(0)) visto dal lato del portafoglio.
-4. **Il confronto a parità di thread.** A N=128, un thread: TFHE leveled 1,76 s, CKKS 4,25 s
-   con banda paragonabile (±10 contro σ 12). A 16 thread TFHE fa 0,177 s; i 4 blocchi CKKS sono
-   indipendenti e si parallelizzerebbero (stima ~1,6 s con 4 thread), il segno no. A questa
-   scala **lo schema TFHE vince** sul varco, e vince perché la sua operazione non lineare (il
-   PBS) costa poco e non impone parametri grandi al resto.
+4. **Il confronto a parità di thread, e attenzione a come si legge.** A N=128, un thread: TFHE
+   leveled 1,76 s contro i 4,25 s misurati qui, con banda paragonabile (±10 contro σ 12). Ma il
+   packing usato in questo finding è quello a blocchi, che non è il migliore per questa forma:
+   **F67 misura lo stesso calcolo con il packing corretto e ottiene 1,67 s**, cioè CKKS *sotto*
+   il nostro tempo-thread. Il confronto va quindi letto lì, non qui; questo finding resta valido
+   per il *meccanismo* — dove va il tempo, quanto costa la profondità, come si comporta la banda —
+   non per stabilire chi vince.
 5. **Dove CKKS vincerebbe, e perché la letteratura va veloce.** Il punto di pareggio per il
    solo segno è alto (migliaia di iscritti), ma le distanze CKKS restano 2× più care per
    iscritto del varco TFHE intero finché servono parametri profondi. I sistemi CKKS veloci della
@@ -1681,7 +1683,7 @@ La tabella schema × operazione che chiedeva l'incontro (N=128 dove misurato, te
 | prodotto scalare ×N | 0,07 s (0 PBS) | — (vuole il ponte) | 0,007 s (0 PBS) | 3,5 s (rotazioni) |
 | soglia per iscritto | 92 s a N=64 | — | 0,17 s (16 thr) / 1,76 s (1 thr) | 0,7 s, indipendente da N |
 | argmin + soglia sul vincitore | 455 s a N=8 | 4,7 s (16 thr) / 47 s (1 thr) | — | letteratura: ~13 s (Mazzone, 128) |
-| **varco intero** | 92 s a N=64 | — | **0,18 s** | **4,25 s** (1 thr) |
+| **varco intero** | 92 s a N=64 | — | **0,18 s** (16 thr) | **4,25 s** (1 thr, packing a blocchi; 1,67 s col packing corretto, F67) |
 | banda alla soglia | esatto (PBS larghi) | esatto | σ ≈ 12, probabilistica | ±10, deterministica |
 
 ## 🔴 F40 — Cosa rivela il bit di esito: l'attacco con l'oracolo di appartenenza, misurato
