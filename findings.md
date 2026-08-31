@@ -1239,11 +1239,11 @@ Sull'argmin il divario è netto e confermato:
 | 8 | 180 s | 1,78 s | ~100× |
 | 64 | (non misurato, troppo lento) | 15,5 s | — |
 
-A N=8 l'argmin in tfhe-rs è 1,78 s contro i 180 s di Concrete, ~100× — ma **non a parità di
-macchina** (correzione F62: i tempi Concrete vengono dall'home server Linux a 12 core, tfhe-rs gira
-su M4 Max, e non esiste una rimisura di Concrete sul Mac). Il rapporto resta indicativo, e la
-conclusione regge per un'altra via: F31 la argomenta col **conteggio dei PBS** (~210 contro ~14),
-che è indipendente dalla macchina. Il confronto è
+A N=8 l'argmin in tfhe-rs è 1,78 s contro i 180 s di Concrete, ~100×. La prima stesura confrontava
+macchine diverse (Concrete sull'home server Linux, tfhe-rs su M4 Max) e F62 chiedeva di togliere la
+frase «a parità di macchina»: **F64 l'ha invece resa vera**, sbloccando Concrete sul Mac e
+rimisurando entrambi i lati sullo stesso hardware — Concrete 47,35 s a N=4 e 98,29 s a N=8 contro
+0,45 s e 1,05 s di tfhe-rs, cioè **105× e 94×**. Il rapporto rivendicato era corretto. Il confronto è
 schema, tutto corretto. Il valore non cambia coi bit (a FheUint8 era 1,79 s) e combacia con
 le stime da Chakraborty-Zuber (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
 ~180 s non sono colpa dell'hardware né di TFHE, ma di come Concrete-python compila in automatico
@@ -1759,7 +1759,7 @@ finali al crescere di N con i traguardi dei 10 e 5 s nel margine).
 | 2 | quantizzare l'embedding a 4 bit | lossless in accuratezza, e l'unico modo di far compilare il confronto (limite 16 bit) | F14, F31 |
 | 3 | la strategia CHUNKED | l'argmin server compila e gira invece di esplodere in RAM | F24 |
 | 4 | il torneo al posto della catena | 2,6× in Concrete, 2,3× in tfhe-rs a 16 thread | F27, F38 |
-| 5 | tfhe-rs al posto di Concrete-python | ~100× sull'argmin (macchine diverse, vedi F62; il conteggio PBS ~210→~14 è la misura solida) | F32 |
+| 5 | tfhe-rs al posto di Concrete-python | **105× / 94×** sull'argmin, verificato a parità di macchina (F64) | F32 |
 | 6 | 8 bit di punteggio bastano (validato in chiaro) | 1,5-2× su ogni confronto radix | F36 |
 | 7 | prodotto scalare leveled a basso livello | da 99 s a 0,2 ms (l'API radix propagava i riporti) | F34 |
 | 8 | la soglia per iscritto con un PBS di segno **al posto** della selezione | 27× sul torneo radix, ~1000× sulla soglia Concrete; profondità 1 | F37 |
