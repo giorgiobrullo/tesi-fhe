@@ -2142,6 +2142,21 @@ due soli errori osservati a distanza 4; il modello dà σ ≈ 11 unità a Δ = 2
 distanza 4 sono perfettamente compatibili con una banda di 11. Il guadagno dei 3 bit resta (la
 banda si dimezza passando da Δ = 2^52 a 2^53), ma il numero giusto è ~11, non 4.
 
+**Conferma sul campo, a grande scala.** Fino a N=1024 non avevamo mai visto un errore (0 su
+131.072). Salendo, sono comparsi — e sono esattamente quelli che il modello prevede:
+
+| N | tempo | confronti | errori | distanze |s−T| degli errori |
+|---|---|---|---|---|
+| 1024 | 0,72 s | 131.072 | 0 | — |
+| 2048 | 1,59 s | 262.144 | **2** | 3, 4 |
+| 4096 | 3,07 s | 524.288 | **3** | 4, 4, 13 |
+
+Cinque errori su 786.432 confronti, tutti a **distanza ≤ 13 unità** dalla soglia, con σ_banda ≈ 11 a
+Δ=2^53: cioè tutti dentro 1,2σ, esattamente dove il modello dice che la decisione è incerta. E
+nessuna decisione per probe è cambiata (uscita compatta corretta 128/128 a ogni N). È la
+validazione del modello di F50 su un campione grande abbastanza da vedere la coda. Nota anche la
+scala: 0,72 → 1,59 → 3,07 s da 1024 a 4096, perfettamente lineare in N.
+
 Nota sulla sicurezza, per chiudere il punto: il rumore che cresce **non** indebolisce la
 cifratura — la sicurezza dipende dalla dimensione del reticolo e dal rumore *minimo*, e il probe
 che il client manda è una cifratura GLWE fresca con la distribuzione standard del set di
