@@ -1239,7 +1239,11 @@ Sull'argmin il divario è netto e confermato:
 | 8 | 180 s | 1,78 s | ~100× |
 | 64 | (non misurato, troppo lento) | 15,5 s | — |
 
-A N=8 l'argmin in tfhe-rs è 1,78 s contro i 180 s di Concrete, ~100× a parità di macchina e
+A N=8 l'argmin in tfhe-rs è 1,78 s contro i 180 s di Concrete, ~100× — ma **non a parità di
+macchina** (correzione F62: i tempi Concrete vengono dall'home server Linux a 12 core, tfhe-rs gira
+su M4 Max, e non esiste una rimisura di Concrete sul Mac). Il rapporto resta indicativo, e la
+conclusione regge per un'altra via: F31 la argomenta col **conteggio dei PBS** (~210 contro ~14),
+che è indipendente dalla macchina. Il confronto è
 schema, tutto corretto. Il valore non cambia coi bit (a FheUint8 era 1,79 s) e combacia con
 le stime da Chakraborty-Zuber (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
 ~180 s non sono colpa dell'hardware né di TFHE, ma di come Concrete-python compila in automatico
@@ -1755,7 +1759,7 @@ finali al crescere di N con i traguardi dei 10 e 5 s nel margine).
 | 2 | quantizzare l'embedding a 4 bit | lossless in accuratezza, e l'unico modo di far compilare il confronto (limite 16 bit) | F14, F31 |
 | 3 | la strategia CHUNKED | l'argmin server compila e gira invece di esplodere in RAM | F24 |
 | 4 | il torneo al posto della catena | 2,6× in Concrete, 2,3× in tfhe-rs a 16 thread | F27, F38 |
-| 5 | tfhe-rs al posto di Concrete-python | ~100× sull'argmin, a parità di macchina e schema | F32 |
+| 5 | tfhe-rs al posto di Concrete-python | ~100× sull'argmin (macchine diverse, vedi F62; il conteggio PBS ~210→~14 è la misura solida) | F32 |
 | 6 | 8 bit di punteggio bastano (validato in chiaro) | 1,5-2× su ogni confronto radix | F36 |
 | 7 | prodotto scalare leveled a basso livello | da 99 s a 0,2 ms (l'API radix propagava i riporti) | F34 |
 | 8 | la soglia per iscritto con un PBS di segno **al posto** della selezione | 27× sul torneo radix, ~1000× sulla soglia Concrete; profondità 1 | F37 |
@@ -2088,6 +2092,12 @@ Il giro completo, misurato su M4 Max con 127 iscritti:
 | decifratura dell'esito | client | ~8 ms |
 | **totale per query** | | **~300 ms** |
 
+*(Correzione F62: i ~10 ms e i ~8 ms cronometrano `subprocess.run` di un binario Rust, cioè
+soprattutto l'avvio del processo e la lettura delle chiavi da disco. Le operazioni crittografiche
+vere, misurate dentro il binario in F41, sono **0,4 ms** per la cifratura e **0,03 ms** per la
+decifratura. La riga di totale resta quella che l'utente sente, ma non va letta come costo del
+cifrato.)*
+
 Sul filo: probe cifrato **20 KB** (encoding polinomiale, F41), esito cifrato 230 KB, chiave di
 valutazione 119 MB una volta sola. Verificato: 4 identità iscritte su 4 riconosciute con
 l'indice giusto, 3 identità non iscritte su 3 rifiutate (`conteggio 0`). Il server, per
@@ -2099,9 +2109,15 @@ La prima esecuzione dava sistematicamente "ambiguo" (più iscritti sotto soglia)
 galleria della demo è fatta di volti **sintetici** (DigiFace: volti generati, così nelle
 schermate della tesi non compaiono persone reali), mentre T=269 era calibrata sui volti **reali**
 di VGGFace2. Misurato: sul dominio sintetico la soglia corretta a FPIR=1% è **T=23**, e usando
-quella dei volti reali **il 91% degli impostori verrebbe accettato** (7,25 iscritti sotto soglia
-per query invece di 1). Con T=23 il varco sintetico torna a 98,4% di one-hot corretti e 1,1% di
-impostori. È il divario di dominio di F30 visto dal lato operativo, e per la tesi vale come
+quella dei volti reali quasi tutti gli impostori verrebbero accettati. **Numeri rifatti con uno
+script riproducibile** (`benchmark/soglia_dominio.py`, 7 semi, N=128 — correzione F62: le cifre
+della prima stesura non erano prodotte da nessuno script e il «7,25» era agganciato alla
+popolazione sbagliata):
+
+| soglia | one-hot corretti | impostori accettati | iscritti sotto soglia per query (genuini / impostori) |
+|---|---|---|---|
+| T=269 (dominio reale, **sbagliata qui**) | 6,4% | **93,8%** | 7,00 / 5,99 |
+| T=23 (dominio sintetico, giusta) | **98,8%** | 1,6% | 1,01 / 0,02 | È il divario di dominio di F30 visto dal lato operativo, e per la tesi vale come
 avvertenza pratica: la stessa identica pipeline, tarata sul dominio sbagliato, apre a chiunque.
 `demo/calibra.py` ora calcola entrambe le soglie e scrive in `config.json` quella del dominio
 installato.
