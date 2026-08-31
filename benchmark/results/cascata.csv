@@ -1,0 +1,3 @@
+N,dir_varco,dir_cascata,p_ambiguo_genuini,p_ambiguo_impostori,p_ambiguo_misto,fpir,costo_argmin_sempre_s,costo_cascata_s,risparmio
+128,0.9859,0.9938,0.0078,0.0,0.0039,0.01,1.316,0.158,8.3
+1024,0.9777,0.9894,0.0116,0.0002,0.0059,0.01,9.02,1.311,6.9

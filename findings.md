@@ -2600,3 +2600,62 @@ c'è»: vero solo se Δ è onesto. F55 elegge il set 1_0 come il più veloce: ve
 di minaccia *honest-but-curious sul client*; contro un client malicious il campione è il 2_2. La
 lezione di metodo, di nuovo: **un iperparametro tarato sul test set non è solo un peccato
 statistico — qui era un buco di sicurezza.**
+
+---
+
+## 🔵 F57 — La cascata: l'accuratezza dell'argmin al costo del varco (8× meno)
+
+La demo mi ha messo davanti un caso che avevo sempre contato come sconfitta: il varco risponde
+`(conteggio, indice)`, e su un iscritto genuino ha risposto **conteggio 2** — due iscritti sotto
+soglia contemporaneamente, quindi «ambiguo», nessuna identità. Finora, nella metrica DIR, l'ambiguo
+è un fallimento: chiedo che sia sotto soglia *esattamente uno* e che sia il proprio.
+
+Ma l'ambiguo è esattamente il caso che l'argmin a torneo di F52 sa risolvere: fra i due sotto
+soglia, quale ha il punteggio minore. La domanda giusta non è quindi «varco **o** argmin», è
+**quanto spesso serve l'argmin** — perché il varco costa 0,15 s a N=128 e l'argmin 1,3 s.
+
+**La misura** (ResNet100, VGGFace2 reale, 3 bit, fusione 2+3, soglia tarata a FPIR=1%, 10 semi):
+
+| N | DIR col solo varco | DIR con la cascata | probe genuini ambigui | probe impostori ambigui |
+|---|---|---|---|---|
+| 128 | 98,6% | **99,4%** | **0,8%** | 0,0% |
+| 1024 | 97,8% | **98,9%** | **1,2%** | 0,0% |
+
+L'ambiguità è **rara** — meno dell'1,2% dei probe genuini, e **mai** sugli impostori (un impostore
+fatica già a scendere sotto soglia una volta; due volte non capita). E risolverla vale **+0,8 / +1,1
+punti** di DIR, che è esattamente l'accuratezza che si otterrebbe eseguendo l'argmin *sempre*: la
+cascata non è un'approssimazione dell'argmin, gli è **equivalente**, perché quando il conteggio è 1
+l'unico accettato *è* il minimo.
+
+**Il conto del costo atteso**, con i tempi misurati su questa macchina (varco: set 2_2 con Δ onesto,
+F56; argmin: F52 a N=128, estrapolato con la retta 0,216 + 0,0086·N a N=1024):
+
+| N | argmin sempre | **cascata** = varco + p·argmin | risparmio |
+|---|---|---|---|
+| 128 | 1,32 s | **0,16 s** | **8,2×** |
+| 1024 | 9,02 s | **1,31 s** | **6,9×** |
+
+Cioè: **la precisione dell'argmin esatto al prezzo del varco**, perché il caso costoso capita una
+volta su cento.
+
+**Cosa si paga in riservatezza, detto con precisione.** Il secondo giro rivela al server **un bit
+per query**: «questo probe era ambiguo» — che succede ~1% delle volte. Non rivela chi, non rivela il
+punteggio, non rivela se il probe è di un iscritto. È una perdita reale e va dichiarata, non
+nascosta; chi non la vuole ha due uscite, entrambe già disponibili: pagare l'argmin sempre (1,32 s),
+oppure il giro finto — mandare comunque la seconda richiesta anche quando non serve, che riporta il
+costo a quello dell'argmin sempre. **Il risparmio 8× e il bit di leak sono la stessa cosa vista da
+due lati**, ed è una scelta che va lasciata a chi installa il sistema.
+
+**La variante a un giro solo, senza leak** (non implementata, ma il pezzo c'è già). I bit di soglia
+b_i sono cifrati e valgono 0 oppure 2^60. Si possono usare per *mascherare* i punteggi prima del
+torneo: s'_i = s_i + BIG − b_i·(BIG·Δ / 2^60), dove la moltiplicazione per una costante intera è
+un'operazione leveled — nessun bootstrap. Con BIG scelto multiplo di 2^9 il fattore è un intero
+piccolo (8 per BIG=4096), quindi il rumore cresce di 8×, dentro la banda. Il torneo su s' trova
+allora il minimo **fra i soli accettati**, e il server non impara niente. Costa l'argmin sempre,
+però: è la stessa spesa dell'opzione conservativa, con in più il vantaggio di non dover fare due
+giri di rete.
+
+**Perché conta per la tesi.** Il consuntivo dell'incontro (F53) opponeva due risposte diverse alla
+richiesta del prof — il varco a soglia (veloce, ma risponde «uno / nessuno / ambiguo») e l'argmin
+esatto (risponde «chi», ma costa 10×). Non sono alternative: sono **il caso comune e il caso raro
+dello stesso protocollo**, e messi in cascata danno la risposta dell'argmin al costo del varco.
