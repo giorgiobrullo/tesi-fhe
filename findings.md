@@ -10,10 +10,12 @@ I pallini nei titoli segnano il filone: 🔵 riconoscimento (la scaletta delle t
 
 **FHE** (cifratura completamente omomorfica). Permette di fare *calcoli su dati
 cifrati* senza decifrarli: il server elabora il cifrato e produce un risultato
-cifrato, che solo chi ha la chiave può aprire. Noi usiamo Zama **Concrete**, che si
-basa sullo schema **TFHE** e lavora su interi (niente float: i valori vanno
-quantizzati). Si definisce una funzione Python e Concrete la compila in un
-circuito che opera sul cifrato.
+cifrato, che solo chi ha la chiave può aprire. Lo schema che usiamo è **TFHE**, che lavora su
+interi (niente float: i valori vanno quantizzati). Lo abbiamo esplorato prima con Zama
+**Concrete-python** — si definisce una funzione Python e il compilatore produce il circuito
+cifrato, comodo per capire cosa è fattibile — e poi implementato in **tfhe-rs**, la libreria TFHE
+nativa, che è dove vive il sistema finale: sullo stesso calcolo e sulla stessa macchina è ~100×
+più veloce (F32, F64), perché il collo di bottiglia di Concrete è il compilatore, non lo schema.
 
 Rumore e bootstrapping. Ogni testo cifrato porta del *rumore* (serve alla
 sicurezza). Ogni operazione lo fa crescere; se cresce troppo, la decifratura dà un
@@ -61,7 +63,13 @@ Il probe (il volto da riconoscere) è cifrato sotto la chiave del client, mentre
 la galleria sta in chiaro sul server (è un dato del server: è lui che iscrive
 le persone). Il server calcola il match alla cieca e non impara né il volto né
 l'esito; solo il client decifra il risultato. Di conseguenza l'operazione reale è
-cifrato×chiaro, non cifrato×cifrato.
+cifrato×chiaro, non cifrato×cifrato. Chiamiamo questo **Mondo 1**, ed è il default.
+
+Esiste anche un **Mondo 2**, in cui la galleria è cifrata: in TFHE si può fare a costo *leveled*
+con il prodotto esterno GGSW⊡GLWE (F51), quindi senza il rincaro che paga la letteratura in
+CKKS/BFV. Non è però «più privacy» in senso assoluto: il prodotto esterno vuole la **stessa
+chiave**, quindi chi cifra il probe può decifrare la galleria. È uno **scambio** — protegge dal
+server, indebolisce verso il client — e va scelto in base a chi si teme.
 
 ## 🔴 F2 — Tenere la galleria in chiaro da solo non basta: serve la formula giusta
 Esp. 03 confronta tre modi di calcolare lo stesso punteggio per faccia:
@@ -108,7 +116,7 @@ dall'usabile.
 ## 🔴 F6 — L'argmin deve stare sul server (privacy): la decisione, e quanto costa
 Nell'experiment 05 l'argmin lo fa il client che è comodo e gratis (nessun PBS), ma il client
 decifra tutti i punteggi e impara la distanza con ogni iscritto, non solo col match. Per
-privacy l'argmin (e in prospettiva la soglia open-set) deve stare sul server, sotto FHE, così
+privacy l'argmin (e in prospettiva la soglia open-set) va tenuto sul server, sotto FHE, così
 il client apprende solo l'esito.
 
 Chiamiamo **N** il numero di iscritti in galleria: a ogni query si calcolano N distanze (il
@@ -117,7 +125,9 @@ in Concrete (`np.argmin` non supportato), quindi si fa a riduzione: N−1 confro
 coppie, ognuno con un select di indice/valore e un PBS. Il costo dipende da due cose, la
 larghezza in bit dei punteggi e N, e le misuriamo entrambe.
 
-La prima leva sono i bit. A N=10 fisso, il tempo dell'argmin raddoppia ~a ogni bit di
+La prima leva sono i bit. ⚠️ La legge esatta non è «raddoppia a ogni bit» (F31: quello che conta è
+il **numero di chunk** in cui Concrete spezza il confronto, che cresce a scalini), ma la direzione
+è quella. A N=10 fisso, il tempo dell'argmin cresce rapidamente a ogni bit di
 punteggio (di nuovo la leva di F1–F3, ora sull'argmin):
 
 | larghezza punteggi | 5 bit | 6 bit | 7 bit | 8 bit | 9 bit | 10 bit |
@@ -865,7 +875,9 @@ In conclusione, non c'è una scorciatoia hardware ai 2-3 s del riconoscimento pr
 client. Le leve vere restano algoritmiche (meno confronti, batch tra query, torneo
 parallelo) o di protocollo. Il sistema veloce-e-accurato resta quello con argmin sul client
 (F21); il server-argmin privato funziona (F24, ~90% a ~2 min) ma non è realtime, e, ora
-verificato, la GPU non lo rende tale.
+verificato, la GPU non rende tale **l'argmin sequenziale**. Il verdetto è ristretto a quel carico:
+una catena di confronti dipendenti è il caso peggiore per un acceleratore. Il varco a soglia è
+l'opposto — N bootstrap indipendenti — ed è il carico per cui le API GPU sono scritte (F66).
 
 ## 🔴 F26 — Cosa fa la letteratura: non è tutto CKKS, e quasi nessuno fa l'argmax sul server
 Dopo aver incontrato il limite dell'argmin siamo andati a vedere come lo risolvono gli altri. La
@@ -909,7 +921,8 @@ sotto soglia? apri o non aprire", più economico e con meno leakage (il client n
 score né chi sei). La soglia ce l'abbiamo già (F11); l'argmin serve solo per dire quale
 identità. Il nostro lavoro non è scoprire CKKS in ritardo, ma aver costruito e misurato un 1:N
 privacy-preserving su Concrete/TFHE nel setup galleria-in-chiaro, poco battuto, e aver situato
-il risultato nello stato dell'arte: il limite è intrinseco all'operazione su TFHE, gli altri lo
+il risultato nello stato dell'arte: ⚠️ il limite misurato qui è di **Concrete-python**, non di TFHE
+(F31: lo stesso calcolo in tfhe-rs è classe-secondi), e gli altri lo
 aggirano, e per il varco la soglia è la risposta giusta, quella che da noi già funziona.
 
 ## 🔴 F27 — Ottimizzare l'argmin su Concrete: il torneo aiuta, ma il real-time resta fuori
