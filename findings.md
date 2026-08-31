@@ -2357,9 +2357,12 @@ M4 Max, 16 thread, scena reale a 3 bit, confronti di ogni livello in parallelo:
 | 64 | 0,003 s | 0,747 s | **0,750 s** | 63 | 15/16 | 14/14 | **7/7** | 3,66 s |
 | **128** | 0,006 s | 1,267 s | **1,273 s** | 127 | **16/16** | 16/16 | **14/14** | **14,4 s** |
 
-**Tre riserve, da dire prima che le dica un revisore.** (1) L'indice esatto è **73/80**, non 80/80;
-e la matrice di F45, sugli stessi probe, fa **77/80**. Il torneo è quindi **più veloce e meno
-accurato** della cosa che sostituisce: il confronto non è solo di tempo. (2) Il "31 su 31" della
+**Tre riserve, da dire prima che le dica un revisore.** (1) L'indice **non è sempre esatto**, e con
+il Δ onesto lo è ancora meno: su 32 probe l'indice è corretto **134 volte su 160** (84%), contro le
+77/80 che la matrice di F45 fa sugli stessi probe. Il torneo è quindi **più veloce e meno accurato**
+della cosa che sostituisce. Conta però *quali* casi sbaglia: sui probe in cui il minimo è davvero
+sotto soglia — gli unici che aprono il varco — l'indice è corretto **68 volte su 68**, e a N=128
+32/32. (2) Il "31 su 31" della
 colonna «minimo sotto soglia» è una selezione **a posteriori sull'esito in chiaro**, e le numerosità
 sono 2, 3, 5, 7, 14: su 14/14 l'intervallo di Wilson al 95% parte da ~78%. È un indizio, non una
 misura. (3) I parametri `LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS` sono dichiarati dalla libreria
@@ -2384,8 +2387,8 @@ N=128**, su un range di ~1300, e in quei casi il varco rifiuta comunque. È lo s
 della banda di F50: quando due punteggi distano meno del rumore (misurato sul vincitore dopo i log N
 CMUX: 1,5-8,7 unità), il confronto può ribaltarsi. Nota controintuitiva ma sensata: **la precisione
 migliora al crescere di N** (16/16 a N=128), perché con più candidati il minimo è più
-distintamente separato dal secondo. (b) Restano **18× più lento** del varco a soglia (0,094 s a
-N=128, F51): per un varco la soglia resta il design giusto, e F37/F43 mostrano che su dati reali il
+distintamente separato dal secondo. (b) Resta **~10× più lento** del varco a soglia (0,153 s a
+N=128, F56): per un varco la soglia resta il design giusto, e F37/F43 mostrano che su dati reali il
 caso "due iscritti sotto soglia" non capita mai. (c) La costruzione usa il set WOPBS legacy della
 libreria, non parametri tarati da noi; il gadget del circuit bootstrap è quello standard (2^5×3, cioè
 3 PBS per confronto). Provato a scendere a 2 livelli (2^7×2): il torneo va **31% più veloce**
@@ -2434,7 +2437,7 @@ Verifica sistematica del percorso contro le decisioni prese con il prof. Di Raim
 | embedding sul client, in chiaro; il modello conta poco | fatto; e GhostFaceNet, che era la sua proposta, è misurato: +1 punto su MobileFaceNet, −7/−8 sui profondi | F44 |
 | il fulcro del lavoro è la **selezione** cifrata | è stato il fulcro: F34, F37, F38, F45, F46, F47, F52 | — |
 | galleria realistica: **N = 64 e 128** | fatto, e oltre: fino a 1024 misurato, 4096 in verifica | F43, F51 |
-| **meno di 10 s**, 5 accettabili | **0,094 s a N=128**, 0,73 s a N=1024 — due ordini di grandezza sotto | F46, F51 |
+| **meno di 10 s**, 5 accettabili | **0,153 s a N=128**, 1,26 s a N=1024 nella configurazione sicura — due ordini di grandezza sotto | F51, F56 |
 | «quindi Rust»: usare le funzioni di tfhe-rs, non scrivere crittografia da zero | tutto in tfhe-rs; le uniche righe "nostre" sono la GGSW polinomiale di F51, costruita sulla formula della libreria | F37-F52 |
 | Carnemolla: **confrontare con CKKS** | fatto e misurato, con la lettura del perché | F39 |
 | torneo con i confronti di ogni livello **in parallelo** | fatto in tre versioni: radix, matrice, e torneo vero con circuit bootstrapping | F38, F45, F52 |
@@ -2472,8 +2475,9 @@ risposta alla critica più prevedibile di un revisore.
 **Verdetto sul percorso.** Le decisioni dell'incontro sono state rispettate o superate, con una
 deviazione sostanziale (punto 1) che oggi è una scelta e non più una necessità, e due punti da
 discutere (2 e 3). Il numero che riassume tutto: si era chiesto **meno di 10 secondi a 128
-iscritti**; il sistema fa **0,094 s** con la galleria in chiaro, **0,094 s** con la galleria
-cifrata, e **1,3 s** se si pretende anche l'argmin esatto invece della soglia.
+iscritti**; nella configurazione sicura (F56) il sistema fa **0,153 s** con la galleria in chiaro,
+**0,153 s** con la galleria cifrata, e **~1,5 s** se si pretende anche l'argmin esatto invece della
+soglia.
 
 ## 🔵 F54 — Soglia per template (Z-norm): gratis, ma vale poco — e si capisce perché
 Un'idea che sembrava un guadagno gratuito. In biometria è noto che i template non sono
