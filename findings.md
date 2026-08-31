@@ -3193,8 +3193,23 @@ DIR@FPIR=1% è open-set, il 99,63% rank-1 di Blind-Match è closed-set, il TAR@F
 verifica 1:1. Tutte quelle cifre misurano il **modello di riconoscimento**, non la crittografia.
 E vanno esclusi anche CryptoFace (i 22 minuti sono la CNN cifrata, il matching è 0,3 s), IDFace
 (query **in chiaro**, il Key Server decifra ogni punteggio), Funshade/Monchi (2PC interattivo con
-non-collusione), HERS e Blind-Match (l'argmax lo fa il client dopo aver visto tutti i punteggi),
+non-collusione — su cui però vedi sotto, perché escluderli senza il loro numero non basta), HERS e Blind-Match (l'argmax lo fa il client dopo aver visto tutti i punteggi),
 CryptoMask (**non pubblica tempi assoluti**).
+
+**Il confronto scomodo, che va fatto e non evitato: Funshade.** *Funshade* (Ibarrondo, Chabanne,
+Önen, PoPETs 2023(4), `10.56553/popets-2023-0096`) calcola **esattamente la nostra funzione** —
+prodotto scalare più confronto con una soglia fissa, motivato proprio come controllo accessi
+biometrico — e lo fa in **9,3 µs per decisione di soglia** contro i nostri **18,9 ms**: 5.000
+iscritti in **47,9 ms su un core**. È ~2000× più veloce di noi, e non è una svista: non è FHE, è
+**function secret sharing** fra due server.
+
+L'esclusione è corretta, ma va argomentata sul modello di minaccia e non sulla velocità: Funshade
+richiede **due server che non colludano**, un round di comunicazione online e materiale di
+preprocessing per ogni query. Il nostro sistema ha **un solo server**, è **non interattivo**, e non
+assume nessuna non-collusione. Sono garanzie diverse, e il prezzo di quelle garanzie è quel fattore.
+Scritto così il confronto è difendibile; scritto senza il loro numero accanto, è una domanda evitata.
+Vale anche per Monchi (`2024/654`, 1000 passeggeri in meno di un secondo), che è il seguito applicato
+di Funshade.
 
 ---
 
@@ -3709,10 +3724,10 @@ lo sweep, importando le costanti dalla libreria invece di ricopiarle a mano.
 1,27: resta un ~2× non spiegato, di cui la coda (gli ultimi livelli usano 1-8 core su 16) spiega
 solo 1,4×. Va profilato per stadio prima di ottimizzare.
 
-**B4. Funshade non è prezzato.** Calcola *esattamente* la nostra funzione a **9,3 µs** per decisione
-di soglia contro i nostri 18,9 ms. L'esclusione (2PC, due server non colludenti, un round di
-comunicazione) è corretta e difendibile — ma va scritta **col loro numero accanto**, altrimenti non
-abbiamo rivendicato niente, abbiamo evitato la domanda.
+**B4. ~~Funshade non è prezzato~~ — chiuso**: il confronto è ora scritto in F62 col loro numero
+accanto (9,3 µs per decisione contro i nostri 18,9 ms, ~2000×), e l'esclusione è argomentata sul
+modello di minaccia — due server non colludenti e un round di comunicazione contro il nostro server
+unico e non interattivo — invece che sulla velocità.
 
 **B5. La baseline CKKS può essere ancora più veloce.** Usiamo il polinomio di segno di
 Cheon-Kim-Kim; il minimax composito di Lee-Lee-No-Kim (`2020/834`) è la versione a complessità
