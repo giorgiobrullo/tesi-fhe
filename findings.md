@@ -2574,6 +2574,23 @@ quantizzazione a 3 bit, fusione 2+3 frame. **0,152 s a N=128**, accuratezza iden
 chiaro, e nessun probe costruito ad arte riesce ad aprire. Resta due ordini di grandezza sotto i 10 s dell'incontro: il
 prezzo della sicurezza si paga senza uscire dal budget.
 
+**La curva completa della configurazione sicura** (set 2_2, Δ = 2^51 dal bound onesto, 16 thread,
+scena reale ResNet100/VGGFace2 a 3 bit, `--log-do 60 --blocco 8`):
+
+| N | prodotto scalare | KS + PBS | **totale** | per PBS | discrepanze |
+|---|---|---|---|---|---|
+| 128 | 0,003 s | 0,150 s | **0,153 s** | 18,8 ms | 0 / 16.384 |
+| 256 | 0,006 s | 0,309 s | **0,315 s** | 19,3 ms | 0 / 32.768 |
+| 512 | 0,010 s | 0,595 s | **0,605 s** | 18,6 ms | 0 / 65.536 |
+| 1024 | 0,021 s | 1,237 s | **1,258 s** | 19,3 ms | 0 / 131.072 |
+| 2048 | 0,042 s | 2,421 s | **2,463 s** | 18,9 ms | 1 / 262.144 |
+| 4096 | 0,081 s | 4,869 s | **4,950 s** | 19,0 ms | 2 / 524.288 |
+
+Lineare esatta (il tempo per PBS resta 19 ms a ogni scala: i thread non si saturano), e
+**3 errori su 1.031.072 confronti**, tutti con |s−T| ≤ 4 — cioè dentro la banda di ~10 unità, dove
+il modello di rumore di F50 dice che devono stare. A N=4096 il varco sicuro sta in **5 secondi**,
+dentro il budget dei 10 s dell'incontro con la galleria più grande che abbiamo.
+
 **Verifica sulla demo end-to-end.** Ho rimesso il Δ onesto stretto (2^51, dal bound della galleria
 sintetica: 3.455) nel servizio Docker e riprovato con volti passati dalla pipeline completa
 (48 iscritti, ResNet100, fusione 2+3 frame): **6 iscritti su 7 aperti, 4 estranei su 4 negati**,
@@ -2587,12 +2604,13 @@ un iscritto genuino con margine 127 unità viene *negato*, perché a quel Δ la 
 sicurezza: sotto il bound onesto si perde accuratezza, sopra si apre l'overflow. Il bound stretto
 mette il sistema **esattamente sul massimo consentito**, che è anche il punto di rumore minimo.
 
-**La via di principio, non implementata.** Il modo pulito di riavere il Δ stretto (e quindi la
-velocità e l'accuratezza piene) è **verificare** che il probe stia nel dominio dichiarato, invece di
-sperarlo: tfhe-rs ha un modulo `zk` con prove a conoscenza zero di cifratura corretta e di
-*range* del messaggio, pensate proprio per i cifrati che arrivano da un client non fidato. Il client
-allegherebbe la prova, il server la verificherebbe prima del match, e il wrap tornerebbe
-impossibile per costruzione. È la cosa giusta da indicare come lavoro immediato successivo.
+**Una via che sembrava di principio e non lo è (correzione, vedi F58).** Avevo scritto qui che il
+modo pulito di riavere il Δ stretto fosse una **prova a conoscenza zero di range** sul probe
+(tfhe-rs ha il modulo `zk`), da verificare prima del match. È sbagliato, e vale la pena dire
+perché: l'attacco di F56 usa un probe con **tutti i valori già legali** — è tarato, non fuori
+range. Il bound onesto assume *già* che ogni coefficiente stia in [−q, q]; una prova che lo
+certifica non toglie e non aggiunge niente. Servirebbe una prova su una *norma* del probe, e F58
+mostra col conto che nemmeno quella basterebbe.
 
 **Cosa correggere nei finding precedenti.** F37 dice che Δ è scelto «senza guardare nessun probe»:
 è falso, il codice li guarda tutti. F35 dice che con l'esito a soglia l'attacco per gradiente «non
