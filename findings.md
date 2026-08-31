@@ -1202,7 +1202,8 @@ Cosa abbiamo provato su Concrete, e i verdetti:
   perché il confronto cifrato di Concrete è limitato a 16 bit e i punteggi a 6 bit lo superano (circa 18, F20).
 - Riduzione di dimensione. Non abbassa il costo dell'argmin, al contrario di quello che
   pensavamo. Misurato su embedding reali (N=8, 4 bit, inputset dai probe veri): a 512 dim l'argmin
-  è ~457 s, a 128 dim ~470-540 s, a 64 dim ~590 s, cioè piatto se non peggio. Comprimendo, i bit del
+  è 158,7 s (44 PBS), a 128 dim **237,9 s** (81 PBS, cioè peggio) e a 64 dim 74,8 s ma con risultato
+  **errato**: piatto se non peggio, e non monotono. Comprimendo, i bit del
   punteggio calano (14→11) ma il compilatore emette più PBS (95→146→183), e il totale non scende. Il
   costo dell'argmin sono gli N−1 confronti, non la dimensione; la dimensione vive nel prodotto
   scalare, che è gratis (F33). In più comprimere costa accuratezza sul reale (DIR@FPIR: 512 = 95,5%,
@@ -1284,15 +1285,16 @@ Sull'argmin il divario è netto e confermato:
 
 | N | argmin Concrete | argmin tfhe-rs | rapporto |
 |---|---|---|---|
-| 4 | 78 s | 0,68 s | ~115× |
-| 8 | 180 s | 1,78 s | ~100× |
+| 4 | 47,35 s | 0,45 s | **105×** |
+| 8 | 98,29 s | 1,05 s | **94×** |
 | 64 | (non misurato, troppo lento) | 15,5 s | — |
 
-A N=8 l'argmin in tfhe-rs è 1,78 s contro i 180 s di Concrete, ~100×. La prima stesura confrontava
-macchine diverse (Concrete sull'home server Linux, tfhe-rs su M4 Max) e F62 chiedeva di togliere la
-frase «a parità di macchina»: **F64 l'ha invece resa vera**, sbloccando Concrete sul Mac e
-rimisurando entrambi i lati sullo stesso hardware — Concrete 47,35 s a N=4 e 98,29 s a N=8 contro
-0,45 s e 1,05 s di tfhe-rs, cioè **105× e 94×**. Il rapporto rivendicato era corretto. Il confronto è
+Stessa macchina (M4 Max), stesso circuito, indici verificati contro il chiaro a ogni N: a N=8
+l'argmin in tfhe-rs è **1,05 s** contro i **98,29 s** di Concrete, **94×**; a N=4, 105×.
+⚠️ Il rapporto **non è normalizzato sui thread**: su macOS Concrete gira di fatto mono-core (il
+dataflow non è disponibile) mentre il lato tfhe-rs usa l'API alta, che parallelizza internamente su
+16 core. Per core il rapporto scende plausibilmente a **6-30×**. La conclusione qualitativa non
+dipende dai thread: F31 la sostiene col conteggio dei PBS (~210 contro ~14). Il confronto è
 schema, tutto corretto. Il valore non cambia coi bit (a FheUint8 era 1,79 s) e combacia con
 le stime da Chakraborty-Zuber (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
 ~180 s non sono colpa dell'hardware né di TFHE, ma di come Concrete-python compila in automatico
@@ -1325,7 +1327,7 @@ su M4 Max, codice in `benchmark/soglia_reale.py` e negli script di breakdown.
 
 | tappa | dove | costo (N=8, 512-dim) |
 |---|---|---|
-| embedding ResNet100 | client | 167 ms (135 ms/img in batch) |
+| embedding ResNet100 | client | 84 ms (26 ms/img in batch) |
 | quantizza e cifra | client | 16 ms |
 | prodotto scalare (N distanze) | server | 0,07 s (0 PBS) |
 | selezione con argmin | server | 455 s (108 PBS) |
@@ -1626,7 +1628,7 @@ Tutti gli esiti verificati contro il chiaro (tabella completa e run single-threa
    leveled di F37, 27× più economico.
 
 Il "percorso" per la figura della tesi, a N=8 dove abbiamo tutti i punti: Concrete sequenziale
-180 s → Concrete torneo 69 s → tfhe-rs sequenziale 1,1 s → tfhe-rs torneo 0,57 s (16 bit) /
+98 s → Concrete torneo 102 s (il torneo non guadagna senza dataflow) → tfhe-rs sequenziale 1,1 s → tfhe-rs torneo 0,57 s (16 bit) /
 0,36 s (8 bit) → varco leveled 0,017 s. A N=64: soglia Concrete 92 s → torneo radix 2,3 s →
 varco leveled 0,094 s. A N=128: 4,7 s → 0,177 s. Cinque ordini di grandezza dal punto di
 partenza, ognuno con una ragione misurata.
@@ -2539,7 +2541,7 @@ ai tempi in cui T-norm e Z-norm furono inventate (sistemi a GMM/eigenface). La n
 coorte trova poco da correggere perché il lavoro l'ha già fatto la rete.
 
 Resta comunque adottabile: costa zero e non peggiora mai la T-norm. Confronto con le altre leve di
-accuratezza provate: fusione multi-frame **+8 punti** (F48), modello più grande +1-2 (F44, F20),
+accuratezza provate: fusione multi-frame **+3,9 punti** (F48), modello più grande +1-2 (F44, F20),
 compressione 0 o negativa (F31), soglia per template +0,3 (qui).
 
 ## 🔴 F55 — Il modello di rumore dei set di parametri: quale regge, quale no, e perché
@@ -2854,8 +2856,7 @@ mentre i punteggi veri stanno dentro ±757. **Un fattore 4,8 di margine sprecato
 recuperarlo, il Δ salirebbe da 2^51 a 2^53, la banda di rumore in unità di punteggio si
 dividerebbe per 4, e il set veloce tornerebbe utilizzabile. Ho provato tre leve.
 
-**Leva A — prova ZK di range: non serve a niente.** È quella che avevo indicato in F56 come «la via
-di principio». È sbagliata. L'attacco di F56 manda un probe con **tutti i coefficienti già legali**:
+**Leva A — prova ZK di range: per il Δ non serve a niente.** L'attacco di F56 manda un probe con **tutti i coefficienti già legali**:
 è un vettore tarato, non fuori dominio. Il bound onesto assume *già* che ogni coefficiente stia in
 [−3, 3] — è esattamente da lì che esce il fattore 2q. Una prova che certifica ciò che il bound
 assume già non stringe nulla. Vale la pena averlo scritto: era una risposta plausibile alla domanda
@@ -3314,7 +3315,8 @@ fra query, non ritoccando il CB.
 veloce pubblicato a quella taglia, e con **13-14 bit** di precisione contro i **2-4 bit** di
 Chakraborty-Zuber — che è più interessante del tempo. Ma loro girano **single-thread su un ultrabook
 del 2015**: senza le colonne CPU, thread, bit ed esattezza il confronto non regge, e con quelle
-regge. Resta comunque il design: il varco fa 0,094 s contro 1,27 s, **14×**, e l'argmin esatto va
+regge. Resta comunque il design: nella configurazione sicura il varco fa 0,153 s contro 1,27 s,
+**~8×**, e l'argmin esatto va
 offerto come l'opzione che toglie il conteggio dall'uscita, col prezzo scritto accanto — come in
 F45, solo che ora il prezzo è 14× invece di 150×.
 
