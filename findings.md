@@ -2462,6 +2462,15 @@ E regge a scala, con zero errori dove il set "buono" ne faceva tre:
 
 Il costo per bootstrap scende da 12 ms a **7,6 ms**: il set 1_0 ha il polinomio più corto (N=256) e
 la chiave più piccola (n=720), quindi FFT e keyswitch costano meno.
+
+**Un vincolo che nasce proprio da lì, e va detto.** Questi numeri vengono da `varco_leveled.rs`, che
+cifra il probe come 512 LWE separati. L'encoding **polinomiale** di F41 — quello che porta il probe
+a 20 KB ed è usato dalla demo — richiede invece un polinomio lungo almeno quanto l'embedding, e il
+set 1_0 ha **N=256 < 512**: con lui il probe compatto non ci sta in un solo GLWE. Le vie sono due:
+tenere il set 1_1 (N=512) e il probe da 20 KB a 0,089 s, oppure spezzare il probe in **due** GLWE da
+256 coefficienti e sommare i due contributi estratti (28 KB, 0,064 s). Non è un problema di
+principio, è una scelta di impacchettamento; la demo tiene 1_1 perché lì il collo di bottiglia è
+l'embedding sul client (170 ms), non i 25 ms di differenza.
 Il prezzo è la banda: 1_0 ha N=256, e per la regola di F50 (banda ∝ 1/N) la sua banda è il doppio
 di quella di 1_1, ~22 unità invece di ~11 a Δ=2^53 — sempre due ordini di grandezza sotto i divari
 reali (300-3600 unità), come conferma lo 0/16.384 misurato. L'altro prezzo è la banda passante
