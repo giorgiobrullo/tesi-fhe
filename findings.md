@@ -3151,8 +3151,11 @@ che la domanda presuppone che `a` sia un volto, e niente lo impone.
    0,18%** al tasso di successo, non uno zero; e l'attacco misurato è a **ricerca casuale**, mentre
    un attaccante adattivo che sfrutta l'esito delle query precedenti non è stato provato. Quindi
    l'enunciato sostenuto dai dati è «la ricerca casuale con norma vincolata non apre in 2.000
-   tentativi», non «la norma risolve il problema». È la difesa più promettente che ho trovato, e
-   resta da verificare contro un attaccante adattivo. Attenzione a non confonderla con la prova ZK di *range* di F58,
+   tentativi», non «la norma risolve il problema». È la difesa più promettente che ho trovato.
+   ⚠️ E il punto 5 qui sotto mostra che gli attaccanti adattivi vanno presi sul serio: contro il
+   conteggio, l'adattivo recupera in tre query tutto quello che lo statico perde. La norma
+   vincolata non è stata provata contro un attaccante adattivo, e finché non lo è va trattata come
+   promettente, non come risolta. Attenzione a non confonderla con la prova ZK di *range* di F58,
    che per il bound su Δ non serve a niente: qui serve una prova sulla **norma**, che è un'altra
    cosa e difende da un altro attacco. Non è però disponibile a scaffale: il
    modulo `zk` di tfhe-rs prova il range del messaggio, cioè un vincolo per coefficiente, mentre
@@ -3174,6 +3177,24 @@ che la domanda presuppone che `a` sia un volto, e niente lo impone.
    contrario di come dovrebbe scalare una difesa.
 4. **Rate limiting**: da F40 era una nota, va promosso a **requisito**; ma con una query su quattro
    che apre a N=1024 non basta da solo.
+5. **Il conteggio non è una difesa, ed è importante saperlo.** L'uscita del varco dà
+   `conteggio` e `indice`, e la regola operativa è «apri solo se il conteggio è 1». Contro
+   l'attacco **statico** sembra funzionare benissimo, perché un bipolare apre *molti* iscritti
+   insieme: a N=1024 la probabilità di aprire scende da 98,1% a **8,0%**, cioè un fattore 12.
+   Ma l'attaccante può **adattarsi**: partendo da un bipolare che apre troppi, azzera coordinate
+   per bisezione sul numero di coordinate attive finché il conteggio scende esattamente a 1.
+   Misurato, 200 tentativi:
+
+   | N | statico, conteggio == 1 | **adattivo** | query |
+   |---|---|---|---|
+   | 128 | 31,3% | **74,5%** | mediana 3, max 10 |
+   | 1024 | 8,0% | **96,5%** | mediana 4, max 10 |
+
+   Il conteggio costa all'attaccante **tre query**, non lo ferma. Questo chiude la domanda che
+   questo stesso finding lasciava aperta («un attaccante adattivo non è stato provato»): è stato
+   provato, e il conteggio non regge. Resta vera la conclusione — l'unica difesa completa è
+   vincolare la norma — e resta vero che il rate limiting va promosso a requisito, perché tre
+   query sono poche ma non zero.
 
 **La lettura onesta per la tesi, ed è quella che regge.** Il modello di minaccia va detto con
 precisione, e allora tutto torna: nel **varco fisico** — che è lo scenario del lavoro — il client
