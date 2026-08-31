@@ -425,9 +425,17 @@ MobileFaceNet (DigiFace, dim 512):
 | quantizzazione a 6 bit | non perde: DIR@FPIR=1% 89,3% (float) = 89,3% (quant) |
 | match cifrato (dim 512, N=25–50) | ~63 ms/query, punteggi esatti (cifrato == quant) |
 
-Più economico del gradino 07 (descrittori, dim 3776, ~75–95 ms): l'embedding CNN è
-più piccolo, quindi la distanza cifrata costa meno. Conferma l'intuizione: la potenza del
-modello (in chiaro sul client) non tocca l'FHE, conta solo la dimensione dell'embedding.
+**Correzione (F62): il «~63 ms» non è il numero di dim 512.** `benchmark/results/velocita_dimensione.csv`,
+stessa configurazione, misura **151,9 ms a dim 512** e 62,7 ms a dim **128**: il valore riportato qui
+è quello della dimensione ridotta, usato come se fosse quello piena. Con il numero giusto **cade
+anche il confronto** che segue: 151,9 ms non è «più economico» dei ~75-95 ms del gradino 07, è
+quasi il doppio. Lo stesso circuito compare nel repo con tre misure diverse (63,8 / ~102-111 / 151,9
+ms) e il «~63 ms» è poi riusato come costante in F15, F19 e F22: quelle stime vanno riviste.
+
+Quello che resta valido è l'enunciato qualitativo, che non dipende dal numero: la potenza del
+modello (in chiaro sul client) non tocca l'FHE, conta solo la **dimensione** dell'embedding — ed è
+proprio la dipendenza dalla dimensione che il CSV mostra, e in modo più marcato di quanto scritto
+(151,9 → 62,7 ms dimezzando due volte).
 
 La pipeline completa è coerente e interattiva: client calcola l'embedding CNN in
 chiaro, quantizza (senza perdita), cifra; server calcola la distanza cifrata in
@@ -966,14 +974,19 @@ dimensionamento è giusto e l'esito torna esatto.
 | 8 | 128 | 92,5% | 92,5% | 12 bit | 8 | 10,0 s |
 | 8 | 64 | 90,0% | 90,0% | 11 bit | 8 | 8,4 s |
 | 64 | 512 | 92,5% | 92,5% | 14 bit | 64 | 91,7 s |
+| 64 | 128 | **93,4%** | 94,1% | 12 bit | 64 | 88,2 s |
 | 64 | 64 | 86,6% | 86,2% | 11 bit | 64 | 61,9 s |
 
 L'esito è esatto ovunque: il bit decifrato coincide con la decisione in chiaro
 quantizzata in 16 casi su 16, a ogni N e dimensione, quindi il percorso privato non perde nulla
 rispetto al chiaro, privacy e accuratezza sono lo stesso numero. 512 dimensioni ci stanno: a 4
 bit il punteggio è 14 bit, sotto il limite di 16 del confronto (F31), quindi il varco esatto
-gira a piena dimensione, e ridurre costa accuratezza (a N=8, da 97,5% a 90,0% scendendo a 64
-dimensioni) risparmiando poco tempo. La quantizzazione a 4 bit non costa (i numeri cifrati
+gira a piena dimensione. Sul costo di ridurre, però, la riga a N=64 e 128 dimensioni — che nella
+prima stesura di questo finding avevo **omesso dalla tabella**, riportandone 5 su 6 (correzione da
+F62) — dice il contrario di quello che avevo concluso: **93,4% a 128 dimensioni contro 92,5% a
+512**, cioè ridurre lì *migliora*. La lettura corretta è che il crollo arriva solo a 64 dimensioni
+(86,6%), e che fra 128 e 512 la differenza sta dentro il rumore di campione (16 probe): non
+«ridurre costa accuratezza», ma «sotto 128 dimensioni sì». La quantizzazione a 4 bit non costa (i numeri cifrati
 combaciano col float a meno del rumore di campione). Il costo è quello dell'argmin meno la
 catena: N PBS (un confronto per iscritto con la soglia in chiaro) contro i 108 dell'argmin a
 512 dimensioni (F33). I 12,5 s a N=8 sono tutti negli 8 confronti (8 PBS a 14 bit, ~1,5 s
