@@ -609,7 +609,7 @@ si stimano sulla galleria, vale lo stesso (galleria = loro training, probe = tes
 solo residuo è la possibile sovrapposizione di *celebrità* tra VGGFace2 e il training
 originale della CNN, caveat standard del campo, non eliminabile senza il dataset di
 training del modello.
-## 🔵 F19 — Modelli più grandi: si sale, ma poco — il 99% non è di questo protocollo
+## 🔵 F19 — Modelli più grandi: si sale, ma poco; e il tetto ~95-96% è quello a frame singolo
 
 *Numeri a **seed singolo**: indicativi. Le misure definitive dello stesso protocollo, su 15 semi con intervallo di confidenza al 95%, sono in F29 (scala) e F30 (modelli); dove i due divergono vale F29/F30.*
 Domanda: salendo di modello (e con la distillazione, come da Carnemolla) si arriva al
@@ -1292,7 +1292,7 @@ Sull'argmin il divario è netto e confermato:
 |---|---|---|---|
 | 4 | 47,35 s | 0,45 s | **105×** |
 | 8 | 98,29 s | 1,05 s | **94×** |
-| 64 | (non misurato, troppo lento) | 15,5 s | — |
+| 64 | (non misurato, troppo lento) | 9,49 s | — |
 
 Stessa macchina (M4 Max), stesso circuito, indici verificati contro il chiaro a ogni N: a N=8
 l'argmin in tfhe-rs è **1,05 s** contro i **98,29 s** di Concrete, **94×**; a N=4, 105×.
@@ -1300,7 +1300,7 @@ l'argmin in tfhe-rs è **1,05 s** contro i **98,29 s** di Concrete, **94×**; a 
 dataflow non è disponibile) mentre il lato tfhe-rs usa l'API alta, che parallelizza internamente su
 16 core. Per core il rapporto scende plausibilmente a **6-30×**. La conclusione qualitativa non
 dipende dai thread: F31 la sostiene col conteggio dei PBS (~210 contro ~14). Il confronto è
-schema, tutto corretto. Il valore non cambia coi bit (a FheUint8 era 1,79 s) e combacia con
+schema, tutto corretto. Il valore combacia con
 le stime da Chakraborty-Zuber (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
 ~180 s non sono colpa dell'hardware né di TFHE, ma di come Concrete-python compila in automatico
 la riduzione (F31: ~210 PBS grandi contro i ~14 piccoli di un circuito a basso livello). E non
@@ -1309,12 +1309,12 @@ di tfhe-rs (`FheInt16`, `min`, `lt`, select).
 
 Misurando il pipeline intero, però, è saltata fuori una sfumatura che corregge una conclusione
 troppo facile. In tfhe-rs ad alto livello il prodotto scalare è carissimo: a N=8 il dot+argmin
-è 100,6 s, di cui l'argmin è 1,78 s, quindi il prodotto scalare da solo è ~99 s, perché l'API
+è 49,86 s, di cui l'argmin è 1,05 s, quindi il prodotto scalare da solo è ~48,8 s, perché l'API
 intera propaga i riporti delle somme via bootstrap (~0,1 s a operazione). In Concrete è
 l'opposto: il prodotto scalare enc×plaintext è leveled e gratis (0 PBS, ~0,07 s, F33). I due
 profili sono specchiati, Concrete con dot gratis e argmin caro, tfhe-rs ad alto livello con dot
-carissimo e argmin economico, e il pipeline intero naïf in tfhe-rs è solo ~1,8× più veloce di
-Concrete (100 contro 180 s), non 100×.
+carissimo e argmin economico, e il pipeline intero naïf in tfhe-rs è solo ~2× più veloce di
+Concrete (49,9 contro 98,3 s, stessa macchina), non 100×.
 
 La conclusione per la tesi, ora misurata e più onesta, è che il ~100× vale per l'argmin, la
 primitiva non lineare che è il vero collo di bottiglia algoritmico (quella che la letteratura
@@ -1365,8 +1365,8 @@ selezione è il bootstrap scritto a basso livello (F32), o cambiare schema verso
 
 ## 🔴 F34 — "Si può avere entrambi": il prodotto scalare leveled a basso livello, e l'argmin esatto
 F32 lasciava una sfumatura scomoda: in tfhe-rs l'argmin è ~100× più veloce di Concrete, ma il
-prodotto scalare ad alto livello (`FheInt16`) costa ~99 s a N=8, perché l'API radix propaga i
-riporti di ogni somma via bootstrap. Ne veniva un pipeline intero solo ~1,8× più veloce di
+prodotto scalare ad alto livello (`FheInt16`) costa ~48,8 s a N=8, perché l'API radix propaga i
+riporti di ogni somma via bootstrap. Ne veniva un pipeline intero solo ~2× più veloce di
 Concrete. Dopo l'incontro di luglio ("quindi Rust") abbiamo chiuso la sfumatura con due binari in
 `experiments/13_tfhe_rs_headtohead/src/bin/`, misurati il 30 agosto sull'M4 Max.
 
@@ -2420,7 +2420,7 @@ punto di pareggio con la matrice sta fra N=16 e N=32: sotto, la matrice vince pe
 usano PBS piccoli, mentre il torneo paga i parametri WOPBS, più pesanti; sopra, vince il torneo
 perché N−1 ≪ N²/2.
 
-Onestà sui limiti, e qui la statistica dice una cosa precisa. L'indice esatto è 69 su 80 in
+Onestà sui limiti, e qui la statistica dice una cosa precisa. L'indice esatto è 73 su 80 in
 generale, ma **31 su 31 quando il minimo sta sotto soglia**, cioè in tutti i casi in cui il varco
 apre davvero. Gli errori stanno tutti sui probe **impostori**, dove il "vincitore" è un candidato
 qualunque fra punteggi lontanissimi dalla soglia e quasi appaiati fra loro: il costo medio
@@ -2429,7 +2429,7 @@ N=128**, su un range di ~1300, e in quei casi il varco rifiuta comunque. È lo s
 della banda di F50: quando due punteggi distano meno del rumore (misurato sul vincitore dopo i log N
 CMUX: 1,5-8,7 unità), il confronto può ribaltarsi. Nota controintuitiva ma sensata: **la precisione
 migliora al crescere di N** (16/16 a N=128), perché con più candidati il minimo è più
-distintamente separato dal secondo. (b) Resta **~10× più lento** del varco a soglia (0,153 s a
+distintamente separato dal secondo. (b) Resta **8,3× più lento** del varco a soglia (0,153 s a
 N=128, F56): per un varco la soglia resta il design giusto, e F37/F43 mostrano che su dati reali il
 caso "due iscritti sotto soglia" non capita mai. (c) La costruzione usa il set WOPBS legacy della
 libreria, non parametri tarati da noi; il gadget del circuit bootstrap è quello standard (2^5×3, cioè
@@ -2466,7 +2466,7 @@ contro la Karatsuba (F51).
 sul vincitore; noi abbiamo consegnato la soglia per iscritto, motivandolo con il costo dell'argmin.
 Quel motivo era vero per la matrice (F45) ma non in assoluto: ora il suo design originale è
 misurato e sta nel budget. La conclusione onesta non è più "l'argmin non si può fare", ma:
-**si può fare, costa 18× il varco a soglia, e serve solo se si vuole il vincitore anche quando più
+**si può fare, costa 8,3× il varco a soglia, e serve solo se si vuole il vincitore anche quando più
 iscritti sono sotto soglia** — cioè quasi mai, sui dati veri. È una scelta di progetto con due
 numeri, non un limite tecnologico.
 
@@ -2495,7 +2495,7 @@ Verifica sistematica del percorso contro le decisioni prese con il prof. Di Raim
    La motivazione data finora — l'argmin esatto costa troppo — era corretta per la matrice
    quadratica (F45: 14,4 s a N=128) ma **non è più vera in assoluto**: F52 mostra che con il
    circuit bootstrapping il torneo lo porta a 1,3 s, dentro il budget. Quindi la formulazione
-   onesta cambia: non «l'argmin non si può fare», ma «la soglia costa 18× meno e sui dati reali
+   onesta cambia: non «l'argmin non si può fare», ma «la soglia costa 8,3× meno e sui dati reali
    dà la stessa risposta, perché il caso in cui due iscritti stanno sotto soglia non capita mai
    (F37, F43); l'argmin esatto resta disponibile a 1,3 s se lo si vuole». È una scelta di
    progetto documentata da due numeri, ed è la cosa da mettere davanti al prof.
@@ -2748,7 +2748,7 @@ rumore più alto della chiave piccola amplificato su 512 termini. Non vale: il c
 rotate, e il blind rotate non si sconta.
 
 Lineare esatta (il tempo per PBS resta 19 ms a ogni scala: i thread non si saturano), e
-**3 errori su 1.031.072 confronti**, tutti con |s−T| ≤ 4 — cioè dentro la banda di ~10 unità, dove
+**3 errori su 1.032.192 confronti**, tutti con |s−T| ≤ 4 — cioè dentro la banda di ~10 unità, dove
 il modello di rumore di F50 dice che devono stare. A N=4096 il varco sicuro sta in **5 secondi**,
 dentro il budget dei 10 s dell'incontro con la galleria più grande che abbiamo.
 
@@ -3120,7 +3120,7 @@ Dove nel documento si legge «parametri standard a 128 bit», va inteso così:
 2. **La p-fail 2⁻⁶⁴ NON si trasferisce.** È calcolata per il carico *shortint* (un input con
    `max_noise_level` fra 1 e 5); da noi l'ingresso al PBS ha attraversato **512 termini** leveled,
    quindi quella cifra non dice nulla sul nostro circuito. Il sostituto legittimo è la **misura**:
-   F50 dà il modello di rumore in forma chiusa e F56 conta **3 errori su 1.031.072 confronti**,
+   F50 dà il modello di rumore in forma chiusa e F56 conta **3 errori su 1.032.192 confronti**,
    tutti a |s−T| ≤ 4, cioè dentro la banda prevista. Va citata quella, non la p-fail della libreria.
 3. **Due punti dove «128 bit» è proprio falso**, e vanno detti: `experiments/13/src/bin/basso_livello.rs`
    usa `LweDimension(1024)` con `StandardDev(4·10⁻¹⁴) ≈ 2⁻⁴⁴`, che a quella dimensione vale **~70
