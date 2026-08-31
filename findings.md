@@ -2164,7 +2164,7 @@ cifratura e **0,03 ms** per la decifratura. Il totale resta quello che l'utente 
 due righe non vanno citate come costo del cifrato.
 
 Sul filo: probe cifrato **20 KB** (encoding polinomiale, F41), esito cifrato 230 KB, chiave di
-valutazione 119 MB una volta sola. Verificato: 4 identità iscritte su 4 riconosciute con
+valutazione **130 MB** una volta sola. Verificato: 4 identità iscritte su 4 riconosciute con
 l'indice giusto, 3 identità non iscritte su 3 rifiutate (`conteggio 0`). Il server, per
 costruzione, non ha la chiave segreta: la pagina mostra i byte che riceve, ed è tutto quello che
 vede.
@@ -2187,7 +2187,7 @@ avvertenza pratica: la stessa identica pipeline, tarata sul dominio sbagliato, a
 installato.
 
 Nota di ingegneria, non di crittografia: il client fa `keygen` all'avvio e consegna al server la
-sola chiave di **valutazione** (119 MB, 0,2 s su rete locale); la chiave segreta non lascia mai
+sola chiave di **valutazione** (130 MB, 0,2 s su rete locale); la chiave segreta non lascia mai
 il container del client, ed è ciò che rende la separazione dei due processi una separazione vera
 e non una formalità.
 
@@ -3632,7 +3632,7 @@ N** — una sola valutazione del segno per tutti gli iscritti insieme — mentre
    ct×ct del polinomio di segno — che nessun numero di core accorcia. A 16 core vinciamo in latenza
    fino a N≈500, a 64 core fino a N≈2000.
 2. **Il materiale di chiave, misurato qui sopra: 2,1 GB a N=128 e 10,7 GB a N=1024** di sole chiavi
-   di Galois, contro i nostri 119 MB di chiave di valutazione più 67 MB di packing. È **10-90× a
+   di Galois, contro i nostri 130 MB di chiave di valutazione più 67 MB di packing. È **10-50× a
    nostro favore**, non dipende da nessuna ottimizzazione dell'avversario, e per un varco che deve
    girare su hardware ordinario conta quanto il tempo.
 3. **La parte lineare**: le nostre distanze leveled costano 3 ms su 153 (il 2%), le loro 0,96-3,77 s.

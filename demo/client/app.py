@@ -147,7 +147,9 @@ def assicura_chiave():
     stato, _ = srv("/stato")
     if json.loads(stato)["chiave"]:
         return False
-    log("mando al server la chiave di VALUTAZIONE (non la segreta), 119 MB...")
+    _mb = pathlib.Path(CHIAVI, "server.key").stat().st_size / 1e6 if pathlib.Path(CHIAVI, "server.key").exists() else None
+    log(f"mando al server la chiave di VALUTAZIONE (non la segreta)"
+        + (f", {_mb:.0f} MB..." if _mb else "..."))
     t0 = time.perf_counter()
     srv("/chiave", (CHIAVI / "server.key").read_bytes(), timeout=600)
     log(f"chiave consegnata in {time.perf_counter()-t0:.1f}s")
