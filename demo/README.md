@@ -21,7 +21,9 @@ ruoli sono due processi (due container), e sul filo passano solo byte cifrati.
 - **Il server non ha la chiave segreta.** Riceve un GLWE da 20 KB, calcola, restituisce 230 KB
   cifrati. La pagina mostra i byte che attraversano il filo: è tutto quello che il server vede.
 - **La galleria è in chiaro sul server** (Mondo 1: sono i suoi dati, raccolti alla registrazione).
-  Cifrata è solo la *query*.
+  Cifrata è solo la *query*. Non è un obbligo: F51 misura che cifrare anche la galleria costa
+  **lo stesso** (prodotto esterno GGSW⊡GLWE, 0,094 s a N=128), e F52 che si può avere anche
+  l'argmin esatto invece della soglia per 1,3 s. La demo usa la versione più semplice.
 - **L'esito è un bit, mai una distanza** (F40): il client apprende "aperto/negato" e l'identità,
   non quanto era vicino — la contromisura all'attacco per gradiente.
 - **La raffica di frame non è scenografia**: è la fusione multi-frame che porta l'accuratezza da
