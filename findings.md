@@ -3442,3 +3442,25 @@ di maschera condivisa è incompatibile col nostro circuito**, e l'ammortizzazion
 per core in cambio di latenza, che è esattamente lo scambio sbagliato per un cancello. Va scritto in
 tesi come direzione *valutata e scartata con i numeri*, perché è la prima cosa che un revisore
 chiederebbe.
+
+**La minaccia specifica segnalata dalla revisione della letteratura, verificata sul paper.**
+*Bootstrapping Bits with CKKS* (Bae, Cheon, Kim, Stehlé, `2024/767`) dichiara una **«winning
+threshold» di 162-262 gate in parallelo** oltre la quale conviene loro — e a N=1024 noi ci siamo
+ampiamente sopra, quindi andava guardata. Ho letto la loro Tabella 2: la soglia è
+`T_boot / T_gate`, con T_boot = **1,70 s** per un lotto da 2¹⁴ slot, e i 162/262 escono confrontando
+con gate DM/CGGI da 10,5 ms e 6,49 ms. La formula si riproduce esattamente, quindi la posso
+applicare a noi: con il nostro PBS sicuro da **18,9 ms** di tempo-thread la soglia scende a
+**1700/18,9 ≈ 90** bootstrap. A N=1024 siamo 11× sopra: **per costo-core hanno ragione loro.**
+
+Cade però su due cose concrete. **La latenza**: i loro 1,70 s sono per *un* lotto, mentre il nostro
+N=1024 completo sta in **1,258 s di parete** su 16 thread — siamo già sotto, e per giunta il loro
+lotto sarebbe pieno al 6% (1.024 slot su 16.384), perché in un varco le query arrivano **una alla
+volta** e non c'è niente con cui riempirlo. **Il formato**, che è il blocco vero: BinBoot fa
+bootstrap di **bit**, valuta porte binarie. Il nostro PBS non è una porta binaria — è l'estrazione
+del **segno di un punteggio leveled a 13-14 bit**. Per dargli in pasto i nostri punteggi servirebbe
+il ponte leveled→radix, che F45 ha già misurato: **40× a 8 bit, 60-70 s a N=128 a 14 bit**. Il ponte
+costa più di quello che la tecnica farebbe risparmiare, e il conto non si chiude nemmeno da lontano.
+
+Registrato così perché è la domanda che un revisore farebbe per prima, e la risposta non è «non
+l'abbiamo provato» ma «ecco la loro soglia applicata ai nostri numeri, ed ecco perché il formato
+non combacia».
