@@ -109,8 +109,12 @@ fn main() {
     let w = 64 - (max_abs as u64).leading_zeros(); // bit necessari per |d|
     // --log-delta L forza Delta (per studiare l'overflow: vedi F56); --delta-onesto usa il bound
     // indipendente dai dati 2*dim*q^2 + max||g||^2 + |T|, l'unico difendibile contro un client malicious
+    // Bound indipendente dal PROBE (ma non dalla galleria, che il server conosce in Mondo 1):
+    //   |s - T| <= 2*q * max_i ||g_i||_1 + max_i ||g_i||^2 + |T|
+    // e' 4x piu' stretto del caso peggiore 2*dim*q^2, perche' i template quantizzati sono sparsi.
     let q_max = scena.g.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap_or(3);
-    let bound_onesto = 2 * (scena.dim as i64) * q_max * q_max
+    let l1_max = scena.g.iter().map(|v| v.iter().map(|x| x.abs()).sum::<i64>()).max().unwrap_or(0);
+    let bound_onesto = 2 * q_max * l1_max
         + scena.bsq.iter().cloned().max().unwrap_or(0) + scena.t.abs();
     let log_delta = if args.iter().any(|x| x == "--delta-onesto") {
         63 - (64 - (bound_onesto as u64).leading_zeros())

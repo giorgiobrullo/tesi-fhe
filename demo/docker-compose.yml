@@ -20,7 +20,7 @@ services:
     environment:
       DIM: 512
       SOGLIA: 23        # dominio della galleria della demo (sintetica); volti reali: 269. Vedi demo/calibra.py
-      LOG_DELTA: 49        # bound indipendente dai dati (F56), non il range osservato
+      LOG_DELTA: 51        # bound indipendente dai dati (F56), non il range osservato
     networks: [varco]
     ports: ["9000:9000"]      # esposta solo per ispezionare /stato dall'esterno
 

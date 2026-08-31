@@ -97,14 +97,15 @@ T = T_sint if (DOMINIO == "sintetico" and T_sint is not None) else T_reale
 # Delta: NON dal range osservato (sarebbe un iperparametro tarato sui dati, e un client malicious
 # lo farebbe traboccare aprendo il varco in una query — vedi findings F56), ma dal bound che vale
 # per QUALUNQUE probe dentro il dominio dichiarato:
-#     |s - T| <= 2 * dim * q_max^2 + max||g||^2 + |T|
+#     |s - T| <= 2*q * max_i ||g_i||_1 + max_i ||g_i||^2 + |T|
+# (il server conosce la galleria, quindi puo' usarne la norma vera: 4x piu' stretto del caso peggiore)
 rng = np.random.RandomState(0)
 sel = ids.copy(); rng.shuffle(sel)
 G = np.array([q(fondi(per_id[s][:K_GAL])) for s in sel[:N_GALLERIA]])
 Pr = np.array([q(fondi(per_id[s][K_GAL:K_GAL + K_PROBE])) for s in sel[:400]])
 S = (G * G).sum(1)[None, :] - 2 * (Pr @ G.T)
 osservato = int(np.abs(S - T_reale).max())
-max_d = 2 * 512 * QM * QM + int((G * G).sum(1).max()) + abs(T)
+max_d = 2 * QM * int(np.abs(G).sum(1).max()) + int((G * G).sum(1).max()) + abs(T)
 log_delta = 63 - int(np.ceil(np.log2(max_d + 1)))
 
 cfg = {"dim": 512, "bit": BIT, "q_max": QM, "scala": round(scala, 8), "T": T,

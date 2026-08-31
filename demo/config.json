@@ -7,7 +7,7 @@
   "dominio_galleria": "sintetico",
   "T_reale_vggface2": 269,
   "T_sintetico_digiface": 23,
-  "log_delta": 49,
+  "log_delta": 51,
   "k_galleria": 2,
   "k_probe": 3,
   "n_galleria_calibrazione": 128,

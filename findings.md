@@ -2542,24 +2542,36 @@ può misurare s_i(v) per un v qualunque, cioè un oracolo sul *punteggio*, non s
 che con il punteggio l'embedding si ricostruisce in **513 query**, non 30.000, e **senza partire da
 una foto**. La frase di F35 «con l'esito a soglia questo attacco non c'è» era quindi troppo forte.
 
-**La difesa: Δ da un bound indipendente dai dati.** L'unico Δ difendibile è quello che copre tutto
-ciò che un client *qualunque* può produrre: |s−T| ≤ 2·dim·q² + max‖g‖² + |T|, che sulla scena a
-3 bit vale 10.168 → Δ = 2^49 (invece di 2^53). Non è gratis, perché la banda è σ_assoluto/Δ e
+**La difesa: Δ da un bound indipendente dal probe.** L'unico Δ difendibile è quello che copre tutto
+ciò che un client *qualunque* può produrre. Il caso peggiore secco, |s−T| ≤ 2·dim·q² + max‖g‖² + |T|,
+vale 10.168 sulla scena a 3 bit → Δ = 2^49. Ma si può stringere di **4×** senza perdere nulla,
+perché il server **conosce la galleria** (è il Mondo 1) e i template quantizzati sono sparsi: il
+bound vero è
+
+    |s − T| ≤ 2·q · max_i ‖g_i‖₁ + max_i ‖g_i‖² + |T|  =  3.646  →  Δ = 2^51
+
+(la norma ℓ1 media dei template è 426, non 1536 come nel caso peggiore). Resta **indipendente dal
+probe**, che è ciò che conta contro l'attacco: qualunque vettore il client mandi, |s−T| non può
+superare quel valore, quindi il wrap è impossibile per costruzione. Non è gratis, perché la banda è σ_assoluto/Δ e
 quindi si allarga di 16×. Misurato:
 
-| set di parametri | banda a Δ=2^49 | DIR@FPIR=1% (simulata su 5 scene) | tempo a N=128 | sotto attacco |
-|---|---|---|---|---|
-| 1_1 (N=512), il veloce | **178 unità** | **0,0%** — inutilizzabile | 0,088 s | — |
-| **2_2 (N=2048)** | **40 unità** | **97,5%** (contro 98,5% esatta) | **0,151 s** | **0/3 accettati** |
+| set | banda a Δ=2^51 | discrepanze su 16.384 | genuini / impostori accettati | tempo a N=128 | sotto attacco |
+|---|---|---|---|---|---|
+| 1_1 (N=512), il veloce | 44 unità | 6 | 58/64 · **4/64** | 0,095 s | 0/3 |
+| **2_2 (N=2048)** | **10 unità** | **0** | 57/64 · **0/64** | **0,152 s** | **0/3** |
 
-Il set piccolo, che F55 aveva eletto campione, **non sopravvive al Δ onesto**: la sua banda diventa
-più larga dei divari reali e il varco decide a caso. Il set grande regge: perde **un punto** di
-accuratezza e costa **2,4×** (0,151 s invece di 0,064 s a N=128), e con lui l'attacco è **bloccato
-completamente** — 0 accettati su 3, 0 discrepanze.
+Il set piccolo **non sopravvive**: con la banda a 44 unità accetta 4 impostori su 64 (FPIR al 6%
+invece dell'1% tarato) — il varco decide male vicino alla soglia. Il set grande regge perfettamente:
+**zero discrepanze su 16.384 confronti**, zero impostori accettati, e i 57/64 genuini riconosciuti
+sono *esattamente* il risultato del calcolo in chiaro. E con lui l'attacco è **bloccato**: 0 su 3.
 
-**La configurazione sicura, quindi:** set 2_2 (N=2048), Δ = 2^63 / (2·dim·q² + max‖g‖² + |T|),
-quantizzazione a 3 bit, fusione 2+3 frame. **0,151 s a N=128**, DIR ≈ 97,5%, e nessun probe
-costruito ad arte riesce ad aprire. Resta due ordini di grandezza sotto i 10 s dell'incontro: il
+Il conto vero del prezzo, quindi, è più preciso di come sembrava: **la difesa in sé non costa
+nulla** (con il set 2_2, il Δ onesto dà gli stessi 0,152 s e la stessa accuratezza del Δ tarato sui
+dati); quello che costa è **non poter usare il set piccolo**, cioè 0,064 → 0,152 s, **2,4×**.
+
+**La configurazione sicura, quindi:** set 2_2 (N=2048), Δ = 2^63 / (2·q·max‖g‖₁ + max‖g‖² + |T|),
+quantizzazione a 3 bit, fusione 2+3 frame. **0,152 s a N=128**, accuratezza identica al calcolo in
+chiaro, e nessun probe costruito ad arte riesce ad aprire. Resta due ordini di grandezza sotto i 10 s dell'incontro: il
 prezzo della sicurezza si paga senza uscire dal budget.
 
 **La via di principio, non implementata.** Il modo pulito di riavere il Δ stretto (e quindi la
