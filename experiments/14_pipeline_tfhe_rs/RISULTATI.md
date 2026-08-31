@@ -154,6 +154,22 @@ ma **31/31 quando il minimo e' sotto soglia**, cioe' sempre quando il varco apre
 quasi-pareggi fra impostori. Con `--cifrata` (galleria GGSW di F51): **1,21 s a N=128**, il server non
 conosce ne' galleria ne' soglia ne' esito e restituisce l'indice esatto.
 
+## 4g. CORREZIONE (F55): il "muro" di 4b/4c non esiste
+
+Una revisione critica ha mostrato che l'inferenza di F47 era un artefatto (1878/344 = 5,459 = il
+rapporto fra i RANGE delle due scene, non una banda) e che la box size non c'entra (l'accumulatore e'
+costante: `message_modulus` non entra nel circuito). La causa vera dei ~20% di errori dei set 2_0/1_0
+e' il rumore in USCITA del PBS (~2^54) contro il margine 2^55 imposto da `LOG_DO = 56`. Alzando il
+margine (`--log-do 60 --blocco 8`) quei set diventano esatti E sono i piu' veloci:
+
+| set | N=128 | N=1024 | N=4096 | errori |
+|---|---|---|---|---|
+| 1_1 (il preteso muro) | 0,089 s | 0,72 s | 3,07 s | 0 / 3 a N=4096 |
+| **1_0 (N=256)** | **0,064 s** | **0,505 s** | **2,073 s** | **0 / 524.288** |
+
+Il PBS scende da 12 a 7,6 ms. Vincolo: 1_0 ha N=256 < dim 512, quindi il probe polinomiale compatto
+(F41) va spezzato in due GLWE; con un solo GLWE serve 1_1.
+
 ## 5. La strada del ponte (`pbs_largo.rs`, `argmin_delta.rs`, F45)
 
 PBS largo (unità di costo del ponte), un thread: 4 bit / N=2048 **13,9 ms**; 8 bit / N=32768
@@ -170,6 +186,7 @@ uv run python esporta_dati.py              # scena reale per i binari Rust
 cargo run --release --bin selezione        # F38, ~4 min a 16 thread
 cargo run --release --bin varco_leveled    # F37, ~1 min  (args: [scena] [N_min] [--multibit] [--mb-threads K])
 uv run python esporta_dati.py 1024 && cargo run --release --bin varco_leveled -- results/scena_reale_1024.txt 256   # F43, ~6 min
+cargo run --release --bin varco_leveled -- results/scena_reale_q3.txt 128 --params 1_0 --log-do 60 --blocco 8   # F55, il piu' veloce
 cargo run --release --bin banda_soglia     # banda, ~3 min
 uv run python effetto_banda.py             # effetto della banda, ~1 min
 RAYON_NUM_THREADS=1 cargo run --release --bin <bin>   # versione seriale
