@@ -1,0 +1,1 @@
+ARCHIVIO (F64): le righe con note argmin_512.py e soglia_scala citano script mai esistiti nel repo, non riproducibili, non usare in tesi

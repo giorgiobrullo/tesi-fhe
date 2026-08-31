@@ -1,0 +1,9 @@
+18:25  up 1 day,  4:40, 12 users, load averages: 23,38 18,20 14,14
+scena: DIM=512 N=4096 probe=128 T=175 | |s-T| max sui probe 851 (10 bit) | bound onesto 3613 | Delta_s = 2^51 -> precipizio di wrap 4096 | thread 16
+parametri: n_grande=2048 n_piccola=879 N_poly=2048 (128 bit, set default, PBS classico, k=1) | bit d'esito 2^60, blocco 8
+
+  N |      dot |    KS+PBS |    totale | PBS/thread | discrepanze (|s-T| delle sbagliate)
+128 |   0.003s |    0.150s |    0.152s |      18.7ms | 0/16384 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 2/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.1 ms
+256 |   0.006s |    0.291s |    0.296s |      18.2ms | 0/32768 []
+      esito per probe: genuini riconosciuti (one-hot giusto) 6/64, impostori accettati 0/64; uscita compatta (indice, conteggio) corretta 128/128 in 0.3 ms

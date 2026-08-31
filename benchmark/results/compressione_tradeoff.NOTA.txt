@@ -1,0 +1,1 @@
+ARCHIVIO (F64): superato da argmin_dimensione.csv, misurato con benchmark/argmin_dimensione.py, usare quello
