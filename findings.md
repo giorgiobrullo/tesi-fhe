@@ -2664,14 +2664,21 @@ oppure il giro finto — mandare comunque la seconda richiesta anche quando non 
 costo a quello dell'argmin sempre. **Il risparmio 8× e il bit di leak sono la stessa cosa vista da
 due lati**, ed è una scelta che va lasciata a chi installa il sistema.
 
-**La variante a un giro solo, senza leak** (non implementata, ma il pezzo c'è già). I bit di soglia
-b_i sono cifrati e valgono 0 oppure 2^60. Si possono usare per *mascherare* i punteggi prima del
-torneo: s'_i = s_i + BIG − b_i·(BIG·Δ / 2^60), dove la moltiplicazione per una costante intera è
-un'operazione leveled — nessun bootstrap. Con BIG scelto multiplo di 2^9 il fattore è un intero
-piccolo (8 per BIG=4096), quindi il rumore cresce di 8×, dentro la banda. Il torneo su s' trova
-allora il minimo **fra i soli accettati**, e il server non impara niente. Costa l'argmin sempre,
-però: è la stessa spesa dell'opzione conservativa, con in più il vantaggio di non dover fare due
-giri di rete.
+**La variante a un giro solo, senza leak** (non implementata, e con un conto da verificare). I bit
+di soglia b_i sono cifrati e valgono 0 oppure 2^60. Si possono usare per *mascherare* i punteggi
+prima del torneo: s'_i = s_i + BIG·Δ − b_i·(BIG·Δ / 2^60), dove la moltiplicazione per una costante
+intera è leveled — nessun bootstrap. Il torneo su s' trova allora il minimo **fra i soli accettati**,
+perché i respinti sono stati spinti fuori scala, e il server non impara niente.
+
+Il vincolo vero è aritmetico: BIG deve superare l'**intervallo** dei punteggi (non solo essere
+grande), altrimenti un respinto può ancora battere un accettato; e BIG·Δ/2^60 deve essere intero,
+cioè BIG multiplo di 2^9. Sulla scena reale l'intervallo è 1.371, quindi BIG = 1.536 e il fattore
+scalare è **3**; se si vuole coprire anche un client malicious, l'intervallo da coprire è quello del
+bound onesto (2 × 3.647), quindi BIG = 7.680 e il fattore è **15**. Il rumore cresce dello stesso
+fattore: da +1,6 a +3,9 bit. È **plausibile** che stia nel budget — la banda del set 2_2 è 10 unità
+su un intervallo di 1.371 — ma **non l'ho misurato**, e finché non lo misuro resta una proposta, non
+un risultato. Costa comunque l'argmin sempre: la stessa spesa dell'opzione conservativa, col
+vantaggio di non fare due giri di rete.
 
 **Perché conta per la tesi.** Il consuntivo dell'incontro (F53) opponeva due risposte diverse alla
 richiesta del prof — il varco a soglia (veloce, ma risponde «uno / nessuno / ambiguo») e l'argmin
