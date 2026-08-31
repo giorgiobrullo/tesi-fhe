@@ -2070,9 +2070,9 @@ probe **disgiunte** per non barare, 5 seed), DIR@FPIR=1% a 4000 iscritti:
 A N=1000 è ancora più netto: (2,2) 98,4%, (3,3) **99,2%**. Il guadagno è **+7-9 punti** e regge a
 scala (stesso salto a 1000 e a 4000). Due letture importanti per la tesi:
 
-1. **Il "99% non è di questo protocollo" (F19/F20) va corretto.** Lì avevamo concluso che sul 1:N
-   open-set a migliaia di iscritti il tetto era ~95-96% e il 99% apparteneva alla verifica 1:1
-   facile. Era vero *a frame singolo*. Con 2-3 frame per query e 2-3 foto per iscritto — la
+1. **Il tetto del ~95-96% di F19/F20 era il tetto *a frame singolo*, non del protocollo.** Lì il
+   1:N open-set a migliaia di iscritti si fermava a ~95-96% e il 99% sembrava appartenere alla
+   verifica 1:1 facile. Vale per una query da un fotogramma. Con 2-3 frame per query e 2-3 foto per iscritto — la
    condizione reale di un varco — il 1:N open-set arriva a **99,2% anche a 4000 iscritti**. Il
    99% è raggiungibile su questo protocollo, e non serve un modello più grande (F44 dava +1-2
    punti): serve usare più di una foto. La media riduce il rumore dell'embedding su entrambi i
@@ -2122,11 +2122,11 @@ Il giro completo, misurato su M4 Max con 127 iscritti:
 | decifratura dell'esito | client | ~8 ms |
 | **totale per query** | | **~300 ms** |
 
-*(Correzione F62: i ~10 ms e i ~8 ms cronometrano `subprocess.run` di un binario Rust, cioè
-soprattutto l'avvio del processo e la lettura delle chiavi da disco. Le operazioni crittografiche
-vere, misurate dentro il binario in F41, sono **0,4 ms** per la cifratura e **0,03 ms** per la
-decifratura. La riga di totale resta quella che l'utente sente, ma non va letta come costo del
-cifrato.)*
+⚠️ I ~10 ms e i ~8 ms delle righe client cronometrano `subprocess.run` di un binario Rust, cioè
+soprattutto l'avvio del processo e la lettura delle chiavi da disco: **non** sono il costo della
+crittografia. Le operazioni vere, misurate dentro il binario in F41, sono **0,4 ms** per la
+cifratura e **0,03 ms** per la decifratura. Il totale resta quello che l'utente percepisce, ma le
+due righe non vanno citate come costo del cifrato.
 
 Sul filo: probe cifrato **20 KB** (encoding polinomiale, F41), esito cifrato 230 KB, chiave di
 valutazione 119 MB una volta sola. Verificato: 4 identità iscritte su 4 riconosciute con
@@ -2139,10 +2139,9 @@ La prima esecuzione dava sistematicamente "ambiguo" (più iscritti sotto soglia)
 galleria della demo è fatta di volti **sintetici** (DigiFace: volti generati, così nelle
 schermate della tesi non compaiono persone reali), mentre T=269 era calibrata sui volti **reali**
 di VGGFace2. Misurato: sul dominio sintetico la soglia corretta a FPIR=1% è **T=23**, e usando
-quella dei volti reali quasi tutti gli impostori verrebbero accettati. **Numeri rifatti con uno
-script riproducibile** (`benchmark/soglia_dominio.py`, 7 semi, N=128 — correzione F62: le cifre
-della prima stesura non erano prodotte da nessuno script e il «7,25» era agganciato alla
-popolazione sbagliata):
+quella dei volti reali quasi tutti gli impostori verrebbero accettati. **Numeri da uno
+script riproducibile** (`benchmark/soglia_dominio.py`, 7 semi, N=128 — è importante che siano
+prodotte da uno script, perché senza sono inverificabili):
 
 | soglia | one-hot corretti | impostori accettati | iscritti sotto soglia per query (genuini / impostori) |
 |---|---|---|---|
