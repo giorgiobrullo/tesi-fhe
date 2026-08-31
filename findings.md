@@ -2748,3 +2748,48 @@ cambia, ma è sbagliato in principio: se la galleria fosse più stretta del domi
 usare, il bound risulterebbe troppo piccolo e il wrap tornerebbe possibile — cioè la stessa
 vulnerabilità di F56 da un'altra porta. Corretto: ora prende il massimo fra galleria e probe, e
 `--q-probe K` lo forza esplicitamente.
+
+---
+
+## 🔴 F59 — Tutta l'uscita del varco in una GLWE: 112× meno banda con un packing keyswitch
+
+Un costo che avevo sempre riportato di sfuggita e mai attaccato: **quanto pesa la risposta**. Il
+varco produce N bit cifrati, uno per iscritto, e ogni bit è un LWE sotto la chiave grande — 2049
+u64, cioè 16,4 KB *l'uno*. A N=4096 sono 67 MB per una singola interrogazione. L'uscita compatta di
+F43 (conteggio + indice locale in binario, per blocchi di B iscritti) li somma e scende a 7,3 MB con
+B=64, ma è stretta fra due vincoli opposti: le somme accumulano il rumore in uscita dal PBS — è la
+trappola che F55 ha smontato, e che obbliga a blocchi *piccoli* — mentre la dimensione vuole blocchi
+*grandi*. Non c'è una scelta buona, solo un compromesso.
+
+**Il vincolo era finto.** Un LWE si può spostare dentro un *coefficiente* di una GLWE con un
+**packing keyswitch** (`par_keyswitch_lwe_ciphertext_list_and_pack_in_glwe_ciphertext`): 2048 bit
+entrano in **una sola** GLWE da 2·2048 u64 = 32 KB. Niente somme, quindi niente accumulo di rumore,
+quindi nessun vincolo su LOG_DO e nessun blocco da tarare. Misurato sulla scena reale, set 2_2 con
+Δ onesto, decomposizione del packing 2^23 × 1 livello:
+
+| N | KS+PBS | packing | GLWE | **uscita** | uscita a blocchi 64 | guadagno | bit sbagliati |
+|---|---|---|---|---|---|---|---|
+| 128 | 0,156 s | 0,024 s | 1 | **0,03 MB** | 0,23 MB | 7× | 0 / 1.024 |
+| 512 | 0,600 s | 0,084 s | 1 | **0,03 MB** | 0,92 MB | 28× | 0 / 4.096 |
+| 1024 | 1,171 s | 0,171 s | 1 | **0,03 MB** | 1,84 MB | 56× | 0 / 8.192 |
+| 2048 | 2,399 s | 0,353 s | 1 | **0,03 MB** | 3,67 MB | **112×** | 1 / 16.384 (|s−T| = 3) |
+| 4096 | 4,966 s | 0,707 s | 2 | **0,07 MB** | 7,34 MB | **112×** | 0 / 32.768 |
+
+Fino a N=2048 **l'uscita è costante: una GLWE, 32 KB**, qualunque sia la galleria. L'unico bit
+sbagliato in 131.072 misurati sta a |s−T| = 3, cioè dentro la banda di ~10 unità che il varco ha
+già per conto suo (F56: errori a |s−T| = 3, 4, 4): **il packing non aggiunge rumore percepibile**.
+
+**Il prezzo, per intero.** Il packing costa **+14/15% di tempo** (0,024 s su 0,156 a N=128; 0,707 s
+su 4,966 a N=4096) e una **chiave di packing da 67 MB**, che si consegna una volta insieme a quella
+di valutazione. La decomposizione grossolana è la scelta giusta: con 2^15 × 3 livelli la chiave sale
+a 201 MB e il packing è **2,8× più lento**, con zero bit guadagnati — perché il margine di decodifica
+qui è 2^61, enorme, e non serve precisione.
+
+**Due conseguenze oltre alla banda.** Primo: l'uscita compatta a blocchi **non serve più**, e con lei
+sparisce il compromesso di F55 fra LOG_DO e dimensione del blocco — qui LOG_DO vale 62 perché non
+c'è nessuna somma che possa traboccare. Secondo: il client riceve il **vettore completo** degli
+accettati invece del solo conteggio+indice, il che non è una perdita di riservatezza (quei bit sono
+informazione *sua*: è lui che ha la chiave) ed è esattamente ciò che serve alla cascata di F57 —
+sa subito se il caso è ambiguo e quali iscritti sono coinvolti.
+
+Codice: `experiments/14_pipeline_tfhe_rs/src/bin/uscita_impacchettata.rs`.
