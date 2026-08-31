@@ -3059,8 +3059,13 @@ che la domanda presuppone che `a` sia un volto, e niente lo impone.
 **Le difese, misurate.**
 
 1. **Vincolare la norma del probe: risolutiva.** Ripetendo lo stesso attacco con i vettori
-   rinormalizzati alla norma di un embedding vero: **0 successi su 2.000, a ogni N**. È l'unica
-   difesa completa che ho trovato. Attenzione a non confonderla con la prova ZK di *range* di F58,
+   rinormalizzati alla norma di un embedding vero: **0 successi su 2.000 tentativi, a ogni N**.
+   ⚠️ Va detto con precisione cosa questo dimostra e cosa no: 0/2.000 è un **limite superiore dello
+   0,18%** al tasso di successo, non uno zero; e l'attacco misurato è a **ricerca casuale**, mentre
+   un attaccante adattivo che sfrutta l'esito delle query precedenti non è stato provato. Quindi
+   l'enunciato sostenuto dai dati è «la ricerca casuale con norma vincolata non apre in 2.000
+   tentativi», non «la norma risolve il problema». È la difesa più promettente che ho trovato, e
+   resta da verificare contro un attaccante adattivo. Attenzione a non confonderla con la prova ZK di *range* di F58,
    che per il bound su Δ non serve a niente: qui serve una prova sulla **norma**, che è un'altra
    cosa e difende da un altro attacco. Non è però disponibile a scaffale: il
    modulo `zk` di tfhe-rs prova il range del messaggio, cioè un vincolo per coefficiente, mentre
@@ -3508,8 +3513,11 @@ e sarebbe disonesto nascondersi dietro il totale. (Col set veloce 1_1, quello ch
 scartare per sicurezza, saremmo a 12 ms e il divario sarebbe 3×.) Quello che le rende
 inutili qui è la **latenza** e il **batch**: la nostra galleria a N=1024 nella configurazione sicura
 fa **1,258 s di parete su 16 thread**, mentre BatchBoot — la migliore — chiede un batch di 512-1024
-e paga 2,11-3,86 s **di latenza**, cioè 2-3× la nostra risposta completa, per fare *solo* i
-bootstrap. Il nostro carico parallelizza in modo banale (N PBS indipendenti, 16 thread, efficienza
+e paga 2,11-3,86 s **di latenza su un thread**. ⚠️ Il confronto va fatto sul **tempo-CPU**, che è
+il metro che F67 elegge come equo, e lì perdiamo: 3,71 ms × 1.024 = **3,8 s·core** contro i nostri
+1,258 × 16 = **20,1 s·core**, cioè **5,3× a loro favore** — coerente col «~5× più economiche» già
+ammesso sopra. Quello che ci salva non è il costo, è che il loro guadagno si incassa solo
+riempiendo un batch da 512-1024, e in un varco il batch è una query. Il nostro carico parallelizza in modo banale (N PBS indipendenti, 16 thread, efficienza
 misurata costante a 19 ms/PBS fino a N=4096); il loro è un guadagno *per core* che va incassato
 riempiendo un batch, e in un varco il batch è **una query**. Sotto il migliaio di iscritti non c'è
 nemmeno abbastanza lavoro per riempirlo.
@@ -3649,8 +3657,9 @@ N** — una sola valutazione del segno per tutti gli iscritti insieme — mentre
    latenza scende linearmente coi core fino a un pavimento di 19 ms, e lo scaling misurato è quasi
    perfetto (128 × 18,9/16 = 151 ms previsti contro 153 misurati). Il CKKS ha una catena
    **sequenziale irriducibile** — le log₂(slot/N) rotazioni di collasso più le 12-16 moltiplicazioni
-   ct×ct del polinomio di segno — che nessun numero di core accorcia. A 16 core vinciamo in latenza
-   fino a N≈500, a 64 core fino a N≈2000.
+   ct×ct del polinomio di segno — che nessun numero di core accorcia. In latenza vinciamo a **ogni
+   N misurato**, ma con vantaggio che si consuma: 11× a N=128, 3,6× a N=1024, e l'asintoto è ~2,6×
+   perché la loro catena sequenziale è un pavimento fisso mentre il nostro costo cresce con N.
 2. **Il materiale di chiave, misurato qui sopra: 2,1 GB a N=128 e 10,7 GB a N=1024** di sole chiavi
    di Galois, contro i nostri 130 MB di chiave di valutazione più 67 MB di packing. È **10-50× a
    nostro favore**, non dipende da nessuna ottimizzazione dell'avversario, e per un varco che deve
