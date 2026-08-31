@@ -3605,3 +3605,72 @@ N** — una sola valutazione del segno per tutti gli iscritti insieme — mentre
 > fisico — poche centinaia di iscritti, una query alla volta, latenza come specifica, chiavi che
 > devono stare sulla macchina — la scelta giusta è il varco TFHE. Per gallerie da migliaia di
 > iscritti, o dove conta il costo per query invece della latenza, la scelta giusta è CKKS.
+
+---
+
+# Appendice A — Registro delle revisioni
+
+I finding qui sopra riportano i numeri **finali**. Questo registro dice quali sono stati rivisti e
+perché, perché un relatore ha diritto di sapere che una misura è cambiata e per quale motivo — ma
+non serve per leggere i finding, che sono autosufficienti.
+
+| finding | cosa è stato rivisto | perché |
+|---|---|---|
+| F14 | «~63 ms» → **151,9 ms** per il match a dim 512 | era il numero di dim **128**, usato come se fosse quello a piena dimensione (`velocita_dimensione.csv`). Le stime che lo riusano — F15, F19, F22 — vanno lette con questa avvertenza |
+| F19/F20 | il tetto ~95-96% è quello **a frame singolo** | con la fusione multi-frame (F48) lo stesso protocollo arriva a 99,2% |
+| F22/F23/F24 | tabelle pre-CHUNKED; «comprimere è la leva» → **non lo è** | rimisurato: l'argmin a 128 dim costa *più* che a 512 (237,9 s contro 158,7 s) |
+| F27 | il torneo vale 2,2× **solo col dataflow** | su macOS, dove il dataflow non esiste, il torneo è più lento del sequenziale |
+| F28 | aggiunta la riga a N=64/128 dim, prima omessa | quella riga (93,4% contro 92,5%) contraddice la conclusione originale |
+| F32/F42 | «a parità di macchina» reso vero, non tolto | Concrete sbloccato sul Mac (F64): 105× a N=4 e 94× a N=8, stesso hardware |
+| F33 | breakdown rimisurato | i numeri venivano dall'home server con un'altra versione di Concrete (57 PBS contro 108: circuito diverso, non solo macchina) |
+| F37 | Δ non era «scelto senza guardare i probe» | il codice li guardava tutti: è la vulnerabilità di F56 |
+| F39 | campione bilanciato per gli impostori; packing corretto | `P[:32]` prendeva solo genuini; e il packing a blocchi costava fino a 7,6× di troppo (F67) |
+| F40 | l'attacco «da fuori» rifatto | lo script perturbava un punto fisso e interrogava un solo iscritto: rifatto, apre alla prima query (F61) |
+| F45 | il costo del ponte è una **stima pessimistica** | costato con un PBS largo per cifra; con la bit extraction del WoP-PBS sarebbe ~10× meno (domanda aperta B1) |
+| F46/F47 | il meccanismo del crollo dei set piccoli | non è la box size (l'accumulatore è costante: `message_modulus` non entra nel circuito), è il rumore in uscita contro `LOG_DO` — modello quantitativo in F55 |
+| F48 | «+8,7 punti» → **+3,9** | il +8,7 è misurato contro una baseline a una foto per iscritto, che non è mai stata la nostra |
+| F49 | quattro numeri ora prodotti da uno script; tempi client riattribuiti | `benchmark/soglia_dominio.py`; i «10/8 ms» cronometravano `subprocess.run`, non la crittografia |
+| F51 | rimisurato nella configurazione **sicura** | era misurato col set 1_1 e Δ=2^53, che F56 dichiara inutilizzabili: 0,192 s invece di 0,094 s |
+| F52 | tabella riallineata all'artefatto; Δ onesto | il Δ=2^52 lasciava viva la vulnerabilità di F56 nell'argmin; col Δ onesto l'accuratezza dell'indice cala |
+| F58 | la prova ZK di **range** non serve, quella di **norma** sì | servono contro due attacchi diversi: il Δ si difende col bound, il punteggio con la norma (F61) |
+| F62 | la tabella normalizzata confronta **operazioni diverse** | argmin/top-k/sort sono più difficili di N soglie: sull'operazione giusta il vantaggio si inverte |
+| F65 | il confronto col bootstrapping ammortizzato non era normalizzato sui thread | la direzione resta chiusa, ma perché manca il **batch**, non perché siamo più veloci |
+
+---
+
+# Appendice B — Domande aperte
+
+Cose che non sappiamo, dichiarate come tali. Non sono correzioni in attesa: sono misure che non
+abbiamo fatto e la cui risposta potrebbe cambiare un numero.
+
+**B1. Il ponte con la bit extraction del WoP-PBS.** F45 chiude la strada del ponte a 60-70 s, ma
+quel numero viene da un PBS largo per cifra. `extract_bits_from_lwe_ciphertext_mem_optimized` è già
+in tfhe-rs e farebbe *b* PBS piccoli: stima ~7,3 s, un ordine di grandezza meno. La conclusione
+operativa non cambia (resta ~47× il varco), il margine sì.
+
+**B2. I parametri WOPBS del torneo (F52) non sono stati scelti, sono stati ereditati.** Il crate ne
+contiene 43, tutti dichiarati a 123-128 bit. Cambiare la sola geometria vale ~2× stimato. Va fatto
+lo sweep, importando le costanti dalla libreria invece di ricopiarle a mano.
+
+**B3. La coda del torneo.** F63 calcola 11 round paralleli × 19-60 ms = 0,35-0,66 s e ne misura
+1,27: resta un ~2× non spiegato, di cui la coda (gli ultimi livelli usano 1-8 core su 16) spiega
+solo 1,4×. Va profilato per stadio prima di ottimizzare.
+
+**B4. Funshade non è prezzato.** Calcola *esattamente* la nostra funzione a **9,3 µs** per decisione
+di soglia contro i nostri 18,9 ms. L'esclusione (2PC, due server non colludenti, un round di
+comunicazione) è corretta e difendibile — ma va scritta **col loro numero accanto**, altrimenti non
+abbiamo rivendicato niente, abbiamo evitato la domanda.
+
+**B5. La baseline CKKS può essere ancora più veloce.** Usiamo il polinomio di segno di
+Cheon-Kim-Kim; il minimax composito di Lee-Lee-No-Kim (`2020/834`) è la versione a complessità
+ottima e varrebbe 19 → ~13 livelli, cioè un altro ~1,8× **a favore di CKKS**. E la misura è fatta con
+SEAL su ARM senza HEXL: un fattore 1,5-2× rispetto a x86 con HEXL è plausibile e non è stato
+verificato. Entrambe le cose peggiorano il nostro confronto, quindi vanno fatte.
+
+**B6. La GPU.** È l'unica leva di velocità rimasta (F66). Le API a lotto ci sono già in tfhe-0.11.3;
+serve una macchina CUDA.
+
+**B7. La dispersione delle misure singole.** I numeri di testa dei binari tfhe-rs sono esecuzioni
+singole, e F52 dichiara esso stesso una dispersione di 1,7× fra macchina scarica e carica — più
+grande di parecchi degli effetti che confrontiamo. I ~8 numeri destinati alla tesi vanno rifatti con
+5 ripetizioni, riportando mediana e min-max a carico dichiarato.
