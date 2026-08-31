@@ -119,11 +119,21 @@ sistema: **0,10 s a N=128, 0,72 s a N=1024**. `results/varco_leveled_16thread_pa
 ## 4c. Il fondo locale: 3 bit e il muro spiegato (`esporta_dati.py N 3`, F47)
 
 3-bit quant dimezza il range -> Delta da 2^51 a 2^53. Set 1_1 a 3 bit: N=1024 0,83 s, **0 discrepanze**,
-banda da sigma~50 a **sigma~4** (robustezza gratis, accuratezza in chiaro identica). 2_0/1_0 restano rotti:
+banda dimezzata (sigma ~11 a Delta=2^53, vedi F50) a costo zero, accuratezza in chiaro identica. 2_0/1_0 restano rotti:
 non per Delta ma per la **box size del PBS** = N/message_modulus, la ridondanza contro il rumore del
 modulus switch. 1_1 (N=512, box 256) e' il piu' piccolo set validato che tiene; sotto la scatola scende
 a 128 e crolla. Punto operativo finale: **3 bit, set 1_1, 0,10 s a N=128, ~0,8 s a N=1024, banda sigma~4,
 esatto**. Leva ancora aperta ovunque: GPU (lotto di N PBS, serve NVIDIA).
+
+## 4d. Il bilancio del rumore (`rumore.rs`, F50)
+
+Misurato tappa per tappa (400 campioni, Delta=2^52): GLWE fresco 2^15,7 -> dopo il prodotto scalare
+leveled 2^22,2 (x92,7, atteso ||p||=90,5) -> dopo il keyswitch 2^56 -> col modulus switch 2^56,5.
+**L'accumulo leveled contribuisce 2^-34 della varianza**: la banda viene tutta da keyswitch e
+modulus switch, cioe' dalle tappe che qualunque PBS fa comunque. Regola in forma chiusa:
+**banda ~ range/90** (set 1_1) e ~range/360 (set 2_2), quindi banda ∝ 1/N — il rapporto 22,5/4,9
+misurato coincide con 2048/512. Probabilita' d'errore a distanza d dalla soglia: 1,3e-2 a d=50,
+4e-6 a d=100, 3e-19 a d=200; sui dati reali le distanze sono 300-3600.
 
 ## 5. La strada del ponte (`pbs_largo.rs`, `argmin_delta.rs`, F45)
 
@@ -147,6 +157,7 @@ RAYON_NUM_THREADS=1 cargo run --release --bin <bin>   # versione seriale
 uv run python attacco_oracolo.py                # F40, ~40 s
 cargo run --release --bin argmin_delta -- results/scena_reale.txt 8 16   # F45, ~5 min
 cargo run --release --bin pbs_largo             # F45, ~6 min
+cargo run --release --bin rumore -- --params 1_1 --log-delta 52   # F50, bilancio del rumore, ~1 min
 cargo run --release --bin varco_leveled -- results/scena_reale.txt 8 --params 1_1   # F46, varco 2x
 cargo run --release --bin banda_soglia -- --params 1_1 --d 200                      # F46, banda del set 1_1
 cargo run --release --bin varco -- keygen results/e2e/chiavi   # poi encrypt/server/decrypt (F41)

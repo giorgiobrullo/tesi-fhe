@@ -1,0 +1,23 @@
+set 1_1: k=4 N=512 n_piccola=781 | Delta = 2^52 | 400 campioni, dim 512
+
+                             tappa | sigma assoluto | in bit | in unita' di punteggio (/Delta)
+       GLWE fresco (probe cifrato) |        5.255e4 | 2^15.7  | 0.00
+  dopo il prodotto scalare leveled |        4.870e6 | 2^22.2  | 0.00
+                 dopo il keyswitch |       7.056e16 | 2^56.0  | 15.67
+     modulus switch a 2N (teorico) |       7.266e16 | 2^56.0  | 16.13
+       TOTALE all'ingresso del PBS |       1.013e17 | 2^56.5  | 22.49
+
+fattore del prodotto scalare: sigma sale x92.7 (atteso ||p|| = sqrt(8186) = 90.5)
+banda prevista della decisione: sigma_totale / Delta = 22.49 unita' di punteggio
+
+lettura: la decisione sbaglia SOLO se |s - T| e' dentro questa banda. Non c'e' un 'p-fail'
+catastrofico: il PBS di segno non produce un valore sbagliato, produce un confine sfocato.
+
+probabilita' di decisione errata a distanza d dalla soglia (gaussiana):
+   d =     1 unita' -> 4.823e-1
+   d =     5 unita' -> 4.120e-1
+   d =    10 unita' -> 3.283e-1
+   d =    25 unita' -> 1.332e-1
+   d =    50 unita' -> 1.310e-2
+   d =   100 unita' -> 4.365e-6
+   d =   200 unita' -> 2.978e-19

@@ -1979,8 +1979,8 @@ più piccolo che tiene**, e sotto non si scende senza cambiare il modo in cui il
 È il fondo della spremitura *locale* del singolo PBS, con il meccanismo, non solo il numero.
 
 Cosa resta dei 3 bit: non velocità (il conteggio dei PBS e la loro dimensione non cambiano: 0,72 s
-a N=1024 come i 4 bit), ma **robustezza gratis**. La banda scende da σ≈50 a σ≈4, cioè il varco
-sbaglia solo entro ±4 unità di punteggio da T invece di ±50, con l'accuratezza in chiaro invariata.
+a N=1024 come i 4 bit), ma **robustezza gratis**. La banda si dimezza (σ da ~22 a ~11 unità a Δ=2^53, F50), cioè il varco
+sbaglia solo entro poche unità di punteggio da T, con l'accuratezza in chiaro invariata.
 Per la tesi: i 3 bit sono la scelta migliore per il varco veloce (set 1_1), perché stringono la
 banda di un ordine di grandezza a costo zero. Il punto operativo finale: **3 bit, set 1_1, 0,10 s a
 N=128 e ~0,8 s a N=1024, banda σ≈4, esatto**.
@@ -2077,3 +2077,70 @@ Nota di ingegneria, non di crittografia: il client fa `keygen` all'avvio e conse
 sola chiave di **valutazione** (119 MB, 0,2 s su rete locale); la chiave segreta non lascia mai
 il container del client, ed è ciò che rende la separazione dei due processi una separazione vera
 e non una formalità.
+
+## 🔴 F50 — Il bilancio del rumore: perché la banda è quella, e perché l'accumulo leveled non c'entra
+Fin qui la correttezza del varco era **empirica** ("0 discrepanze su 131.072 confronti", F43/F46) e
+la banda misurata per campionamento (F37). Un revisore severo ha però una domanda legittima: *i
+parametri di tfhe-rs sono tarati per cifrati freschi; voi ci mettete dentro l'accumulo leveled di
+512 termini moltiplicati per coefficienti fino a 6 — la garanzia vale ancora?* Misurato, tappa per
+tappa, decifrando e confrontando con l'atteso (`experiments/14_pipeline_tfhe_rs/src/bin/rumore.rs`,
+400 campioni, Δ = 2^52, dim 512, valori a 3 bit).
+
+| tappa | σ (set 1_1, N=512) | σ (set 2_2, N=2048) |
+|---|---|---|
+| GLWE fresco (il probe appena cifrato) | 2^15,7 | 2^16,2 |
+| dopo il prodotto scalare leveled | 2^22,2 | 2^22,7 |
+| dopo il keyswitch | 2^56,0 | 2^53,3 |
+| modulus switch a 2N (teorico) | 2^56,0 | 2^54,1 |
+| **totale all'ingresso del PBS** | **2^56,5** | **2^54,3** |
+| **banda della decisione (σ/Δ)** | **22,5 unità** | **4,9 unità** |
+
+Tre cose, e sono tutte importanti.
+
+1. **L'accumulo leveled è previsto e innocuo.** Il prodotto scalare alza σ di ×92,7 (set 1_1) e
+   ×92,3 (set 2_2), contro il valore atteso ‖p‖ = √8186 = 90,5: la teoria torna al 2%. Ma in
+   assoluto porta il rumore solo da 2^15,7 a 2^22,2, mentre il PBS ne assorbe comunque 2^56 dai
+   suoi passaggi obbligati. **L'accumulo contribuisce 2^−34 della varianza totale: è invisibile.**
+   La risposta al revisore è quindi quantitativa: la garanzia dei parametri non è intaccata perché
+   il nostro uso "fuori specifica" sta 34 bit sotto il rumore che il PBS gestisce per costruzione.
+2. **La banda non viene da noi, viene dalla geometria del bootstrap.** È il keyswitch e il modulus
+   switch a 2N a dominare, e sono le due tappe che qualunque PBS di TFHE fa comunque. Il modulus
+   switch quantizza il toro in passi di q/2N, quindi σ_MS ≈ (q/2N)·√(n/12): a N=512 vale 2^56, a
+   N=2048 vale 2^54. Il keyswitch è tarato *apposta* per stare a quel livello (sarebbe inutile
+   essere più precisi di ciò che il modulus switch poi butta via).
+3. **Da qui esce una regola di progetto in forma chiusa.** Δ è limitato dal range dei punteggi
+   (serve |s−T|·Δ < 2^63), quindi Δ ≈ 2^63/range e
+
+   **banda ≈ σ_tot · range / 2^63 ≈ range / 2^6,5 ≈ range / 90**  (set 1_1; range/360 per il 2_2).
+
+   Cioè: la decisione cifrata ha una **precisione relativa fissa di ~6,5 bit sul punteggio**, e la
+   banda in unità di punteggio si stringe solo (a) allargando N — la banda va come 1/N, ed è
+   esattamente il rapporto 22,5/4,9 ≈ 4,6 ≈ 2048/512 misurato qui — oppure (b) stringendo il range
+   dei punteggi, che è ciò che fa la quantizzazione a 3 bit (F47). Le due manopole di F46/F47
+   erano la stessa manopola vista da due lati, e ora si capisce perché.
+
+**La garanzia diventa un numero, non un aneddoto.** Con σ_banda = 22,5 unità (1_1, Δ = 2^52), la
+probabilità che il varco sbagli la decisione su un iscritto a distanza d dalla soglia è
+P = ½·erfc(d/(σ√2)):
+
+| d (unità di punteggio) | 10 | 25 | 50 | 100 | 200 |
+|---|---|---|---|---|---|
+| P(decisione errata) | 3·10⁻¹ | 1,3·10⁻¹ | 1,3·10⁻² | 4·10⁻⁶ | 3·10⁻¹⁹ |
+
+Sui dati reali (F37) le distanze in gioco sono 300–3600 unità: la probabilità d'errore è sotto
+10⁻¹⁹, cioè oltre il p-fail 2^−64 dichiarato dai parametri. **Questo sostituisce "0 discrepanze su
+131.072" con un limite quantificato**, ed è la forma giusta dell'enunciato: il PBS di segno non
+"fallisce" con probabilità p, ha un **confine sfocato** di larghezza nota; l'unico modo di
+sbagliare è che un punteggio cada dentro la banda, e sui volti reali non ci cade praticamente mai.
+
+Correzione a F47: lì scrivevo che a 3 bit la banda scende "a σ ≈ 4". Era una lettura affrettata di
+due soli errori osservati a distanza 4; il modello dà σ ≈ 11 unità a Δ = 2^53, e due errori a
+distanza 4 sono perfettamente compatibili con una banda di 11. Il guadagno dei 3 bit resta (la
+banda si dimezza passando da Δ = 2^52 a 2^53), ma il numero giusto è ~11, non 4.
+
+Nota sulla sicurezza, per chiudere il punto: il rumore che cresce **non** indebolisce la
+cifratura — la sicurezza dipende dalla dimensione del reticolo e dal rumore *minimo*, e il probe
+che il client manda è una cifratura GLWE fresca con la distribuzione standard del set di
+parametri. Il server non fa che aggiungere rumore. Quindi i 128 bit di sicurezza dichiarati dal
+set valgono senza asterischi; l'asterisco, se c'è, è solo sulla *correttezza*, ed è quello che
+questa misura quantifica.
