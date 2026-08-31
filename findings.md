@@ -2574,6 +2574,19 @@ quantizzazione a 3 bit, fusione 2+3 frame. **0,152 s a N=128**, accuratezza iden
 chiaro, e nessun probe costruito ad arte riesce ad aprire. Resta due ordini di grandezza sotto i 10 s dell'incontro: il
 prezzo della sicurezza si paga senza uscire dal budget.
 
+**Verifica sulla demo end-to-end.** Ho rimesso il Δ onesto stretto (2^51, dal bound della galleria
+sintetica: 3.455) nel servizio Docker e riprovato con volti passati dalla pipeline completa
+(48 iscritti, ResNet100, fusione 2+3 frame): **6 iscritti su 7 aperti, 4 estranei su 4 negati**,
+~90 ms lato server. L'unico caso non aperto è un *ambiguo* (due iscritti sotto soglia insieme),
+cioè un limite di accuratezza della galleria sintetica — DigiFace ha identità molto simili tra
+loro — non un errore del cifrato.
+
+Uno sweep di Δ sulla stessa demo conferma il modello di rumore di F50 dal lato opposto: a **2^47**
+un iscritto genuino con margine 127 unità viene *negato*, perché a quel Δ la banda vale ~64 unità e
+127 non basta; da 2^49 in su lo stesso probe passa. Il Δ non è quindi solo una questione di
+sicurezza: sotto il bound onesto si perde accuratezza, sopra si apre l'overflow. Il bound stretto
+mette il sistema **esattamente sul massimo consentito**, che è anche il punto di rumore minimo.
+
 **La via di principio, non implementata.** Il modo pulito di riavere il Δ stretto (e quindi la
 velocità e l'accuratezza piene) è **verificare** che il probe stia nel dominio dichiarato, invece di
 sperarlo: tfhe-rs ha un modulo `zk` con prove a conoscenza zero di cifratura corretta e di
