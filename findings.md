@@ -3452,6 +3452,15 @@ con gate DM/CGGI da 10,5 ms e 6,49 ms. La formula si riproduce esattamente, quin
 applicare a noi: con il nostro PBS sicuro da **18,9 ms** di tempo-thread la soglia scende a
 **1700/18,9 ≈ 90** bootstrap. A N=1024 siamo 11× sopra: **per costo-core hanno ragione loro.**
 
+**Precisazione, dopo aver confrontato con la riga giusta.** L'argomento sopra è corretto ma non è il
+più tagliente. La «winning threshold» di 2024/767 misura un `GateBoot`, cioè il **rinfresco di un
+cifrato il cui plaintext è già un bit**: una porta booleana. La primitiva che serve a noi — valutare
+sign(x) su un LWE largo 13-14 bit — ha un suo benchmark pubblicato, ed è **Alexandru, Kim, Polyakov,
+CRYPTO 2025 (`2024/1623`)**: segno a **12 bit** su 65.536 slot, **63,8-147 s**. A N=1024 riempiremmo
+l'1,6% degli slot e pagheremmo 63,8 s contro i nostri 1,26 s. La frase da usare in tesi è quindi:
+*il varco è N PBS **funzionali** su messaggi larghi, non N gate booleani; sulla primitiva che ci
+serve il pavimento CKKS è 6,4 s (4 bit, `2024/1637`) o 63,8 s (segno a 12 bit), non 1,70 s.*
+
 Cade però su due cose concrete. **La latenza**: i loro 1,70 s sono per *un* lotto, mentre il nostro
 N=1024 completo sta in **1,258 s di parete** su 16 thread — siamo già sotto, e per giunta il loro
 lotto sarebbe pieno al 6% (1.024 slot su 16.384), perché in un varco le query arrivano **una alla
@@ -3464,3 +3473,105 @@ costa più di quello che la tecnica farebbe risparmiare, e il conto non si chiud
 Registrato così perché è la domanda che un revisore farebbe per prima, e la risposta non è «non
 l'abbiamo provato» ma «ecco la loro soglia applicata ai nostri numeri, ed ecco perché il formato
 non combacia».
+
+---
+
+## 🔴 F66 — Il modello di rumore che spiega tutto, la galleria cifrata che è più VELOCE, e la GPU
+
+Tre risultati che vengono da una verifica indipendente sulle fonti primarie e sul sorgente del
+crate, tutti e tre con conseguenze pratiche.
+
+### 1. Il modello quantitativo che chiude F46/F47/F55
+
+F55 aveva smontato il meccanismo sbagliato della «box size» e indicato la causa giusta — il rumore
+in **uscita** dal PBS contro il margine di `LOG_DO` — ma qualitativamente. Ricalcolando dai
+parametri veri del crate (`tfhe-0.11.3`, `classic/gaussian/p_fail_2_minus_64/ks_pbs.rs`) le due
+quantità separate — banda *pre*-PBS (resto del keyswitch + drift del modulus switch) e **σ in
+uscita** del blind rotate — il conto si chiude:
+
+| set | n | k | N | pbs_base_log | σ_glwe rel. | banda prevista (Δ=2^51) | σ in uscita | margine col bit a 2^55 |
+|---|---|---|---|---|---|---|---|---|
+| 2_2 | 834 | 1 | 2048 | 23 | 2^−48,3 | **12** | 2^49,2 | 57σ |
+| 2_1 | 857 | 2 | 1024 | 23 | 2^−48,3 | **24** | 2^49,2 | 57σ |
+| 1_1 | 781 | 4 | 512 | 23 | 2^−48,3 | **49** | 2^49,1 | 60σ |
+| 2_0 | 775 | 3 | 512 | **17** | **2^−35,6** | 48 | **2^55,0** | **1,0σ** |
+| 1_0 | 720 | 6 | 256 | **17** | **2^−35,6** | 89 | **2^54,9** | **1,1σ** |
+
+Le bande previste per 2_2, 2_1 e 1_1 (12 / 24 / 49) **combaciano con quelle misurate** in F46
+(12 / ~30 / ~50): il modello è validato dove sappiamo la risposta. E lì dove F47 vedeva un muro
+dice una cosa precisa: **2_0 ha la stessa banda di 1_1** — quindi non fallisce per la banda. Fallisce
+perché ha `pbs_base_log=17` con `pbs_level=1` **e** una chiave GLWE 2^12,7 volte più rumorosa (con
+k·N=1536 i 128 bit richiedono σ_rel = 2^−35,6), e i due termini del rumore del prodotto esterno si
+bilanciano a σ_out = 2^55 — **esattamente l'ampiezza con cui `LOG_DO = 56` codificava il bit**. Il
+bit usciva annegato nel proprio rumore con **1σ di margine**: errori casuali, cioè la «metà dei
+confronti sbagliati» che F46 aveva osservato. Anche l'artefatto è spiegato: se gli errori sono
+uniformi, la mediana di |s−T| degli sbagliati coincide con la mediana su *tutte* le coppie, e il
+famoso 1878 → 344 è il rapporto delle scale (5,5×), la firma di errori casuali.
+
+Verificato anche che a ℓ=1 `base_log=17` è **già l'ottimo** per quei set (minimo di σ_out su tutti i
+base_log): non è aggiustabile lì, e salire a ℓ=2 raddoppia il lavoro e annulla il guadagno. Il
+guadagno di velocità che F46 aveva scartato come «ROTTO» è **1,39×** (0,100 → 0,072 s a N=128,
+coerente col lavoro del blind rotate ∝ n·(k+1)·N·ℓ: 2,00M vs 1,29M) — ed è esattamente quello che
+F55 ha poi recuperato alzando `--log-do`. **F56 però lo rende comunque inutilizzabile**: con il Δ
+onesto quei set hanno bande di 48-89 unità, fuori uso contro un client malicious. Resta un risultato
+di metodo: la spiegazione giusta era calcolabile dai parametri, non serviva indovinarla.
+
+### 2. La galleria cifrata non è «gratis»: è più economica del chiaro
+
+Il costo del prodotto esterno non è una stima ma **contabilità esatta**, perché un PBS *è* n
+prodotti esterni: la blind rotation esegue una CMux per ciascuno degli n coefficienti della
+maschera, e ogni CMux è un GGSW ⊡ GLWE sulle stesse (k, N). Con n = 781 e un PBS da 12 ms:
+
+> **1 prodotto esterno = 1/781 di PBS = 15,4 µs** a ℓ=1; il conto delle FFT dà 1/491 a ℓ=2
+> (24 µs) e **1/358 a ℓ=3 → 34 µs**, che è il nostro caso (gadget 2^10×3).
+
+Il confronto che conta non è col PBS ma con **ciò che sostituisce**: F41 misura i prodotti
+polinomiali *in chiaro* a 7-16 ms per 128 iscritti, cioè **55-125 µs per iscritto**, perché
+`polynomial_wrapping_add_mul_assign` usa Karatsuba. Il prodotto esterno lavora in **dominio di
+Fourier**: 34 µs contro 55-125 µs, cioè **2-4× più economico**. Ed è precisamente il conto che
+spiega il numero misurato in F51: a N=128 su 16 thread il prodotto scalare scende da ~10 ms a
+~0,3 ms, cioè −7÷−16 ms, e infatti la misura dà **0,094 s con galleria cifrata contro 0,100 s con
+galleria in chiaro**. Torna.
+
+Quindi la formulazione corretta di F51 non è «cifrare la galleria costa quanto niente», è: **cifrare
+la galleria rende il prodotto scalare più veloce**, e il prezzo si paga altrove — 200-300 KB di
+storage per iscritto e la banda in salita della GGSW. Sul totale i PBS restano il 99%.
+
+### 3. La GPU: è la leva più grande rimasta, e le API sono già lì
+
+`tfhe-0.11.3` contiene già `src/core_crypto/gpu/algorithms/` con **tutta** la pipeline del varco —
+`lwe_programmable_bootstrapping.rs`, `lwe_keyswitch.rs`, `glwe_sample_extraction.rs`,
+`lwe_linear_algebra.rs` e perfino `lwe_packing_keyswitch.rs` (cioè anche F59) — dietro la feature
+`gpu = ["dep:tfhe-cuda-backend"]`. E la firma è **nativa a lotto**, che è esattamente la forma del
+nostro carico:
+
+```rust
+pub fn cuda_programmable_bootstrap_lwe_ciphertext<Scalar>(
+    input: &CudaLweCiphertextList<Scalar>, output: &mut CudaLweCiphertextList<Scalar>,
+    accumulator: &CudaGlweCiphertextList<Scalar>, …, num_samples: LweCiphertextCount, …)
+```
+
+Numeri Zama: **945 µs di latenza** per un PBS a 4 bit su H100 e **189.000 PBS/s su 8×H100**
+(~42 µs ammortizzati per GPU), contro i nostri **0,70-0,78 ms effettivi** per PBS a 16 thread → un
+fattore ~18 sulla carta. Stima onesta su una GPU da Colab: **5-15× a N ≥ 512**, poco o niente a
+N=128 dove il trasferimento domina.
+
+**E va detto perché F25 non contraddice questo.** Lì la GPU risultava *più lenta* della CPU, ma era
+Concrete con un argmin **sequenziale**: una catena di confronti dipendenti, cioè il caso peggiore
+possibile per un acceleratore. Il varco è l'opposto esatto — N bootstrap indipendenti, nessuna
+dipendenza, una sola LUT — ed è il carico per cui quelle API sono scritte. **È l'unica leva di
+velocità rimasta aperta dopo che ammortizzato (F65), multi-bit (F60), decomposizione del CB (F63),
+compressione (F64) e keyswitch (F56) sono stati misurati e chiusi.**
+
+### 4. Sublineare in N: chiuso, ma l'argomento che usavamo era sbagliato
+
+Non si scende sotto il lineare — e il motivo **non** è il lower bound del PIR: Beimel-Ishai-Malkin
+parla di *retrieval* con indice segreto del client, mentre qui la galleria il server **la conosce**.
+L'inquadramento giusto è **RAM-FHE** (Lin, Mook, Wichs, `2022/1703`, §1.1 caso 1, «encrypted queries
+over a public database») e la barriera è il **modello a circuiti**, non la privacy: il problema è
+risolto in teoria (preprocessing O(N^{1+ε}), query polylog, RingLWE + circular security) e **mai
+implementato**. Nessuna struttura «blind» scende sotto il lineare: RevoLUT è lineare e limitata a
+p ≤ 2⁸; IDFace lo scrive («grows linearly with respect to the number of enrolled identities»);
+Tiptoe clusterizza in √N ma **scandisce tutto**. I sistemi che sono davvero sublineari rompono un
+vincolo: Wally usa **differential privacy**, Pacmann fa scaricare il database, Compass mette i dati
+dal client. Nessuno dei tre è accettabile qui.
