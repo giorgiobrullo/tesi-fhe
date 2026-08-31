@@ -2266,7 +2266,7 @@ come rafforzativo ciò che sull'asse del client è un passo indietro: va letto c
 non come un miglioramento su tutti i fronti. In più, in Mondo 2 il problema di overflow di F56
 peggiora: con ‖g_i‖² cifrato il server non può più calcolare il bound onesto sulla galleria.
 
-## 🔴 F52 — L'argmin esatto del prof, reso praticabile: torneo con circuit bootstrapping, 1,8 s a N=128
+## 🔴 F52 — L'argmin esatto del prof, reso praticabile: torneo con circuit bootstrapping, 1,3 s a N=128
 F45 aveva chiuso la strada dell'argmin esatto sul server con un numero: la matrice di tutti i
 confronti a coppie è **quadratica** — 3,7 s a N=64 e 14,4 s a N=128, 10.816 PBS — e a N=128 esce
 dal budget dei 10 s dell'incontro. Il motivo per cui non si poteva fare un **torneo** (N−1 confronti
@@ -2296,11 +2296,24 @@ M4 Max, 16 thread, scena reale a 3 bit, confronti di ogni livello in parallelo:
 
 | N | prodotto scalare | torneo | **totale** | confronti | indice esatto | …se il divario > 20 | **…se il minimo è sotto soglia** | matrice F45 |
 |---|---|---|---|---|---|---|---|---|
-| 8 | 0,001 s | 0,259 s | **0,260 s** | 7 | 12/16 | 9/12 | **2/2** | 0,09 s |
-| 16 | 0,001 s | 0,346 s | **0,347 s** | 15 | 14/16 | 11/12 | **3/3** | 0,29 s |
-| 32 | 0,002 s | 0,481 s | **0,483 s** | 31 | 12/16 | 12/13 | **5/5** | 0,97 s |
-| 64 | 0,003 s | 0,742 s | **0,745 s** | 63 | 15/16 | 14/14 | **7/7** | 3,66 s |
-| **128** | 0,006 s | 1,310 s | **1,316 s** | 127 | **16/16** | 16/16 | **14/14** | **14,4 s** |
+| 8 | 0,001 s | 0,259 s | **0,260 s** | 7 | 15/16 | 12/12 | **2/2** | 0,09 s |
+| 16 | 0,001 s | 0,346 s | **0,347 s** | 15 | 13/16 | 9/12 | **3/3** | 0,29 s |
+| 32 | 0,002 s | 0,482 s | **0,484 s** | 31 | 14/16 | 11/13 | **5/5** | 0,97 s |
+| 64 | 0,003 s | 0,747 s | **0,750 s** | 63 | 15/16 | 14/14 | **7/7** | 3,66 s |
+| **128** | 0,006 s | 1,267 s | **1,273 s** | 127 | **16/16** | 16/16 | **14/14** | **14,4 s** |
+
+*(tabella riallineata all'artefatto `results/argmin_torneo.txt`: la versione precedente aveva le
+colonne "indice esatto" e "divario > 20" sfasate di una riga — correzione da F61.)*
+
+**Tre riserve, da dire prima che le dica un revisore.** (1) L'indice esatto è **73/80**, non 80/80;
+e la matrice di F45, sugli stessi probe, fa **77/80**. Il torneo è quindi **più veloce e meno
+accurato** della cosa che sostituisce: il confronto non è solo di tempo. (2) Il "31 su 31" della
+colonna «minimo sotto soglia» è una selezione **a posteriori sull'esito in chiaro**, e le numerosità
+sono 2, 3, 5, 7, 14: su 14/14 l'intervallo di Wilson al 95% parte da ~78%. È un indizio, non una
+misura. (3) I parametri `LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS` sono dichiarati dalla libreria
+«security between **123 and 128** bits» e non espongono `log2_p_fail`: scrivere «128 bit» è
+impreciso. E un vincolo strutturale: l'indice sta al coefficiente N_poly−1, che funziona solo se
+N_poly ≥ 2·dim−1 — quindi il torneo **non è portabile** sul set veloce 1_1 (N=512) con dim=512.
 
 **Il risultato corregge F45.** L'argmin esatto sul server non è quadratico per necessità: con il
 circuit bootstrapping è **lineare in N con profondità log N**, e a N=128 costa **1,3 s invece di
