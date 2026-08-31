@@ -9,16 +9,16 @@ ruoli sono due processi (due container), e sul filo passano solo byte cifrati.
    raffica di 3 frame  ──────►   ResNet100 in chiaro                    galleria IN CHIARO
                                  fusione multi-frame (F48)              chiave di VALUTAZIONE
                                  quantizzazione a 3 bit (F47)
-                                 CHIAVE SEGRETA                 20 KB   prodotto scalare leveled
+                                 CHIAVE SEGRETA                 32 KB   prodotto scalare leveled
                                  cifra ──────────────────────────────►  + 1 bootstrap di segno
                                                                           per iscritto (F37/F46)
-                                 decifra  ◄──────────────────────── 230 KB   esito cifrato
+                                 decifra  ◄──────────────────────── 115 KB   esito cifrato
                                  "aperto / negato"                      (non può decifrare niente)
 ```
 
 ## Cosa mostra (ed è il punto in tesi)
 
-- **Il server non ha la chiave segreta.** Riceve un GLWE da 20 KB, calcola, restituisce 230 KB
+- **Il server non ha la chiave segreta.** Riceve un GLWE da 32 KB, calcola, restituisce ~115 KB
   cifrati. La pagina mostra i byte che attraversano il filo: è tutto quello che il server vede.
 - **La galleria è in chiaro sul server** (Mondo 1: sono i suoi dati, raccolti alla registrazione).
   Cifrata è solo la *query*. Non è un obbligo: F51 misura che cifrare anche la galleria costa
@@ -36,14 +36,14 @@ ruoli sono due processi (due container), e sul filo passano solo byte cifrati.
 | embedding di 3 frame (ResNet100) | client, in chiaro | ~170 ms |
 | quantizzazione + cifratura (un GLWE) | client | ~10 ms |
 | **varco cifrato (127 soglie in parallelo)** | **server** | **~150 ms** (set 2_2, Δ sicuro: vedi sotto) |
-| decifratura dell'esito | client | ~8 ms |
-| **totale per query** | | **~290 ms** |
+| decifratura dell'esito | client | ~8 ms (avvio del processo: la decifratura vera è 0,03 ms) |
+| **totale per query** | | **~230 ms** (48 iscritti) |
 
 Verificato con il server **in container** (immagine 138 MB, solo il binario Rust): identità iscritte
 riconosciute con l'indice giusto, identità non iscritte rifiutate (`conteggio 0`).
 Schema dei ruoli e dei byte: `benchmark/results/architettura.png`.
 
-Byte sul filo: probe cifrato **20 KB**, esito cifrato **230 KB**, chiave di valutazione 119 MB
+Byte sul filo: probe cifrato **32,8 KB**, esito cifrato **115 KB** a 48 iscritti (cresce a blocchi di 64), chiave di valutazione **130 MB**
 (una volta sola, alla messa in servizio).
 
 ## Come si lancia
@@ -68,7 +68,7 @@ Nella pagina, in basso e in piccolo: **popola galleria** (127 identità sintetic
 generati, nessuna persona reale nelle schermate) → **registrami come …** (2 foto) → poi il solo
 pulsante al centro, **Apri il varco** (3 frame). Senza telecamera c'è **senza telecamera**, che usa
 un volto sintetico. Sotto l'esito, una riga sola:
-`310 ms · il server ha visto 20 KB cifrati · 127 confronti sul cifrato in 125 ms`.
+`~230 ms · il server ha visto 32 KB cifrati · 48 confronti sul cifrato in ~85 ms`.
 
 ## Perché la demo usa i parametri "lenti" (F56)
 
