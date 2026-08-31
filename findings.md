@@ -2291,17 +2291,22 @@ prodotto esterno su template **cifrati**. Misurato sulla stessa scena:
 
 | N | prodotto scalare | torneo | **totale** | indice esatto | quando il varco apre |
 |---|---|---|---|---|---|
-| 8 | 0,000 s | 0,260 s | **0,260 s** | 7/8 | 0/0 |
-| 32 | 0,000 s | 0,478 s | **0,478 s** | 7/8 | 3/3 |
-| 64 | 0,000 s | 0,728 s | **0,729 s** | 8/8 | 4/4 |
-| **128** | 0,001 s | 1,204 s | **1,205 s** | **8/8** | **7/7** |
+| 8 | 0,015 s | 0,301 s | **0,316 s** | 8/8 | 0/0 |
+| 32 | 0,009 s | 0,661 s | **0,670 s** | 7/8 | 3/3 |
+| 64 | 0,010 s | 1,153 s | **1,163 s** | 8/8 | 4/4 |
+| **128** | 0,015 s | 1,995 s | **2,009 s** | **8/8** | **7/7** |
 
-**1,2 s a N=128 per un server che non conosce assolutamente nulla**: non la galleria (cifrata), non
-la soglia (dentro la costante cifrata), non il volto, non i punteggi, non l'esito — e che
-restituisce l'**indice esatto** del più vicino. È il massimo di privacy che questo sistema può
-offrire, ed è dentro il budget dell'incontro. Il prodotto scalare, per inciso, è persino più
-veloce che in chiaro (0,001 contro 0,006 s): di nuovo la FFT del prodotto esterno contro la
-Karatsuba (F51).
+**1,2-2,0 s a N=128 per un server che non conosce assolutamente nulla** (il valore dipende dal
+carico della macchina): non la galleria (cifrata come GGSW), non la norma ‖g_i‖² dei template — che
+è un dato dell'iscritto e quindi arriva anch'essa **cifrata**, come un GLWE sommato gratis: la prima
+versione di questo esperimento la sommava in chiaro, ed è un errore che una rilettura critica del
+nostro stesso codice ha corretto — non il volto, non i punteggi, non l'esito. E restituisce
+l'**indice esatto** del più vicino. (L'indice resta in chiaro perché è la numerazione interna del
+server, non un dato dell'iscritto; il test finale contro la soglia aggiunge un PBS, con T dentro
+una costante cifrata.) È il massimo di privacy che questo sistema può
+offrire, ed è dentro il budget dell'incontro. Il prodotto scalare, quando la macchina è scarica, è
+persino più veloce che in chiaro (0,001 contro 0,006 s): di nuovo la FFT del prodotto esterno
+contro la Karatsuba (F51).
 
 **Cosa cambia per la conclusione della tesi.** All'incontro il prof aveva chiesto argmin poi soglia
 sul vincitore; noi abbiamo consegnato la soglia per iscritto, motivandolo con il costo dell'argmin.

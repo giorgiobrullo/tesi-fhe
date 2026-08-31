@@ -164,6 +164,17 @@ fn main() {
     if cifrata { println!("galleria CIFRATA (GGSW 2^10x3): {} MB\n",
         galleria.len() * galleria[0].as_view().data().len() * 16 / (1 << 20)); }
 
+    // in Mondo 2 anche ||g_i||^2 e' cifrato: un GLWE per iscritto, preparato all'iscrizione
+    let costanti: Vec<GlweCiphertextOwned<u64>> = if cifrata {
+        (0..sc.g.len()).map(|i| {
+            let mut c = vec![0u64; N_POLY];
+            c[sc.dim - 1] = (sc.bsq[i] as u64).wrapping_mul(ds);
+            let mut g = GlweCiphertext::new(0u64, glwe_size, poly, modulus);
+            encrypt_glwe_ciphertext(&glwe_sk, &mut g, &PlaintextList::from_container(c), noise_glwe, &mut gen);
+            g
+        }).collect()
+    } else { Vec::new() };
+
     println!("{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | {}",
              "N", "dot", "torneo", "totale", "cfr", "indice", "divario", "sotto", "rum.", "costo", "F45");
     println!("{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | {}",
@@ -200,11 +211,19 @@ fn main() {
                         polynomial_wrapping_add_mul_assign(&mut o, &c, &pol);
                     }
                 }
-                // costante in chiaro: ||g_i||^2 sul coefficiente del punteggio, indice sul coefficiente 0
+                if cifrata {
+                    // Mondo 2: ||g_i||^2 dipende dal template, quindi NON puo' stare in chiaro sul
+                    // server: arriva cifrato dal client all'iscrizione (un GLWE, sommato: gratis).
+                    glwe_ciphertext_add_assign(&mut out, &costanti[i]);
+                } else {
+                    let mut corpo = out.get_mut_body();
+                    corpo.as_mut()[sc.dim - 1] =
+                        corpo.as_mut()[sc.dim - 1].wrapping_add((sc.bsq[i] as u64).wrapping_mul(ds));
+                }
+                // l'indice e' la numerazione del server, non un dato dell'iscritto: puo' stare in chiaro
                 let mut corpo = out.get_mut_body();
-                let b = corpo.as_mut();
-                b[sc.dim - 1] = b[sc.dim - 1].wrapping_add((sc.bsq[i] as u64).wrapping_mul(ds));
-                b[N_POLY - 1] = b[N_POLY - 1].wrapping_add((i as u64).wrapping_mul(di));
+                corpo.as_mut()[N_POLY - 1] =
+                    corpo.as_mut()[N_POLY - 1].wrapping_add((i as u64).wrapping_mul(di));
                 out
             }).collect();
             t_dot += t0.elapsed().as_secs_f64();
