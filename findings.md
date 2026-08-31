@@ -1206,10 +1206,10 @@ Cosa abbiamo provato su Concrete, e i verdetti:
   non-monotòno. E a 512 dimensioni la quantizzazione a ≤4 bit è obbligatoria per compilare,
   perché il confronto cifrato di Concrete è limitato a 16 bit e i punteggi a 6 bit lo superano (circa 18, F20).
 - Riduzione di dimensione. Non abbassa il costo dell'argmin, al contrario di quello che
-  pensavamo. Misurato su embedding reali (N=8, 4 bit, inputset dai probe veri): a 512 dim l'argmin
+  pensavamo. Misurato su embedding reali (N=4, 4 bit, inputset dai probe veri): a 512 dim l'argmin
   è 158,7 s (44 PBS), a 128 dim **237,9 s** (81 PBS, cioè peggio) e a 64 dim 74,8 s ma con risultato
   **errato**: piatto se non peggio, e non monotono. Comprimendo, i bit del
-  punteggio calano (14→11) ma il compilatore emette più PBS (95→146→183), e il totale non scende. Il
+  punteggio calano (14→12) ma il compilatore non emette meno PBS in proporzione (44→81→22), e il totale non scende. Il
   costo dell'argmin sono gli N−1 confronti, non la dimensione; la dimensione vive nel prodotto
   scalare, che è gratis (F33). In più comprimere costa accuratezza sul reale (DIR@FPIR: 512 = 95,5%,
   128 = 94,5%, 64 = 84,9%). La dimensione quindi non è una leva per il costo FHE. Lo sarebbe la
@@ -1304,7 +1304,7 @@ schema, tutto corretto. Il valore combacia con
 le stime da Chakraborty-Zuber (N=8 ~1,2 s, N=64 ~10,8 s), quindi la letteratura era riproducibile. Sull'argmin i
 ~180 s non sono colpa dell'hardware né di TFHE, ma di come Concrete-python compila in automatico
 la riduzione (F31: ~210 PBS grandi contro i ~14 piccoli di un circuito a basso livello). E non
-serve nemmeno scrivere il bootstrap a mano: questi 1,78 s vengono già dall'API ad alto livello
+serve nemmeno scrivere il bootstrap a mano: questi 1,05 s vengono già dall'API ad alto livello
 di tfhe-rs (`FheInt16`, `min`, `lt`, select).
 
 Misurando il pipeline intero, però, è saltata fuori una sfumatura che corregge una conclusione
@@ -1353,7 +1353,7 @@ abbassa il costo". Il 64-dim a ~180 s è una misura sintetica, dove i punteggi c
 via della distribuzione fortunata degli embedding sintetici. Sugli stessi embedding reali ridotti
 con PCA a 64 dim i punteggi sono a 11 bit e l'argmin sale a ~586 s, cioè più lento del 512 dim
 reale (457 s). Apples-to-apples (stessi dati, stessa macchina) l'argmin non scende con la
-dimensione: 512 = 457 s, 128 = ~540 s, 64 = ~586 s. La precisione per-confronto conta, ma
+dimensione: 512 = 158,7 s, 128 = 237,9 s, 64 = 74,8 s ma con risultato errato (F64). La precisione per-confronto conta, ma
 comprimere la dimensione non la stringe abbastanza da aiutare, e intanto costa accuratezza (F31).
 
 Per la tesi tutto il problema di un riconoscimento 1:N privato e veloce si riduce a una sola
@@ -1542,7 +1542,7 @@ dati reali non scatta mai: nelle 20 scene di F36 le coppie (probe, iscritto) ent
 T sono lo 0,003-0,006% (i punteggi dei genuini stanno a centinaia di unità sotto T, quelli
 degli impostori sopra), e simulando la sfocatura su ogni decisione (`effetto_banda.py`) la
 DIR resta identica (92,9 / 92,9 / 92,3% a N = 64 / 128 / 1000, la variante one-hot di F36) con
-FPIR effettiva 0,97-0,99% contro 1,00%. La banda esiste, è misurata e non tocca la decisione.
+FPIR effettiva 0,97-1,03% contro 1,00% (simulata a σ=30 e σ=50, cioè i set 2_1 e 1_1; il σ≈12 del 2_2 non è nel CSV). La banda esiste, è misurata e non tocca la decisione.
 Se servisse stringerla, Δ_s più grande la dimezza a ogni bit (2^52: σ 6,5) al prezzo di un range
 di punteggio più stretto.
 
@@ -1667,8 +1667,8 @@ probabilistica con σ ≈ 12). Esattezza sui probe reali: **0 discrepanze su 409
 N=128 per ogni configurazione, su un campione **bilanciato** di 32 probe (16 genuini + 16
 impostori — la scena elenca prima tutti i genuini, quindi un `P[:32]` ingenuo non conterrebbe nessun
 impostore e la colonna «impostori accettati» risulterebbe vuota, non zero). Risultato: **0
-discrepanze su 4.096, genuini one-hot giusto 14/16, impostori accettati 0/16** in tutte e tre le
-configurazioni a 32768; errore CKKS sui punteggi interi ≤ 0,03, quindi esatti dopo l'arrotondamento
+discrepanze su 4.096, genuini one-hot giusto 30/32** in tutte e tre le
+configurazioni a 32768; il campione salvato è però ; errore CKKS sui punteggi interi ≤ 0,03, quindi esatti dopo l'arrotondamento
 ed esito per probe uguale al chiaro.
 
 Cosa dicono i numeri, con onestà in entrambe le direzioni:
@@ -1704,7 +1704,7 @@ Cosa dicono i numeri, con onestà in entrambe le direzioni:
    ~16.000 volti in ~15 s, Mazzone argmin di 128 in ~13 s), cioè numeri della stessa classe dei
    nostri 4 s, non dei nostri 0,18 s.
 6. Dimensioni: il probe CKKS è un cifrato da ~11 MB a 32768 (2,6 MB misurati a 16384), contro gli
-   8,4 MB dei 512 LWE grezzi di F37 (riducibili a ~16 KB con l'encoding polinomiale); le chiavi di
+   8,4 MB dei 512 LWE grezzi di F37 (riducibili a ~33 KB con il nostro encoding polinomiale, F41); le chiavi di
    rotazione CKKS pesano gigabyte a 32768.
 
 La frase per la tesi: **la scelta dello schema vale meno della scelta dell'operazione**. Il
@@ -1835,7 +1835,7 @@ altro passo):
 | GPU (Tesla T4) sull'argmin | 9× **più lenta** della CPU: il PBS in batch non serve alla latenza di una query | F25 |
 | `dataflow_parallelize` di Concrete | nulla sul sequenziale, +8% sul torneo, crash a N=8 | F27 |
 | `round_bit_pattern`, strategie di confronto alternative | più lente o crash | F31 |
-| comprimere l'embedding (PCA/LDA) per abbassare l'argmin | il costo non scende (457 → 540 → 590 s), l'accuratezza sì | F31 |
+| comprimere l'embedding (PCA/LDA) per abbassare l'argmin | il costo non scende (158,7 → 237,9 s da 512 a 128 dim, F64), l'accuratezza sì | F31 |
 | togliere il `min` ridondante dalla catena | −25%: vero ma minore, assorbito dal torneo | F38 |
 | parametri multi-bit | 2,3× su un thread, nulla a 16 thread: stesso guadagno del parallelismo, non si somma | F38 |
 | one-hot contro indice | equivalenti per privacy e costo; l'uscita compatta dà entrambi | F37 |
@@ -1858,7 +1858,7 @@ galleria portata a **1024 iscritti** (`esporta_dati.py 1024`, T al quantile 1% d
 
 | N | totale per query (16 thread) | per PBS per thread | discrepanze |
 |---|---|---|---|
-| 128 | 0,19 s | 22 ms | 0 / 16.384 |
+| 128 | 0,177 s | 21 ms | 0 / 16.384 | *(scena a 128 iscritti, F37: su questa scena non misurato)*
 | 256 | 0,34 s | 21 ms | 0 / 32.768 |
 | 512 | 0,70 s | 21 ms | 0 / 65.536 |
 | **1024** | **1,41 s** | 22 ms | **0 / 131.072** |
@@ -2008,7 +2008,7 @@ che la letteratura paga: Zuber-Sirdey sono quadratici per la stessa ragione.
 **Cosa succederebbe, quindi.** Il ponte non conviene: la sua unità di costo è 40× la nostra a 8
 bit e ~150× a 14, e riporterebbe il sistema a un minuto. L'argmin esatto senza ponte esiste,
 costa 40-80× il varco, sta nel target del prof a N=64 e non a N=128 **(corretto in F52: con il
-circuit bootstrapping il torneo lo porta a 1,76 s anche a N=128)**, e la sua esattezza dipende
+circuit bootstrapping il torneo lo porta a 1,273 s anche a N=128)**, e la sua esattezza dipende
 dalla stessa banda del varco. **Il varco resta il design**; l'argmin a matrice è l'opzione da
 offrire al prof se il conteggio nell'uscita non gli va bene, con il suo prezzo scritto accanto.
 Per la tesi il percorso guadagna un punto: "argmin esatto sul server a N=64 in 3,7 s, senza
@@ -2035,7 +2035,7 @@ N=1024. La banda si allarga (σ ≈ 50 unità invece di 12), ma resta due ordini
 i gap reali: simulata sulle 20 scene di F36 (`effetto_banda.py`), DIR@FPIR=1% invariata
 (92,8-93,0% contro 92,9%), FPIR 1,01% — e persino a σ=100 la DIR scende solo di 0,1-0,2 punti.
 
-`MESSAGE_2_CARRY_0` e `MESSAGE_1_CARRY_0` (N=512 e 256) qui **sbagliano metà dei confronti**, con
+`MESSAGE_2_CARRY_0` e `MESSAGE_1_CARRY_0` (N=512 e 256) qui **sbagliano un quinto dei confronti** (20,7% e 17,5% a N=128), con
 gli errori distribuiti uniformemente in |s−T| invece che concentrati sulla soglia. Non è il numero
 di bit della LUT (2_0 ha gli stessi 2 bit di 1_1) e non è la banda in ingresso: **F55 mostra che è
 la codifica dell'uscita** — quei due set hanno un rumore in uscita dal PBS σ = 2^55, contro
@@ -2064,7 +2064,7 @@ range del punteggio; quantizzando l'embedding a **3 bit** invece di 4 il range s
 
 **L'ipotesi non si verifica, e il motivo è istruttivo.** A 3 bit e Δ=2^53:
 - **1_1** (N=512): banda da σ≈50 a **σ≈4** (Δ 4× più grande), N=1024 in 0,83 s, **0 discrepanze**;
-- **2_0** e **1_0**: ancora rotti, banda mediana ~344 unità, un terzo dei confronti sbagliato.
+- **2_0** e **1_0**: ancora rotti, banda mediana ~344 unità, un quinto dei confronti sbagliato (19,0% e 17,2%).
 
 **Perché 2_0 e 1_0 sbagliano** — la spiegazione, calcolata dai parametri del crate, è in **F55**:
 non è la banda pre-PBS (che per 2_0 è *uguale* a quella di 1_1) ma il **rumore in uscita** dal blind
@@ -2109,8 +2109,7 @@ probe **disgiunte** per non barare, 5 seed), DIR@FPIR=1% a 4000 iscritti:
 | **k_gal=2** | 94,3% (+3,8) | 97,6% (+7,1) | 98,5% (+8,1) |
 | **k_gal=3** | 95,3% (+4,8) | 98,5% (+8,0) | **99,2% (+8,7)** |
 
-A N=1000 è ancora più netto: (2,2) 98,4%, (3,3) **99,2%**. Il guadagno è **+7-9 punti** e regge a
-scala (stesso salto a 1000 e a 4000). Due letture importanti per la tesi:
+Il guadagno è **+7-9 punti** a 4.000 iscritti (a N=1000 la misura non è stata salvata). Due letture importanti per la tesi:
 
 1. **Il tetto del ~95-96% di F19/F20 era il tetto *a frame singolo*, non del protocollo.** Lì il
    1:N open-set a migliaia di iscritti si fermava a ~95-96% e il 99% sembrava appartenere alla
@@ -2237,7 +2236,7 @@ Tre cose, e sono tutte importanti.
 
    Cioè: la decisione cifrata ha una **precisione relativa fissa di ~6,5 bit sul punteggio**, e la
    banda in unità di punteggio si stringe solo (a) allargando N — la banda va come 1/N, ed è
-   esattamente il rapporto 22,5/4,9 ≈ 4,6 ≈ 2048/512 misurato qui — oppure (b) stringendo il range
+   il rapporto misurato qui, 22,5/4,9 ≈ 4,6, contro il 4,0 di 2048/512 previsto — oppure (b) stringendo il range
    dei punteggi, che è ciò che fa la quantizzazione a 3 bit (F47). Le due manopole di F46/F47
    erano la stessa manopola vista da due lati, e ora si capisce perché.
 
@@ -2435,7 +2434,7 @@ qualunque fra punteggi lontanissimi dalla soglia e quasi appaiati fra loro: il c
 dell'errore (differenza fra il punteggio scelto e il minimo vero) va da 30 unità a N=8 a **0 a
 N=128**, su un range di ~1300, e in quei casi il varco rifiuta comunque. È lo stesso meccanismo
 della banda di F50: quando due punteggi distano meno del rumore (misurato sul vincitore dopo i log N
-CMUX: 1,5-8,7 unità), il confronto può ribaltarsi. Nota controintuitiva ma sensata: **la precisione
+CMUX: 1,5-5,6 unità), il confronto può ribaltarsi. Nota controintuitiva ma sensata: **la precisione
 migliora al crescere di N** (16/16 a N=128), perché con più candidati il minimo è più
 distintamente separato dal secondo. (b) Resta **8,3× più lento** del varco a soglia (0,153 s a
 N=128, F56): per un varco la soglia resta il design giusto, e F37/F43 mostrano che su dati reali il
@@ -2467,7 +2466,7 @@ l'**indice esatto** del più vicino. (L'indice resta in chiaro perché è la num
 server, non un dato dell'iscritto; il test finale contro la soglia aggiunge un PBS, con T dentro
 una costante cifrata.) È il massimo di privacy che questo sistema può
 offrire, ed è dentro il budget dell'incontro. Il prodotto scalare, quando la macchina è scarica, è
-persino più veloce che in chiaro (0,001 contro 0,006 s): di nuovo la FFT del prodotto esterno
+dello stesso ordine di quello in chiaro (0,006-0,015 contro 0,006 s): la FFT del prodotto esterno
 contro la Karatsuba (F51).
 
 **Cosa cambia per la conclusione della tesi.** All'incontro il prof aveva chiesto argmin poi soglia
@@ -2487,7 +2486,7 @@ Verifica sistematica del percorso contro le decisioni prese con il prof. Di Raim
 | embedding sul client, in chiaro; il modello conta poco | fatto; e GhostFaceNet, che era la sua proposta, è misurato: +1 punto su MobileFaceNet, −7/−8 sui profondi | F44 |
 | il fulcro del lavoro è la **selezione** cifrata | è stato il fulcro: F34, F37, F38, F45, F46, F47, F52 | — |
 | galleria realistica: **N = 64 e 128** | fatto, e oltre: fino a 1024 misurato, 4096 in verifica | F43, F51 |
-| **meno di 10 s**, 5 accettabili | **0,153 s a N=128**, 1,26 s a N=1024 nella configurazione sicura — due ordini di grandezza sotto | F51, F56 |
+| **meno di 10 s**, 5 accettabili | **0,153 s a N=128**, 1,26 s a N=1024 nella configurazione sicura — due ordini di grandezza sotto | F56 |
 | «quindi Rust»: usare le funzioni di tfhe-rs, non scrivere crittografia da zero | tutto in tfhe-rs; le uniche righe "nostre" sono la GGSW polinomiale di F51, costruita sulla formula della libreria | F37-F52 |
 | Carnemolla: **confrontare con CKKS** | fatto e misurato, con la lettura del perché | F39 |
 | torneo con i confronti di ogni livello **in parallelo** | fatto in tre versioni: radix, matrice, e torneo vero con circuit bootstrapping | F38, F45, F52 |
@@ -2525,8 +2524,8 @@ risposta alla critica più prevedibile di un revisore.
 **Verdetto sul percorso.** Le decisioni dell'incontro sono state rispettate o superate, con una
 deviazione sostanziale (punto 1) che oggi è una scelta e non più una necessità, e due punti da
 discutere (2 e 3). Il numero che riassume tutto: si era chiesto **meno di 10 secondi a 128
-iscritti**; nella configurazione sicura (F56) il sistema fa **0,153 s** con la galleria in chiaro,
-**0,153 s** con la galleria cifrata, e **~1,5 s** se si pretende anche l'argmin esatto invece della
+iscritti**; nella configurazione sicura (F56) il sistema fa **0,153 s** con la galleria in chiaro (F56),
+**0,179 s** con la galleria cifrata (F51), e **~1,5 s** se si pretende anche l'argmin esatto invece della
 soglia.
 
 ## 🔵 F54 — Soglia per template (Z-norm): gratis, ma vale poco — e si capisce perché
@@ -2615,13 +2614,13 @@ Misurato sulla stessa scena, N=128, macchina scarica:
 | 2_0 | 0,083 s, **3.118 errori** | **0,072 s** | 8,7 ms | 1/16.384 (a d=22) |
 | **1_0** (N=256) | 0,072 s, **2.824 errori** | **0,064 s** | **7,8 ms** | **0/16.384** |
 
-**Il varco più veloce non è quello che credevamo: è il set 1_0, con N=256, a 0,064 s a N=128** —
+**Il varco più veloce non è quello che credevamo: è il set 1_0, con N=256, a 0,062 s a N=128** —
 un altro **28%** sotto il minimo di F46, e con l'uscita compatta corretta 128/128.
 E regge a scala, con zero errori dove il set "buono" ne faceva tre:
 
 | N | 1_1 (il preteso muro) | **1_0 (`--log-do 60 --blocco 8`)** | guadagno | errori 1_0 |
 |---|---|---|---|---|
-| 128 | 0,089 s | **0,064 s** | −28% | 0 / 16.384 |
+| 128 | 0,089 s | **0,062 s** | −30% | 2 / 16.384 (a d=4 e 22) |
 | 1024 | 0,72 s | **0,505 s** | −30% | 0 / 131.072 |
 | 4096 | 3,07 s | **2,073 s** | −32% | **0 / 524.288** |
 
@@ -2630,11 +2629,11 @@ la chiave più piccola (n=720), quindi FFT e keyswitch costano meno.
 
 **Un vincolo che nasce proprio da lì, e va detto.** Questi numeri vengono da `varco_leveled.rs`, che
 cifra il probe come 512 LWE separati. L'encoding **polinomiale** di F41 — quello che porta il probe
-a 20 KB ed è usato dalla demo — richiede invece un polinomio lungo almeno quanto l'embedding, e il
+a 32,8 KB con il set 2_2 della demo — richiede invece un polinomio lungo almeno quanto l'embedding, e il
 set 1_0 ha **N=256 < 512**: con lui il probe compatto non ci sta in un solo GLWE. Le vie sono due:
 tenere il set 1_1 (N=512) e il probe da 20 KB a 0,089 s, oppure spezzare il probe in **due** GLWE da
 256 coefficienti e sommare i due contributi estratti (28 KB, 0,064 s). Non è un problema di
-principio, è una scelta di impacchettamento; la demo tiene 1_1 perché lì il collo di bottiglia è
+principio, è una scelta di impacchettamento; la demo tiene 2_2 (imposto da F56) perché lì il collo di bottiglia è
 l'embedding sul client (170 ms), non i 25 ms di differenza.
 
 **C'è però una terza via, ed è la migliore: ridurre l'embedding a 256 dimensioni.** F23 lo diceva
@@ -2712,8 +2711,7 @@ bound vero è
     |s − T| ≤ 2·q · max_i ‖g_i‖₁ + max_i ‖g_i‖² + |T|  =  3.646  →  Δ = 2^51
 
 (la norma ℓ1 media dei template è 426, non 1536 come nel caso peggiore). Resta **indipendente dal
-probe**, che è ciò che conta contro l'attacco: qualunque vettore il client mandi, |s−T| non può
-superare quel valore, quindi il wrap è impossibile per costruzione. Non è gratis, perché la banda è σ_assoluto/Δ e
+probe** purché q sia il dominio *dichiarato* del client e non il massimo osservato (, quindi il wrap è impossibile per costruzione. Non è gratis, perché la banda è σ_assoluto/Δ e
 quindi si allarga di 16×. Misurato:
 
 | set | banda a Δ=2^51 | discrepanze su 16.384 | genuini / impostori accettati | tempo a N=128 | sotto attacco |
@@ -2821,8 +2819,8 @@ soglia, quale ha il punteggio minore. La domanda giusta non è quindi «varco **
 | 128 | 98,6% | **99,4%** | **0,8%** | 0,0% |
 | 1024 | 97,8% | **98,9%** | **1,2%** | 0,0% |
 
-L'ambiguità è **rara** — meno dell'1,2% dei probe genuini, e **mai** sugli impostori (un impostore
-fatica già a scendere sotto soglia una volta; due volte non capita). E risolverla vale **+0,8 / +1,1
+L'ambiguità è **rara** — meno dell'1,2% dei probe genuini, e quasi mai sugli impostori (0,0% a N=128, 0,02% a N=1024: un impostore
+fatica già a scendere sotto soglia una volta; due volte quasi non capita). E risolverla vale **+0,8 / +1,1
 punti** di DIR, che è esattamente l'accuratezza che si otterrebbe eseguendo l'argmin *sempre*: la
 cascata non è un'approssimazione dell'argmin, gli è **equivalente**, perché quando il conteggio è 1
 l'unico accettato *è* il minimo.
@@ -2840,7 +2838,7 @@ F56; argmin: F52 a N=128, estrapolato con la retta 0,216 + 0,0086·N a N=1024):
 
 | N | argmin sempre | **cascata** = varco + p·argmin | risparmio |
 |---|---|---|---|
-| 128 | 1,32 s | **0,16 s** | **8,2×** |
+| 128 | 1,32 s | **0,16 s** | **8,3×** |
 | 1024 | 9,02 s | **1,31 s** | **6,9×** |
 
 Cioè: **la precisione dell'argmin esatto al prezzo del varco**, perché il caso costoso capita una
@@ -2864,7 +2862,7 @@ Il vincolo vero è aritmetico: BIG deve superare l'**intervallo** dei punteggi (
 grande), altrimenti un respinto può ancora battere un accettato; e BIG·Δ/2^60 deve essere intero,
 cioè BIG multiplo di 2^9. Sulla scena reale l'intervallo è 1.371, quindi BIG = 1.536 e il fattore
 scalare è **3**; se si vuole coprire anche un client malicious, l'intervallo da coprire è quello del
-bound onesto (2 × 3.647), quindi BIG = 7.680 e il fattore è **15**. Il rumore cresce dello stesso
+bound onesto (2 × 3.646), quindi BIG = 7.680 e il fattore è **15**. Il rumore cresce dello stesso
 fattore: da +1,6 a +3,9 bit. È **plausibile** che stia nel budget — la banda del set 2_2 è 10 unità
 su un intervallo di 1.371 — ma **non l'ho misurato**, e finché non lo misuro resta una proposta, non
 un risultato. Costa comunque l'argmin sempre: la stessa spesa dell'opzione conservativa, col
@@ -2881,7 +2879,7 @@ dello stesso protocollo**, e messi in cascata danno la risposta dell'argmin al c
 
 F56 lascia una domanda: la sicurezza contro un client malicious sembra costare **2,4×**
 (0,064 → 0,153 s a N=128) perché obbliga al set 2_2 invece del set piccolo 1_1. Il collo di
-bottiglia è uno solo — il Δ deve coprire il bound |s−T| ≤ 2q·max‖g_i‖₁ + max‖g_i‖² + |T| = 3.647,
+bottiglia è uno solo — il Δ deve coprire il bound |s−T| ≤ 2q·max‖g_i‖₁ + max‖g_i‖² + |T| = 3.646,
 mentre i punteggi veri stanno dentro ±757. **Un fattore 4,8 di margine sprecato.** Se si potesse
 recuperarlo, il Δ salirebbe da 2^51 a 2^53, la banda di rumore in unità di punteggio si
 dividerebbe per 4, e il set veloce tornerebbe utilizzabile. Ho provato tre leve.
@@ -3016,7 +3014,7 @@ quindi nessun vincolo su LOG_DO e nessun blocco da tarare. Misurato sulla scena 
 | 4096 | 4,966 s | 0,707 s | 2 | **0,07 MB** | 7,34 MB | **112×** | 0 / 32.768 |
 
 Fino a N=2048 **l'uscita è costante: una GLWE, 32 KB**, qualunque sia la galleria. L'unico bit
-sbagliato in 131.072 misurati sta a |s−T| = 3, cioè dentro la banda di ~10 unità che il varco ha
+sbagliato in 62.464 misurati sta a |s−T| = 3, cioè dentro la banda di ~10 unità che il varco ha
 già per conto suo (F56: errori a |s−T| = 3, 4, 4): **il packing non aggiunge rumore percepibile**.
 
 **Il prezzo, per intero.** Il packing costa **+14/15% di tempo** (0,024 s su 0,156 a N=128; 0,707 s
@@ -3071,7 +3069,7 @@ spazzato il numero di thread interni a N=128 (`--mb-threads`), sulla stessa scen
 | multi-bit, 2 | 0,175 s | 21,4 ms | 0 / 16.384 |
 | multi-bit, 4 | 0,160 s | 19,6 ms | 2 / 16.384 (|s−T| = 4, **28**) |
 | multi-bit, 8 | 0,165 s | 20,2 ms | 1 / 16.384 |
-| **PBS classico** | **0,154 s** | **18,9 ms** | 1 / 16.384 |
+| **PBS classico** | **0,153 s** | **18,8 ms** | 0 / 16.384 |
 
 Il minimo del multi-bit (4 thread interni, 0,160 s) resta **sopra** il classico, e per giunta con
 una banda un po' peggiore — la discrepanza a |s−T| = 28 è fuori dalle ~10 unità che il set TUniform
@@ -3747,7 +3745,7 @@ N** — una sola valutazione del segno per tutti gli iscritti insieme — mentre
 > operazione non lineare ha **profondità uno**, quindi la latenza si compra coi core fino a 19 ms,
 > mentre CKKS ha una catena sequenziale di ~20 operazioni che nessun core accorcia. A questo si
 > aggiungono due argomenti indipendenti dalla velocità e misurati: il materiale di chiave (2,1-10,7
-> GB contro 186 MB) e la natura dell'uscita (un bit esatto contro un valore graduato). Per un varco
+> GB contro 197 MB) e la natura dell'uscita (un bit esatto contro un valore graduato). Per un varco
 > fisico — poche centinaia di iscritti, una query alla volta, latenza come specifica, chiavi che
 > devono stare sulla macchina — la scelta giusta è il varco TFHE. Per gallerie da migliaia di
 > iscritti, o dove conta il costo per query invece della latenza, la scelta giusta è CKKS.
