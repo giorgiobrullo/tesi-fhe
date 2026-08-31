@@ -3345,3 +3345,71 @@ Chiusi: esperimento 13 (rieseguito, `results/argmin_tfhe_rs.txt`, indici verific
 `soglia_scala` (59,5 s a N=4 e i 15,1 / 29,7 s della soglia a N=16/32): quelle vanno lette come
 *registrazioni d'archivio*, non come misure riproducibili, e nella tesi non vanno usate — tanto più
 che il percorso è passato a tfhe-rs, dove gli stessi numeri sono misurati e riproducibili.
+
+---
+
+## 🔵 F65 — Il bootstrapping ammortizzato non ci salva, e il motivo è strutturale (non di velocità)
+
+Restava una leva algoritmica non esplorata: gli N PBS del varco sono **indipendenti e identici**
+(stesso accumulatore costante, stessa funzione segno), che è esattamente la forma che la letteratura
+sul **bootstrapping ammortizzato** promette di far pagare meno di N volte. Se funzionasse sarebbe la
+cosa più grossa rimasta, perché attaccherebbe l'unico termine che conta: N × PBS.
+
+**Il fatto strutturale che chiude la direzione, e va capito prima dei numeri.** In TFHE la LUT è
+**gratis**: l'accumulatore viene inizializzato col polinomio di test e *tutto* il costo è la blind
+rotation, cioè n prodotti esterni che dipendono **solo dalla maschera dell'input**, non dalla
+funzione. Quindi il fatto che i nostri N bootstrap usino tutti lo stesso accumulatore costante non
+fa risparmiare **niente** nell'algoritmo standard — l'intuizione «stessa LUT per tutti, quindi
+qualcosa si condivide» è sbagliata alla radice. Ne segue che qualsiasi tecnica che scenda sotto
+N × PBS deve fare una di due cose: **(a)** impacchettare gli N input in un unico cifrato
+RLWE/BFV/CKKS e valutare la decrittazione LWE in SIMD, oppure **(b)** costringere gli N input a
+**condividere la maschera**.
+
+**Il duale di multi-value non esiste.** Le tecniche «molte LUT» — Carpov, Izabachène, Mollimard
+(CT-RSA 2019, `2018/622`) e PBSmanyLUT — sono «molte funzioni, **un** input», che è il problema
+opposto al nostro. *(Correzione di attribuzione utile per la tesi: **PBSmanyLUT è di Chillotti,
+Ligier, Orfila, Tap, Asiacrypt 2021** (`2021/729`), non di Chillotti-Joye-Paillier CSCML 2021.)*
+
+**La via (b) esiste, ed è la sola davvero «una blind rotation, molti messaggi»**: *Sharing the Mask:
+TFHE Bootstrapping on Packed Messages*, Bergerat et al., TCHES 2025(4) (`2025/2112`), con cifrati a
+maschera comune sotto Matrix-LWE. Due motivi per cui non ci serve, e il secondo è definitivo:
+
+1. **I numeri non tengono**, misurati dagli autori *su tfhe-rs*: 2× a 2 bit di precisione, ma
+   **+16% a 4 bit con w=2**, più lenta della sequenziale a w=8, e a 8 bit **30% peggio** con w=6-8.
+2. **Il vincolo è incompatibile con il nostro circuito.** La tecnica richiede che i w messaggi
+   **condividano letteralmente la maschera a**. I nostri N punteggi sono
+   x_i = (‖g_i‖² − T)·Δ − 2Σ_j g_ij·enc(a_j): **combinazioni lineari diverse** dello stesso probe,
+   quindi con maschere **diverse per costruzione**. Non è un problema di ingegneria, è che il
+   requisito e la nostra struttura si escludono. (Questo l'ho verificato da me sul circuito, non
+   sulla letteratura: basta guardare come si formano gli x_i.)
+
+**E la via (a), i numeri.** Tutte le costruzioni ammortizzate pubblicate, con il loro costo
+ammortizzato migliore, il batch che serve per ottenerlo e la latenza minima (**tutte
+single-thread**):
+
+| tecnica | ammortizzato | batch | latenza |
+|---|---|---|---|
+| Micciancio-Sorrell, ICALP 2018 (`2018/532`) | mai implementato | — | — |
+| Guimarães, Pereira, van Leeuwen, Asiacrypt 2023 (`2023/014`) | 851 ms | 1024 | 871 s, 76 GiB |
+| Liu & Wang, Asiacrypt 2023 (`2023/910`) | 4,7-6,7 ms | **32.768** | 155-220 s |
+| De Micheli et al., PKC 2024 (`2023/112`) | mai implementato | — | — |
+| Guimarães & Pereira, CCS 2025 (`2025/686`) | 4,01-4,28 ms | 2048 | 8,2 s |
+| Paiva et al., TCHES 2025 (`2025/696`) | 584,7 ms | 1024 | 599 s, 50 GB |
+| BatchBoot, USENIX Sec 2026 | **3,71 ms** | 512-1024 | **2,11-3,86 s** |
+
+**La lettura onesta, che è meno trionfale di come verrebbe da scriverla.** Il nostro PBS costa 12 ms
+su un thread — quindi *per costo ammortizzato* le tecniche migliori (3,7-4,3 ms) sono **3× più
+economiche della nostra**, e sarebbe disonesto nascondersi dietro il totale. Quello che le rende
+inutili qui è la **latenza** e il **batch**: la nostra galleria a N=1024 nella configurazione sicura
+fa **1,258 s di parete su 16 thread**, mentre BatchBoot — la migliore — chiede un batch di 512-1024
+e paga 2,11-3,86 s **di latenza**, cioè 2-3× la nostra risposta completa, per fare *solo* i
+bootstrap. Il nostro carico parallelizza in modo banale (N PBS indipendenti, 16 thread, efficienza
+misurata costante a 19 ms/PBS fino a N=4096); il loro è un guadagno *per core* che va incassato
+riempiendo un batch, e in un varco il batch è **una query**. Sotto il migliaio di iscritti non c'è
+nemmeno abbastanza lavoro per riempirlo.
+
+**Verdetto**: direzione chiusa, e chiusa per il motivo giusto — non «sono lenti», ma **il requisito
+di maschera condivisa è incompatibile col nostro circuito**, e l'ammortizzazione SIMD compra costo
+per core in cambio di latenza, che è esattamente lo scambio sbagliato per un cancello. Va scritto in
+tesi come direzione *valutata e scartata con i numeri*, perché è la prima cosa che un revisore
+chiederebbe.
