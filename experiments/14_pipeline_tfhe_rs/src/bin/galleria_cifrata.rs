@@ -187,7 +187,7 @@ fn main() {
     let acc = allocate_and_trivially_encrypt_new_glwe_ciphertext(
         fbsk.glwe_size(), &PlaintextList::new((1u64 << 55).wrapping_neg(), PlaintextCount(fbsk.polynomial_size().0)), modulus);
     println!("{:>5} | {:>12} | {:>12} | {:>10} | {:>12} | decisioni vs chiaro", "N", "dot cifrato", "PBS", "totale", "galleria");
-    for &n in &[8usize, 32, 128] {
+    for &n in &[8usize, 32, 128, 512, 1024] {
         if n > sc.g.len() { continue; }
         // iscrizione: ogni template diventa una GGSW in dominio di Fourier (una volta sola)
         let mut req = GlobalPodBuffer::new(fill_with_forward_fourier_scratch(fft).unwrap());

@@ -1911,7 +1911,8 @@ che la letteratura paga: Zuber-Sirdey sono quadratici per la stessa ragione.
 
 **Cosa succederebbe, quindi.** Il ponte non conviene: la sua unità di costo è 40× la nostra a 8
 bit e ~150× a 14, e riporterebbe il sistema a un minuto. L'argmin esatto senza ponte esiste,
-costa 40-80× il varco, sta nel target del prof a N=64 e non a N=128, e la sua esattezza dipende
+costa 40-80× il varco, sta nel target del prof a N=64 e non a N=128 **(corretto in F52: con il
+circuit bootstrapping il torneo lo porta a 1,76 s anche a N=128)**, e la sua esattezza dipende
 dalla stessa banda del varco. **Il varco resta il design**; l'argmin a matrice è l'opzione da
 offrire al prof se il conteggio nell'uscita non gli va bene, con il suo prezzo scritto accanto.
 Per la tesi il percorso guadagna un punto: "argmin esatto sul server a N=64 in 3,7 s, senza
@@ -2221,3 +2222,63 @@ cifrature GLWE con la stessa distribuzione di rumore del set standard, quindi va
 128 bit; (d) in Mondo 2 la galleria è cifrata sotto la chiave del **client**, cioè lo scenario è
 "il proprietario della galleria affida calcolo e archiviazione a un server non fidato", che è
 esattamente lo scenario di HERS e affini.
+
+## 🔴 F52 — L'argmin esatto del prof, reso praticabile: torneo con circuit bootstrapping, 1,8 s a N=128
+F45 aveva chiuso la strada dell'argmin esatto sul server con un numero: la matrice di tutti i
+confronti a coppie è **quadratica** — 3,7 s a N=64 e 14,4 s a N=128, 10.816 PBS — e a N=128 esce
+dal budget dei 10 s dell'incontro. Il motivo per cui non si poteva fare un **torneo** (N−1 confronti
+invece di N(N−1)/2) era preciso: il bit di confronto esce come LWE, ma per *selezionare* il vincitore
+serve un CMUX, e il CMUX vuole una **GGSW**. Il ponte fra i due esiste e si chiama **circuit
+bootstrapping** (LWE → GGSW); tfhe-rs lo espone (`circuit_bootstrap_boolean`), e non l'avevamo mai
+provato. Provato ora: `experiments/14_pipeline_tfhe_rs/src/bin/argmin_torneo.rs`.
+
+Il candidato di ogni nodo del torneo è **un solo GLWE** che porta due cose: il punteggio s_i, che
+il prodotto scalare polinomiale deposita al coefficiente dim−1, e l'indice i, scritto in chiaro al
+coefficiente N−1 (gratis). Il posto dell'indice non è arbitrario: il prodotto P_i·A ha supporto
+[0, 2·dim−2], quindi **i coefficienti oltre 2·dim−2 sono esattamente zero** ed è lì che l'indice
+resta pulito. Un solo CMUX seleziona punteggio e indice insieme. Per confronto:
+
+  estrai i due punteggi (gratis) → differenza (gratis) → keyswitch → **PBS di segno** che produce il
+  bit pulito in cima al toro → keyswitch → **circuit bootstrap** → **CMUX**.
+
+Il PBS di segno non è un di più: `circuit_bootstrap_boolean` con `DeltaLog(63)` pretende un LWE che
+contenga **solo** il bit in cima (moltiplica per 1 e tratta il resto come rumore), mentre la
+differenza dei punteggi ha i bit bassi pieni di dati. Passargli la differenza grezza — il nostro
+primo tentativo — dà risultati casuali. Sono 4 PBS per confronto (1 di segno + 3 del circuit
+bootstrap, con `cbs_level = 3`).
+
+Parametri: `LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS` di tfhe-rs (128 bit, N=2048, k=1, PBS a 2
+livelli, CBS 2^5×3, PFKS 2^15×2) — gli unici del set pensati per il circuit bootstrapping. Misure su
+M4 Max, 16 thread, scena reale a 3 bit, confronti di ogni livello in parallelo:
+
+| N | prodotto scalare | torneo | **totale** | confronti | indice esatto | rumore sul punteggio | matrice F45 |
+|---|---|---|---|---|---|---|---|
+| 8 | 0,001 s | 0,259 s | **0,260 s** | 7 | 8/8 | 1,4 unità | 0,09 s |
+| 16 | 0,001 s | 0,347 s | **0,348 s** | 15 | 7/8 | 5,6 unità | 0,29 s |
+| 32 | 0,002 s | 0,481 s | **0,483 s** | 31 | 8/8 | 1,1 unità | 0,97 s |
+| 64 | 0,003 s | 0,774 s | **0,777 s** | 63 | 8/8 | 1,6 unità | 3,66 s |
+| **128** | 0,015 s | 1,740 s | **1,756 s** | 127 | 8/8 | 0,8 unità | **14,4 s** |
+
+**Il risultato corregge F45.** L'argmin esatto sul server non è quadratico per necessità: con il
+circuit bootstrapping è **lineare in N con profondità log N**, e a N=128 costa **1,76 s invece di
+14,4 s — 8× meno — cioè dentro il budget dei 10 s (e dei 5 s) dell'incontro**. A N=64 fa 0,78 s. Il
+punto di pareggio con la matrice sta fra N=16 e N=32: sotto, la matrice vince perché i suoi confronti
+usano PBS piccoli, mentre il torneo paga i parametri WOPBS, più pesanti; sopra, vince il torneo
+perché N−1 ≪ N²/2.
+
+Onestà sui limiti. (a) 39 indici esatti su 40: l'unico errore è a N=16, e il meccanismo è lo stesso
+della banda di F50 — quando due punteggi distano meno del rumore, il confronto può ribaltarsi; il
+rumore misurato sul punteggio del vincitore dopo i log N CMUX è 0,8-5,6 unità su un range di ~1300,
+quindi l'errore capita solo su quasi-pareggi, dove peraltro "sbagliare" significa scegliere un
+candidato praticamente equidistante. (b) Restano **18× più lento** del varco a soglia (0,094 s a
+N=128, F51): per un varco la soglia resta il design giusto, e F37/F43 mostrano che su dati reali il
+caso "due iscritti sotto soglia" non capita mai. (c) La costruzione usa il set WOPBS legacy della
+libreria, non parametri tarati da noi.
+
+**Cosa cambia per la conclusione della tesi.** All'incontro il prof aveva chiesto argmin poi soglia
+sul vincitore; noi abbiamo consegnato la soglia per iscritto, motivandolo con il costo dell'argmin.
+Quel motivo era vero per la matrice (F45) ma non in assoluto: ora il suo design originale è
+misurato e sta nel budget. La conclusione onesta non è più "l'argmin non si può fare", ma:
+**si può fare, costa 18× il varco a soglia, e serve solo se si vuole il vincitore anche quando più
+iscritti sono sotto soglia** — cioè quasi mai, sui dati veri. È una scelta di progetto con due
+numeri, non un limite tecnologico.

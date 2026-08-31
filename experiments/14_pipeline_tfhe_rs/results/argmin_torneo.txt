@@ -1,0 +1,8 @@
+Argmin ESATTO a torneo con circuit bootstrapping — N_poly=2048 k=1 n=769
+chiavi generate in 1.0s (bsk + ksk + pfpksk del circuit bootstrap)
+
+    N |        dot |     torneo |     totale |  confr. | indice | rumore sul   | vs matrice
+      |            |            |            |         | esatto | punteggio    | F45 (N^2)
+    8 |    0.008 s |    0.292 s |    0.300 s |       7 | 13/16 |  4.70 unita | 0,09 s
+   16 |    0.021 s |    0.416 s |    0.436 s |      15 | 13/16 |  4.11 unita | 0,29 s
+   32 |    0.012 s |    0.678 s |    0.689 s |      31 | 13/16 |  9.60 unita | 0,97 s
