@@ -35,7 +35,7 @@ ruoli sono due processi (due container), e sul filo passano solo byte cifrati.
 |---|---|---|
 | embedding di 3 frame (ResNet100) | client, in chiaro | ~170 ms |
 | quantizzazione + cifratura (un GLWE) | client | ~10 ms |
-| **varco cifrato (127 soglie in parallelo)** | **server** | **~110 ms** (125 ms in container) |
+| **varco cifrato (127 soglie in parallelo)** | **server** | **~150 ms** (set 2_2, Δ sicuro: vedi sotto) |
 | decifratura dell'esito | client | ~8 ms |
 | **totale per query** | | **~290 ms** |
 
@@ -69,6 +69,19 @@ generati, nessuna persona reale nelle schermate) → **registrami come …** (2 
 pulsante al centro, **Apri il varco** (3 frame). Senza telecamera c'è **senza telecamera**, che usa
 un volto sintetico. Sotto l'esito, una riga sola:
 `310 ms · il server ha visto 20 KB cifrati · 127 confronti sul cifrato in 125 ms`.
+
+## Perché la demo usa i parametri "lenti" (F56)
+
+Esiste una configurazione più veloce (0,064 s invece di 0,151 s a N=128), ma è sicura solo contro un
+client *honest-but-curious*. Il punteggio viaggia come (s−T)·Δ su un toro a 64 bit: se Δ è tarato sul
+range dei punteggi **osservati**, un client malicious può costruire un vettore — valori tutti dentro
+il dominio legale — che porta s−T oltre il punto di avvolgimento, e il bootstrap di segno legge la
+metà sbagliata del toro: **il varco apre senza che nessuno somigli a nessuno, in una query sola**.
+Verificato: su tre probe costruiti così, il varco ne accettava due.
+
+La demo usa quindi Δ derivato da un **bound indipendente dai dati** (`2·dim·q² + max‖g‖² + |T|`,
+calcolato da `calibra.py`) e il set di parametri N=2048, l'unico la cui banda resta stretta a quel Δ.
+Costa 2,4× in tempo e un punto di accuratezza; in cambio l'attacco è bloccato (0 su 3).
 
 ## La soglia è un parametro di installazione, non una costante
 

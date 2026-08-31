@@ -27,7 +27,9 @@ use std::sync::Mutex;
 use std::time::Instant;
 use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_add_mul_assign;
 use tfhe::core_crypto::prelude::*;
-use tfhe::shortint::parameters::V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64 as PARAMS;
+// set 2_2: N=2048. E' l'unico che regge il Delta indipendente dai dati imposto da F56 (il set 1_1,
+// piu' veloce, a quel Delta ha una banda piu' larga dei divari reali e decide a caso).
+use tfhe::shortint::parameters::V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64 as PARAMS;
 use tfhe::shortint::server_key::ShortintBootstrappingKey;
 use tfhe::shortint::{ClientKey, ServerKey};
 

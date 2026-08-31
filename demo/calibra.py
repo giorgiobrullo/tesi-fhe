@@ -94,13 +94,17 @@ if Z.exists():
 
 DOMINIO = sys.argv[2] if len(sys.argv) > 2 else "sintetico"     # galleria della demo
 T = T_sint if (DOMINIO == "sintetico" and T_sint is not None) else T_reale
-# range dei punteggi (per Delta): |s - T| massimo osservato, con margine
+# Delta: NON dal range osservato (sarebbe un iperparametro tarato sui dati, e un client malicious
+# lo farebbe traboccare aprendo il varco in una query — vedi findings F56), ma dal bound che vale
+# per QUALUNQUE probe dentro il dominio dichiarato:
+#     |s - T| <= 2 * dim * q_max^2 + max||g||^2 + |T|
 rng = np.random.RandomState(0)
 sel = ids.copy(); rng.shuffle(sel)
 G = np.array([q(fondi(per_id[s][:K_GAL])) for s in sel[:N_GALLERIA]])
 Pr = np.array([q(fondi(per_id[s][K_GAL:K_GAL + K_PROBE])) for s in sel[:400]])
 S = (G * G).sum(1)[None, :] - 2 * (Pr @ G.T)
-max_d = int(np.abs(S - T_reale).max() * 1.5)             # margine 1,5x per volti fuori distribuzione
+osservato = int(np.abs(S - T_reale).max())
+max_d = 2 * 512 * QM * QM + int((G * G).sum(1).max()) + abs(T)
 log_delta = 63 - int(np.ceil(np.log2(max_d + 1)))
 
 cfg = {"dim": 512, "bit": BIT, "q_max": QM, "scala": round(scala, 8), "T": T,
@@ -112,5 +116,5 @@ print(f"scala {scala:.6f} (3 bit, valori in [-{QM}, {QM}])")
 print(f"T volti REALI (VGGFace2)   = {T_reale}  (FPIR=1%, galleria {N_GALLERIA}, fusione {K_GAL}+{K_PROBE}), DIR {np.mean(dir_ok):.1%}")
 print(f"T volti SINTETICI (DigiFace) = {T_sint}  (stesso protocollo; le distanze sintetiche sono compresse, F30)")
 print(f"-> in config va T = {T} (galleria della demo: {DOMINIO})")
-print(f"|s-T| max osservato x1,5 = {max_d} -> Delta = 2^{log_delta}")
+print(f"|s-T| max osservato = {osservato}, bound indipendente dai dati = {max_d} -> Delta = 2^{log_delta} (F56)")
 print(f"scritto {OUT / 'config.json'}")
