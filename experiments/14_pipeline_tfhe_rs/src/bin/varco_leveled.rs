@@ -112,7 +112,15 @@ fn main() {
     // Bound indipendente dal PROBE (ma non dalla galleria, che il server conosce in Mondo 1):
     //   |s - T| <= 2*q * max_i ||g_i||_1 + max_i ||g_i||^2 + |T|
     // e' 4x piu' stretto del caso peggiore 2*dim*q^2, perche' i template quantizzati sono sparsi.
-    let q_max = scena.g.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap_or(3);
+    // q dichiarato del PROBE: e' il range che il client si impegna a rispettare, ed e' quello che
+    // entra nel bound (l'avversario sceglie il probe, non la galleria). Prenderlo dalla galleria
+    // sarebbe un errore: se la galleria fosse piu' stretta del dominio dichiarato, il bound
+    // risulterebbe troppo piccolo e il wrap tornerebbe possibile. --q-probe K lo forza.
+    let q_gal = scena.g.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap_or(3);
+    let q_pro = scena.probe.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap_or(3);
+    let q_max = args.iter().position(|x| x == "--q-probe")
+        .map(|i| args[i + 1].parse::<i64>().unwrap())
+        .unwrap_or_else(|| q_gal.max(q_pro));
     let l1_max = scena.g.iter().map(|v| v.iter().map(|x| x.abs()).sum::<i64>()).max().unwrap_or(0);
     let bound_onesto = 2 * q_max * l1_max
         + scena.bsq.iter().cloned().max().unwrap_or(0) + scena.t.abs();

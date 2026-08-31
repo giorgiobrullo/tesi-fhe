@@ -2677,3 +2677,67 @@ giri di rete.
 richiesta del prof — il varco a soglia (veloce, ma risponde «uno / nessuno / ambiguo») e l'argmin
 esatto (risponde «chi», ma costa 10×). Non sono alternative: sono **il caso comune e il caso raro
 dello stesso protocollo**, e messi in cascata danno la risposta dell'argmin al costo del varco.
+
+---
+
+## 🔵 F58 — Quanto si può ancora stringere il bound onesto: un bit, e non basta
+
+F56 lascia una domanda aperta e sgradevole: la sicurezza contro un client malicious costa **2,4×**
+(0,064 → 0,153 s a N=128) perché obbliga al set 2_2 invece del set piccolo 1_1. Il collo di
+bottiglia è uno solo — il Δ deve coprire il bound |s−T| ≤ 2q·max‖g_i‖₁ + max‖g_i‖² + |T| = 3.647,
+mentre i punteggi veri stanno dentro ±757. **Un fattore 4,8 di margine sprecato.** Se si potesse
+recuperarlo, il Δ salirebbe da 2^51 a 2^53, la banda di rumore in unità di punteggio si
+dividerebbe per 4, e il set veloce tornerebbe utilizzabile. Ho provato tre leve.
+
+**Leva A — prova ZK di range: non serve a niente.** È quella che avevo indicato in F56 come «la via
+di principio». È sbagliata. L'attacco di F56 manda un probe con **tutti i coefficienti già legali**:
+è un vettore tarato, non fuori dominio. Il bound onesto assume *già* che ogni coefficiente stia in
+[−3, 3] — è esattamente da lì che esce il fattore 2q. Una prova che certifica ciò che il bound
+assume già non stringe nulla. Vale la pena averlo scritto: era una risposta plausibile alla domanda
+sbagliata.
+
+**Leva B — prova ZK di norma: misurata, guadagno zero.** La versione sensata è provare che il probe
+ha norma da embedding vero, ‖a‖₂ ≤ A, e usare Cauchy-Schwarz al posto della disuguaglianza ℓ1:
+|2g·a| ≤ 2‖g‖₂‖a‖₂. Sulla scena reale (‖g‖₂ = 26,3, ‖a‖₂ = 25,8):
+
+| ipotesi sul probe | bound | Δ |
+|---|---|---|
+| caso peggiore secco 2·dim·q² | 10.081 | 2^49 |
+| coefficienti in [−3,3] (quello che usiamo) | 3.613 | **2^51** |
+| + prova ZK di norma ‖a‖₂ ≤ 25,8 | 2.219 | **2^51** — *zero bit guadagnati* |
+| range osservato sui probe veri (indifendibile) | 850 | 2^53 |
+
+La prova di norma stringe il bound del 39% e **non cambia il Δ**, perché il logaritmo si arrotonda
+allo stesso intero. Una macchina crittografica in più per zero bit.
+
+**Leva C — sparsificare la galleria: un bit, quasi gratis.** Il termine che domina è 2q·‖g‖₁, e
+‖g‖₁ è una proprietà della *galleria*, che il server conosce e può modificare all'iscrizione. Primo
+fatto, che non sapevo: **i template a 3 bit sono già sparsi** — 331 coefficienti non nulli su 512.
+Secondo: i coefficienti a ±1 sono la maggioranza in numero ma portano poco segnale. Azzerandoli
+(cioè tenendo solo |g| ≥ 2, ~86 coefficienti su 512) su 10 semi e il protocollo completo:
+
+| N | soglia | non nulli | bound | Δ | DIR@FPIR=1% |
+|---|---|---|---|---|---|
+| 128 | tutti | 331 | 3.652 | 2^51 | 99,4% |
+| 128 | \|g\| ≥ 2 | 86 | **1.806** | **2^52** | 99,2% |
+| 1024 | tutti | 331 | 3.630 | 2^51 | 98,9% |
+| 1024 | \|g\| ≥ 2 | 85 | **1.812** | **2^52** | 98,6% |
+
+Il bound si **dimezza** e il Δ guadagna **un bit intero**, al prezzo di 0,2-0,3 punti di DIR. Con la
+banda simulata al Δ risultante, il set veloce 1_1 passa da **4,4% a 1,6% di FPIR** — molto meglio,
+ma ancora sopra l'1% a cui la soglia è tarata. Quindi migliora, e non basta.
+
+**Il tetto, e perché un bit è tutto quello che c'è.** Per rendere 1_1 equivalente a 2_2 serve
+dividere la banda per 4,4, cioè **2,1 bit**. Ma il bound ha un pavimento: con |g| ≥ 2 il solo
+termine costante ‖g‖² + |T| vale già ~580, e per arrivare a Δ = 2^53 il bound totale deve stare
+sotto 1.024 — restano 440 per il termine di prodotto scalare, cioè ‖g‖₁ ≤ 73, che è il regime
+|g| ≥ 3 dove la DIR **crolla al 65%**. Il conto si chiude: **il massimo ottenibile è un bit, e ne
+servirebbero due.** Il 2,4× non è pigrizia implementativa, è il prezzo strutturale del modello di
+minaccia con questo encoding — e ora ha un numero e una dimostrazione, non un'impressione.
+
+**Un bug latente trovato per strada.** `varco_leveled` calcolava il q del bound dalla **galleria**
+invece che dal dominio dichiarato del **probe**. Qui coincidono (entrambi 3) e il risultato non
+cambia, ma è sbagliato in principio: se la galleria fosse più stretta del dominio che il client può
+usare, il bound risulterebbe troppo piccolo e il wrap tornerebbe possibile — cioè la stessa
+vulnerabilità di F56 da un'altra porta. Corretto: ora prende il massimo fra galleria e probe, e
+`--q-probe K` lo forza esplicitamente.
