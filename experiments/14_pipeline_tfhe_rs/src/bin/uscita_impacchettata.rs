@@ -23,7 +23,9 @@ use std::time::Instant;
 static T_KS: AtomicU64 = AtomicU64::new(0);
 static T_BR: AtomicU64 = AtomicU64::new(0);
 use tfhe::core_crypto::prelude::*;
-use tfhe::shortint::parameters::V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64;
+use tfhe::shortint::parameters::{V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64,
+    V0_11_PARAM_MESSAGE_1_CARRY_0_KS_PBS_GAUSSIAN_2M64, V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64,
+    V0_11_PARAM_MESSAGE_2_CARRY_0_KS_PBS_GAUSSIAN_2M64};
 use tfhe::shortint::server_key::ShortintBootstrappingKey;
 use tfhe::shortint::{ClientKey as ShortintClientKey, ServerKey as ShortintServerKey};
 
@@ -52,7 +54,20 @@ fn main() {
     let pks_l: usize = a.iter().position(|x| x == "--pks").map(|i| a[i + 2].parse().unwrap()).unwrap_or(3);
     const LOG_DO: u32 = 62; // niente somme -> il bit puo' stare in alto quanto si vuole
 
-    let sck = ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64);
+    // --params: col packing non c'e' nessuna somma, quindi LOG_DO puo' stare a 62 e i set piccoli
+    // (che F46/F47 davano per rotti, e F66 spiega: erano annegati nel rumore a LOG_DO=56) tornano
+    // in gioco. Vale nello scenario honest-but-curious (varco fisico, F61), non contro un client
+    // malicious, dove il Delta onesto di F56 li esclude comunque.
+    let nome = a.iter().position(|x| x == "--params").map(|i| a[i + 1].clone())
+        .unwrap_or_else(|| "default".to_string());
+    let sck = match nome.as_str() {
+        "default" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64),
+        "1_0" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_0_KS_PBS_GAUSSIAN_2M64),
+        "1_1" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_1_KS_PBS_GAUSSIAN_2M64),
+        "2_0" => ShortintClientKey::new(V0_11_PARAM_MESSAGE_2_CARRY_0_KS_PBS_GAUSSIAN_2M64),
+        altro => panic!("--params sconosciuto: {altro}"),
+    };
+    println!("set di parametri: {nome}");
     let ssk = ShortintServerKey::new(&sck);
     let (enc_key, noise) = sck.encryption_key_and_noise();
     let ksk = &ssk.key_switching_key;

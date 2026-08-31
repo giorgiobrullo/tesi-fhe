@@ -3516,6 +3516,31 @@ F55 ha poi recuperato alzando `--log-do`. **F56 però lo rende comunque inutiliz
 onesto quei set hanno bande di 48-89 unità, fuori uso contro un client malicious. Resta un risultato
 di metodo: la spiegazione giusta era calcolabile dai parametri, non serviva indovinarla.
 
+**E l'ho provato fino in fondo, perché il packing toglieva l'obiezione.** Il prezzo che rendeva
+impraticabili i set piccoli — alzare `LOG_DO` costringe a blocchi piccoli, quindi l'uscita cresce da
+229 KB a ~790 KB — **sparisce con F59**: senza somme non c'è nessun vincolo, `LOG_DO` sta a 62 e
+l'uscita è una GLWE. E secondo F61 il varco fisico è proprio lo scenario honest-but-curious dove
+quei set sarebbero legittimi. Quindi valeva la pena misurare la combinazione, che nessuno aveva
+provato: **set piccolo + Δ onesto + LOG_DO 62 + uscita impacchettata**, N=128, tutti i 128 probe:
+
+| set | KS+PBS | packing | uscita | bit sbagliati / 16.384 | |s−T| degli errori |
+|---|---|---|---|---|---|
+| 2_0 | **0,066 s** | 0,008 s | 0,02 MB | **7** | −4, **45, 47, 77, 83, 87, 156** |
+| 1_1 | 0,090 s | 0,013 s | 0,02 MB | **3** | **57, 72, 150** |
+| **2_2** | 0,152 s | 0,022 s | 0,03 MB | **1** | −4 |
+
+**Risposta: no.** Il set 2_0 sarebbe **2,3× più veloce** del sicuro, ma sbaglia sette volte, e — il
+punto che conta — gli errori stanno a |s−T| = 45÷156, cioè **ben fuori dalla banda**: non sono casi
+marginali vicino alla soglia, sono decisioni sbagliate su punteggi che in chiaro non erano affatto
+dubbi. Un errore a 156 unità è un impostore che entra o un iscritto che resta fuori senza alcuna
+ambiguità. Solo il 2_2 tiene, con l'unico errore a |s−T| = 4, cioè dentro la banda prevista.
+
+Il quadro completo, che chiude la questione dei parametri per sempre: **con il Δ tarato sui dati
+(insicuro) i set piccoli sono esatti e i più veloci** (F55); **con il Δ onesto la banda si allarga 4×
+e solo il 2_2 sopravvive** (F56, ora esteso anche a 2_0 e con il packing a togliere di mezzo il
+confondimento di `LOG_DO`/blocco). Non è una questione di codifica dell'uscita né di taratura: è la
+banda di rumore pre-PBS contro l'ampiezza del Δ difendibile.
+
 ### 2. La galleria cifrata non è «gratis»: è più economica del chiaro
 
 Il costo del prodotto esterno non è una stima ma **contabilità esatta**, perché un PBS *è* n
