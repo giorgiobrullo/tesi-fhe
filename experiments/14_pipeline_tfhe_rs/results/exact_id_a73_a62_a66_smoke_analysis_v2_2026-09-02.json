@@ -1,0 +1,283 @@
+{
+  "extension_policy": {
+    "maximum_combined_measured_pairs_per_thread": 120,
+    "recommended": true,
+    "triggers": "CI95 width >2pp or AB/BA difference >2pp"
+  },
+  "measured_pairs": 4,
+  "primary_estimand": "100*(1-geometric_mean(a66_wall_s/a62_wall_s))",
+  "promotion_allowed": false,
+  "rss": {
+    "maximum_observed_bytes": 411598848,
+    "scope": "process high-water only; not attributable to one variant"
+  },
+  "status": "PASS_PAIRED_ANALYSIS",
+  "thread_strata": {
+    "1": {
+      "bootstrap": {
+        "blocks": 1,
+        "ci95_width_percentage_points": null,
+        "geometric_mean_reduction_pct_ci95": null,
+        "inferentially_valid": false,
+        "method": "resample key blocks, then rows within probe-by-order strata",
+        "reason": "at least two independent fresh-key blocks are required for an interval",
+        "replicates": 10000,
+        "seed": 73062028
+      },
+      "by_order": {
+        "A62_A66": {
+          "a62_wall_s_median": 46.097133333,
+          "a66_wall_s_median": 47.376306083,
+          "geometric_mean_ratio_a66_over_a62": 1.02774950756177,
+          "geometric_mean_reduction_pct": -2.774950756176997,
+          "median_paired_reduction_pct": -2.774950756176997,
+          "pairs": 1,
+          "wins": {
+            "a62_faster": 1,
+            "a66_faster": 0,
+            "ties": 0
+          }
+        },
+        "A66_A62": {
+          "a62_wall_s_median": 50.144604708,
+          "a66_wall_s_median": 47.458797333,
+          "geometric_mean_ratio_a66_over_a62": 0.9464387566590686,
+          "geometric_mean_reduction_pct": 5.3561243340931375,
+          "median_paired_reduction_pct": 5.3561243340931375,
+          "pairs": 1,
+          "wins": {
+            "a62_faster": 0,
+            "a66_faster": 1,
+            "ties": 0
+          }
+        }
+      },
+      "by_stage": {
+        "extract": {
+          "a62_pbs_values": [
+            1651
+          ],
+          "a62_seconds_median": 22.7370470205,
+          "a66_pbs_values": [
+            1651
+          ],
+          "a66_seconds_median": 22.892135707999998,
+          "geometric_mean_reduction_pct": -0.7121846849962088
+        },
+        "output": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 6.25e-08,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 0.0,
+          "geometric_mean_reduction_pct": null
+        },
+        "scan": {
+          "a62_pbs_values": [
+            136
+          ],
+          "a62_seconds_median": 1.8769232085,
+          "a66_pbs_values": [
+            136
+          ],
+          "a66_seconds_median": 1.959001271,
+          "geometric_mean_reduction_pct": -4.34235107437122
+        },
+        "score": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 0.0461270835,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 0.0457787505,
+          "geometric_mean_reduction_pct": 0.7547065384863383
+        },
+        "select": {
+          "a62_pbs_values": [
+            1603
+          ],
+          "a62_seconds_median": 23.438897312500004,
+          "a66_pbs_values": [
+            1603
+          ],
+          "a66_seconds_median": 22.512098875,
+          "geometric_mean_reduction_pct": 3.773314144670614
+        },
+        "setup": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 0.000131417,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 9.57915e-05,
+          "geometric_mean_reduction_pct": 24.214739816013765
+        },
+        "threshold": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 0.0,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 0.0,
+          "geometric_mean_reduction_pct": null
+        }
+      },
+      "overall": {
+        "a62_wall_s_median": 48.1208690205,
+        "a66_wall_s_median": 47.417551708000005,
+        "geometric_mean_ratio_a66_over_a62": 0.9862565417241762,
+        "geometric_mean_reduction_pct": 1.3743458275823794,
+        "median_paired_reduction_pct": 1.2905867889580702,
+        "pairs": 2,
+        "wins": {
+          "a62_faster": 1,
+          "a66_faster": 1,
+          "ties": 0
+        }
+      },
+      "pair_order_reduction_difference_pp": 8.131075090270134
+    },
+    "16": {
+      "bootstrap": {
+        "blocks": 1,
+        "ci95_width_percentage_points": null,
+        "geometric_mean_reduction_pct_ci95": null,
+        "inferentially_valid": false,
+        "method": "resample key blocks, then rows within probe-by-order strata",
+        "reason": "at least two independent fresh-key blocks are required for an interval",
+        "replicates": 10000,
+        "seed": 73062043
+      },
+      "by_order": {
+        "A62_A66": {
+          "a62_wall_s_median": 11.480998042,
+          "a66_wall_s_median": 11.680357625,
+          "geometric_mean_ratio_a66_over_a62": 1.0173643077257482,
+          "geometric_mean_reduction_pct": -1.7364307725748152,
+          "median_paired_reduction_pct": -1.7364307725748152,
+          "pairs": 1,
+          "wins": {
+            "a62_faster": 1,
+            "a66_faster": 0,
+            "ties": 0
+          }
+        },
+        "A66_A62": {
+          "a62_wall_s_median": 10.506346583,
+          "a66_wall_s_median": 9.903084958,
+          "geometric_mean_ratio_a66_over_a62": 0.9425812179110751,
+          "geometric_mean_reduction_pct": 5.7418782088924925,
+          "median_paired_reduction_pct": 5.7418782088924925,
+          "pairs": 1,
+          "wins": {
+            "a62_faster": 0,
+            "a66_faster": 1,
+            "ties": 0
+          }
+        }
+      },
+      "by_stage": {
+        "extract": {
+          "a62_pbs_values": [
+            1651
+          ],
+          "a62_seconds_median": 4.3307098955,
+          "a66_pbs_values": [
+            1651
+          ],
+          "a66_seconds_median": 4.4906946045,
+          "geometric_mean_reduction_pct": -1.9063988553918776
+        },
+        "output": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 1.0350000000000001e-07,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 6.25e-08,
+          "geometric_mean_reduction_pct": null
+        },
+        "scan": {
+          "a62_pbs_values": [
+            136
+          ],
+          "a62_seconds_median": 1.9808044375,
+          "a66_pbs_values": [
+            136
+          ],
+          "a66_seconds_median": 0.536000333,
+          "geometric_mean_reduction_pct": 74.93717324055872
+        },
+        "score": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 0.0094663125,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 0.019191229,
+          "geometric_mean_reduction_pct": -59.354319472233705
+        },
+        "select": {
+          "a62_pbs_values": [
+            1603
+          ],
+          "a62_seconds_median": 4.665000625,
+          "a66_pbs_values": [
+            1603
+          ],
+          "a66_seconds_median": 5.718449104,
+          "geometric_mean_reduction_pct": -19.11546289021753
+        },
+        "setup": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 0.00019333350000000002,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 0.000219646,
+          "geometric_mean_reduction_pct": -9.878357042080555
+        },
+        "threshold": {
+          "a62_pbs_values": [
+            0
+          ],
+          "a62_seconds_median": 2.1e-08,
+          "a66_pbs_values": [
+            0
+          ],
+          "a66_seconds_median": 0.0,
+          "geometric_mean_reduction_pct": null
+        }
+      },
+      "overall": {
+        "a62_wall_s_median": 10.9936723125,
+        "a66_wall_s_median": 10.7917212915,
+        "geometric_mean_ratio_a66_over_a62": 0.9792591527452748,
+        "geometric_mean_reduction_pct": 2.0740847254725248,
+        "median_paired_reduction_pct": 2.0027237181588387,
+        "pairs": 2,
+        "wins": {
+          "a62_faster": 1,
+          "a66_faster": 1,
+          "ties": 0
+        }
+      },
+      "pair_order_reduction_difference_pp": 7.478308981467308
+    }
+  }
+}

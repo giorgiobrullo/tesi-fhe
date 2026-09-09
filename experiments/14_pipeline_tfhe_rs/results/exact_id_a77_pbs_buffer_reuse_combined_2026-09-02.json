@@ -1,0 +1,141 @@
+{
+  "artifact": "A77 combined scalar PBS buffer-reuse evidence",
+  "blind_rotate": {
+    "allocation_observations": {
+      "reuse_alloc_calls_unique": [
+        0
+      ],
+      "reuse_allocated_bytes_unique": [
+        0
+      ],
+      "reuse_dealloc_calls_unique": [
+        0
+      ],
+      "reuse_realloc_calls_unique": [
+        0
+      ],
+      "wrapper_alloc_calls_unique": [
+        1
+      ],
+      "wrapper_allocated_bytes_unique": [
+        163967
+      ],
+      "wrapper_dealloc_calls_unique": [
+        1
+      ],
+      "wrapper_realloc_calls_unique": [
+        0
+      ]
+    },
+    "at_least_one_percent_gain_in_every_run": false,
+    "combined": {
+      "independent_median_reduction_percent": -0.2370070335365194,
+      "paired_mean_wrapper_minus_reuse_ns": -63813.308333333334,
+      "paired_median_reduction_percent_of_wrapper_median": -0.1890713995555776,
+      "paired_median_wrapper_minus_reuse_ns": -23500,
+      "reuse_median_ns": 12458625,
+      "reuse_wins": 227,
+      "wrapper_median_ns": 12429167
+    },
+    "pairs": 480,
+    "per_run": [
+      {
+        "independent_median_reduction_percent": -0.48292195818718603,
+        "paired_median_wrapper_minus_reuse_ns": -44958,
+        "pairs": 240,
+        "reuse_median_ns": 12545125,
+        "reuse_wins": 107,
+        "run": 1,
+        "source_file": "exact_id_a77_pbs_buffer_reuse_run02_2026-09-02.json",
+        "wrapper_median_ns": 12484833
+      },
+      {
+        "independent_median_reduction_percent": -0.0013521628898004248,
+        "paired_median_wrapper_minus_reuse_ns": -2500,
+        "pairs": 240,
+        "reuse_median_ns": 12350750,
+        "reuse_wins": 120,
+        "run": 2,
+        "source_file": "exact_id_a77_pbs_buffer_reuse_run03_clean_2026-09-02.json",
+        "wrapper_median_ns": 12350583
+      }
+    ],
+    "timing_sign_consistent_across_runs": true
+  },
+  "claim_limit": "two scalar host runs; no exact-ID or parallel performance claim",
+  "decision": {
+    "next_bounded_test": "per-worker reusable buffers under controlled parallel primitive load, before A66 integration",
+    "reason": "at least one operation fails to deliver a 1 percent reuse gain in every run",
+    "remove_per_call_allocation_confirmed": true,
+    "scalar_latency_integration_gate": "NO_GO"
+  },
+  "input_run_files": [
+    "exact_id_a77_pbs_buffer_reuse_run02_2026-09-02.json",
+    "exact_id_a77_pbs_buffer_reuse_run03_clean_2026-09-02.json"
+  ],
+  "pbs": {
+    "allocation_observations": {
+      "reuse_alloc_calls_unique": [
+        0
+      ],
+      "reuse_allocated_bytes_unique": [
+        0
+      ],
+      "reuse_dealloc_calls_unique": [
+        0
+      ],
+      "reuse_realloc_calls_unique": [
+        0
+      ],
+      "wrapper_alloc_calls_unique": [
+        1
+      ],
+      "wrapper_allocated_bytes_unique": [
+        196735
+      ],
+      "wrapper_dealloc_calls_unique": [
+        1
+      ],
+      "wrapper_realloc_calls_unique": [
+        0
+      ]
+    },
+    "at_least_one_percent_gain_in_every_run": false,
+    "combined": {
+      "independent_median_reduction_percent": -0.2517844407613882,
+      "paired_mean_wrapper_minus_reuse_ns": 280994.1875,
+      "paired_median_reduction_percent_of_wrapper_median": -0.48381698558585706,
+      "paired_median_wrapper_minus_reuse_ns": -60208,
+      "reuse_median_ns": 12475708,
+      "reuse_wins": 197,
+      "wrapper_median_ns": 12444375
+    },
+    "pairs": 480,
+    "per_run": [
+      {
+        "independent_median_reduction_percent": -0.06853521267338197,
+        "paired_median_wrapper_minus_reuse_ns": -15125,
+        "pairs": 240,
+        "reuse_median_ns": 12472208,
+        "reuse_wins": 112,
+        "run": 1,
+        "source_file": "exact_id_a77_pbs_buffer_reuse_run02_2026-09-02.json",
+        "wrapper_median_ns": 12463666
+      },
+      {
+        "independent_median_reduction_percent": -0.7646892883049892,
+        "paired_median_wrapper_minus_reuse_ns": -91375,
+        "pairs": 240,
+        "reuse_median_ns": 12501875,
+        "reuse_wins": 85,
+        "run": 2,
+        "source_file": "exact_id_a77_pbs_buffer_reuse_run03_clean_2026-09-02.json",
+        "wrapper_median_ns": 12407000
+      }
+    ],
+    "timing_sign_consistent_across_runs": true
+  },
+  "run_count": 2,
+  "status": "PASS_CORRECTNESS_NO_MATERIAL_SCALAR_LATENCY_GAIN",
+  "total_pairs_per_operation": 480
+}

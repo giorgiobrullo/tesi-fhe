@@ -1,0 +1,125 @@
+{
+  "a29_n127_uniform": {
+    "blind_rotation_event_accounting": {
+      "conditional_union_log2": -59.34742199758426,
+      "conditional_union_upper": 1.3634707116016937e-18,
+      "event_count": 4965,
+      "nominal_per_event_probability": 2.7461645752299975e-22
+    },
+    "blind_rotations": 4965,
+    "checked_invariants": {
+      "key_switches_equals_blind_rotations_minus_3N": true,
+      "manylut_rotations_equals_4N": true,
+      "primary_pbs_matches_structural_total": true
+    },
+    "key_switches_structural": 4584,
+    "manylut_two_output_rotations": 508,
+    "output_marginal_accounting": {
+      "conditional_union_log2": -59.20688385879251,
+      "conditional_union_upper": 1.5029758720233777e-18,
+      "event_count": 5473,
+      "nominal_per_event_probability": 2.7461645752299975e-22
+    },
+    "output_marginals_conservative": 5473,
+    "stage_breakdown": {
+      "encrypted_id_encoding": {
+        "blind_rotations": 150,
+        "key_switches": 150
+      },
+      "exact_argmin_selection_12_bits": {
+        "blind_rotations": 2675,
+        "key_switches": 2675
+      },
+      "first_minimum_scan": {
+        "blind_rotations": 222,
+        "key_switches": 222
+      },
+      "score_linear": {
+        "blind_rotations": 0,
+        "key_switches": 0
+      },
+      "split4_extraction_and_bridge": {
+        "blind_rotations": 1905,
+        "key_switches": 1524
+      },
+      "uniform_winner_threshold": {
+        "blind_rotations": 13,
+        "key_switches": 13
+      }
+    }
+  },
+  "conditional_model": {
+    "assumption_A": [
+      "honest bounded client plaintext",
+      "valid clear templates and public domain",
+      "honestly generated and correctly matched secret/evaluation keys",
+      "honest evaluator/server execution",
+      "correct software, hardware, serialization and transport"
+    ],
+    "claimed_form_only": "P(wrong output | A) <= sum_i P(F_i | A, correct prefix) + P(final decode failure | A, all PBS correct)",
+    "outside_A": "No probability guarantee is claimed. A term P(A^c) can be added only after introducing and justifying a probability model for assumption violations."
+  },
+  "empirical_primary_suite": {
+    "confidence": 0.95,
+    "iid_binomial_one_sided_upper": 0.004728866248583152,
+    "measured_queries": 632,
+    "observed_wrong_outputs": 0,
+    "operational_errors": 0,
+    "rows_recorded": 632,
+    "semantic_discrepancies": 0,
+    "success": true,
+    "warning": "The confidence limit assumes iid Bernoulli queries; the run reused one key and is not evidence for probabilities near the nominal cryptographic tail."
+  },
+  "evidence_snapshot": {
+    "configuration": "a29_n127_uniform",
+    "gallery_size": 127,
+    "primary_run_finished_utc": "2026-09-02T06:39:35.031891+00:00",
+    "primary_run_started_utc": "2026-09-02T05:26:41.957395+00:00"
+  },
+  "interpretation": {
+    "dependency_scope": "The circuit has shared rotated-GLWE outputs, reused winners and accept tags, fan-out, and one BSK/KSK across events. Independence is unnecessary, but each conditional bound must remain valid under correct-prefix conditioning.",
+    "independence_required_for_union_bound": false,
+    "key_switches_not_added_as_independent_events": "In the shortint KS_PBS path intended by this parameter set, KS noise enters the following PBS input. Applicability to every raw custom primitive remains an obligation; adding all KS again is not justified by this accounting.",
+    "marginal_scope": "5473 counts one marginal for every LWE extracted from a blind rotation/PBS, and two for each A29 multi-output rotation; it does not count the 254 linear score-lane sample extractions as nominal PBS events.",
+    "missing_obligations": [
+      "Show a valid conditional marginal bound for every reachable custom PBS input.",
+      "Include initial/score-lane noise in the first reachable PBS-input proof.",
+      "Cover both correlated sample extractions of each multi-output blind rotation.",
+      "Bound final unbootstrapped code-sum decryption error at Delta=2^56.",
+      "Keep assumption violations and implementation faults outside the noise union."
+    ],
+    "score_lane_noise": "Initial encryption noise and the GLWE/plaintext score product/sample extraction need no separate discrete event only if they are included in the reachable-input bound for the first downstream PBS. That proof is open."
+  },
+  "parameter": {
+    "log2_p_fail": -71.625,
+    "name": "V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64",
+    "security_bits_reported": 132,
+    "tfhe_rs": "0.11.3",
+    "value_source": "frozen_tfhe_rs_parameter_source_not_overridden"
+  },
+  "provenance": {
+    "byte_reproducibility": "No generation timestamp is used; with the pinned inputs, Python/platform and arguments above, repeated canonical runs produce identical bytes.",
+    "canonical_command": [
+      "uv",
+      "run",
+      "python",
+      "benchmark/a29_pfail_accounting.py",
+      "--output",
+      "benchmark/results/exact_id_manylut_pfail_accounting_2026-09-02.json"
+    ],
+    "generator": "benchmark/a29_pfail_accounting.py",
+    "generator_sha256": "5e68a2eeb89d3725b742c870e780cebf1a34abc2c99c89cd8420829baf443292",
+    "inputs": {
+      "benchmark/patches/a29_manylut_source_2026-09-02.patch": "7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54",
+      "benchmark/patches/a29_manylut_source_2026-09-02.patch::experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4",
+      "benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.csv": "7337057cc97eeafe102cd330df154f31656e142a97029ac388dbd8aefd8eed5b",
+      "benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.json": "328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34",
+      "tfhe-0.11.3/README.md": "c224297542eff2e6bae585b320144be02b6475dd43656be2c59aaed41d704052",
+      "tfhe-0.11.3/src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs": "14a3c8cae508fec1f96e76ed74e186efbd005c0c84292975333dc202a6987bb6"
+    },
+    "platform": "macOS-27.0-arm64-arm-64bit",
+    "python": "3.12.11"
+  },
+  "schema_version": 2,
+  "status": "conditional_accounting_not_end_to_end_certificate"
+}

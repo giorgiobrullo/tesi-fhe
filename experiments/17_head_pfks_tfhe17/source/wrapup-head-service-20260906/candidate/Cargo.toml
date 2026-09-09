@@ -1,0 +1,20 @@
+[package]
+name = "wrapup_head_service_20260906"
+version = "0.1.0"
+edition = "2021"
+autobins = false
+
+[dependencies]
+pfks_core = { package = "wrapup_head_mean_service_core_20260906", path = "../core" }
+pipeline_tfhe_rs = { package = "baseline_20260905_tfhe17", path = "../../baseline-20260905-tfhe17/candidate" }
+tfhe = { version = "=1.7.0", features = ["integer"] }
+rayon = "1"
+bincode = "1"
+sha2 = "0.10"
+
+[profile.release]
+opt-level = 3
+
+[[bin]]
+name = "varco_demo_head_mean127"
+path = "src/main.rs"

@@ -1,0 +1,146 @@
+{
+  "cores": {
+    "a126": {
+      "files": {
+        "Cargo.lock": "245566b6e696054a124b80a77d14bf15db02da454b198ec47413bc27554806aa",
+        "Cargo.toml": "6dbc29166923300992e595c321402f70037d04ed05a41985222caa6f4024530f",
+        "artifacts/fused_candidate_zero_body.u64le": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+        "src/a53_scan.rs": "24afeac53d99abeaba9ef3ff245d6f97f74114e76a35f3a438ced8960a2fbf3d",
+        "src/a53_scan/fhe.rs": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99",
+        "src/lib.rs": "0216c18f908e951530905a78f3b3fe6e9c380130328f8207d5fdec30f72f057a",
+        "src/private_argmin.rs": "2750c39874a29cf5c9b1c3119d362fdc184cdb759a64830bd564a64fdc07f11c"
+      },
+      "path": "tmp/baseline-20260905-tfhe17/candidate"
+    },
+    "head_mean": {
+      "files": {
+        "Cargo.toml": "556dba0d0d3b44b24dd1fe3559bd5f9110aae434781829791bac3a91b498eaa4",
+        "artifacts/fused_candidate_zero_body.u64le": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+        "src/a112.rs": "4f9ee8169c737597bbdb6120d59f4effb0a9d9702b73d35739f884bba9da1e9d",
+        "src/a53_scan.rs": "24afeac53d99abeaba9ef3ff245d6f97f74114e76a35f3a438ced8960a2fbf3d",
+        "src/a53_scan/fhe.rs": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99",
+        "src/a98.rs": "a750dc4eebef73238ae80fcfde90c8b0fa6995d150c5b9120a1adbb37f9dfce4",
+        "src/bridge.rs": "2f9e667b7ed482fc99081b2a1c6cfa0ce5439e52bbe824b8d4f9431894697733",
+        "src/centering_counts.rs": "a31d3df780f05e7b81d06823c3cd40a31ad411ae435f1195327f97d83ab3098f",
+        "src/comparator.rs": "daa26b2d08b04e23a432cd012d9301c31f739bba7e25d57b6770b6dac0aee726",
+        "src/compat.rs": "d6565c7b69a9774a92505ffe6c2303b284e8ba810b91fb6cf6a7d84690fbb633",
+        "src/d1.rs": "77f23c0ac4da62be19078e01f99fdeca5f83def76a82393db5a4d74ebfe0077f",
+        "src/general.rs": "304b48a75d39bd37df85f73d1522dbf56f2b10ea5eb66c49501a7939d250047a",
+        "src/h_untraced.rs": "a5c98066fdd45f8f6a201185798445efaa21035aab0b51c5d5f4aa51ced8091f",
+        "src/hd1.rs": "186da530940051717ade57b2f56a62c74788f47681fc4a06cb67fc946947807d",
+        "src/head_key.rs": "7ae5a60cf6f7acd82614b9db21b2be1184b025f2ddf9e0b8eb3102da5bab10c7",
+        "src/head_prefix.rs": "fcc2e9ff4849c1229cbfae7795f1ec480ec75e5c0a5a02089de5989400361bfc",
+        "src/head_witness.rs": "a085f8998677f4d221333996c2071469b78a62e746b2fad53929a4d177e0ac65",
+        "src/helpers.rs": "8baeb4147d290a1ec0ed461f666b7554653350407dea78563b32f14129a2bdc3",
+        "src/hybrid.rs": "e2bda4df162b480dd8f6d681a07b21e568fd776a9d81e1c066e3cf0dce14028a",
+        "src/key_envelope.rs": "3d5332e066758ba8fd61b581c62a9b139cb01b4645b1d66aefff31280d7e2106",
+        "src/key_envelope_core.rs": "65cb595267777789972c9b8bba3a844842161a7f6ec592b66b8a2db04c05bbf4",
+        "src/lib.rs": "20f82d05d1c95fe67232eb697f1f36cc72830bf66b71b1512f8b8a2a762845e8",
+        "src/m_untraced.rs": "4de83c6ab587a3ca1808b2ad57f1b9d47cd5cfbfd2f565c4547480bf19a4e222",
+        "src/mean_center.rs": "3f7f0205cc04c0aff6083d1040d8bc9e368e8ca07087507165a5f7b448a23de2",
+        "src/observer.rs": "ef2a5444ed630211797728194ec9d2a2914082d01cef78d2096e77fdefeefdd1",
+        "src/private_argmin.rs": "4f5813ce66ccc75fc75ccc288153bc1e7e50150179584e850f973a4276cad70d",
+        "src/request_guard.rs": "6036f3ab7201a842e1e4683f62b98ed90d4c05b24378ec25f0778d5d88f8d15d",
+        "src/service.rs": "b902af2e841c05184ec15c9702618e24896c1e653395c82da9eaf39d572a4168",
+        "src/service_selected.rs": "f4679329bbe91b192f46da4661b874aab2e17ab094afc3dd05ed1a8825746aad",
+        "src/split.rs": "e8a5909e3ab5f411452f296425fed8606e05ed4639ed48e2c7cb8336cf59c61f",
+        "src/split32_observer.rs": "95cd3d48b20cf4994e5db924cff56e7a60f2fafac6ef4f75d7951d2dc45d4882",
+        "src/template_permutation.rs": "d64de4ce0c485b32aa959954cfb0266c12bf88e4d8e560633c89b994a9637c62",
+        "src/wide.rs": "d03e108e0b32a23fc04e035a8a6f749b87b38ee463ee357225598e857d262b70"
+      },
+      "path": "tmp/wrapup-head-service-20260906/core"
+    }
+  },
+  "digit_base": 15,
+  "digit_delta_log": 59,
+  "dispatch": "public gallery size and exact profile before crypto; M atN127, unchanged A126 otherwise; no retry",
+  "fallback_endpoint": "private_argmin_a126",
+  "head_fourier_payload_bytes": 112590848,
+  "http_contract": "exact-open-set-id-v7-head-mean127-b22-uniform-a126-tfhe17-base15-two-lwe",
+  "input_profile_required": true,
+  "input_profiles": {
+    "1": {
+      "low_delta_log": 60,
+      "name": "legacy52",
+      "score_delta_log": 52,
+      "sizes": "1..128 except127"
+    },
+    "2": {
+      "low_delta_log": 60,
+      "name": "head51",
+      "score_delta_log": 51,
+      "sizes": [
+        127
+      ]
+    }
+  },
+  "n127": {
+    "br": 1397,
+    "initial_samples": 127,
+    "ks": 1016,
+    "marginals": 1778,
+    "pfks": 635
+  },
+  "n127_cauchy_coverage_required": true,
+  "n127_domain_max_width": 4096,
+  "n127_endpoint": "head_mean_parallel",
+  "n127_execution_lower_offset": 1023,
+  "n127_mean_body_additions": 127,
+  "n127_mean_calls": 127,
+  "n127_mean_mask_terms": 109093,
+  "n127_pfks_base": 22,
+  "n127_pfks_levels": 1,
+  "n127_pfks_window": "seven disjoint41-degree unit bands centered128c-64 for c1..7; weight287",
+  "n127_pfks_window_bands": [
+    [
+      44,
+      84
+    ],
+    [
+      172,
+      212
+    ],
+    [
+      300,
+      340
+    ],
+    [
+      428,
+      468
+    ],
+    [
+      556,
+      596
+    ],
+    [
+      684,
+      724
+    ],
+    [
+      812,
+      852
+    ]
+  ],
+  "n127_threshold_policy": "uniform_aligned_original_planner",
+  "ordinary_adapter_duplicate_payload_bytes": 126746624,
+  "output_fixed_header_words": 11,
+  "output_lwes": 2,
+  "pfks_gallery_sizes": [
+    127
+  ],
+  "pfks_window_payload_bytes": 67141632,
+  "probe_fixed_header_words": 9,
+  "root_selection_sha256": "2ddcd5d868cbd77732727ceb6ebb11c4fece5079032756926a93b8f29b05ba36",
+  "schema": "wrapup-head-service-20260906.circuit.v1",
+  "selected_arithmetic_parent_source": "8d5f9fcce89e27fa82597f303ff6edeef9f53a54cc37efa79629bb9b02bb75d4",
+  "selected_arm": "M",
+  "selected_kernel_source": "2c14fc3bb94efb2fe9fd18e4ca07c31f9ba38e5f994b664ccee15b1ce6463d16",
+  "server_bundle_container_payload_bytes": 306479104,
+  "server_key_body_limit_bytes": 335544320,
+  "server_key_bundle": "same-client ordinary A44 + selected b22 W287 PFKS + declared function hash + Head15x2 Fourier key",
+  "server_key_magic": "VRCHD17!",
+  "tfhe": "1.7.0",
+  "uniform_admission_source": "db3364a83890f577706356a8edaf9eff6a17d4aba2e9a4eb877aaf43a851ef9c",
+  "variant": "head-mean127-b22-uniform-a126-tfhe17-base15-two-p16-v1",
+  "wire_version": 7
+}

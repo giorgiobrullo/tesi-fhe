@@ -6,8 +6,8 @@ embedding 512-dim). Più avanti si salirà alla profonda (ResNet, `buffalo_l`).
 
 L'embedding gira in chiaro sul client (è fidato): quindi peso e profondità del modello
 non toccano il costo FHE, conta solo la dimensione dell'embedding (512). La parte cifrata
-(distanza in `core/matching.py`) resta identica ai gradini precedenti: a lei arriva solo
-un vettore, da qualunque embedding provenga.
+del prototipo finale è in `experiments/14_pipeline_tfhe_rs/src/private_argmin.rs`: riceve
+sempre un vettore quantizzato di 512 coordinate, qualunque embedding lo abbia prodotto.
 
 Due varianti di livello (per il confronto da leggera a profonda):
   - `mobilefacenet` (buffalo_s, ~13 MB),  bassa profondità, il gradino 08a;
@@ -67,11 +67,18 @@ def _trova_onnx(base: str, file: str):
 def carica(livello: str = "mobilefacenet"):
     """Carica (una volta) il modello di riconoscimento del livello scelto."""
     if livello not in _cache:
+        import onnxruntime as ort
+
         pack, file = _MODELLI[livello]
         _scarica_pack(pack)
         base = os.path.expanduser(f"~/.insightface/models/{pack}")
         path = _trova_onnx(base, file)
-        rec = get_model(path); rec.prepare(ctx_id=-1)
+        # Il Mac non ha CUDA: dichiarare esplicitamente la CPU evita il warning di provider.
+        # InsightFace esegue correttamente piccoli batch anche se alcuni ONNX hanno batch=1 nel
+        # metadato; il warning C++ sulla shape non cambia l'output ma sommergerebbe il log demo.
+        ort.set_default_logger_severity(3)
+        rec = get_model(path, providers=["CPUExecutionProvider"])
+        rec.prepare(ctx_id=-1)
         _cache[livello] = rec
     return _cache[livello]
 
@@ -99,7 +106,8 @@ def _app(livello: str):
     if livello not in _app_cache:
         from insightface.app import FaceAnalysis
         pack = _MODELLI[livello][0]
-        a = FaceAnalysis(name=pack); a.prepare(ctx_id=-1, det_size=(160, 160))
+        a = FaceAnalysis(name=pack, providers=["CPUExecutionProvider"])
+        a.prepare(ctx_id=-1, det_size=(160, 160))
         _app_cache[livello] = a
     return _app_cache[livello]
 

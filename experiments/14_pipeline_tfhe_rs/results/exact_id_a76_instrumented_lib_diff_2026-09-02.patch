@@ -1,0 +1,209 @@
+--- tmp/a68-checked-shortint-rust-prototype/src/lib.rs	2026-09-02 20:05:24
++++ tmp/a76-a68-progress-instrumentation/src/lib.rs	2026-09-02 20:43:01
+@@ -39,6 +39,10 @@
+     Contract(String),
+     CheckedGate(CheckError),
+     InternalInvariant(&'static str),
++    InstrumentationStop {
++        completed_calls: u64,
++        stage: &'static str,
++    },
+ }
+ 
+ impl fmt::Display for ProtocolError {
+@@ -49,6 +53,13 @@
+             Self::InternalInvariant(message) => {
+                 write!(formatter, "internal invariant failed: {message}")
+             }
++            Self::InstrumentationStop {
++                completed_calls,
++                stage,
++            } => write!(
++                formatter,
++                "instrumentation prefix complete after {completed_calls} checked calls in {stage}"
++            ),
+         }
+     }
+ }
+@@ -140,31 +151,89 @@
+ struct CheckedGates<'key> {
+     server_key: &'key ServerKey,
+     calls: u64,
++    progress: ProgressConfig,
++    stage: &'static str,
+ }
+ 
++#[derive(Clone, Copy, Debug)]
++pub struct ProgressConfig {
++    pub stop_after: Option<u64>,
++    pub report_every: u64,
++}
++
++impl ProgressConfig {
++    pub const fn disabled() -> Self {
++        Self {
++            stop_after: None,
++            report_every: 0,
++        }
++    }
++
++    pub const fn bounded(stop_after: u64, report_every: u64) -> Self {
++        Self {
++            stop_after: Some(stop_after),
++            report_every,
++        }
++    }
++}
++
+ impl<'key> CheckedGates<'key> {
+-    fn new(server_key: &'key ServerKey) -> Self {
++    fn new(server_key: &'key ServerKey, progress: ProgressConfig) -> Self {
+         Self {
+             server_key,
+             calls: 0,
++            progress,
++            stage: "not_started",
+         }
+     }
+ 
++    fn enter_stage(&mut self, stage: &'static str) {
++        self.stage = stage;
++        eprintln!(
++            "A76_STAGE_START stage={} checked_calls={}",
++            self.stage, self.calls
++        );
++    }
++
++    fn finish_stage(&self) {
++        eprintln!(
++            "A76_STAGE_COMPLETE stage={} checked_calls={}",
++            self.stage, self.calls
++        );
++    }
++
++    fn record_success(&mut self) -> Result<(), ProtocolError> {
++        self.calls += 1;
++        if self.progress.report_every > 0 && self.calls % self.progress.report_every == 0 {
++            eprintln!(
++                "A76_GATE_PROGRESS stage={} checked_calls={}",
++                self.stage, self.calls
++            );
++        }
++        if self.progress.stop_after == Some(self.calls) {
++            return Err(ProtocolError::InstrumentationStop {
++                completed_calls: self.calls,
++                stage: self.stage,
++            });
++        }
++        Ok(())
++    }
++
+     fn and_gate(&mut self, left: &Bit, right: &Bit) -> Result<Bit, ProtocolError> {
+         let output = self.server_key.checked_bitand(&left.0, &right.0)?;
+-        self.calls += 1;
++        self.record_success()?;
+         Ok(Bit(output))
+     }
+ 
+     fn or_gate(&mut self, left: &Bit, right: &Bit) -> Result<Bit, ProtocolError> {
+         let output = self.server_key.checked_bitor(&left.0, &right.0)?;
+-        self.calls += 1;
++        self.record_success()?;
+         Ok(Bit(output))
+     }
+ 
+     fn xor_gate(&mut self, left: &Bit, right: &Bit) -> Result<Bit, ProtocolError> {
+         let output = self.server_key.checked_bitxor(&left.0, &right.0)?;
+-        self.calls += 1;
++        self.record_success()?;
+         Ok(Bit(output))
+     }
+ 
+@@ -590,9 +659,18 @@
+ }
+ 
+ pub fn evaluate_exact_identity(
++    query: &EncryptedQuery,
++    gallery: &[GalleryEntry],
++    server_key: &ServerKey,
++) -> Result<Evaluation, ProtocolError> {
++    evaluate_exact_identity_with_progress(query, gallery, server_key, ProgressConfig::disabled())
++}
++
++pub fn evaluate_exact_identity_with_progress(
+     query: &EncryptedQuery,
+     gallery: &[GalleryEntry],
+     server_key: &ServerKey,
++    progress: ProgressConfig,
+ ) -> Result<Evaluation, ProtocolError> {
+     validate_gallery(gallery)?;
+     if query.coordinates.len() != DIMENSION {
+@@ -601,26 +679,40 @@
+         ));
+     }
+ 
+-    let mut gates = CheckedGates::new(server_key);
++    if progress.stop_after == Some(0) {
++        return Err(ProtocolError::Contract(
++            "instrumentation stop_after must be positive".to_owned(),
++        ));
++    }
++    let mut gates = CheckedGates::new(server_key, progress);
+ 
++    gates.enter_stage("one_hot_validation");
+     let mut coordinate_validity = Vec::with_capacity(DIMENSION);
+     for selectors in &query.coordinates {
+         coordinate_validity.push(exactly_one_of_seven(&mut gates, selectors)?);
+     }
+     let one_hot_valid = and_reduce(&mut gates, &coordinate_validity)?;
++    gates.finish_stage();
+ 
++    gates.enter_stage("query_norm");
+     let query_norm = encrypted_query_norm(&mut gates, query)?;
++    gates.finish_stage();
++    gates.enter_stage("norm_validation");
+     let norm_valid = encrypted_norm_within_bound(&mut gates, &query_norm)?;
+     let valid = gates.and_gate(&one_hot_valid, &norm_valid)?;
++    gates.finish_stage();
+ 
+     let first = gallery.first().ok_or(ProtocolError::InternalInvariant(
+         "validated gallery became empty",
+     ))?;
++    gates.enter_stage("first_distance");
+     let mut best_distance = encrypted_distance(&mut gates, query, &first.template)?;
++    gates.finish_stage();
+     let mut selected_id = public_unsigned_bits(1, ID_BITS, server_key);
+     let mut selected_threshold = public_signed_bits(first.threshold, THRESHOLD_BITS, server_key);
+ 
+     for (index, challenger) in gallery.iter().enumerate().skip(1) {
++        gates.enter_stage("challenger_distance_and_scan");
+         let challenger_distance = encrypted_distance(&mut gates, query, &challenger.template)?;
+         let take = unsigned_lt(&mut gates, &challenger_distance, &best_distance)?;
+         best_distance = mux_bits(&mut gates, &take, &challenger_distance, &best_distance)?;
+@@ -640,14 +732,18 @@
+             &selected_threshold,
+             signed_encoding(challenger.threshold, THRESHOLD_BITS),
+         )?;
++        gates.finish_stage();
+     }
+ 
++    gates.enter_stage("terminal_threshold_add");
+     let mut extended_norm = query_norm;
+     while extended_norm.len() < THRESHOLD_BITS {
+         extended_norm.push(Bit::trivial(false, server_key));
+     }
+     let threshold_rhs = add_bits(&mut gates, &extended_norm, &selected_threshold, false)?;
++    gates.finish_stage();
+ 
++    gates.enter_stage("terminal_compare_and_output_mask");
+     let mut extended_distance = best_distance;
+     extended_distance.push(Bit::trivial(false, server_key));
+     let accepted = signed_le(&mut gates, &extended_distance, &threshold_rhs)?;
+@@ -657,6 +753,7 @@
+     for identity_bit in &selected_id {
+         response_bits.push(gates.and_gate(&allow, identity_bit)?.into_ciphertext());
+     }
++    gates.finish_stage();
+     let bits_le = response_bits.try_into().map_err(|_| {
+         ProtocolError::InternalInvariant("response did not contain exactly eight bits")
+     })?;

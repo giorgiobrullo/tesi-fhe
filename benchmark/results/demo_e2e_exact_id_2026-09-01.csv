@@ -1,0 +1,7 @@
+trial,indice_sintetico,atteso,esito,identita_attesa,identita_restituita,esito_corretto,identita_corretta,corretto,embedding_ms,cifratura_ms,server_ms,rete_e_server_ms,decifratura_ms,somma_tappe_strumentate_ms,endpoint_interno_ms,endpoint_http_ms,probe_cifrato_b,esito_cifrato_b,pbs
+0,0,aperto,aperto,sintetico_0,sintetico_0,True,True,True,178.4,19.2,8454.4,8455.0,8.0,8660.6,8676.0,8679.276,32840,16464,4919
+1,1,aperto,aperto,sintetico_1,sintetico_1,True,True,True,146.5,8.4,7818.5,7819.0,8.0,7981.9,7998.0,7999.931,32840,16464,4919
+2,2,aperto,aperto,sintetico_10,sintetico_10,True,True,True,168.7,10.5,7755.7,7756.3,7.9,7943.4,7959.2,7961.323,32840,16464,4919
+3,627,negato,negato,,,True,True,True,147.5,9.4,8481.7,8482.2,7.9,8647.0,8661.6,8663.508,32840,16464,4919
+4,628,negato,negato,,,True,True,True,151.2,8.6,8695.3,8695.8,39.0,8894.6,8909.9,8912.332,32840,16464,4919
+5,629,negato,negato,,,True,True,True,180.0,8.5,8571.7,8572.2,8.0,8768.7,8786.8,8790.298,32840,16464,4919

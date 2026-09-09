@@ -1,0 +1,465 @@
+{
+  "schema": "numbered-demo-results.v1",
+  "experiment": 22,
+  "origin_completion": {
+    "source": "tmp/tetris-composite-demo-20260908/COMPLETION.json",
+    "sha256": "66977370fc0b376fe54ac13fedb2a18b8a3a0c2533ea3394237e31c90a85452e"
+  },
+  "origin_service_completion": {
+    "source": "tmp/tetris-composite-demo-20260908/service-audit/final-results-v4/COMPLETION.json",
+    "sha256": "683647a2f8fb0ba6d283fc9d6dd0dbe716e5307fb6eb7cd270d7c40836ce2228"
+  },
+  "selected_mode": {
+    "service_mode": "public_parallel",
+    "g4_used": false,
+    "tetris_used": false,
+    "tetris_pilot_slowdown_percent": 66.4014506883,
+    "composite_heldout_B_vs_A_reduction_percent": 6.596842018017414,
+    "composite_heldout_measured_triples": 96
+  },
+  "original_service_outputs": 288,
+  "original_terminal_phases": 864,
+  "original_blank_controls": 4,
+  "separate_first_and_confirmation_estimates": {
+    "0": {
+      "timing": {
+        "geometric_reduction_percent": 25.29566795850774,
+        "losses": 0,
+        "measured_pairs": 32,
+        "median_paired_reduction_percent": 25.324982878474366,
+        "new_median_seconds": 1.7674806245,
+        "old_median_seconds": 2.406070312,
+        "ties": 0,
+        "wins": 32
+      },
+      "images": {
+        "geometric_reduction_percent": 27.40690746984729,
+        "losses": 0,
+        "measured_pairs": 12,
+        "median_paired_reduction_percent": 27.89266133628776,
+        "new_median_seconds": 2.0016514785,
+        "old_median_seconds": 2.813580875,
+        "ties": 0,
+        "wins": 12
+      }
+    },
+    "1": {
+      "timing": {
+        "geometric_reduction_percent": 24.710554798865576,
+        "losses": 0,
+        "measured_pairs": 32,
+        "median_paired_reduction_percent": 25.575463746872796,
+        "new_median_seconds": 1.866796583,
+        "old_median_seconds": 2.5103158335,
+        "ties": 0,
+        "wins": 32
+      },
+      "images": {
+        "geometric_reduction_percent": 28.439222931467828,
+        "losses": 0,
+        "measured_pairs": 12,
+        "median_paired_reduction_percent": 28.625994904887186,
+        "new_median_seconds": 2.0112005625,
+        "old_median_seconds": 2.8199696875,
+        "ties": 0,
+        "wins": 12
+      }
+    }
+  },
+  "families_public_summary": [
+    {
+      "family_index": 0,
+      "all_output_load": {
+        "complete_load_coverage_windows": 144,
+        "high_load_windows": 144,
+        "unknown_load_windows": 119,
+        "windows": 144
+      },
+      "sections": {
+        "images": {
+          "all_output_load": {
+            "complete_load_coverage_windows": 32,
+            "high_load_windows": 32,
+            "unknown_load_windows": 23,
+            "windows": 32
+          },
+          "measured_output_load": {
+            "complete_load_coverage_windows": 24,
+            "high_load_windows": 24,
+            "unknown_load_windows": 16,
+            "windows": 24
+          },
+          "estimate": {
+            "geometric_reduction_percent": 27.40690746984729,
+            "losses": 0,
+            "measured_pairs": 12,
+            "median_paired_reduction_percent": 27.89266133628776,
+            "new_median_seconds": 2.0016514785,
+            "old_median_seconds": 2.813580875,
+            "ties": 0,
+            "wins": 12
+          },
+          "measured_pairs": 12,
+          "outputs": 32,
+          "per_scene": {
+            "multi_face": {
+              "geometric_reduction_percent": 30.230729328887556,
+              "losses": 0,
+              "measured_pairs": 6,
+              "median_paired_reduction_percent": 30.546147142040446,
+              "new_median_seconds": 1.993209708,
+              "old_median_seconds": 2.8660044585,
+              "ties": 0,
+              "wins": 6
+            },
+            "subject_0": {
+              "geometric_reduction_percent": 24.468795038254207,
+              "losses": 0,
+              "measured_pairs": 6,
+              "median_paired_reduction_percent": 26.34907970491649,
+              "new_median_seconds": 2.0178424995,
+              "old_median_seconds": 2.7329406875,
+              "ties": 0,
+              "wins": 6
+            }
+          },
+          "terminal_phases": 96,
+          "blank_controls": 2
+        },
+        "qualify": {
+          "all_output_load": {
+            "complete_load_coverage_windows": 16,
+            "high_load_windows": 16,
+            "unknown_load_windows": 16,
+            "windows": 16
+          },
+          "measured_output_load": {
+            "complete_load_coverage_windows": 0,
+            "high_load_windows": 0,
+            "unknown_load_windows": 0,
+            "windows": 0
+          },
+          "measured_pairs": 0,
+          "outputs": 16,
+          "terminal_phases": 48
+        },
+        "timing": {
+          "all_output_load": {
+            "complete_load_coverage_windows": 96,
+            "high_load_windows": 96,
+            "unknown_load_windows": 80,
+            "windows": 96
+          },
+          "measured_output_load": {
+            "complete_load_coverage_windows": 64,
+            "high_load_windows": 64,
+            "unknown_load_windows": 54,
+            "windows": 64
+          },
+          "estimate": {
+            "geometric_reduction_percent": 25.29566795850774,
+            "losses": 0,
+            "measured_pairs": 32,
+            "median_paired_reduction_percent": 25.324982878474366,
+            "new_median_seconds": 1.7674806245,
+            "old_median_seconds": 2.406070312,
+            "ties": 0,
+            "wins": 32
+          },
+          "measured_pairs": 32,
+          "outputs": 96,
+          "per_scene": {
+            "aligned_last_128_-1": {
+              "geometric_reduction_percent": 22.109283637502404,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 21.922744838769724,
+              "new_median_seconds": 1.7585621875,
+              "old_median_seconds": 2.26335675,
+              "ties": 0,
+              "wins": 4
+            },
+            "alternating_thresholds_n128": {
+              "geometric_reduction_percent": 28.631343666449904,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 28.593347598865783,
+              "new_median_seconds": 1.751465542,
+              "old_median_seconds": 2.453202125,
+              "ties": 0,
+              "wins": 4
+            },
+            "general_last_128_273": {
+              "geometric_reduction_percent": 20.854694543785353,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 21.844468788775572,
+              "new_median_seconds": 1.795399146,
+              "old_median_seconds": 2.2292461875,
+              "ties": 0,
+              "wins": 4
+            },
+            "general_last_129_273": {
+              "geometric_reduction_percent": 22.651116884177334,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 22.657604841039912,
+              "new_median_seconds": 1.7833626245,
+              "old_median_seconds": 2.2973439375,
+              "ties": 0,
+              "wins": 4
+            },
+            "heterogeneous_thresholds_n128": {
+              "geometric_reduction_percent": 26.208929408381522,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 25.324982878474366,
+              "new_median_seconds": 1.9030328335,
+              "old_median_seconds": 2.599053333,
+              "ties": 0,
+              "wins": 4
+            },
+            "mixed_last_128_273": {
+              "geometric_reduction_percent": 27.48232278080972,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 27.18037636359629,
+              "new_median_seconds": 1.741559062,
+              "old_median_seconds": 2.389114396,
+              "ties": 0,
+              "wins": 4
+            },
+            "mixed_last_129_273": {
+              "geometric_reduction_percent": 27.353698879921833,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 27.607809495857303,
+              "new_median_seconds": 1.7969168125,
+              "old_median_seconds": 2.492218479,
+              "ties": 0,
+              "wins": 4
+            },
+            "threshold_blocks_n128": {
+              "geometric_reduction_percent": 26.678276063011523,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 26.216844562414753,
+              "new_median_seconds": 1.7959850415,
+              "old_median_seconds": 2.409443083,
+              "ties": 0,
+              "wins": 4
+            }
+          },
+          "terminal_phases": 288
+        }
+      }
+    },
+    {
+      "family_index": 1,
+      "all_output_load": {
+        "complete_load_coverage_windows": 144,
+        "high_load_windows": 144,
+        "unknown_load_windows": 118,
+        "windows": 144
+      },
+      "sections": {
+        "images": {
+          "all_output_load": {
+            "complete_load_coverage_windows": 32,
+            "high_load_windows": 32,
+            "unknown_load_windows": 18,
+            "windows": 32
+          },
+          "measured_output_load": {
+            "complete_load_coverage_windows": 24,
+            "high_load_windows": 24,
+            "unknown_load_windows": 13,
+            "windows": 24
+          },
+          "estimate": {
+            "geometric_reduction_percent": 28.439222931467828,
+            "losses": 0,
+            "measured_pairs": 12,
+            "median_paired_reduction_percent": 28.625994904887186,
+            "new_median_seconds": 2.0112005625,
+            "old_median_seconds": 2.8199696875,
+            "ties": 0,
+            "wins": 12
+          },
+          "measured_pairs": 12,
+          "outputs": 32,
+          "per_scene": {
+            "multi_face": {
+              "geometric_reduction_percent": 31.749514712664705,
+              "losses": 0,
+              "measured_pairs": 6,
+              "median_paired_reduction_percent": 32.289348606959365,
+              "new_median_seconds": 2.039523792,
+              "old_median_seconds": 3.0129458335,
+              "ties": 0,
+              "wins": 6
+            },
+            "subject_0": {
+              "geometric_reduction_percent": 24.968375051211332,
+              "losses": 0,
+              "measured_pairs": 6,
+              "median_paired_reduction_percent": 24.768299853051346,
+              "new_median_seconds": 1.9913422915,
+              "old_median_seconds": 2.6602279585,
+              "ties": 0,
+              "wins": 6
+            }
+          },
+          "terminal_phases": 96,
+          "blank_controls": 2
+        },
+        "qualify": {
+          "all_output_load": {
+            "complete_load_coverage_windows": 16,
+            "high_load_windows": 16,
+            "unknown_load_windows": 15,
+            "windows": 16
+          },
+          "measured_output_load": {
+            "complete_load_coverage_windows": 0,
+            "high_load_windows": 0,
+            "unknown_load_windows": 0,
+            "windows": 0
+          },
+          "measured_pairs": 0,
+          "outputs": 16,
+          "terminal_phases": 48
+        },
+        "timing": {
+          "all_output_load": {
+            "complete_load_coverage_windows": 96,
+            "high_load_windows": 96,
+            "unknown_load_windows": 85,
+            "windows": 96
+          },
+          "measured_output_load": {
+            "complete_load_coverage_windows": 64,
+            "high_load_windows": 64,
+            "unknown_load_windows": 55,
+            "windows": 64
+          },
+          "estimate": {
+            "geometric_reduction_percent": 24.710554798865576,
+            "losses": 0,
+            "measured_pairs": 32,
+            "median_paired_reduction_percent": 25.575463746872796,
+            "new_median_seconds": 1.866796583,
+            "old_median_seconds": 2.5103158335,
+            "ties": 0,
+            "wins": 32
+          },
+          "measured_pairs": 32,
+          "outputs": 96,
+          "per_scene": {
+            "aligned_last_128_-1": {
+              "geometric_reduction_percent": 20.140950140051586,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 21.077265219348405,
+              "new_median_seconds": 1.886301896,
+              "old_median_seconds": 2.4656976875,
+              "ties": 0,
+              "wins": 4
+            },
+            "alternating_thresholds_n128": {
+              "geometric_reduction_percent": 28.3509460374142,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 28.032558390005402,
+              "new_median_seconds": 1.813779021,
+              "old_median_seconds": 2.501399375,
+              "ties": 0,
+              "wins": 4
+            },
+            "general_last_128_273": {
+              "geometric_reduction_percent": 21.448490941103845,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 22.016807075994272,
+              "new_median_seconds": 1.762876125,
+              "old_median_seconds": 2.2710056875,
+              "ties": 0,
+              "wins": 4
+            },
+            "general_last_129_273": {
+              "geometric_reduction_percent": 22.286503118272837,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 22.59006258471984,
+              "new_median_seconds": 1.8627268335,
+              "old_median_seconds": 2.3910411045,
+              "ties": 0,
+              "wins": 4
+            },
+            "heterogeneous_thresholds_n128": {
+              "geometric_reduction_percent": 25.348403264583585,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 26.372603222891012,
+              "new_median_seconds": 2.002635646,
+              "old_median_seconds": 2.6812596875,
+              "ties": 0,
+              "wins": 4
+            },
+            "mixed_last_128_273": {
+              "geometric_reduction_percent": 24.681133994622044,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 25.261301233639344,
+              "new_median_seconds": 1.883662,
+              "old_median_seconds": 2.508877209,
+              "ties": 0,
+              "wins": 4
+            },
+            "mixed_last_129_273": {
+              "geometric_reduction_percent": 27.855768282444064,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 27.763268849487655,
+              "new_median_seconds": 1.8413573955,
+              "old_median_seconds": 2.5706905625,
+              "ties": 0,
+              "wins": 4
+            },
+            "threshold_blocks_n128": {
+              "geometric_reduction_percent": 27.131017578648713,
+              "losses": 0,
+              "measured_pairs": 4,
+              "median_paired_reduction_percent": 27.4349257015694,
+              "new_median_seconds": 1.868630708,
+              "old_median_seconds": 2.5699469375,
+              "ties": 0,
+              "wins": 4
+            }
+          },
+          "terminal_phases": 288
+        }
+      }
+    }
+  ],
+  "qualified_origin_source_sha256": "abd3a1091776f8273cbdee96d6be0a6ca9fd928ece5305be2fc758826e0d2c39",
+  "qualified_origin_binary_sha256": "a6d0d5fe694b4c4134f1d1367a7f27b8e52f8b3498fa50a1f9dda6508764649f",
+  "new_copy_validation": {
+    "runtime_files": 87,
+    "byte_identical": true,
+    "existing_client_tests_passed": 18,
+    "source_only_configuration_identical": true,
+    "native_build_executed": false,
+    "fhe_executed": false,
+    "timings_measured": false,
+    "receipt": "evidence/PACKAGE_CHECKS.json"
+  },
+  "limitations": [
+    "Measured paired synthetic conditions, not old personal-gallery latency.",
+    "First and confirmation, backend and image estimates are separate and not additive.",
+    "All measured load flags retained; no continuous machine isolation or population confidence interval.",
+    "Empirical noisy correctness is not a formal whole-query failure bound or biometric accuracy certificate.",
+    "Tetris negative concerns the concrete six-fresh-CBS conversion and reused pilot family.",
+    "Actual final demo and browser functional checks are additional to the 288 campaign outputs."
+  ]
+}

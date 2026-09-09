@@ -1,0 +1,437 @@
+{
+  "artifact": "A74 A67 local runtime gate",
+  "client_key_negative_gate": [
+    {
+      "diagnostic": "thread 'main' (24985126) panicked at src/bin/varco_demo.rs:878:37:\nchiave client non valida: magic della chiave non A62; formati A44/A38/A41 non supportati\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v2_raw_client_key",
+      "pass": true,
+      "peak_rss_kib": 5072,
+      "returncode": 101,
+      "wall_s": 0.069997
+    },
+    {
+      "diagnostic": "thread 'main' (24985147) panicked at src/bin/varco_demo.rs:878:37:\nchiave client non valida: magic della chiave non A62; formati A44/A38/A41 non supportati\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "a65_a44_base16_wire_v3_client_key",
+      "pass": true,
+      "peak_rss_kib": 0,
+      "returncode": 101,
+      "wall_s": 0.066948
+    },
+    {
+      "diagnostic": "thread 'main' (24985168) panicked at src/bin/varco_demo.rs:878:37:\nchiave client non valida: versione dell'envelope chiave non supportata: 2\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_version_client_key",
+      "pass": true,
+      "peak_rss_kib": 0,
+      "returncode": 101,
+      "wall_s": 0.059693
+    },
+    {
+      "diagnostic": "thread 'main' (24985188) panicked at src/bin/varco_demo.rs:878:37:\nchiave client non valida: binding parametri/variante/circuito della chiave errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_params_id_client_key",
+      "pass": true,
+      "peak_rss_kib": 5072,
+      "returncode": 101,
+      "wall_s": 0.066333
+    },
+    {
+      "diagnostic": "thread 'main' (24985209) panicked at src/bin/varco_demo.rs:878:37:\nchiave client non valida: binding parametri/variante/circuito della chiave errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_params_fingerprint_client_key",
+      "pass": true,
+      "peak_rss_kib": 5936,
+      "returncode": 101,
+      "wall_s": 0.069854
+    },
+    {
+      "diagnostic": "thread 'main' (24985231) panicked at src/bin/varco_demo.rs:878:37:\nchiave client non valida: binding parametri/variante/circuito della chiave errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_variant_client_key",
+      "pass": true,
+      "peak_rss_kib": 0,
+      "returncode": 101,
+      "wall_s": 0.065371
+    },
+    {
+      "diagnostic": "thread 'main' (24985251) panicked at src/bin/varco_demo.rs:878:37:\nchiave client non valida: binding parametri/variante/circuito della chiave errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_circuit_client_key",
+      "pass": true,
+      "peak_rss_kib": 5776,
+      "returncode": 101,
+      "wall_s": 0.063835
+    }
+  ],
+  "date": "2026-09-02",
+  "encryption": {
+    "id16": {
+      "peak_rss_kib": 6032,
+      "reported_encrypt_ms": 0.54,
+      "wall_s": 0.059199,
+      "wire": {
+        "binding": {
+          "circuit_sha256": "ee76afd8ad3f6ee48fb3da4806e52fee3edf9db773c4adbe2c986fe713789b79",
+          "params_fingerprint": "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",
+          "params_id": "tfhe-rs-0.11.3-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+          "variant_id": "a62-a50-a53-radix15-group4-two-p16-v1"
+        },
+        "body_words": 4096,
+        "bytes": 33096,
+        "header_words": 40,
+        "layout": "one GLWE, score+mod16 dual layout"
+      }
+    },
+    "impostor": {
+      "peak_rss_kib": 5520,
+      "reported_encrypt_ms": 0.55,
+      "wall_s": 0.068044,
+      "wire": {
+        "binding": {
+          "circuit_sha256": "ee76afd8ad3f6ee48fb3da4806e52fee3edf9db773c4adbe2c986fe713789b79",
+          "params_fingerprint": "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",
+          "params_id": "tfhe-rs-0.11.3-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+          "variant_id": "a62-a50-a53-radix15-group4-two-p16-v1"
+        },
+        "body_words": 4096,
+        "bytes": 33096,
+        "header_words": 40,
+        "layout": "one GLWE, score+mod16 dual layout"
+      }
+    }
+  },
+  "enrollment": {
+    "all_a62_aligned_path": true,
+    "count": 16,
+    "final_revision": 16,
+    "fixture": "id01..id16 use distinct one-hot coordinates 0..15; threshold=0",
+    "wall_s": 0.003638
+  },
+  "ephemeral_cleanup": {
+    "key_material_retained": false,
+    "performed": true,
+    "workdir_exists_after_cleanup": false
+  },
+  "final_state": {
+    "contract_validated": true,
+    "gallery_size": 16,
+    "path": "a62_a50_a53_radix15",
+    "revision": 16
+  },
+  "keygen": {
+    "bindings_match": true,
+    "client_key_bytes": 23719,
+    "peak_rss_kib": 347408,
+    "reported_keygen_s": 0.63,
+    "server_key_bytes": 126774563,
+    "wall_s": 0.703229
+  },
+  "negative_summary": {
+    "all_passed": true,
+    "client_key": 7,
+    "output": 9,
+    "probe": 8,
+    "server_key": 7,
+    "total": 31
+  },
+  "output_negative_gate": [
+    {
+      "diagnostic": "thread 'main' (24986070) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: versione dell'esito non supportata: 2\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v2_output",
+      "pass": true,
+      "peak_rss_kib": 5936,
+      "returncode": 101,
+      "wall_s": 0.069423
+    },
+    {
+      "diagnostic": "thread 'main' (24986104) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: header A62: 26 parole, attese 42; wire A44/v2 non supportati\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "a65_a44_base16_wire_v3_output",
+      "pass": true,
+      "peak_rss_kib": 0,
+      "returncode": 101,
+      "wall_s": 0.061382
+    },
+    {
+      "diagnostic": "thread 'main' (24986131) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: base delle cifre non supportata: 16, attesa 15\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_digit_base_16_output",
+      "pass": true,
+      "peak_rss_kib": 6336,
+      "returncode": 101,
+      "wall_s": 0.067525
+    },
+    {
+      "diagnostic": "thread 'main' (24986159) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: binding parametri/variante/circuito A62 errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_params_id_output",
+      "pass": true,
+      "peak_rss_kib": 0,
+      "returncode": 101,
+      "wall_s": 0.066737
+    },
+    {
+      "diagnostic": "thread 'main' (24986187) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: binding parametri/variante/circuito A62 errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_params_fingerprint_output",
+      "pass": true,
+      "peak_rss_kib": 5792,
+      "returncode": 101,
+      "wall_s": 0.064369
+    },
+    {
+      "diagnostic": "thread 'main' (24986217) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: binding parametri/variante/circuito A62 errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_variant_output",
+      "pass": true,
+      "peak_rss_kib": 5888,
+      "returncode": 101,
+      "wall_s": 0.066291
+    },
+    {
+      "diagnostic": "thread 'main' (24986243) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: binding parametri/variante/circuito A62 errato\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_wrong_circuit_output",
+      "pass": true,
+      "peak_rss_kib": 0,
+      "returncode": 101,
+      "wall_s": 0.060646
+    },
+    {
+      "diagnostic": "thread 'main' (24986270) panicked at src/bin/varco_demo.rs:936:37:\nesito cifrato non valido: numero di LWE dell'esito non supportato: 1, attesi 2\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_declared_one_lwe_output",
+      "pass": true,
+      "peak_rss_kib": 0,
+      "returncode": 101,
+      "wall_s": 0.065233
+    },
+    {
+      "diagnostic": "thread 'main' (24986298) panicked at src/bin/varco_demo.rs:937:13:\nassertion `left == right` failed: esito cifrato non valido: corpo di 2049 parole, attese 4098 per due LWE\n  left: 2049\n right: 4098\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "label": "wire_v4_truncated_two_lwe_output",
+      "pass": true,
+      "peak_rss_kib": 5952,
+      "returncode": 101,
+      "wall_s": 0.061181
+    }
+  ],
+  "probe_negative_gate": [
+    {
+      "error": "{\"errore\":\"header A62: 8 parole, attese 40; wire A44/v2 non supportati\"}",
+      "label": "wire_v2_probe",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000326
+    },
+    {
+      "error": "{\"errore\":\"header A62: 25 parole, attese 40; wire A44/v2 non supportati\"}",
+      "label": "a65_a44_base16_wire_v3_probe",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000205
+    },
+    {
+      "error": "{\"errore\":\"versione del probe non supportata: 2\"}",
+      "label": "wire_v4_wrong_version_probe",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000255
+    },
+    {
+      "error": "{\"errore\":\"binding parametri/variante/circuito A62 errato\"}",
+      "label": "wire_v4_wrong_params_id_probe",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000158
+    },
+    {
+      "error": "{\"errore\":\"binding parametri/variante/circuito A62 errato\"}",
+      "label": "wire_v4_wrong_params_fingerprint_probe",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000178
+    },
+    {
+      "error": "{\"errore\":\"binding parametri/variante/circuito A62 errato\"}",
+      "label": "wire_v4_wrong_variant_probe",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000181
+    },
+    {
+      "error": "{\"errore\":\"binding parametri/variante/circuito A62 errato\"}",
+      "label": "wire_v4_wrong_circuit_probe",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000191
+    },
+    {
+      "error": "{\"errore\":\"corpo del probe di lunghezza errata: 4095 parole, attese 4096\"}",
+      "label": "wire_v4_truncated_probe_body",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000179
+    }
+  ],
+  "promotion": false,
+  "provenance": {
+    "binary": "tmp/a67-a62-service-materialization/target-a71/release/varco_demo",
+    "binary_sha256": "35dd29890573790158d1174f391b83c607693183f663e79fbdfc69f658819021",
+    "circuit_sha256": "ee76afd8ad3f6ee48fb3da4806e52fee3edf9db773c4adbe2c986fe713789b79",
+    "params_fingerprint_sha256": "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",
+    "params_id": "tfhe-rs-0.11.3-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+    "source_sha256": {
+      "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+      "src/a53_scan.rs": "81752a5da894797faeecda02c4fff3ad5aba93efde60a400dd1c36304e4940a5",
+      "src/a53_scan/fhe.rs": "a4dfbc7cd15bdc65ee699847b46147a0614bceccbdeb5317226103f7ffa68f9e",
+      "src/bin/varco_demo.rs": "8ad76dc073be4fbe82725afbfb85cc5c3c5fb38e6398ddba0d04ad01955069a8",
+      "src/lib.rs": "6023d1ca3594897b54b216f85580897aef5c4fe12c7245278f4b12e90f25116b",
+      "src/private_argmin.rs": "69049071d6c72b32d2db8cbe2f9972ec61c06266382f448f5a199c49b3b5fbab"
+    },
+    "variant_id": "a62-a50-a53-radix15-group4-two-p16-v1"
+  },
+  "scope": "local_loopback_no_docker",
+  "server_key_negative_gate": [
+    {
+      "error": "{\"errore\":\"chiave non valida: magic della chiave non A62; formati A44/A38/A41 non supportati\"}",
+      "label": "wire_v2_raw_server_key",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.250664
+    },
+    {
+      "error": "{\"errore\":\"chiave non valida: magic della chiave non A62; formati A44/A38/A41 non supportati\"}",
+      "label": "a65_a44_base16_wire_v3_server_key",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.238731
+    },
+    {
+      "error": "{\"errore\":\"chiave non valida: versione dell'envelope chiave non supportata: 2\"}",
+      "label": "wire_v4_magic_wrong_version_server_key",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000352
+    },
+    {
+      "error": "{\"errore\":\"chiave non valida: binding parametri/variante/circuito della chiave errato\"}",
+      "label": "wire_v4_wrong_params_id_server_key",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000196
+    },
+    {
+      "error": "{\"errore\":\"chiave non valida: binding parametri/variante/circuito della chiave errato\"}",
+      "label": "wire_v4_wrong_params_fingerprint_server_key",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000206
+    },
+    {
+      "error": "{\"errore\":\"chiave non valida: binding parametri/variante/circuito della chiave errato\"}",
+      "label": "wire_v4_wrong_variant_server_key",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000215
+    },
+    {
+      "error": "{\"errore\":\"chiave non valida: binding parametri/variante/circuito della chiave errato\"}",
+      "label": "wire_v4_wrong_circuit_server_key",
+      "pass": true,
+      "pbs_header_absent": true,
+      "status": 400,
+      "wall_s": 0.000171
+    }
+  ],
+  "server_peak_rss_kib": 288480,
+  "small_fhe_gate": {
+    "claim_limit": "functional sample only; no end-to-end p-fail bound inferred",
+    "gallery_size": 16,
+    "queries": {
+      "id16": {
+        "decrypt_peak_rss_kib": 0,
+        "decrypt_wall_s": 0.070298,
+        "expected": {
+          "code": 16,
+          "high": 1,
+          "index": 15,
+          "low": 1
+        },
+        "http_bindings_match": true,
+        "http_wall_s": 1.26456,
+        "observed": {
+          "code": 16,
+          "high": 1,
+          "index": 15,
+          "low": 1
+        },
+        "pass": true,
+        "pbs": 431,
+        "radix15_reconstruction": "1 + 15*1 = 16",
+        "server_reported_ms": 1264.1,
+        "wire": {
+          "binding": {
+            "circuit_sha256": "ee76afd8ad3f6ee48fb3da4806e52fee3edf9db773c4adbe2c986fe713789b79",
+            "params_fingerprint": "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",
+            "params_id": "tfhe-rs-0.11.3-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+            "variant_id": "a62-a50-a53-radix15-group4-two-p16-v1"
+          },
+          "bytes": 33128,
+          "digit_base": 15,
+          "header_words": 42,
+          "lwe_size_words": 2049,
+          "output_lwes": 2
+        }
+      },
+      "impostor": {
+        "decrypt_peak_rss_kib": 0,
+        "decrypt_wall_s": 0.069481,
+        "expected": {
+          "code": 0,
+          "high": 0,
+          "index": null,
+          "low": 0
+        },
+        "http_bindings_match": true,
+        "http_wall_s": 1.241563,
+        "observed": {
+          "code": 0,
+          "high": 0,
+          "index": null,
+          "low": 0
+        },
+        "pass": true,
+        "pbs": 431,
+        "radix15_reconstruction": "0 + 15*0 = 0",
+        "server_reported_ms": 1240.8,
+        "wire": {
+          "binding": {
+            "circuit_sha256": "ee76afd8ad3f6ee48fb3da4806e52fee3edf9db773c4adbe2c986fe713789b79",
+            "params_fingerprint": "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",
+            "params_id": "tfhe-rs-0.11.3-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+            "variant_id": "a62-a50-a53-radix15-group4-two-p16-v1"
+          },
+          "bytes": 33128,
+          "digit_base": 15,
+          "header_words": 42,
+          "lwe_size_words": 2049,
+          "output_lwes": 2
+        }
+      }
+    },
+    "structural_counts": {
+      "blind_rotations": 431,
+      "key_switches": 383,
+      "output_marginals": 499
+    }
+  },
+  "status": "PASS_LOCAL_RUNTIME_NOT_DOCKER_NOT_PROMOTED",
+  "valid_server_key_install": {
+    "bindings_match": true,
+    "idempotent": false,
+    "status": 200,
+    "wall_s": 0.501213
+  }
+}

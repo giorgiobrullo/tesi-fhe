@@ -1,0 +1,112 @@
+COMMON-MASK TFHE PRIMITIVE BENCHMARK — RETAINED RESULTS
+Date: 2026-09-02 (Europe/Rome)
+Status: historical measurements transcribed during preservation; not rerun
+
+HOST
+  Model: Mac Studio
+  CPU: Apple M4 Max, 16 cores (12 performance + 4 efficiency)
+  RAM: 64 GB
+  OS: macOS 27.0, build 26A5421a
+  Rust: rustc 1.97.1 (8bab26f4f 2026-07-14), aarch64-apple-darwin
+  Cargo: 1.97.1 (c980f4866 2026-06-30)
+  Rayon workers: 16
+
+DEPENDENCIES AND SOURCES
+  tfhe-rs: exactly 1.7.0, experimental common-mask API
+  common-mask source: ../src/main.rs
+  ordinary baseline source: ../ordinary_baseline/src/main.rs
+  lockfiles: ../Cargo.lock and ../ordinary_baseline/Cargo.lock
+
+REPRODUCTION COMMANDS
+  cd experiments/16_common_mask_poc
+  RAYON_NUM_THREADS=16 cargo run --release --locked -- 4x2
+  RAYON_NUM_THREADS=16 cargo run --release --locked -- 4x4
+  RAYON_NUM_THREADS=16 cargo run --release --locked --manifest-path ordinary_baseline/Cargo.toml -- 1x1
+  RAYON_NUM_THREADS=16 cargo run --release --locked --manifest-path ordinary_baseline/Cargo.toml -- 2x2
+
+The original complete shell transcript/stdout was not retained. These are the equivalent
+commands for the preserved sources and lockfiles. No command was rerun while preserving
+this experiment.
+
+CONFIGURATION p2/w4
+  tfhe-rs parameter: CM_PARAM_4_2_MINUS_64
+  common-mask width: 4 bodies
+  plaintext precision: 2 bits
+  logical slots: 128 = 32 groups x 4 bodies
+  primitive samples: 25 per operation
+  N=128 samples: 7 outer-parallel repetitions
+
+KEY PAYLOAD SIZES p2/w4
+  Fourier CM bootstrap key: 154,943,488 bytes
+  CM packing key:           254,279,680 bytes
+  CM key-switch key:         47,677,440 bytes
+  Retained-key total:       456,900,608 bytes = 435.734375 MiB
+
+The total excludes secret keys, the discarded standard BSK, ciphertexts, LUTs, allocator
+overhead, and any ordinary/hybrid key needed by an integrated pipeline. It is not peak RSS.
+
+SINGLE-GROUP LATENCY p2/w4
+  packing: median 4.241 ms; p10 4.161 ms; p90 4.475 ms
+  CM key switch: median 0.773 ms; p10 0.761 ms; p90 0.815 ms
+  CM PBS: median 11.643 ms; p10 11.536 ms; p90 11.927 ms
+
+N=128 OUTER-PARALLEL LATENCY p2/w4
+  PBS-only repetitions, ms:
+    [38.278, 40.627, 40.455, 37.167, 35.759, 36.068, 35.966]
+  PBS-only median: 37.167 ms
+
+  CM-KS + PBS repetitions, ms:
+    [38.641, 47.285, 43.458, 40.219, 38.928, 39.688, 38.621]
+  CM-KS + PBS median: 39.688 ms
+
+  packing repetitions, ms:
+    [24.216, 18.209, 18.833, 28.944, 18.569, 29.014, 19.163]
+  packing median: 19.163 ms
+
+  matched ordinary p2/Rayon stage, N=128 median: 118.279 ms
+  stage-only ratio: 118.279 / 39.688 = 2.98x
+  one-pack estimate: 39.688 + 19.163 = 58.851 ms
+  ratio including one separate packing median: 118.279 / 58.851 = 2.01x
+
+The 58.851 ms value is a sum of medians from separate loops, not a measured fused-pipeline
+median. It is evidence for a POC budget, not an end-to-end speedup claim.
+
+CONFIGURATION p4/w4
+  tfhe-rs parameter: CM_PARAM_4_4_MINUS_64
+  common-mask width: 4 bodies
+  plaintext precision: 4 bits
+  logical slots: 128 = 32 groups x 4 bodies
+
+KEY PAYLOAD SIZE p4/w4
+  Retained-key total: 772,014,080 bytes = 736.25 MiB
+  Same exclusions as p2/w4 apply.
+
+LATENCY p4/w4
+  single-group packing median: 5.617 ms
+  single-group CM key-switch median: 1.280 ms
+  single-group CM PBS median: 35.298 ms
+  N=128 PBS-only median: 117.979 ms
+  N=128 CM-KS + PBS median: 112.768 ms
+  N=128 packing median: 31.310 ms
+  matched ordinary p4/Rayon stage, N=128 median: 144.571 ms
+  one-pack estimate: 112.768 + 31.310 = 144.078 ms
+  ratio including one separate packing median: 144.571 / 144.078 = 1.003x
+
+PBS-only and CM-KS+PBS are independent sample sets; their median inversion is measurement
+noise and must not be interpreted as a negative key-switch cost. p4/w4 therefore provides
+no convincing drop-in gain once one packing step is included.
+
+GO / NO-GO FOR THE NEXT POC
+  GO after componentwise POC only if:
+    - every tested 2-bit state decrypts correctly across fresh keys;
+    - the measured path performs no per-slot extraction;
+    - bridge + CM stage is at least 1.5x faster than ordinary;
+    - key payload and peak RSS are both reported.
+
+  GO for full circuit work only if a four-slot OR/prefix reduction:
+    - remains common-mask between levels;
+    - is exact on exhaustive Boolean inputs;
+    - retains an end-to-end latency advantage including all transformations.
+
+  NO-GO if cross-slot work requires extraction/repacking at every level or removes the
+  ordinary-vs-common-mask margin. The present measurements alone do not pass this gate.

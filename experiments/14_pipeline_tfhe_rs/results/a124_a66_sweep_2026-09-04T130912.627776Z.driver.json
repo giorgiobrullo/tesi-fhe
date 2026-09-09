@@ -1,0 +1,2198 @@
+{
+  "binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a124-a66-thread-sweep/target-a124-only/release/a124_a66_thread_sweep",
+  "binary_sha256": "f22329ce6ee72c921fa33b8609d0b8cd0a2a2449a47c9b24354abbaa66d1ad18",
+  "cells": [
+    {
+      "child_wall_s": 35.25563949998468,
+      "cpu_busy_after_cell": 0.18030000000000002,
+      "gallery_size": 64,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.14690000000000003,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 3.96923828125,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.18024999999999997,
+            "load1": 6.42724609375
+          },
+          {
+            "cpu_busy": 0.28125,
+            "load1": 6.33251953125
+          },
+          {
+            "cpu_busy": 0.22375,
+            "load1": 5.70751953125
+          },
+          {
+            "cpu_busy": 0.29095,
+            "load1": 8.79150390625
+          },
+          {
+            "cpu_busy": 0.18195,
+            "load1": 6.55126953125
+          },
+          {
+            "cpu_busy": 0.17524999999999996,
+            "load1": 5.05517578125
+          },
+          {
+            "cpu_busy": 0.14859999999999995,
+            "load1": 4.18115234375
+          },
+          {
+            "cpu_busy": 0.14690000000000003,
+            "load1": 3.96923828125
+          }
+        ],
+        "waited_s": 7098.552785207983
+      },
+      "load_after_cell": 9.60791015625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "6eda0861ca24374d9d6ed6026346354869a5800d02b6be32425606a3212ce554",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 64,
+        "measured_queries": 10,
+        "payload_sha256": "6eda0861ca24374d9d6ed6026346354869a5800d02b6be32425606a3212ce554",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 16
+      },
+      "threads": 16
+    },
+    {
+      "child_wall_s": 59.947521583002526,
+      "cpu_busy_after_cell": 0.14439999999999997,
+      "gallery_size": 127,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.14899999999999997,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 3.85498046875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.21039999999999998,
+            "load1": 5.17724609375
+          },
+          {
+            "cpu_busy": 0.19345,
+            "load1": 5.5537109375
+          },
+          {
+            "cpu_busy": 0.26935,
+            "load1": 5.1025390625
+          },
+          {
+            "cpu_busy": 0.32175,
+            "load1": 5.4306640625
+          },
+          {
+            "cpu_busy": 0.1819,
+            "load1": 5.65087890625
+          },
+          {
+            "cpu_busy": 0.18119999999999997,
+            "load1": 4.3427734375
+          },
+          {
+            "cpu_busy": 0.13680000000000003,
+            "load1": 4.89697265625
+          },
+          {
+            "cpu_busy": 0.14899999999999997,
+            "load1": 3.85498046875
+          }
+        ],
+        "waited_s": 5411.133870208985
+      },
+      "load_after_cell": 22.29150390625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 127,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "8b22700c3e2dc9db944af83f082b20371b055d8de4c614594597660e07f16963",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 127,
+        "measured_queries": 10,
+        "payload_sha256": "8b22700c3e2dc9db944af83f082b20371b055d8de4c614594597660e07f16963",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 16
+      },
+      "threads": 16
+    },
+    {
+      "child_wall_s": 68.89332241698867,
+      "cpu_busy_after_cell": 0.3490000000000001,
+      "gallery_size": 128,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13649999999999995,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 5.4169921875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.1411,
+            "load1": 20.74658203125
+          },
+          {
+            "cpu_busy": 0.18330000000000002,
+            "load1": 13.681640625
+          },
+          {
+            "cpu_busy": 0.15480000000000005,
+            "load1": 11.14892578125
+          },
+          {
+            "cpu_busy": 0.15590000000000004,
+            "load1": 7.466796875
+          },
+          {
+            "cpu_busy": 0.2949,
+            "load1": 6.9921875
+          },
+          {
+            "cpu_busy": 0.19675000000000004,
+            "load1": 5.9755859375
+          },
+          {
+            "cpu_busy": 0.14185000000000003,
+            "load1": 5.52587890625
+          },
+          {
+            "cpu_busy": 0.13649999999999995,
+            "load1": 5.4169921875
+          }
+        ],
+        "waited_s": 263.90520708297845
+      },
+      "load_after_cell": 11.71533203125,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": 413,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 128,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "f5a23c3898853e47acc10c0962165fcda6af12bce00a49121064d976fd0c2fa6",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 128,
+        "measured_queries": 10,
+        "payload_sha256": "f5a23c3898853e47acc10c0962165fcda6af12bce00a49121064d976fd0c2fa6",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 12
+      },
+      "threads": 12
+    },
+    {
+      "child_wall_s": 39.37410979199922,
+      "cpu_busy_after_cell": 0.1633,
+      "gallery_size": 64,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.1472,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 3.4482421875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.19790000000000002,
+            "load1": 4.83642578125
+          },
+          {
+            "cpu_busy": 0.18930000000000002,
+            "load1": 4.46630859375
+          },
+          {
+            "cpu_busy": 0.15435000000000004,
+            "load1": 3.98974609375
+          },
+          {
+            "cpu_busy": 0.22125,
+            "load1": 3.869140625
+          },
+          {
+            "cpu_busy": 0.19735000000000003,
+            "load1": 4.59326171875
+          },
+          {
+            "cpu_busy": 0.26134999999999997,
+            "load1": 4.2919921875
+          },
+          {
+            "cpu_busy": 0.1345,
+            "load1": 3.70361328125
+          },
+          {
+            "cpu_busy": 0.1472,
+            "load1": 3.4482421875
+          }
+        ],
+        "waited_s": 889.2604803330032
+      },
+      "load_after_cell": 10.22509765625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "ae57d8fa94ef73a7f601ac357117f9a0cba692e1c959a2303555262c945a418a",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 64,
+        "measured_queries": 10,
+        "payload_sha256": "ae57d8fa94ef73a7f601ac357117f9a0cba692e1c959a2303555262c945a418a",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 12
+      },
+      "threads": 12
+    },
+    {
+      "child_wall_s": 66.93665124999825,
+      "cpu_busy_after_cell": 0.19510000000000005,
+      "gallery_size": 127,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13065,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 3.654296875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.20134999999999997,
+            "load1": 9.56640625
+          },
+          {
+            "cpu_busy": 0.16049999999999998,
+            "load1": 7.22705078125
+          },
+          {
+            "cpu_busy": 0.16055000000000003,
+            "load1": 5.75048828125
+          },
+          {
+            "cpu_busy": 0.13715000000000005,
+            "load1": 4.81982421875
+          },
+          {
+            "cpu_busy": 0.13065,
+            "load1": 3.654296875
+          }
+        ],
+        "waited_s": 153.38380587502616
+      },
+      "load_after_cell": 11.24658203125,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 127,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "d7c94ae438bd9ca611dbfcb01f3b3cea5708fc618012921bf0ba4f14b3b56c1a",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 127,
+        "measured_queries": 10,
+        "payload_sha256": "d7c94ae438bd9ca611dbfcb01f3b3cea5708fc618012921bf0ba4f14b3b56c1a",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 12
+      },
+      "threads": 12
+    },
+    {
+      "child_wall_s": 90.85109000001103,
+      "cpu_busy_after_cell": 0.15590000000000004,
+      "gallery_size": 128,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.12930000000000003,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 4.27734375,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.2274,
+            "load1": 5.66455078125
+          },
+          {
+            "cpu_busy": 0.20704999999999996,
+            "load1": 5.30810546875
+          },
+          {
+            "cpu_busy": 0.18605000000000005,
+            "load1": 7.123046875
+          },
+          {
+            "cpu_busy": 0.19339999999999996,
+            "load1": 5.822265625
+          },
+          {
+            "cpu_busy": 0.21105000000000002,
+            "load1": 6.82421875
+          },
+          {
+            "cpu_busy": 0.17814999999999998,
+            "load1": 5.50634765625
+          },
+          {
+            "cpu_busy": 0.14645000000000002,
+            "load1": 5.974609375
+          },
+          {
+            "cpu_busy": 0.12930000000000003,
+            "load1": 4.27734375
+          }
+        ],
+        "waited_s": 20280.209883500007
+      },
+      "load_after_cell": 9.583984375,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": 413,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 128,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "0e5e8557366b187e714da0397139e7cd8593fd47e8a68841a1bc35dcbfb33f11",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 128,
+        "measured_queries": 10,
+        "payload_sha256": "0e5e8557366b187e714da0397139e7cd8593fd47e8a68841a1bc35dcbfb33f11",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 8
+      },
+      "threads": 8
+    },
+    {
+      "child_wall_s": 48.89683416701155,
+      "cpu_busy_after_cell": 0.30200000000000005,
+      "gallery_size": 64,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.14555,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 5.8466796875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.2207,
+            "load1": 5.48486328125
+          },
+          {
+            "cpu_busy": 0.15744999999999998,
+            "load1": 5.30126953125
+          },
+          {
+            "cpu_busy": 0.14385000000000003,
+            "load1": 4.44482421875
+          },
+          {
+            "cpu_busy": 0.16460000000000002,
+            "load1": 4.3466796875
+          },
+          {
+            "cpu_busy": 0.12855000000000005,
+            "load1": 3.7880859375
+          },
+          {
+            "cpu_busy": 0.16085,
+            "load1": 3.4521484375
+          },
+          {
+            "cpu_busy": 0.14390000000000003,
+            "load1": 4.45947265625
+          },
+          {
+            "cpu_busy": 0.14555,
+            "load1": 5.8466796875
+          }
+        ],
+        "waited_s": 524.2377421249985
+      },
+      "load_after_cell": 8.29345703125,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "6e19caddbddaf1cd3672c68324f489e2efc3982eaca005a303e06703442cb3b1",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 64,
+        "measured_queries": 10,
+        "payload_sha256": "6e19caddbddaf1cd3672c68324f489e2efc3982eaca005a303e06703442cb3b1",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 8
+      },
+      "threads": 8
+    },
+    {
+      "child_wall_s": 90.71034437499475,
+      "cpu_busy_after_cell": 0.2631,
+      "gallery_size": 127,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.11070000000000002,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 5.92333984375,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.15960000000000002,
+            "load1": 5.77294921875
+          },
+          {
+            "cpu_busy": 0.16500000000000004,
+            "load1": 3.98828125
+          },
+          {
+            "cpu_busy": 0.14750000000000002,
+            "load1": 5.83984375
+          },
+          {
+            "cpu_busy": 0.15805000000000002,
+            "load1": 5.04931640625
+          },
+          {
+            "cpu_busy": 0.17945,
+            "load1": 3.2724609375
+          },
+          {
+            "cpu_busy": 0.17105000000000004,
+            "load1": 5.6904296875
+          },
+          {
+            "cpu_busy": 0.10735,
+            "load1": 6.21044921875
+          },
+          {
+            "cpu_busy": 0.11070000000000002,
+            "load1": 5.92333984375
+          }
+        ],
+        "waited_s": 1040.6140587080154
+      },
+      "load_after_cell": 8.44677734375,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 127,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "6b45ea58ccc346891cccef8daecdcf9cfb479188e1110ec8b7fa2597ff9d4fed",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 127,
+        "measured_queries": 10,
+        "payload_sha256": "6b45ea58ccc346891cccef8daecdcf9cfb479188e1110ec8b7fa2597ff9d4fed",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 8
+      },
+      "threads": 8
+    },
+    {
+      "child_wall_s": 123.20611979195382,
+      "cpu_busy_after_cell": 0.1312000000000001,
+      "gallery_size": 128,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13905,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 4.8232421875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.10185000000000005,
+            "load1": 9.29150390625
+          },
+          {
+            "cpu_busy": 0.21515,
+            "load1": 6.90673828125
+          },
+          {
+            "cpu_busy": 0.12724999999999992,
+            "load1": 5.99267578125
+          },
+          {
+            "cpu_busy": 0.13905,
+            "load1": 4.8232421875
+          }
+        ],
+        "waited_s": 117.42363862501225
+      },
+      "load_after_cell": 8.91650390625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": 413,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 128,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "e92cc7b52a2946b71ea08e515541c8d9b53ec594966c69ef9f7bdaa0ba146123",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 128,
+        "measured_queries": 10,
+        "payload_sha256": "e92cc7b52a2946b71ea08e515541c8d9b53ec594966c69ef9f7bdaa0ba146123",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 6
+      },
+      "threads": 6
+    },
+    {
+      "child_wall_s": 64.3631552910083,
+      "cpu_busy_after_cell": 0.13790000000000002,
+      "gallery_size": 64,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13965,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 5.41943359375,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.18149999999999994,
+            "load1": 11.43603515625
+          },
+          {
+            "cpu_busy": 0.18939999999999996,
+            "load1": 7.6953125
+          },
+          {
+            "cpu_busy": 0.19335000000000002,
+            "load1": 6.146484375
+          },
+          {
+            "cpu_busy": 0.32264999999999994,
+            "load1": 5.552734375
+          },
+          {
+            "cpu_busy": 0.18305,
+            "load1": 5.564453125
+          },
+          {
+            "cpu_busy": 0.189,
+            "load1": 6.126953125
+          },
+          {
+            "cpu_busy": 0.14394999999999997,
+            "load1": 4.6015625
+          },
+          {
+            "cpu_busy": 0.13965,
+            "load1": 5.41943359375
+          }
+        ],
+        "waited_s": 1340.1205687500187
+      },
+      "load_after_cell": 8.75244140625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "bdb788b8ed853dfa9fb346802de5c32225c60fe45e5090e5b90d904c327a43e9",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 64,
+        "measured_queries": 10,
+        "payload_sha256": "bdb788b8ed853dfa9fb346802de5c32225c60fe45e5090e5b90d904c327a43e9",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 6
+      },
+      "threads": 6
+    },
+    {
+      "child_wall_s": 124.18438545800745,
+      "cpu_busy_after_cell": 0.17099999999999993,
+      "gallery_size": 127,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13445000000000001,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 6.72998046875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.16820000000000002,
+            "load1": 8.75244140625
+          },
+          {
+            "cpu_busy": 0.16060000000000002,
+            "load1": 6.19091796875
+          },
+          {
+            "cpu_busy": 0.1632,
+            "load1": 4.12060546875
+          },
+          {
+            "cpu_busy": 0.1618,
+            "load1": 4.04736328125
+          },
+          {
+            "cpu_busy": 0.17919999999999991,
+            "load1": 13.8515625
+          },
+          {
+            "cpu_busy": 0.14299999999999996,
+            "load1": 9.26513671875
+          },
+          {
+            "cpu_busy": 0.13445000000000001,
+            "load1": 6.72998046875
+          }
+        ],
+        "waited_s": 228.37769745802507
+      },
+      "load_after_cell": 7.49853515625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 127,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "3a00e7c0d39f1216652a78bafc6d7764ece4f1188e0cea37571f82019a025ef9",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 127,
+        "measured_queries": 10,
+        "payload_sha256": "3a00e7c0d39f1216652a78bafc6d7764ece4f1188e0cea37571f82019a025ef9",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 6
+      },
+      "threads": 6
+    },
+    {
+      "child_wall_s": 172.46225395798683,
+      "cpu_busy_after_cell": 0.1423000000000001,
+      "gallery_size": 128,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13324999999999992,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 3.80126953125,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.1935,
+            "load1": 4.8720703125
+          },
+          {
+            "cpu_busy": 0.22740000000000005,
+            "load1": 4.50244140625
+          },
+          {
+            "cpu_busy": 0.21065,
+            "load1": 4.9091796875
+          },
+          {
+            "cpu_busy": 0.18914999999999998,
+            "load1": 4.15966796875
+          },
+          {
+            "cpu_busy": 0.22185,
+            "load1": 4.591796875
+          },
+          {
+            "cpu_busy": 0.19845000000000002,
+            "load1": 6.3173828125
+          },
+          {
+            "cpu_busy": 0.13604999999999995,
+            "load1": 4.3544921875
+          },
+          {
+            "cpu_busy": 0.13324999999999992,
+            "load1": 3.80126953125
+          }
+        ],
+        "waited_s": 744.9625612079981
+      },
+      "load_after_cell": 10.60205078125,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": 413,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 128,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "86c2f5836c49d2d37d5b90d51ffbd765e3f5013cada9ae35e462f5616980999b",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 128,
+        "measured_queries": 10,
+        "payload_sha256": "86c2f5836c49d2d37d5b90d51ffbd765e3f5013cada9ae35e462f5616980999b",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 4
+      },
+      "threads": 4
+    },
+    {
+      "child_wall_s": 88.60791845899075,
+      "cpu_busy_after_cell": 0.14569999999999994,
+      "gallery_size": 64,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.11820000000000003,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 5.0673828125,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.14325,
+            "load1": 10.60205078125
+          },
+          {
+            "cpu_busy": 0.16459999999999997,
+            "load1": 11.83935546875
+          },
+          {
+            "cpu_busy": 0.15625,
+            "load1": 10.02783203125
+          },
+          {
+            "cpu_busy": 0.1003,
+            "load1": 6.98193359375
+          },
+          {
+            "cpu_busy": 0.11820000000000003,
+            "load1": 5.0673828125
+          }
+        ],
+        "waited_s": 154.29482624999946
+      },
+      "load_after_cell": 5.87158203125,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "612dea980545527833b893e52f1a8e048aa5cf9f8890463b270e6989a87e8e12",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 64,
+        "measured_queries": 10,
+        "payload_sha256": "612dea980545527833b893e52f1a8e048aa5cf9f8890463b270e6989a87e8e12",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 4
+      },
+      "threads": 4
+    },
+    {
+      "child_wall_s": 172.31294579198584,
+      "cpu_busy_after_cell": 0.14690000000000003,
+      "gallery_size": 127,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.11115000000000003,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 3.916015625,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.1726000000000001,
+            "load1": 5.8017578125
+          },
+          {
+            "cpu_busy": 0.1305,
+            "load1": 4.55078125
+          },
+          {
+            "cpu_busy": 0.11115000000000003,
+            "load1": 3.916015625
+          }
+        ],
+        "waited_s": 80.6818539579981
+      },
+      "load_after_cell": 17.6884765625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 127,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "1f3b45f36b297a28d645b0a541896210be814117a943c5f1db3615711a06b7d7",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 127,
+        "measured_queries": 10,
+        "payload_sha256": "1f3b45f36b297a28d645b0a541896210be814117a943c5f1db3615711a06b7d7",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 4
+      },
+      "threads": 4
+    },
+    {
+      "child_wall_s": 336.7580635829945,
+      "cpu_busy_after_cell": 0.2813,
+      "gallery_size": 128,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13030000000000003,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 5.3603515625,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.13304999999999995,
+            "load1": 16.43212890625
+          },
+          {
+            "cpu_busy": 0.17714999999999992,
+            "load1": 10.61865234375
+          },
+          {
+            "cpu_busy": 0.11285,
+            "load1": 6.5625
+          },
+          {
+            "cpu_busy": 0.13030000000000003,
+            "load1": 5.3603515625
+          }
+        ],
+        "waited_s": 117.51198929199018
+      },
+      "load_after_cell": 11.310546875,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": 413,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 128,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "d9f227c9d347d0737b94633ebdbac7f95d648b320a87d4bd9c30b058f6115844",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 128,
+        "measured_queries": 10,
+        "payload_sha256": "d9f227c9d347d0737b94633ebdbac7f95d648b320a87d4bd9c30b058f6115844",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 2
+      },
+      "threads": 2
+    },
+    {
+      "child_wall_s": 166.58761987497564,
+      "cpu_busy_after_cell": 0.2290000000000001,
+      "gallery_size": 64,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.14204999999999995,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 4.52587890625,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.23249999999999998,
+            "load1": 7.5205078125
+          },
+          {
+            "cpu_busy": 0.17695,
+            "load1": 7.650390625
+          },
+          {
+            "cpu_busy": 0.2604499999999999,
+            "load1": 6.50439453125
+          },
+          {
+            "cpu_busy": 0.26894999999999997,
+            "load1": 10.14990234375
+          },
+          {
+            "cpu_busy": 0.20650000000000002,
+            "load1": 7.54833984375
+          },
+          {
+            "cpu_busy": 0.18549999999999994,
+            "load1": 5.59912109375
+          },
+          {
+            "cpu_busy": 0.13019999999999998,
+            "load1": 4.20458984375
+          },
+          {
+            "cpu_busy": 0.14204999999999995,
+            "load1": 4.52587890625
+          }
+        ],
+        "waited_s": 1782.3855742079904
+      },
+      "load_after_cell": 6.7451171875,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "6e300504e8ec9c9350a6596999d42e458825c1508313cce1a3cf206ae440c771",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 64,
+        "measured_queries": 10,
+        "payload_sha256": "6e300504e8ec9c9350a6596999d42e458825c1508313cce1a3cf206ae440c771",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 2
+      },
+      "threads": 2
+    },
+    {
+      "child_wall_s": 331.10440983297303,
+      "cpu_busy_after_cell": 0.14870000000000005,
+      "gallery_size": 127,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.14055,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 4.8271484375,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.2057,
+            "load1": 6.15185546875
+          },
+          {
+            "cpu_busy": 0.22739999999999994,
+            "load1": 5.646484375
+          },
+          {
+            "cpu_busy": 0.22594999999999998,
+            "load1": 4.748046875
+          },
+          {
+            "cpu_busy": 0.2032,
+            "load1": 6.376953125
+          },
+          {
+            "cpu_busy": 0.17699999999999994,
+            "load1": 6.8076171875
+          },
+          {
+            "cpu_busy": 0.1689,
+            "load1": 5.8818359375
+          },
+          {
+            "cpu_busy": 0.13409999999999994,
+            "load1": 4.64892578125
+          },
+          {
+            "cpu_busy": 0.14055,
+            "load1": 4.8271484375
+          }
+        ],
+        "waited_s": 523.7507824169588
+      },
+      "load_after_cell": 4.98681640625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 127,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "614d0ba729ef1da2b7e2f14c92d9f945381f9424667b0bc1b5e683410a91a571",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 127,
+        "measured_queries": 10,
+        "payload_sha256": "614d0ba729ef1da2b7e2f14c92d9f945381f9424667b0bc1b5e683410a91a571",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 2
+      },
+      "threads": 2
+    },
+    {
+      "child_wall_s": 642.5040973750292,
+      "cpu_busy_after_cell": 0.14749999999999996,
+      "gallery_size": 128,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.14175000000000004,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 4.27685546875,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.13785000000000003,
+            "load1": 4.74755859375
+          },
+          {
+            "cpu_busy": 0.14175000000000004,
+            "load1": 4.27685546875
+          }
+        ],
+        "waited_s": 43.739740458957385
+      },
+      "load_after_cell": 3.98876953125,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": 413,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 128,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "b93bb325c35dd5b2e74e7c0cc3e221598c175752477604facfbe534baa5d7bff",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 128,
+        "measured_queries": 10,
+        "payload_sha256": "b93bb325c35dd5b2e74e7c0cc3e221598c175752477604facfbe534baa5d7bff",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 1
+      },
+      "threads": 1
+    },
+    {
+      "child_wall_s": 324.76248137495713,
+      "cpu_busy_after_cell": 0.18370000000000009,
+      "gallery_size": 64,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.131,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 3.943359375,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.13674999999999998,
+            "load1": 3.8291015625
+          },
+          {
+            "cpu_busy": 0.131,
+            "load1": 3.943359375
+          }
+        ],
+        "waited_s": 43.72898049996002
+      },
+      "load_after_cell": 5.978515625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "46813ce1d2eae475e849701291b325e5754b17cdfe318da15f932795408d7fb6",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 64,
+        "measured_queries": 10,
+        "payload_sha256": "46813ce1d2eae475e849701291b325e5754b17cdfe318da15f932795408d7fb6",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 1
+      },
+      "threads": 1
+    },
+    {
+      "child_wall_s": 637.2546170419664,
+      "cpu_busy_after_cell": 0.2873,
+      "gallery_size": 127,
+      "idle_guard": {
+        "cpu_busy_before_cell": 0.13769999999999993,
+        "cpu_busy_max": 0.15,
+        "guard": "cpu",
+        "load_before_cell": 4.74609375,
+        "load_max": 4.0,
+        "polls_required": 2,
+        "samples": [
+          {
+            "cpu_busy": 0.19265,
+            "load1": 5.65966796875
+          },
+          {
+            "cpu_busy": 0.19780000000000003,
+            "load1": 5.39111328125
+          },
+          {
+            "cpu_busy": 0.1436,
+            "load1": 5.71142578125
+          },
+          {
+            "cpu_busy": 0.13769999999999993,
+            "load1": 4.74609375
+          }
+        ],
+        "waited_s": 117.34318054205505
+      },
+      "load_after_cell": 10.3447265625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl",
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "scene_summary": {
+        "accepted_probes": 3,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 92,
+            "expected_code": 93,
+            "expected_min_score": 4,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 82,
+            "expected_code": 0,
+            "expected_min_score": 5,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 81,
+            "expected_code": 0,
+            "expected_min_score": 7,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 127,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 671,
+        "payload_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+        "rejected_probes": 2,
+        "threshold": 4
+      },
+      "schedule_sha256": "c66262b632eb17d72fe19d56b9f8e57fafdabd37bd91c139fe4b5719398d6984",
+      "schedule_summary": {
+        "blocks": [
+          0,
+          1
+        ],
+        "excluded_warmup_queries": 4,
+        "gallery_size": 127,
+        "measured_queries": 10,
+        "payload_sha256": "c66262b632eb17d72fe19d56b9f8e57fafdabd37bd91c139fe4b5719398d6984",
+        "queries": 14,
+        "stage": "sweep",
+        "threads": 1
+      },
+      "threads": 1
+    }
+  ],
+  "cpu_busy_max": 0.15,
+  "guard": "cpu",
+  "input_manifest_sha256": "b2754aae2cb0de0c5bc80ba180df3766a4ead158fdc5cd9cfc96d3550a19dc60",
+  "load_max": 4.0,
+  "outputs": [
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl"
+  ],
+  "record": "driver",
+  "skipped_existing_cells": [
+    {
+      "existing": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
+      "gallery_size": 128,
+      "threads": 16
+    }
+  ],
+  "stage": "sweep",
+  "variant": "a124_a66_thread_sweep"
+}

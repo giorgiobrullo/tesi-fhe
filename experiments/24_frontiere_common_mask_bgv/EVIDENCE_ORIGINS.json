@@ -1,0 +1,36 @@
+{
+  "schema": "research-evidence-origins.v1",
+  "originals_preserved": true,
+  "sources": {
+    "cm_timing": {
+      "path": "tmp/cm-nibble-n16-timing-20260906-r1/runs/first-native/validation.json",
+      "sha256": "d743079cf00004c6dc0df9103814f2dac1f212e7aff3280ac4738640c07512f9",
+      "bytes": 1979
+    },
+    "cm_gate": {
+      "path": "tmp/cm-nibble-n16-id-20260906/SOURCE_MANIFEST.json",
+      "sha256": "cb4daa360badb450448676588983cbd19331b7d9a68812c413e8252f7560ca0b",
+      "bytes": 4134
+    },
+    "bgv_review": {
+      "path": "docs/research-state/2026-09-06/wrap-up/bgv-final-review.md",
+      "sha256": "6d04ba2c8084fc3d4d294be199923254929e5599b1db44c02cfeac9d83bf0bd3",
+      "bytes": 5631
+    },
+    "bgv_validation": {
+      "path": "tmp/bgv-larger-ring-direct-n8-20260906/runs/first-native/validation.json",
+      "sha256": "32cf5da3a46c4ec6169779e6034cc5e9498cb9052e0db5b611629ba928a17721",
+      "bytes": 571668
+    },
+    "bgv_source": {
+      "path": "tmp/bgv-larger-ring-direct-n8-20260906/SOURCE_PINS.json",
+      "sha256": "ff8073f062aa3f450ff9a8c2fefa624c3181e8a58fa4238a57e6a6ad8d4bd9cf",
+      "bytes": 4878
+    },
+    "cm_noisy_gate": {
+      "path": "tmp/cm-nibble-n16-id-20260906/runs/first-native/validation.json",
+      "sha256": "7d6b3f28f36ce936aa6459ad0616d4904073e2ccf1dcc1da1c82b3ccaec92f8d",
+      "bytes": 2381
+    }
+  }
+}

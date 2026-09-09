@@ -1,0 +1,48 @@
+{
+  "schema": "consolidated-findings.v1",
+  "experiment": 21,
+  "separate_confirmations": [
+    {
+      "candidate": "selector_parallel",
+      "reduction_percent": 3.642326,
+      "wins": 44,
+      "pairs": 56,
+      "fresh_confirmation_families": 2
+    },
+    {
+      "candidate": "public_digits",
+      "reduction_percent": 4.087594,
+      "wins": 46,
+      "pairs": 56,
+      "fresh_confirmation_families": 2
+    },
+    {
+      "candidate": "g4_composite",
+      "reduction_percent": 2.323432,
+      "wins": 45,
+      "pairs": 56,
+      "fresh_confirmation_families": 2
+    }
+  ],
+  "negative_screen": {
+    "candidate": "shared_pfks_traversal",
+    "slower_percent": 0.991443,
+    "wins": 11,
+    "pairs": 28,
+    "fresh_families": 1,
+    "confirmation_generated": false
+  },
+  "effects_are_additive": false,
+  "later_g4_composition_selection": "rejected in experiment22 versus the combined public/parallel baseline",
+  "evidence": [
+    "evidence/selector-confirmation.json",
+    "evidence/public-digits-confirmation.json",
+    "evidence/g4-confirmation.json",
+    "evidence/pfks-negative.json"
+  ],
+  "limits": [
+    "Each candidate compared to its own declared reference",
+    "Preserved high/unknown CPU load flags",
+    "No service latency inference from individual core comparisons"
+  ]
+}

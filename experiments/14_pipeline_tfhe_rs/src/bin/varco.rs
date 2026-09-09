@@ -52,14 +52,21 @@ fn scrivi_u64(path: &str, header: &[u64], dati: &[&[u64]]) {
 
 fn leggi_u64(path: &str) -> (Vec<u64>, Vec<u64>) {
     let b = fs::read(path).unwrap_or_else(|_| panic!("manca {path}"));
-    let w: Vec<u64> = b.chunks(8).map(|c| u64::from_le_bytes(c.try_into().unwrap())).collect();
+    let w: Vec<u64> = b
+        .chunks(8)
+        .map(|c| u64::from_le_bytes(c.try_into().unwrap()))
+        .collect();
     let nh = w[0] as usize;
     (w[1..1 + nh].to_vec(), w[1 + nh..].to_vec())
 }
 
 fn chiavi(dir: &str) -> (ClientKey, ServerKey) {
-    let ck: ClientKey = bincode::deserialize(&fs::read(format!("{dir}/client.key")).expect("manca client.key")).unwrap();
-    let sk: ServerKey = bincode::deserialize(&fs::read(format!("{dir}/server.key")).expect("manca server.key")).unwrap();
+    let ck: ClientKey =
+        bincode::deserialize(&fs::read(format!("{dir}/client.key")).expect("manca client.key"))
+            .unwrap();
+    let sk: ServerKey =
+        bincode::deserialize(&fs::read(format!("{dir}/server.key")).expect("manca server.key"))
+            .unwrap();
     (ck, sk)
 }
 

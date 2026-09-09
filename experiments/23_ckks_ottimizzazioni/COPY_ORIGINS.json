@@ -1,0 +1,65 @@
+{
+  "schema": "numbered-experiment-source-copy.v1",
+  "experiment": 23,
+  "source_origin": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3",
+  "copied_files": {
+    "runtime/CMakeLists.txt": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/CMakeLists.txt",
+      "sha256": "34e281651c78af89ba81445097141ce017a27de33dff67d9b7f0f86a0628c886",
+      "bytes": 682,
+      "byte_identical": true
+    },
+    "runtime/balanced_odd7.h": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/balanced_odd7.h",
+      "sha256": "285bd439e953cb5f7a0d1755b8bb6b0496ed0cd8a21426746cdb772fa03e4b61",
+      "bytes": 1354,
+      "byte_identical": true
+    },
+    "runtime/balanced_shared_powers.h": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/balanced_shared_powers.h",
+      "sha256": "1354f48cb130cb6133898d8935f95fa07b13f5f1def8e7716bca636bf1044100",
+      "bytes": 2587,
+      "byte_identical": true
+    },
+    "runtime/balanced_shared_rescale.h": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/balanced_shared_rescale.h",
+      "sha256": "f24ead7fc3ddbf48966ad1eb2b74e6ae0f036e8555104444e31f028ef6a60a9d",
+      "bytes": 1838,
+      "byte_identical": true
+    },
+    "runtime/ckks_identify.cpp": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/ckks_identify.cpp",
+      "sha256": "225b765b4baad84a51163b272acdcb68b712a1135aa74178adc38bbfed2d8f37",
+      "bytes": 46245,
+      "byte_identical": true
+    },
+    "evidence/ORIGINAL_COMBINED_RESULTS.md": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/RISULTATI.md",
+      "sha256": "2fcf6b33a438b2f6c85390c97dd64b96476a1cde5c4c0224e2d4913e790a7b41",
+      "bytes": 1898,
+      "byte_identical": true
+    },
+    "evidence/ORIGINAL_COMBINED_DESIGN.md": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/COMBINED_DESIGN.md",
+      "sha256": "92e171dc302a666c31e780bad84737693c68225e981c197c8a688222129b056c",
+      "bytes": 2428,
+      "byte_identical": true
+    },
+    "evidence/ORIGINAL_THREAD_RESULTS.md": {
+      "source": "tmp/speed-campaign-20260907-night/ckks-runtime/thread-budget-v1/RISULTATI.md",
+      "sha256": "5478cd0c5cd1800a3ae785ad02c5cfbdf8102791a14923c8fe55f54c7413290b",
+      "bytes": 1767,
+      "byte_identical": true
+    }
+  },
+  "scope": "Only five compilable source leaves and three historical prose records. No original input data, ciphertexts, secret keys, process snapshots or libraries are copied. New wrappers and PACKAGE_PINS are separate.",
+  "new_generator_provenance": {
+    "path": "generate_synthetic.py",
+    "scope": "New standalone adapter of public source arithmetic; no old fixture read. Eight outputs match original plan hashes, one R4096 control is new.",
+    "source_inputs": {
+      "tmp/ckks-route-verification-20260907/make_fixtures.py": "8facac27bac3bba81de6d0f83ecb95ba20073178dcc028f5536d6193ea1e0e49",
+      "tmp/fast-core-opts-complete-20260906/runtime-fixed-fft/src/main.rs": "2330847d6cefc487aeaa74fc108a506b7282706dc2d4f9aca8ac6081fd5f5692",
+      "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/RUN_PLAN.json": "87137c12a47547a4dcb9dff762545a1fbc9b873ca1f0e3c48a2fbe07c93a001d"
+    }
+  }
+}

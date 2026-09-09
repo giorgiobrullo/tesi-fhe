@@ -1,0 +1,77 @@
+{
+  "binding": "four string lengths then parameter id, parameter fingerprint, variant id and this canonical JSON byte digest",
+  "core_id_contract": "head-pfks-split333-b22-mean-three-id-winner-threshold.v1",
+  "core_package": "fast_core_mixed_20260906",
+  "core_source_sha256": "4e81e3cb37001cf585628e2415657c00c7ff4fea21afa9b482dc805a72613cf7",
+  "decision": "first minimum true score, inclusive comparison to that winner own threshold; reject0; preserve left-stable ties and no alternate passing candidate",
+  "gallery": {
+    "maximum_domain_width": 4096,
+    "maximum_size": 3374,
+    "minimum_size": 1,
+    "thresholds": "any signed i64 per template, including values outside the validated common score domain; derive uniform/mixed execution from exact templates"
+  },
+  "http_contract": "exact-open-set-id-v8-head-mixed-tfhe17-base15-three-lwe",
+  "http_limits_bytes": {
+    "enrollment": 8192,
+    "key": 335544320,
+    "probe": 65536
+  },
+  "listener": "IPv4 loopback only",
+  "magics": {
+    "client_key": "VRCCK17!",
+    "output": "VRCOUT17",
+    "probe": "VRCOPR17",
+    "server_key": "VRCHD17!"
+  },
+  "old_wire_or_profile_fallback": false,
+  "output": {
+    "base": 15,
+    "decode": "low + 15*middle + 225*high",
+    "delta_log": 59,
+    "digits": 3,
+    "fixed_header_words": 11,
+    "lwe_words": 2049,
+    "mode": 5
+  },
+  "parameters": {
+    "fingerprint_sha256": "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61",
+    "id": "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+    "modulus_switching": "Standard",
+    "preset": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+    "tfhe_rs": "1.7.0"
+  },
+  "public_modes": [
+    "uniform sentinel",
+    "uniform all accept",
+    "uniform all reject",
+    "mixed winner threshold"
+  ],
+  "query": {
+    "coordinates": [
+      -3,
+      3
+    ],
+    "dimension": 512,
+    "fixed_header_words": 9,
+    "full_delta_log": 51,
+    "glwe_size": 2,
+    "low_delta_log": 60,
+    "low_offset": 1024,
+    "maximum_norm2": 1024,
+    "polynomial_size": 2048,
+    "profile": "head51",
+    "profile_id": 2
+  },
+  "schema": "fast-mixed-service-circuit.v1",
+  "scope": "local exact 0/ID library service; synthetic gates required before readiness",
+  "state_binding": [
+    "installed evaluation key SHA256",
+    "gallery epoch",
+    "gallery revision",
+    "gallery size",
+    "input and output native profile",
+    "parameter and circuit identities"
+  ],
+  "variant_id": "head-mixed-b22-tfhe17-base15-three-p16-v1",
+  "wire_version": 8
+}

@@ -25,7 +25,9 @@ use tfhe::{generate_keys, set_server_key, ConfigBuilder, FheBool, FheUint16, Fhe
 const NS: [usize; 5] = [8, 16, 32, 64, 128];
 
 fn lcg(s: &mut u64) -> u64 {
-    *s = s.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407);
+    *s = s
+        .wrapping_mul(6364136223846793005)
+        .wrapping_add(1442695040888963407);
     *s >> 33
 }
 
@@ -114,7 +116,10 @@ macro_rules! bench_tipo {
 fn main() {
     let threads = rayon::current_num_threads();
     println!("thread rayon: {threads}\n");
-    println!("{:>9} | {:>3} | {:>10} | {:>9} | {:>9} | {:>8} | esito", "param", "N", "seq-F32", "seq", "torneo", "+soglia");
+    println!(
+        "{:>9} | {:>3} | {:>10} | {:>9} | {:>9} | {:>8} | esito",
+        "param", "N", "seq-F32", "seq", "torneo", "+soglia"
+    );
 
     // 1) parametri di default (KS-PBS, TUniform, 128 bit)
     let (ck, sk) = generate_keys(ConfigBuilder::default().build());
@@ -124,7 +129,10 @@ fn main() {
     bench_tipo!(FheUint16, u16, "FheUint16", 14, &ck, "def/u16");
 
     // 2) parametri multi-bit (group 3), il PBS per il multicore
-    let cfg = ConfigBuilder::with_custom_parameters(V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64).build();
+    let cfg = ConfigBuilder::with_custom_parameters(
+        V0_11_PARAM_MULTI_BIT_GROUP_3_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64,
+    )
+    .build();
     let (ck, sk) = generate_keys(cfg);
     set_server_key(sk.clone());
     rayon::broadcast(|_| set_server_key(sk.clone()));

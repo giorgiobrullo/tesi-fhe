@@ -1,7 +1,7 @@
-// L'ARGMIN ESATTO sul server, a torneo, con il CIRCUIT BOOTSTRAPPING: il design originale
-// dell'incontro reso praticabile.
+// ARGMIN SPERIMENTALE sul server, a torneo, con CIRCUIT BOOTSTRAPPING. I run domain-safe sono
+// noisy e non autorizzano la parola "esatto" (F52).
 //
-// F45 aveva misurato l'argmin esatto con la matrice di tutti i confronti a coppie: corretto ma
+// F45 aveva misurato nel proprio campione l'argmin con la matrice di confronti a coppie: corretto ma
 // QUADRATICO (3,7 s a N=64, 14,4 s a N=128, 10.816 PBS). Il motivo per cui non si poteva fare un
 // torneo era che il bit di confronto esce come LWE, mentre per SELEZIONARE (il CMUX di TFHE) serve
 // una GGSW. Il ponte fra i due e' il *circuit bootstrapping* (LWE -> GGSW), che tfhe-rs espone
@@ -22,18 +22,20 @@
 // differenza dei punteggi ha i bit bassi pieni di dati.
 // Alla fine si estraggono indice e punteggio del vincitore e si confronta il punteggio con la soglia.
 //
-//   cargo run --release --bin argmin_torneo [--scena FILE] [--probe M]
+//   cargo run --release --bin argmin_torneo [--scena FILE] [--probe M] [--q-probe Q]
 use dyn_stack::{GlobalPodBuffer, PodStack, StackReq};
 use rayon::prelude::*;
 use std::time::Instant;
 use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_add_mul_assign;
-use tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::{add_external_product_assign,
-                                                       add_external_product_assign_scratch, cmux,
-                                                       cmux_scratch, FourierGgswCiphertext};
 use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_mul;
 use tfhe::core_crypto::commons::math::decomposition::DecompositionLevel;
-use tfhe::core_crypto::fft_impl::fft64::crypto::wop_pbs::{circuit_bootstrap_boolean,
-                                                          circuit_bootstrap_boolean_scratch};
+use tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::{
+    add_external_product_assign, add_external_product_assign_scratch, cmux, cmux_scratch,
+    FourierGgswCiphertext,
+};
+use tfhe::core_crypto::fft_impl::fft64::crypto::wop_pbs::{
+    circuit_bootstrap_boolean, circuit_bootstrap_boolean_scratch,
+};
 use tfhe::core_crypto::prelude::*;
 
 // parametri LEGACY_WOPBS_PARAM_MESSAGE_2_CARRY_2_KS_PBS di tfhe-rs (128 bit), gli unici del set
@@ -44,26 +46,61 @@ const N_LWE: usize = 769;
 const STD_LWE: f64 = 0.0000043131554647504185;
 const STD_GLWE: f64 = 0.00000000000000029403601535432533;
 
-struct Scena { dim: usize, g: Vec<Vec<i64>>, bsq: Vec<i64>, probe: Vec<Vec<i64>>, t: i64 }
+struct Scena {
+    dim: usize,
+    g: Vec<Vec<i64>>,
+    bsq: Vec<i64>,
+    probe: Vec<Vec<i64>>,
+    t: i64,
+}
 
 fn carica(path: &str) -> Scena {
     let txt = std::fs::read_to_string(path).expect("manca la scena (esporta_dati.py)");
     let mut r = txt.lines();
-    let h: Vec<i64> = r.next().unwrap().split_whitespace().map(|x| x.parse().unwrap()).collect();
+    let h: Vec<i64> = r
+        .next()
+        .unwrap()
+        .split_whitespace()
+        .map(|x| x.parse().unwrap())
+        .collect();
     let (dim, n, np, t) = (h[0] as usize, h[1] as usize, h[2] as usize, h[3]);
-    let g: Vec<Vec<i64>> = (0..n).map(|_| r.next().unwrap().split_whitespace().map(|x| x.parse().unwrap()).collect()).collect();
-    let probe: Vec<Vec<i64>> = (0..np).map(|_| {
-        let v: Vec<i64> = r.next().unwrap().split_whitespace().map(|x| x.parse().unwrap()).collect();
-        v[1..].to_vec()
-    }).collect();
+    let g: Vec<Vec<i64>> = (0..n)
+        .map(|_| {
+            r.next()
+                .unwrap()
+                .split_whitespace()
+                .map(|x| x.parse().unwrap())
+                .collect()
+        })
+        .collect();
+    let probe: Vec<Vec<i64>> = (0..np)
+        .map(|_| {
+            let v: Vec<i64> = r
+                .next()
+                .unwrap()
+                .split_whitespace()
+                .map(|x| x.parse().unwrap())
+                .collect();
+            v[1..].to_vec()
+        })
+        .collect();
     let bsq = g.iter().map(|v| v.iter().map(|x| x * x).sum()).collect();
-    Scena { dim, g, bsq, probe, t }
+    Scena {
+        dim,
+        g,
+        bsq,
+        probe,
+        t,
+    }
 }
 
 /// GGSW di un messaggio polinomiale (vedi F51 e galleria_cifrata.rs).
 fn ggsw_polinomiale<Gen: ByteRandomGenerator>(
-    sk: &GlweSecretKeyOwned<u64>, mu: &Polynomial<Vec<u64>>, base_log: DecompositionBaseLog,
-    livelli: DecompositionLevelCount, rumore: DynamicDistribution<u64>,
+    sk: &GlweSecretKeyOwned<u64>,
+    mu: &Polynomial<Vec<u64>>,
+    base_log: DecompositionBaseLog,
+    livelli: DecompositionLevelCount,
+    rumore: DynamicDistribution<u64>,
     gen: &mut EncryptionRandomGenerator<Gen>,
 ) -> GgswCiphertextOwned<u64> {
     let (poly, k) = (sk.polynomial_size(), sk.glwe_dimension());
@@ -81,10 +118,14 @@ fn ggsw_polinomiale<Gen: ByteRandomGenerator>(
                     let sp = chiavi.get(riga);
                     let mut prod = Polynomial::new(0u64, poly);
                     polynomial_wrapping_mul(&mut prod, &sp, mu);
-                    for (b, pv) in corpo.as_mut().iter_mut().zip(prod.as_ref()) { *b = pv.wrapping_mul(fattore); }
+                    for (b, pv) in corpo.as_mut().iter_mut().zip(prod.as_ref()) {
+                        *b = pv.wrapping_mul(fattore);
+                    }
                 } else {
                     let f = fattore.wrapping_neg();
-                    for (b, mv) in corpo.as_mut().iter_mut().zip(mu.as_ref()) { *b = mv.wrapping_mul(f); }
+                    for (b, mv) in corpo.as_mut().iter_mut().zip(mu.as_ref()) {
+                        *b = mv.wrapping_mul(f);
+                    }
                 }
             }
             encrypt_glwe_ciphertext_assign(sk, &mut glwe, rumore, gen);
@@ -95,27 +136,71 @@ fn ggsw_polinomiale<Gen: ByteRandomGenerator>(
 
 fn main() {
     let a: Vec<String> = std::env::args().collect();
-    let scena_path = a.iter().position(|x| x == "--scena").map(|i| a[i + 1].clone())
+    let scena_path = a
+        .iter()
+        .position(|x| x == "--scena")
+        .map(|i| a[i + 1].clone())
         .unwrap_or(concat!(env!("CARGO_MANIFEST_DIR"), "/results/scena_reale_q3.txt").to_string());
-    let n_probe: usize = a.iter().position(|x| x == "--probe").map(|i| a[i + 1].parse().unwrap()).unwrap_or(8);
-    let cifrata = a.iter().any(|x| x == "--cifrata");   // galleria CIFRATA (F51) invece che in chiaro
+    let n_probe: usize = a
+        .iter()
+        .position(|x| x == "--probe")
+        .map(|i| a[i + 1].parse().unwrap())
+        .unwrap_or(8);
+    let cifrata = a.iter().any(|x| x == "--cifrata"); // galleria CIFRATA (F51) invece che in chiaro
     let sc = carica(&scena_path);
 
-    // il punteggio sta al coefficiente dim-1, l'indice al coefficiente 0: due Delta indipendenti.
-    // Delta ONESTO (F56): il 52 fisso lasciava un precipizio di wrap a 2^63/2^52 = 2048 mentre il
-    // bound indipendente dal probe di questa scena vale 3646 -> un probe legale poteva far
-    // avvolgere il punteggio, cioe' la stessa vulnerabilita' che F56 ha chiuso nel varco era
-    // rimasta viva qui. --log-ds L lo forza (per riprodurre le misure vecchie).
-    let q_max = sc.g.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap()
-        .max(sc.probe.iter().flat_map(|v| v.iter()).map(|x| x.abs()).max().unwrap());
-    let l1_max = sc.g.iter().map(|v| v.iter().map(|x| x.abs()).sum::<i64>()).max().unwrap();
-    let bound_onesto = 2 * q_max * l1_max + sc.bsq.iter().cloned().max().unwrap() + sc.t.abs();
-    let log_ds = a.iter().position(|x| x == "--log-ds").map(|i| a[i + 1].parse().unwrap())
+    // Il punteggio sta al coefficiente dim-1, l'indice al coefficiente 0: due Delta indipendenti.
+    // Il torneo confronta s_i-s_j, quindi NON basta il bound di |s_i-T| usato dal varco. Per ogni
+    // probe con |a_k|<=q serve anche
+    //   |s_i-s_j| <= | ||g_i||^2-||g_j||^2 | + 2q ||g_i-g_j||_1.
+    // --q-probe rende esplicito il dominio promesso dal protocollo; il default 3 riproduce le scene
+    // q3. --log-ds L resta soltanto per riprodurre le misure storiche non domain-safe.
+    let q_probe: i64 = a
+        .iter()
+        .position(|x| x == "--q-probe")
+        .map(|i| a[i + 1].parse().unwrap())
+        .unwrap_or(3);
+    assert!(q_probe >= 0, "--q-probe deve essere non negativo");
+    let q_osservato = sc
+        .probe
+        .iter()
+        .flat_map(|probe| probe.iter())
+        .map(|x| x.abs())
+        .max()
+        .unwrap_or(0);
+    assert!(
+        q_osservato <= q_probe,
+        "la scena contiene |probe|={q_osservato}, oltre --q-probe={q_probe}: il bound e Delta sarebbero invalidi"
+    );
+    let l1_max =
+        sc.g.iter()
+            .map(|v| v.iter().map(|x| x.abs()).sum::<i64>())
+            .max()
+            .unwrap();
+    let bound_soglia = 2 * q_probe * l1_max + sc.bsq.iter().cloned().max().unwrap() + sc.t.abs();
+    let bound_coppie = (0..sc.g.len())
+        .into_par_iter()
+        .map(|i| {
+            ((i + 1)..sc.g.len())
+                .map(|j| {
+                    let l1_diff: i64 = (0..sc.dim).map(|k| (sc.g[i][k] - sc.g[j][k]).abs()).sum();
+                    (sc.bsq[i] - sc.bsq[j]).abs() + 2 * q_probe * l1_diff
+                })
+                .max()
+                .unwrap_or(0)
+        })
+        .max()
+        .unwrap_or(0);
+    let bound_onesto = bound_soglia.max(bound_coppie);
+    let log_ds = a
+        .iter()
+        .position(|x| x == "--log-ds")
+        .map(|i| a[i + 1].parse().unwrap())
         .unwrap_or_else(|| 63 - (64 - (bound_onesto as u64).leading_zeros()));
-    println!("Delta del punteggio: bound onesto {bound_onesto} -> 2^{log_ds} (precipizio di wrap {})",
-             1u64 << (63 - log_ds));
+    println!("Delta del punteggio: q_probe={q_probe}, bound soglia {bound_soglia}, bound coppie {bound_coppie}, usato {bound_onesto} -> 2^{log_ds} (raggio sicuro {})",
+             (1u64 << (63 - log_ds)) - 1);
     let ds = 1u64 << log_ds;
-    let log_di = 56u32;                 // indice (<= 1023)
+    let log_di = 56u32; // indice (<= 1023)
     let di = 1u64 << log_di;
 
     let modulus = CiphertextModulus::<u64>::new_native();
@@ -130,119 +215,229 @@ fn main() {
     let mut sec = SecretRandomGenerator::<DefaultRandomGenerator>::new(seeder.seed());
     let mut gen = EncryptionRandomGenerator::<DefaultRandomGenerator>::new(seeder.seed(), seeder);
 
-    println!("Argmin ESATTO a torneo con circuit bootstrapping — N_poly={N_POLY} k={K} n={N_LWE}");
+    println!("Argmin a torneo con circuit bootstrapping — N_poly={N_POLY} k={K} n={N_LWE}");
     let t0 = Instant::now();
     let glwe_sk = allocate_and_generate_new_binary_glwe_secret_key(glwe_dim, poly, &mut sec);
     let lwe_sk = allocate_and_generate_new_binary_lwe_secret_key(LweDimension(N_LWE), &mut sec);
     let big_sk = glwe_sk.as_lwe_secret_key();
     let bsk = par_allocate_and_generate_new_lwe_bootstrap_key(
-        &lwe_sk, &glwe_sk, DecompositionBaseLog(15), DecompositionLevelCount(2), noise_glwe, modulus, &mut gen);
-    let mut fbsk = FourierLweBootstrapKey::new(bsk.input_lwe_dimension(), bsk.glwe_size(),
-                                               bsk.polynomial_size(), bsk.decomposition_base_log(),
-                                               bsk.decomposition_level_count());
+        &lwe_sk,
+        &glwe_sk,
+        DecompositionBaseLog(15),
+        DecompositionLevelCount(2),
+        noise_glwe,
+        modulus,
+        &mut gen,
+    );
+    let mut fbsk = FourierLweBootstrapKey::new(
+        bsk.input_lwe_dimension(),
+        bsk.glwe_size(),
+        bsk.polynomial_size(),
+        bsk.decomposition_base_log(),
+        bsk.decomposition_level_count(),
+    );
     let fft_owned = Fft::new(poly);
     let fft = fft_owned.as_view();
-    fbsk.as_mut_view().par_fill_with_forward_fourier(bsk.as_view(), fft);
+    fbsk.as_mut_view()
+        .par_fill_with_forward_fourier(bsk.as_view(), fft);
     let ksk = allocate_and_generate_new_lwe_keyswitch_key(
-        &big_sk, &lwe_sk, DecompositionBaseLog(6), DecompositionLevelCount(2), noise_lwe, modulus, &mut gen);
+        &big_sk,
+        &lwe_sk,
+        DecompositionBaseLog(6),
+        DecompositionLevelCount(2),
+        noise_lwe,
+        modulus,
+        &mut gen,
+    );
     let pfpksk = par_allocate_and_generate_new_circuit_bootstrap_lwe_pfpksk_list(
-        &big_sk, &glwe_sk, DecompositionBaseLog(15), DecompositionLevelCount(2), noise_glwe, modulus, &mut gen);
-    println!("chiavi generate in {:.1}s (bsk + ksk + pfpksk del circuit bootstrap)\n", t0.elapsed().as_secs_f64());
+        &big_sk,
+        &glwe_sk,
+        DecompositionBaseLog(15),
+        DecompositionLevelCount(2),
+        noise_glwe,
+        modulus,
+        &mut gen,
+    );
+    println!(
+        "chiavi generate in {:.1}s (bsk + ksk + pfpksk del circuit bootstrap)\n",
+        t0.elapsed().as_secs_f64()
+    );
 
     // --cbs BASE LIVELLI: la decomposizione della GGSW prodotta dal circuit bootstrap. Ogni livello
     // costa un PBS, quindi meno livelli = torneo piu' veloce, ma GGSW piu' rumorosa nel CMUX.
-    let cbs_b = a.iter().position(|x| x == "--cbs").map(|i| a[i + 1].parse().unwrap()).unwrap_or(5usize);
-    let cbs_l = a.iter().position(|x| x == "--cbs").map(|i| a[i + 2].parse().unwrap()).unwrap_or(3usize);
+    let cbs_b = a
+        .iter()
+        .position(|x| x == "--cbs")
+        .map(|i| a[i + 1].parse().unwrap())
+        .unwrap_or(5usize);
+    let cbs_l = a
+        .iter()
+        .position(|x| x == "--cbs")
+        .map(|i| a[i + 2].parse().unwrap())
+        .unwrap_or(3usize);
     let (cbs_bl, cbs_lv) = (DecompositionBaseLog(cbs_b), DecompositionLevelCount(cbs_l));
-    println!("circuit bootstrap: gadget 2^{cbs_b} x {cbs_l} livelli ({} PBS per confronto)\n", cbs_l + 1);
+    println!(
+        "circuit bootstrap: gadget 2^{cbs_b} x {cbs_l} livelli ({} PBS per confronto)\n",
+        cbs_l + 1
+    );
     // accumulatore costante -2^62: il PBS lo restituisce con segno opposto a seconda della meta' del
     // toro in cui cade la fase, quindi +2^62 dopo la somma di 2^62 -> bit 1 in cima
     let acc_segno = allocate_and_trivially_encrypt_new_glwe_ciphertext(
-        glwe_size, &PlaintextList::new((1u64 << 62).wrapping_neg(), PlaintextCount(N_POLY)), modulus);
+        glwe_size,
+        &PlaintextList::new((1u64 << 62).wrapping_neg(), PlaintextCount(N_POLY)),
+        modulus,
+    );
     let big_size = LweSize(K * N_POLY + 1);
     let small_size = LweSize(N_LWE + 1);
 
     // galleria CIFRATA: ogni template diventa una GGSW in dominio di Fourier (una volta, all'iscrizione)
     let (gg_bl, gg_lv) = (DecompositionBaseLog(10), DecompositionLevelCount(3));
-    let galleria: Vec<FourierGgswCiphertext<aligned_vec::ABox<[tfhe::core_crypto::fft_impl::fft64::c64]>>> = if cifrata {
+    let galleria: Vec<
+        FourierGgswCiphertext<aligned_vec::ABox<[tfhe::core_crypto::fft_impl::fft64::c64]>>,
+    > = if cifrata {
         let mut req = GlobalPodBuffer::new(
-            tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::fill_with_forward_fourier_scratch(fft).unwrap());
+            tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::fill_with_forward_fourier_scratch(
+                fft,
+            )
+            .unwrap(),
+        );
         let stack = PodStack::new(&mut req);
-        (0..sc.g.len()).map(|i| {
-            let mut pol = vec![0u64; N_POLY];
-            for j in 0..sc.dim { pol[sc.dim - 1 - j] = (-2 * sc.g[i][j]) as u64; }
-            let g = ggsw_polinomiale(&glwe_sk, &Polynomial::from_container(pol), gg_bl, gg_lv, noise_glwe, &mut gen);
-            let mut fg = FourierGgswCiphertext::new(glwe_size, poly, gg_bl, gg_lv);
-            fg.as_mut_view().fill_with_forward_fourier(g.as_view(), fft, stack);
-            fg
-        }).collect()
-    } else { Vec::new() };
-    if cifrata { println!("galleria CIFRATA (GGSW 2^10x3): {} MB\n",
-        galleria.len() * galleria[0].as_view().data().len() * 16 / (1 << 20)); }
+        (0..sc.g.len())
+            .map(|i| {
+                let mut pol = vec![0u64; N_POLY];
+                for j in 0..sc.dim {
+                    pol[sc.dim - 1 - j] = (-2 * sc.g[i][j]) as u64;
+                }
+                let g = ggsw_polinomiale(
+                    &glwe_sk,
+                    &Polynomial::from_container(pol),
+                    gg_bl,
+                    gg_lv,
+                    noise_glwe,
+                    &mut gen,
+                );
+                let mut fg = FourierGgswCiphertext::new(glwe_size, poly, gg_bl, gg_lv);
+                fg.as_mut_view()
+                    .fill_with_forward_fourier(g.as_view(), fft, stack);
+                fg
+            })
+            .collect()
+    } else {
+        Vec::new()
+    };
+    if cifrata {
+        println!(
+            "galleria CIFRATA (GGSW 2^10x3): {} MB\n",
+            galleria.len() * galleria[0].as_view().data().len() * 16 / (1 << 20)
+        );
+    }
 
     // in Mondo 2 anche ||g_i||^2 e' cifrato: un GLWE per iscritto, preparato all'iscrizione
     let costanti: Vec<GlweCiphertextOwned<u64>> = if cifrata {
-        (0..sc.g.len()).map(|i| {
-            let mut c = vec![0u64; N_POLY];
-            c[sc.dim - 1] = (sc.bsq[i] as u64).wrapping_mul(ds);
-            let mut g = GlweCiphertext::new(0u64, glwe_size, poly, modulus);
-            encrypt_glwe_ciphertext(&glwe_sk, &mut g, &PlaintextList::from_container(c), noise_glwe, &mut gen);
-            g
-        }).collect()
-    } else { Vec::new() };
+        (0..sc.g.len())
+            .map(|i| {
+                let mut c = vec![0u64; N_POLY];
+                c[sc.dim - 1] = (sc.bsq[i] as u64).wrapping_mul(ds);
+                let mut g = GlweCiphertext::new(0u64, glwe_size, poly, modulus);
+                encrypt_glwe_ciphertext(
+                    &glwe_sk,
+                    &mut g,
+                    &PlaintextList::from_container(c),
+                    noise_glwe,
+                    &mut gen,
+                );
+                g
+            })
+            .collect()
+    } else {
+        Vec::new()
+    };
 
-    println!("{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | {}",
-             "N", "dot", "torneo", "totale", "cfr", "indice", "divario", "sotto", "rum.", "costo", "F45");
-    println!("{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | {}",
-             "", "", "", "", "", "esatto", ">20", "soglia", "sul s", "errore", "(N^2)");
+    println!(
+        "{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | F45",
+        "N", "dot", "torneo", "totale", "cfr", "indice", "divario", "sotto", "rum.", "costo"
+    );
+    println!(
+        "{:>5} | {:>9} | {:>9} | {:>9} | {:>4} | {:>6} | {:>6} | {:>6} | {:>4} | {:>5} | (N^2)",
+        "", "", "", "", "", "esatto", ">20", "soglia", "sul s", "errore"
+    );
     for &n in &[8usize, 16, 32, 64, 128] {
-        if n > sc.g.len() { continue; }
-        let (mut t_dot, mut t_tor, mut ok, mut ok_s) = (0f64, 0f64, 0usize, 0usize);
-        let mut fuori = 0usize;   // indici decifrati fuori range (decomposizione CB troppo grossolana)
+        if n > sc.g.len() {
+            continue;
+        }
+        let (mut t_dot, mut t_tor, mut t_thr, mut ok, mut ok_s, mut ok_thr_circuit, mut ok_thr_e2e) =
+            (0f64, 0f64, 0f64, 0usize, 0usize, 0usize, 0usize);
+        let mut fuori = 0usize; // indici decifrati fuori range (decomposizione CB troppo grossolana)
         let mut rumore: Vec<f64> = Vec::new();
         let mut sbagliati: Vec<(f64, f64)> = Vec::new();
-        let (mut facili, mut ok_facili, mut accettati, mut ok_accettati) = (0usize, 0usize, 0usize, 0usize);
+        let (mut facili, mut ok_facili, mut accettati, mut ok_accettati) =
+            (0usize, 0usize, 0usize, 0usize);
         for p in sc.probe.iter().take(n_probe) {
             // ---- client: probe come GLWE (encoding polinomiale)
             let mut coeff = vec![0u64; N_POLY];
-            for (j, &v) in p.iter().enumerate() { coeff[j] = (v as u64).wrapping_mul(ds); }
+            for (j, &v) in p.iter().enumerate() {
+                coeff[j] = (v as u64).wrapping_mul(ds);
+            }
             let mut glwe = GlweCiphertext::new(0u64, glwe_size, poly, modulus);
-            encrypt_glwe_ciphertext(&glwe_sk, &mut glwe, &PlaintextList::from_container(coeff), noise_glwe, &mut gen);
+            encrypt_glwe_ciphertext(
+                &glwe_sk,
+                &mut glwe,
+                &PlaintextList::from_container(coeff),
+                noise_glwe,
+                &mut gen,
+            );
 
             // ---- server: N candidati, ognuno un GLWE con punteggio (coeff dim-1) e indice (coeff 0)
             let t0 = Instant::now();
-            let mut cand: Vec<GlweCiphertextOwned<u64>> = (0..n).into_par_iter().map(|i| {
-                let mut pol = vec![0u64; N_POLY];
-                for j in 0..sc.dim { pol[sc.dim - 1 - j] = (-2 * sc.g[i][j]) as u64; }
-                let pol = Polynomial::from_container(pol);
-                let _ = &pol;
-                let mut out = GlweCiphertext::new(0u64, glwe_size, poly, modulus);
-                if cifrata {
-                    // Mondo 2: prodotto ESTERNO con la GGSW del template (F51), leveled
-                    let mut req = GlobalPodBuffer::new(
-                        add_external_product_assign_scratch::<u64>(glwe_size, poly, fft).unwrap());
-                    let stack = PodStack::new(&mut req);
-                    add_external_product_assign(out.as_mut_view(), galleria[i].as_view(), glwe.as_view(), fft, stack);
-                } else {
-                    for (mut o, c) in out.as_mut_polynomial_list().iter_mut().zip(glwe.as_polynomial_list().iter()) {
-                        polynomial_wrapping_add_mul_assign(&mut o, &c, &pol);
+            let mut cand: Vec<GlweCiphertextOwned<u64>> = (0..n)
+                .into_par_iter()
+                .map(|i| {
+                    let mut pol = vec![0u64; N_POLY];
+                    for j in 0..sc.dim {
+                        pol[sc.dim - 1 - j] = (-2 * sc.g[i][j]) as u64;
                     }
-                }
-                if cifrata {
-                    // Mondo 2: ||g_i||^2 dipende dal template, quindi NON puo' stare in chiaro sul
-                    // server: arriva cifrato dal client all'iscrizione (un GLWE, sommato: gratis).
-                    glwe_ciphertext_add_assign(&mut out, &costanti[i]);
-                } else {
+                    let pol = Polynomial::from_container(pol);
+                    let _ = &pol;
+                    let mut out = GlweCiphertext::new(0u64, glwe_size, poly, modulus);
+                    if cifrata {
+                        // Mondo 2: prodotto ESTERNO con la GGSW del template (F51), leveled
+                        let mut req = GlobalPodBuffer::new(
+                            add_external_product_assign_scratch::<u64>(glwe_size, poly, fft)
+                                .unwrap(),
+                        );
+                        let stack = PodStack::new(&mut req);
+                        add_external_product_assign(
+                            out.as_mut_view(),
+                            galleria[i].as_view(),
+                            glwe.as_view(),
+                            fft,
+                            stack,
+                        );
+                    } else {
+                        for (mut o, c) in out
+                            .as_mut_polynomial_list()
+                            .iter_mut()
+                            .zip(glwe.as_polynomial_list().iter())
+                        {
+                            polynomial_wrapping_add_mul_assign(&mut o, &c, &pol);
+                        }
+                    }
+                    if cifrata {
+                        // Mondo 2: ||g_i||^2 dipende dal template, quindi NON puo' stare in chiaro sul
+                        // server: arriva cifrato dal client all'iscrizione (un GLWE, sommato: gratis).
+                        glwe_ciphertext_add_assign(&mut out, &costanti[i]);
+                    } else {
+                        let mut corpo = out.get_mut_body();
+                        corpo.as_mut()[sc.dim - 1] = corpo.as_mut()[sc.dim - 1]
+                            .wrapping_add((sc.bsq[i] as u64).wrapping_mul(ds));
+                    }
+                    // l'indice e' la numerazione del server, non un dato dell'iscritto: puo' stare in chiaro
                     let mut corpo = out.get_mut_body();
-                    corpo.as_mut()[sc.dim - 1] =
-                        corpo.as_mut()[sc.dim - 1].wrapping_add((sc.bsq[i] as u64).wrapping_mul(ds));
-                }
-                // l'indice e' la numerazione del server, non un dato dell'iscritto: puo' stare in chiaro
-                let mut corpo = out.get_mut_body();
-                corpo.as_mut()[N_POLY - 1] =
-                    corpo.as_mut()[N_POLY - 1].wrapping_add((i as u64).wrapping_mul(di));
-                out
-            }).collect();
+                    corpo.as_mut()[N_POLY - 1] =
+                        corpo.as_mut()[N_POLY - 1].wrapping_add((i as u64).wrapping_mul(di));
+                    out
+                })
+                .collect();
             t_dot += t0.elapsed().as_secs_f64();
 
             // ---- torneo: log2(N) livelli, i confronti di ogni livello in parallelo
@@ -298,39 +493,106 @@ fn main() {
             let vinc = &cand[0];
             let mut xi = LweCiphertext::new(0u64, big_size, modulus);
             extract_lwe_sample_from_glwe_ciphertext(vinc, &mut xi, MonomialDegree(N_POLY - 1));
-            let idx = (decrypt_lwe_ciphertext(&big_sk, &xi).0.wrapping_add(di >> 1) >> log_di) as usize;
+            let idx =
+                (decrypt_lwe_ciphertext(&big_sk, &xi).0.wrapping_add(di >> 1) >> log_di) as usize;
             let mut xs = LweCiphertext::new(0u64, big_size, modulus);
             extract_lwe_sample_from_glwe_ciphertext(vinc, &mut xs, MonomialDegree(sc.dim - 1));
 
+            // Soglia FINALE sul vincitore: una sola PBS aggiuntiva. Era assente dalle misure
+            // precedenti, che quindi provavano l'indice ma non l'open-set completo.
+            let t0 = Instant::now();
+            let mut xt = xs.clone();
+            lwe_ciphertext_plaintext_sub_assign(
+                &mut xt,
+                Plaintext((sc.t as u64).wrapping_mul(ds).wrapping_add(ds >> 1)),
+            );
+            let mut xt_ks = LweCiphertext::new(0u64, small_size, modulus);
+            keyswitch_lwe_ciphertext(&ksk, &xt, &mut xt_ks);
+            let mut match_bit = LweCiphertext::new(0u64, big_size, modulus);
+            programmable_bootstrap_lwe_ciphertext(&xt_ks, &mut match_bit, &acc_segno, &fbsk);
+            lwe_ciphertext_plaintext_add_assign(&mut match_bit, Plaintext(1u64 << 62));
+            t_thr += t0.elapsed().as_secs_f64();
+            let match_dec = (decrypt_lwe_ciphertext(&big_sk, &match_bit).0 >> 63) & 1;
+
             // atteso in chiaro (primo minimo)
-            let s: Vec<i64> = (0..n).map(|i| sc.bsq[i] - 2 * (0..sc.dim).map(|j| sc.g[i][j] * p[j]).sum::<i64>()).collect();
+            let s: Vec<i64> = (0..n)
+                .map(|i| sc.bsq[i] - 2 * (0..sc.dim).map(|j| sc.g[i][j] * p[j]).sum::<i64>())
+                .collect();
             let mut best = 0usize;
-            for i in 1..n { if s[i] < s[best] { best = i; } }
+            for i in 1..n {
+                if s[i] < s[best] {
+                    best = i;
+                }
+            }
             // divario fra il minimo e il secondo: e' lui a dire se il confronto e' "facile"
-            let mut ord = s.clone(); ord.sort();
+            let mut ord = s.clone();
+            ord.sort();
             let divario = if n > 1 { (ord[1] - ord[0]) as f64 } else { 1e9 };
             // l'indice decifrato puo' finire FUORI RANGE se la decomposizione del circuit
             // bootstrap e' troppo grossolana: va contato come errore, non fatto esplodere
-            if idx >= n { fuori += 1; sbagliati.push((divario, f64::NAN)); }
-            else if idx == best { ok += 1; } else { sbagliati.push((divario, (s[idx] - s[best]) as f64)); }
-            if divario > 20.0 { facili += 1; if idx == best && idx < n { ok_facili += 1; } }
-            if s[best] <= sc.t { accettati += 1; if idx == best && idx < n { ok_accettati += 1; } }
+            if idx >= n {
+                fuori += 1;
+                sbagliati.push((divario, f64::NAN));
+            } else if idx == best {
+                ok += 1;
+            } else {
+                sbagliati.push((divario, (s[idx] - s[best]) as f64));
+            }
+            if divario > 20.0 {
+                facili += 1;
+                if idx == best && idx < n {
+                    ok_facili += 1;
+                }
+            }
+            if s[best] <= sc.t {
+                accettati += 1;
+                if idx == best && idx < n {
+                    ok_accettati += 1;
+                }
+            }
+            if idx < n && match_dec == u64::from(s[idx] <= sc.t) {
+                ok_thr_circuit += 1;
+            }
+            if match_dec == u64::from(s[best] <= sc.t) {
+                ok_thr_e2e += 1;
+            }
             // quanto rumore ha accumulato il punteggio del vincitore attraverso i log N CMUX?
-            let e = decrypt_lwe_ciphertext(&big_sk, &xs).0
-                .wrapping_sub((s[best] as u64).wrapping_mul(ds)) as i64 as f64 / ds as f64;
-            rumore.push(e.abs());
-            if e.abs() < 0.5 { ok_s += 1; }
+            if idx < n {
+                let e = decrypt_lwe_ciphertext(&big_sk, &xs)
+                    .0
+                    .wrapping_sub((s[idx] as u64).wrapping_mul(ds)) as i64
+                    as f64
+                    / ds as f64;
+                rumore.push(e.abs());
+                if e.abs() < 0.5 {
+                    ok_s += 1;
+                }
+            }
             let _ = conf;
         }
         let np = sc.probe.len().min(n_probe) as f64;
-        let f45 = match n { 8 => "0,09 s", 16 => "0,29 s", 32 => "0,97 s", 64 => "3,66 s", 128 => "14,4 s", _ => "-" };
-        let med = if sbagliati.is_empty() { 0.0 } else {
-            sbagliati.iter().map(|x| x.1).sum::<f64>() / sbagliati.len() as f64 };
+        let f45 = match n {
+            8 => "0,09 s",
+            16 => "0,29 s",
+            32 => "0,97 s",
+            64 => "3,66 s",
+            128 => "14,4 s",
+            _ => "-",
+        };
+        let med = if sbagliati.is_empty() {
+            0.0
+        } else {
+            sbagliati.iter().map(|x| x.1).sum::<f64>() / sbagliati.len() as f64
+        };
         println!("{:>5} | {:>7.3} s | {:>7.3} s | {:>7.3} s | {:>4} | {:>2}/{:<3} | {:>2}/{:<3} | {:>2}/{:<3} | {:>4.1} | {:>5.1} | {}",
-                 n, t_dot / np, t_tor / np, (t_dot + t_tor) / np, n - 1, ok, np as usize,
+                 n, t_dot / np, t_tor / np, (t_dot + t_tor + t_thr) / np, n - 1, ok, np as usize,
                  ok_facili, facili, ok_accettati, accettati,
-                 rumore.iter().sum::<f64>() / rumore.len() as f64, med, f45);
-        let _ = ok_s;
+                 rumore.iter().sum::<f64>() / rumore.len().max(1) as f64, med, f45);
+        println!("      soglia finale: circuito {}/{}; end-to-end {}/{}; punteggio entro 0,5: {}/{}; indici fuori range {}; {:.3} s/query (inclusa nel totale)",
+                 ok_thr_circuit, np as usize, ok_thr_e2e, np as usize, ok_s, np as usize - fuori,
+                 fuori, t_thr / np);
     }
-    println!("\n(l'ultima colonna e' l'argmin esatto a matrice di F45, quadratico, sulla stessa scena)");
+    println!(
+        "\n(l'ultima colonna e' l'argmin esatto a matrice di F45, quadratico, sulla stessa scena)"
+    );
 }

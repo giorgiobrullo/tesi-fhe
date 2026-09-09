@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varco · nuova demo ottimizzata</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:#fff;color:#111;display:flex;align-items:center;
+       justify-content:center;font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  main{width:380px;max-width:calc(100vw - 32px);text-align:center;padding:24px 0}
+  .intro{margin:0 0 15px;color:#777;font-size:12px}
+  .vetro{width:100%;aspect-ratio:1;position:relative;overflow:hidden;background:#f3f3f3;border:1px solid #e4e4e4}
+  video{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
+  #camera{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap}
+  button{background:#111;border:0;color:#fff;padding:12px 24px;font:inherit;font-size:14px;cursor:pointer}
+  button:hover:not(:disabled){background:#333}
+  button:disabled{background:#c9c9c9;cursor:default}
+  #apri{margin-top:20px}
+  .registrazione{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:24px}
+  #registra{padding:8px 0;background:none;color:#666;font-size:12px}
+  #registra:disabled{color:#bbb}
+  input{width:110px;border:0;border-bottom:1px solid #ddd;font:inherit;font-size:13px;padding:5px;text-align:center}
+  .esito{margin-top:24px;min-height:55px}
+  .esito b{display:block;font-size:20px;font-weight:500}
+  .esito span{display:block;font-size:13px;color:#777;margin-top:5px}
+  .si b{color:#15803d}.no b{color:#b91c1c}
+  .nota{margin-top:16px;min-height:32px;font:11px/1.5 ui-monospace,Menlo,monospace;color:#999}
+  .altro,.limite{margin-top:20px;font-size:11px;color:#888}
+  a{color:#777;text-underline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+  <p class="intro">Nuova demo ottimizzata. Attiva la telecamera, registrati e prova il varco.</p>
+  <div class="vetro">
+    <video id="video" autoplay playsinline muted aria-label="Anteprima della telecamera"></video>
+    <button id="camera">Attiva telecamera</button>
+  </div>
+  <button id="apri" disabled>Apri il varco</button>
+  <div class="registrazione">
+    <button id="registra" disabled>Registrami come</button>
+    <input id="nome" aria-label="Il tuo nome" value="io" maxlength="80">
+  </div>
+  <div id="esito" class="esito" aria-live="polite"></div>
+  <div id="nota" class="nota"></div>
+  <div id="galleria" class="limite">Collegamento al servizio…</div>
+  <div class="altro"><a id="senza" href="#">senza telecamera</a> · <a href="http://127.0.0.1:8003/" target="_blank" rel="noopener">demo precedente</a></div>
+  <div class="limite">Demo locale con confronto cifrato. La registrazione resta in questa galleria fino al riavvio; i probe di verifica raggiungono il server cifrati.</div>
+</main>
+<script>
+function select(selector) { return document.querySelector(selector); }
+let config = null;
+let ready = false;
+let gallerySize = 0;
+let cameraReady = false;
+let cameraStarting = false;
+let busy = false;
+
+function updateButtons() {
+  select("#apri").disabled = !ready || !cameraReady || !gallerySize || busy;
+  select("#registra").disabled = !ready || !cameraReady || busy;
+  select("#camera").disabled = busy || cameraStarting;
+  select("#nome").disabled = busy;
+}
+
+function showResult(style, title, detail = "") {
+  const container = select("#esito");
+  const heading = document.createElement("b");
+  const description = document.createElement("span");
+  container.className = "esito " + style;
+  heading.textContent = title;
+  description.textContent = detail;
+  container.replaceChildren(heading, description);
+}
+
+async function refreshState() {
+  if (busy) return;
+  try {
+    const response = await fetch("/api/stato");
+    const state = await response.json();
+    if (!response.ok || !state.client || !state.server) throw new Error("Servizio non disponibile");
+    config = state.client.config;
+    ready = state.client.pronto === true;
+    gallerySize = state.server.iscritti;
+    select("#galleria").textContent = `${gallerySize} iscritti in galleria · ${config.capacita_galleria - gallerySize} posti disponibili`;
+  } catch (error) {
+    ready = false;
+    select("#galleria").textContent = "Servizio non raggiungibile";
+  }
+  updateButtons();
+}
+
+async function startCamera() {
+  if (cameraStarting || cameraReady) return;
+  cameraStarting = true;
+  try {
+    if (!navigator.mediaDevices?.getUserMedia) throw new Error("Questo browser non offre accesso alla telecamera. Apri questa pagina in Chrome o Safari.");
+    select("#camera").disabled = true;
+    const stream = await navigator.mediaDevices.getUserMedia({video:{width:640,height:480},audio:false});
+    const video = select("#video");
+    video.srcObject = stream;
+    await video.play();
+    cameraReady = true;
+    select("#camera").hidden = true;
+    select("#nota").textContent = "Inquadra il viso, scrivi il tuo nome e premi «Registrami come».";
+  } catch (error) {
+    cameraReady = false;
+    const message = error.name === "NotAllowedError"
+      ? "Consenti l’accesso alla telecamera nel browser, poi riprova."
+      : error.message;
+    showResult("no", "Telecamera non disponibile", message);
+  }
+  cameraStarting = false;
+  updateButtons();
+}
+
+async function captureFrames(count) {
+  const video = select("#video");
+  if (!cameraReady || !video.videoWidth) throw new Error("Attiva prima la telecamera.");
+  const canvas = document.createElement("canvas");
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const context = canvas.getContext("2d");
+  const frames = [];
+  for (let i = 0; i < count; i++) {
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    frames.push(canvas.toDataURL("image/jpeg", 0.92));
+    if (i + 1 < count) await new Promise(function(resolve) { setTimeout(resolve, 240); });
+  }
+  return frames;
+}
+
+async function api(path, body) {
+  const response = await fetch(path, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.errore || "Operazione non riuscita");
+  return result;
+}
+
+async function run(title, action) {
+  if (!ready || busy) return;
+  busy = true;
+  updateButtons();
+  showResult("", title);
+  select("#nota").textContent = "";
+  try { await action(); }
+  catch (error) { showResult("no", "Errore", error.message); }
+  finally {
+    busy = false;
+    await refreshState();
+  }
+}
+
+function showVerification(result) {
+  if (result.esito === "aperto") showResult("si", "Aperto", result.identita);
+  else showResult("no", "Negato", "Identità non rilasciata");
+  select("#nota").textContent = `${Math.round(result.tempi_ms.endpoint)} ms · ${Math.round(result.byte.probe_cifrato / 1024)} KB cifrati · confronto completato`;
+}
+
+select("#camera").addEventListener("click", startCamera);
+select("#registra").addEventListener("click", function() {
+  const name = select("#nome").value.trim();
+  if (!name || /[\r\n\t]/.test(name)) {
+    showResult("no", "Inserisci un nome", "Usa un nome su una sola riga.");
+    return;
+  }
+  run("Registrazione in corso…", async function() {
+    await api("/api/iscrivi", {nome:name, frames:await captureFrames(config.k_galleria)});
+    showResult("si", "Registrato", name);
+    select("#nota").textContent = "Ora premi «Apri il varco» per verificare il tuo volto.";
+  });
+});
+select("#apri").addEventListener("click", function() {
+  run("Verifica cifrata in corso…", async function() {
+    showVerification(await api("/api/verifica", {frames:await captureFrames(config.k_probe)}));
+  });
+});
+select("#senza").addEventListener("click", function(event) {
+  event.preventDefault();
+  if (!gallerySize) return;
+  run("Verifica cifrata in corso…", async function() {
+    showVerification(await api("/api/verifica", {sintetico:Math.floor(Math.random() * Math.min(config.n_galleria_demo, gallerySize))}));
+  });
+});
+refreshState();
+setInterval(refreshState, 8000);
+</script>
+</body>
+</html>

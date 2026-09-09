@@ -1,0 +1,70 @@
+{
+  "schema": "fast-core-mixed-plan.v1",
+  "key_processes": 3,
+  "threads": 8,
+  "cases_per_key": 32,
+  "mixed_cases_per_key": 26,
+  "uniform_parent_cases_per_key": 6,
+  "complete_outputs_per_key": 44,
+  "query_encryptions_per_key": 33,
+  "parent_equalities_per_key": 6,
+  "serial_parallel_equalities_per_key": 6,
+  "negative_guards_per_key": 3,
+  "mixed_sizes": [
+    2,
+    3,
+    225,
+    1024
+  ],
+  "uniform_sizes": [
+    1,
+    225,
+    1024
+  ],
+  "semantics": "select earliest global minimum of true scores, then test that winner against its own inclusive public threshold; output zero on rejection even if a farther candidate passes",
+  "mixed_scenes": [
+    "closest_reject_farther_accept",
+    "closest_accept_farther_reject",
+    "tie_first_reject",
+    "tie_first_accept",
+    "winner_threshold_below_domain",
+    "winner_threshold_above_domain",
+    "equality_carry",
+    "equality_top"
+  ],
+  "mixed_size1024_scenes": [
+    "closest_reject_farther_accept",
+    "tie_first_accept"
+  ],
+  "uniform_scenes": [
+    "public reject atMIN N1",
+    "public accept atMAX N1",
+    "T273inclusive N225",
+    "T273reject N225",
+    "T273inclusive N1024",
+    "public accept tie atMAX N1024"
+  ],
+  "serial_cases": [
+    "closest_reject_farther_accept_3",
+    "tie_first_reject_3",
+    "tie_first_accept_3",
+    "equality_carry_3",
+    "uniform_public_reject_1",
+    "uniform_public_accept_1"
+  ],
+  "fixture_diversity": "same score-equation templates rotate over512 coordinates; duplicated loser vectors above512 are intentional semantic fixtures",
+  "native_profile": "51/60",
+  "id_digits": 3,
+  "id_base": 15,
+  "parent_key_pairing": "exact actual serialized bundle roundtrip into preserved wide-uniform parent; same input words",
+  "negative_guards": [
+    "wrong GLWE geometry",
+    "wrong supplied domain",
+    "incorrect declared norm before public rejection"
+  ],
+  "counts_mixed": "BR12N-1 KS8N PFKS9N-3 marginals18N-3 initialN",
+  "counts_uniform": "preserved six-payload parent modes",
+  "timing_claim": false,
+  "service": false,
+  "formal_failure_bound": null
+}

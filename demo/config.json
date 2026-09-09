@@ -3,13 +3,151 @@
   "bit": 3,
   "q_max": 3,
   "scala": 0.04098006,
-  "T": 23,
+  "T": 4,
+  "decisione": "exact_argmin_then_selected_threshold",
+  "contratto_esatto": {
+    "wire_version": 2,
+    "probe_layout": 1,
+    "score_delta_log": 52,
+    "low_mod16_offset": 1024,
+    "low_mod16_delta_log": 60,
+    "output_mode": 2,
+    "code_delta_log": 56,
+    "codice": "0=rifiuto; i+1=identita_accettata",
+    "un_solo_lwe": true,
+    "score_bits": 12,
+    "probe_norm2_max": 1024,
+    "score_domain_width_max": 4096,
+    "tie_break": "primo_indice_galleria",
+    "selezione_soglia": "solo_del_vincitore_argmin"
+  },
+  "comparatore_fhe": {
+    "stato": "argmin_esatto_bucket_bits_dual_glwe",
+    "audit": "experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_exact_norm12_2026-09-01.md",
+    "audit_low_bits": "experiments/14_pipeline_tfhe_rs/results/score_mod16_lowbits_2026-09-01.md",
+    "nota": "argmin intero esatto, pareggio al primo indice e soglia privata selezionata soltanto per il vincitore; l'uscita e' un solo codice cifrato",
+    "pbs_dipende_da_n": true
+  },
   "dominio_galleria": "sintetico",
-  "T_reale_vggface2": 269,
-  "T_sintetico_digiface": 23,
-  "log_delta": 51,
+  "T_reale_vggface2": 273,
+  "T_sintetico_digiface": 4,
   "k_galleria": 2,
   "k_probe": 3,
-  "n_galleria_calibrazione": 128,
-  "modello": "resnet100"
+  "capacita_galleria": 128,
+  "n_galleria_demo": 127,
+  "posti_riservati_webcam_demo": 1,
+  "modello": "resnet100",
+  "calibrazione_sintetica": {
+    "dominio_valutazione": "clear_numpy",
+    "metrica_primaria": "dir_at_fpir",
+    "iscritti": 127,
+    "impostori_tuning": 500,
+    "impostori_test": 500,
+    "impostori_holdout_non_tuning": 1373,
+    "fpir_target": 0.01,
+    "fpir_tuning": 0.01,
+    "fpir_test": 0.002,
+    "fpir_holdout_non_tuning": 0.00874,
+    "accettati_tuning": 5,
+    "accettati_test": 1,
+    "accettati_holdout_non_tuning": 12,
+    "wilson_95_test": [
+      0.000353,
+      0.011241
+    ],
+    "wilson_95_holdout_non_tuning": [
+      0.005007,
+      0.015215
+    ],
+    "tar_any_match_diagnostica": 1.0,
+    "dir": 1.0,
+    "genuini_match_multipli": 0.007874,
+    "impostori_match_multipli": 0.0,
+    "scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+    "holdout_sha256": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07",
+    "file_metadata_manifest_sha256": "e37db4824d9dee73652569eefc30f40f26b26b52f68303d7336435fc06f7b15e"
+  },
+  "calibrazione_reale": {
+    "dominio_valutazione": "clear_numpy",
+    "split": 7,
+    "impostori_tuning_per_split": 500,
+    "impostori_test_per_split": 500,
+    "soglie_per_split": [
+      258,
+      245,
+      288,
+      244,
+      273,
+      296,
+      273
+    ],
+    "metriche_con_soglia_per_split": {
+      "metrica_primaria": "dir",
+      "tar_any_match_diagnostica_media": 0.993304,
+      "dir_media": 0.993304,
+      "fpir_test_media": 0.010286,
+      "genuini_match_multipli_media": 0.007812
+    },
+    "metriche_con_T_mediana_fissa": {
+      "T": 273,
+      "metrica_primaria": "dir",
+      "tar_any_match_diagnostica": 0.993304,
+      "dir": 0.993304,
+      "fpir_test": 0.010571,
+      "accettati_test": 37,
+      "impostori_test": 3500,
+      "genuini_match_multipli": 0.007812
+    }
+  },
+  "dominio_score_cauchy": {
+    "formula": "norm2(g) +/- 2*ceil_sqrt(norm2(g)*1024)",
+    "galleria_sintetica_base": {
+      "lower": -987,
+      "upper": 2329,
+      "width": 3317
+    },
+    "gallerie_reali_di_calibrazione": {
+      "per_split": [
+        {
+          "lower": -994,
+          "upper": 2386,
+          "width": 3381
+        },
+        {
+          "lower": -987,
+          "upper": 2321,
+          "width": 3309
+        },
+        {
+          "lower": -986,
+          "upper": 2318,
+          "width": 3305
+        },
+        {
+          "lower": -986,
+          "upper": 2314,
+          "width": 3301
+        },
+        {
+          "lower": -988,
+          "upper": 2332,
+          "width": 3321
+        },
+        {
+          "lower": -987,
+          "upper": 2325,
+          "width": 3313
+        },
+        {
+          "lower": -987,
+          "upper": 2325,
+          "width": 3313
+        }
+      ],
+      "width_max": 3381,
+      "lower_min": -994,
+      "upper_max": 2386
+    }
+  },
+  "score_abs_massimo_osservato": 1044
 }

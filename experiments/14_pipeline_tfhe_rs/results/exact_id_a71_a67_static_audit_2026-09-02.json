@@ -1,0 +1,202 @@
+{
+  "a62_a44_geometry": {
+    "carry_modulus": 8,
+    "glwe_dimension": 1,
+    "ks_base_log": 3,
+    "ks_level": 5,
+    "max_noise_level": 15,
+    "message_modulus": 2,
+    "pbs_base_log": 23,
+    "pbs_level": 1,
+    "polynomial_size": 2048,
+    "small_lwe_dimension": 859
+  },
+  "circuit_descriptor": "variant=a62-a50-a53-radix15-group4-two-p16-v1;lib_sha256=6023d1ca3594897b54b216f85580897aef5c4fe12c7245278f4b12e90f25116b;private_argmin_sha256=69049071d6c72b32d2db8cbe2f9972ec61c06266382f448f5a199c49b3b5fbab;a53_scan_sha256=81752a5da894797faeecda02c4fff3ad5aba93efde60a400dd1c36304e4940a5;a53_fhe_sha256=a4dfbc7cd15bdc65ee699847b46147a0614bceccbdeb5317226103f7ffa68f9e;endpoint=private_argmin_a62;selection=a50-radix15;scan=a53-group4-radix15;digit_base=15;output_lwes=2;digit_delta_log=59;n127_br=3390;n127_ks=3009;n127_marginals=3930",
+  "circuit_sha256": "ee76afd8ad3f6ee48fb3da4806e52fee3edf9db773c4adbe2c986fe713789b79",
+  "client_reconstruction": "low+15*high",
+  "digit_base": 15,
+  "digit_delta_log": 59,
+  "end_to_end_pfail_upper": null,
+  "future_gate_plan": {
+    "artifact": "A67 A62 service materialization",
+    "overall_status": "not_run",
+    "plan_only": true,
+    "required_order": [
+      "compile",
+      "negative_cross_format",
+      "small_fhe",
+      "docker"
+    ],
+    "stages": [
+      {
+        "acceptance": [
+          "all targets type-check and link",
+          "Cargo.lock remains byte-identical to its materialized pin",
+          "no warning or feature mismatch hides the private_argmin_a62 service call"
+        ],
+        "id": "compile",
+        "planned_command": [
+          "cargo",
+          "test",
+          "--locked",
+          "--offline",
+          "--release",
+          "--no-run"
+        ],
+        "scope": "Offline locked type-check and test-binary construction; no key generation or FHE execution.",
+        "status": "not_run",
+        "working_directory": "tmp/a67-a62-service-materialization/source/experiments/14_pipeline_tfhe_rs"
+      },
+      {
+        "acceptance": [
+          "every case fails closed before useful decryption",
+          "probe/key incompatibilities fail before private_argmin_a62",
+          "no legacy payload is reinterpreted as A62 base-15"
+        ],
+        "cases": [
+          "A65/A44 base-16 wire v3 probe, output, client key, and server key",
+          "wire v2 probe and raw legacy key",
+          "v4 header with digit_base=16",
+          "v4 header or key with wrong params fingerprint",
+          "v4 header or key with wrong variant_id",
+          "v4 header or key with wrong circuit_sha256",
+          "A38/A41 small-LWE 879 and max-noise 5 geometry",
+          "truncated two-LWE body and one-LWE body"
+        ],
+        "id": "negative_cross_format",
+        "runner": "to_be_materialized_after_compile_without_reusing secret artifacts",
+        "scope": "Runtime rejection matrix after compile, before any expensive FHE evaluation.",
+        "status": "not_run"
+      },
+      {
+        "acceptance": [
+          "all decrypted low/high digits are in 0..14",
+          "code=low+15*high agrees with the clear oracle in every case",
+          "server returns exactly two same-geometry LWE ciphertexts",
+          "observed counters match the frozen A62 structural counters",
+          "no end-to-end p-fail claim is made from this small sample"
+        ],
+        "cases": [
+          "reject code 0",
+          "first identity code 1",
+          "last identities 127 and 128 encoded as base-15 pairs (7,8) and (8,8)",
+          "exact-distance tie resolved to first gallery index",
+          "selected-winner threshold reject despite a permissive non-winner",
+          "N=127 structural counts 3390/3009/3930",
+          "N=128 structural counts 3415/3031/3959"
+        ],
+        "id": "small_fhe",
+        "runner": "to_be_materialized_after_the_compile_and_negative gates pass",
+        "scope": "Fresh ephemeral A44 keys and a minimal A62 encrypted service matrix.",
+        "status": "not_run"
+      },
+      {
+        "acceptance": [
+          "images are built from the materialized-source.sha256 set",
+          "client and server expose the same v4 params/variant/circuit binding",
+          "three genuine probes return exact identities and three impostors reject",
+          "server contains no client secret key",
+          "ephemeral key volume and containers are cleaned up after evidence capture"
+        ],
+        "id": "docker",
+        "planned_command": [
+          "docker",
+          "compose",
+          "-f",
+          "source/demo/docker-compose.yml",
+          "up",
+          "--build"
+        ],
+        "scope": "Build and isolated client/server smoke only after the native small-FHE gate passes.",
+        "status": "not_run",
+        "working_directory": "tmp/a67-a62-service-materialization"
+      }
+    ]
+  },
+  "http_contract": "exact-open-set-id-v4-a62-base15-two-lwe",
+  "legacy_a38_a41_geometry_rejected": true,
+  "materialized": {
+    "a67_rust_service": true,
+    "demo_config": true,
+    "docker_source_design": true,
+    "frozen_a62_core": true,
+    "trusted_python_client": true,
+    "wire_v4_four_way_binding": true
+  },
+  "materialized_source_pins": {
+    "source/demo/client/Dockerfile": "e5ec3dd0a10c4006921a64ccfe22ca83fdbc9d5234898c63f3f54653e1ce5915",
+    "source/demo/client/app.py": "148c9f51282149fb23e680e0057a1d0c6d64d24f169a0ffd1c71cd5fdadc9235",
+    "source/demo/client/static/index.html": "f253f6e847c6acdabc79e6c49a51d8f05efbce8fb68f299845c726ef6d9b428a",
+    "source/demo/config.env": "5af092ead2f1c936659ecd3efb6c5353896be756b494f349e69b6242fb4229ca",
+    "source/demo/config.json": "833b5c2024d124447f902a4c82c02eef5e5758263fc7cffc77b0bd936decc3d1",
+    "source/demo/docker-compose.yml": "e81d1cc3eefe53dcb0b37444c8656d39b7a90c6f9cfa7554765e352060319ade",
+    "source/demo/server/Dockerfile": "1a90cb21066587fc474316ecfdbd5f9ff7b170b5434cf2dd950bd162decde4d6",
+    "source/experiments/08_cnn/embedding.py": "8f82546be2a6b9bc9c4a34dec21b813a0964a4985a11163d1f45b23b20670c40",
+    "source/experiments/14_pipeline_tfhe_rs/.cargo/config.toml": "8ea425180afe0e2fc0cd930d9a5dbd4da07aebe14263eeec4d6df9c7ab996a20",
+    "source/experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+    "source/experiments/14_pipeline_tfhe_rs/Cargo.toml": "d3be14b26c3be0a6894e1b06e609dee9ba7b29d99c4c8e78d9eabf6af1844077",
+    "source/experiments/14_pipeline_tfhe_rs/src/a53_scan.rs": "81752a5da894797faeecda02c4fff3ad5aba93efde60a400dd1c36304e4940a5",
+    "source/experiments/14_pipeline_tfhe_rs/src/a53_scan/fhe.rs": "a4dfbc7cd15bdc65ee699847b46147a0614bceccbdeb5317226103f7ffa68f9e",
+    "source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "8ad76dc073be4fbe82725afbfb85cc5c3c5fb38e6398ddba0d04ad01955069a8",
+    "source/experiments/14_pipeline_tfhe_rs/src/lib.rs": "6023d1ca3594897b54b216f85580897aef5c4fe12c7245278f4b12e90f25116b",
+    "source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "69049071d6c72b32d2db8cbe2f9972ec61c06266382f448f5a199c49b3b5fbab"
+  },
+  "n127_structural_counts": {
+    "blind_rotations": 3390,
+    "key_switches": 3009,
+    "output_marginals": 3930
+  },
+  "n128_structural_counts": {
+    "blind_rotations": 3415,
+    "key_switches": 3031,
+    "output_marginals": 3959
+  },
+  "not_run": [
+    "cargo",
+    "rustc",
+    "FHE",
+    "keygen",
+    "Docker",
+    "network"
+  ],
+  "output_lwes": 2,
+  "params_fingerprint_sha256": "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",
+  "params_id": "tfhe-rs-0.11.3-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+  "promotion_allowed": false,
+  "source_pins": {
+    "tmp/a62-a53-a44-integrated-prototype/.cargo/config.toml": "8ea425180afe0e2fc0cd930d9a5dbd4da07aebe14263eeec4d6df9c7ab996a20",
+    "tmp/a62-a53-a44-integrated-prototype/Cargo.lock": "52106bfed75fdf616971a0f0d1f3699cc6f34b410cf80557cb20669d72f1bbd1",
+    "tmp/a62-a53-a44-integrated-prototype/Cargo.toml": "635b7cea83d5c5e4dd4e864b0fa0aead0ce82a37866690c88cad5d93e1acc6af",
+    "tmp/a62-a53-a44-integrated-prototype/README.md": "247071881108d60576f81d70256324dc135bd18074108925726c134ce659dd59",
+    "tmp/a62-a53-a44-integrated-prototype/a62_static_audit.py": "4d397c77e3da0ede51e93a2c4df600ca354e8070f9c24e070edb334467921b1d",
+    "tmp/a62-a53-a44-integrated-prototype/frozen-inputs.sha256": "478a0e4e0056129e7f00de5adc7668a6de2caad14603cce798542821601decc3",
+    "tmp/a62-a53-a44-integrated-prototype/src/a53_scan.rs": "81752a5da894797faeecda02c4fff3ad5aba93efde60a400dd1c36304e4940a5",
+    "tmp/a62-a53-a44-integrated-prototype/src/a53_scan/fhe.rs": "a4dfbc7cd15bdc65ee699847b46147a0614bceccbdeb5317226103f7ffa68f9e",
+    "tmp/a62-a53-a44-integrated-prototype/src/bin/a62_a53_a44_integrated_prototype.rs": "e0862a7756ec31c6ebe83a73ef35576bf0608930844902b31abbca3cd193f729",
+    "tmp/a62-a53-a44-integrated-prototype/src/lib.rs": "6023d1ca3594897b54b216f85580897aef5c4fe12c7245278f4b12e90f25116b",
+    "tmp/a62-a53-a44-integrated-prototype/src/private_argmin.rs": "69049071d6c72b32d2db8cbe2f9972ec61c06266382f448f5a199c49b3b5fbab",
+    "tmp/a62-a53-a44-integrated-prototype/tests/test_a62_static.py": "67e18a574e27be70b4def069e5315801bbb8aa4fc12949d879c934b9bec54d5a",
+    "tmp/a65-a44-service-materialization/README.md": "98bed2261e74e7911e4166660f3223afea58566d94c84b76493c8899e9e7998b",
+    "tmp/a65-a44-service-materialization/a65_static_audit.py": "f61f4dbaee189b5bde33d0c661497bb1263aa9d00bea6de6b0f98a62391455a4",
+    "tmp/a65-a44-service-materialization/materialized-source.sha256": "ec8f7e795a1794254e1bc8a8b48d9408ff8a3da24b8133da8981feed96a75290",
+    "tmp/a65-a44-service-materialization/source-inputs.sha256": "f9a82423fe8df85ad15a932fe49993af03ffd9b1cc27c709385c41521bfceea6",
+    "tmp/a65-a44-service-materialization/source/demo/client/Dockerfile": "68ef5ae6ff39ca18502af88dccc7a3fb9c701e3be0e95c088bf2a7540ecdea75",
+    "tmp/a65-a44-service-materialization/source/demo/client/app.py": "ea77d2ad56299c87451d6a6d09fda04147d92f80483685a1f6abd6277a8a02ad",
+    "tmp/a65-a44-service-materialization/source/demo/client/static/index.html": "f253f6e847c6acdabc79e6c49a51d8f05efbce8fb68f299845c726ef6d9b428a",
+    "tmp/a65-a44-service-materialization/source/demo/config.env": "5af092ead2f1c936659ecd3efb6c5353896be756b494f349e69b6242fb4229ca",
+    "tmp/a65-a44-service-materialization/source/demo/config.json": "963ec863519a7a856fee99c43602deaadc761b6906626a4579bdcceab5635a90",
+    "tmp/a65-a44-service-materialization/source/demo/docker-compose.yml": "5e843ace2eab581394aaa9b270df653aed3a1b49f85d6c504ce685222cc5ed61",
+    "tmp/a65-a44-service-materialization/source/demo/server/Dockerfile": "d574d194803f288f2fbab66b947aee9c05d054257b63ca274fc82fb52aa129c8",
+    "tmp/a65-a44-service-materialization/source/experiments/08_cnn/embedding.py": "8f82546be2a6b9bc9c4a34dec21b813a0964a4985a11163d1f45b23b20670c40",
+    "tmp/a65-a44-service-materialization/source/experiments/14_pipeline_tfhe_rs/.cargo/config.toml": "8ea425180afe0e2fc0cd930d9a5dbd4da07aebe14263eeec4d6df9c7ab996a20",
+    "tmp/a65-a44-service-materialization/source/experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+    "tmp/a65-a44-service-materialization/source/experiments/14_pipeline_tfhe_rs/Cargo.toml": "d3be14b26c3be0a6894e1b06e609dee9ba7b29d99c4c8e78d9eabf6af1844077",
+    "tmp/a65-a44-service-materialization/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "933f1587352686f25fd38ae407416d6914b2473dc0747b0e7f1d65b2f928f94b",
+    "tmp/a65-a44-service-materialization/source/experiments/14_pipeline_tfhe_rs/src/lib.rs": "c31619b88e87ac73e3174281b1453433f08f8ab0cd6d7e50a79ca16539ddf434",
+    "tmp/a65-a44-service-materialization/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "bbb47ea75426d7ac2970ef4d5345445676e339a5340d645f3ba5001e837e455f",
+    "tmp/a65-a44-service-materialization/tests/test_a65_static_audit.py": "79276de6de671897a9d93e9759c31804a5c505742dc58c1bb7237e42d36917dc"
+  },
+  "status": "PASS_STATIC_ONLY_NOT_COMPILED_NOT_FHE_VALIDATED",
+  "variant_id": "a62-a50-a53-radix15-group4-two-p16-v1",
+  "wire_version": 4
+}

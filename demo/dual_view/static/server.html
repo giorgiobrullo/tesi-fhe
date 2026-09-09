@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Varco · Amministrazione</title>
+  <link rel="stylesheet" href="/static/shared.css">
+  <script type="module" src="/static/server.js"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link button secondary">Vai alla galleria</a>
+  <header class="app-header server-header">
+    <div class="brand"><span class="brand-name">varco</span><span class="brand-context">Server</span></div>
+    <div class="header-actions">
+      <div class="connection" id="connection" role="status"><span>Connessione…</span></div>
+      <a class="button secondary" href="http://127.0.0.1:8006/" target="_blank" rel="noopener" aria-label="Apri il client in una nuova scheda">Apri client<span data-icon="external"></span></a>
+    </div>
+  </header>
+  <main class="server-main" id="main">
+    <div class="page-intro">
+      <div><h1>Galleria</h1></div>
+      <button type="button" class="button primary" id="add-person">Aggiungi persona</button>
+    </div>
+    <p class="notice" id="service-notice" hidden></p>
+    <section class="stats" aria-label="Stato del servizio">
+      <div class="stat"><div><p class="stat-label">Iscritti</p><p class="stat-value" id="stat-people">—</p></div></div>
+      <div class="stat"><div><p class="stat-label">Richieste</p><p class="stat-value" id="stat-requests">—</p></div></div>
+      <div class="stat"><div><p class="stat-label">Ultima elaborazione</p><p class="stat-value" id="stat-duration">—</p></div></div>
+    </section>
+    <div class="dashboard-grid">
+      <section class="panel gallery-panel" aria-labelledby="gallery-title">
+        <div class="panel-heading"><div class="gallery-heading"><h2 id="gallery-title">Iscritti</h2><span class="muted" id="gallery-count">Caricamento</span></div><span class="muted" id="search-count" aria-live="polite"></span></div>
+        <div class="search-box"><span data-icon="search"></span><label class="sr-only" for="search">Cerca una persona per nome</label><input id="search" type="search" placeholder="Cerca una persona…" autocomplete="off"></div>
+        <div class="gallery-grid" id="gallery" aria-busy="true"></div>
+        <div class="empty-state" id="gallery-empty"><strong id="gallery-empty-title">Caricamento…</strong><p id="gallery-empty-message"></p><button type="button" class="button secondary" id="retry-gallery" hidden>Riprova</button></div>
+      </section>
+      <aside class="panel activity-panel" aria-labelledby="activity-title">
+        <div class="panel-heading"><div><h2 id="activity-title">Richieste</h2><p id="activity-subtitle"></p></div><span class="live-label" id="feed-live">In diretta</span></div>
+        <p class="activity-note">Solo elaborazioni cifrate. Foto ed esito restano sul client.</p>
+        <div class="request-list" id="requests" aria-label="Richieste cifrate recenti"></div>
+        <div class="empty-state" id="requests-empty"><strong id="requests-empty-title">Nessuna richiesta</strong><p id="requests-empty-message">Avvia un tentativo dal client.</p></div>
+        <p class="feed-footer" id="feed-footer">Aggiornamento automatico</p>
+      </aside>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog id="person-dialog" aria-labelledby="person-dialog-title">
+    <form id="person-form">
+      <div class="dialog-header"><div><h2 id="person-dialog-title">Aggiungi persona</h2><p id="person-dialog-description" hidden></p></div><button type="button" class="icon-button" id="close-person" aria-label="Chiudi"><span data-icon="close"></span></button></div>
+      <div class="dialog-body">
+        <div class="edit-photo" id="edit-photo" hidden><img id="edit-photo-image" alt=""><p>Foto di iscrizione</p></div>
+        <div class="field-row"><div class="field"><label for="person-name">Nome</label><input id="person-name" name="nome" type="text" maxlength="80" placeholder="Nome e cognome" required autocomplete="off"></div><div class="field"><label for="person-threshold">Soglia</label><input id="person-threshold" name="soglia" type="number" value="273" step="1" required aria-describedby="threshold-help"></div></div>
+        <p class="muted" id="threshold-help" style="font-size:12px;line-height:1.5;margin-top:-10px">Una soglia più bassa richiede una corrispondenza più vicina.</p>
+        <div id="enrollment-source">
+          <div class="source-tabs" role="group" aria-label="Scegli come aggiungere la foto"><button type="button" class="source-tab" id="upload-tab" aria-pressed="true">Foto</button><button type="button" class="source-tab" id="camera-tab" aria-pressed="false">Fotocamera</button></div>
+          <div class="upload-zone" id="upload-zone"><strong id="upload-description">Da 1 a 3 foto del volto</strong><p>JPG, PNG o WebP. Trascina qui i file.</p><div class="photo-strip" id="enrollment-preview" hidden></div><button type="button" class="button secondary" id="choose-enrollment-photos">Scegli foto</button><input type="file" id="enrollment-photos" accept="image/jpeg,image/png,image/webp" multiple hidden aria-label="Foto della persona da iscrivere"></div>
+          <div class="camera-box dialog-camera" id="enrollment-camera-box" hidden><video id="enrollment-camera" autoplay muted playsinline aria-label="Anteprima locale della foto di iscrizione" hidden></video><div class="camera-empty" id="enrollment-camera-empty"><p>3 scatti alla conferma dell’iscrizione.</p><button type="button" class="button" id="start-enrollment-camera">Attiva fotocamera</button></div><div class="camera-overlay" id="enrollment-camera-overlay" hidden aria-hidden="true"><span class="camera-live">Anteprima</span></div></div>
+        </div>
+        <p class="notice error" id="person-error" role="alert" hidden></p>
+        <p class="dialog-progress" id="person-progress" role="status" hidden><span class="spinner" aria-hidden="true"></span><span id="person-progress-label">Iscrizione in corso…</span></p>
+      </div>
+      <div class="dialog-footer"><button type="button" class="button secondary" id="cancel-person">Annulla</button><button type="submit" class="button primary" id="save-person">Aggiungi persona</button></div>
+    </form>
+  </dialog>
+  <dialog class="delete-dialog" id="delete-dialog" aria-labelledby="delete-title">
+    <div class="dialog-header"><div><h2 id="delete-title">Rimuovi dalla galleria?</h2></div><button type="button" class="icon-button" id="close-delete" aria-label="Chiudi"><span data-icon="close"></span></button></div>
+    <div class="dialog-body"><p class="delete-person" id="delete-name"></p><p class="delete-copy">La persona verrà esclusa dalle prossime verifiche.</p><p class="notice error" id="delete-error" role="alert" hidden></p></div>
+    <div class="dialog-footer"><button type="button" class="button secondary" id="cancel-delete">Annulla</button><button type="button" class="button danger" id="confirm-delete">Sì, rimuovi</button></div>
+  </dialog>
+</body>
+</html>

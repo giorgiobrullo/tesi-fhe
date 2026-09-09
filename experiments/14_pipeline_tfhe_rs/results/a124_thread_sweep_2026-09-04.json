@@ -1,0 +1,1124 @@
+{
+  "a77_scalar_pbs_ms": 12.444375,
+  "cell_count": 21,
+  "cells": [
+    {
+      "gallery_size": 64,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 1.0,
+      "pbs": 1713,
+      "scalar_pbs_equivalents": 0.9240601261046868,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        0.9797517911548583,
+        1.020663173999061
+      ],
+      "speedup_vs_1_thread": 1.0,
+      "stage_speedups": {
+        "extract": 1.0,
+        "output": 1.0,
+        "scan": 1.0,
+        "score": 1.0,
+        "select": 1.0,
+        "setup": 1.0,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 832,
+        "output": 0,
+        "scan": 66,
+        "score": 0,
+        "select": 815,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 11.115582708,
+        "output": 8.35e-08,
+        "scan": 0.8933001245000001,
+        "score": 0.0217642495,
+        "select": 11.025187563,
+        "setup": 4.74585e-05,
+        "threshold": 0.0
+      },
+      "threads": 1,
+      "wall_s_ci95": [
+        22.896762333,
+        23.529049292
+      ],
+      "wall_s_max": 23.928289041,
+      "wall_s_median": 23.0690771875,
+      "wall_s_min": 22.867094958
+    },
+    {
+      "gallery_size": 64,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.9722236073087915,
+      "pbs": 1713,
+      "scalar_pbs_equivalents": 1.7967861383434307,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        1.917567153382922,
+        1.9904227935034584
+      ],
+      "speedup_vs_1_thread": 1.944447214617583,
+      "stage_speedups": {
+        "extract": 1.974403740601772,
+        "output": 2.0120481927710845,
+        "scan": 1.9122127041424177,
+        "score": 1.8039910814369051,
+        "select": 1.9154731533402045,
+        "setup": 0.9991263157894736,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 832,
+        "output": 0,
+        "scan": 66,
+        "score": 0,
+        "select": 815,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 5.6298428125,
+        "output": 4.15e-08,
+        "scan": 0.46715520850000003,
+        "score": 0.012064499499999999,
+        "select": 5.7558559585,
+        "setup": 4.75e-05,
+        "threshold": 2.05e-08
+      },
+      "threads": 2,
+      "wall_s_ci95": [
+        11.728233541,
+        11.952129458
+      ],
+      "wall_s_max": 12.001848375,
+      "wall_s_median": 11.864079937,
+      "wall_s_min": 11.692185833
+    },
+    {
+      "gallery_size": 64,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.9189483521148514,
+      "pbs": 1713,
+      "scalar_pbs_equivalents": 3.3966541205557745,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        3.6475108824256934,
+        3.7490846986161026
+      ],
+      "speedup_vs_1_thread": 3.6757934084594055,
+      "stage_speedups": {
+        "extract": 3.8276317497821735,
+        "output": 0.8028846153846153,
+        "scan": 3.4360271341251756,
+        "score": 3.1358048429071848,
+        "select": 3.551993924107986,
+        "setup": 0.9652608991894887,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 832,
+        "output": 0,
+        "scan": 66,
+        "score": 0,
+        "select": 815,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 2.904036604,
+        "output": 1.04e-07,
+        "scan": 0.259980521,
+        "score": 0.0069405625000000006,
+        "select": 3.1039432495000003,
+        "setup": 4.9166500000000004e-05,
+        "threshold": 4.1e-08
+      },
+      "threads": 4,
+      "wall_s_ci95": [
+        6.2727065,
+        6.282675917
+      ],
+      "wall_s_max": 6.282850875,
+      "wall_s_median": 6.2759449795,
+      "wall_s_min": 6.271292083
+    },
+    {
+      "gallery_size": 64,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.850773508737067,
+      "pbs": 1713,
+      "scalar_pbs_equivalents": 4.716995254620606,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        4.961079777114599,
+        5.242835503763775
+      ],
+      "speedup_vs_1_thread": 5.104641052422402,
+      "stage_speedups": {
+        "extract": 5.494157451010027,
+        "output": 1.0060240963855422,
+        "scan": 4.385255982556905,
+        "score": 4.2976080167913615,
+        "select": 4.989855574653876,
+        "setup": 0.9491700000000001,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 832,
+        "output": 0,
+        "scan": 66,
+        "score": 0,
+        "select": 815,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 2.023164208,
+        "output": 8.3e-08,
+        "scan": 0.2037053545,
+        "score": 0.005064270500000001,
+        "select": 2.2095203755,
+        "setup": 4.9999999999999996e-05,
+        "threshold": 2.05e-08
+      },
+      "threads": 6,
+      "wall_s_ci95": [
+        4.439601,
+        4.650011333
+      ],
+      "wall_s_max": 4.69736325,
+      "wall_s_median": 4.519235917,
+      "wall_s_min": 4.426499583
+    },
+    {
+      "gallery_size": 64,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.869792066374951,
+      "pbs": 1713,
+      "scalar_pbs_equivalents": 6.429921332314346,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        6.0790055126144855,
+        7.0958154352892135
+      ],
+      "speedup_vs_1_thread": 6.958336530999608,
+      "stage_speedups": {
+        "extract": 7.473504499407537,
+        "output": 1.0060240963855422,
+        "scan": 6.05779760983061,
+        "score": 5.211251399532037,
+        "select": 6.571887590147701,
+        "setup": 0.9468029925187033,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 832,
+        "output": 0,
+        "scan": 66,
+        "score": 0,
+        "select": 815,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 1.487332042,
+        "output": 8.3e-08,
+        "scan": 0.14746285399999998,
+        "score": 0.004176396,
+        "select": 1.67762875,
+        "setup": 5.0125e-05,
+        "threshold": 4.15e-08
+      },
+      "threads": 8,
+      "wall_s_ci95": [
+        3.314290083,
+        3.794876833
+      ],
+      "wall_s_max": 4.265703916,
+      "wall_s_median": 3.3153149585,
+      "wall_s_min": 3.311338125
+    },
+    {
+      "gallery_size": 64,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.7006191156706323,
+      "pbs": 1713,
+      "scalar_pbs_equivalents": 7.768970260535504,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        8.147317727376029,
+        8.68313654545664
+      ],
+      "speedup_vs_1_thread": 8.407429388047587,
+      "stage_speedups": {
+        "extract": 9.43623752959936,
+        "output": 0.9940476190476191,
+        "scan": 6.713112116317618,
+        "score": 6.9751620863712835,
+        "select": 7.884361729168882,
+        "setup": 0.9305497004931323,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 832,
+        "output": 0,
+        "scan": 66,
+        "score": 0,
+        "select": 815,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 1.1779676669999999,
+        "output": 8.4e-08,
+        "scan": 0.1330679585,
+        "score": 0.00312025,
+        "select": 1.3983614580000001,
+        "setup": 5.10005e-05,
+        "threshold": 2.1e-08
+      },
+      "threads": 12,
+      "wall_s_ci95": [
+        2.67256775,
+        2.8314935
+      ],
+      "wall_s_max": 2.884652833,
+      "wall_s_median": 2.743891875,
+      "wall_s_min": 2.606113458
+    },
+    {
+      "gallery_size": 64,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.5843971719054977,
+      "pbs": 1713,
+      "scalar_pbs_equivalents": 8.640289989859465,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        9.11813038724266,
+        9.65136575227946
+      ],
+      "speedup_vs_1_thread": 9.350354750487963,
+      "stage_speedups": {
+        "extract": 10.789948142407958,
+        "output": 1.336,
+        "scan": 7.336444247794878,
+        "score": 7.389768289755454,
+        "select": 8.506830987317407,
+        "setup": 0.947587528826859,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 832,
+        "output": 0,
+        "scan": 66,
+        "score": 0,
+        "select": 815,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 1.0301794375,
+        "output": 6.25e-08,
+        "scan": 0.12176200000000001,
+        "score": 0.002945187,
+        "select": 1.2960393335,
+        "setup": 5.00835e-05,
+        "threshold": 4.1e-08
+      },
+      "threads": 16,
+      "wall_s_ci95": [
+        2.410845959,
+        2.524016271
+      ],
+      "wall_s_max": 2.638235042,
+      "wall_s_median": 2.4671873745,
+      "wall_s_min": 2.372963959
+    },
+    {
+      "gallery_size": 127,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 1.0,
+      "pbs": 3390,
+      "scalar_pbs_equivalents": 0.9280558026065078,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        0.9973878556743839,
+        1.002604404272675
+      ],
+      "speedup_vs_1_thread": 1.0,
+      "stage_speedups": {
+        "extract": 1.0,
+        "output": 1.0,
+        "scan": 1.0,
+        "score": 1.0,
+        "select": 1.0,
+        "setup": 1.0,
+        "threshold": 1.0
+      },
+      "stages_pbs": {
+        "extract": 1651,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1603,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 21.899166979500002,
+        "output": 8.3e-08,
+        "scan": 1.8406821455,
+        "score": 0.0431696255,
+        "select": 21.69654775,
+        "setup": 6.424999999999999e-05,
+        "threshold": 2.05e-08
+      },
+      "threads": 1,
+      "wall_s_ci95": [
+        45.407669875,
+        45.548622167
+      ],
+      "wall_s_max": 45.565721958,
+      "wall_s_median": 45.4567830205,
+      "wall_s_min": 45.2239335
+    },
+    {
+      "gallery_size": 127,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.9627707822710099,
+      "pbs": 3390,
+      "scalar_pbs_equivalents": 1.7870100221332348,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        1.915211314271007,
+        1.935146596714285
+      ],
+      "speedup_vs_1_thread": 1.9255415645420197,
+      "stage_speedups": {
+        "extract": 1.9373818514062036,
+        "output": 1.0,
+        "scan": 1.9456138414292088,
+        "score": 1.7766969135786466,
+        "select": 1.9124734776717482,
+        "setup": 0.9756356816922152,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 1651,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1603,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 11.303485146,
+        "output": 8.3e-08,
+        "scan": 0.946067563,
+        "score": 0.024297687,
+        "select": 11.3447574585,
+        "setup": 6.58545e-05,
+        "threshold": 0.0
+      },
+      "threads": 2,
+      "wall_s_ci95": [
+        23.524856958,
+        23.743786
+      ],
+      "wall_s_max": 23.747241083,
+      "wall_s_median": 23.607271771,
+      "wall_s_min": 23.465554084
+    },
+    {
+      "gallery_size": 127,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.9269390339474051,
+      "pbs": 3390,
+      "scalar_pbs_equivalents": 3.44100459646944,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        3.7032431016751315,
+        3.718712266097546
+      ],
+      "speedup_vs_1_thread": 3.7077561357896203,
+      "stage_speedups": {
+        "extract": 3.7852751219892125,
+        "output": 1.0,
+        "scan": 3.5723995563237394,
+        "score": 3.1466748426011137,
+        "select": 3.651193165380743,
+        "setup": 0.907056689278378,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 1651,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1603,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 5.7853567505,
+        "output": 8.3e-08,
+        "scan": 0.5152509165,
+        "score": 0.013719124999999999,
+        "select": 5.942317146,
+        "setup": 7.08335e-05,
+        "threshold": 0.0
+      },
+      "threads": 4,
+      "wall_s_ci95": [
+        12.247291292,
+        12.265000541
+      ],
+      "wall_s_max": 12.285503916,
+      "wall_s_median": 12.259917145500001,
+      "wall_s_min": 12.215240458
+    },
+    {
+      "gallery_size": 127,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.8601965151119698,
+      "pbs": 3390,
+      "scalar_pbs_equivalents": 4.789862203389361,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        4.955116656499404,
+        5.291882252700429
+      ],
+      "speedup_vs_1_thread": 5.161179090671819,
+      "stage_speedups": {
+        "extract": 5.41211070819421,
+        "output": 1.9761904761904763,
+        "scan": 4.8700810736665785,
+        "score": 4.380238600779136,
+        "select": 5.103369560849384,
+        "setup": 0.8900432900432899,
+        "threshold": 0.5
+      },
+      "stages_pbs": {
+        "extract": 1651,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1603,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 4.0463265,
+        "output": 4.2e-08,
+        "scan": 0.37795718749999996,
+        "score": 0.009855541999999998,
+        "select": 4.251416146,
+        "setup": 7.21875e-05,
+        "threshold": 4.1e-08
+      },
+      "threads": 6,
+      "wall_s_ci95": [
+        8.58990825,
+        9.178528333
+      ],
+      "wall_s_max": 9.179776666,
+      "wall_s_median": 8.807441521,
+      "wall_s_min": 8.56103025
+    },
+    {
+      "gallery_size": 127,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.8852746664183463,
+      "pbs": 3390,
+      "scalar_pbs_equivalents": 6.5726743285606934,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        7.055812451086107,
+        7.099536132840222
+      ],
+      "speedup_vs_1_thread": 7.08219733134677,
+      "stage_speedups": {
+        "extract": 7.408000491540545,
+        "output": 1.328,
+        "scan": 6.89950124316016,
+        "score": 5.677194510498496,
+        "select": 6.810606112635443,
+        "setup": 0.9054588245241936,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 1651,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1603,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 2.956150854,
+        "output": 6.25e-08,
+        "scan": 0.26678481249999997,
+        "score": 0.007604042,
+        "select": 3.185699979,
+        "setup": 7.09585e-05,
+        "threshold": 0.0
+      },
+      "threads": 8,
+      "wall_s_ci95": [
+        6.4132928125,
+        6.442459084
+      ],
+      "wall_s_max": 6.447447083,
+      "wall_s_median": 6.4184575625,
+      "wall_s_min": 6.41034
+    },
+    {
+      "gallery_size": 127,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.7970226803398766,
+      "pbs": 3390,
+      "scalar_pbs_equivalents": 8.876178279580971,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        9.362550858586866,
+        9.875198488852543
+      ],
+      "speedup_vs_1_thread": 9.564272164078519,
+      "stage_speedups": {
+        "extract": 10.23706180684025,
+        "output": 0.9940119760479043,
+        "scan": 8.259185368772446,
+        "score": 7.4066435269242925,
+        "select": 9.375850976305086,
+        "setup": 0.8588137009189638,
+        "threshold": 1.0
+      },
+      "stages_pbs": {
+        "extract": 1651,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1603,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 2.1392043335,
+        "output": 8.35e-08,
+        "scan": 0.2228648545,
+        "score": 0.0058285005,
+        "select": 2.314088375,
+        "setup": 7.481250000000001e-05,
+        "threshold": 2.05e-08
+      },
+      "threads": 12,
+      "wall_s_ci95": [
+        4.610382542,
+        4.857137333500001
+      ],
+      "wall_s_max": 5.097918292,
+      "wall_s_median": 4.752769708000001,
+      "wall_s_min": 4.555524042
+    },
+    {
+      "gallery_size": 127,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.6728892607237695,
+      "pbs": 3390,
+      "scalar_pbs_equivalents": 9.99166052682076,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        10.702031650050067,
+        10.833471359973398
+      ],
+      "speedup_vs_1_thread": 10.766228171580313,
+      "stage_speedups": {
+        "extract": 11.557417193305318,
+        "output": 1.9761904761904763,
+        "scan": 8.819259398203394,
+        "score": 8.915199648923538,
+        "select": 10.298516228870035,
+        "setup": 0.8983438314888736,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 1651,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1603,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 1.8948149585,
+        "output": 4.2e-08,
+        "scan": 0.208711646,
+        "score": 0.00484225,
+        "select": 2.1067644375,
+        "setup": 7.15205e-05,
+        "threshold": 0.0
+      },
+      "threads": 16,
+      "wall_s_ci95": [
+        4.20133025,
+        4.2477456455
+      ],
+      "wall_s_max": 4.330469916,
+      "wall_s_median": 4.2221641875,
+      "wall_s_min": 4.170823875
+    },
+    {
+      "gallery_size": 128,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 1.0,
+      "pbs": 3415,
+      "scalar_pbs_equivalents": 0.9264092306988922,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        0.9937299884341113,
+        1.006439164675381
+      ],
+      "speedup_vs_1_thread": 1.0,
+      "stage_speedups": {
+        "extract": 1.0,
+        "output": 1.0,
+        "scan": 1.0,
+        "score": 1.0,
+        "select": 1.0,
+        "setup": 1.0,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 1664,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1615,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 22.095844125,
+        "output": 2.05e-08,
+        "scan": 1.846551104,
+        "score": 0.043948771,
+        "select": 21.8719154795,
+        "setup": 6.90625e-05,
+        "threshold": 0.0
+      },
+      "threads": 1,
+      "wall_s_ci95": [
+        45.579902875,
+        45.919356708500004
+      ],
+      "wall_s_max": 46.100991625,
+      "wall_s_median": 45.8733993755,
+      "wall_s_min": 45.557885042
+    },
+    {
+      "gallery_size": 128,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.9623356951937863,
+      "pbs": 3415,
+      "scalar_pbs_equivalents": 1.7830333421171185,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        1.911768412461223,
+        1.9301250035700308
+      ],
+      "speedup_vs_1_thread": 1.9246713903875725,
+      "stage_speedups": {
+        "extract": 1.9369975012872425,
+        "output": 0.24404761904761907,
+        "scan": 1.9343051270335998,
+        "score": 1.7775707774561726,
+        "select": 1.9138496516015095,
+        "setup": 0.9611503882873607,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 1664,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1615,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 11.407265167,
+        "output": 8.4e-08,
+        "scan": 0.954632792,
+        "score": 0.024724062499999998,
+        "select": 11.428230770999999,
+        "setup": 7.1854e-05,
+        "threshold": 0.0
+      },
+      "threads": 2,
+      "wall_s_ci95": [
+        23.773459834,
+        23.969278375
+      ],
+      "wall_s_max": 24.001260625,
+      "wall_s_median": 23.834406021,
+      "wall_s_min": 23.745462042
+    },
+    {
+      "gallery_size": 128,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.9349568890069027,
+      "pbs": 3415,
+      "scalar_pbs_equivalents": 3.464610769126057,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        3.7159002623212327,
+        3.752549861800947
+      ],
+      "speedup_vs_1_thread": 3.7398275560276106,
+      "stage_speedups": {
+        "extract": 3.815671696400182,
+        "output": 0.24698795180722893,
+        "scan": 3.611284643382892,
+        "score": 3.150435532114481,
+        "select": 3.6776963703449232,
+        "setup": 0.984848484848485,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 1664,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1615,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 5.79081375,
+        "output": 8.3e-08,
+        "scan": 0.5113280415,
+        "score": 0.013950062,
+        "select": 5.9471781455,
+        "setup": 7.0125e-05,
+        "threshold": 2.05e-08
+      },
+      "threads": 4,
+      "wall_s_ci95": [
+        12.227982375,
+        12.303000958
+      ],
+      "wall_s_max": 12.312687042,
+      "wall_s_median": 12.2661803755,
+      "wall_s_min": 12.203799542
+    },
+    {
+      "gallery_size": 128,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.8815695942319423,
+      "pbs": 3415,
+      "scalar_pbs_equivalents": 4.9001652575996895,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        5.139535828933951,
+        5.306486304095496
+      ],
+      "speedup_vs_1_thread": 5.289417565391654,
+      "stage_speedups": {
+        "extract": 5.51811381367965,
+        "output": 0.48809523809523814,
+        "scan": 5.058552990488766,
+        "score": 4.391108211821793,
+        "select": 5.093395793984508,
+        "setup": 0.9966951213352288,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 1664,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1615,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 4.0042385625,
+        "output": 4.2e-08,
+        "scan": 0.3650354375,
+        "score": 0.010008583,
+        "select": 4.294171583000001,
+        "setup": 6.92915e-05,
+        "threshold": 4.1e-08
+      },
+      "threads": 6,
+      "wall_s_ci95": [
+        8.644778625,
+        8.9306302085
+      ],
+      "wall_s_max": 9.224175542,
+      "wall_s_median": 8.6726749795,
+      "wall_s_min": 8.632749167
+    },
+    {
+      "gallery_size": 128,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.8917205408529836,
+      "pbs": 3415,
+      "scalar_pbs_equivalents": 6.608785122000102,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        7.088122737279216,
+        7.1557112248095
+      ],
+      "speedup_vs_1_thread": 7.133764326823869,
+      "stage_speedups": {
+        "extract": 7.479767528288812,
+        "output": 0.19617224880382778,
+        "scan": 6.370092852288343,
+        "score": 5.487337380800025,
+        "select": 6.8551015225097185,
+        "setup": 0.9479640648699101,
+        "threshold": null
+      },
+      "stages_pbs": {
+        "extract": 1664,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1615,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 2.9540816665,
+        "output": 1.0449999999999999e-07,
+        "scan": 0.2898782085,
+        "score": 0.008009124999999999,
+        "select": 3.1906041665,
+        "setup": 7.285350000000001e-05,
+        "threshold": 0.0
+      },
+      "threads": 8,
+      "wall_s_ci95": [
+        6.411936042,
+        6.463329375
+      ],
+      "wall_s_max": 6.464377917,
+      "wall_s_median": 6.430461853500001,
+      "wall_s_min": 6.406555083
+    },
+    {
+      "gallery_size": 128,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.8077027292806628,
+      "pbs": 3415,
+      "scalar_pbs_equivalents": 8.979159168795533,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl"
+      ],
+      "speedup_ci95": [
+        9.048844233684814,
+        9.891463805881894
+      ],
+      "speedup_vs_1_thread": 9.692432751367953,
+      "stage_speedups": {
+        "extract": 10.460472702869334,
+        "output": 0.49397590361445787,
+        "scan": 8.190940410131281,
+        "score": 7.679799666081011,
+        "select": 9.081991106219471,
+        "setup": 0.9614313755516267,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 1664,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1615,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 2.1123179375,
+        "output": 4.15e-08,
+        "scan": 0.2254382295,
+        "score": 0.0057226455,
+        "select": 2.4082731665,
+        "setup": 7.1833e-05,
+        "threshold": 2.05e-08
+      },
+      "threads": 12,
+      "wall_s_ci95": [
+        4.635882666500001,
+        5.0566773545
+      ],
+      "wall_s_max": 5.354182125,
+      "wall_s_median": 4.7329087085,
+      "wall_s_min": 4.568852791
+    },
+    {
+      "gallery_size": 128,
+      "key_blocks": 2,
+      "measured_queries": 10,
+      "parallel_efficiency": 0.6549383852514978,
+      "pbs": 3415,
+      "scalar_pbs_equivalents": 9.707855450176238,
+      "source_files": [
+        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl"
+      ],
+      "speedup_ci95": [
+        9.995839142179872,
+        10.618128425368155
+      ],
+      "speedup_vs_1_thread": 10.479014164023965,
+      "stage_speedups": {
+        "extract": 11.079893785742145,
+        "output": 0.48809523809523814,
+        "scan": 8.744588847583643,
+        "score": 8.257942690717774,
+        "select": 10.03969915572696,
+        "setup": 0.9825156669014035,
+        "threshold": 0.0
+      },
+      "stages_pbs": {
+        "extract": 1664,
+        "output": 0,
+        "scan": 136,
+        "score": 0,
+        "select": 1615,
+        "setup": 0,
+        "threshold": 0
+      },
+      "stages_s_median": {
+        "extract": 1.9942288755000002,
+        "output": 4.2e-08,
+        "scan": 0.211165,
+        "score": 0.005322,
+        "select": 2.1785429165,
+        "setup": 7.02915e-05,
+        "threshold": 4.15e-08
+      },
+      "threads": 16,
+      "wall_s_ci95": [
+        4.319734208,
+        4.589249459
+      ],
+      "wall_s_max": 4.76768225,
+      "wall_s_median": 4.3776445625000004,
+      "wall_s_min": 4.317986792
+    }
+  ],
+  "gallery_sizes": [
+    64,
+    127,
+    128
+  ],
+  "generated_utc": "2026-09-05T01:36:23.139893+00:00",
+  "host_cores": {
+    "efficiency": 4,
+    "performance": 12
+  },
+  "inputs": [
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl"
+  ],
+  "measured_queries_total": 210,
+  "replicates": 20000,
+  "seed": 124062026,
+  "status": "PASS_ANALYSIS",
+  "thread_levels": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    16
+  ],
+  "variant": "a124_a66_thread_sweep"
+}

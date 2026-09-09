@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Varco · Accesso</title>
+  <link rel="stylesheet" href="/static/shared.css">
+  <script type="module" src="/static/client.js"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link button secondary">Vai all’accesso</a>
+  <header class="app-header">
+    <div class="brand" aria-label="Varco"><span class="brand-name">varco</span><span class="brand-context">Client</span></div>
+    <div class="connection" id="connection" role="status"><span>Connessione…</span></div>
+  </header>
+  <main class="client-main" id="main">
+    <div class="client-intro">
+      <h1>Accesso</h1>
+      <p>Inquadra il volto per verificare l’accesso.</p>
+    </div>
+    <p class="notice" id="service-notice" hidden></p>
+    <section class="access-card" aria-label="Verifica di accesso">
+      <div class="camera-box">
+        <video id="camera" autoplay muted playsinline aria-label="Anteprima locale della fotocamera" hidden></video>
+        <div class="camera-empty" id="camera-empty">
+          <p>Fotocamera spenta</p>
+          <button type="button" class="button" id="start-camera">Attiva fotocamera</button>
+        </div>
+        <div class="camera-overlay" id="camera-overlay" hidden aria-hidden="true">
+          <span class="camera-live">Anteprima</span>
+        </div>
+        <div class="client-upload-preview" id="upload-preview" hidden></div>
+      </div>
+      <div class="access-controls">
+        <div class="capture-row">
+          <span class="capture-caption"><span id="source-caption">3 scatti con fotocamera</span></span>
+          <button type="button" class="button subtle" id="reset-source" hidden>Disattiva</button>
+        </div>
+        <button type="button" class="button primary access-button" id="access" disabled><span id="access-label">Verifica accesso</span><span id="access-icon" hidden></span></button>
+        <div class="client-result" id="result" role="status" aria-live="polite" aria-atomic="true" hidden>
+          <span class="result-symbol" id="result-symbol" aria-hidden="true" hidden></span>
+          <div class="result-copy"><strong id="result-title"></strong><p id="result-message"></p><small id="result-time" hidden></small></div>
+        </div>
+        <div class="upload-alternative">
+          <button type="button" class="button subtle" id="choose-photos">Carica foto</button>
+          <input type="file" id="photos" accept="image/jpeg,image/png,image/webp" multiple hidden aria-label="Scegli da una a tre foto">
+        </div>
+      </div>
+    </section>
+    <p class="client-note">Elaborazione cifrata. Foto ed esito restano sul client.</p>
+  </main>
+</body>
+</html>

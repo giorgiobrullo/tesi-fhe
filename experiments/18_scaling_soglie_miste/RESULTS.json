@@ -1,0 +1,182 @@
+{
+  "schema": "local-review-curated-results.v1",
+  "experiment": 18,
+  "title": "Scaling e soglie del vincitore",
+  "evidence_status": "Previously accepted original results; no new-location build or execution",
+  "selected_mixed_source_sha256": "4e81e3cb37001cf585628e2415657c00c7ff4fea21afa9b482dc805a72613cf7",
+  "scaling": {
+    "fresh_key_families": 3,
+    "candidate_sizes": 17,
+    "candidate_max_n": 224,
+    "shared_A126_sizes": 15,
+    "shared_A126_max_n": 128,
+    "complete_outputs_including_smoke": 1272,
+    "serial_parallel_equalities_including_smoke": 12,
+    "geometric_paired_reduction_range_percent": [
+      25.6,
+      50.97
+    ],
+    "n127_median_seconds": {
+      "M": 3.031,
+      "A126": 6.115
+    },
+    "native_input_scales": {
+      "M": "51/60",
+      "A126": "52/60"
+    },
+    "all_pairs_retained": true
+  },
+  "wide_pilot_separate": {
+    "fresh_key_families": 1,
+    "n_values": [
+      224,
+      225,
+      256,
+      512,
+      1024
+    ],
+    "measured_pairs": 20,
+    "wins": 20,
+    "complete_outputs": 60,
+    "geometric_paired_reduction_range_percent": [
+      50.45,
+      52.44
+    ],
+    "n1024_median_seconds": {
+      "M3": 23.451,
+      "A126_3": 49.062
+    },
+    "control": "A126 explicitly adapted to three output digits",
+    "cross_key_confidence_interval": false
+  },
+  "qualification_separate": {
+    "uniform": {
+      "fresh_keys": 3,
+      "cases": 60,
+      "outputs": 87,
+      "serial_parallel_equalities": 18,
+      "parent_equalities": 9
+    },
+    "wide": {
+      "fresh_keys": 3,
+      "outputs": 150,
+      "max_tested_n": 1024,
+      "serial_parallel_equalities": 3
+    },
+    "mixed": {
+      "fresh_keys": 3,
+      "cases": 96,
+      "outputs": 132,
+      "serial_parallel_equalities": 18,
+      "uniform_parent_equalities": 18
+    }
+  },
+  "representation_capacity_not_empirical_max": 3374,
+  "gate_summaries": {
+    "scaling": {
+      "schema": "fast-core-scaling-independent-check.v1",
+      "evidence_valid": true,
+      "all_supplied_runs_succeeded": true,
+      "complete_three_key_campaign": true,
+      "source_sha256": "a13ccea1315c160ba7e1b9e748e090bf1d6f8601d9f24f0f1054708d3fd7ebc5",
+      "not_established": [
+        "formal whole-circuit failure probability",
+        "unsampled continuous CPU isolation or thermal equivalence",
+        "per-arm RSS from mixed-process residency",
+        "HTTP/camera speedup",
+        "general or winner-specific thresholds",
+        "independently rerun secret decryption"
+      ]
+    },
+    "uniform": {
+      "schema": "uniform-native-independent-check.v1",
+      "evidence_valid": true,
+      "all_supplied_runs_succeeded": true,
+      "complete_three_key_gate": true,
+      "timing_claim": false,
+      "not_established": [
+        "all possible noisy sentinel/depth histories",
+        "formal failure probability",
+        "mixed thresholds",
+        "more than224IDs",
+        "HTTP or camera qualification",
+        "paired latency improvement",
+        "continuous CPU/thermal isolation"
+      ]
+    },
+    "wide-id": {
+      "schema": "wide-native-independent-check.v1",
+      "evidence_valid": true,
+      "all_supplied_runs_succeeded": true,
+      "complete_three_key_gate": true,
+      "not_established": [
+        "whole-circuit failure probability",
+        "all possible noisy depth/threshold histories",
+        "three-key latency replication",
+        "unchanged A126 support above128 or any unchanged three-digit older core",
+        "continuous CPU/thermal isolation or per-arm RSS",
+        "HTTP/camera qualification",
+        "mixed thresholds"
+      ]
+    },
+    "mixed": {
+      "schema": "mixed-native-independent-check.v1",
+      "evidence_valid": true,
+      "all_supplied_runs_succeeded": true,
+      "complete_three_key_gate": true,
+      "timing_claim": false,
+      "not_established": [
+        "failure probability for all noisy histories",
+        "every admitted gallery or per-candidate threshold vector",
+        "mixed or wider HTTP/camera qualification",
+        "paired runtime improvement",
+        "continuous CPU/thermal isolation or per-arm memory"
+      ]
+    }
+  },
+  "limits": [
+    "Different timings/qualification suites are separate and must not be summed as speedups",
+    "Synthetic inputs and recorded external load; no continuous-isolation or biometric-accuracy claim",
+    "One-key wide pilot is not a cross-key confidence result",
+    "Representation capacity3374, core noisy cases1024 and historical HTTP cases225 are distinct",
+    "The mixed threshold belongs to the chosen minimum only; a farther passing candidate does not replace a rejected nearest candidate"
+  ],
+  "original_evidence": [
+    {
+      "source": "tmp/fast-core-scaling-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
+      "sha256": "e90af6efd3a5de3e40a5b80ec2a5cc52ef259b809b99cb9da56246d1a506fb63",
+      "bytes": 738841,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "tmp/fast-core-uniform-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
+      "sha256": "7c3e478fb6492615391f214156ac6f01dc672fa73f1014060445b6007783eefb",
+      "bytes": 70297,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "tmp/fast-core-wide-id-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
+      "sha256": "cc7dc1cc288c4df6c2e395e32fd25066c570ca04b83dc210233cdb9af41329fa",
+      "bytes": 43190,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "tmp/fast-core-mixed-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
+      "sha256": "a5137f8209503d541c39b2b385ea7da9347c9fe4f6ad1d7f04196fa53f2fa2bf",
+      "bytes": 153457,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "tmp/fast-core-wide-id-20260906/runs/THREE_KEYS_AND_PILOT_FINAL_CHECK.json",
+      "sha256": "8fe54cbc27f51678e1d26f5a3ef24f640b50a8499dc5559ea036a5167515cb69",
+      "bytes": 110799,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "docs/personal/fast-core-scaling-2026-09-06.md",
+      "sha256": "48f67668db56ba518b1fb82b7dca442e65569834de1798f44f05822de75daa05",
+      "bytes": 15249,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    }
+  ]
+}

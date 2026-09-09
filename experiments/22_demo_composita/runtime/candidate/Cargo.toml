@@ -1,0 +1,23 @@
+[package]
+name = "composite_camera_service_20260908"
+version = "0.1.0"
+edition = "2021"
+autobins = false
+
+[dependencies]
+pfks_core = { package = "fast_core_mixed_20260906", path = "../core", default-features = false }
+tfhe = { version = "=1.7.0", features = ["integer"] }
+rayon = "1"
+bincode = "1"
+sha2 = "0.10"
+serde_json = "1"
+serde = { version = "1", features = ["derive"] }
+
+[profile.release]
+opt-level = 3
+lto = false
+codegen-units = 1
+
+[[bin]]
+name = "varco_demo_composite_v9"
+path = "src/main.rs"

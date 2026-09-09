@@ -1,0 +1,1151 @@
+{
+  "timestamp_utc": "2026-09-02T04:23:25.451255+00:00",
+  "argv": [
+    "benchmark/demo_e2e.py",
+    "--preload",
+    "--expect-n",
+    "127",
+    "--expect-pbs",
+    "5600",
+    "--positivi",
+    "3",
+    "--negativi",
+    "3",
+    "--docker-project",
+    "demo",
+    "--require-docker-provenance",
+    "--require-calibration-cache",
+    "--output",
+    "benchmark/results/demo_e2e_exact_id_split4_2026-09-02.csv"
+  ],
+  "base_url": "http://127.0.0.1:8000",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "python": "3.12.11",
+  "load_average_prima": [
+    17.96044921875,
+    56.37646484375,
+    135.6552734375
+  ],
+  "load_average_dopo": [
+    172.28369140625,
+    91.34228515625,
+    139.19677734375
+  ],
+  "expected": {
+    "n": 127,
+    "pbs_per_query": 5600,
+    "http_contract": "exact-open-set-id-v2",
+    "decisione": "exact_argmin_then_selected_threshold",
+    "comparatore": "argmin_esatto_bucket_bits_dual_glwe"
+  },
+  "preload": {
+    "iscritti": 127,
+    "secondi": 40.1
+  },
+  "n_galleria": 127,
+  "iscritti_effettivi": 127,
+  "primo_impostore_test": 627,
+  "stato_stabile_durante_query": true,
+  "stato_prima_e_dopo": {
+    "client_config_sha256": "712e686c906c7ffa4c58143aea11d717bcc10ef50a5cf6bc5acec6010ddfae11",
+    "contract": {
+      "expected_http_contract": "exact-open-set-id-v2",
+      "decisione": "exact_argmin_then_selected_threshold",
+      "comparatore": "argmin_esatto_bucket_bits_dual_glwe",
+      "evaluation_key_sha256": "40a326572b07476dd3c7c683f4032432d1ead39fe5ac2e335e44e333a38b8e52",
+      "client": {
+        "wire_version": 2,
+        "probe_layout": 1,
+        "score_delta_log": 52,
+        "low_mod16_offset": 1024,
+        "low_mod16_delta_log": 60,
+        "output_mode": 2,
+        "code_delta_log": 56,
+        "codice": "0=rifiuto; i+1=identita_accettata",
+        "un_solo_lwe": true,
+        "score_bits": 12,
+        "probe_norm2_max": 1024,
+        "score_domain_width_max": 4096,
+        "tie_break": "primo_indice_galleria",
+        "selezione_soglia": "solo_del_vincitore_argmin"
+      },
+      "server": {
+        "wire_version": 2,
+        "probe_magic": 3621547555239973462,
+        "probe_layout": 1,
+        "score_delta_log": 52,
+        "low_mod16_offset": 1024,
+        "low_mod16_delta_log": 60,
+        "output_magic": 3625490425412014678,
+        "output_mode": 2,
+        "code_delta_log": 56,
+        "codice": "0=rifiuto; i+1=identita_accettata",
+        "un_solo_lwe": true
+      }
+    },
+    "server": {
+      "iscritti": 127,
+      "nomi": [
+        "sintetico_0",
+        "sintetico_1",
+        "sintetico_10",
+        "sintetico_100",
+        "sintetico_1000",
+        "sintetico_1001",
+        "sintetico_1002",
+        "sintetico_1003",
+        "sintetico_1004",
+        "sintetico_1005",
+        "sintetico_1006",
+        "sintetico_1007",
+        "sintetico_1008",
+        "sintetico_1009",
+        "sintetico_101",
+        "sintetico_1010",
+        "sintetico_1011",
+        "sintetico_1012",
+        "sintetico_1013",
+        "sintetico_1014",
+        "sintetico_1015",
+        "sintetico_1016",
+        "sintetico_1017",
+        "sintetico_1018",
+        "sintetico_1019",
+        "sintetico_102",
+        "sintetico_1020",
+        "sintetico_1021",
+        "sintetico_1022",
+        "sintetico_1023",
+        "sintetico_1024",
+        "sintetico_1025",
+        "sintetico_1026",
+        "sintetico_1027",
+        "sintetico_1028",
+        "sintetico_1029",
+        "sintetico_103",
+        "sintetico_1030",
+        "sintetico_1031",
+        "sintetico_1032",
+        "sintetico_1033",
+        "sintetico_1034",
+        "sintetico_1035",
+        "sintetico_1036",
+        "sintetico_1037",
+        "sintetico_1038",
+        "sintetico_1039",
+        "sintetico_104",
+        "sintetico_1040",
+        "sintetico_1041",
+        "sintetico_1042",
+        "sintetico_1043",
+        "sintetico_1044",
+        "sintetico_1045",
+        "sintetico_1046",
+        "sintetico_1047",
+        "sintetico_1048",
+        "sintetico_1049",
+        "sintetico_105",
+        "sintetico_1050",
+        "sintetico_1051",
+        "sintetico_1052",
+        "sintetico_1053",
+        "sintetico_1054",
+        "sintetico_1055",
+        "sintetico_1056",
+        "sintetico_1057",
+        "sintetico_1058",
+        "sintetico_1059",
+        "sintetico_106",
+        "sintetico_1060",
+        "sintetico_1061",
+        "sintetico_1062",
+        "sintetico_1063",
+        "sintetico_1064",
+        "sintetico_1065",
+        "sintetico_1066",
+        "sintetico_1067",
+        "sintetico_1068",
+        "sintetico_1069",
+        "sintetico_107",
+        "sintetico_1070",
+        "sintetico_1071",
+        "sintetico_1072",
+        "sintetico_1073",
+        "sintetico_1074",
+        "sintetico_1075",
+        "sintetico_1076",
+        "sintetico_1077",
+        "sintetico_1078",
+        "sintetico_1079",
+        "sintetico_108",
+        "sintetico_1080",
+        "sintetico_1081",
+        "sintetico_1082",
+        "sintetico_1083",
+        "sintetico_1084",
+        "sintetico_1085",
+        "sintetico_1086",
+        "sintetico_1087",
+        "sintetico_1088",
+        "sintetico_1089",
+        "sintetico_109",
+        "sintetico_1090",
+        "sintetico_1091",
+        "sintetico_1092",
+        "sintetico_1093",
+        "sintetico_1094",
+        "sintetico_1095",
+        "sintetico_1096",
+        "sintetico_1097",
+        "sintetico_1098",
+        "sintetico_1099",
+        "sintetico_11",
+        "sintetico_110",
+        "sintetico_1100",
+        "sintetico_1101",
+        "sintetico_1102",
+        "sintetico_1103",
+        "sintetico_1104",
+        "sintetico_1105",
+        "sintetico_1106",
+        "sintetico_1107",
+        "sintetico_1108",
+        "sintetico_1109",
+        "sintetico_111",
+        "sintetico_1110"
+      ],
+      "soglie": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "chiave": true,
+      "chiave_sha256": "40a326572b07476dd3c7c683f4032432d1ead39fe5ac2e335e44e333a38b8e52",
+      "dim": 512,
+      "soglia_default": 4,
+      "epoch": 1788322855738220346,
+      "revision": 128,
+      "dominio": {
+        "l": -987,
+        "u": 2329,
+        "larghezza": 3317
+      },
+      "contratto_esatto": {
+        "wire_version": 2,
+        "probe_magic": 3621547555239973462,
+        "probe_layout": 1,
+        "score_delta_log": 52,
+        "low_mod16_offset": 1024,
+        "low_mod16_delta_log": 60,
+        "output_magic": 3625490425412014678,
+        "output_mode": 2,
+        "code_delta_log": 56,
+        "codice": "0=rifiuto; i+1=identita_accettata",
+        "un_solo_lwe": true
+      }
+    }
+  },
+  "provenienza": {
+    "host_input_sha256": {
+      "benchmark/demo_e2e.py": "751a90fc313c38e5e5595d76bec42357fe9f2412f50dfe7d2a74cc88a9cf2a2b",
+      "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
+      "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
+      "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
+      "demo/docker-compose.yml": "20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7",
+      "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+      "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+      "experiments/14_pipeline_tfhe_rs/Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+      "experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+      "experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+      "experiments/14_pipeline_tfhe_rs/src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+      "experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596"
+    },
+    "host_inputs_stable_during_run": true,
+    "config_snapshot": {
+      "dim": 512,
+      "bit": 3,
+      "q_max": 3,
+      "scala": 0.04098006,
+      "T": 4,
+      "decisione": "exact_argmin_then_selected_threshold",
+      "contratto_esatto": {
+        "wire_version": 2,
+        "probe_layout": 1,
+        "score_delta_log": 52,
+        "low_mod16_offset": 1024,
+        "low_mod16_delta_log": 60,
+        "output_mode": 2,
+        "code_delta_log": 56,
+        "codice": "0=rifiuto; i+1=identita_accettata",
+        "un_solo_lwe": true,
+        "score_bits": 12,
+        "probe_norm2_max": 1024,
+        "score_domain_width_max": 4096,
+        "tie_break": "primo_indice_galleria",
+        "selezione_soglia": "solo_del_vincitore_argmin"
+      },
+      "comparatore_fhe": {
+        "stato": "argmin_esatto_bucket_bits_dual_glwe",
+        "audit": "experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_exact_norm12_2026-09-01.md",
+        "audit_low_bits": "experiments/14_pipeline_tfhe_rs/results/score_mod16_lowbits_2026-09-01.md",
+        "nota": "argmin intero esatto, pareggio al primo indice e soglia privata selezionata soltanto per il vincitore; l'uscita e' un solo codice cifrato",
+        "pbs_dipende_da_n": true
+      },
+      "dominio_galleria": "sintetico",
+      "T_reale_vggface2": 273,
+      "T_sintetico_digiface": 4,
+      "k_galleria": 2,
+      "k_probe": 3,
+      "capacita_galleria": 128,
+      "n_galleria_demo": 127,
+      "posti_riservati_webcam_demo": 1,
+      "modello": "resnet100",
+      "calibrazione_sintetica": {
+        "dominio_valutazione": "clear_numpy",
+        "metrica_primaria": "dir_at_fpir",
+        "iscritti": 127,
+        "impostori_tuning": 500,
+        "impostori_test": 500,
+        "impostori_holdout_non_tuning": 1373,
+        "fpir_target": 0.01,
+        "fpir_tuning": 0.01,
+        "fpir_test": 0.002,
+        "fpir_holdout_non_tuning": 0.00874,
+        "accettati_tuning": 5,
+        "accettati_test": 1,
+        "accettati_holdout_non_tuning": 12,
+        "wilson_95_test": [
+          0.000353,
+          0.011241
+        ],
+        "wilson_95_holdout_non_tuning": [
+          0.005007,
+          0.015215
+        ],
+        "tar_any_match_diagnostica": 1.0,
+        "dir": 1.0,
+        "genuini_match_multipli": 0.007874,
+        "impostori_match_multipli": 0.0,
+        "scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "holdout_sha256": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07",
+        "file_metadata_manifest_sha256": "e37db4824d9dee73652569eefc30f40f26b26b52f68303d7336435fc06f7b15e"
+      },
+      "calibrazione_reale": {
+        "dominio_valutazione": "clear_numpy",
+        "split": 7,
+        "impostori_tuning_per_split": 500,
+        "impostori_test_per_split": 500,
+        "soglie_per_split": [
+          258,
+          245,
+          288,
+          244,
+          273,
+          296,
+          273
+        ],
+        "metriche_con_soglia_per_split": {
+          "metrica_primaria": "dir",
+          "tar_any_match_diagnostica_media": 0.993304,
+          "dir_media": 0.993304,
+          "fpir_test_media": 0.010286,
+          "genuini_match_multipli_media": 0.007812
+        },
+        "metriche_con_T_mediana_fissa": {
+          "T": 273,
+          "metrica_primaria": "dir",
+          "tar_any_match_diagnostica": 0.993304,
+          "dir": 0.993304,
+          "fpir_test": 0.010571,
+          "accettati_test": 37,
+          "impostori_test": 3500,
+          "genuini_match_multipli": 0.007812
+        }
+      },
+      "dominio_score_cauchy": {
+        "formula": "norm2(g) +/- 2*ceil_sqrt(norm2(g)*1024)",
+        "galleria_sintetica_base": {
+          "lower": -987,
+          "upper": 2329,
+          "width": 3317
+        },
+        "gallerie_reali_di_calibrazione": {
+          "per_split": [
+            {
+              "lower": -994,
+              "upper": 2386,
+              "width": 3381
+            },
+            {
+              "lower": -987,
+              "upper": 2321,
+              "width": 3309
+            },
+            {
+              "lower": -986,
+              "upper": 2318,
+              "width": 3305
+            },
+            {
+              "lower": -986,
+              "upper": 2314,
+              "width": 3301
+            },
+            {
+              "lower": -988,
+              "upper": 2332,
+              "width": 3321
+            },
+            {
+              "lower": -987,
+              "upper": 2325,
+              "width": 3313
+            },
+            {
+              "lower": -987,
+              "upper": 2325,
+              "width": 3313
+            }
+          ],
+          "width_max": 3381,
+          "lower_min": -994,
+          "upper_max": 2386
+        }
+      },
+      "score_abs_massimo_osservato": 1044
+    },
+    "contratto_esatto": {
+      "expected_http_contract": "exact-open-set-id-v2",
+      "decisione": "exact_argmin_then_selected_threshold",
+      "comparatore": "argmin_esatto_bucket_bits_dual_glwe",
+      "evaluation_key_sha256": "40a326572b07476dd3c7c683f4032432d1ead39fe5ac2e335e44e333a38b8e52",
+      "client": {
+        "wire_version": 2,
+        "probe_layout": 1,
+        "score_delta_log": 52,
+        "low_mod16_offset": 1024,
+        "low_mod16_delta_log": 60,
+        "output_mode": 2,
+        "code_delta_log": 56,
+        "codice": "0=rifiuto; i+1=identita_accettata",
+        "un_solo_lwe": true,
+        "score_bits": 12,
+        "probe_norm2_max": 1024,
+        "score_domain_width_max": 4096,
+        "tie_break": "primo_indice_galleria",
+        "selezione_soglia": "solo_del_vincitore_argmin"
+      },
+      "server": {
+        "wire_version": 2,
+        "probe_magic": 3621547555239973462,
+        "probe_layout": 1,
+        "score_delta_log": 52,
+        "low_mod16_offset": 1024,
+        "low_mod16_delta_log": 60,
+        "output_magic": 3625490425412014678,
+        "output_mode": 2,
+        "code_delta_log": 56,
+        "codice": "0=rifiuto; i+1=identita_accettata",
+        "un_solo_lwe": true
+      }
+    },
+    "server_binary": null,
+    "server_binary_sha256": null,
+    "server_process": null,
+    "runtime_model": {
+      "search_root": "/root/.insightface/models/antelopev2",
+      "filename": "glintr100.onnx",
+      "resolved_path": "/root/.insightface/models/antelopev2/antelopev2/glintr100.onnx",
+      "sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf",
+      "bytes": 260665334
+    },
+    "runtime_packages": {
+      "insightface": "1.0.1",
+      "numpy": "1.26.4",
+      "onnxruntime": "1.29.0",
+      "uvicorn": "0.52.4"
+    },
+    "dataset": {
+      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "selected_image_count": 272,
+      "selected_image_bytes": 5518658,
+      "selected_content_manifest_sha256": "76fe33addfd57b2023b50bec80a8daf29a70f7f6c107f7ae3cf46b85e9a0c960",
+      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
+      "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+      "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"
+    },
+    "dataset_stable_during_run": true,
+    "docker_required": true,
+    "docker_preload": {
+      "project": "demo",
+      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/docker-compose.yml",
+      "compose_config_sha256": "047dd373b79a19c10939a42009c005ce7e99ea6d352f1367f78c9319e9c525db",
+      "context_file_sha256": {
+        "compose": "20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7",
+        "server_dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
+        "client_dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
+        "dockerignore": "dc6bf01bac51e26ea6e53e8880f03d9a1b50cc5563a5f11ec95aa363ca622540"
+      },
+      "verified_common_networks": [
+        "demo_varco"
+      ],
+      "measured_client_port": 8000,
+      "services": {
+        "server": {
+          "service": "server",
+          "container_id": "17a6c8f3c5047cfe54416de36e41ba8db0f68331cfe0dd64e0d3a3b3103ca367",
+          "container_name": "/demo-server-1",
+          "container_created": "2026-09-02T04:20:46.705102214Z",
+          "container_started_at": "2026-09-02T04:20:51.385420716Z",
+          "container_status": "running",
+          "restart_count": 0,
+          "image_id": "sha256:18f1fad362eb8ad0f2b7ecc4f39831f77836501049d4bf07f4ee12190d50c4c5",
+          "image_reference": "demo-server",
+          "image_created": "2026-09-02T04:20:40.820296836Z",
+          "image_os": "linux",
+          "image_architecture": "arm64",
+          "image_repo_digests": [
+            "demo-server@sha256:18f1fad362eb8ad0f2b7ecc4f39831f77836501049d4bf07f4ee12190d50c4c5"
+          ],
+          "image_working_dir": null,
+          "build_manifest_path": "/usr/local/share/tesi-fhe/build-provenance.sha256",
+          "build_manifest_sha256": "03fc188dc58edda29f54170b288217d280a8f92f9ed153e988723ff2b8433129",
+          "build_manifest": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
+            "target/release/varco_demo": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a"
+          },
+          "host_source_hashes": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d"
+          },
+          "live_binary_path": "/usr/local/bin/varco_demo",
+          "live_binary_sha256": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a",
+          "container_config_path": "/bin/sh",
+          "container_config_args": [
+            "-c",
+            "exec /usr/local/bin/varco_demo serve $PORTA $DIM $SOGLIA"
+          ],
+          "pid1_executable": "/usr/local/bin/varco_demo",
+          "pid1_executable_sha256": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a",
+          "pid1_cmdline": [
+            "/usr/local/bin/varco_demo",
+            "serve",
+            "9000",
+            "512",
+            "4"
+          ],
+          "pid1_working_directory": "/",
+          "selected_pid1_environment": {
+            "HOME": "/root",
+            "DIM": "512",
+            "SOGLIA": "4",
+            "PORTA": "9000"
+          },
+          "launcher_sha256": null,
+          "runtime_files": {},
+          "runtime_dataset": null,
+          "runtime_model": null,
+          "runtime_packages": null,
+          "selected_environment": {
+            "DIM": "512",
+            "SOGLIA": "4",
+            "PORTA": "9000"
+          },
+          "networks": {
+            "demo_varco": {
+              "network_id": "31c71546820c1f7a967159f710ff7f27ea4ecf15187aa142ded0ddf0024b35cf",
+              "aliases": [
+                "demo-server-1",
+                "server"
+              ],
+              "ip_address": "172.21.0.2"
+            }
+          },
+          "port_bindings": {
+            "9000/tcp": [
+              {
+                "host_ip": "127.0.0.1",
+                "host_port": "9000"
+              }
+            ]
+          },
+          "mounts": [],
+          "docker_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "client": {
+          "service": "client",
+          "container_id": "10961b86b1a36ff4345ab95a3e8f31547e68501233df002cc6b45f8cd2ffa336",
+          "container_name": "/demo-client-1",
+          "container_created": "2026-09-02T04:20:49.972094924Z",
+          "container_started_at": "2026-09-02T04:20:51.5103243Z",
+          "container_status": "running",
+          "restart_count": 0,
+          "image_id": "sha256:fa743db302df0baeade5f1b7cb9351acc70bede6c0b7a2c8ec22c10739290251",
+          "image_reference": "demo-client",
+          "image_created": "2026-09-02T04:20:41.066741961Z",
+          "image_os": "linux",
+          "image_architecture": "arm64",
+          "image_repo_digests": [
+            "demo-client@sha256:fa743db302df0baeade5f1b7cb9351acc70bede6c0b7a2c8ec22c10739290251"
+          ],
+          "image_working_dir": "/app",
+          "build_manifest_path": "/usr/local/share/tesi-fhe/build-provenance.sha256",
+          "build_manifest_sha256": "3c7ab24608be752744c4b5f039d6ebc1a6ae24ee2de35adc25ed679485154ff1",
+          "build_manifest": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
+            "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
+            "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+            "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+            "target/release/varco_demo": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a"
+          },
+          "host_source_hashes": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
+            "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
+            "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+            "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428"
+          },
+          "live_binary_path": "/usr/local/bin/varco_demo",
+          "live_binary_sha256": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a",
+          "container_config_path": "/usr/local/bin/uvicorn",
+          "container_config_args": [
+            "demo.client.app:app",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            "8000"
+          ],
+          "pid1_executable": "/usr/local/bin/python3.12",
+          "pid1_executable_sha256": "36727872f3be3469d83c23705431d90ab2b408a0ba1e3008ba3d4dd337b7f481",
+          "pid1_cmdline": [
+            "/usr/local/bin/python3.12",
+            "/usr/local/bin/uvicorn",
+            "demo.client.app:app",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            "8000"
+          ],
+          "pid1_working_directory": "/app",
+          "selected_pid1_environment": {
+            "VARCO_SERVER": "http://server:9000",
+            "VARCO_BIN": "/usr/local/bin/varco_demo",
+            "VARCO_CHIAVI": "/app/chiavi",
+            "PYTHONPATH": "/app",
+            "INSIGHTFACE_HOME": "/root/.insightface",
+            "HOME": "/root"
+          },
+          "launcher_sha256": "a1bc00f4418ca2dcdc84612b33f43fed0c068f495c8186df5788e9d30a1cf6c6",
+          "runtime_files": {
+            "/app/demo/client/app.py": {
+              "sha256": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
+              "manifest_path": "demo/client/app.py"
+            },
+            "/app/demo/config.json": {
+              "sha256": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+              "manifest_path": "demo/config.json"
+            },
+            "/app/experiments/08_cnn/embedding.py": {
+              "sha256": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+              "manifest_path": "experiments/08_cnn/embedding.py"
+            }
+          },
+          "runtime_dataset": {
+            "root": "/app/datasets/digiface/estratto",
+            "selected_file_count": 272,
+            "path_content_manifest_sha256": "53cbe722ac3cee955162ec179481ae161f01b1a48e27299432c93cd56487f2dc"
+          },
+          "runtime_model": null,
+          "runtime_packages": null,
+          "selected_environment": {
+            "VARCO_SERVER": "http://server:9000",
+            "VARCO_BIN": "/usr/local/bin/varco_demo",
+            "VARCO_CHIAVI": "/app/chiavi",
+            "PYTHONPATH": "/app",
+            "INSIGHTFACE_HOME": "/root/.insightface"
+          },
+          "networks": {
+            "demo_varco": {
+              "network_id": "31c71546820c1f7a967159f710ff7f27ea4ecf15187aa142ded0ddf0024b35cf",
+              "aliases": [
+                "client",
+                "demo-client-1"
+              ],
+              "ip_address": "172.21.0.3"
+            }
+          },
+          "port_bindings": {
+            "8000/tcp": [
+              {
+                "host_ip": "127.0.0.1",
+                "host_port": "8000"
+              }
+            ]
+          },
+          "mounts": [
+            {
+              "type": "volume",
+              "destination": "/app/chiavi",
+              "rw": true
+            },
+            {
+              "type": "bind",
+              "destination": "/app/datasets/digiface/estratto",
+              "rw": false
+            },
+            {
+              "type": "volume",
+              "destination": "/root/.insightface",
+              "rw": true
+            }
+          ],
+          "docker_diff_sha256": "e602dd77bfcde09b53f4336a231dfc5554faf49dd246b48b7ec89f9f252d13b7"
+        }
+      }
+    },
+    "docker": {
+      "project": "demo",
+      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/docker-compose.yml",
+      "compose_config_sha256": "047dd373b79a19c10939a42009c005ce7e99ea6d352f1367f78c9319e9c525db",
+      "context_file_sha256": {
+        "compose": "20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7",
+        "server_dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
+        "client_dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
+        "dockerignore": "dc6bf01bac51e26ea6e53e8880f03d9a1b50cc5563a5f11ec95aa363ca622540"
+      },
+      "verified_common_networks": [
+        "demo_varco"
+      ],
+      "measured_client_port": 8000,
+      "services": {
+        "server": {
+          "service": "server",
+          "container_id": "17a6c8f3c5047cfe54416de36e41ba8db0f68331cfe0dd64e0d3a3b3103ca367",
+          "container_name": "/demo-server-1",
+          "container_created": "2026-09-02T04:20:46.705102214Z",
+          "container_started_at": "2026-09-02T04:20:51.385420716Z",
+          "container_status": "running",
+          "restart_count": 0,
+          "image_id": "sha256:18f1fad362eb8ad0f2b7ecc4f39831f77836501049d4bf07f4ee12190d50c4c5",
+          "image_reference": "demo-server",
+          "image_created": "2026-09-02T04:20:40.820296836Z",
+          "image_os": "linux",
+          "image_architecture": "arm64",
+          "image_repo_digests": [
+            "demo-server@sha256:18f1fad362eb8ad0f2b7ecc4f39831f77836501049d4bf07f4ee12190d50c4c5"
+          ],
+          "image_working_dir": null,
+          "build_manifest_path": "/usr/local/share/tesi-fhe/build-provenance.sha256",
+          "build_manifest_sha256": "03fc188dc58edda29f54170b288217d280a8f92f9ed153e988723ff2b8433129",
+          "build_manifest": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
+            "target/release/varco_demo": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a"
+          },
+          "host_source_hashes": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d"
+          },
+          "live_binary_path": "/usr/local/bin/varco_demo",
+          "live_binary_sha256": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a",
+          "container_config_path": "/bin/sh",
+          "container_config_args": [
+            "-c",
+            "exec /usr/local/bin/varco_demo serve $PORTA $DIM $SOGLIA"
+          ],
+          "pid1_executable": "/usr/local/bin/varco_demo",
+          "pid1_executable_sha256": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a",
+          "pid1_cmdline": [
+            "/usr/local/bin/varco_demo",
+            "serve",
+            "9000",
+            "512",
+            "4"
+          ],
+          "pid1_working_directory": "/",
+          "selected_pid1_environment": {
+            "HOME": "/root",
+            "DIM": "512",
+            "SOGLIA": "4",
+            "PORTA": "9000"
+          },
+          "launcher_sha256": null,
+          "runtime_files": {},
+          "runtime_dataset": null,
+          "runtime_model": null,
+          "runtime_packages": null,
+          "selected_environment": {
+            "DIM": "512",
+            "SOGLIA": "4",
+            "PORTA": "9000"
+          },
+          "networks": {
+            "demo_varco": {
+              "network_id": "31c71546820c1f7a967159f710ff7f27ea4ecf15187aa142ded0ddf0024b35cf",
+              "aliases": [
+                "demo-server-1",
+                "server"
+              ],
+              "ip_address": "172.21.0.2"
+            }
+          },
+          "port_bindings": {
+            "9000/tcp": [
+              {
+                "host_ip": "127.0.0.1",
+                "host_port": "9000"
+              }
+            ]
+          },
+          "mounts": [],
+          "docker_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "client": {
+          "service": "client",
+          "container_id": "10961b86b1a36ff4345ab95a3e8f31547e68501233df002cc6b45f8cd2ffa336",
+          "container_name": "/demo-client-1",
+          "container_created": "2026-09-02T04:20:49.972094924Z",
+          "container_started_at": "2026-09-02T04:20:51.5103243Z",
+          "container_status": "running",
+          "restart_count": 0,
+          "image_id": "sha256:fa743db302df0baeade5f1b7cb9351acc70bede6c0b7a2c8ec22c10739290251",
+          "image_reference": "demo-client",
+          "image_created": "2026-09-02T04:20:41.066741961Z",
+          "image_os": "linux",
+          "image_architecture": "arm64",
+          "image_repo_digests": [
+            "demo-client@sha256:fa743db302df0baeade5f1b7cb9351acc70bede6c0b7a2c8ec22c10739290251"
+          ],
+          "image_working_dir": "/app",
+          "build_manifest_path": "/usr/local/share/tesi-fhe/build-provenance.sha256",
+          "build_manifest_sha256": "3c7ab24608be752744c4b5f039d6ebc1a6ae24ee2de35adc25ed679485154ff1",
+          "build_manifest": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
+            "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
+            "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+            "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+            "target/release/varco_demo": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a"
+          },
+          "host_source_hashes": {
+            "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+            "Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+            "src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+            "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+            "src/private_argmin.rs": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+            "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
+            "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
+            "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+            "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428"
+          },
+          "live_binary_path": "/usr/local/bin/varco_demo",
+          "live_binary_sha256": "0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a",
+          "container_config_path": "/usr/local/bin/uvicorn",
+          "container_config_args": [
+            "demo.client.app:app",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            "8000"
+          ],
+          "pid1_executable": "/usr/local/bin/python3.12",
+          "pid1_executable_sha256": "36727872f3be3469d83c23705431d90ab2b408a0ba1e3008ba3d4dd337b7f481",
+          "pid1_cmdline": [
+            "/usr/local/bin/python3.12",
+            "/usr/local/bin/uvicorn",
+            "demo.client.app:app",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            "8000"
+          ],
+          "pid1_working_directory": "/app",
+          "selected_pid1_environment": {
+            "VARCO_SERVER": "http://server:9000",
+            "VARCO_BIN": "/usr/local/bin/varco_demo",
+            "VARCO_CHIAVI": "/app/chiavi",
+            "PYTHONPATH": "/app",
+            "INSIGHTFACE_HOME": "/root/.insightface",
+            "HOME": "/root"
+          },
+          "launcher_sha256": "a1bc00f4418ca2dcdc84612b33f43fed0c068f495c8186df5788e9d30a1cf6c6",
+          "runtime_files": {
+            "/app/demo/client/app.py": {
+              "sha256": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
+              "manifest_path": "demo/client/app.py"
+            },
+            "/app/demo/config.json": {
+              "sha256": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+              "manifest_path": "demo/config.json"
+            },
+            "/app/experiments/08_cnn/embedding.py": {
+              "sha256": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+              "manifest_path": "experiments/08_cnn/embedding.py"
+            }
+          },
+          "runtime_dataset": {
+            "root": "/app/datasets/digiface/estratto",
+            "selected_file_count": 272,
+            "path_content_manifest_sha256": "53cbe722ac3cee955162ec179481ae161f01b1a48e27299432c93cd56487f2dc"
+          },
+          "runtime_model": {
+            "search_root": "/root/.insightface/models/antelopev2",
+            "filename": "glintr100.onnx",
+            "resolved_path": "/root/.insightface/models/antelopev2/antelopev2/glintr100.onnx",
+            "sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf",
+            "bytes": 260665334
+          },
+          "runtime_packages": {
+            "insightface": "1.0.1",
+            "numpy": "1.26.4",
+            "onnxruntime": "1.29.0",
+            "uvicorn": "0.52.4"
+          },
+          "selected_environment": {
+            "VARCO_SERVER": "http://server:9000",
+            "VARCO_BIN": "/usr/local/bin/varco_demo",
+            "VARCO_CHIAVI": "/app/chiavi",
+            "PYTHONPATH": "/app",
+            "INSIGHTFACE_HOME": "/root/.insightface"
+          },
+          "networks": {
+            "demo_varco": {
+              "network_id": "31c71546820c1f7a967159f710ff7f27ea4ecf15187aa142ded0ddf0024b35cf",
+              "aliases": [
+                "client",
+                "demo-client-1"
+              ],
+              "ip_address": "172.21.0.3"
+            }
+          },
+          "port_bindings": {
+            "8000/tcp": [
+              {
+                "host_ip": "127.0.0.1",
+                "host_port": "8000"
+              }
+            ]
+          },
+          "mounts": [
+            {
+              "type": "volume",
+              "destination": "/app/chiavi",
+              "rw": true
+            },
+            {
+              "type": "bind",
+              "destination": "/app/datasets/digiface/estratto",
+              "rw": false
+            },
+            {
+              "type": "volume",
+              "destination": "/root/.insightface",
+              "rw": true
+            }
+          ],
+          "docker_diff_sha256": "0e31de474f45d37ab2499c6dcefcc0cc01aa09eee7bccf6fc8c578d3748725df"
+        }
+      }
+    },
+    "docker_static_binding_stable_during_preload": true,
+    "docker_stable_during_run": true
+  },
+  "positivi_corretti": 3,
+  "positivi_totali": 3,
+  "negativi_corretti": 3,
+  "negativi_totali": 3,
+  "server_ms": {
+    "min": 8765.7,
+    "median": 9556.3,
+    "p95": 12019.3,
+    "max": 12019.3
+  },
+  "somma_tappe_strumentate_ms": {
+    "min": 9125.0,
+    "median": 10033.3,
+    "p95": 12623.9,
+    "max": 12623.9
+  },
+  "endpoint_http_ms": {
+    "min": 9182.151,
+    "median": 10116.963,
+    "p95": 12684.266,
+    "max": 12684.266
+  },
+  "probe_cifrato_b": [
+    32840
+  ],
+  "esito_cifrato_b": [
+    16464
+  ],
+  "pbs": [
+    5600
+  ],
+  "protocolli_http_osservati": [
+    "exact-open-set-id-v2"
+  ],
+  "identita_restituite": [
+    "sintetico_0",
+    "sintetico_1",
+    "sintetico_10"
+  ],
+  "success": true,
+  "semantic_failure_count": 0,
+  "semantic_failures": [],
+  "csv_sha256": "0251217e5a3321c7326a1e861d8e5ec86a4b727315216746336e183a2301349c"
+}

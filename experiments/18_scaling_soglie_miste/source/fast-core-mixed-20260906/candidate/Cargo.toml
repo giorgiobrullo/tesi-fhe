@@ -1,0 +1,16 @@
+[package]
+name = "fast_core_mixed_runner_20260906"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+fast = { package = "fast_core_mixed_20260906", path = "../core" }
+parent = { package = "fast_core_wide_id_20260906", path = "../../fast-core-wide-id-20260906/core" }
+tfhe = { version = "=1.7.0", features = ["integer"] }
+rayon = "1"
+bincode = "1"
+sha2 = "0.10"
+serde_json = "=1.0.150"
+
+[profile.release]
+opt-level = 3

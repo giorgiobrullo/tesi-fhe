@@ -1,0 +1,192 @@
+{
+  "timestamp_utc": "2026-09-01T12:53:16.023487+00:00",
+  "argv": [
+    "benchmark/demo_e2e.py",
+    "--base-url",
+    "http://127.0.0.1:18000",
+    "--preload",
+    "--positivi",
+    "20",
+    "--negativi",
+    "20",
+    "--server-binary",
+    "experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
+    "--server-pid",
+    "82014",
+    "--require-calibration-cache",
+    "--output",
+    "benchmark/results/demo_e2e_periodic_fold_2026-09-01.csv"
+  ],
+  "base_url": "http://127.0.0.1:18000",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "python": "3.12.11",
+  "load_average_prima": [
+    11.73193359375,
+    15.416015625,
+    19.10595703125
+  ],
+  "load_average_dopo": [
+    29.56689453125,
+    19.1552734375,
+    20.2451171875
+  ],
+  "preload": {
+    "iscritti": 127,
+    "secondi": 18.5
+  },
+  "n_galleria": 127,
+  "iscritti_effettivi": 127,
+  "primo_impostore_test": 627,
+  "provenienza": {
+    "benchmark_source_sha256": "241273990b5cd7b2698d1934fca858ce819203ea6bf826a59fb4ac7d9e41283e",
+    "client_source_sha256": "cb7e08ebc8247b06795101c320237f6c43ce06c085e1e910c8a2ff80e37155c2",
+    "embedding_source_sha256": "fd34f3eaaf7186d5a0455861ac6f62128c4ef61477400c7d0f55644597d04659",
+    "rust_source_sha256": "306a4f03cd99940a69d00af1710714ccf5fa74f36e04b626c13dda02bf075521",
+    "config_sha256": "eb060789a2018c9df50abbee4d1bdbf948fbcc2e5aac7e16512305a4c1f4c7db",
+    "config_snapshot": {
+      "dim": 512,
+      "bit": 3,
+      "q_max": 3,
+      "scala": 0.04098006,
+      "T": 4,
+      "decisione": "any_match",
+      "comparatore_fhe": {
+        "stato": "periodic_fold_3pbs_sperimentale",
+        "audit": "benchmark/results/exact_comparator_scratch_2026-09-01.md",
+        "nota": "esatto in chiaro sul dominio e corretto nei test cifrati; la coda p-fail del circuito composto non e' ancora formalmente derivata",
+        "pbs_per_template": 3,
+        "pbs_n127_incluso_or": 400
+      },
+      "dominio_galleria": "sintetico",
+      "T_reale_vggface2": 273,
+      "T_sintetico_digiface": 4,
+      "log_delta": 51,
+      "k_galleria": 2,
+      "k_probe": 3,
+      "capacita_galleria": 128,
+      "n_galleria_demo": 127,
+      "posti_riservati_webcam_demo": 1,
+      "modello": "resnet100",
+      "calibrazione_sintetica": {
+        "dominio_valutazione": "clear_numpy",
+        "iscritti": 127,
+        "impostori_tuning": 500,
+        "impostori_test": 500,
+        "impostori_holdout_non_tuning": 1373,
+        "fpir_target": 0.01,
+        "fpir_tuning": 0.01,
+        "fpir_test": 0.002,
+        "fpir_holdout_non_tuning": 0.00874,
+        "accettati_tuning": 5,
+        "accettati_test": 1,
+        "accettati_holdout_non_tuning": 12,
+        "wilson_95_test": [
+          0.000353,
+          0.011241
+        ],
+        "wilson_95_holdout_non_tuning": [
+          0.005007,
+          0.015215
+        ],
+        "tar_varco": 1.0,
+        "dir": 1.0,
+        "genuini_match_multipli": 0.007874,
+        "impostori_match_multipli": 0.0,
+        "scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "holdout_sha256": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07",
+        "file_metadata_manifest_sha256": "e37db4824d9dee73652569eefc30f40f26b26b52f68303d7336435fc06f7b15e"
+      },
+      "calibrazione_reale": {
+        "dominio_valutazione": "clear_numpy",
+        "split": 7,
+        "impostori_tuning_per_split": 500,
+        "impostori_test_per_split": 500,
+        "soglie_per_split": [
+          258,
+          245,
+          288,
+          244,
+          273,
+          296,
+          273
+        ],
+        "metriche_con_soglia_per_split": {
+          "tar_varco_media": 0.993304,
+          "dir_media": 0.993304,
+          "fpir_test_media": 0.010286,
+          "genuini_match_multipli_media": 0.007812
+        },
+        "metriche_con_T_mediana_fissa": {
+          "T": 273,
+          "tar_varco": 0.993304,
+          "dir": 0.993304,
+          "fpir_test": 0.010571,
+          "accettati_test": 37,
+          "impostori_test": 3500,
+          "genuini_match_multipli": 0.007812
+        }
+      },
+      "bound_score_massimo": 3705,
+      "score_abs_massimo_osservato": 926
+    },
+    "server_comparatore": "periodic_fold_3pbs_sperimentale",
+    "server_binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
+    "server_binary_sha256": "cb7c749f29d3431ab32930f35fc62fe0c44fe350a0c9b26fab7d82e1a99abe11",
+    "server_process": {
+      "pid": 82014,
+      "ps_lstart_command": "Tue Sep  1 14:52:15 2026     /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo serve 19000 512 4 51",
+      "binding": "exact_path_in_ps_command"
+    },
+    "model_file": "/Users/giorgiobrullo/.insightface/models/antelopev2/antelopev2/glintr100.onnx",
+    "model_file_sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf",
+    "runtime_packages": {
+      "insightface": "1.0.1",
+      "numpy": "1.26.4",
+      "onnxruntime": "1.27.0",
+      "uvicorn": "0.52.4"
+    },
+    "dataset": {
+      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "selected_image_count": 374,
+      "selected_image_bytes": 7592227,
+      "selected_content_manifest_sha256": "563bee6f660a30f05292287f1e348c7b151bf84d2fe47eb4a3c8c4a305d41408",
+      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
+      "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+      "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"
+    }
+  },
+  "positivi_corretti": 20,
+  "positivi_totali": 20,
+  "negativi_corretti": 20,
+  "negativi_totali": 20,
+  "server_ms": {
+    "min": 580.8,
+    "median": 607.85,
+    "p95": 657.7,
+    "max": 678.4
+  },
+  "somma_tappe_strumentate_ms": {
+    "min": 744.4,
+    "median": 772.15,
+    "p95": 845.2,
+    "max": 879.3
+  },
+  "endpoint_http_ms": {
+    "min": 759.794,
+    "median": 790.522,
+    "p95": 860.988,
+    "max": 895.423
+  },
+  "probe_cifrato_b": [
+    32800
+  ],
+  "esito_cifrato_b": [
+    16424
+  ],
+  "pbs": [
+    400
+  ],
+  "identita_restituite": [],
+  "csv_sha256": "ee1697c3e52806b19c8bb9e96dbc21fa4dbf2cb4a2b9138565c6ca057d3b9ef4"
+}

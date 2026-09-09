@@ -1,0 +1,6 @@
+{
+  "core_source_sha256": "c0d6b2302d6a25d3cc51dba712bbb42bf13327eb472ba447184e1d5f8f132b91",
+  "fixed_threads": 16,
+  "mode": "public_parallel",
+  "wire_version": 9
+}

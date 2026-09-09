@@ -1,0 +1,162 @@
+{
+  "source_sha256": "046ae3d35df987f808b5eb4c989a1218fb72396720adc357b91e02f95c061820",
+  "binary_sha256": "aebb508af85ade601589876291e7c1a28ac496a06de25c55e7e6d2fc4dafdfba",
+  "evaluations": 168,
+  "terminal_phase_replays": 504,
+  "anchored_fullword_equalities": 121,
+  "limitation": "Saved terminal decryptions and public models are replayed. Per-lane stockGLWE equality is a pinned native assertion/count, not independent rawGLWE replay. No future failure probability is established.",
+  "timing": {
+    "comparison": {
+      "pairs": 28,
+      "wins": 11,
+      "ratios": [
+        0.9427016216882795,
+        1.0161753126179078,
+        1.028512707052086,
+        1.0066316025739441,
+        1.0239767132059585,
+        1.0171461297591382,
+        0.9964980243465805,
+        1.0165300295445476,
+        1.0168649493480926,
+        1.0161802283578163,
+        0.9825468693609558,
+        1.0171315067443114,
+        1.030431781031978,
+        1.0218075861003342,
+        1.0479624762049566,
+        0.9924212872430044,
+        1.0459474912043012,
+        0.9954661594922221,
+        1.0246135977463704,
+        0.9903131606110023,
+        0.9895937371538196,
+        0.9986728807378213,
+        0.9903752307644597,
+        1.0678197525977473,
+        1.0242333397690242,
+        1.002625298079834,
+        0.9976740278120099,
+        0.9847072903257184
+      ],
+      "geometric_reduction_percent": -0.991442615578153,
+      "median_paired_reduction_percent": -1.6177770487862064,
+      "reference_median_seconds": 1.9540944795000001,
+      "candidate_median_seconds": 1.9706691045
+    },
+    "by_scene": {
+      "general_last_128_273": {
+        "pairs": 4,
+        "wins": 1,
+        "ratios": [
+          0.9427016216882795,
+          1.0161753126179078,
+          1.028512707052086,
+          1.0066316025739441
+        ],
+        "geometric_reduction_percent": 0.20569014377893602,
+        "median_paired_reduction_percent": -1.1403457595926092,
+        "reference_median_seconds": 1.9365074795,
+        "candidate_median_seconds": 1.948337854
+      },
+      "general_last_129_273": {
+        "pairs": 4,
+        "wins": 1,
+        "ratios": [
+          1.0239767132059585,
+          1.0171461297591382,
+          0.9964980243465805,
+          1.0165300295445476
+        ],
+        "geometric_reduction_percent": -1.3485457737050899,
+        "median_paired_reduction_percent": -1.6838079651842808,
+        "reference_median_seconds": 1.8853839795,
+        "candidate_median_seconds": 1.907484792
+      },
+      "mixed_last_128_273": {
+        "pairs": 4,
+        "wins": 1,
+        "ratios": [
+          1.0168649493480926,
+          1.0161802283578163,
+          0.9825468693609558,
+          1.0171315067443114
+        ],
+        "geometric_reduction_percent": -0.8070951846720575,
+        "median_paired_reduction_percent": -1.6522588852954545,
+        "reference_median_seconds": 1.9430980005,
+        "candidate_median_seconds": 1.955116271
+      },
+      "mixed_last_129_273": {
+        "pairs": 4,
+        "wins": 1,
+        "ratios": [
+          1.030431781031978,
+          1.0218075861003342,
+          1.0479624762049566,
+          0.9924212872430044
+        ],
+        "geometric_reduction_percent": -2.2957386934122415,
+        "median_paired_reduction_percent": -2.6119683566156127,
+        "reference_median_seconds": 1.9031862705,
+        "candidate_median_seconds": 1.952906958
+      },
+      "alternating_thresholds_n128": {
+        "pairs": 4,
+        "wins": 2,
+        "ratios": [
+          1.0459474912043012,
+          0.9954661594922221,
+          1.0246135977463704,
+          0.9903131606110023
+        ],
+        "geometric_reduction_percent": -1.3834958630409178,
+        "median_paired_reduction_percent": -1.0039878619296339,
+        "reference_median_seconds": 2.1429749585,
+        "candidate_median_seconds": 2.164334333
+      },
+      "threshold_blocks_n128": {
+        "pairs": 4,
+        "wins": 3,
+        "ratios": [
+          0.9895937371538196,
+          0.9986728807378213,
+          0.9903752307644597,
+          1.0678197525977473
+        ],
+        "geometric_reduction_percent": -1.1100857644501527,
+        "median_paired_reduction_percent": 0.5475944248859443,
+        "reference_median_seconds": 2.0058243334999997,
+        "candidate_median_seconds": 1.9864412505
+      },
+      "heterogeneous_thresholds_n128": {
+        "pairs": 4,
+        "wins": 2,
+        "ratios": [
+          1.0242333397690242,
+          1.002625298079834,
+          0.9976740278120099,
+          0.9847072903257184
+        ],
+        "geometric_reduction_percent": -0.22091112267819124,
+        "median_paired_reduction_percent": -0.014966294592189122,
+        "reference_median_seconds": 2.1242990209999997,
+        "candidate_median_seconds": 2.106024375
+      }
+    },
+    "excluded_warmup_pairs": 14,
+    "load": {
+      "windows": 84,
+      "snapshots": 86,
+      "high": 84,
+      "unknown": 78,
+      "complete_coverage": 84,
+      "weighted_cpu_median": 247.56422216453274,
+      "weighted_cpu_range": [
+        192.8170730243787,
+        380.357026849782
+      ]
+    },
+    "scope": "One family, seven fixed cells,28 measured AB/BA pairs. All observed load retained; no formal noise tail or population speed guarantee."
+  }
+}

@@ -1,0 +1,13 @@
+[package]
+name = "tfhe-cm-bench"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tfhe = { version = "=1.7.0", default-features = false, features = ["experimental"] }
+rayon = "1.12"
+
+[profile.release]
+debug = false
+lto = "thin"
+codegen-units = 1

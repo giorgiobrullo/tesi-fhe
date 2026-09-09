@@ -1,0 +1,60 @@
+{
+  "schema": "consolidated-findings.v1",
+  "experiment": 24,
+  "common_mask": {
+    "correctness_gate": {
+      "gallery_size": 16,
+      "scenes": 4
+    },
+    "timing_pilot": {
+      "gallery_size": 16,
+      "scenes": 1,
+      "fresh_families": 1,
+      "measured_pairs": 4,
+      "complete_endpoints_including_controls_and_warmups": 21,
+      "reduction_vs_previous_cm_percent": 17.774834331,
+      "slower_vs_r3_percent": 24.5670757559,
+      "candidate_median_seconds": 0.84104275,
+      "old_cm_median_seconds": 1.020072375,
+      "r3_median_seconds": 0.676118896,
+      "estimator": "median of paired reductions; not geometric mean"
+    },
+    "selected_as_fastest": false
+  },
+  "bgv": {
+    "fresh_families": 1,
+    "scene_sizes": [
+      8,
+      8,
+      8,
+      4
+    ],
+    "cyclotomic_index_m": 245760,
+    "phi_m": 65536,
+    "slots": 32768,
+    "admitted_stages": 210,
+    "terminal_values_checked": 32768,
+    "expected_ids": [
+      8,
+      7,
+      0,
+      4
+    ],
+    "final_capacity_bits": 575.1840709700408,
+    "helib_reported_security_bits": 135.33574144014867,
+    "streamed_public_key_bytes": 3150947064,
+    "previous_smaller_ring_final_capacity_bits": -6.536873673101786,
+    "decryption_policy": "diagnostic copy with noiseBound set to zero; original already admitted and unchanged",
+    "paired_query_latency_measured": false
+  },
+  "source_packaging": "archival source excerpts with explicitly unresolved original local dependencies; not standalone portable builds",
+  "evidence": [
+    "evidence/BGV_FINAL_REVIEW.md",
+    "EVIDENCE_ORIGINS.json"
+  ],
+  "limits": [
+    "No N127 extrapolation for these results",
+    "Capacity and serialized bytes are not runtime or RSS",
+    "Finite noisy correctness is not a universal cryptographic failure bound"
+  ]
+}

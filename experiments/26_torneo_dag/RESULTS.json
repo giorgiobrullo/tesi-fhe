@@ -1,0 +1,1100 @@
+{
+  "schema": "consolidated-findings.v1",
+  "experiment": 26,
+  "status": "both_fixed_screens_negative_no_selected_candidate",
+  "campaigns": {
+    "initial": {
+      "original_path": "tmp/torneo-dag-20260908/harness/private/key0/RESULTS.json",
+      "original_sha256": "88f44423be757d94ed80748631036dd1cb06120363cfd1ff68e8d8cda7a00175",
+      "family": 0,
+      "outputs": 357,
+      "terminal_phases": 1071,
+      "correctness_pass": true,
+      "comparisons": {
+        "dag_ready/qualified_parent": {
+          "new": "dag_ready",
+          "reference": "qualified_parent",
+          "pairs": 48,
+          "geometric_time_reduction_percent": -3.060286008660329,
+          "wins": 2,
+          "new_median_ns": 1842134104.0,
+          "reference_median_ns": 1790303500.0,
+          "per_scene": [
+            {
+              "scene": 12,
+              "name": "aligned_last_128_-1",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -3.2777907575478604,
+              "wins": 0,
+              "new_median_ns": 1822990354.5,
+              "reference_median_ns": 1771364062.5
+            },
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -4.061976792865818,
+              "wins": 0,
+              "new_median_ns": 1861746853.5,
+              "reference_median_ns": 1785012541.5
+            },
+            {
+              "scene": 14,
+              "name": "mixed_last_128_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -3.845838826469783,
+              "wins": 0,
+              "new_median_ns": 1837034333.5,
+              "reference_median_ns": 1762825062.5
+            },
+            {
+              "scene": 23,
+              "name": "general_last_129_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -2.876518317642729,
+              "wins": 0,
+              "new_median_ns": 1863959916.5,
+              "reference_median_ns": 1790303500.0
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -2.7913952602254044,
+              "wins": 0,
+              "new_median_ns": 1876945354.0,
+              "reference_median_ns": 1805104729.0
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -0.6371056017261179,
+              "wins": 1,
+              "new_median_ns": 1826300562.5,
+              "reference_median_ns": 1785361666.5
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -2.973259537984041,
+              "wins": 1,
+              "new_median_ns": 1816935833.5,
+              "reference_median_ns": 1754700750.0
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -4.060766484768252,
+              "wins": 0,
+              "new_median_ns": 1888830041.5,
+              "reference_median_ns": 1814060645.5
+            }
+          ]
+        },
+        "dag_ready/barrier_reference": {
+          "new": "dag_ready",
+          "reference": "barrier_reference",
+          "pairs": 48,
+          "geometric_time_reduction_percent": -4.261630364571967,
+          "wins": 4,
+          "new_median_ns": 1842134104.0,
+          "reference_median_ns": 1764834916.5,
+          "per_scene": [
+            {
+              "scene": 12,
+              "name": "aligned_last_128_-1",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -5.806030965865827,
+              "wins": 0,
+              "new_median_ns": 1822990354.5,
+              "reference_median_ns": 1728348312.5
+            },
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -4.9145579324667565,
+              "wins": 0,
+              "new_median_ns": 1861746853.5,
+              "reference_median_ns": 1766014437.5
+            },
+            {
+              "scene": 14,
+              "name": "mixed_last_128_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -4.0601685698749,
+              "wins": 1,
+              "new_median_ns": 1837034333.5,
+              "reference_median_ns": 1743881437.5
+            },
+            {
+              "scene": 23,
+              "name": "general_last_129_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -2.8774107077284894,
+              "wins": 1,
+              "new_median_ns": 1863959916.5,
+              "reference_median_ns": 1795531396.5
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -3.7774130298144026,
+              "wins": 1,
+              "new_median_ns": 1876945354.0,
+              "reference_median_ns": 1787103520.5
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -3.5199092975043422,
+              "wins": 1,
+              "new_median_ns": 1826300562.5,
+              "reference_median_ns": 1748355396.0
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -4.911650461648054,
+              "wins": 0,
+              "new_median_ns": 1816935833.5,
+              "reference_median_ns": 1745093271.0
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": -4.254527297754307,
+              "wins": 0,
+              "new_median_ns": 1888830041.5,
+              "reference_median_ns": 1829147021.0
+            }
+          ]
+        },
+        "barrier_reference/qualified_parent": {
+          "new": "barrier_reference",
+          "reference": "qualified_parent",
+          "pairs": 48,
+          "geometric_time_reduction_percent": 1.152240140223093,
+          "wins": 31,
+          "new_median_ns": 1764834916.5,
+          "reference_median_ns": 1790303500.0,
+          "per_scene": [
+            {
+              "scene": 12,
+              "name": "aligned_last_128_-1",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 2.38950481861816,
+              "wins": 5,
+              "new_median_ns": 1728348312.5,
+              "reference_median_ns": 1771364062.5
+            },
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 0.8126433131899091,
+              "wins": 5,
+              "new_median_ns": 1766014437.5,
+              "reference_median_ns": 1785012541.5
+            },
+            {
+              "scene": 14,
+              "name": "mixed_last_128_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 0.2059671307001687,
+              "wins": 2,
+              "new_median_ns": 1743881437.5,
+              "reference_median_ns": 1762825062.5
+            },
+            {
+              "scene": 23,
+              "name": "general_last_129_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 0.0008674305463363119,
+              "wins": 3,
+              "new_median_ns": 1795531396.5,
+              "reference_median_ns": 1790303500.0
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 0.9501275285265787,
+              "wins": 3,
+              "new_median_ns": 1787103520.5,
+              "reference_median_ns": 1805104729.0
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 2.7847818988068984,
+              "wins": 5,
+              "new_median_ns": 1748355396.0,
+              "reference_median_ns": 1785361666.5
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 1.8476412439747292,
+              "wins": 4,
+              "new_median_ns": 1745093271.0,
+              "reference_median_ns": 1754700750.0
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 6,
+              "geometric_time_reduction_percent": 0.1858536199897176,
+              "wins": 4,
+              "new_median_ns": 1829147021.0,
+              "reference_median_ns": 1814060645.5
+            }
+          ]
+        }
+      },
+      "scope": "Full encrypted query from score formation to three ID ciphertexts. One fixed key family, scenes and recorded CPU load. Profiles are separate instrumentation runs; no service or formal-tail claim."
+    },
+    "diagnosis": {
+      "original_path": "tmp/torneo-dag-diagnosi-20260908/harness/private/key0/RESULTS.json",
+      "original_sha256": "2541d6d09300de4572272cd1acb20106a36fe1060dac028aa9ecd6e39f978f98",
+      "family": 0,
+      "outputs": 560,
+      "terminal_phases": 1680,
+      "correctness_pass": true,
+      "comparisons": {
+        "dag_ready/qualified_parent": {
+          "new": "dag_ready",
+          "reference": "qualified_parent",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -0.8975535669633935,
+          "wins": 17,
+          "losses": 33,
+          "ties": 0,
+          "new_median_ns": 1915360729.5,
+          "reference_median_ns": 1903456979.0,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.0783121276082224,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1860679312.5,
+              "reference_median_ns": 1861160729.5,
+              "exact_product_new": "610009080088898930576630123920619446796007954392213012087339935999553393389817718750000000000",
+              "exact_product_reference": "547969628155047221582968958731137057813395274176758684325817366277440354312672325019885343750",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.11500164640144886,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1928680854.0,
+              "reference_median_ns": 1932325937.5,
+              "exact_product_new": "725566934368765357490262973509367557494781137778294510850623263855379046092095400631776000000",
+              "exact_product_reference": "717275330726922499794819010230882770825015946086158612420614747987093284806845093750000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.35619317831212954,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1898007083.5,
+              "reference_median_ns": 1894665937.5,
+              "exact_product_new": "621999196839801401622754830328066497273208136720139811866185940528122257762532343750000000000",
+              "exact_product_reference": "600271930597093586803944496200142690046056908521309146796623423289700347681439385282379514816",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.240539162070604,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1909163229.5,
+              "reference_median_ns": 1892950000.0,
+              "exact_product_new": "690844931473591017786912573740850465558552631356464769214747535097740421312186870244416000000",
+              "exact_product_reference": "553540325857890008022875709981392507002331614988912326703640620043724249957680739500000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.7114226573205792,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1937240771.0,
+              "reference_median_ns": 1919525375.0,
+              "exact_product_new": "779700319005445435041836841819885315804887968836600107080644257539879969569209768102400000000",
+              "exact_product_reference": "726340738113794517775205966015265172762474028358140846501128039592223864991644287109375000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "dag_ready/barrier_reference": {
+          "new": "dag_ready",
+          "reference": "barrier_reference",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -0.8871208254602722,
+          "wins": 18,
+          "losses": 32,
+          "ties": 0,
+          "new_median_ns": 1915360729.5,
+          "reference_median_ns": 1894365687.5,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.2529052240047907,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1860679312.5,
+              "reference_median_ns": 1885377583.5,
+              "exact_product_new": "610009080088898930576630123920619446796007954392213012087339935999553393389817718750000000000",
+              "exact_product_reference": "538593822561372807831020119678625626107367879611686510972612984118446977630839257984000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.4446353957100968,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1928680854.0,
+              "reference_median_ns": 1913935666.5,
+              "exact_product_new": "725566934368765357490262973509367557494781137778294510850623263855379046092095400631776000000",
+              "exact_product_reference": "628617731434787687223707249018130101584024280429666248444080256645240714618636312500000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": 1.0666214320212197,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1898007083.5,
+              "reference_median_ns": 1908527478.5,
+              "exact_product_new": "621999196839801401622754830328066497273208136720139811866185940528122257762532343750000000000",
+              "exact_product_reference": "692406951438496528942867898545667015275325928345313880619878301403983197678949497616000000000",
+              "exact_positive_reduction": true
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.640299895569022,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1909163229.5,
+              "reference_median_ns": 1885285625.0,
+              "exact_product_new": "690844931473591017786912573740850465558552631356464769214747535097740421312186870244416000000",
+              "exact_product_reference": "532355141309876382925050104559245395987466911214934059726450459797552385708003328000000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.20313489829510745,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1937240771.0,
+              "reference_median_ns": 1908241645.5,
+              "exact_product_new": "779700319005445435041836841819885315804887968836600107080644257539879969569209768102400000000",
+              "exact_product_reference": "764037409758499608195808527108749423866451178676686870271345904872531193210373347328000000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "dag_inline/qualified_parent": {
+          "new": "dag_inline",
+          "reference": "qualified_parent",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -1.6919433842493554,
+          "wins": 19,
+          "losses": 31,
+          "ties": 0,
+          "new_median_ns": 1914537020.5,
+          "reference_median_ns": 1903456979.0,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.3217205530249396,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1904789708.5,
+              "reference_median_ns": 1861160729.5,
+              "exact_product_new": "689342143700441952867793649311304696041995941708762807887531939382030258397453169921875000000",
+              "exact_product_reference": "547969628155047221582968958731137057813395274176758684325817366277440354312672325019885343750",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.1402380575108046,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1958607250.0,
+              "reference_median_ns": 1932325937.5,
+              "exact_product_new": "886450627266829298398386730825145928901544276512008896123629985097208262489339501953125000000",
+              "exact_product_reference": "717275330726922499794819010230882770825015946086158612420614747987093284806845093750000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.5451359797056423,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1926031917.0,
+              "reference_median_ns": 1894665937.5,
+              "exact_product_new": "699744173100737318717526221392960983617160254683276748390496510082390616141559082332000000000",
+              "exact_product_reference": "600271930597093586803944496200142690046056908521309146796623423289700347681439385282379514816",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.6299422200941408,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1867294250.0,
+              "reference_median_ns": 1892950000.0,
+              "exact_product_new": "589415426600940993490858703402733748691690364958111420284041859549632989778437500000000000000",
+              "exact_product_reference": "553540325857890008022875709981392507002331614988912326703640620043724249957680739500000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.83139334437621,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1985121520.5,
+              "reference_median_ns": 1919525375.0,
+              "exact_product_new": "870877890504123309575271062980855064235200271122312334356468852088876481267472355000000000000",
+              "exact_product_reference": "726340738113794517775205966015265172762474028358140846501128039592223864991644287109375000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "dag_inline/barrier_reference": {
+          "new": "dag_inline",
+          "reference": "barrier_reference",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -1.6814285033551046,
+          "wins": 15,
+          "losses": 35,
+          "ties": 0,
+          "new_median_ns": 1914537020.5,
+          "reference_median_ns": 1894365687.5,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.4984613952881496,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1904789708.5,
+              "reference_median_ns": 1885377583.5,
+              "exact_product_new": "689342143700441952867793649311304696041995941708762807887531939382030258397453169921875000000",
+              "exact_product_reference": "538593822561372807831020119678625626107367879611686510972612984118446977630839257984000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -3.496769101313347,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1958607250.0,
+              "reference_median_ns": 1913935666.5,
+              "exact_product_new": "886450627266829298398386730825145928901544276512008896123629985097208262489339501953125000000",
+              "exact_product_reference": "628617731434787687223707249018130101584024280429666248444080256645240714618636312500000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.10546495886987087,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1926031917.0,
+              "reference_median_ns": 1908527478.5,
+              "exact_product_new": "699744173100737318717526221392960983617160254683276748390496510082390616141559082332000000000",
+              "exact_product_reference": "692406951438496528942867898545667015275325928345313880619878301403983197678949497616000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.0234055159990985,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1867294250.0,
+              "reference_median_ns": 1885285625.0,
+              "exact_product_new": "589415426600940993490858703402733748691690364958111420284041859549632989778437500000000000000",
+              "exact_product_reference": "532355141309876382925050104559245395987466911214934059726450459797552385708003328000000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.3174531243321455,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1985121520.5,
+              "reference_median_ns": 1908241645.5,
+              "exact_product_new": "870877890504123309575271062980855064235200271122312334356468852088876481267472355000000000000",
+              "exact_product_reference": "764037409758499608195808527108749423866451178676686870271345904872531193210373347328000000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "dag_guarded/qualified_parent": {
+          "new": "dag_guarded",
+          "reference": "qualified_parent",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -2.619875971729409,
+          "wins": 13,
+          "losses": 37,
+          "ties": 0,
+          "new_median_ns": 1930544354.0,
+          "reference_median_ns": 1903456979.0,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.2302618953910156,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1895015666.0,
+              "reference_median_ns": 1861160729.5,
+              "exact_product_new": "683205292012945011347970603439641122394107834393994139275034784393977681935717009024000000000",
+              "exact_product_reference": "547969628155047221582968958731137057813395274176758684325817366277440354312672325019885343750",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -3.190665466199199,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1974498812.0,
+              "reference_median_ns": 1932325937.5,
+              "exact_product_new": "981951473639217475664556040018888818014988164303078309999847971899146176592789504000000000000",
+              "exact_product_reference": "717275330726922499794819010230882770825015946086158612420614747987093284806845093750000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -3.215530683414921,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1903628916.5,
+              "reference_median_ns": 1894665937.5,
+              "exact_product_new": "823755892255357902574150154457106511312384761972598062753804944841879092206171271000000000000",
+              "exact_product_reference": "600271930597093586803944496200142690046056908521309146796623423289700347681439385282379514816",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -3.4133443225111173,
+              "wins": 1,
+              "losses": 9,
+              "ties": 0,
+              "new_median_ns": 1930488625.0,
+              "reference_median_ns": 1892950000.0,
+              "exact_product_new": "774310407623181217891363619399093772966927368646630374162395885353052279882620285000000000000",
+              "exact_product_reference": "553540325857890008022875709981392507002331614988912326703640620043724249957680739500000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.0685203280096827,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1937443708.5,
+              "reference_median_ns": 1919525375.0,
+              "exact_product_new": "807791871180425062451553829496724717911368721048635200242855009404027334287732308000000000000",
+              "exact_product_reference": "726340738113794517775205966015265172762474028358140846501128039592223864991644287109375000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "dag_guarded/barrier_reference": {
+          "new": "dag_guarded",
+          "reference": "barrier_reference",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -2.6092651432083276,
+          "wins": 12,
+          "losses": 38,
+          "ties": 0,
+          "new_median_ns": 1930544354.0,
+          "reference_median_ns": 1894365687.5,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.406844760637273,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1895015666.0,
+              "reference_median_ns": 1885377583.5,
+              "exact_product_new": "683205292012945011347970603439641122394107834393994139275034784393977681935717009024000000000",
+              "exact_product_reference": "538593822561372807831020119678625626107367879611686510972612984118446977630839257984000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -4.561147303697213,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1974498812.0,
+              "reference_median_ns": 1913935666.5,
+              "exact_product_new": "981951473639217475664556040018888818014988164303078309999847971899146176592789504000000000000",
+              "exact_product_reference": "628617731434787687223707249018130101584024280429666248444080256645240714618636312500000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.7521773972979393,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1903628916.5,
+              "reference_median_ns": 1908527478.5,
+              "exact_product_new": "823755892255357902574150154457106511312384761972598062753804944841879092206171271000000000000",
+              "exact_product_reference": "692406951438496528942867898545667015275325928345313880619878301403983197678949497616000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -3.8176907267721347,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1930488625.0,
+              "reference_median_ns": 1885285625.0,
+              "exact_product_new": "774310407623181217891363619399093772966927368646630374162395885353052279882620285000000000000",
+              "exact_product_reference": "532355141309876382925050104559245395987466911214934059726450459797552385708003328000000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.5584303069368793,
+              "wins": 2,
+              "losses": 8,
+              "ties": 0,
+              "new_median_ns": 1937443708.5,
+              "reference_median_ns": 1908241645.5,
+              "exact_product_new": "807791871180425062451553829496724717911368721048635200242855009404027334287732308000000000000",
+              "exact_product_reference": "764037409758499608195808527108749423866451178676686870271345904872531193210373347328000000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "barrier_reference/qualified_parent": {
+          "new": "barrier_reference",
+          "reference": "qualified_parent",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -0.010341004300411662,
+          "wins": 27,
+          "losses": 23,
+          "ties": 0,
+          "new_median_ns": 1894365687.5,
+          "reference_median_ns": 1903456979.0,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": 0.17243267836148557,
+              "wins": 6,
+              "losses": 4,
+              "ties": 0,
+              "new_median_ns": 1885377583.5,
+              "reference_median_ns": 1861160729.5,
+              "exact_product_new": "538593822561372807831020119678625626107367879611686510972612984118446977630839257984000000000",
+              "exact_product_reference": "547969628155047221582968958731137057813395274176758684325817366277440354312672325019885343750",
+              "exact_positive_reduction": true
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": 1.3106989286541175,
+              "wins": 7,
+              "losses": 3,
+              "ties": 0,
+              "new_median_ns": 1913935666.5,
+              "reference_median_ns": 1932325937.5,
+              "exact_product_new": "628617731434787687223707249018130101584024280429666248444080256645240714618636312500000000000",
+              "exact_product_reference": "717275330726922499794819010230882770825015946086158612420614747987093284806845093750000000000",
+              "exact_positive_reduction": true
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.438154272024295,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1908527478.5,
+              "reference_median_ns": 1894665937.5,
+              "exact_product_new": "692406951438496528942867898545667015275325928345313880619878301403983197678949497616000000000",
+              "exact_product_reference": "600271930597093586803944496200142690046056908521309146796623423289700347681439385282379514816",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": 0.38947736308755315,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1885285625.0,
+              "reference_median_ns": 1892950000.0,
+              "exact_product_new": "532355141309876382925050104559245395987466911214934059726450459797552385708003328000000000000",
+              "exact_product_reference": "553540325857890008022875709981392507002331614988912326703640620043724249957680739500000000000",
+              "exact_positive_reduction": true
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.5072573423390176,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1908241645.5,
+              "reference_median_ns": 1919525375.0,
+              "exact_product_new": "764037409758499608195808527108749423866451178676686870271345904872531193210373347328000000000",
+              "exact_product_reference": "726340738113794517775205966015265172762474028358140846501128039592223864991644287109375000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "dag_inline/dag_ready": {
+          "new": "dag_inline",
+          "reference": "dag_ready",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -0.7873231700892953,
+          "wins": 20,
+          "losses": 30,
+          "ties": 0,
+          "new_median_ns": 1914537020.5,
+          "reference_median_ns": 1915360729.5,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.2301436373877632,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1904789708.5,
+              "reference_median_ns": 1860679312.5,
+              "exact_product_new": "689342143700441952867793649311304696041995941708762807887531939382030258397453169921875000000",
+              "exact_product_reference": "610009080088898930576630123920619446796007954392213012087339935999553393389817718750000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.022910031268175,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1958607250.0,
+              "reference_median_ns": 1928680854.0,
+              "exact_product_new": "886450627266829298398386730825145928901544276512008896123629985097208262489339501953125000000",
+              "exact_product_reference": "725566934368765357490262973509367557494781137778294510850623263855379046092095400631776000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.1847228992444974,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1926031917.0,
+              "reference_median_ns": 1898007083.5,
+              "exact_product_new": "699744173100737318717526221392960983617160254683276748390496510082390616141559082332000000000",
+              "exact_product_reference": "621999196839801401622754830328066497273208136720139811866185940528122257762532343750000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": 1.5753016906761077,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1867294250.0,
+              "reference_median_ns": 1909163229.5,
+              "exact_product_new": "589415426600940993490858703402733748691690364958111420284041859549632989778437500000000000000",
+              "exact_product_reference": "690844931473591017786912573740850465558552631356464769214747535097740421312186870244416000000",
+              "exact_positive_reduction": true
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.112059245619469,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1985121520.5,
+              "reference_median_ns": 1937240771.0,
+              "exact_product_new": "870877890504123309575271062980855064235200271122312334356468852088876481267472355000000000000",
+              "exact_product_reference": "779700319005445435041836841819885315804887968836600107080644257539879969569209768102400000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        },
+        "dag_guarded/dag_ready": {
+          "new": "dag_guarded",
+          "reference": "dag_ready",
+          "pairs": 50,
+          "geometric_time_reduction_percent": -1.7070011550111046,
+          "wins": 20,
+          "losses": 30,
+          "ties": 0,
+          "new_median_ns": 1930544354.0,
+          "reference_median_ns": 1915360729.5,
+          "exact_positive_reduction": false,
+          "per_scene": [
+            {
+              "scene": 13,
+              "name": "general_last_128_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.1396606685799124,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1895015666.0,
+              "reference_median_ns": 1860679312.5,
+              "exact_product_new": "683205292012945011347970603439641122394107834393994139275034784393977681935717009024000000000",
+              "exact_product_reference": "610009080088898930576630123920619446796007954392213012087339935999553393389817718750000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 24,
+              "name": "mixed_last_129_273",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -3.072130818776549,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1974498812.0,
+              "reference_median_ns": 1928680854.0,
+              "exact_product_new": "981951473639217475664556040018888818014988164303078309999847971899146176592789504000000000000",
+              "exact_product_reference": "725566934368765357490262973509367557494781137778294510850623263855379046092095400631776000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 35,
+              "name": "alternating_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -2.8491888886442123,
+              "wins": 3,
+              "losses": 7,
+              "ties": 0,
+              "new_median_ns": 1903628916.5,
+              "reference_median_ns": 1898007083.5,
+              "exact_product_new": "823755892255357902574150154457106511312384761972598062753804944841879092206171271000000000000",
+              "exact_product_reference": "621999196839801401622754830328066497273208136720139811866185940528122257762532343750000000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 38,
+              "name": "threshold_blocks_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -1.1471038494636563,
+              "wins": 4,
+              "losses": 6,
+              "ties": 0,
+              "new_median_ns": 1930488625.0,
+              "reference_median_ns": 1909163229.5,
+              "exact_product_new": "774310407623181217891363619399093772966927368646630374162395885353052279882620285000000000000",
+              "exact_product_reference": "690844931473591017786912573740850465558552631356464769214747535097740421312186870244416000000",
+              "exact_positive_reduction": false
+            },
+            {
+              "scene": 39,
+              "name": "heterogeneous_thresholds_n128",
+              "pairs": 10,
+              "geometric_time_reduction_percent": -0.354575142786094,
+              "wins": 5,
+              "losses": 5,
+              "ties": 0,
+              "new_median_ns": 1937443708.5,
+              "reference_median_ns": 1937240771.0,
+              "exact_product_new": "807791871180425062451553829496724717911368721048635200242855009404027334287732308000000000000",
+              "exact_product_reference": "779700319005445435041836841819885315804887968836600107080644257539879969569209768102400000000",
+              "exact_positive_reduction": false
+            }
+          ]
+        }
+      },
+      "scope": "Full encrypted query; fixed family, scenes, order and recorded load. All losses retained. Instrumented profiles are separate from timing; process CPU ratio is not per-worker occupancy. Node waits include cleanup/publication/setup and do not measure idle cores. No service effect, confidence interval or formal-tail claim.",
+      "gate_mechanisms": {
+        "qualified_parent": {
+          "early_parent_starts": 0,
+          "inline_continuations": 0,
+          "suppressed_eligible_nodes": 0,
+          "traced_merge_nodes": 0
+        },
+        "barrier_reference": {
+          "early_parent_starts": 0,
+          "inline_continuations": 0,
+          "suppressed_eligible_nodes": 0,
+          "traced_merge_nodes": 4196
+        },
+        "dag_ready": {
+          "early_parent_starts": 1909,
+          "inline_continuations": 0,
+          "suppressed_eligible_nodes": 0,
+          "traced_merge_nodes": 4196
+        },
+        "dag_inline": {
+          "early_parent_starts": 1909,
+          "inline_continuations": 2089,
+          "suppressed_eligible_nodes": 0,
+          "traced_merge_nodes": 4196
+        },
+        "dag_guarded": {
+          "early_parent_starts": 1909,
+          "inline_continuations": 0,
+          "suppressed_eligible_nodes": 103,
+          "traced_merge_nodes": 4196
+        }
+      }
+    }
+  },
+  "latest_whole_output_equalities": 455,
+  "initial_whole_output_equalities": 245,
+  "interrupted_gate": {
+    "outputs": 127,
+    "terminal_phases": 381,
+    "complete": false,
+    "included_in_complete_screen": false,
+    "reason": "unjustified cross-clock duration ordering check; independently frozen amendment"
+  },
+  "separate_binary_bridge": {
+    "outputs": 80,
+    "phases": 240,
+    "measured_pairs": 30,
+    "new_binary_slower_percent": 0.37599,
+    "included_in_fresh_screen": false
+  },
+  "clock_amendment_tests_passed": 13,
+  "load_scope": {
+    "initial_measured_windows": 144,
+    "initial_high": 144,
+    "initial_unknown": 88,
+    "diagnosis_measured_windows": 250,
+    "diagnosis_high": 250,
+    "diagnosis_unknown": 177
+  },
+  "limits": [
+    "One fresh family per screen; families1/2 not generated",
+    "Two campaigns differ in scenes/keys/load and cannot be subtracted as causal code improvement",
+    "16 threads, fixed FFT, noG4",
+    "No confidence interval or free-worker measurement",
+    "All measured losses preserved",
+    "Curated timing CSV omits unrelated process commands and keeps numeric pairs and available load flags"
+  ],
+  "timing_csv": "timing-pairs.csv"
+}

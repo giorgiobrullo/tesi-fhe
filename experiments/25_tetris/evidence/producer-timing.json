@@ -1,0 +1,594 @@
+{
+  "evidence": {
+    "original_path": "tmp/tetris-composite-demo-20260908/tetris/comparisons/splitfft-v2-first/TIMING_RESULT.json",
+    "original_sha256": "6de3436d646c48850b364bdec91e211b22e3551831235cbc4ea7957d0337104d"
+  },
+  "values": {
+    "boundary": "one retained key and three repeated encrypted inputs; six fresh Tetris conversions per candidate; all conversion/allocation/scheduling included; decryption, hashing, disk and PFKS excluded",
+    "failures": 0,
+    "kind": "timing_result",
+    "measured_pairs": 18,
+    "outputs": 48,
+    "pairs": 24,
+    "records": [
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014593208,
+            "end_unix_ns": 1788881259799202000,
+            "start_unix_ns": 1788881259784609000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.03189125,
+            "end_unix_ns": 1788881259831094000,
+            "start_unix_ns": 1788881259799203000
+          }
+        ],
+        "pair": 0,
+        "repeat": 0,
+        "scene": 0,
+        "warmup": true
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.024257291,
+            "end_unix_ns": 1788881259865949000,
+            "start_unix_ns": 1788881259841692000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014634083,
+            "end_unix_ns": 1788881259880584000,
+            "start_unix_ns": 1788881259865950000
+          }
+        ],
+        "pair": 1,
+        "repeat": 0,
+        "scene": 2,
+        "warmup": true
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014210542,
+            "end_unix_ns": 1788881259904613000,
+            "start_unix_ns": 1788881259890402000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023788666,
+            "end_unix_ns": 1788881259928403000,
+            "start_unix_ns": 1788881259904614000
+          }
+        ],
+        "pair": 2,
+        "repeat": 0,
+        "scene": 8,
+        "warmup": true
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023768417,
+            "end_unix_ns": 1788881259960866000,
+            "start_unix_ns": 1788881259937097000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014345375,
+            "end_unix_ns": 1788881259975212000,
+            "start_unix_ns": 1788881259960866000
+          }
+        ],
+        "pair": 3,
+        "repeat": 1,
+        "scene": 0,
+        "warmup": true
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014168625,
+            "end_unix_ns": 1788881259999637000,
+            "start_unix_ns": 1788881259985468000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.0237855,
+            "end_unix_ns": 1788881260023423000,
+            "start_unix_ns": 1788881259999637000
+          }
+        ],
+        "pair": 4,
+        "repeat": 1,
+        "scene": 2,
+        "warmup": true
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023712083,
+            "end_unix_ns": 1788881260056763000,
+            "start_unix_ns": 1788881260033051000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014138417,
+            "end_unix_ns": 1788881260070903000,
+            "start_unix_ns": 1788881260056764000
+          }
+        ],
+        "pair": 5,
+        "repeat": 1,
+        "scene": 8,
+        "warmup": true
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014242792,
+            "end_unix_ns": 1788881260095657000,
+            "start_unix_ns": 1788881260081414000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023579708,
+            "end_unix_ns": 1788881260119237000,
+            "start_unix_ns": 1788881260095657000
+          }
+        ],
+        "pair": 6,
+        "repeat": 2,
+        "scene": 0,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023625167,
+            "end_unix_ns": 1788881260152630000,
+            "start_unix_ns": 1788881260129004000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014051166,
+            "end_unix_ns": 1788881260166682000,
+            "start_unix_ns": 1788881260152631000
+          }
+        ],
+        "pair": 7,
+        "repeat": 2,
+        "scene": 2,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014167542,
+            "end_unix_ns": 1788881260191542000,
+            "start_unix_ns": 1788881260177374000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023743791,
+            "end_unix_ns": 1788881260215286000,
+            "start_unix_ns": 1788881260191542000
+          }
+        ],
+        "pair": 8,
+        "repeat": 2,
+        "scene": 8,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023364833,
+            "end_unix_ns": 1788881260248379000,
+            "start_unix_ns": 1788881260225014000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014272583,
+            "end_unix_ns": 1788881260262652000,
+            "start_unix_ns": 1788881260248379000
+          }
+        ],
+        "pair": 9,
+        "repeat": 3,
+        "scene": 0,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014120167,
+            "end_unix_ns": 1788881260287486000,
+            "start_unix_ns": 1788881260273366000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023640542,
+            "end_unix_ns": 1788881260311128000,
+            "start_unix_ns": 1788881260287487000
+          }
+        ],
+        "pair": 10,
+        "repeat": 3,
+        "scene": 2,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023622375,
+            "end_unix_ns": 1788881260344946000,
+            "start_unix_ns": 1788881260321324000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014291291,
+            "end_unix_ns": 1788881260359239000,
+            "start_unix_ns": 1788881260344947000
+          }
+        ],
+        "pair": 11,
+        "repeat": 3,
+        "scene": 8,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014196417,
+            "end_unix_ns": 1788881260383590000,
+            "start_unix_ns": 1788881260369393000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023595,
+            "end_unix_ns": 1788881260407185000,
+            "start_unix_ns": 1788881260383590000
+          }
+        ],
+        "pair": 12,
+        "repeat": 4,
+        "scene": 0,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.02356825,
+            "end_unix_ns": 1788881260439578000,
+            "start_unix_ns": 1788881260416009000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014078542,
+            "end_unix_ns": 1788881260453657000,
+            "start_unix_ns": 1788881260439579000
+          }
+        ],
+        "pair": 13,
+        "repeat": 4,
+        "scene": 2,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014367958,
+            "end_unix_ns": 1788881260476807000,
+            "start_unix_ns": 1788881260462439000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023762,
+            "end_unix_ns": 1788881260500570000,
+            "start_unix_ns": 1788881260476807000
+          }
+        ],
+        "pair": 14,
+        "repeat": 4,
+        "scene": 8,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023888125,
+            "end_unix_ns": 1788881260533929000,
+            "start_unix_ns": 1788881260510040000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014121541,
+            "end_unix_ns": 1788881260548052000,
+            "start_unix_ns": 1788881260533930000
+          }
+        ],
+        "pair": 15,
+        "repeat": 5,
+        "scene": 0,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014086042,
+            "end_unix_ns": 1788881260572449000,
+            "start_unix_ns": 1788881260558362000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023883041,
+            "end_unix_ns": 1788881260596332000,
+            "start_unix_ns": 1788881260572449000
+          }
+        ],
+        "pair": 16,
+        "repeat": 5,
+        "scene": 2,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.024111625,
+            "end_unix_ns": 1788881260630134000,
+            "start_unix_ns": 1788881260606021000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014115334,
+            "end_unix_ns": 1788881260644250000,
+            "start_unix_ns": 1788881260630134000
+          }
+        ],
+        "pair": 17,
+        "repeat": 5,
+        "scene": 8,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014033041,
+            "end_unix_ns": 1788881260668412000,
+            "start_unix_ns": 1788881260654378000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.0235835,
+            "end_unix_ns": 1788881260691996000,
+            "start_unix_ns": 1788881260668412000
+          }
+        ],
+        "pair": 18,
+        "repeat": 6,
+        "scene": 0,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023823459,
+            "end_unix_ns": 1788881260725868000,
+            "start_unix_ns": 1788881260702044000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014362625,
+            "end_unix_ns": 1788881260740231000,
+            "start_unix_ns": 1788881260725868000
+          }
+        ],
+        "pair": 19,
+        "repeat": 6,
+        "scene": 2,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014192125,
+            "end_unix_ns": 1788881260764595000,
+            "start_unix_ns": 1788881260750403000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023550958,
+            "end_unix_ns": 1788881260788147000,
+            "start_unix_ns": 1788881260764595000
+          }
+        ],
+        "pair": 20,
+        "repeat": 6,
+        "scene": 8,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023869125,
+            "end_unix_ns": 1788881260821887000,
+            "start_unix_ns": 1788881260798017000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014376708,
+            "end_unix_ns": 1788881260836264000,
+            "start_unix_ns": 1788881260821887000
+          }
+        ],
+        "pair": 21,
+        "repeat": 7,
+        "scene": 0,
+        "warmup": false
+      },
+      {
+        "order": [
+          "parallel3",
+          "splitfft_parallel6"
+        ],
+        "outputs": [
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014802125,
+            "end_unix_ns": 1788881260860206000,
+            "start_unix_ns": 1788881260845403000
+          },
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023402084,
+            "end_unix_ns": 1788881260883608000,
+            "start_unix_ns": 1788881260860206000
+          }
+        ],
+        "pair": 22,
+        "repeat": 7,
+        "scene": 2,
+        "warmup": false
+      },
+      {
+        "order": [
+          "splitfft_parallel6",
+          "parallel3"
+        ],
+        "outputs": [
+          {
+            "arm": "splitfft_parallel6",
+            "elapsed_s": 0.023784208,
+            "end_unix_ns": 1788881260916826000,
+            "start_unix_ns": 1788881260893040000
+          },
+          {
+            "arm": "parallel3",
+            "elapsed_s": 0.014380792,
+            "end_unix_ns": 1788881260931207000,
+            "start_unix_ns": 1788881260916826000
+          }
+        ],
+        "pair": 23,
+        "repeat": 7,
+        "scene": 8,
+        "warmup": false
+      }
+    ],
+    "warmup_pairs": 6
+  },
+  "scope": "Field projection of completed evidence. No new FHE run or decryption replay during consolidation."
+}

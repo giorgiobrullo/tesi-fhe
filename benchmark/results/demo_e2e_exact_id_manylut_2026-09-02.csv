@@ -1,0 +1,7 @@
+trial,indice_sintetico,atteso,esito,identita_attesa,identita_restituita,esito_corretto,identita_corretta,corretto,protocollo_http_osservato,embedding_ms,cifratura_ms,server_ms,rete_e_server_ms,decifratura_ms,somma_tappe_strumentate_ms,endpoint_interno_ms,endpoint_http_ms,probe_cifrato_b,esito_cifrato_b,pbs
+0,0,aperto,aperto,sintetico_0,sintetico_0,True,True,True,exact-open-set-id-v2,419.4,4.1,7636.2,7637.9,1.3,8062.7,8112.7,8117.723,32840,16464,4965
+1,1,aperto,aperto,sintetico_1,sintetico_1,True,True,True,exact-open-set-id-v2,471.0,4.3,7737.4,7738.1,1.5,8214.9,8270.6,8272.804,32840,16464,4965
+2,2,aperto,aperto,sintetico_10,sintetico_10,True,True,True,exact-open-set-id-v2,367.0,5.4,7562.1,7562.8,1.2,7936.4,7992.9,7994.941,32840,16464,4965
+3,627,negato,negato,,,True,True,True,exact-open-set-id-v2,383.8,3.5,7591.9,7593.2,1.2,7981.7,8036.7,8038.752,32840,16464,4965
+4,628,negato,negato,,,True,True,True,exact-open-set-id-v2,367.7,2.6,8213.3,8214.2,2.3,8586.8,8644.4,8647.028,32840,16464,4965
+5,629,negato,negato,,,True,True,True,exact-open-set-id-v2,872.1,2.4,9183.7,9184.8,2.0,10061.3,10147.1,10150.079,32840,16464,4965

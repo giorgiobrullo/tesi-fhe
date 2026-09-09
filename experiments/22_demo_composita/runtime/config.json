@@ -1,0 +1,176 @@
+{
+  "T": 4,
+  "T_reale_vggface2": 273,
+  "T_sintetico_digiface": 4,
+  "bit": 3,
+  "calibrazione_reale": {
+    "dominio_valutazione": "clear_numpy",
+    "impostori_test_per_split": 500,
+    "impostori_tuning_per_split": 500,
+    "metriche_con_T_mediana_fissa": {
+      "T": 273,
+      "accettati_test": 37,
+      "dir": 0.993304,
+      "fpir_test": 0.010571,
+      "genuini_match_multipli": 0.007812,
+      "impostori_test": 3500,
+      "metrica_primaria": "dir",
+      "tar_any_match_diagnostica": 0.993304
+    },
+    "metriche_con_soglia_per_split": {
+      "dir_media": 0.993304,
+      "fpir_test_media": 0.010286,
+      "genuini_match_multipli_media": 0.007812,
+      "metrica_primaria": "dir",
+      "tar_any_match_diagnostica_media": 0.993304
+    },
+    "soglie_per_split": [
+      258,
+      245,
+      288,
+      244,
+      273,
+      296,
+      273
+    ],
+    "split": 7
+  },
+  "calibrazione_sintetica": {
+    "accettati_holdout_non_tuning": 12,
+    "accettati_test": 1,
+    "accettati_tuning": 5,
+    "dir": 1.0,
+    "dominio_valutazione": "clear_numpy",
+    "file_metadata_manifest_sha256": "e37db4824d9dee73652569eefc30f40f26b26b52f68303d7336435fc06f7b15e",
+    "fpir_holdout_non_tuning": 0.00874,
+    "fpir_target": 0.01,
+    "fpir_test": 0.002,
+    "fpir_tuning": 0.01,
+    "genuini_match_multipli": 0.007874,
+    "holdout_sha256": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07",
+    "impostori_holdout_non_tuning": 1373,
+    "impostori_match_multipli": 0.0,
+    "impostori_test": 500,
+    "impostori_tuning": 500,
+    "iscritti": 127,
+    "metrica_primaria": "dir_at_fpir",
+    "scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+    "tar_any_match_diagnostica": 1.0,
+    "wilson_95_holdout_non_tuning": [
+      0.005007,
+      0.015215
+    ],
+    "wilson_95_test": [
+      0.000353,
+      0.011241
+    ]
+  },
+  "capacita_galleria": 3374,
+  "comparatore_fhe": {
+    "nota": "Confronto del minimo esatto con la soglia inclusiva del vincitore; tre cifre cifrate in base 15. Piano uniforme o misto derivato dalla galleria corrente.",
+    "pbs_dipende_da_n": true,
+    "stato": "head_mixed_three_base15_native51"
+  },
+  "contratto_esatto": {
+    "cauchy_coverage_required": true,
+    "circuit_sha256": "fccc649ea188cdad3d8060663c9007f449b238a42f732fca85bd616778dd35d2",
+    "client_key_magic": 2393435926291501654,
+    "codice": "0=rifiuto; i+1=identita_accettata",
+    "core_id_contract": "head-pfks-split333-b22-mean-three-id-winner-threshold.v1",
+    "core_source_sha256": "c0d6b2302d6a25d3cc51dba712bbb42bf13327eb472ba447184e1d5f8f132b91",
+    "digit_base": 15,
+    "digit_delta_log": 59,
+    "g4_key_body_limit_bytes": 301989888,
+    "g4_required": false,
+    "head_fourier_payload_bytes": 112590848,
+    "http_contract": "exact-open-set-id-v9-composite-tfhe17-base15-three-lwe",
+    "low_mod16_delta_log": 60,
+    "low_mod16_offset": 1024,
+    "max_gallery_size": 3374,
+    "max_noise_level": 15,
+    "output_lwes": 3,
+    "output_magic": 3977052671323624022,
+    "output_mode": 5,
+    "params_fingerprint_sha256": "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61",
+    "params_id": "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+    "pfks_window_payload_bytes": 67141632,
+    "probe_layout": 1,
+    "probe_magic": 3977050450825531990,
+    "query_profile": "head51",
+    "query_profile_id": 2,
+    "ricostruzione_client": "low+15*middle+225*high",
+    "runtime_mode": "public_parallel",
+    "score_delta_log": 51,
+    "score_domain_max_width": 4096,
+    "server_key_body_limit_bytes": 335544320,
+    "server_key_magic": 2393435896310616662,
+    "service_source_sha256": "abd3a1091776f8273cbdee96d6be0a6ca9fd928ece5305be2fc758826e0d2c39",
+    "small_lwe_dimension": 859,
+    "threshold_policy": "winner_own_inclusive",
+    "un_solo_lwe": false,
+    "variant_id": "head-composite-b22-tfhe17-base15-p16-public_parallel-v9",
+    "wire_version": 9
+  },
+  "decisione": "exact_argmin_then_selected_threshold",
+  "dim": 512,
+  "dominio_galleria": "sintetico",
+  "dominio_score_cauchy": {
+    "formula": "norm2(g) +/- 2*ceil_sqrt(norm2(g)*1024)",
+    "galleria_sintetica_base": {
+      "lower": -987,
+      "upper": 2329,
+      "width": 3317
+    },
+    "gallerie_reali_di_calibrazione": {
+      "lower_min": -994,
+      "per_split": [
+        {
+          "lower": -994,
+          "upper": 2386,
+          "width": 3381
+        },
+        {
+          "lower": -987,
+          "upper": 2321,
+          "width": 3309
+        },
+        {
+          "lower": -986,
+          "upper": 2318,
+          "width": 3305
+        },
+        {
+          "lower": -986,
+          "upper": 2314,
+          "width": 3301
+        },
+        {
+          "lower": -988,
+          "upper": 2332,
+          "width": 3321
+        },
+        {
+          "lower": -987,
+          "upper": 2325,
+          "width": 3313
+        },
+        {
+          "lower": -987,
+          "upper": 2325,
+          "width": 3313
+        }
+      ],
+      "upper_max": 2386,
+      "width_max": 3381
+    }
+  },
+  "historical_calibration_note": "Le calibrazioni e i domini osservati sottostanti sono copiati da demo/config.json (clear_numpy, gallerie originali N127); non qualificano questa nuova integrazione, nuove dimensioni o nuovi volti.",
+  "k_galleria": 2,
+  "k_probe": 3,
+  "modello": "resnet100",
+  "n_galleria_demo": 127,
+  "posti_riservati_webcam_demo": 3247,
+  "q_max": 3,
+  "scala": 0.04098006,
+  "score_abs_massimo_osservato": 1044
+}

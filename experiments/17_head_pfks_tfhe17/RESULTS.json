@@ -1,0 +1,102 @@
+{
+  "schema": "local-review-curated-results.v1",
+  "experiment": 17,
+  "title": "Head/PFKS exact 0/ID con media pubblica",
+  "evidence_status": "Previously accepted original results; no new-location build or execution",
+  "implementation": {
+    "source_sha256": "01565f07630daa7f9837d2120c36c2a32ebc0d59cc8b3adbba504afad8475b17",
+    "tfhe_version": "1.7.0",
+    "selected_path_n": 127,
+    "head": "15x2",
+    "pfks": "22x1",
+    "split": "3+2",
+    "public_mean_correction": true,
+    "output_base": 15,
+    "output_digits": 2,
+    "native_full_scale_log": 51,
+    "native_low_scale_log": 60
+  },
+  "counts_per_n127_query": {
+    "BR": 1397,
+    "KS": 1016,
+    "PFKS": 635,
+    "marginals": 1778,
+    "gadget_levels": 1651,
+    "initial_samples": 127,
+    "counts_are_not_additive_runtime_costs": true
+  },
+  "finalist_pilot": {
+    "fresh_key_families": 1,
+    "measured_triples": 6,
+    "median_seconds": {
+      "M": 3.048836,
+      "H": 3.071472,
+      "R3": 4.615544
+    },
+    "median_paired_reduction_percent": {
+      "M_vs_H": 0.7963,
+      "M_vs_R3": 34.0848
+    },
+    "both_comparisons_wins": 6,
+    "estimator": "Median of within-pair reductions, distinct from ratio of marginal medians and from geometric estimator"
+  },
+  "separate_three_key_arithmetic": {
+    "fresh_key_families": 3,
+    "complete_n127_outputs": 12,
+    "observed_merges": 1524,
+    "records": 29031
+  },
+  "separate_service_gate": {
+    "complete_encrypted_outputs": 15,
+    "negative_controls": 39,
+    "fresh_query_encodings": 6,
+    "includes_n127_M_outputs": 12,
+    "includes_other_n_A126_outputs": 3,
+    "not_a_paired_runtime_estimate": true
+  },
+  "limits": [
+    "Specific pilot and admitted source contract, not a population failure bound",
+    "Native51/60 input is not obtained by relabeling Legacy52 ciphertexts",
+    "A126 dispatch for other supported sizes is a separate preserved path",
+    "Older canonical baseline; newer mixed/core/demo are in18 and22",
+    "Retained source fixtures are public synthetic data; keys and encrypted outputs remain in original local evidence"
+  ],
+  "original_evidence": [
+    {
+      "source": "tmp/wrapup-head-service-20260906/SOURCE_PINS.json",
+      "sha256": "9c316427fd340a6aaa11ae4746042a0e5d80f4a74bb8d6a3b4fbe7179f30e399",
+      "bytes": 6690,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "tmp/wrapup-head-service-20260906/runs/first-native-env/result.json",
+      "sha256": "41ce4d2273b187ee85810b5fcec8ca16ec5d98d63d6da4f40fe8a4ef88c948b0",
+      "bytes": 334678,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "docs/research-state/2026-09-06/continuation/sep06-head-service-env-first/binding.json",
+      "sha256": "8546f2c87d5e72838939b8004ea5dea223509bf79684d0e34c7b4de50ca191a5",
+      "bytes": 57742,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "docs/research-state/2026-09-06/wrap-up/BASELINE_PROMOTION.json",
+      "sha256": "e7a11c5f697cff2a985b282e38ee896748d44a8acacc0102e56fb08db6edc78a",
+      "bytes": 2345,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "docs/research-state/2026-09-06/wrap-up/finalist-result-review.md",
+      "sha256": "0e3f5fd53e1ae8a8ff1faa42901414b7ca56a7c4eab3d5c3f039b60949f27301",
+      "bytes": 8660,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    },
+    {
+      "source": "docs/research-state/2026-09-06/continuation/HEAD_MEAN_THREE_KEYS_RESULT.json",
+      "sha256": "10e6fedf5ad434855c2f47dbbfbbcbda8d50fe18c9d2c85822c9a9ab61c82e87",
+      "bytes": 8630,
+      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
+    }
+  ]
+}

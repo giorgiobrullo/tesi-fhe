@@ -1,0 +1,93 @@
+{
+  "binding": "four string lengths then parameter id, parameter fingerprint, variant id and this canonical JSON byte digest",
+  "core_id_contract": "head-pfks-split333-b22-mean-three-id-winner-threshold.v1",
+  "core_package": "fast_core_mixed_20260906",
+  "core_source_sha256": "c0d6b2302d6a25d3cc51dba712bbb42bf13327eb472ba447184e1d5f8f132b91",
+  "decision": "first minimum true score, inclusive comparison to that winner own threshold; reject0; preserve left-stable ties and no alternate passing candidate",
+  "g4_key_binding": "v9 sidecar bound to base server envelope SHA256",
+  "g4_required": false,
+  "g4_sidecar": {
+    "catalog": "V1_7_PARAM_MULTI_BIT_GROUP_4_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M128",
+    "fourier_container_bytes": 236978176,
+    "glwe_dimension": 1,
+    "grouping_factor": 4,
+    "ksk_container_bytes": 59310080,
+    "polynomial_size": 2048,
+    "small_lwe_dimension": 904
+  },
+  "gallery": {
+    "maximum_domain_width": 4096,
+    "maximum_size": 3374,
+    "minimum_size": 1,
+    "thresholds": "any signed i64 per template, including values outside the validated common score domain; derive uniform/mixed execution from exact templates"
+  },
+  "http_contract": "exact-open-set-id-v9-composite-tfhe17-base15-three-lwe",
+  "http_limits_bytes": {
+    "enrollment": 8192,
+    "g4_key": 301989888,
+    "key": 335544320,
+    "probe": 65536
+  },
+  "listener": "IPv4 loopback only",
+  "magics": {
+    "client_key": "VRCCK17!",
+    "g4_key": "VRCG4V9!",
+    "output": "VRCOUT17",
+    "probe": "VRCOPR17",
+    "server_key": "VRCHD17!"
+  },
+  "old_wire_or_profile_fallback": false,
+  "output": {
+    "base": 15,
+    "decode": "low + 15*middle + 225*high",
+    "delta_log": 59,
+    "digits": 3,
+    "fixed_header_words": 11,
+    "lwe_words": 2049,
+    "mode": 5
+  },
+  "parameters": {
+    "fingerprint_sha256": "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61",
+    "id": "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+    "modulus_switching": "Standard",
+    "preset": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+    "tfhe_rs": "1.7.0"
+  },
+  "public_modes": [
+    "uniform sentinel",
+    "uniform all accept",
+    "uniform all reject",
+    "mixed winner threshold"
+  ],
+  "query": {
+    "coordinates": [
+      -3,
+      3
+    ],
+    "dimension": 512,
+    "fixed_header_words": 9,
+    "full_delta_log": 51,
+    "glwe_size": 2,
+    "low_delta_log": 60,
+    "low_offset": 1024,
+    "maximum_norm2": 1024,
+    "polynomial_size": 2048,
+    "profile": "head51",
+    "profile_id": 2
+  },
+  "runtime_mode": "public_parallel",
+  "schema": "composite-service-circuit.v1",
+  "scope": "local exact 0/ID library service; synthetic gates required before readiness",
+  "service_source_sha256": "abd3a1091776f8273cbdee96d6be0a6ca9fd928ece5305be2fc758826e0d2c39",
+  "source_digest_scope": "all non-generated source leaves and BUILD_SELECTION.json; generated contract/config/binding files closed separately",
+  "state_binding": [
+    "installed evaluation key SHA256",
+    "gallery epoch",
+    "gallery revision",
+    "gallery size",
+    "input and output native profile",
+    "parameter and circuit identities"
+  ],
+  "variant_id": "head-composite-b22-tfhe17-base15-p16-public_parallel-v9",
+  "wire_version": 9
+}

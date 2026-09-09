@@ -1,0 +1,82 @@
+{
+  "schema": "numbered-experiment-package.v1",
+  "experiment": 23,
+  "scope": "This numbered source/evidence package only; inherited origin IDs remain qualification provenance. Excludes self to avoid recursive hash. External dependency/runtime availability is not asserted.",
+  "files": {
+    ".gitignore": {
+      "sha256": "d8974a1bd0952e55874013d796a654bfe6278147b832cc19879b3c5338ea85a3",
+      "bytes": 27
+    },
+    "COPY_ORIGINS.json": {
+      "sha256": "3128cf932b2a712ddca922e52fc1f8e2b65c70902340730bc5db1c18e97b9f25",
+      "bytes": 3309
+    },
+    "DEPENDENCIES.json": {
+      "sha256": "ab8854946ed726a32f619826c29636963d8a8ce763ef2635d6ef6246eaae175a",
+      "bytes": 1279
+    },
+    "PUBLIC_TIMING_PAIRS.csv": {
+      "sha256": "b76df0fd28e50b6261bb292b659ff6d0430023bdeab431270d63389dbf18c09c",
+      "bytes": 4087
+    },
+    "README.md": {
+      "sha256": "48a60335cae2fc4376f2194fd35d6a5de3dd60e9f78c4ce2809e3af22704a590",
+      "bytes": 6972
+    },
+    "RESULTS.json": {
+      "sha256": "a2aab847e08e4558cce0225969eec37dfefc073b7b8d4c73cbfcb44bd81e176e",
+      "bytes": 46138
+    },
+    "evidence/ORIGINAL_COMBINED_DESIGN.md": {
+      "sha256": "92e171dc302a666c31e780bad84737693c68225e981c197c8a688222129b056c",
+      "bytes": 2428
+    },
+    "evidence/ORIGINAL_COMBINED_RESULTS.md": {
+      "sha256": "2fcf6b33a438b2f6c85390c97dd64b96476a1cde5c4c0224e2d4913e790a7b41",
+      "bytes": 1898
+    },
+    "evidence/ORIGINAL_THREAD_RESULTS.md": {
+      "sha256": "5478cd0c5cd1800a3ae785ad02c5cfbdf8102791a14923c8fe55f54c7413290b",
+      "bytes": 1767
+    },
+    "evidence/PACKAGE_CHECKS.json": {
+      "sha256": "46b1530a9c9c868174c0e88b38874a81b49aae05e539824c15f52ca5a0dd92ae",
+      "bytes": 805
+    },
+    "evidence/SYNTHETIC_GENERATOR_CHECK.json": {
+      "sha256": "0b9214dffd712e08960c36d0e06548735cf2ac896ed3a8d07969fb3c621444bd",
+      "bytes": 4020
+    },
+    "generate_synthetic.py": {
+      "sha256": "3dfadc0f9707ccbacd519faf115a797fc156e283ad2facc2f905688e3b0ec85f",
+      "bytes": 6753
+    },
+    "runtime/CMakeLists.txt": {
+      "sha256": "34e281651c78af89ba81445097141ce017a27de33dff67d9b7f0f86a0628c886",
+      "bytes": 682
+    },
+    "runtime/balanced_odd7.h": {
+      "sha256": "285bd439e953cb5f7a0d1755b8bb6b0496ed0cd8a21426746cdb772fa03e4b61",
+      "bytes": 1354
+    },
+    "runtime/balanced_shared_powers.h": {
+      "sha256": "1354f48cb130cb6133898d8935f95fa07b13f5f1def8e7716bca636bf1044100",
+      "bytes": 2587
+    },
+    "runtime/balanced_shared_rescale.h": {
+      "sha256": "f24ead7fc3ddbf48966ad1eb2b74e6ae0f036e8555104444e31f028ef6a60a9d",
+      "bytes": 1838
+    },
+    "runtime/ckks_identify.cpp": {
+      "sha256": "225b765b4baad84a51163b272acdcb68b712a1135aa74178adc38bbfed2d8f37",
+      "bytes": 46245
+    }
+  },
+  "file_count": 17,
+  "total_bytes": 132189,
+  "compile_time_includes_resolve_within_runtime": [],
+  "copied_files_rehashed_against_origins": 8,
+  "new_native_build": false,
+  "new_fhe_execution": false,
+  "new_performance_measurement": false
+}

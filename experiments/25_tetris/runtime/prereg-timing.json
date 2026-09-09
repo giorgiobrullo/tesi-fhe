@@ -1,0 +1,280 @@
+{
+  "schema": "tetris-accelerated-producer-timing-prereg.v1",
+  "created_utc": "2026-09-08T14:51:01.151328+00:00",
+  "status": "planned before any accelerated native data",
+  "scenes": [
+    {
+      "number": 0,
+      "label": "tie"
+    },
+    {
+      "number": 2,
+      "label": "high_dominates"
+    },
+    {
+      "number": 8,
+      "label": "tree_root"
+    }
+  ],
+  "pairs": [
+    {
+      "pair": 0,
+      "scene": 0,
+      "repeat": 0,
+      "warmup": true,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 1,
+      "scene": 2,
+      "repeat": 0,
+      "warmup": true,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 2,
+      "scene": 8,
+      "repeat": 0,
+      "warmup": true,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 3,
+      "scene": 0,
+      "repeat": 1,
+      "warmup": true,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 4,
+      "scene": 2,
+      "repeat": 1,
+      "warmup": true,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 5,
+      "scene": 8,
+      "repeat": 1,
+      "warmup": true,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 6,
+      "scene": 0,
+      "repeat": 2,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 7,
+      "scene": 2,
+      "repeat": 2,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 8,
+      "scene": 8,
+      "repeat": 2,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 9,
+      "scene": 0,
+      "repeat": 3,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 10,
+      "scene": 2,
+      "repeat": 3,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 11,
+      "scene": 8,
+      "repeat": 3,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 12,
+      "scene": 0,
+      "repeat": 4,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 13,
+      "scene": 2,
+      "repeat": 4,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 14,
+      "scene": 8,
+      "repeat": 4,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 15,
+      "scene": 0,
+      "repeat": 5,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 16,
+      "scene": 2,
+      "repeat": 5,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 17,
+      "scene": 8,
+      "repeat": 5,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 18,
+      "scene": 0,
+      "repeat": 6,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 19,
+      "scene": 2,
+      "repeat": 6,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 20,
+      "scene": 8,
+      "repeat": 6,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 21,
+      "scene": 0,
+      "repeat": 7,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    },
+    {
+      "pair": 22,
+      "scene": 2,
+      "repeat": 7,
+      "warmup": false,
+      "order": [
+        "parallel3",
+        "splitfft_parallel6"
+      ]
+    },
+    {
+      "pair": 23,
+      "scene": 8,
+      "repeat": 7,
+      "warmup": false,
+      "order": [
+        "splitfft_parallel6",
+        "parallel3"
+      ]
+    }
+  ],
+  "total_pairs": 24,
+  "excluded_warmup_pairs": 6,
+  "measured_pairs": 18,
+  "executed_producer_outputs": 48,
+  "key_families": 1,
+  "source_inputs": "same exact-first consumer saved actual left/right tuple words in each pair; root fixture is noisy selected children from the qualified exact tree",
+  "reuse": "three retained ciphertext input pairs, each reused eight times; six Tetris CBS conversions recomputed from scratch every candidate call; no GGSW cache",
+  "candidate": "splitFFT38/26, tau4 prefix CBS rank2N1024 to rank1, three parallel digit jobs with left/right Rayon joins, actual A44 adapters, weighted4/2/1\u2212Delta/2",
+  "reference": "actual A44 three-ternary PBS producer with Parallel3 READY1 and native counter assertion",
+  "threads": 16,
+  "fft": "fixed Dif4 N1024/base512 and N2048/base1024 before Fourier loading",
+  "timed_boundary": "producer call through final weighted combined LWE; includes all conversion, allocation and scheduling; excludes key/input loading, client decryption, hashing, JSON/disk persistence and PFKS consumer",
+  "correctness": "all48 controls saved and phase checked after each pair, then independently replayed with full source/key/input/output bindings; all three-arm primitive/consumer gates are prerequisites",
+  "primary_estimator": "exp(mean(log(candidate_time/reference_time))) over18 measured pairs; reduction=1\u2212ratio",
+  "scene_estimators": "same geometric ratio over six measured pairs per scene",
+  "stopping": "all24 planned pairs retained; no effect-based early stop within pilot; diagnostic failure stops and preserves failed evidence",
+  "inference_boundary": "one retained family, three fixed scenes and repeated ciphertexts; no key-population confidence interval or service latency claim; no broad rejection of Tetris",
+  "load_policy": "root isolated native scheduler and sampled external-load accounting; retain all completed pairs with flags",
+  "follow_up": "no broad campaign inferred from a clear loss; any positive continuation must be explicit and separately fixed"
+}

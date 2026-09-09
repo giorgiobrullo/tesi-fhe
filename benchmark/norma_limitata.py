@@ -1,4 +1,7 @@
-"""Limitare la norma L1 dei template: due bit di Delta in cambio di quanta accuratezza? (F68)
+"""Analisi STORICA F68: limitare la norma L1 per aumentare il vecchio Delta dinamico.
+
+Non descrive il core exact-ID finale, che usa il dominio Cauchy con ``||q||^2 <= 1024`` e scale
+wire fisse. Conserva il trade-off biometrico misurato durante il percorso sperimentale.
 
 Il Delta difendibile e' 2^63 / (2q*max||g_i||_1 + max||g_i||^2 + |T|), quindi ||g||_1 e' la leva
 che il server controlla all'iscrizione. Azzerando i coefficienti piu' piccoli finche' ||g||_1 <= cap

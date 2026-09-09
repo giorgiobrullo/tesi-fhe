@@ -1,0 +1,12 @@
+{
+  "scope": "exact key-free prefix-family gate",
+  "first_failure": {
+    "nibble": 5,
+    "prefix_bit": 3,
+    "observed_signed_unit": 3,
+    "expected_signed_unit": -1
+  },
+  "source_sha256": "7e53b9457bc3a057c7befdecc4e5310eef559a70d51864a8f5099d27a1e292be",
+  "paper_formula": "page14 odd-j expression visually has alternating odd-r signs; does not match explicit prefix family for j=3",
+  "native_execution": false
+}

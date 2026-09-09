@@ -1,0 +1,21 @@
+{
+  "schema": "numbered-ckks-dependencies.v1",
+  "openfhe": {
+    "url": "https://github.com/openfheorg/openfhe-development",
+    "revision": "1306d14f8c26bb6150d3e6ad54f28dfe1007689e",
+    "submodules": " 984e3f194862b17916536b5fade40cba6e47a6fe third-party/cereal (heads/main)\n eddb0241389718a23a42db6af5f0164b6e0139af third-party/google-benchmark (eddb024)\n 52eb8108c5bdec04579160ae17225d66034bd723 third-party/google-test (52eb810)\n 83edb60836d87cf1b406e8846b9059c03031e8f5 third-party/gperftools (83edb60)\n"
+  },
+  "observed_library_version": "1.5.1",
+  "native_size": 64,
+  "math_backend": 4,
+  "compiler_language": "C++17",
+  "cmake_minimum": "3.16.3",
+  "openmp_required_for_recorded_configuration": true,
+  "external_install_setting": "OpenFHE_DIR points to a fresh local install/lib/OpenFHE; no tmp dependency in runtime sources.",
+  "historical_dependency_receipt": {
+    "source": "tmp/ckks-route-verification-20260907/DEPENDENCIES.json",
+    "sha256": "2a5db90f406f9484f5753264645f116a112a5626b31e5f351ae71ff839532efa"
+  },
+  "qualification_limit": "Combined-v3 inherits historical macro configuration. Separate thread-budget code made PARALLEL definitions consistent; its times are not the combined-v3 estimator.",
+  "vendor_source_or_binaries_copied": false
+}

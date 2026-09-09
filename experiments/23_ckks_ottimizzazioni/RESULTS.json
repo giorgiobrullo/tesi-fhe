@@ -1,0 +1,1738 @@
+{
+  "created_utc": "2026-09-07T23:22:39.984906+00:00",
+  "status": "three_qualification_gates_and_three_fresh_key_confirmations_complete",
+  "qualifying_outputs": 18,
+  "qualifying_complete_stage_input_equalities": 45,
+  "timing_outputs": 48,
+  "timing_complete_output_input_equalities": 24,
+  "timing_key_processes": 3,
+  "excluded_warmup_pairs": 6,
+  "measured_pairs": 18,
+  "total_outputs": 66,
+  "total_complete_ciphertext_input_equalities": 69,
+  "candidate_binary_sha256": "094349a4d7250600fb865c2154d1ec539b28139ccaa2944dd5caa36d66faa8bc",
+  "pooled_timing": {
+    "measured_pairs": 18,
+    "baseline_median_seconds": 3.2116336245,
+    "candidate_median_seconds": 2.948412375,
+    "paired_geometric_reduction_percent": 8.098462523705685,
+    "wins": 18,
+    "ratios": [
+      0.9380370676539256,
+      0.9234224939570841,
+      0.9197146310618457,
+      0.9151150994718426,
+      0.9176469793487924,
+      0.9268299182264136,
+      0.918883715990551,
+      0.9365422704642717,
+      0.922440468187567,
+      0.9122417237202699,
+      0.9103228052876732,
+      0.9177481283826571,
+      0.9100557888203096,
+      0.9156100974208634,
+      0.9270197938324242,
+      0.9123744483924234,
+      0.8997324753417248,
+      0.9193392017630815
+    ],
+    "baseline_seconds": [
+      3.202189333,
+      3.208665791,
+      3.194961042,
+      3.214601458,
+      3.455926167,
+      3.220515958,
+      3.1967035,
+      3.223898042,
+      3.19489475,
+      3.225921292,
+      3.207318125,
+      3.239603583,
+      3.239255625,
+      3.207982042,
+      3.202395708,
+      3.236815584,
+      3.276398167,
+      3.207653292
+    ],
+    "candidate_seconds": [
+      3.003772292,
+      2.962954167,
+      2.938452416,
+      2.941730333,
+      3.171320208,
+      2.984870542,
+      2.937398791,
+      3.019316792,
+      2.947100209,
+      2.94282,
+      2.919694833,
+      2.973140125,
+      2.947903333,
+      2.93726075,
+      2.968684209,
+      2.953187833,
+      2.947881833,
+      2.948921417
+    ]
+  },
+  "pooled_stage_timing": {
+    "score": {
+      "measured_pairs": 18,
+      "baseline_median_seconds": 0.4955748955,
+      "candidate_median_seconds": 0.4441206045,
+      "paired_geometric_reduction_percent": 9.76305865260837,
+      "wins": 18,
+      "ratios": [
+        0.8916502017292807,
+        0.9359792410697667,
+        0.8984056344524467,
+        0.9088144408182726,
+        0.9203963068691705,
+        0.9022312779744805,
+        0.9116966408341062,
+        0.902929800008614,
+        0.9012221713881365,
+        0.8911866639251418,
+        0.8938025060389768,
+        0.9317148487134265,
+        0.8847067566468317,
+        0.900166726697254,
+        0.8901360334753073,
+        0.8901557375936499,
+        0.8952019329455074,
+        0.8941744740234339
+      ],
+      "baseline_seconds": [
+        0.496213042,
+        0.492529041,
+        0.493334042,
+        0.488903708,
+        0.529307,
+        0.5014615,
+        0.488449708,
+        0.493014334,
+        0.491796,
+        0.496740583,
+        0.495947833,
+        0.489260833,
+        0.496309084,
+        0.493151375,
+        0.497949125,
+        0.499679417,
+        0.495201958,
+        0.49784775
+      ],
+      "candidate_seconds": [
+        0.442448459,
+        0.460996958,
+        0.443214083,
+        0.44432275,
+        0.487172208,
+        0.45243425,
+        0.445317958,
+        0.445157334,
+        0.443217459,
+        0.442688583,
+        0.443279416,
+        0.455851583,
+        0.439088,
+        0.443918459,
+        0.443242459,
+        0.4447925,
+        0.44330575,
+        0.44516275
+      ]
+    },
+    "layout": {
+      "measured_pairs": 18,
+      "baseline_median_seconds": 0.9944017295,
+      "candidate_median_seconds": 0.9943219999999999,
+      "paired_geometric_reduction_percent": 0.07466258954320626,
+      "wins": 8,
+      "ratios": [
+        1.0143380358574154,
+        0.9988551369085228,
+        1.0022939787174885,
+        1.007440039685165,
+        0.9530237838997466,
+        1.0131809286155924,
+        0.9934244663805312,
+        1.0231221733000264,
+        1.0170552116419673,
+        1.0015587946963256,
+        0.986577297782492,
+        1.0158002793899492,
+        0.9976782768730037,
+        0.9927193408995207,
+        0.9989414436857917,
+        0.9668066644518397,
+        1.0023761736009562,
+        1.0039700432459011
+      ],
+      "baseline_seconds": [
+        0.993345542,
+        0.991930833,
+        0.989075,
+        0.98626275,
+        1.124788167,
+        0.999104417,
+        0.995457917,
+        1.014848375,
+        0.982842333,
+        0.985564041,
+        0.997029792,
+        0.999149041,
+        1.004587917,
+        0.99742,
+        0.990224125,
+        1.023760958,
+        0.992684625,
+        0.992464
+      ],
+      "candidate_seconds": [
+        1.007588166,
+        0.990795208,
+        0.991343917,
+        0.993600584,
+        1.071949875,
+        1.012273541,
+        0.98891225,
+        1.038313875,
+        0.999604917,
+        0.987100333,
+        0.983646958,
+        1.014935875,
+        1.002255542,
+        0.990158125,
+        0.989175917,
+        0.989778917,
+        0.995043416,
+        0.996404125
+      ]
+    },
+    "comparison": {
+      "measured_pairs": 18,
+      "baseline_median_seconds": 1.496077187,
+      "candidate_median_seconds": 1.2847788535,
+      "paired_geometric_reduction_percent": 14.093984791878011,
+      "wins": 18,
+      "ratios": [
+        0.8919621510099242,
+        0.8582543525748962,
+        0.8596385099368653,
+        0.8483167658673594,
+        0.8925021612153383,
+        0.866616769592624,
+        0.859029373612505,
+        0.8777231016223058,
+        0.8571248745586041,
+        0.8484104725803123,
+        0.8500401518273738,
+        0.8368447983445932,
+        0.8486281562437232,
+        0.8563690982830445,
+        0.865812961786414,
+        0.8693029895455784,
+        0.8199132319049877,
+        0.8596269501037345
+      ],
+      "baseline_seconds": [
+        1.49079275,
+        1.501966458,
+        1.492201792,
+        1.513091584,
+        1.554225042,
+        1.498367084,
+        1.489915583,
+        1.495104917,
+        1.496471708,
+        1.521274292,
+        1.494416417,
+        1.529363333,
+        1.513472792,
+        1.495682666,
+        1.492319375,
+        1.491655833,
+        1.566872708,
+        1.494669334
+      ],
+      "candidate_seconds": [
+        1.329730708,
+        1.28906925,
+        1.282754125,
+        1.283580959,
+        1.387149209,
+        1.298510042,
+        1.27988125,
+        1.312288125,
+        1.282663125,
+        1.290665041,
+        1.270313958,
+        1.27983975,
+        1.284375625,
+        1.280856416,
+        1.292069458,
+        1.296700875,
+        1.284699666,
+        1.284858041
+      ]
+    },
+    "product": {
+      "measured_pairs": 18,
+      "baseline_median_seconds": 0.136388688,
+      "candidate_median_seconds": 0.1368683545,
+      "paired_geometric_reduction_percent": 0.5912147524582356,
+      "wins": 6,
+      "ratios": [
+        1.014774091892687,
+        1.009023138320517,
+        1.0009255401259163,
+        0.9657273666861704,
+        0.8619457065684208,
+        1.0082769712827786,
+        1.0043843735185454,
+        1.0137321507461712,
+        0.9927173462018641,
+        1.0003175678740293,
+        1.0140498721580165,
+        1.003362306034745,
+        0.9778604553111894,
+        1.01475511005623,
+        0.9993135149797012,
+        0.9997139871578486,
+        1.018648304470987,
+        1.005809055857254
+      ],
+      "baseline_seconds": [
+        0.136847125,
+        0.135840542,
+        0.136001667,
+        0.139930625,
+        0.161224917,
+        0.135446042,
+        0.137267958,
+        0.136204083,
+        0.137421334,
+        0.136188209,
+        0.134826209,
+        0.136649667,
+        0.139860916,
+        0.135921792,
+        0.136566709,
+        0.136210667,
+        0.136578583,
+        0.136181166
+      ],
+      "candidate_seconds": [
+        0.138868917,
+        0.13706625,
+        0.136127542,
+        0.135134834,
+        0.138967125,
+        0.136567125,
+        0.137869792,
+        0.138074458,
+        0.136420542,
+        0.136231458,
+        0.1367205,
+        0.137109125,
+        0.136764459,
+        0.137927333,
+        0.136472958,
+        0.136171709,
+        0.139125542,
+        0.13697225
+      ]
+    },
+    "output": {
+      "measured_pairs": 18,
+      "baseline_median_seconds": 0.085560083,
+      "candidate_median_seconds": 0.0854182915,
+      "paired_geometric_reduction_percent": -1.0349405337196638,
+      "wins": 9,
+      "ratios": [
+        1.0017021499398464,
+        0.9840897352243742,
+        1.0078731329238202,
+        0.9847079940371387,
+        0.9965337498493732,
+        0.9877959921113467,
+        0.9977261810143345,
+        1.0089302619629275,
+        0.9864588287820569,
+        0.9997731848973711,
+        1.0074757462202923,
+        1.0026228784022198,
+        1.004642763086027,
+        0.9836156165308747,
+        1.2623405450918996,
+        1.002751196521973,
+        1.007610822177331,
+        0.9888215383667662
+      ],
+      "baseline_seconds": [
+        0.08499075,
+        0.086398625,
+        0.084348125,
+        0.086412208,
+        0.086380667,
+        0.086136375,
+        0.085611916,
+        0.084725958,
+        0.086363209,
+        0.086153875,
+        0.085097458,
+        0.085180083,
+        0.085024584,
+        0.085805792,
+        0.085335959,
+        0.08550825,
+        0.085059667,
+        0.086490792
+      ],
+      "candidate_seconds": [
+        0.085135417,
+        0.085024,
+        0.085012209,
+        0.085090792,
+        0.08608125,
+        0.085085166,
+        0.08541725,
+        0.085482583,
+        0.08519375,
+        0.086134334,
+        0.085733625,
+        0.0854035,
+        0.085419333,
+        0.084399917,
+        0.107723041,
+        0.0857435,
+        0.085707041,
+        0.085523958
+      ]
+    }
+  },
+  "scope": "Direct original balanced/ordinary-score-rotation versus combined shared input/x2 reductions and score hoisting, with the identical public cache in both arms. Every pair has the same key and encrypted query. Three fresh qualification processes and three fresh timing processes. Full ciphertext/input equality and decoded gates are source-bound; secret-key decryption is not independently replayed. Measurements retain all load flags and do not establish quiet-machine, actual service, held-out accuracy or formal failure results.",
+  "attribution": "The complete combined change is measured directly against the cached original arithmetic. Prior isolated percentages are not added or multiplied. No uncached-original or all-PARALLEL thread-harness comparison is claimed.",
+  "schema": "numbered-ckks-results.v1",
+  "experiment": 23,
+  "origin_result": {
+    "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/COMBINED_THREE_KEY_RESULT.json",
+    "sha256": "65b845da32313002f09ba9b7843d62518318d7394261687b2d5876e682501bbf",
+    "copied_fields": [
+      "created_utc",
+      "status",
+      "qualifying_outputs",
+      "qualifying_complete_stage_input_equalities",
+      "timing_outputs",
+      "timing_complete_output_input_equalities",
+      "timing_key_processes",
+      "excluded_warmup_pairs",
+      "measured_pairs",
+      "total_outputs",
+      "total_complete_ciphertext_input_equalities",
+      "candidate_binary_sha256",
+      "pooled_timing",
+      "pooled_stage_timing",
+      "scope",
+      "attribution",
+      "runs projected without native PID and pins: label, evaluations, complete_ciphertext_input_equalities, labels, max_scalar_error, process_load, peak_rss_bytes, measured_pairs, timing, stage_timing"
+    ]
+  },
+  "new_package_validation": {
+    "native_build": false,
+    "fhe_execution": false,
+    "performance_measurements": false
+  },
+  "limitations": [
+    "These are compact projections of completed original campaign results, not new measurements.",
+    "Shared public plaintext cache exists in both measured arms; earlier isolated gains are not additive.",
+    "High/partly unknown external load remains included; no free-machine or service latency claim.",
+    "Three timing families each contain six measured pairs; raw ciphertext/secret replay is not shipped.",
+    "The original real-derived N64/R4096 input is deliberately not included; portable generator provides a new synthetic R4096 control, not replay of that case.",
+    "Later separate thread-budget source completed69 outputs/151 equalities;12 threads were near parity and8 slower than16. The old report next-test sentence is superseded."
+  ],
+  "runs_public_summary": [
+    {
+      "label": "combined-vs-original-n128-correctness-first",
+      "evaluations": 6,
+      "complete_ciphertext_input_equalities": 15,
+      "labels": [
+        "matched_n128_general",
+        "adv_n128_mixed_reject_other_accept",
+        "adv_n128_tie_reject_other_accept"
+      ],
+      "max_scalar_error": 0.0022710510995693767,
+      "process_load": {
+        "coverage_complete": true,
+        "comparable_cpu_percent_weighted": 242.90057013215483,
+        "comparable_cpu_percent_range": [
+          189.62956434940045,
+          333.72571267580986
+        ],
+        "high_load": true,
+        "unknown": true,
+        "unknown_reasons": [
+          "process_churn"
+        ],
+        "accounting_scope": "Overlap-weighted adjacent midpoint rates for comparable PID+lstart processes; not instantaneous utilization or total CPU under churn."
+      },
+      "peak_rss_bytes": 8944418816
+    },
+    {
+      "label": "combined-vs-original-n4-boundaries-first",
+      "evaluations": 10,
+      "complete_ciphertext_input_equalities": 25,
+      "labels": [
+        "adv_n4_last_tminus1",
+        "adv_n4_last_t",
+        "adv_n4_last_tplus1",
+        "adv_n4_first_gap1",
+        "adv_n4_all_tie"
+      ],
+      "max_scalar_error": 3.149280829006784e-06,
+      "process_load": {
+        "coverage_complete": true,
+        "comparable_cpu_percent_weighted": 193.44457075697238,
+        "comparable_cpu_percent_range": [
+          179.95702313077484,
+          216.82595678143034
+        ],
+        "high_load": true,
+        "unknown": true,
+        "unknown_reasons": [
+          "process_churn"
+        ],
+        "accounting_scope": "Overlap-weighted adjacent midpoint rates for comparable PID+lstart processes; not instantaneous utilization or total CPU under churn."
+      },
+      "peak_rss_bytes": 6062243840
+    },
+    {
+      "label": "combined-vs-original-n64-range4096-first",
+      "evaluations": 2,
+      "complete_ciphertext_input_equalities": 5,
+      "labels": [
+        "digiface_probe_211_min_4"
+      ],
+      "max_scalar_error": 0.0004334586102316962,
+      "process_load": {
+        "coverage_complete": true,
+        "comparable_cpu_percent_weighted": 262.3463871045033,
+        "comparable_cpu_percent_range": [
+          223.98188247987508,
+          300.49976606393307
+        ],
+        "high_load": true,
+        "unknown": true,
+        "unknown_reasons": [
+          "process_churn"
+        ],
+        "accounting_scope": "Overlap-weighted adjacent midpoint rates for comparable PID+lstart processes; not instantaneous utilization or total CPU under churn."
+      },
+      "peak_rss_bytes": 8019066880
+    },
+    {
+      "label": "combined-vs-original-n128-timing-key0-first",
+      "evaluations": 16,
+      "complete_ciphertext_input_equalities": 8,
+      "labels": [
+        "matched_n128_general"
+      ],
+      "max_scalar_error": 0.0035972598645912512,
+      "process_load": {
+        "coverage_complete": true,
+        "comparable_cpu_percent_weighted": 231.41086211480734,
+        "comparable_cpu_percent_range": [
+          193.27787938477914,
+          381.5321990317728
+        ],
+        "high_load": true,
+        "unknown": true,
+        "unknown_reasons": [
+          "process_churn"
+        ],
+        "accounting_scope": "Overlap-weighted adjacent midpoint rates for comparable PID+lstart processes; not instantaneous utilization or total CPU under churn."
+      },
+      "peak_rss_bytes": 8551383040,
+      "measured_pairs": [
+        {
+          "sequence": 2,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.202189333,
+          "candidate_seconds": 3.003772292,
+          "stages": {
+            "score": [
+              0.496213042,
+              0.442448459
+            ],
+            "layout": [
+              0.993345542,
+              1.007588166
+            ],
+            "comparison": [
+              1.49079275,
+              1.329730708
+            ],
+            "product": [
+              0.136847125,
+              0.138868917
+            ],
+            "output": [
+              0.08499075,
+              0.085135417
+            ]
+          }
+        },
+        {
+          "sequence": 3,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.208665791,
+          "candidate_seconds": 2.962954167,
+          "stages": {
+            "score": [
+              0.492529041,
+              0.460996958
+            ],
+            "layout": [
+              0.991930833,
+              0.990795208
+            ],
+            "comparison": [
+              1.501966458,
+              1.28906925
+            ],
+            "product": [
+              0.135840542,
+              0.13706625
+            ],
+            "output": [
+              0.086398625,
+              0.085024
+            ]
+          }
+        },
+        {
+          "sequence": 4,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.194961042,
+          "candidate_seconds": 2.938452416,
+          "stages": {
+            "score": [
+              0.493334042,
+              0.443214083
+            ],
+            "layout": [
+              0.989075,
+              0.991343917
+            ],
+            "comparison": [
+              1.492201792,
+              1.282754125
+            ],
+            "product": [
+              0.136001667,
+              0.136127542
+            ],
+            "output": [
+              0.084348125,
+              0.085012209
+            ]
+          }
+        },
+        {
+          "sequence": 5,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.214601458,
+          "candidate_seconds": 2.941730333,
+          "stages": {
+            "score": [
+              0.488903708,
+              0.44432275
+            ],
+            "layout": [
+              0.98626275,
+              0.993600584
+            ],
+            "comparison": [
+              1.513091584,
+              1.283580959
+            ],
+            "product": [
+              0.139930625,
+              0.135134834
+            ],
+            "output": [
+              0.086412208,
+              0.085090792
+            ]
+          }
+        },
+        {
+          "sequence": 6,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.455926167,
+          "candidate_seconds": 3.171320208,
+          "stages": {
+            "score": [
+              0.529307,
+              0.487172208
+            ],
+            "layout": [
+              1.124788167,
+              1.071949875
+            ],
+            "comparison": [
+              1.554225042,
+              1.387149209
+            ],
+            "product": [
+              0.161224917,
+              0.138967125
+            ],
+            "output": [
+              0.086380667,
+              0.08608125
+            ]
+          }
+        },
+        {
+          "sequence": 7,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.220515958,
+          "candidate_seconds": 2.984870542,
+          "stages": {
+            "score": [
+              0.5014615,
+              0.45243425
+            ],
+            "layout": [
+              0.999104417,
+              1.012273541
+            ],
+            "comparison": [
+              1.498367084,
+              1.298510042
+            ],
+            "product": [
+              0.135446042,
+              0.136567125
+            ],
+            "output": [
+              0.086136375,
+              0.085085166
+            ]
+          }
+        }
+      ],
+      "timing": {
+        "measured_pairs": 6,
+        "baseline_median_seconds": 3.2116336245,
+        "candidate_median_seconds": 2.9739123545,
+        "paired_geometric_reduction_percent": 7.656961987052158,
+        "wins": 6,
+        "ratios": [
+          0.9380370676539256,
+          0.9234224939570841,
+          0.9197146310618457,
+          0.9151150994718426,
+          0.9176469793487924,
+          0.9268299182264136
+        ],
+        "baseline_seconds": [
+          3.202189333,
+          3.208665791,
+          3.194961042,
+          3.214601458,
+          3.455926167,
+          3.220515958
+        ],
+        "candidate_seconds": [
+          3.003772292,
+          2.962954167,
+          2.938452416,
+          2.941730333,
+          3.171320208,
+          2.984870542
+        ]
+      },
+      "stage_timing": {
+        "score": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.494773542,
+          "candidate_median_seconds": 0.4483785,
+          "paired_geometric_reduction_percent": 9.054015858307752,
+          "wins": 6,
+          "ratios": [
+            0.8916502017292807,
+            0.9359792410697667,
+            0.8984056344524467,
+            0.9088144408182726,
+            0.9203963068691705,
+            0.9022312779744805
+          ],
+          "baseline_seconds": [
+            0.496213042,
+            0.492529041,
+            0.493334042,
+            0.488903708,
+            0.529307,
+            0.5014615
+          ],
+          "candidate_seconds": [
+            0.442448459,
+            0.460996958,
+            0.443214083,
+            0.44432275,
+            0.487172208,
+            0.45243425
+          ]
+        },
+        "layout": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.9926381875,
+          "candidate_median_seconds": 1.000594375,
+          "paired_geometric_reduction_percent": 0.203560079636933,
+          "wins": 2,
+          "ratios": [
+            1.0143380358574154,
+            0.9988551369085228,
+            1.0022939787174885,
+            1.007440039685165,
+            0.9530237838997466,
+            1.0131809286155924
+          ],
+          "baseline_seconds": [
+            0.993345542,
+            0.991930833,
+            0.989075,
+            0.98626275,
+            1.124788167,
+            0.999104417
+          ],
+          "candidate_seconds": [
+            1.007588166,
+            0.990795208,
+            0.991343917,
+            0.993600584,
+            1.071949875,
+            1.012273541
+          ]
+        },
+        "comparison": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 1.500166771,
+          "candidate_median_seconds": 1.293789646,
+          "paired_geometric_reduction_percent": 13.061504597583351,
+          "wins": 6,
+          "ratios": [
+            0.8919621510099242,
+            0.8582543525748962,
+            0.8596385099368653,
+            0.8483167658673594,
+            0.8925021612153383,
+            0.866616769592624
+          ],
+          "baseline_seconds": [
+            1.49079275,
+            1.501966458,
+            1.492201792,
+            1.513091584,
+            1.554225042,
+            1.498367084
+          ],
+          "candidate_seconds": [
+            1.329730708,
+            1.28906925,
+            1.282754125,
+            1.283580959,
+            1.387149209,
+            1.298510042
+          ]
+        },
+        "product": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.136424396,
+          "candidate_median_seconds": 0.1368166875,
+          "paired_geometric_reduction_percent": 2.4790864975557048,
+          "wins": 2,
+          "ratios": [
+            1.014774091892687,
+            1.009023138320517,
+            1.0009255401259163,
+            0.9657273666861704,
+            0.8619457065684208,
+            1.0082769712827786
+          ],
+          "baseline_seconds": [
+            0.136847125,
+            0.135840542,
+            0.136001667,
+            0.139930625,
+            0.161224917,
+            0.135446042
+          ],
+          "candidate_seconds": [
+            0.138868917,
+            0.13706625,
+            0.136127542,
+            0.135134834,
+            0.138967125,
+            0.136567125
+          ]
+        },
+        "output": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.086258521,
+          "candidate_median_seconds": 0.08508797900000001,
+          "paired_geometric_reduction_percent": 0.6256459936401226,
+          "wins": 4,
+          "ratios": [
+            1.0017021499398464,
+            0.9840897352243742,
+            1.0078731329238202,
+            0.9847079940371387,
+            0.9965337498493732,
+            0.9877959921113467
+          ],
+          "baseline_seconds": [
+            0.08499075,
+            0.086398625,
+            0.084348125,
+            0.086412208,
+            0.086380667,
+            0.086136375
+          ],
+          "candidate_seconds": [
+            0.085135417,
+            0.085024,
+            0.085012209,
+            0.085090792,
+            0.08608125,
+            0.085085166
+          ]
+        }
+      }
+    },
+    {
+      "label": "combined-vs-original-n128-timing-key1-first",
+      "evaluations": 16,
+      "complete_ciphertext_input_equalities": 8,
+      "labels": [
+        "matched_n128_general"
+      ],
+      "max_scalar_error": 0.005272258120427864,
+      "process_load": {
+        "coverage_complete": true,
+        "comparable_cpu_percent_weighted": 217.70867697368377,
+        "comparable_cpu_percent_range": [
+          186.52087567760842,
+          291.6440421813864
+        ],
+        "high_load": true,
+        "unknown": true,
+        "unknown_reasons": [
+          "process_churn"
+        ],
+        "accounting_scope": "Overlap-weighted adjacent midpoint rates for comparable PID+lstart processes; not instantaneous utilization or total CPU under churn."
+      },
+      "peak_rss_bytes": 8665432064,
+      "measured_pairs": [
+        {
+          "sequence": 2,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.1967035,
+          "candidate_seconds": 2.937398791,
+          "stages": {
+            "score": [
+              0.488449708,
+              0.445317958
+            ],
+            "layout": [
+              0.995457917,
+              0.98891225
+            ],
+            "comparison": [
+              1.489915583,
+              1.27988125
+            ],
+            "product": [
+              0.137267958,
+              0.137869792
+            ],
+            "output": [
+              0.085611916,
+              0.08541725
+            ]
+          }
+        },
+        {
+          "sequence": 3,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.223898042,
+          "candidate_seconds": 3.019316792,
+          "stages": {
+            "score": [
+              0.493014334,
+              0.445157334
+            ],
+            "layout": [
+              1.014848375,
+              1.038313875
+            ],
+            "comparison": [
+              1.495104917,
+              1.312288125
+            ],
+            "product": [
+              0.136204083,
+              0.138074458
+            ],
+            "output": [
+              0.084725958,
+              0.085482583
+            ]
+          }
+        },
+        {
+          "sequence": 4,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.19489475,
+          "candidate_seconds": 2.947100209,
+          "stages": {
+            "score": [
+              0.491796,
+              0.443217459
+            ],
+            "layout": [
+              0.982842333,
+              0.999604917
+            ],
+            "comparison": [
+              1.496471708,
+              1.282663125
+            ],
+            "product": [
+              0.137421334,
+              0.136420542
+            ],
+            "output": [
+              0.086363209,
+              0.08519375
+            ]
+          }
+        },
+        {
+          "sequence": 5,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.225921292,
+          "candidate_seconds": 2.94282,
+          "stages": {
+            "score": [
+              0.496740583,
+              0.442688583
+            ],
+            "layout": [
+              0.985564041,
+              0.987100333
+            ],
+            "comparison": [
+              1.521274292,
+              1.290665041
+            ],
+            "product": [
+              0.136188209,
+              0.136231458
+            ],
+            "output": [
+              0.086153875,
+              0.086134334
+            ]
+          }
+        },
+        {
+          "sequence": 6,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.207318125,
+          "candidate_seconds": 2.919694833,
+          "stages": {
+            "score": [
+              0.495947833,
+              0.443279416
+            ],
+            "layout": [
+              0.997029792,
+              0.983646958
+            ],
+            "comparison": [
+              1.494416417,
+              1.270313958
+            ],
+            "product": [
+              0.134826209,
+              0.1367205
+            ],
+            "output": [
+              0.085097458,
+              0.085733625
+            ]
+          }
+        },
+        {
+          "sequence": 7,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.239603583,
+          "candidate_seconds": 2.973140125,
+          "stages": {
+            "score": [
+              0.489260833,
+              0.455851583
+            ],
+            "layout": [
+              0.999149041,
+              1.014935875
+            ],
+            "comparison": [
+              1.529363333,
+              1.27983975
+            ],
+            "product": [
+              0.136649667,
+              0.137109125
+            ],
+            "output": [
+              0.085180083,
+              0.0854035
+            ]
+          }
+        }
+      ],
+      "timing": {
+        "measured_pairs": 6,
+        "baseline_median_seconds": 3.2156080835000003,
+        "candidate_median_seconds": 2.9449601045,
+        "paired_geometric_reduction_percent": 8.034304807757408,
+        "wins": 6,
+        "ratios": [
+          0.918883715990551,
+          0.9365422704642717,
+          0.922440468187567,
+          0.9122417237202699,
+          0.9103228052876732,
+          0.9177481283826571
+        ],
+        "baseline_seconds": [
+          3.1967035,
+          3.223898042,
+          3.19489475,
+          3.225921292,
+          3.207318125,
+          3.239603583
+        ],
+        "candidate_seconds": [
+          2.937398791,
+          3.019316792,
+          2.947100209,
+          2.94282,
+          2.919694833,
+          2.973140125
+        ]
+      },
+      "stage_timing": {
+        "score": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.49240516700000003,
+          "candidate_median_seconds": 0.444218375,
+          "paired_geometric_reduction_percent": 9.467416873762847,
+          "wins": 6,
+          "ratios": [
+            0.9116966408341062,
+            0.902929800008614,
+            0.9012221713881365,
+            0.8911866639251418,
+            0.8938025060389768,
+            0.9317148487134265
+          ],
+          "baseline_seconds": [
+            0.488449708,
+            0.493014334,
+            0.491796,
+            0.496740583,
+            0.495947833,
+            0.489260833
+          ],
+          "candidate_seconds": [
+            0.445317958,
+            0.445157334,
+            0.443217459,
+            0.442688583,
+            0.443279416,
+            0.455851583
+          ]
+        },
+        "layout": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.9962438545,
+          "candidate_median_seconds": 0.9942585835,
+          "paired_geometric_reduction_percent": -0.6167909940229421,
+          "wins": 2,
+          "ratios": [
+            0.9934244663805312,
+            1.0231221733000264,
+            1.0170552116419673,
+            1.0015587946963256,
+            0.986577297782492,
+            1.0158002793899492
+          ],
+          "baseline_seconds": [
+            0.995457917,
+            1.014848375,
+            0.982842333,
+            0.985564041,
+            0.997029792,
+            0.999149041
+          ],
+          "candidate_seconds": [
+            0.98891225,
+            1.038313875,
+            0.999604917,
+            0.987100333,
+            0.983646958,
+            1.014935875
+          ]
+        },
+        "comparison": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 1.4957883125,
+          "candidate_median_seconds": 1.2812721875,
+          "paired_geometric_reduction_percent": 14.52285577462239,
+          "wins": 6,
+          "ratios": [
+            0.859029373612505,
+            0.8777231016223058,
+            0.8571248745586041,
+            0.8484104725803123,
+            0.8500401518273738,
+            0.8368447983445932
+          ],
+          "baseline_seconds": [
+            1.489915583,
+            1.495104917,
+            1.496471708,
+            1.521274292,
+            1.494416417,
+            1.529363333
+          ],
+          "candidate_seconds": [
+            1.27988125,
+            1.312288125,
+            1.282663125,
+            1.290665041,
+            1.270313958,
+            1.27983975
+          ]
+        },
+        "product": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.136426875,
+          "candidate_median_seconds": 0.13691481249999998,
+          "paired_geometric_reduction_percent": -0.47329114509280235,
+          "wins": 1,
+          "ratios": [
+            1.0043843735185454,
+            1.0137321507461712,
+            0.9927173462018641,
+            1.0003175678740293,
+            1.0140498721580165,
+            1.003362306034745
+          ],
+          "baseline_seconds": [
+            0.137267958,
+            0.136204083,
+            0.137421334,
+            0.136188209,
+            0.134826209,
+            0.136649667
+          ],
+          "candidate_seconds": [
+            0.137869792,
+            0.138074458,
+            0.136420542,
+            0.136231458,
+            0.1367205,
+            0.137109125
+          ]
+        },
+        "output": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.0853959995,
+          "candidate_median_seconds": 0.0854499165,
+          "paired_geometric_reduction_percent": -0.04702890637859891,
+          "wins": 3,
+          "ratios": [
+            0.9977261810143345,
+            1.0089302619629275,
+            0.9864588287820569,
+            0.9997731848973711,
+            1.0074757462202923,
+            1.0026228784022198
+          ],
+          "baseline_seconds": [
+            0.085611916,
+            0.084725958,
+            0.086363209,
+            0.086153875,
+            0.085097458,
+            0.085180083
+          ],
+          "candidate_seconds": [
+            0.08541725,
+            0.085482583,
+            0.08519375,
+            0.086134334,
+            0.085733625,
+            0.0854035
+          ]
+        }
+      }
+    },
+    {
+      "label": "combined-vs-original-n128-timing-key2-first",
+      "evaluations": 16,
+      "complete_ciphertext_input_equalities": 8,
+      "labels": [
+        "matched_n128_general"
+      ],
+      "max_scalar_error": 0.0059043200540145335,
+      "process_load": {
+        "coverage_complete": true,
+        "comparable_cpu_percent_weighted": 228.4405426519857,
+        "comparable_cpu_percent_range": [
+          197.64948235097407,
+          279.8765783880507
+        ],
+        "high_load": true,
+        "unknown": true,
+        "unknown_reasons": [
+          "process_churn"
+        ],
+        "accounting_scope": "Overlap-weighted adjacent midpoint rates for comparable PID+lstart processes; not instantaneous utilization or total CPU under churn."
+      },
+      "peak_rss_bytes": 8669528064,
+      "measured_pairs": [
+        {
+          "sequence": 2,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.239255625,
+          "candidate_seconds": 2.947903333,
+          "stages": {
+            "score": [
+              0.496309084,
+              0.439088
+            ],
+            "layout": [
+              1.004587917,
+              1.002255542
+            ],
+            "comparison": [
+              1.513472792,
+              1.284375625
+            ],
+            "product": [
+              0.139860916,
+              0.136764459
+            ],
+            "output": [
+              0.085024584,
+              0.085419333
+            ]
+          }
+        },
+        {
+          "sequence": 3,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.207982042,
+          "candidate_seconds": 2.93726075,
+          "stages": {
+            "score": [
+              0.493151375,
+              0.443918459
+            ],
+            "layout": [
+              0.99742,
+              0.990158125
+            ],
+            "comparison": [
+              1.495682666,
+              1.280856416
+            ],
+            "product": [
+              0.135921792,
+              0.137927333
+            ],
+            "output": [
+              0.085805792,
+              0.084399917
+            ]
+          }
+        },
+        {
+          "sequence": 4,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.202395708,
+          "candidate_seconds": 2.968684209,
+          "stages": {
+            "score": [
+              0.497949125,
+              0.443242459
+            ],
+            "layout": [
+              0.990224125,
+              0.989175917
+            ],
+            "comparison": [
+              1.492319375,
+              1.292069458
+            ],
+            "product": [
+              0.136566709,
+              0.136472958
+            ],
+            "output": [
+              0.085335959,
+              0.107723041
+            ]
+          }
+        },
+        {
+          "sequence": 5,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.236815584,
+          "candidate_seconds": 2.953187833,
+          "stages": {
+            "score": [
+              0.499679417,
+              0.4447925
+            ],
+            "layout": [
+              1.023760958,
+              0.989778917
+            ],
+            "comparison": [
+              1.491655833,
+              1.296700875
+            ],
+            "product": [
+              0.136210667,
+              0.136171709
+            ],
+            "output": [
+              0.08550825,
+              0.0857435
+            ]
+          }
+        },
+        {
+          "sequence": 6,
+          "order": [
+            "baseline",
+            "combined-powers"
+          ],
+          "baseline_seconds": 3.276398167,
+          "candidate_seconds": 2.947881833,
+          "stages": {
+            "score": [
+              0.495201958,
+              0.44330575
+            ],
+            "layout": [
+              0.992684625,
+              0.995043416
+            ],
+            "comparison": [
+              1.566872708,
+              1.284699666
+            ],
+            "product": [
+              0.136578583,
+              0.139125542
+            ],
+            "output": [
+              0.085059667,
+              0.085707041
+            ]
+          }
+        },
+        {
+          "sequence": 7,
+          "order": [
+            "combined-powers",
+            "baseline"
+          ],
+          "baseline_seconds": 3.207653292,
+          "candidate_seconds": 2.948921417,
+          "stages": {
+            "score": [
+              0.49784775,
+              0.44516275
+            ],
+            "layout": [
+              0.992464,
+              0.996404125
+            ],
+            "comparison": [
+              1.494669334,
+              1.284858041
+            ],
+            "product": [
+              0.136181166,
+              0.13697225
+            ],
+            "output": [
+              0.086490792,
+              0.085523958
+            ]
+          }
+        }
+      ],
+      "timing": {
+        "measured_pairs": 6,
+        "baseline_median_seconds": 3.222398813,
+        "candidate_median_seconds": 2.948412375,
+        "paired_geometric_reduction_percent": 8.601658633673715,
+        "wins": 6,
+        "ratios": [
+          0.9100557888203096,
+          0.9156100974208634,
+          0.9270197938324242,
+          0.9123744483924234,
+          0.8997324753417248,
+          0.9193392017630815
+        ],
+        "baseline_seconds": [
+          3.239255625,
+          3.207982042,
+          3.202395708,
+          3.236815584,
+          3.276398167,
+          3.207653292
+        ],
+        "candidate_seconds": [
+          2.947903333,
+          2.93726075,
+          2.968684209,
+          2.953187833,
+          2.947881833,
+          2.948921417
+        ]
+      },
+      "stage_timing": {
+        "score": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.497078417,
+          "candidate_median_seconds": 0.4436121045,
+          "paired_geometric_reduction_percent": 10.758952480338424,
+          "wins": 6,
+          "ratios": [
+            0.8847067566468317,
+            0.900166726697254,
+            0.8901360334753073,
+            0.8901557375936499,
+            0.8952019329455074,
+            0.8941744740234339
+          ],
+          "baseline_seconds": [
+            0.496309084,
+            0.493151375,
+            0.497949125,
+            0.499679417,
+            0.495201958,
+            0.49784775
+          ],
+          "candidate_seconds": [
+            0.439088,
+            0.443918459,
+            0.443242459,
+            0.4447925,
+            0.44330575,
+            0.44516275
+          ]
+        },
+        "layout": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.9950523124999999,
+          "candidate_median_seconds": 0.9926007705,
+          "paired_geometric_reduction_percent": 0.6331873732792537,
+          "wins": 4,
+          "ratios": [
+            0.9976782768730037,
+            0.9927193408995207,
+            0.9989414436857917,
+            0.9668066644518397,
+            1.0023761736009562,
+            1.0039700432459011
+          ],
+          "baseline_seconds": [
+            1.004587917,
+            0.99742,
+            0.990224125,
+            1.023760958,
+            0.992684625,
+            0.992464
+          ],
+          "candidate_seconds": [
+            1.002255542,
+            0.990158125,
+            0.989175917,
+            0.989778917,
+            0.995043416,
+            0.996404125
+          ]
+        },
+        "comparison": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 1.4951759999999998,
+          "candidate_median_seconds": 1.2847788535,
+          "paired_geometric_reduction_percent": 14.688299297789397,
+          "wins": 6,
+          "ratios": [
+            0.8486281562437232,
+            0.8563690982830445,
+            0.865812961786414,
+            0.8693029895455784,
+            0.8199132319049877,
+            0.8596269501037345
+          ],
+          "baseline_seconds": [
+            1.513472792,
+            1.495682666,
+            1.492319375,
+            1.491655833,
+            1.566872708,
+            1.494669334
+          ],
+          "candidate_seconds": [
+            1.284375625,
+            1.280856416,
+            1.292069458,
+            1.296700875,
+            1.284699666,
+            1.284858041
+          ]
+        },
+        "product": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.136388688,
+          "candidate_median_seconds": 0.1368683545,
+          "paired_geometric_reduction_percent": -0.2595870158630609,
+          "wins": 3,
+          "ratios": [
+            0.9778604553111894,
+            1.01475511005623,
+            0.9993135149797012,
+            0.9997139871578486,
+            1.018648304470987,
+            1.005809055857254
+          ],
+          "baseline_seconds": [
+            0.139860916,
+            0.135921792,
+            0.136566709,
+            0.136210667,
+            0.136578583,
+            0.136181166
+          ],
+          "candidate_seconds": [
+            0.136764459,
+            0.137927333,
+            0.136472958,
+            0.136171709,
+            0.139125542,
+            0.13697225
+          ]
+        },
+        "output": {
+          "measured_pairs": 6,
+          "baseline_median_seconds": 0.0854221045,
+          "candidate_median_seconds": 0.0856154995,
+          "paired_geometric_reduction_percent": -3.7376143051925936,
+          "wins": 2,
+          "ratios": [
+            1.004642763086027,
+            0.9836156165308747,
+            1.2623405450918996,
+            1.002751196521973,
+            1.007610822177331,
+            0.9888215383667662
+          ],
+          "baseline_seconds": [
+            0.085024584,
+            0.085805792,
+            0.085335959,
+            0.08550825,
+            0.085059667,
+            0.086490792
+          ],
+          "candidate_seconds": [
+            0.085419333,
+            0.084399917,
+            0.107723041,
+            0.0857435,
+            0.085707041,
+            0.085523958
+          ]
+        }
+      }
+    }
+  ]
+}

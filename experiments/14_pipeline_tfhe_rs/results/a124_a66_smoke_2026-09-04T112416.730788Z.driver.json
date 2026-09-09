@@ -1,0 +1,93 @@
+{
+  "binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a124-a66-thread-sweep/target-a124-only/release/a124_a66_thread_sweep",
+  "binary_sha256": "f22329ce6ee72c921fa33b8609d0b8cd0a2a2449a47c9b24354abbaa66d1ad18",
+  "cells": [
+    {
+      "child_wall_s": 11.054222624981776,
+      "gallery_size": 64,
+      "idle_guard": {
+        "load_before_cell": 10.19873046875,
+        "load_max": 999.0,
+        "polls_required": 1,
+        "samples": [
+          10.19873046875
+        ],
+        "waited_s": 5.62501372769475e-06
+      },
+      "load_after_cell": 15.36962890625,
+      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_smoke_n64_threads16_2026-09-04T112416.730788Z.jsonl",
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "scene_summary": {
+        "accepted_probes": 2,
+        "cache_scene_sha256": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
+        "dimension": 512,
+        "extra_template_source": null,
+        "frontier": [
+          {
+            "expected_argmin": 17,
+            "expected_code": 18,
+            "expected_min_score": 2,
+            "slot": 0,
+            "source_index": 265
+          },
+          {
+            "expected_argmin": 45,
+            "expected_code": 46,
+            "expected_min_score": 3,
+            "slot": 1,
+            "source_index": 758
+          },
+          {
+            "expected_argmin": 10,
+            "expected_code": 0,
+            "expected_min_score": 178,
+            "slot": 2,
+            "source_index": 211
+          },
+          {
+            "expected_argmin": 24,
+            "expected_code": 0,
+            "expected_min_score": 305,
+            "slot": 3,
+            "source_index": 1943
+          },
+          {
+            "expected_argmin": 34,
+            "expected_code": 0,
+            "expected_min_score": 123,
+            "slot": 4,
+            "source_index": 407
+          }
+        ],
+        "gallery_size": 64,
+        "kind": "frozen_nontrivial_digiface_frontier",
+        "max_gallery_norm2": 665,
+        "payload_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+        "rejected_probes": 3,
+        "threshold": 4
+      },
+      "schedule_sha256": "f24811c42818ade87d48e9a8e5cfb44a6a0d28c7127c6b87f86b8bd0b02ed449",
+      "schedule_summary": {
+        "blocks": [
+          0
+        ],
+        "excluded_warmup_queries": 1,
+        "gallery_size": 64,
+        "measured_queries": 2,
+        "payload_sha256": "f24811c42818ade87d48e9a8e5cfb44a6a0d28c7127c6b87f86b8bd0b02ed449",
+        "queries": 3,
+        "stage": "smoke",
+        "threads": 16
+      },
+      "threads": 16
+    }
+  ],
+  "input_manifest_sha256": "b2754aae2cb0de0c5bc80ba180df3766a4ead158fdc5cd9cfc96d3550a19dc60",
+  "load_max": 999.0,
+  "outputs": [
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_smoke_n64_threads16_2026-09-04T112416.730788Z.jsonl"
+  ],
+  "record": "driver",
+  "stage": "smoke",
+  "variant": "a124_a66_thread_sweep"
+}

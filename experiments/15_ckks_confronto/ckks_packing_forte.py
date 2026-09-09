@@ -7,11 +7,12 @@ compattazione. Il costo in rotazioni e' quindi ~10 * ceil(N/R), cioe' LINEARE in
 Esiste un packing migliore, che e' lo stesso di Halevi-Shoup in versione "ibrida": si da a ogni
 iscritto W = slot/N slot contigui, si ruota il PROBE di W*j per j = 0..rho-1 con rho = N*dim/slot
 (le rotazioni del probe sono CONDIVISE da tutti gli iscritti), si moltiplica per il plaintext della
-galleria riordinato, e si chiude con log2(W) rotazioni di collasso. Rotazioni: rho + log2(W), che a
-parita' di slot*dim e' molto meno di 10*ceil(N/R).
+galleria riordinato, e si chiude con log2(W) rotazioni di collasso. Rotazioni eseguite:
+(rho - 1) + log2(W), perche' il primo termine usa il probe senza ruotarlo; a parita' di slot*dim
+e' molto meno di 10*ceil(N/R) - 1.
 
-  N=128,  slot 16384: attuale 4*10 = 40   ibrido 4 + 7 = 11
-  N=1024, slot 16384: attuale 32*10 = 320  ibrido 32 + 4 = 36
+  N=128,  slot 16384: attuale 4*10 - 1 = 39   ibrido 4 - 1 + 7 = 10
+  N=1024, slot 16384: attuale 32*10 - 1 = 319  ibrido 32 - 1 + 4 = 35
 
 Questo script misura le due versioni sulla stessa macchina, stessa scena, stessi parametri, e
 verifica che diano gli stessi punteggi. Serve a dare al confronto TFHE-vs-CKKS una baseline che non
@@ -19,6 +20,7 @@ sia paglia.
 
   uv run python ckks_packing_forte.py [scena] [N,N,...]
 """
+import csv
 import os
 import pathlib
 import sys
@@ -38,10 +40,36 @@ Gal = np.array([list(map(int, x.split())) for x in r[1:1 + Nmax]], dtype=float)
 P = np.array([list(map(int, x.split())) for x in r[1 + Nmax:1 + Nmax + npr]], dtype=float)
 bsq = (Gal * Gal).sum(1)
 S_all = bsq[None, :] - 2 * (P[:, 1:] @ Gal.T)
-RANGE = float(np.abs(S_all - T).max() + 1)
-print(f"scena {SCENA.name}: dim={dim} N={Nmax} probe={npr} T={T} RANGE={RANGE:.0f}\n")
+q_probe = int(os.environ.get("Q_PROBE", "3"))
+if q_probe < 0:
+    raise ValueError(f"Q_PROBE deve essere non negativo, ricevuto {q_probe}")
+q_osservato = float(np.max(np.abs(P[:, 1:]))) if P.size else 0.0
+if q_osservato > q_probe:
+    raise ValueError(
+        f"la scena contiene |probe|={q_osservato:g}, oltre il dominio Q_PROBE={q_probe}"
+    )
+range_osservato = float(np.abs(S_all - T).max() + 1)
+range_analitico = float(np.max(np.abs(bsq - T) + 2 * q_probe * np.abs(Gal).sum(1)) + 1)
+print(f"scena {SCENA.name}: dim={dim} N={Nmax} probe={npr} T={T} "
+      f"RANGE analitico={range_analitico:.0f} (test={range_osservato:.0f}, q={q_probe})\n")
 
 POLY, PRIMI, SB = 32768, [50] + [40] * 19 + [50], 40
+slots_attesi = POLY // 2
+if dim <= 0 or dim & (dim - 1) or slots_attesi % dim:
+    raise ValueError(
+        f"dim={dim} deve essere una potenza di due che divide i {slots_attesi} slot"
+    )
+for N in NS:
+    if N <= 0 or N & (N - 1):
+        raise ValueError(f"N={N} deve essere una potenza di due positiva")
+    if N > Nmax:
+        raise ValueError(f"N={N} supera i {Nmax} template disponibili nella scena")
+    if slots_attesi % N or (N * dim) % slots_attesi:
+        raise ValueError(
+            f"N={N} non e' compatibile col packing: servono slots % N == 0 "
+            f"e (N * dim) % slots == 0"
+        )
+
 parms = S.EncryptionParameters(S.SCHEME_TYPE.CKKS)
 parms.set_poly_modulus_degree(POLY)
 parms.set_coeff_modulus(S.CoeffModulus.Create(POLY, PRIMI))
@@ -53,6 +81,8 @@ rk = S.RelinKeys(); kg.create_relin_keys(rk)
 ev, co = S.Evaluator(ctx), S.CKKSEncoder(ctx)
 enc, dec = S.Encryptor(ctx, pk), S.Decryptor(ctx, sk)
 slots, scale = co.slot_count(), 2.0 ** SB
+if slots != slots_attesi:
+    raise RuntimeError(f"encoder con {slots} slot, attesi {slots_attesi}")
 a = P[3, 1:]
 
 
@@ -76,23 +106,45 @@ def dcr(ct):
 
 
 print(f"{'N':>5} | {'rot. attuale':>12} | {'attuale':>9} | {'rot. ibrido':>11} | {'ibrido':>8} | "
-      f"{'guadagno':>8} | {'chiavi Galois':>13} | err max")
+      f"{'guadagno':>8} | {'Galois att/ibr':>16} | err max")
 righe = []
+
+
+def dimensione_galois(passi):
+    """Misura il solo insieme richiesto usando una chiave fresca dello stesso parametro.
+
+    Le chiavi fresche non vengono usate nel benchmark; la dimensione serializzata dipende dai
+    parametri e dai passi, non dal valore della chiave segreta.
+    """
+    import tempfile
+
+    kg_misura = S.KeyGenerator(ctx)
+    gk_misura = S.GaloisKeys()
+    # TenSEAL espone sia `vector<uint32_t>` (elementi di Galois) sia `vector<int>`
+    # (passi di rotazione) come `list[int]`: con soli Python int positivi pybind11
+    # seleziona l'overload sbagliato. Gli scalari NumPy firmati disambiguano i passi.
+    passi_firmati = [np.int64(passo) for passo in sorted(set(passi))]
+    kg_misura.create_galois_keys(passi_firmati, gk_misura)
+    with tempfile.TemporaryDirectory(prefix="ckks-galois-") as directory:
+        path = os.path.join(directory, "galois.keys")
+        gk_misura.save(path)
+        return os.path.getsize(path) / 2**20
+
+
 for N in NS:
-    if N > Nmax:
-        continue
     R = slots // dim; B = int(np.ceil(N / R))
     W = slots // N; rho = N * dim // slots
     passi_att = [1 << i for i in range(int(np.log2(dim)))] + [-b for b in range(1, B)]
     passi_ib = [W * j for j in range(1, rho)] + [1 << i for i in range(int(np.log2(W)))]
-    # SEAL permette UNA SOLA create_galois_keys per KeyGenerator: si genera quindi un unico
-    # insieme con l'unione dei passi delle due varianti (per questo lo script gira una N per volta)
+    # L'unione serve solo per eseguire entrambe le varianti con la stessa chiave. Le dimensioni
+    # vengono misurate separatamente sotto chiavi fresche equivalenti: attribuire l'unione al solo
+    # layout ibrido gonfiava il risultato di F67.
     gk = S.GaloisKeys()
-    kg.create_galois_keys(sorted(set(passi_att) | set(passi_ib)), gk)
+    kg_runtime = S.KeyGenerator(ctx, sk)
+    kg_runtime.create_galois_keys(sorted(set(passi_att) | set(passi_ib)), gk)
     gk_a = gk_b = gk
-    import tempfile
-    d = tempfile.mkdtemp(); f = os.path.join(d, "g"); gk.save(f)
-    mb_gal = os.path.getsize(f) / 2 ** 20; os.remove(f)
+    mb_att = dimensione_galois(passi_att)
+    mb_ib = dimensione_galois(passi_ib)
 
     ct_a = S.Ciphertext(); enc.encrypt(pt(np.tile(a, R)), ct_a)
     masc = np.zeros(slots); masc[::dim] = 1.0
@@ -123,7 +175,8 @@ for N in NS:
         cost = np.zeros(slots)
         for i in range(N):
             b, k = divmod(i, R); cost[k * dim + b] = bsq[i]
-        ev.add_plain_inplace(acc, pt(cost, acc.parms_id())); return acc
+        ev.add_plain_inplace(acc, pt(cost, acc.parms_id()))
+        return acc
 
     q, u = np.arange(slots) // W, np.arange(slots) % W
     PJ = []
@@ -138,14 +191,18 @@ for N in NS:
         for j in range(rho):
             cj = ct_a if j == 0 else rot(ct_a, W * j, gk_b)
             t = mulpt(cj, PJ[j])
-            acc = t if acc is None else (ev.add_inplace(acc, t) or acc)
+            if acc is None:
+                acc = t
+            else:
+                ev.add_inplace(acc, t)
         for sh in [1 << i for i in range(int(np.log2(W)))]:
             ev.add_inplace(acc, rot(acc, sh, gk_b))
         acc = mulpt(acc, pt(mascH, acc.parms_id()))
         cost = np.zeros(slots)
         for i in range(N):
             cost[i * W] = bsq[i]
-        ev.add_plain_inplace(acc, pt(cost, acc.parms_id())); return acc
+        ev.add_plain_inplace(acc, pt(cost, acc.parms_id()))
+        return acc
 
     atteso = S_all[3, :N]
     tempi = {}
@@ -157,16 +214,26 @@ for N in NS:
             t0 = time.time(); out = fn(); ts.append(time.time() - t0)
         tempi[nome] = float(np.mean(ts))
         tempi[nome + "_err"] = float(np.abs(np.array(leggi(dcr(out))) - atteso).max())
-    print(f"{N:>5} | {10 * B:>12} | {tempi['att']:>8.3f}s | {rho + int(np.log2(W)):>11} | "
-          f"{tempi['ib']:>7.3f}s | {tempi['att'] / tempi['ib']:>7.2f}x | {mb_gal:>10.0f} MB | "
+    rot_att = 9 * B + max(B - 1, 0)
+    rot_ib = len(set(passi_ib))
+    print(f"{N:>5} | {rot_att:>12} | {tempi['att']:>8.3f}s | {rot_ib:>11} | "
+          f"{tempi['ib']:>7.3f}s | {tempi['att'] / tempi['ib']:>7.2f}x | "
+          f"{mb_att:>7.0f}/{mb_ib:<7.0f} MB | "
           f"{max(tempi['att_err'], tempi['ib_err']):.4f}")
-    righe.append({"N": N, "rot_attuale": 10 * B, "t_attuale_s": round(tempi["att"], 3),
-                  "rot_ibrido": rho + int(np.log2(W)), "t_ibrido_s": round(tempi["ib"], 3),
+    righe.append({"N": N, "rot_attuale": rot_att, "t_attuale_s": round(tempi["att"], 3),
+                  "rot_ibrido": rot_ib, "t_ibrido_s": round(tempi["ib"], 3),
                   "guadagno": round(tempi["att"] / tempi["ib"], 2),
-                  "galois_mb": round(mb_gal), "err_max": round(max(tempi["att_err"], tempi["ib_err"]), 4)})
+                  "galois_attuale_mb": round(mb_att), "galois_ibrido_mb": round(mb_ib),
+                  "err_max": round(max(tempi["att_err"], tempi["ib_err"]), 4),
+                  "probe_timed": 1, "repetitions": 3,
+                  "q_probe": q_probe, "range_analitico": int(range_analitico),
+                  "range_osservato_test": int(range_osservato)})
 
-import csv
-out = pathlib.Path(__file__).resolve().parent / "results" / "ckks_packing_forte.csv"
-with open(out, "w", newline="") as fp:
+out = pathlib.Path(os.environ.get(
+    "OUTPUT_CSV",
+    str(pathlib.Path(__file__).resolve().parent / "results" / "ckks_packing_forte.csv"),
+))
+out.parent.mkdir(parents=True, exist_ok=True)
+with out.open("w", newline="") as fp:
     w = csv.DictWriter(fp, fieldnames=list(righe[0].keys())); w.writeheader(); w.writerows(righe)
 print(f"\nscritto {out}")

@@ -1,0 +1,113 @@
+{
+  "evidence": {
+    "original_path": "tmp/speed-campaign-20260908-day/g4-composite/actions/heldout-aggregate-20260908T125545Z/RESULT.json",
+    "original_sha256": "86cd5b350db7d7dda259deed20134dab0ac094cac4117fb19b2962bcfa7e3c15"
+  },
+  "values": {
+    "source_sha256": "2ba7db072cdd2ba136be359812b7b0fd87691285baeffb11272502d2376106e9",
+    "binary_sha256": "579ac3d4e83fb319e76120ece49d144370088951e69ed90e5ed6c38f0e659112",
+    "primary_summary": {
+      "pairs": 56,
+      "candidate_wins": 45,
+      "geometric_ratio_candidate_over_reference": 0.9767656796533457,
+      "geometric_reduction_percent": 2.323432034665429,
+      "median_paired_reduction_percent": 2.3850053863567924,
+      "reference_median_seconds": 1.9203702085,
+      "candidate_median_seconds": 1.8883507295
+    },
+    "primary_scope": "Exactly 28 measured pairs from each of two prespecified fresh confirmation families; screening and all standalone runs excluded.",
+    "reference_arm": "Combined classic route: shared normalizer, classic parallel4 comparators, public threshold specialization and both ID cuts. Legacy reader label scalar refers to this route.",
+    "candidate_arm": "Same combined classic route plus dynamic g4 selection; both arms load supplemental g4 keys.",
+    "per_scene": {
+      "12": {
+        "pairs": 8,
+        "candidate_wins": 6,
+        "geometric_ratio_candidate_over_reference": 0.9883855168761005,
+        "geometric_reduction_percent": 1.1614483123899455,
+        "median_paired_reduction_percent": 1.7224176329929064,
+        "reference_median_seconds": 1.8315154790000001,
+        "candidate_median_seconds": 1.7845076875
+      },
+      "13": {
+        "pairs": 8,
+        "candidate_wins": 6,
+        "geometric_ratio_candidate_over_reference": 0.9913110508380046,
+        "geometric_reduction_percent": 0.8688949161995363,
+        "median_paired_reduction_percent": 1.25599089623048,
+        "reference_median_seconds": 1.8410826045,
+        "candidate_median_seconds": 1.819930271
+      },
+      "14": {
+        "pairs": 8,
+        "candidate_wins": 7,
+        "geometric_ratio_candidate_over_reference": 0.9691664225292344,
+        "geometric_reduction_percent": 3.083357747076565,
+        "median_paired_reduction_percent": 3.2494526302550284,
+        "reference_median_seconds": 1.941431854,
+        "candidate_median_seconds": 1.887351604
+      },
+      "23": {
+        "pairs": 8,
+        "candidate_wins": 6,
+        "geometric_ratio_candidate_over_reference": 0.9657729178524436,
+        "geometric_reduction_percent": 3.422708214755643,
+        "median_paired_reduction_percent": 1.2384065362977537,
+        "reference_median_seconds": 1.9203702085,
+        "candidate_median_seconds": 1.8674688124999999
+      },
+      "35": {
+        "pairs": 8,
+        "candidate_wins": 7,
+        "geometric_ratio_candidate_over_reference": 0.978192883323952,
+        "geometric_reduction_percent": 2.1807116676047955,
+        "median_paired_reduction_percent": 2.865767658634982,
+        "reference_median_seconds": 2.062304625,
+        "candidate_median_seconds": 2.017462625
+      },
+      "38": {
+        "pairs": 8,
+        "candidate_wins": 7,
+        "geometric_ratio_candidate_over_reference": 0.9685141388014815,
+        "geometric_reduction_percent": 3.1485861198518483,
+        "median_paired_reduction_percent": 3.382129696176367,
+        "reference_median_seconds": 1.899101063,
+        "candidate_median_seconds": 1.850199916
+      },
+      "39": {
+        "pairs": 8,
+        "candidate_wins": 6,
+        "geometric_ratio_candidate_over_reference": 0.9763208725134154,
+        "geometric_reduction_percent": 2.367912748658463,
+        "median_paired_reduction_percent": 2.7944574369859754,
+        "reference_median_seconds": 2.1271204585000003,
+        "candidate_median_seconds": 2.0737394790000003
+      }
+    },
+    "correctness": {
+      "total_complete_outputs": 352,
+      "gate_outputs": 184,
+      "timing_outputs": 168,
+      "independently_replayed_terminal_phases": 1056,
+      "gate_all_saved_lwe_phases": 13524,
+      "input_glwe_coefficient_phases": 368640,
+      "intended_controls": 514,
+      "intended_payloads": 11430,
+      "saved_child_parent_word_equalities": 2514,
+      "source_bound_stock_glwe_equalities": 1086,
+      "same_arm_serial_repeat_word_equalities": 24,
+      "gate_to_timing_fullword_equalities": 28,
+      "fresh_key_secret_objects": 10,
+      "fresh_encrypted_inputs": 180
+    },
+    "screen_pairs_in_primary": 0,
+    "standalone_pairs_in_primary": 0,
+    "limits": [
+      "Two fresh observed families do not establish a general key-population speedup or failure-tail bound.",
+      "All measured pairs retained regardless of gain or load flags; raw-load review does not prove continuous isolation.",
+      "Query timing excludes setup, input loading, public scene planning and terminal decoding. No matched service result.",
+      "Complete stock GLWE equality remains a source-bound native assertion; saved LWE phases and intended selected-node genealogy are independently replayed.",
+      "Do not add this incremental reduction to earlier component percentages."
+    ]
+  },
+  "scope": "Field projection of completed evidence. No new FHE run or decryption replay during consolidation."
+}

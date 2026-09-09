@@ -1,0 +1,106 @@
+{
+  "schema": "v9-service-copy-origins.v1",
+  "origins": {
+    "candidate/src/dispatch.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/dispatch.rs",
+      "sha256": "3b850f299ceeeb687028ec2f0da8030cb35c33cdbf7ec998a4395da9667f4700",
+      "bytes": 4420
+    },
+    "candidate/src/profile.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/profile.rs",
+      "sha256": "5dd1b4e62d3fb2edd6b5c7562c979d5adfdca4f613f278011bbde1796ab2fab9",
+      "bytes": 2963
+    },
+    "candidate/src/protocol.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/protocol.rs",
+      "sha256": "ff158e5b44c45e2dc42aab3f02c6cba1818904e493a86a869dc82a0c5a6fa755",
+      "bytes": 5413
+    },
+    "candidate/src/metadata.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/metadata.rs",
+      "sha256": "fcc69a04ad9c3caaef3e5881d60153e52c2f626a42c9502c03cfe8f3eb7ea71d",
+      "bytes": 10840
+    },
+    "candidate/src/threshold_tests.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/threshold_tests.rs",
+      "sha256": "31dc40d04c67293693c2c049afa9598d97cbf848678471f96d55684cdb5d601f",
+      "bytes": 7685
+    },
+    "candidate/src/profile_tests.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/profile_tests.rs",
+      "sha256": "52c86fa0b6774cb0b99de1c3d41b8e5b0583df85dfccfe19865fc501e538dd01",
+      "bytes": 3811
+    },
+    "candidate/src/main.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/main.rs",
+      "sha256": "da6ccc2c2eb4c8e7992b3153255bda851c84d758ef149ec7eb416303a39c0dde",
+      "bytes": 56998
+    },
+    "candidate/src/tests.rs": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/src/tests.rs",
+      "sha256": "c17412f79118db3bfba61ff7d9f236633bf47a5a332432599146ff9845093437",
+      "bytes": 8708
+    },
+    "candidate/Cargo.toml": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/Cargo.toml",
+      "sha256": "f50a542d099fdd15de9414a1e2486f3453e2f88104d42f4e961ad39f3975cf10",
+      "bytes": 474
+    },
+    "candidate/Cargo.lock": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/candidate/Cargo.lock",
+      "sha256": "a620d8ac39b1076b4972b6d053f5736f3852f29123b451a0483dfb1a0ce44ef5",
+      "bytes": 19965
+    },
+    "client/test_protocol.py": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/client/test_protocol.py",
+      "sha256": "e2228fd1b9d9f468f5f1518f4fe46219c0d7fa2cf563812ada3765eb51c82cbf",
+      "bytes": 15927
+    },
+    "client/protocol.py": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/client/protocol.py",
+      "sha256": "bcaff58f3d1d6ec062e35aeae432fdfa2aaaa4f239c3ade6428197c791f9767e",
+      "bytes": 11109
+    },
+    "client/__init__.py": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/client/__init__.py",
+      "sha256": "5f66b02ddc41d63d25f54f3c24552bc3efff4744090d3bd76a1e112650fbb9b4",
+      "bytes": 70
+    },
+    "client/app.py": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/client/app.py",
+      "sha256": "fa7e2bc81383bda99efd83f765b70014532e7476095fc9bb38d4bce43dfccf76",
+      "bytes": 17902
+    },
+    "ui/index.html": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/ui/index.html",
+      "sha256": "13b8742670818087d03958ead4f6a0cd2edfbca516562b9a46ce5b5482e24737",
+      "bytes": 8047
+    },
+    "ui/camera_web.py": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/ui/camera_web.py",
+      "sha256": "4824208cfa73a0e1816587bf99bb35fde1d8f40b47c723bfb552c178940829a2",
+      "bytes": 811
+    },
+    "ui/__init__.py": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/ui/__init__.py",
+      "sha256": "d47da28d5c37c40b94c20bfe51337eefa6bec4bd8e261a166eb46a41d956f60c",
+      "bytes": 33
+    },
+    "config.json": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/config.json",
+      "sha256": "48f2126d6f236bf1aa284fa3ea855c9bf064c41752a453ad6575a410bca9d207",
+      "bytes": 5179
+    },
+    "CIRCUIT_CONTRACT.json": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/CIRCUIT_CONTRACT.json",
+      "sha256": "44235731e8b242ca97ad24483d74b837cc79ca52197cfb839d44580d45bdee04",
+      "bytes": 2517
+    },
+    "circuit.sha256": {
+      "source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/e2e-camera-optimized-20260907/circuit.sha256",
+      "sha256": "a9b63ac4d5217c6cd12bc68effb3a1b9b8c294f682dd61c0c036474ddfe0a746",
+      "bytes": 64
+    }
+  },
+  "old_files_unchanged": true
+}

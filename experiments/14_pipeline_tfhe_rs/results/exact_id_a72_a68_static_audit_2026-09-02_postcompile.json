@@ -1,0 +1,136 @@
+{
+  "ledger": {
+    "a64_transitive_pins_verified": 18,
+    "components_verified": 12,
+    "formula": "M(N) = 24029 + 18984*N",
+    "selected_totals": {
+      "1": 43013,
+      "127": 2434997,
+      "128": 2453981,
+      "8": 175901
+    }
+  },
+  "manifest": {
+    "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a68-checked-shortint-rust-prototype/Cargo.toml",
+    "tfhe": {
+      "default-features": false,
+      "features": [
+        "integer"
+      ],
+      "version": "=0.11.3"
+    }
+  },
+  "pins": [
+    {
+      "id": "a68_manifest",
+      "markers": 2,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a68-checked-shortint-rust-prototype/Cargo.toml",
+      "sha256": "79447b26df3582785996ce251f992ebfed0e7c40ea7c09c409e13f13ca83d9ce"
+    },
+    {
+      "id": "a68_materialized_circuit",
+      "markers": 5,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a68-checked-shortint-rust-prototype/src/lib.rs",
+      "sha256": "54f13ce39681aeb5156cc8abc9fe9e65481dd541489e37ff221f1478cb480d0e"
+    },
+    {
+      "id": "a68_guarded_harness",
+      "markers": 3,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a68-checked-shortint-rust-prototype/src/bin/a68_checked_shortint.rs",
+      "sha256": "350e9b2585c84a650f1457bcd6b638d550b6e11c0c935d990d9526a40dd12c9e"
+    },
+    {
+      "id": "a68_a64_ledger_snapshot",
+      "markers": 2,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a68-checked-shortint-rust-prototype/a64_ledger.json",
+      "sha256": "cf8577bbd903ca5ae00b295996bf77c1bcce2ae9a8a46622cd2623e1c66b1d89"
+    },
+    {
+      "id": "a64_readme",
+      "markers": 3,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a64-checked-shortint-reference-design/README.md",
+      "sha256": "f35fea5be154c50283e8020515e7dead83ae4a55d9ddebdc30922dd0afa0e410"
+    },
+    {
+      "id": "a64_model",
+      "markers": 4,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a64-checked-shortint-reference-design/a64_checked_reference_model.py",
+      "sha256": "3f732a9005095fa0a56ce1e57f465bcfbe71ab17e392f6e1a5e26d18b0bee8cc"
+    },
+    {
+      "id": "a64_tests_current",
+      "markers": 3,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a64-checked-shortint-reference-design/test_a64_checked_reference_model.py",
+      "sha256": "1addcc701a42351882f22b604f197b33e286eeb78079db463fa144535f2328b6"
+    },
+    {
+      "id": "a64_source_pins",
+      "markers": 3,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a64-checked-shortint-reference-design/source_pins.json",
+      "sha256": "ae7ecaa3d0dc44ab71ef4de96de4cb35d710620d42bfb8a7e00783e563863249"
+    },
+    {
+      "id": "workspace_tfhe_lock",
+      "markers": 2,
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/Cargo.lock",
+      "sha256": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a"
+    },
+    {
+      "id": "tfhe_0113_manifest",
+      "markers": 3,
+      "path": "/Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/Cargo.toml",
+      "sha256": "5a540a90dede666592aa727fa0af3147c8def98e42372bf8bf5ecb2a7a9118e8"
+    },
+    {
+      "id": "tfhe_0113_gen_keys_radix",
+      "markers": 3,
+      "path": "/Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/integer/mod.rs",
+      "sha256": "42febc54daa6e911aad65a1e66a177757b8cfc7bff33661c8079be37c7702cac"
+    },
+    {
+      "id": "tfhe_0113_radix_client",
+      "markers": 3,
+      "path": "/Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/integer/client_key/radix.rs",
+      "sha256": "0cf8b228362d84c6cac21b53170588ede30352852d4148cce53d2df84ff06074"
+    },
+    {
+      "id": "tfhe_0113_boolean_to_radix",
+      "markers": 2,
+      "path": "/Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/integer/ciphertext/boolean_value.rs",
+      "sha256": "baa56c20f8e1c69a953bbcdbd54eb37c55c7e6d46df9356586f4e00ff7831cde"
+    },
+    {
+      "id": "tfhe_0113_checked_integer_bitops",
+      "markers": 4,
+      "path": "/Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/integer/server_key/radix/bitwise_op.rs",
+      "sha256": "c4486473c4ab9987400f61adfd63b32c0af7b4f7de0912a238a9ab4728795bf1"
+    },
+    {
+      "id": "tfhe_0113_trivial_radix",
+      "markers": 2,
+      "path": "/Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/integer/server_key/radix/mod.rs",
+      "sha256": "7a183d6f8e237d6aeec436d1d7277aa1eecf5dcc1964c285f0056cbbd4a1ec03"
+    },
+    {
+      "id": "tfhe_0113_parameter",
+      "markers": 5,
+      "path": "/Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs",
+      "sha256": "14a3c8cae508fec1f96e76ed74e186efbd005c0c84292975333dc202a6987bb6"
+    }
+  ],
+  "rust": {
+    "bit_newtype": "private one-block RadixCiphertext",
+    "checked_call_sites": [
+      "checked_bitand",
+      "checked_bitor",
+      "checked_bitxor"
+    ],
+    "failure_policy": "Result::Err, no identity response",
+    "files": [
+      "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a68-checked-shortint-rust-prototype/src/lib.rs",
+      "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a68-checked-shortint-rust-prototype/src/bin/a68_checked_shortint.rs"
+    ],
+    "forbidden_constructs": 0
+  },
+  "status": "static audit passed; this command does not execute Cargo/FHE"
+}

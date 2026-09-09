@@ -1,10 +1,11 @@
-# I due ruoli del varco come due container separati: sul filo passa solo cifrato.
+# I due ruoli del varco come due container separati: il probe e l'esito passano solo cifrati.
 #
 #   client  il terminale fidato: telecamera, modello in chiaro, CHIAVE SEGRETA, pagina web
 #   server  la macchina remota: galleria in chiaro, chiave di valutazione, calcola alla cieca
 #
-# Si parlano solo sulla rete interna `varco`, e l'unica cosa che l'attraversa dopo la consegna
-# della chiave di valutazione sono byte cifrati (probe -> esito).
+# La rete interna `varco` trasporta anche il setup e il controllo: chiave di valutazione, template
+# di enrollment in chiaro nel Mondo 1 e metadati di stato. Per ogni verifica, invece, attraversano
+# il confine soltanto probe cifrato ed esito cifrato.
 #
 #   docker compose -f demo/docker-compose.yml up --build      poi http://localhost:8000
 #
@@ -17,12 +18,9 @@ services:
     build:
       context: ..
       dockerfile: demo/server/Dockerfile
-    environment:
-      DIM: 512
-      SOGLIA: 23        # dominio della galleria della demo (sintetica); volti reali: 269. Vedi demo/calibra.py
-      LOG_DELTA: 51        # bound indipendente dai dati (F56), non il range osservato
+    env_file: ./config.env   # generato insieme a config.json da demo/calibra.py
     networks: [varco]
-    ports: ["9000:9000"]      # esposta solo per ispezionare /stato dall'esterno
+    ports: ["127.0.0.1:9000:9000"]  # ispezione locale; gli endpoint di setup non sono autenticati
 
   client:
     build:
@@ -36,7 +34,7 @@ services:
       - modelli:/root/.insightface                                        # ResNet100 scaricata una volta
       - chiavi:/app/chiavi                                                # la chiave segreta resta qui
     networks: [varco]
-    ports: ["8000:8000"]
+    ports: ["127.0.0.1:8000:8000"]
 
 networks:
   varco:

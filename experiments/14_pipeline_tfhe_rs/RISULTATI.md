@@ -1,10 +1,286 @@
-# Esperimento 14 — il pipeline in tfhe-rs coi parametri standard: chiudere il design di luglio
+# Esperimento 14 — identificazione TFHE 1:N esatta con tfhe-rs
 
-Obiettivo (incontro di luglio, findings F35): selezione sul server a N = 64 e 128 sotto i 10 s,
-scritta con le funzioni di tfhe-rs, uscita solo esito (mai la distanza). Tutto misurato su
-Apple M4 Max (12P+4E, 16 thread rayon), tfhe-rs 0.11.3, `--release`, `target-cpu=native`,
-parametri **standard a 128 bit** (`PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`: n=879,
-N=2048, k=1; multi-bit group 3 dove indicato). Findings F36–F38.
+Obiettivo dell'incontro di luglio (findings F35): calcolare sul server la selezione a N=64/128,
+restituire l'identita' piu' vicina se sufficientemente vicina oppure un rifiuto, e non restituire
+mai la distanza. Misure su Apple M4 Max (12P+4E, 16 thread Rayon), tfhe-rs 0.11.3, `--release`,
+`target-cpu=native`, parametri standard
+`V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`.
+
+## Stato del contratto al 2 settembre 2026: argmin esatto, poi soglia del vincitore
+
+Il contratto finale implementato da `private_argmin` e `varco_demo` e':
+
+```text
+k = primo argmin_i score_i
+codice = k+1  se score_k <= T_k
+         0    altrimenti
+```
+
+L'output e' un solo big-LWE. Un rifiuto non rivela l'indice piu' vicino; nessuna risposta contiene
+distanze, score, count o vettori. Il primo indice vince i pareggi e la soglia selezionata
+cifratamente e' soltanto quella del vincitore. Una soglia permissiva di un template piu' lontano
+non puo' aprire il varco.
+
+Lo stato va distinto dal sorgente vivo: **A33 e' la baseline sperimentale corrente del fast path
+uniforme/allineato**; A29 ManyLUT resta lo snapshot generale congelato e il fallback fail-closed,
+mentre A28 e' la baseline precedente. Il termine “corrente” nelle sezioni storiche sotto non deve
+essere letto come evidenza della revisione piu' recente.
+
+Il client fidato impone coordinate `[-3,3]` e `||q||^2<=1024`. Il server deriva per ogni template
+il dominio intero di Cauchy
+`norm2(g) +/- 2*ceil_sqrt(norm2(g)*1024)` e rifiuta enrollment che porterebbero la larghezza oltre
+4096. Il punteggio traslato usa quindi esattamente 12 bit.
+
+### Costruzione A28, baseline congelata
+
+- un solo GLWE contiene il probe completo a `Delta=2^52` nei coefficienti `0..511` e lo stesso
+  probe modulo 16 a `Delta=2^60` nei coefficienti `1024..1535`;
+- i due supporti non si sovrappongono e condividono il prodotto di scoring con il template;
+- il canale modulo 16 fornisce esattamente `b0..b3` a `Delta=2^60`; quattro correction ciphertext
+  li ricodificano alla scala completa e vengono sottratte dal punteggio;
+- il residuo, multiplo di 16, fornisce `b4..b11` a `Delta=2^56`; lo split conserva 20 blind
+  rotation di estrazione per template ma riduce i key switch di estrazione da `16N` a `12N`;
+- la scansione lessicografica MSB-first usa OR a fan-in massimo quattro senza il vecchio selettore
+  paired, conserva i candidati al minimo e rinfresca il one-hot del vincitore;
+- il comparatore Booleano applica soltanto `T_k`; il codice `0` oppure `k+1` viene rinfrescato per
+  nibble, con quello basso gia' a `Delta_bool` e senza il precedente `x16`.
+
+Il percorso crittografico e' definito una sola volta in `src/private_argmin.rs`; il benchmark
+`argmin_bucket_bits_periodic.rs` e il servizio `varco_demo.rs` chiamano lo stesso core.
+
+### A29 ManyLUT, snapshot promosso precedente e fallback generale
+
+A29 conserva lo stesso contratto exact-ID, lo split4 e la selezione del solo `T_k`. Per i bit
+globali `3..6`, una blind rotation custom produce insieme la correction full e il bit alla scala
+Booleana tramite due sample extraction; il bit 7 riusa direttamente la correction gia' alla scala
+Booleana. Nel percorso uniforme N=127 il costo osservato scende a **4.965 PBS**, con 4.584 KS
+strutturali, contro 5.600/4.584 di A28.
+
+Boundary 198/198, matrice semantica 198/198, replay diagnostico, frontiera 80/80, suite primaria
+632/632 ed E2E Docker 6/6 sono tutti concordi con l'oracolo exact-ID. Nel confronto appaiato A28/A29
+sugli stessi byte cifrati, A29 preserva 72/72 output e riduce la latenza server geometrica
+dell'8,876%, intervallo del run [8,092%, 9,728%], con 57/60 vittorie. Le 60 misure ripetono cinque
+probe di frontiera fissati 12 volte ciascuno nei tre blocchi-chiave: stimano la latenza
+dell'implementazione e non sono 60 casi biometrici indipendenti. Il carico host era alto e il
+bound composto della `p-fail` resta aperto. Evidenza storica:
+`../../benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.md`,
+`../../benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.md` e
+`../../benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.md`.
+
+### A33, baseline sperimentale corrente del fast path
+
+Il fast path a soglia uniforme riallinea pubblicamente il dominio a `T-1023`, conserva il residuo
+signed `r` per proseguire esattamente sui bit `b8..b0` e produce in parallelo un flag signed. Due
+flag vengono emessi con pesi 1/3 e canonicalizzati con un PBS per coppia; il resto del percorso
+rimane tie-first e restituisce il singolo codice `0`/ID. Il progetto completo conta 4.273 PBS e
+3.892 KS a N=127, 692 PBS/KS meno di A29. Il punto A31 `K=991` effettivamente derivato nel
+documento e' 4.373/3.992, quindi A33 ne risparmia 100; una precedente stima allineata 4.358/3.977
+priva di derivazione congelata non viene usata come baseline.
+
+Il planner attiva A33 soltanto con soglia uniforme, allineamento pubblico a `T-1023`, dominio
+coperto e larghezza al massimo 4096. Ogni altro input valido usa il corpo generale A29 preservato.
+Il micro-harness sul residuo rumoroso A29 passa 54/54 residui, 216/216 uscite e 192/192 coppie su
+tre chiavi. Il full-core mirato congelato passa sei casi/sette valutazioni fino a N=127/codice 127,
+inclusi `1023/1024`, tail dispari, tie-first con replay dello stesso ciphertext e rifiuto senza
+risurrezione. La frontiera DigiFace pulita passa 80/80 query, 48/48 autorizzazioni, zero errori e
+zero discrepanze sull'intero exact-ID, sempre a 4.273 PBS.
+
+I gate di promozione successivi sono tutti positivi:
+
+- la suite primaria passa **632/632**, zero errori/discrepanze, 131/131 autorizzazioni e
+  ciphertext tutti distinti; la mediana server osservata di 8.458,2 ms appartiene a un run con
+  carico estremo e non e' una latenza nominale;
+- il paired A29/A33 usa **120 coppie misurate piu' 24 warm-up** su sei blocchi-chiave, conserva
+  tutti i codici exact-ID e vede A33 vincere 105/120 volte. La riduzione geometrica e'
+  **13,7343377%**, CI 95% **[11,8060731%, 15,5946764%]**, con differenza fra gli ordini di
+  0,534606 punti. L'estensione preregistrata e' scattata per la larghezza iniziale del CI; carico
+  alto e deriva restano caveat;
+- l'E2E Docker provenance-bound passa **3/3 ID esatti e 3/3 rifiuti**, a 4.273 PBS/query;
+- l'accounting riproducibile conta 4.273 BR, 3.892 KS e 4.908 marginali. Le union bound
+  `2^-59,563966` e `2^-59,364080` sono soltanto condizionali: il decode finale non bootstrappato
+  resta non valutato e non esiste ancora un bound end-to-end.
+
+Patch, binario e artifact dei gate A33 sono congelati. A33 e' quindi promosso come baseline
+sperimentale **nel perimetro del fast path**; A29 resta necessario come fallback generale.
+L'accumulatore e' raw/custom, non l'API stock `ManyLookupTable`. La blind rotation multi-output e
+l'interlacciamento hanno prior art diretta in `PBSmanyLUT` e nelle domande Axell
+US20240154786A1/US20240121077A1/US20240187210A1: l'eventuale contributo e' soltanto il co-design
+applicativo completo, non una nuova primitiva TFHE. Evidenza:
+`results/exact_id_a33_sparse_residual_trace_2026-09-02.md`,
+`results/exact_id_a33_full_validation_2026-09-02.txt`,
+`../../benchmark/results/fhe_digiface_exact_frontier_a33_2026-09-02.md`,
+`../../benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.md`,
+`../../benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.md`,
+`../../benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.md`,
+`../../benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.md`,
+`../../benchmark/patches/a33_aligned_sparse_source_2026-09-02.patch` e
+`results/exact_id_uniform_threshold_fastpath_design_2026-09-02.md`.
+
+### A34/A36, prossimo candidato non promosso
+
+I prototipi isolati FHE di A34-top, scan/output a due nibble e selettore A36 sono positivi. Il
+modello clear di componibilita' separa i conteggi per stadio e proietta, a N=127, **3.655 blind
+rotation / 3.274 KS / 4.206 marginali** per A34 + A36 + radix-5, 618 BR meno di A33. Il numero e'
+soltanto statico: non e' stato osservato in un singolo core Rust e mancano ancora fixture FHE
+integrate, suite primaria, Docker, paired e accounting. Questa linea resta il prossimo candidato
+da falsificare, non una baseline. Evidenza:
+`results/exact_id_a34_a36_component_fhe_2026-09-02.md` e
+`results/exact_id_a34_a36_composability_2026-09-02.md`.
+
+### Conteggi della baseline precedente A28 e misure storiche del core condiviso
+
+La formula deterministica dello snapshot bounded A28 conta, con soglia uniforme T=4,
+2.814/5.600/5.640 PBS a N=64/127/128; gli upper bound per soglie arbitrarie sono
+3.087/6.159/6.199. La suite cifrata completa N=127 ha concluso **632/632** output exact-ID uguali al
+clear, zero discrepanze/errori, 632 probe e result ciphertext distinti e 131/131 autorizzazioni.
+Tutte le query usano 5.600 PBS; i key switch uniformi sono 2.302/4.584/4.616. Il server ha mediana
+7,45175 s e p95 8,0367 s in un run non isolato. A25, anch'esso a 5.600 PBS ma con 5.092 KS a
+N=127, aveva mediana 7,51215 s in una finestra diversa: la differenza non e' una misura causale.
+Report A28: `../../benchmark/results/fhe_digiface_exact_primary_split4_2026-09-02.md`. Il report
+A25 e' preservato in `../../benchmark/results/fhe_digiface_exact_primary_optimized_2026-09-02.md`.
+Lo stress mirato split4 passa 198/198 casi sotto tre chiavi fresche; resta evidenza empirica, non
+un bound del `p-fail`: `results/exact_id_split4_boundaries_2026-09-02.md`.
+
+I run pre-hardening preservati avevano invece misurato:
+
+| N | caso | PBS storici | tempo core storico |
+|---:|---|---:|---:|
+| 64 | tre casi accept/reject e soglie per-template | 2.483 | **4,460-4,594 s** |
+| 127 | pareggio tie-first, coda dispari | 4.919 | **8,010 s** |
+| 128 | run avversari/reali precedenti | 4.949 | **9,488-11,223 s** |
+
+In quei run tutti gli output provati coincidevano con l'oracolo clear. La forchetta storica N=128
+dipendeva da carico, ordine e versione del percorso di estrazione: dimostrava fattibilita', ma non
+autorizzava un bound worst-case inferiore a 10 secondi e non va attribuita agli snapshot A28/A29
+o alla baseline A33. I
+dettagli sono in
+`results/private_argmin_core_2026-09-01.md`,
+`results/argmin_bucket_bits_exact_norm12_2026-09-01.md` e
+`results/argmin_bucket_bits_exact_split_2026-09-01.md`.
+
+Il bridge storico modulo 16, incluso il layout duale nello stesso GLWE, e' stato provato con tre
+chiavi, valori avversari e probe reali: 20.025 bit raw e 16.506 bit ricodificati senza errori
+osservati. Vedi `results/score_mod16_lowbits_2026-09-01.md`. Questi smoke descrivono il circuito
+allora misurato: sono evidenza empirica storica, non una misura del bridge bounded A28/A29 ne' una
+prova formale della probabilita' di fallimento dell'intera composizione.
+
+### E2E della baseline A33, N=127
+
+Il gate Docker dedicato ricostruisce lo snapshot A33 congelato, vincola sorgenti, immagini,
+PID 1, modello e dataset, poi attraversa embedding, cifratura, preload, endpoint, core e
+decifratura:
+
+| campione | esito |
+|---|---:|
+| 3 positivi | 3/3 apertura e identita' esatta |
+| 3 negativi held-out | 3/3 rifiuto, nessun ID |
+| contratto / PBS | `exact-open-set-id-v2` / 4.273/query |
+| preload | 127 template in 92,3 s |
+| server | mediana 13.030,5 ms |
+| endpoint HTTP | mediana 14.779,938 ms |
+| probe / pacchetto output | 32.840 / 16.464 byte |
+
+Il report e' `../../benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.md`. Il carico host
+era alto e le latenze Docker sono soltanto descrittive; il confronto relativo autorevole del run
+resta il paired A29/A33 sugli stessi ciphertext. Il gate non pilota webcam/browser e non verifica
+il rendering della UI.
+
+### E2E dello snapshot generale A29, N=127
+
+Le immagini Linux Docker sono state ricostruite e `benchmark/demo_e2e.py` ha attraversato
+embedding, cifratura, preload, endpoint, core condiviso e decifratura:
+
+| campione | esito |
+|---|---:|
+| 3 positivi | 3/3 apertura e identita' esatta |
+| 3 negativi held-out | 3/3 rifiuto, nessun ID |
+| contratto / PBS | `exact-open-set-id-v2` / 4.965/query |
+| preload | 127 template in 39,7 s |
+| server | 7,5621-9,1837 s; mediana 7,6868 s |
+| endpoint HTTP | 7,994941-10,150079 s; mediana 8,195264 s |
+| probe / pacchetto output | 32.840 / 16.464 byte |
+
+Il report dello snapshot A29 e'
+`../../benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.md`. Il carico host era
+estremamente alto e non isolato, quindi i tempi non sono una baseline. Lo script vincola il runtime
+Docker ma non pilota webcam/browser e non verifica il rendering della UI.
+
+Il run A28 precedente, anch'esso 6/6 ma a 5.600 PBS, resta nello storico:
+`../../benchmark/results/demo_e2e_exact_id_split4_2026-09-02.md`. Il run A25, su immagini
+diverse, resta a sua volta nello storico:
+`../../benchmark/results/demo_e2e_exact_id_optimized_2026-09-02.md`.
+
+### E2E storico pre-hardening del servizio exact-id, N=127
+
+Il benchmark host `benchmark/demo_e2e.py`, con binario release/PID vincolati e cache di
+calibrazione richiesta, ha attraversato embedding, cifratura, endpoint, core condiviso e
+decifratura prima degli hardening successivi:
+
+| campione | esito |
+|---|---:|
+| 3 genuine | 3/3 apertura e identita' esatta |
+| 3 impostori held-out | 3/3 rifiuto, nessun ID |
+| PBS | 4.919/query |
+| server | 7,7557-8,6953 s; mediana 8,46805 s |
+| endpoint HTTP | mediana 8,671392 s |
+| probe / output | 32.840 / 16.464 byte |
+
+L'output rimane un solo LWE. Il pacchetto Docker e' stato ricostruito e verificato anche nel
+browser: identita' esatta sul positivo e `Negato / identita' non rilasciata` sul negativo. Gli
+screenshot sono `demo/screenshots/exact-id-docker-2026-09-01.png` e
+`demo/screenshots/exact-reject-docker-2026-09-01.png`.
+
+Artefatto di sintesi: `benchmark/results/exact_id_end_to_end_2026-09-01.md`. Sei query sono una
+prova funzionale storica del contratto operativo, non una misura degli snapshot bounded o della
+baseline A33 ne' una stima
+statistica di DIR/FPIR, errore biometrico o `p-fail`. I tempi Docker, influenzati dalla
+virtualizzazione, non sono mescolati con quelli host.
+
+Il validator `benchmark/fhe_digiface_validation.py` ora verifica `0/null` oppure l'indice exact-ID
+contro l'oracolo clear. Lo smoke di frontiera pre-hardening comprendeva cinque impostori di tuning
+e concordava **5/5** col clear: tre false accept biometrici a score 2/3/4, con lo stesso
+indice/codice FHE e clear, e due rifiuti a score 5/7; il costo storico era 4.919 PBS/query. Non erano
+tre identificazioni biometriche corrette. Le suite bounded A29 e A33 da **632 query** sono
+concluse:
+632/632 output FHE coincidono col clear, con 127/127 genuine identificate, 1/500 impostori primari
+accettato e 3/5 frontiera accettati. Gli ultimi quattro sono false accept biometrici, non errori
+FHE. A29 conta 4.965 PBS e A33 4.273 PBS sul fast path uniforme/allineato. Le figure
+`benchmark/results/architettura.{png,svg}` e
+`percorso.{png,svg}` rappresentano l'exact-ID e incorporano il punto E2E bounded A28 congelato,
+non la baseline A33; in
+`percorso` le curve precedenti restano storico esplicito.
+
+### Limite di integrita' del protocollo
+
+Il raw LWE e l'HTTP corrente non sono autenticati: il ciphertext e' malleabile e una risposta puo'
+essere forgiata o riprodotta come codice accettato. Header, range, epoch e revisione sono controlli
+di consistenza, non una MAC/firma. L'esperimento sostiene quindi il modello honest-but-curious con
+trasporto fidato. Un deployment richiede TLS/mTLS, nonce per query e MAC/firma della risposta e
+dello stato galleria; contro un server malevolo servono verificabilita' o attestation.
+
+Il server registra lo SHA-256 della evaluation key, lo espone in `/stato` e rifiuta una chiave
+diversa fino al riavvio. Questo pinning runtime server-side mitiga la sostituzione nello stesso
+processo. Anche un confronto client con l'impronta locale prova soltanto l'uguaglianza dei byte,
+non la relazione con la secret key. Non e' binding crittografico, autenticazione del protocollo o
+prova dell'esecuzione corretta.
+
+### Baseline A16/A19 scartata
+
+Il periodic-fold a 3 PBS/template seguito da OR calcolava soltanto
+`any_match = OR_i[score_i<=T_i]`. I suoi 400 PBS a N=127, replay 80/80 e run applicativo 20+20
+restano artefatti storici validi per quella funzione. Non restituisce pero' l'identita' piu'
+vicina e, con soglie per-template, non equivale a confrontare il vincitore con `T_k`: non e' il
+percorso finale e i suoi tempi sub-secondo non vanno attribuiti all'argmin esatto.
+
+La variante a 9 PBS/template, il candidato WoP-PBS a 14 PBS/template e il comparatore diretto a
+un PBS restano route storiche/fallback, non il percorso exact-ID promosso.
+
+## Registro storico precedente al contratto esatto
+
+Le sezioni seguenti conservano la cronologia sperimentale e i relativi artefatti. Quando riportano
+un PBS/template, 146/400 PBS nel servizio, un output `any_match`, una banda approssimata o una
+latenza sub-secondo, descrivono il comparatore diretto o il successivo periodic-fold, entrambi
+ritirati dal percorso finale. Non sono prestazioni o garanzie dell'identificazione esatta.
 
 ## 0. In chiaro prima: quanti bit del punteggio servono (`precisione_punteggio.py`, F36)
 
@@ -43,7 +319,7 @@ Tutti gli esiti verificati contro il chiaro. Il torneo `FheUint8` sta nel target
 a N=64, 4,7 s a N=128), **ma presuppone i punteggi in forma radix**, cioè il ponte dal punteggio
 leveled che coi parametri standard non c'è (F34).
 
-## 2. Il varco senza ponte (`varco_leveled.rs`, F37)
+## 2. Il varco senza ponte, storico pre-fold (`varco_leveled.rs`, F37)
 
 Prodotto scalare leveled su LWE grezzi (0 PBS) + **un PBS di segno per iscritto** contro la
 soglia, tutti in parallelo (profondità 1). Uscita: N bit (one-hot), oppure compatta: conteggio +
@@ -61,6 +337,10 @@ indice in binario (log N somme leveled). Scena reale (`esporta_dati.py`: ResNet1
 Esattezza: **0 discrepanze su 31.744 confronti** cifrato/chiaro; esito per probe identico al
 chiaro (58/64 genuini riconosciuti = 90,6%, 0/64 impostori accettati); uscita compatta corretta
 128/128 a ogni N (0,2 ms).
+
+Questa e le altre osservazioni di esattezza della sezione sono empiriche sui campioni storici,
+quasi tutti lontani dalla soglia. L'audit successivo ha invalidato il comparatore diretto come
+implementazione esatta del predicato inclusivo; i numeri restano misure pre-fold.
 
 Single-thread (`RAYON_NUM_THREADS=1`): il PBS costa 13,5-13,9 ms l'uno (meno che a 16 thread, dove
 i thread si contendono cache e E-core), e il totale scala lineare in N:
@@ -106,24 +386,28 @@ partendo da un probe già accettato (una foto dell'iscritto); da impostori o vet
 semispazio) non aiuta: coseno 0,995 in 10.000 query, perché l'attaccante conosce la norma del
 proprio vettore e il punteggio resta lineare nelle incognite. Contromisura: rate limiting.
 
-## 4b. Spremere i parametri (`--params`, F46)
+## 4b. Spremere i parametri, storico pre-fold (`--params`, F46)
 
-Il PBS di segno vuole solo 1 bit di LUT: i set piccoli di tfhe-rs (128 bit, p-fail 2⁻⁶⁴) sono più
-veloci. **MESSAGE_1_CARRY_1** (N=512): N=128 **0,100 s**, N=1024 **0,72 s** (~2× sul default),
-esatto (0/131.072 a N=1024), banda σ≈50 innocua (DIR invariata in `effetto_banda.py`, anche a σ=100).
+Il PBS di segno vuole solo 1 bit di LUT: i set piccoli catalogati da tfhe-rs nel gruppo
+`p_fail_2_minus_64` hanno polinomi piu' corti e un PBS piu' economico. Il target e' nominale per le
+primitive supportate, non un bound del varco low-level composto. **MESSAGE_1_CARRY_1** (N=512):
+N=128 **0,100 s**, N=1024 **0,72 s** (~2× sul default), con 0 errori osservati su 131.072 confronti
+a N=1024; nella simulazione di `effetto_banda.py` la DIR resta invariata con σ≈50, anche a σ=100.
 `2_1` sta in mezzo (0,134 s a N=128, σ≈30). `2_0`/`1_0` (N≤512, GLWE rumoroso) crollano: banda
 ~1900, metà confronti errati — il varco vive del budget di rumore leveled. Il numero finale del
 sistema: **0,10 s a N=128, 0,72 s a N=1024**. `results/varco_leveled_16thread_params.txt`,
 `banda_soglia_{1_1,2_1}.txt`. Non spremuto: GPU con tfhe-rs (lotto di N PBS indipendenti; serve NVIDIA).
 
-## 4c. Il fondo locale: 3 bit e il muro spiegato (`esporta_dati.py N 3`, F47)
+## 4c. Il fondo locale, storico pre-fold: 3 bit e il muro spiegato (`esporta_dati.py N 3`, F47)
 
 3-bit quant dimezza il range -> Delta da 2^51 a 2^53. Set 1_1 a 3 bit: N=1024 0,83 s, **0 discrepanze**,
 banda dimezzata (sigma ~11 a Delta=2^53, vedi F50) a costo zero, accuratezza in chiaro identica. 2_0/1_0 restano rotti:
 non per Delta ma per la **box size del PBS** = N/message_modulus, la ridondanza contro il rumore del
-modulus switch. 1_1 (N=512, box 256) e' il piu' piccolo set validato che tiene; sotto la scatola scende
-a 128 e crolla. Punto operativo finale: **3 bit, set 1_1, 0,10 s a N=128, ~0,8 s a N=1024, banda sigma~4,
-esatto**. Leva ancora aperta ovunque: GPU (lotto di N PBS, serve NVIDIA).
+modulus switch. Nel campione storico 1_1 (N=512, box 256) e' il piu' piccolo set con zero
+discrepanze osservate; sotto la scatola scende a 128 e crolla. Punto operativo dichiarato allora:
+**3 bit, set 1_1, 0,10 s a N=128, ~0,8 s a N=1024, banda sigma~4, zero discrepanze osservate**.
+Leva ancora aperta ovunque: GPU (lotto di N PBS, serve NVIDIA). Questo era il punto
+operativo dichiarato prima dell'audit della frontiera e non e' il comparatore corrente.
 
 ## 4d. Il bilancio del rumore (`rumore.rs`, F50)
 
@@ -144,17 +428,18 @@ Varco completo sulla scena reale: **0,094 s a N=128** (contro 0,10-0,12 s con ga
 Il prodotto scalare passa da 11 ms a 1,1 ms (FFT invece di Karatsuba). Prezzo: 200-300 KB per
 iscritto (37 MB a N=128) invece di 4 KB. Mondo 2 senza cambiare schema e senza cifrato x cifrato.
 
-## 4f. Argmin ESATTO a torneo con circuit bootstrapping (`argmin_torneo.rs`, F52)
+## 4f. Torneo con circuit bootstrapping, storico noisy (`argmin_torneo.rs`, F52)
 
 `circuit_bootstrap_boolean` (LWE -> GGSW) rende possibile il CMUX, quindi il torneo: N-1 confronti
 invece di N^2/2. Candidato = un GLWE con il punteggio al coeff dim-1 e l'indice al coeff N-1 (dove il
 prodotto e' zero). Serve un PBS di segno PRIMA del circuit bootstrap. Parametri LEGACY_WOPBS.
-**1,32 s a N=128** (contro 14,4 s della matrice, F45), 0,75 s a N=64. Indice esatto 69/80 in generale
-ma **31/31 quando il minimo e' sotto soglia**, cioe' sempre quando il varco apre; gli errori sono
-quasi-pareggi fra impostori. Con `--cifrata` (galleria GGSW di F51): **1,21 s a N=128**, il server non
-conosce ne' galleria ne' soglia ne' esito e restituisce l'indice esatto.
+**1,32 s a N=128** (contro 14,4 s della matrice, F45), 0,75 s a N=64. Il run storico dava 69/80
+indici e 31/31 nei casi con minimo sotto soglia, ma gli stress domain-safe successivi hanno dato
+soltanto 12/32-20/32 decisioni finali corrette. La parola «esatto» e' quindi ritirata per questo
+torneo. Con `--cifrata` la misura storica era **1,21 s a N=128**; non dimostra un'identificazione
+open-set affidabile.
 
-## 4g. CORREZIONE (F55): il "muro" di 4b/4c non esiste
+## 4g. Correzione storica pre-fold (F55): il "muro" di 4b/4c non esiste
 
 Una revisione critica ha mostrato che l'inferenza di F47 era un artefatto (1878/344 = 5,459 = il
 rapporto fra i RANGE delle due scene, non una banda) e che la box size non c'entra (l'accumulatore e'
@@ -181,6 +466,18 @@ giusto, vincitore esatto quando il minimo dista dal secondo più della banda (σ
 ## Riprodurre
 
 ```
+cargo test --lib                           # dominio, LUT, tie-first, soglie per-template, PBS count
+cargo test --bin argmin_bucket_bits_periodic
+cargo test --release --bin varco_demo      # wire e servizio exact-id
+RAYON_NUM_THREADS=16 cargo run --release --bin argmin_bucket_bits_periodic -- \
+  --run --keys 1 --sizes 64 --cases all --real-probes 1
+RAYON_NUM_THREADS=16 cargo run --release --bin argmin_bucket_bits_periodic -- \
+  --run --keys 1 --sizes 127 --cases tie --real-probes 1
+cargo test --bin score_mod16_lowbits
+cargo run --release --bin score_mod16_lowbits -- --run --keys 3 --n 128 --probes 4
+
+# Da qui in poi: riproduzioni storiche, non il contratto exact-id corrente.
+cargo test --release --bin exact_comparator_scratch
 uv run python precisione_punteggio.py      # F36, ~30 s
 uv run python esporta_dati.py              # scena reale per i binari Rust
 cargo run --release --bin selezione        # F38, ~4 min a 16 thread

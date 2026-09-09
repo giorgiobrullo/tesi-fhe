@@ -1,0 +1,17 @@
+[package]
+name = "fast_core_scaling_runner_20260906"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pfks_core = { package = "fast_core_scaling_20260906", path = "../core" }
+older = { package = "baseline_20260905_tfhe17", path = "../../baseline-20260905-tfhe17/candidate" }
+r3 = { package = "integrate_frontier_nibble_id", path = "../../wrapup-head-mean-finalist-timing-20260906/r3-control" }
+tfhe = { version = "=1.7.0", features = ["integer"] }
+rayon = "1"
+bincode = "1"
+sha2 = "0.10"
+serde_json = "=1.0.150"
+
+[profile.release]
+opt-level = 3

@@ -1,0 +1,524 @@
+{
+  "commands": [
+    {
+      "command": [
+        "rustfmt",
+        "--edition",
+        "2021",
+        "--check",
+        "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a41-combined-two-lwe-prototype/src/lib.rs",
+        "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a41-combined-two-lwe-prototype/src/private_argmin.rs",
+        "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a41-combined-two-lwe-prototype/src/bin/a41_combined_two_lwe_prototype.rs"
+      ],
+      "cwd": "/Users/giorgiobrullo/Documents/Tesi-FHE",
+      "elapsed_s": 0.242661,
+      "exit_code": 0,
+      "label": "rustfmt",
+      "log": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01-rustfmt.log",
+      "log_sha256": "41ff99f6a7065bff5774340e7bd575e35404d160f2da1d8d68588d55bf270238"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--release",
+        "--features",
+        "diagnostic-trace",
+        "--lib"
+      ],
+      "cwd": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a41-combined-two-lwe-prototype",
+      "elapsed_s": 64.630815,
+      "exit_code": 0,
+      "label": "lib-tests",
+      "log": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01-lib-tests.log",
+      "log_sha256": "efbc8961fa6fdc11b821734fa7e3669860b17b1db5e67056e63160e031298f6d"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--release",
+        "--features",
+        "diagnostic-trace",
+        "--bin",
+        "a41_combined_two_lwe_prototype"
+      ],
+      "cwd": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a41-combined-two-lwe-prototype",
+      "elapsed_s": 3.495931,
+      "exit_code": 0,
+      "label": "harness-tests",
+      "log": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01-harness-tests.log",
+      "log_sha256": "a9c47210a2ded64f08119bd05410581070125b5742052188a8e2a6cd4b1e0e82"
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--offline",
+        "--release",
+        "--features",
+        "diagnostic-trace",
+        "--bin",
+        "a41_combined_two_lwe_prototype"
+      ],
+      "cwd": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a41-combined-two-lwe-prototype",
+      "elapsed_s": 0.489441,
+      "exit_code": 0,
+      "label": "build",
+      "log": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01-build.log",
+      "log_sha256": "000cda7622630774942b70a580e16eaf0b6f591f139e1f2ec5ef9b8b89e48bc5"
+    },
+    {
+      "command": [
+        "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a38-combined-prototype/target/release/a41_combined_two_lwe_prototype"
+      ],
+      "cwd": "/Users/giorgiobrullo/Documents/Tesi-FHE",
+      "elapsed_s": 0.184698,
+      "exit_code": 0,
+      "label": "dry-plan",
+      "log": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01-dry-plan.log",
+      "log_sha256": "257ce87f899bbf78e6b6e96a5c2e133c4976840e599dcd45d2e9dc910d15c000"
+    },
+    {
+      "command": [
+        "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a38-combined-prototype/target/release/a41_combined_two_lwe_prototype",
+        "--run",
+        "--small-only"
+      ],
+      "cwd": "/Users/giorgiobrullo/Documents/Tesi-FHE",
+      "elapsed_s": 1.577401,
+      "exit_code": 0,
+      "label": "small-fhe",
+      "log": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01-small-fhe.log",
+      "log_sha256": "85a0f81ff88ce4b71b3ec03ca93a1891951ec78bf3369f80b0ce249e3a7cf3e6"
+    },
+    {
+      "command": [
+        "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a38-combined-prototype/target/release/a41_combined_two_lwe_prototype",
+        "--run",
+        "--case=n127_last_identity",
+        "--case=n128_last_identity",
+        "--case=n128_tail_tie_first_127",
+        "--case=n127_all_reject"
+      ],
+      "cwd": "/Users/giorgiobrullo/Documents/Tesi-FHE",
+      "elapsed_s": 21.453817,
+      "exit_code": 0,
+      "label": "focused-fhe",
+      "log": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01-focused-fhe.log",
+      "log_sha256": "493dd3e6d0af4fc024d04eb025473a5a9a0cdf0f559f63fb0ba36b47d72d1151"
+    }
+  ],
+  "compiled_binary": {
+    "bytes": 2132896,
+    "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a38-combined-prototype/target/release/a41_combined_two_lwe_prototype",
+    "sha256": "b573a990a097574189266b6abe3e3b6c672b0e14cb2b973e8ab8e096d8355910"
+  },
+  "end_to_end_pfail_certificate": false,
+  "failure": null,
+  "finished_utc": "2026-09-02T17:11:39.335027+00:00",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "python": "3.12.11",
+  "schema_version": 1,
+  "scope": "A41 isolated component FHE; no service/wire integration",
+  "started_utc": "2026-09-02T17:10:07.240683+00:00",
+  "static_before": {
+    "boundary_reconstruction": {
+      "ID127": 127,
+      "ID128": 128,
+      "reject_N128": 0,
+      "tail_tie": 127
+    },
+    "count_anchors": {
+      "N127": {
+        "blind_rotations": 3655,
+        "key_switches": 3274,
+        "output_marginals": 4206
+      },
+      "N128": {
+        "blind_rotations": 3682,
+        "key_switches": 3298,
+        "output_marginals": 4237
+      }
+    },
+    "exhaustive_clear_model": {
+      "a41_terminal_only_n127": {
+        "blind_rotations": 3655,
+        "key_switches": 3274,
+        "output_marginals": 4206
+      },
+      "client_reconstruction": "low + 16 * high",
+      "exhaustive_binary_vectors_n_le_16": 131070,
+      "prudent_delta_n127": {
+        "blind_rotations": 254,
+        "key_switches": 254,
+        "output_marginals": 254
+      },
+      "prudent_raw_l1_n127": {
+        "blind_rotations": 3909,
+        "key_switches": 3528,
+        "output_marginals": 4460
+      },
+      "representative_vectors_n_le_128": 24896,
+      "root_delta_log": 59,
+      "scope": "clear_and_structural_only_no_fhe_no_pfail_claim",
+      "selector_states": 22102,
+      "status": "PASS",
+      "upstream_pfail_obligations_open": [
+        "score_and_initial_extraction",
+        "correlated_raw_extraction_paths",
+        "A34_top_classifier"
+      ],
+      "wire": {
+        "additional_bytes": 16392,
+        "single_lwe_bytes": 16464,
+        "size_ratio": 1.9956268221574345,
+        "two_lwe_bytes": 32856
+      }
+    },
+    "pin_manifest_sha256": "4c95ffecd9489b7f106b015071a7f6c2d15fd18ce9aa6a2162eb0653e6277e4b",
+    "pinned_files": 17,
+    "probability_boundary": {
+      "end_to_end_pfail_certificate": false,
+      "open_obligations": [
+        "score and initial extraction noise",
+        "correlated raw extraction and correction paths",
+        "A34-top classifier inputs and margins",
+        "A36 raw-L1 premise unless the distinct prudent schedule is materialized",
+        "equivalence of the custom core-crypto LUT path to the nominal shortint contract"
+      ],
+      "terminal_pfail": "conditional only: if both roots satisfy the nominal p16 input contract, union bound <= 2^-70.625 without independence",
+      "terminal_representation_correctness": "tested independently by exact low/high reconstruction"
+    },
+    "scope": "static_only_no_cargo_no_keygen_no_fhe",
+    "source_sha256": {
+      "experiments/14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md": "184f4b08a03b8d71f999466df8127bfb0afd7baa10c4f732934cdd59f01b0229",
+      "experiments/14_pipeline_tfhe_rs/results/exact_id_a41_combined_two_lwe_static_2026-09-02.md": "fa65c5e21ccd4687e29c13801f28870355835abea2260fd271d6c75a189ae55c",
+      "experiments/14_pipeline_tfhe_rs/results/exact_id_formal_pfail_path_2026-09-02.md": "2a7162be9025f1e0e5388eca8a056da69395ee5c354f75f4cdfe27db4f563f92",
+      "tmp/a38-combined-prototype/src/private_argmin.rs": "9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79",
+      "tmp/a41-combined-two-lwe-prototype/.cargo/config.toml": "8ea425180afe0e2fc0cd930d9a5dbd4da07aebe14263eeec4d6df9c7ab996a20",
+      "tmp/a41-combined-two-lwe-prototype/Cargo.lock": "fe4b80f3495010bd4e5e16215ffd51ff04fdfffd0d5097c1b11a78233cc40689",
+      "tmp/a41-combined-two-lwe-prototype/Cargo.toml": "011c4ba3851492ebb7198e63fc28eadeecf18cfb25ebe69a434717b4adf67cb8",
+      "tmp/a41-combined-two-lwe-prototype/README.md": "30a064c9d80b068bcaf349f3b927ece11b3cb687168d9dcc1b7d30eb4f9af7df",
+      "tmp/a41-combined-two-lwe-prototype/a41_clear_and_count_model.py": "e2edd204f3ada5fb0730b0213fed435833255b67c205345f311483fcbcd08b43",
+      "tmp/a41-combined-two-lwe-prototype/src/bin/a41_combined_two_lwe_prototype.rs": "991b9a5c7db8d0b9243933fe202b6cd0f6d9a05deb9ea5101ce1e8f8d8036668",
+      "tmp/a41-combined-two-lwe-prototype/src/lib.rs": "4b9fd53658be45c9f6870f77b3c7b934336941d4781ce31755cc699dec938514",
+      "tmp/a41-combined-two-lwe-prototype/src/private_argmin.rs": "8c9675e0019e106ad673e16e1a06ceed8ced35256d4b444335708cb87cfdfd35",
+      "tmp/a41-combined-two-lwe-prototype/tests/test_a41_clear_and_count_model.py": "ce39bcd0cdfccb34c7f91ecfda0f42630d7f9e9460769e6b439602873e18e378"
+    },
+    "status": "PASS",
+    "terminal_representation": {
+      "client_reconstruction": "low + 16 * high",
+      "high_plaintext": "floor(code / 16)",
+      "linear_encrypted_postprocessing": false,
+      "low_plaintext": "code mod 16",
+      "root_delta_log": 59,
+      "semantics": "0=reject; i+1=first exact nearest accepted identity",
+      "valid_code_range": [
+        0,
+        128
+      ],
+      "wire_output_lwes": 2
+    }
+  },
+  "success": true,
+  "terminal_pfail_result": "conditional nominal p16 union bound only; not measured by fixtures",
+  "terminal_representation_result": "exact on observed fixtures",
+  "validations": {
+    "focused": {
+      "case_results": {
+        "n127_all_reject": {
+          "N": 127,
+          "code": 0,
+          "high": 0,
+          "ks": 3274,
+          "low": 0,
+          "marginals": 4206,
+          "pbs": 3655,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n127_last_identity": {
+          "N": 127,
+          "code": 127,
+          "high": 7,
+          "ks": 3274,
+          "low": 15,
+          "marginals": 4206,
+          "pbs": 3655,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n128_last_identity": {
+          "N": 128,
+          "code": 128,
+          "high": 8,
+          "ks": 3298,
+          "low": 0,
+          "marginals": 4237,
+          "pbs": 3682,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n128_tail_tie_first_127": {
+          "N": 128,
+          "code": 127,
+          "high": 7,
+          "ks": 3298,
+          "low": 15,
+          "marginals": 4237,
+          "pbs": 3682,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        }
+      },
+      "cases": 4,
+      "ephemeral_key_attested": true,
+      "two_lwe_exact_reconstruction_verified": true
+    },
+    "small": {
+      "case_results": {
+        "n1_accept_boundary_1023": {
+          "N": 1,
+          "code": 1,
+          "high": 0,
+          "ks": 22,
+          "low": 1,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_0": {
+          "N": 1,
+          "code": 1,
+          "high": 0,
+          "ks": 22,
+          "low": 1,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_1": {
+          "N": 1,
+          "code": 1,
+          "high": 0,
+          "ks": 22,
+          "low": 1,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_10": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_11": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_12": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_13": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_14": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_15": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_2": {
+          "N": 1,
+          "code": 1,
+          "high": 0,
+          "ks": 22,
+          "low": 1,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_3": {
+          "N": 1,
+          "code": 1,
+          "high": 0,
+          "ks": 22,
+          "low": 1,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_4": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_5": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_6": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_7": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_8": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_high_category_9": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n1_reject_boundary_1024": {
+          "N": 1,
+          "code": 0,
+          "high": 0,
+          "ks": 22,
+          "low": 0,
+          "marginals": 30,
+          "pbs": 25,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n3_all_reject": {
+          "N": 3,
+          "code": 0,
+          "high": 0,
+          "ks": 76,
+          "low": 0,
+          "marginals": 98,
+          "pbs": 85,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n3_first_tie": {
+          "N": 3,
+          "code": 1,
+          "high": 0,
+          "ks": 76,
+          "low": 1,
+          "marginals": 98,
+          "pbs": 85,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        },
+        "n3_second_identity": {
+          "N": 3,
+          "code": 2,
+          "high": 0,
+          "ks": 76,
+          "low": 2,
+          "marginals": 98,
+          "pbs": 85,
+          "root_delta_log": 59,
+          "wire_lwes": 2
+        }
+      },
+      "cases": 21,
+      "ephemeral_key_attested": true,
+      "two_lwe_exact_reconstruction_verified": true
+    }
+  },
+  "wall_s": 92.094344
+}

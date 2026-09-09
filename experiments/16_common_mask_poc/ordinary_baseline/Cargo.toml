@@ -1,0 +1,12 @@
+[package]
+name = "tfhe-batch-bench"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tfhe = { version = "=1.7.0", features = ["integer"] }
+rayon = "1"
+
+[profile.release]
+opt-level = 3
+

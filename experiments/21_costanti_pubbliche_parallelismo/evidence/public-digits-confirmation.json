@@ -1,0 +1,538 @@
+{
+  "evidence": {
+    "original_path": "tmp/speed-campaign-20260908-day/public-digits/CONFIRMATIONS_AGGREGATE.json",
+    "original_sha256": "e397a659ecdc01d636c9dde13af520b603731962449cc38bafbfb82c836c20ff"
+  },
+  "values": {
+    "source_sha256": "549d2fa530e6da36665ae2744506696f459818d92563f3c0ec4c884ca5866074",
+    "binary_sha256": "bb30ab2287acde5d3a4d83155bab4a6daa3880060b34a7dce80439aad81183f5",
+    "primary_heldout_comparison": {
+      "pairs": 56,
+      "wins": 46,
+      "geometric_reduction_percent": 4.087593668379153,
+      "median_paired_reduction_percent": 3.4710007688284916,
+      "reference_median_seconds": 1.964786208,
+      "candidate_median_seconds": 1.907054354
+    },
+    "measured_pairs": [
+      {
+        "family": 1,
+        "cell": 0,
+        "block": 2,
+        "scene": "general_last_128_273",
+        "reference_ns": 1948285625,
+        "candidate_ns": 1895150167,
+        "ratio": 0.9727270697282899
+      },
+      {
+        "family": 1,
+        "cell": 0,
+        "block": 3,
+        "scene": "general_last_128_273",
+        "reference_ns": 1889595542,
+        "candidate_ns": 1842314750,
+        "ratio": 0.9749783533305986
+      },
+      {
+        "family": 1,
+        "cell": 0,
+        "block": 4,
+        "scene": "general_last_128_273",
+        "reference_ns": 1909428417,
+        "candidate_ns": 1886146042,
+        "ratio": 0.98780662590296
+      },
+      {
+        "family": 1,
+        "cell": 0,
+        "block": 5,
+        "scene": "general_last_128_273",
+        "reference_ns": 1868704459,
+        "candidate_ns": 1883004417,
+        "ratio": 1.0076523379238107
+      },
+      {
+        "family": 1,
+        "cell": 1,
+        "block": 2,
+        "scene": "general_last_129_273",
+        "reference_ns": 1929511500,
+        "candidate_ns": 1914625708,
+        "ratio": 0.9922852017207464
+      },
+      {
+        "family": 1,
+        "cell": 1,
+        "block": 3,
+        "scene": "general_last_129_273",
+        "reference_ns": 1964561750,
+        "candidate_ns": 1959561458,
+        "ratio": 0.9974547544764119
+      },
+      {
+        "family": 1,
+        "cell": 1,
+        "block": 4,
+        "scene": "general_last_129_273",
+        "reference_ns": 2076454125,
+        "candidate_ns": 2031954041,
+        "ratio": 0.9785691947323902
+      },
+      {
+        "family": 1,
+        "cell": 1,
+        "block": 5,
+        "scene": "general_last_129_273",
+        "reference_ns": 2037152917,
+        "candidate_ns": 2028004917,
+        "ratio": 0.9955094190899171
+      },
+      {
+        "family": 1,
+        "cell": 2,
+        "block": 2,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 2118701458,
+        "candidate_ns": 2052352584,
+        "ratio": 0.9686841797604502
+      },
+      {
+        "family": 1,
+        "cell": 2,
+        "block": 3,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 1965010666,
+        "candidate_ns": 1990439542,
+        "ratio": 1.012940833574081
+      },
+      {
+        "family": 1,
+        "cell": 2,
+        "block": 4,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 1943851500,
+        "candidate_ns": 1840147334,
+        "ratio": 0.9466501602617278
+      },
+      {
+        "family": 1,
+        "cell": 2,
+        "block": 5,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 1925903917,
+        "candidate_ns": 1860348208,
+        "ratio": 0.9659610698013862
+      },
+      {
+        "family": 1,
+        "cell": 3,
+        "block": 2,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 1930217542,
+        "candidate_ns": 1905160000,
+        "ratio": 0.9870182808648416
+      },
+      {
+        "family": 1,
+        "cell": 3,
+        "block": 3,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 1919687125,
+        "candidate_ns": 2014330792,
+        "ratio": 1.0493016105423951
+      },
+      {
+        "family": 1,
+        "cell": 3,
+        "block": 4,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 2053787333,
+        "candidate_ns": 1946798375,
+        "ratio": 0.9479065060530296
+      },
+      {
+        "family": 1,
+        "cell": 3,
+        "block": 5,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 1960866792,
+        "candidate_ns": 1903668167,
+        "ratio": 0.9708299282575642
+      },
+      {
+        "family": 1,
+        "cell": 4,
+        "block": 2,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2213324000,
+        "candidate_ns": 1976914375,
+        "ratio": 0.8931879720275929
+      },
+      {
+        "family": 1,
+        "cell": 4,
+        "block": 3,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2178951459,
+        "candidate_ns": 1941175208,
+        "ratio": 0.8908758384598783
+      },
+      {
+        "family": 1,
+        "cell": 4,
+        "block": 4,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2307849541,
+        "candidate_ns": 1983916084,
+        "ratio": 0.8596383987581624
+      },
+      {
+        "family": 1,
+        "cell": 4,
+        "block": 5,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2164348250,
+        "candidate_ns": 1981930334,
+        "ratio": 0.9157169295652859
+      },
+      {
+        "family": 1,
+        "cell": 5,
+        "block": 2,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 1978702708,
+        "candidate_ns": 1896619834,
+        "ratio": 0.9585168233367577
+      },
+      {
+        "family": 1,
+        "cell": 5,
+        "block": 3,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 1933212875,
+        "candidate_ns": 1886281625,
+        "ratio": 0.9757237029574407
+      },
+      {
+        "family": 1,
+        "cell": 5,
+        "block": 4,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 2022926125,
+        "candidate_ns": 1897337208,
+        "ratio": 0.9379172005107206
+      },
+      {
+        "family": 1,
+        "cell": 5,
+        "block": 5,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 1926320000,
+        "candidate_ns": 1858164708,
+        "ratio": 0.9646189148220441
+      },
+      {
+        "family": 1,
+        "cell": 6,
+        "block": 2,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2104484750,
+        "candidate_ns": 1994126542,
+        "ratio": 0.9475604620085748
+      },
+      {
+        "family": 1,
+        "cell": 6,
+        "block": 3,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2114589500,
+        "candidate_ns": 1933592958,
+        "ratio": 0.9144058258115819
+      },
+      {
+        "family": 1,
+        "cell": 6,
+        "block": 4,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2210644584,
+        "candidate_ns": 1950544208,
+        "ratio": 0.8823418391710135
+      },
+      {
+        "family": 1,
+        "cell": 6,
+        "block": 5,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2209261084,
+        "candidate_ns": 1958371542,
+        "ratio": 0.8864373505616867
+      },
+      {
+        "family": 2,
+        "cell": 0,
+        "block": 2,
+        "scene": "general_last_128_273",
+        "reference_ns": 2015779500,
+        "candidate_ns": 1838010125,
+        "ratio": 0.9118111008669351
+      },
+      {
+        "family": 2,
+        "cell": 0,
+        "block": 3,
+        "scene": "general_last_128_273",
+        "reference_ns": 1832021542,
+        "candidate_ns": 1789259542,
+        "ratio": 0.9766585714088727
+      },
+      {
+        "family": 2,
+        "cell": 0,
+        "block": 4,
+        "scene": "general_last_128_273",
+        "reference_ns": 1838322375,
+        "candidate_ns": 2005286625,
+        "ratio": 1.090824249473654
+      },
+      {
+        "family": 2,
+        "cell": 0,
+        "block": 5,
+        "scene": "general_last_128_273",
+        "reference_ns": 1801038000,
+        "candidate_ns": 1820305583,
+        "ratio": 1.010698043572651
+      },
+      {
+        "family": 2,
+        "cell": 1,
+        "block": 2,
+        "scene": "general_last_129_273",
+        "reference_ns": 1869841125,
+        "candidate_ns": 1919547042,
+        "ratio": 1.0265829627637482
+      },
+      {
+        "family": 2,
+        "cell": 1,
+        "block": 3,
+        "scene": "general_last_129_273",
+        "reference_ns": 1892612125,
+        "candidate_ns": 1908676208,
+        "ratio": 1.008487784046084
+      },
+      {
+        "family": 2,
+        "cell": 1,
+        "block": 4,
+        "scene": "general_last_129_273",
+        "reference_ns": 1918819458,
+        "candidate_ns": 2126116250,
+        "ratio": 1.1080335052553965
+      },
+      {
+        "family": 2,
+        "cell": 1,
+        "block": 5,
+        "scene": "general_last_129_273",
+        "reference_ns": 1861615458,
+        "candidate_ns": 1858696417,
+        "ratio": 0.9984319849797896
+      },
+      {
+        "family": 2,
+        "cell": 2,
+        "block": 2,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 1940256000,
+        "candidate_ns": 1891018417,
+        "ratio": 0.9746231512748833
+      },
+      {
+        "family": 2,
+        "cell": 2,
+        "block": 3,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 1943621833,
+        "candidate_ns": 1850885750,
+        "ratio": 0.9522869719687904
+      },
+      {
+        "family": 2,
+        "cell": 2,
+        "block": 4,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 1938769333,
+        "candidate_ns": 1806952458,
+        "ratio": 0.9320100267956941
+      },
+      {
+        "family": 2,
+        "cell": 2,
+        "block": 5,
+        "scene": "mixed_last_128_273",
+        "reference_ns": 1891143500,
+        "candidate_ns": 1839226000,
+        "ratio": 0.972547033051696
+      },
+      {
+        "family": 2,
+        "cell": 3,
+        "block": 2,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 1967895833,
+        "candidate_ns": 1881891250,
+        "ratio": 0.9562961709874204
+      },
+      {
+        "family": 2,
+        "cell": 3,
+        "block": 3,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 1881353833,
+        "candidate_ns": 1837385209,
+        "ratio": 0.976629263869047
+      },
+      {
+        "family": 2,
+        "cell": 3,
+        "block": 4,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 1987012208,
+        "candidate_ns": 2083158750,
+        "ratio": 1.0483874943560487
+      },
+      {
+        "family": 2,
+        "cell": 3,
+        "block": 5,
+        "scene": "mixed_last_129_273",
+        "reference_ns": 1899351000,
+        "candidate_ns": 1881605584,
+        "ratio": 0.9906571160359512
+      },
+      {
+        "family": 2,
+        "cell": 4,
+        "block": 2,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2110047584,
+        "candidate_ns": 1854569791,
+        "ratio": 0.8789232077336887
+      },
+      {
+        "family": 2,
+        "cell": 4,
+        "block": 3,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2130619416,
+        "candidate_ns": 1905432500,
+        "ratio": 0.8943091786787697
+      },
+      {
+        "family": 2,
+        "cell": 4,
+        "block": 4,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2023529875,
+        "candidate_ns": 1807656958,
+        "ratio": 0.8933186410208053
+      },
+      {
+        "family": 2,
+        "cell": 4,
+        "block": 5,
+        "scene": "alternating_thresholds_n128",
+        "reference_ns": 2098145708,
+        "candidate_ns": 1889452042,
+        "ratio": 0.9005342359187573
+      },
+      {
+        "family": 2,
+        "cell": 5,
+        "block": 2,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 1895725541,
+        "candidate_ns": 1821100958,
+        "ratio": 0.9606353444177181
+      },
+      {
+        "family": 2,
+        "cell": 5,
+        "block": 3,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 1947797167,
+        "candidate_ns": 2254405625,
+        "ratio": 1.1574129294336324
+      },
+      {
+        "family": 2,
+        "cell": 5,
+        "block": 4,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 2246306584,
+        "candidate_ns": 1922397584,
+        "ratio": 0.8558037436620896
+      },
+      {
+        "family": 2,
+        "cell": 5,
+        "block": 5,
+        "scene": "threshold_blocks_n128",
+        "reference_ns": 2099783750,
+        "candidate_ns": 1963083333,
+        "ratio": 0.9348978593628987
+      },
+      {
+        "family": 2,
+        "cell": 6,
+        "block": 2,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2213965250,
+        "candidate_ns": 1916365750,
+        "ratio": 0.8655807718752586
+      },
+      {
+        "family": 2,
+        "cell": 6,
+        "block": 3,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2061203083,
+        "candidate_ns": 1919866625,
+        "ratio": 0.9314301151760891
+      },
+      {
+        "family": 2,
+        "cell": 6,
+        "block": 4,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2099758542,
+        "candidate_ns": 1919889750,
+        "ratio": 0.9143383449086119
+      },
+      {
+        "family": 2,
+        "cell": 6,
+        "block": 5,
+        "scene": "heterogeneous_thresholds_n128",
+        "reference_ns": 2142846584,
+        "candidate_ns": 1945902833,
+        "ratio": 0.9080924633286767
+      }
+    ],
+    "first_screen_excluded": true,
+    "excluded_warmup_pairs": 28,
+    "load": {
+      "windows": 168,
+      "high": 168,
+      "unknown": 158,
+      "complete_coverage": 168
+    },
+    "limits": [
+      "Two fixed heldout families, seven fixed scenes; all measured blocks retained.",
+      "Endpoint medians are descriptive; the primary effect is the geometric mean of paired ratios.",
+      "No confidence interval, continuous isolation, service speedup, population or formal failure-tail claim."
+    ]
+  },
+  "scope": "Field projection of completed evidence. No new FHE run or decryption replay during consolidation."
+}

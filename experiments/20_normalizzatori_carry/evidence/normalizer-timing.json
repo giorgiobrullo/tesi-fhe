@@ -1,0 +1,135 @@
+{
+  "evidence": {
+    "original_path": "tmp/speed-campaign-20260907-night/ckks-runtime/NORMALIZER_TIMING_RESULT_REVIEW.json",
+    "original_sha256": "e79a5ece5c2399b1834075bc1dce9f4b059919737c832ca41608c2f7f71ea05d"
+  },
+  "values": {
+    "source_sha256": "984c72a8598cc850ac94b8bfb0493850f515c8000183664ca805e00c57489632",
+    "binary_sha256": "424c7d1c677fa8222630795ad7d785adb3342ced1f6e3e41e6cde42267d18cad",
+    "correctness": {
+      "outputs": 64,
+      "terminal_phase_replays": 192,
+      "same_mode_repeat_fullword_equalities": 56,
+      "maximum_terminal_error_fraction_halfspacing": {
+        "scalar": 0.006514754486071254,
+        "both": 0.0102621291303331
+      }
+    },
+    "timing": {
+      "measured_pairs": 24,
+      "excluded_warmup_pairs": 8,
+      "per_cell": {
+        "aligned_last_128_-1": {
+          "pairs": 6,
+          "wins": 6,
+          "geometric_reduction_percent": 13.646414034197008,
+          "candidate_median_seconds": 2.1211908125,
+          "reference_median_seconds": 2.5001901044999997,
+          "ratios": [
+            0.7606129260862889,
+            0.9531868333437881,
+            0.880791723616668,
+            0.8760337154690475,
+            0.8600810942611844,
+            0.8618011679539966
+          ]
+        },
+        "general_last_128_273": {
+          "pairs": 6,
+          "wins": 6,
+          "geometric_reduction_percent": 12.691554639771685,
+          "candidate_median_seconds": 2.032838875,
+          "reference_median_seconds": 2.338364125,
+          "ratios": [
+            0.8735871330582753,
+            0.8743747884234631,
+            0.8612599565378377,
+            0.9008120871026205,
+            0.8472596385511669,
+            0.8821627117178175
+          ]
+        },
+        "mixed_last_128_273": {
+          "pairs": 6,
+          "wins": 6,
+          "geometric_reduction_percent": 11.194791937765958,
+          "candidate_median_seconds": 2.266512896,
+          "reference_median_seconds": 2.5684317285000002,
+          "ratios": [
+            0.8717489025077975,
+            0.8917573832213059,
+            0.8812891632661186,
+            0.8732088391674251,
+            0.8891447220125246,
+            0.9221116006868132
+          ]
+        },
+        "general_last_129_273": {
+          "pairs": 6,
+          "wins": 6,
+          "geometric_reduction_percent": 12.005193104295842,
+          "candidate_median_seconds": 2.155603625,
+          "reference_median_seconds": 2.4490944165,
+          "ratios": [
+            0.884560514033324,
+            0.8771619646683921,
+            0.8717123385885633,
+            0.8910362112906287,
+            0.883190367590328,
+            0.8721918895274829
+          ]
+        }
+      },
+      "aggregate": {
+        "pairs": 24,
+        "wins": 24,
+        "geometric_reduction_percent": 12.38912300225785,
+        "candidate_median_seconds": 2.155603625,
+        "reference_median_seconds": 2.466905521,
+        "ratios": [
+          0.7606129260862889,
+          0.9531868333437881,
+          0.880791723616668,
+          0.8760337154690475,
+          0.8600810942611844,
+          0.8618011679539966,
+          0.8735871330582753,
+          0.8743747884234631,
+          0.8612599565378377,
+          0.9008120871026205,
+          0.8472596385511669,
+          0.8821627117178175,
+          0.8717489025077975,
+          0.8917573832213059,
+          0.8812891632661186,
+          0.8732088391674251,
+          0.8891447220125246,
+          0.9221116006868132,
+          0.884560514033324,
+          0.8771619646683921,
+          0.8717123385885633,
+          0.8910362112906287,
+          0.883190367590328,
+          0.8721918895274829
+        ]
+      }
+    },
+    "load": {
+      "windows": 64,
+      "high_load": 64,
+      "unknown": 64,
+      "complete_coverage": 64,
+      "weighted_cpu_percent_range": [
+        225.95722054197967,
+        581.8343771162822
+      ],
+      "weighted_cpu_percent_median": 290.87574425446564,
+      "raw_process_snapshots_replayed": 75,
+      "floating_summation_max_delta": 1.1368683772161603e-13,
+      "scope": "Independent raw-ps parsing, PID+birth deltas and overlap accounting; churn is not complete CPU accounting."
+    },
+    "scope": "Direct complete-word terminal decryption, coordinate/tie/threshold and count/map oracles, exact64-job schedule,24measured same-input pairs,56same-mode repeats and raw-ps CPU/load replay. Candidate driver and validation functions were not imported or called.",
+    "limits": "One packed key with four fixed input ciphertexts reused through repetitions; the raw4096 gate uses a distinct producer/key. Flags and unknown load are retained; empirical correctness does not prove future failure bounds or service speed. Input immutability remains source-bound native evidence. Deferred large bundle hash is explicit, with its source-bound prelaunch rehash retained."
+  },
+  "scope": "Field projection of completed evidence. No new FHE run or decryption replay during consolidation."
+}

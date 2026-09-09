@@ -1,0 +1,133 @@
+{
+  "artifact": "A77 combined scalar PBS buffer-reuse evidence",
+  "blind_rotate": {
+    "allocation_observations": {
+      "reuse_alloc_calls_unique": [
+        0
+      ],
+      "reuse_allocated_bytes_unique": [
+        0
+      ],
+      "reuse_dealloc_calls_unique": [
+        0
+      ],
+      "reuse_realloc_calls_unique": [
+        0
+      ],
+      "wrapper_alloc_calls_unique": [
+        1
+      ],
+      "wrapper_allocated_bytes_unique": [
+        163967
+      ],
+      "wrapper_dealloc_calls_unique": [
+        1
+      ],
+      "wrapper_realloc_calls_unique": [
+        0
+      ]
+    },
+    "at_least_one_percent_gain_in_every_run": false,
+    "combined": {
+      "independent_median_reduction_percent": -0.1448974922659133,
+      "paired_mean_wrapper_minus_reuse_ns": 19146.022916666665,
+      "paired_median_reduction_percent_of_wrapper_median": -0.18767917715286137,
+      "paired_median_wrapper_minus_reuse_ns": -23584,
+      "reuse_median_ns": 12584333,
+      "reuse_wins": 229,
+      "wrapper_median_ns": 12566125
+    },
+    "pairs": 480,
+    "per_run": [
+      {
+        "independent_median_reduction_percent": 0.2099269040320679,
+        "paired_median_wrapper_minus_reuse_ns": 5625,
+        "pairs": 240,
+        "reuse_median_ns": 12696291,
+        "reuse_wins": 122,
+        "run": 1,
+        "wrapper_median_ns": 12723000
+      },
+      {
+        "independent_median_reduction_percent": -0.48292195818718603,
+        "paired_median_wrapper_minus_reuse_ns": -44958,
+        "pairs": 240,
+        "reuse_median_ns": 12545125,
+        "reuse_wins": 107,
+        "run": 2,
+        "wrapper_median_ns": 12484833
+      }
+    ],
+    "timing_sign_consistent_across_runs": false
+  },
+  "claim_limit": "two scalar host runs; no exact-ID or parallel performance claim",
+  "decision": {
+    "next_bounded_test": "per-worker reusable buffers under controlled parallel primitive load, before A66 integration",
+    "reason": "at least one operation fails to deliver a 1 percent reuse gain in every run",
+    "remove_per_call_allocation_confirmed": true,
+    "scalar_latency_integration_gate": "NO_GO"
+  },
+  "pbs": {
+    "allocation_observations": {
+      "reuse_alloc_calls_unique": [
+        0
+      ],
+      "reuse_allocated_bytes_unique": [
+        0
+      ],
+      "reuse_dealloc_calls_unique": [
+        0
+      ],
+      "reuse_realloc_calls_unique": [
+        0
+      ],
+      "wrapper_alloc_calls_unique": [
+        1
+      ],
+      "wrapper_allocated_bytes_unique": [
+        196735
+      ],
+      "wrapper_dealloc_calls_unique": [
+        1
+      ],
+      "wrapper_realloc_calls_unique": [
+        0
+      ]
+    },
+    "at_least_one_percent_gain_in_every_run": false,
+    "combined": {
+      "independent_median_reduction_percent": -0.39162149234693877,
+      "paired_mean_wrapper_minus_reuse_ns": 186505.40208333332,
+      "paired_median_reduction_percent_of_wrapper_median": -0.516844706632653,
+      "paired_median_wrapper_minus_reuse_ns": -64833,
+      "reuse_median_ns": 12593125,
+      "reuse_wins": 206,
+      "wrapper_median_ns": 12544000
+    },
+    "pairs": 480,
+    "per_run": [
+      {
+        "independent_median_reduction_percent": -0.8942906844042336,
+        "paired_median_wrapper_minus_reuse_ns": -117916,
+        "pairs": 240,
+        "reuse_median_ns": 12772292,
+        "reuse_wins": 94,
+        "run": 1,
+        "wrapper_median_ns": 12659083
+      },
+      {
+        "independent_median_reduction_percent": -0.06853521267338197,
+        "paired_median_wrapper_minus_reuse_ns": -15125,
+        "pairs": 240,
+        "reuse_median_ns": 12472208,
+        "reuse_wins": 112,
+        "run": 2,
+        "wrapper_median_ns": 12463666
+      }
+    ],
+    "timing_sign_consistent_across_runs": true
+  },
+  "run_count": 2,
+  "status": "PASS_CORRECTNESS_NO_MATERIAL_SCALAR_LATENCY_GAIN",
+  "total_pairs_per_operation": 480
+}

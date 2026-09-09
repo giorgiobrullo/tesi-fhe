@@ -1,0 +1,65 @@
+{
+  "schema": "fast-core-wide-id-plan.v1",
+  "gate_key_processes": 3,
+  "threads": 8,
+  "gate_sizes": [
+    1,
+    15,
+    224,
+    225,
+    228,
+    1024
+  ],
+  "gate_scenes": [
+    "last",
+    "tie",
+    "inclusive",
+    "reject"
+  ],
+  "gate_blocks_per_key": 24,
+  "gate_outputs_per_key": 50,
+  "gate_public_glwes_per_key": 49,
+  "serial_parallel_per_key": 1,
+  "serial_scene": {
+    "n": 225,
+    "scene": "tie"
+  },
+  "pilot_key_processes": 1,
+  "pilot_key_index": 0,
+  "pilot_sizes": [
+    224,
+    225,
+    256,
+    512,
+    1024
+  ],
+  "pilot_blocks": 30,
+  "pilot_outputs": 60,
+  "pilot_public_glwes": 60,
+  "warmups_per_size": 2,
+  "measured_pairs_per_size": 4,
+  "pilot_scenes": [
+    "last",
+    "first"
+  ],
+  "order": "warmups both orders; measured last and first each in both orders",
+  "candidate": "M3: Head Start, six payloads, split3+3, PFKS22x1 and public mean correction",
+  "control": "A126_3: explicitly adapted A126 with preserved extraction/elimination and a new three-digit adaptive A53 scan. Unchanged frozen two-digit A126 is preserved.",
+  "native_profiles": {
+    "M3": "51/60",
+    "A126_3": "52/60"
+  },
+  "key_pairing": "same actual freshly generated A44 ordinary family; query plaintext matched, independently encrypted in each native profile per block",
+  "id_digits": 3,
+  "id_base": 15,
+  "maximum_representable_nonzero_id": 3374,
+  "threshold": -1,
+  "domain": "old uniform aligned planner retained for both arms in this gate",
+  "fixture_diversity": "last/first/tie galleries distinct through1024; sparse inclusive/reject loser templates repeat above512",
+  "timing_scope": "complete core call including per-query validation/plans, clocks stopped before observing any arm output; exclude setup/encryption/decryption/hashing",
+  "uncertainty": "single-key wider pilot: report paired observations and order variation, no three-key CI or extrapolated unchanged-old speedup",
+  "isolation": "root owns native/build queue, two-second process CPU receipts; preserve every contaminated pair and idle demo processes",
+  "service": false,
+  "formal_failure_bound": null,
+  "next_qualification": "wider-ID public uniform modes and mixed winner-specific thresholds receive separate noisy gates"
+}

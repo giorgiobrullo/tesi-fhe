@@ -1,0 +1,1 @@
+"""Local camera page adapter."""

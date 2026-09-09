@@ -1,0 +1,28 @@
+{
+  "schema": "consolidated-findings.v1",
+  "experiment": 25,
+  "status": "tested_negative_not_in_selected_demo",
+  "consumer_complete_outputs": 54,
+  "consumer_lwe_checks": 2091,
+  "producer_timing": {
+    "candidate_slower_percent": 66.401451,
+    "measured_pairs": 18,
+    "wins": 0,
+    "fresh_families": 1,
+    "scenes": 3,
+    "fresh_circuit_bootstraps_per_control": 6,
+    "candidate_geometric_mean_ms_rounded": 23.688078,
+    "reference_geometric_mean_ms_rounded": 14.2355,
+    "scope": "conversion-inclusive producer, not complete query"
+  },
+  "limits": [
+    "Same retained scenes/key family",
+    "Negative limited to this concrete conversion path",
+    "Source includes attributed RevHomTrace split-FFT acceleration",
+    "Embedded SOURCE_DIGEST identifies a historical ancestor; COPY_ORIGINS binds the copied source"
+  ],
+  "evidence": [
+    "evidence/producer-timing.json",
+    "EVIDENCE_ORIGINS.json"
+  ]
+}

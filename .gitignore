@@ -30,3 +30,53 @@ benchmark/results/_emb_bench_ghost.npz
 benchmark/results/_emb_reale_ghost.npz
 benchmark/results/_ghost_embed.log
 demo/chiavi/
+
+# Materiale FHE generato: la client key e' segreta e nessuna chiave runtime va versionata.
+**/chiavi/*.key
+
+# Output di build Cargo (si rigenerano con cargo build; esclusi anche dagli snapshot di Codex)
+target/
+target-*/
+target_*/
+targets/
+
+# Dump di stdout degli esperimenti (stdout.log, run.stdout.jsonl, gate.stdout.jsonl: da 1 a 10 GB, fanno impazzire gli snapshot di Codex)
+*stdout.log
+*stdout.jsonl
+
+# Binari degli esperimenti (bundle.bin da 0,3 GB, secret.bin, input-*.bin): nessun file .bin e' tracciato
+*.bin
+
+# Chiavi runtime generate dagli esperimenti (server.key, ecc.): mai negli snapshot
+*.key
+
+# Archivi operativi e stato privato: conservati solo localmente.
+/tmp/
+/docs/archive/
+/docs/research-state/
+/docs/personal/
+/AGENTS.md
+/RESEARCH_BASELINE.md
+/attempts.md
+/ultimo-meeting-transcription.md
+/helib.log
+/experiments/14_pipeline_tfhe_rs/results/ritaratura_soglia.txt
+.local/
+*.npz
+*.onnx
+*.pt
+*.pth
+*.pkl
+
+# Esportazioni scientifiche selezionate, dati pubblici inclusi.
+/output/*
+!/output/figures/
+!/output/pdf/
+/output/figures/*
+!/output/figures/progressione-fhe/
+/output/figures/progressione-fhe/*
+!/output/figures/progressione-fhe/benchmark-comune-20260909/
+!/output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/
+/output/pdf/*
+!/output/pdf/progressione-fhe-benchmark-comune-20260909.pdf
+!/output/pdf/progressione-fhe-benchmark-comune-matplotlib-20260909.pdf

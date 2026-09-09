@@ -1,0 +1,6 @@
+{
+  "lto": false,
+  "units": 1,
+  "rustflags": [],
+  "opt_level": 3
+}

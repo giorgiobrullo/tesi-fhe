@@ -1,0 +1,8 @@
+KEY,generation_s=0.511771,ephemeral=true,secret_material_persisted=false
+RESULT,case=n1_accept_1023,n=1,code=1,pbs=31,replay_verified=false,seconds=0.406625,correct=true
+RESULT,case=n1_reject_1024,n=1,code=0,pbs=31,replay_verified=false,seconds=0.426436,correct=true
+RESULT,case=n3_odd_tail_last_identity,n=3,code=3,pbs=100,replay_verified=false,seconds=0.599483,correct=true
+RESULT,case=n3_tie_first_replay,n=3,code=1,pbs=100,replay_verified=true,seconds=1.213164,correct=true
+RESULT,case=n3_all_reject_no_resurrection,n=3,code=0,pbs=100,replay_verified=false,seconds=0.794880,correct=true
+RESULT,case=n127_boundary_tail_identity,n=127,code=127,pbs=4273,replay_verified=false,seconds=9.246616,correct=true
+SUMMARY,cases=6,evaluations=7,small_only=false,ephemeral_key=true,secret_material_persisted=false,seconds=12.689119,correct=true

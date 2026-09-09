@@ -22,6 +22,7 @@ della scena di experiments/14 (esporta_dati.py). SEAL e' single-thread: si confr
 run a 1 thread di tfhe-rs (e a 16, notando che i blocchi CKKS sarebbero parallelizzabili).
 """
 import csv
+import os
 import pathlib
 import sys
 import time
@@ -157,7 +158,15 @@ class Ckks:
         return x
 
 
-def esegui(cfg, dim, Gal, labels, P, T, n_probe_esatto):
+def esegui(cfg, dim, Gal, labels, P, T, n_probe_esatto, q_probe):
+    if q_probe < 0:
+        raise ValueError(f"Q_PROBE deve essere non negativo, ricevuto {q_probe}")
+    q_osservato = float(np.max(np.abs(P))) if P.size else 0.0
+    if q_osservato > q_probe:
+        raise ValueError(
+            f"la scena contiene |probe|={q_osservato:g}, oltre il dominio Q_PROBE={q_probe}"
+        )
+
     poly, primi, n, dg, df = cfg["poly"], cfg["primi"], cfg["n"], cfg["dg"], cfg["df"]
     t0 = time.time(); K = Ckks(poly, primi, cfg["scale_bits"]); t_key = time.time() - t0
     R = K.slots // dim                               # iscritti per cifrato
@@ -166,9 +175,14 @@ def esegui(cfg, dim, Gal, labels, P, T, n_probe_esatto):
     t0 = time.time(); K.galois([1 << i for i in range(int(np.log2(dim)))] + [-b for b in range(1, B_max)]); t_gal = time.time() - t0
     bsq = (Gal * Gal).sum(1)
     S_all = bsq[None, :] - 2 * (P @ Gal.T)
-    RANGE = float(np.abs(S_all - T).max() + 1)       # il server lo maggiora dalle norme; qui dal dato
+    # Range del PROTOCOLLO, non del test set. Per ogni probe con |a_j|<=q:
+    #   |s_i-T| <= | ||g_i||^2-T | + 2q ||g_i||_1.
+    # Il server conosce la galleria in questa baseline e puo' calcolare il massimo analitico.
+    range_osservato = float(np.abs(S_all - T).max() + 1)
+    RANGE = float(np.max(np.abs(bsq - T) + 2 * q_probe * np.abs(Gal).sum(1)) + 1)
     print(f"\n=== poly {poly}, {len(primi) - 2} livelli, n={n} g^{dg} f^{df}: keygen {t_key:.2f}s, galois {t_gal:.2f}s, "
-          f"slot {K.slots}, {R} iscritti/cifrato, RANGE {RANGE:.0f} ===")
+          f"slot {K.slots}, {R} iscritti/cifrato, q_probe={q_probe}, RANGE analitico {RANGE:.0f} "
+          f"(osservato sui probe {range_osservato:.0f}) ===")
 
     def cifra_probe(a):
         return K.encrypt(np.tile(a, R))
@@ -241,18 +255,22 @@ def esegui(cfg, dim, Gal, labels, P, T, n_probe_esatto):
               f"totale {np.mean(tt_d) + np.mean(tt_s):.2f}s | errore CKKS sui punteggi: {err_dist:.3f}")
         righe.append({"poly": poly, "n": n, "dg": dg, "df": df, "N": N, "t_distanze": round(float(np.mean(tt_d)), 4),
                       "t_soglia": round(float(np.mean(tt_s)), 3), "banda_lo": banda[0], "banda_hi": banda[1],
-                      "err_punteggi": round(float(err_dist), 4), "keygen_s": round(t_key + t_gal, 2)})
+                      "err_punteggi": round(float(err_dist), 4), "keygen_s": round(t_key + t_gal, 2),
+                      "q_probe": q_probe, "range_analitico": int(RANGE),
+                      "range_osservato_test": int(range_osservato)})
     # esattezza: tutti i probe a N=128
     N = N_max; errori = 0; conf = 0; err_d = []; gen_ok = gen_tot = imp_acc = imp_tot = 0
     # ATTENZIONE (correzione F62): la scena mette prima tutti i genuini e poi tutti gli impostori,
     # quindi P[:n] erano SOLO genuini e la colonna "impostori accettati" leggeva 0/0. Si prende un
     # campione bilanciato: meta' genuini e meta' impostori.
-    import numpy as _np
-    _lab = _np.asarray(labels)
-    _g = _np.where(_lab >= 0)[0][: n_probe_esatto // 2]
-    _i = _np.where(_lab < 0)[0][: n_probe_esatto - len(_g)]
-    _sel = _np.concatenate([_g, _i])
-    for a, lab, s_row in zip([P[k] for k in _sel], [labels[k] for k in _sel], [S_all[k] for k in _sel]):
+    labels_array = np.asarray(labels)
+    genuine_indices = np.where(labels_array >= 0)[0][: n_probe_esatto // 2]
+    impostor_indices = np.where(labels_array < 0)[0][
+        : n_probe_esatto - len(genuine_indices)
+    ]
+    selected_indices = np.concatenate([genuine_indices, impostor_indices])
+    for index in selected_indices:
+        a, lab, s_row = P[index], labels[index], S_all[index]
         bit = leggi(soglia(distanze(cifra_probe(a), N), N), N) > 0
         att = s_row[:N] <= T
         conf += N; errori += int((bit != att).sum()); err_d += [int(abs(d)) for d in (s_row[:N] - T)[bit != att]]
@@ -283,10 +301,13 @@ if __name__ == "__main__":
     n_probe = int(sys.argv[1]) if len(sys.argv) > 1 else 32
     tutte = []
     # CFG_FHE=indice per girare una sola configurazione (le altre costano minuti di keygen)
-    _sel = _os.environ.get("CFG_FHE")
-    _cfgs = [CONFIG[int(_sel)]] if _sel is not None else CONFIG
-    for cfg in _cfgs:
-        tutte += esegui(cfg, dim, Gal, labels, P, T, n_probe)
-    with open(OUT / "ckks_varco.csv", "w", newline="") as fp:
+    selected_config = os.environ.get("CFG_FHE")
+    q_probe = int(os.environ.get("Q_PROBE", "7"))
+    configs = [CONFIG[int(selected_config)]] if selected_config is not None else CONFIG
+    for cfg in configs:
+        tutte += esegui(cfg, dim, Gal, labels, P, T, n_probe, q_probe)
+    output_csv = pathlib.Path(os.environ.get("OUTPUT_CSV", str(OUT / "ckks_varco.csv")))
+    output_csv.parent.mkdir(parents=True, exist_ok=True)
+    with output_csv.open("w", newline="") as fp:
         w = csv.DictWriter(fp, fieldnames=list(tutte[0].keys())); w.writeheader(); w.writerows(tutte)
-    print(f"\nscritto {OUT / 'ckks_varco.csv'}")
+    print(f"\nscritto {output_csv}")

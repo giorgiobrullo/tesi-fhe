@@ -1,0 +1,692 @@
+diff --git a/src/enroller/enroller_diag.cpp b/src/enroller/enroller_diag.cpp
+index bb0786a..787eab8 100644
+--- a/src/enroller/enroller_diag.cpp
++++ b/src/enroller/enroller_diag.cpp
+@@ -103,7 +103,7 @@ void DiagonalEnroller::serializeDB(vector<vector<double>> &database)
+           }
+ 
+           if (!workQueue.empty()) {
+-            item = move(workQueue.front());
++            item = std::move(workQueue.front());
+             workQueue.pop();
+             queueCV.notify_all(); // Notify producers that queue has space
+           } else {
+@@ -131,7 +131,7 @@ void DiagonalEnroller::serializeDB(vector<vector<double>> &database)
+       unique_lock<mutex> lock(queueMutex);
+       queueCV.wait(lock, [&]()
+                    { return workQueue.size() < maxQueueSize; });
+-      workQueue.push({move(encrypted), i});
++      workQueue.push({std::move(encrypted), i});
+       queueCV.notify_one(); // Notify consumers
+     }
+   }
+@@ -272,4 +272,4 @@ void DiagonalEnroller::serializeDBThread(vector<double> &currentRow, size_t inde
+   {
+     cerr << "Error: serialization failed (cannot write to " + filepath + ")" << endl;
+   }
+-}
+\ No newline at end of file
++}
+diff --git a/src/enroller/enroller_diag_bsgs_prerot.cpp b/src/enroller/enroller_diag_bsgs_prerot.cpp
+index a64ad08..90b57d1 100644
+--- a/src/enroller/enroller_diag_bsgs_prerot.cpp
++++ b/src/enroller/enroller_diag_bsgs_prerot.cpp
+@@ -152,7 +152,7 @@ void DiagonalBSGSPreRotEnroller::serializeDB(vector<vector<double>> &database) {
+                     queueCV.wait(lock, [&]() { return !workQueue.empty() || encryptionDone.load(); });
+                     if (workQueue.empty() && encryptionDone.load()) break;
+                     if (!workQueue.empty()) {
+-                        item = move(workQueue.front());
++                        item = std::move(workQueue.front());
+                         workQueue.pop();
+                         queueCV.notify_all();
+                     } else {
+@@ -174,7 +174,7 @@ void DiagonalBSGSPreRotEnroller::serializeDB(vector<vector<double>> &database) {
+         {
+             unique_lock<mutex> lock(queueMutex);
+             queueCV.wait(lock, [&]() { return workQueue.size() < maxQueueSize; });
+-            workQueue.push({move(encrypted), i});
++            workQueue.push({std::move(encrypted), i});
+             queueCV.notify_one();
+         }
+     }
+diff --git a/src/main.cpp b/src/main.cpp
+index 9cc86dc..8dde0be 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -26,6 +26,8 @@
+ #include <ctime>
+ #include <algorithm>
+ #include <cctype>
++#include <cmath>
++#include <limits>
+ #if __cplusplus >= 201703L
+ #include <filesystem>
+ namespace fs = std::filesystem;
+@@ -342,6 +344,8 @@ int main(int argc, char *argv[])
+ 
+   bool keepSerialAfterRun = keepSerialRequested();
+   bool reuseKeysOnly = false;
++  bool runNearestIdentification = false;
++  bool runPrivateNearestIdentification = false;
+   for (int argIndex = 3; argIndex < argc; ++argIndex)
+   {
+     std::string argValue(argv[argIndex]);
+@@ -353,6 +357,27 @@ int main(int argc, char *argv[])
+     {
+       reuseKeysOnly = true;
+     }
++    else if (argValue == "--nearest")
++    {
++      runNearestIdentification = true;
++    }
++    else if (argValue == "--private-nearest")
++    {
++      runPrivateNearestIdentification = true;
++    }
++  }
++
++  if (runPrivateNearestIdentification &&
++      expApproach != ExperimentalApproach::BSGSPrecompOptCPU)
++  {
++    cerr << "Error: --private-nearest currently supports only approach 8 (BSGS-Precomp-Opt CPU)" << endl;
++    return 2;
++  }
++  if (runPrivateNearestIdentification &&
++      (numVectors == 0 || (numVectors & (numVectors - 1)) != 0))
++  {
++    cerr << "Error: --private-nearest requires a power-of-two gallery size" << endl;
++    return 2;
+   }
+ 
+   // Open global experiment-tracking file
+@@ -367,6 +392,12 @@ int main(int argc, char *argv[])
+   // Compute required multiplicative depth based on approach used
+   // Write approach used to stdout and experiment .csv file
+   size_t multDepth = OpenFHEWrapper::computeRequiredDepth(static_cast<size_t>(expApproach));
++  if (runPrivateNearestIdentification)
++  {
++    // Scheme-switching argmax needs 13 + log2(2N) levels; reserve one
++    // additional level for the encrypted BSGS similarity computation.
++    multDepth = 14 + static_cast<size_t>(log2(2 * numVectors));
++  }
+   cout << "Experimental approach: " << approachMeta->display << endl;
+   expStream << approachMeta->csvLabel << "," << flush;
+ 
+@@ -377,6 +408,7 @@ int main(int argc, char *argv[])
+   CryptoContextFactory<DCRTPoly>::ReleaseAllContexts();
+   PublicKey<DCRTPoly> pk;
+   PrivateKey<DCRTPoly> sk;
++  KeyPair<DCRTPoly> keyPair;
+   size_t batchSize;
+ 
+ // GPU helper pointer (used for GPU approaches)
+@@ -387,8 +419,21 @@ int main(int argc, char *argv[])
+   // Auto-detect whether to load serialized keys and/or serialized database payloads
+   bool keyMaterialExists = serializedKeyMaterialExists();
+   bool databaseExists = serializedDataExists(expApproach, numVectors);
++  if (runPrivateNearestIdentification && keyMaterialExists)
++  {
++    cerr << "Error: --private-nearest requires a completely fresh run directory; "
++         << "scheme-switching cache serialization is intentionally disabled" << endl;
++    return 2;
++  }
+   bool loadKeysFromSerial = keyMaterialExists && (reuseKeysOnly || databaseExists);
+   bool loadDatabaseFromSerial = databaseExists && !reuseKeysOnly;
++  if ((runNearestIdentification || runPrivateNearestIdentification) && loadDatabaseFromSerial)
++  {
++    cerr << "Error: identification modes refuse an unkeyed serialized database cache; "
++         << "use a fresh run directory or --reuse-keys so the input database is re-encrypted"
++         << endl;
++    return 2;
++  }
+   if (loadDatabaseFromSerial)
+   {
+     cout << "Found existing serialized data, loading from disk..." << endl;
+@@ -470,19 +515,36 @@ int main(int argc, char *argv[])
+     CCParams<CryptoContextCKKSRNS> parameters;
+     parameters.SetSecurityLevel(HEStd_128_classic);
+     parameters.SetMultiplicativeDepth(multDepth);
+-    parameters.SetScalingModSize(45);
+-    parameters.SetScalingTechnique(FIXEDMANUAL);
++    if (runPrivateNearestIdentification)
++    {
++      parameters.SetScalingModSize(50);
++      parameters.SetFirstModSize(60);
++      parameters.SetScalingTechnique(FLEXIBLEAUTO);
++      parameters.SetBatchSize(16384);
++      parameters.SetSecretKeyDist(UNIFORM_TERNARY);
++      parameters.SetKeySwitchTechnique(HYBRID);
++      parameters.SetNumLargeDigits(3);
++    }
++    else
++    {
++      parameters.SetScalingModSize(45);
++      parameters.SetScalingTechnique(FIXEDMANUAL);
++    }
+ 
+     cc = GenCryptoContext(parameters);
+     cc->Enable(PKE);
+     cc->Enable(KEYSWITCH);
+     cc->Enable(LEVELEDSHE);
+     cc->Enable(ADVANCEDSHE);
++    if (runPrivateNearestIdentification)
++    {
++      cc->Enable(SCHEMESWITCH);
++    }
+ 
+     batchSize = cc->GetEncodingParams()->GetBatchSize();
+ 
+     cout << "Generating key pair... " << endl;
+-    auto keyPair = cc->KeyGen();
++    keyPair = cc->KeyGen();
+     pk = keyPair.publicKey;
+     sk = keyPair.secretKey;
+ 
+@@ -637,10 +699,46 @@ int main(int argc, char *argv[])
+     }
+ 
+     cc->EvalRotateKeyGen(sk, rotationFactors);
++
++    if (runPrivateNearestIdentification)
++    {
++      const uint32_t privateSelectionValues = static_cast<uint32_t>(2 * numVectors);
++      SchSwchParams switchParams;
++      switchParams.SetSecurityLevelCKKS(HEStd_128_classic);
++      switchParams.SetSecurityLevelFHEW(STD128);
++      switchParams.SetCtxtModSizeFHEWLargePrec(26);
++      switchParams.SetNumSlotsCKKS(privateSelectionValues);
++      switchParams.SetNumValues(privateSelectionValues);
++      switchParams.SetComputeArgmin(true);
++      switchParams.SetOneHotEncoding(false);
++
++      auto switchSetupStart = chrono::steady_clock::now();
++      auto privateKeyFHEW = cc->EvalSchemeSwitchingSetup(switchParams);
++      auto switchSetupEnd = chrono::steady_clock::now();
++      cout << "Scheme-switch setup done ("
++           << chrono::duration<double>(switchSetupEnd - switchSetupStart).count() << "s)" << endl;
++
++      auto switchKeyStart = chrono::steady_clock::now();
++      cc->EvalSchemeSwitchingKeyGen(keyPair, privateKeyFHEW);
++      auto switchKeyEnd = chrono::steady_clock::now();
++      cout << "Scheme-switch key generation done ("
++           << chrono::duration<double>(switchKeyEnd - switchKeyStart).count() << "s)" << endl;
++
++      auto ccLWE = cc->GetBinCCForSchemeSwitch();
++      const auto modulusLWE = 1U << 26;
++      const auto beta = ccLWE->GetBeta().ConvertToInt();
++      const auto pLWE = modulusLWE / (2 * beta);
++      auto switchPrecomputeStart = chrono::steady_clock::now();
++      cc->EvalCompareSwitchPrecompute(pLWE, 512.0);
++      auto switchPrecomputeEnd = chrono::steady_clock::now();
++      cout << "Scheme-switch comparison precompute done ("
++           << chrono::duration<double>(switchPrecomputeEnd - switchPrecomputeStart).count() << "s)" << endl;
++    }
+   }
+ 
+   // OpenFHEWrapper::printSchemeDetails(parameters, cc);
+-  cout << "CKKS scheme set up (depth = " << multDepth << ", batch size = " << batchSize << ")" << endl;
++  cout << "CKKS scheme set up (depth = " << multDepth << ", batch size = " << batchSize
++       << ", ring dimension = " << cc->GetRingDimension() << ")" << endl;
+ 
+   // Log number of vectors to experiment file
+   expStream << numVectors << "," << flush;
+@@ -737,50 +835,53 @@ int main(int argc, char *argv[])
+       cout << "encrypt DB vectors done (" << encDBVectorsTime << "s)" << endl;
+     }
+ 
+-    Serial::SerializeToFile("serial/cryptocontext.bin", cc, SerType::BINARY);
+-    Serial::SerializeToFile("serial/publickey.bin", pk, SerType::BINARY);
+-    Serial::SerializeToFile("serial/privatekey.bin", sk, SerType::BINARY);
+-
+-    ofstream multKeyFile("serial/multkey.bin", ios::out | ios::binary);
+-    if (multKeyFile.is_open())
++    if (!runPrivateNearestIdentification)
+     {
+-      if (!cc->SerializeEvalMultKey(multKeyFile, SerType::BINARY))
++      Serial::SerializeToFile("serial/cryptocontext.bin", cc, SerType::BINARY);
++      Serial::SerializeToFile("serial/publickey.bin", pk, SerType::BINARY);
++      Serial::SerializeToFile("serial/privatekey.bin", sk, SerType::BINARY);
++
++      ofstream multKeyFile("serial/multkey.bin", ios::out | ios::binary);
++      if (multKeyFile.is_open())
++      {
++        if (!cc->SerializeEvalMultKey(multKeyFile, SerType::BINARY))
++        {
++          cerr << "Error serializing mult keys" << endl;
++        }
++        multKeyFile.close();
++      }
++      else
+       {
+         cerr << "Error serializing mult keys" << endl;
+       }
+-      multKeyFile.close();
+-    }
+-    else
+-    {
+-      cerr << "Error serializing mult keys" << endl;
+-    }
+ 
+-    ofstream rotKeyFile("serial/rotkey.bin", ios::out | ios::binary);
+-    if (rotKeyFile.is_open())
+-    {
+-      if (!cc->SerializeEvalAutomorphismKey(rotKeyFile, SerType::BINARY))
++      ofstream rotKeyFile("serial/rotkey.bin", ios::out | ios::binary);
++      if (rotKeyFile.is_open())
++      {
++        if (!cc->SerializeEvalAutomorphismKey(rotKeyFile, SerType::BINARY))
++        {
++          cerr << "Error serializing rotation keys" << endl;
++        }
++        rotKeyFile.close();
++      }
++      else
+       {
+         cerr << "Error serializing rotation keys" << endl;
+       }
+-      rotKeyFile.close();
+-    }
+-    else
+-    {
+-      cerr << "Error serializing rotation keys" << endl;
+-    }
+ 
+-    ofstream sumKeyFile("serial/sumkey.bin", ios::out | ios::binary);
+-    if (sumKeyFile.is_open())
+-    {
+-      if (!cc->SerializeEvalSumKey(sumKeyFile, SerType::BINARY))
++      ofstream sumKeyFile("serial/sumkey.bin", ios::out | ios::binary);
++      if (sumKeyFile.is_open())
++      {
++        if (!cc->SerializeEvalSumKey(sumKeyFile, SerType::BINARY))
++        {
++          cerr << "Error serializing sum keys" << endl;
++        }
++        sumKeyFile.close();
++      }
++      else
+       {
+         cerr << "Error serializing sum keys" << endl;
+       }
+-      sumKeyFile.close();
+-    }
+-    else
+-    {
+-      cerr << "Error serializing sum keys" << endl;
+     }
+   }
+   fileStream.close();
+@@ -1270,6 +1371,94 @@ int main(int argc, char *argv[])
+   expStream << encQueryTime << "," << flush;       // report query encryption time
+   expStream << queryCipher.size() << "," << flush; // report query communication overhead
+ 
++  if (runNearestIdentification)
++  {
++    // Identification harness: the server computes packed CKKS similarities with
++    // the selected FastHE approach. The receiver decrypts exactly the first N
++    // valid scores, chooses one nearest identity, and applies the same acceptance
++    // threshold used by the membership/index scenarios. This is intentionally a
++    // client-side argmax baseline: it returns the required nearest/no-match result
++    // but exposes all N scores to the secret-key holder.
++    cout << "[Sender]\tComputing packed scores for nearest/no-match... " << flush;
++    start = chrono::steady_clock::now();
++    vector<Ciphertext<DCRTPoly>> nearestScoreCipher = sender->computeSimilarity(queryCipher);
++    end = chrono::steady_clock::now();
++    double nearestCompTime = chrono::duration<double>(end - start).count();
++    cout << "done (wall: " << nearestCompTime << "s)" << endl;
++
++    cout << "[Receiver]\tDecrypting valid gallery scores and selecting nearest... " << flush;
++    start = chrono::steady_clock::now();
++    vector<double> decryptedScores =
++        OpenFHEWrapper::decryptVectorToVector(cc, sk, nearestScoreCipher);
++    if (decryptedScores.size() < numVectors)
++    {
++      cerr << "Error: decrypted score vector is shorter than gallery" << endl;
++      return 1;
++    }
++
++    size_t nearestIndex = 0;
++    double nearestScore = -numeric_limits<double>::infinity();
++    for (size_t i = 0; i < numVectors; ++i)
++    {
++      if (decryptedScores[i] > nearestScore)
++      {
++        nearestScore = decryptedScores[i];
++        nearestIndex = i;
++      }
++    }
++    bool nearestAccepted = nearestScore >= MATCH_THRESHOLD;
++
++    size_t clearNearestIndex = 0;
++    double clearNearestScore = -numeric_limits<double>::infinity();
++    double maxAbsError = 0.0;
++    for (size_t i = 0; i < numVectors; ++i)
++    {
++      double clearScore = VectorUtils::plaintextCosineSim(queryVector, plaintextVectors[i]);
++      if (clearScore > clearNearestScore)
++      {
++        clearNearestScore = clearScore;
++        clearNearestIndex = i;
++      }
++      maxAbsError = max(maxAbsError, abs(decryptedScores[i] - clearScore));
++    }
++    bool clearAccepted = clearNearestScore >= MATCH_THRESHOLD;
++    bool identificationCorrect =
++        (nearestAccepted == clearAccepted) &&
++        (!nearestAccepted || nearestIndex == clearNearestIndex);
++
++    // Observe, but never use, padding so the harness makes the boundary explicit.
++    double maxPaddingAbs = 0.0;
++    for (size_t i = numVectors; i < decryptedScores.size(); ++i)
++    {
++      maxPaddingAbs = max(maxPaddingAbs, abs(decryptedScores[i]));
++    }
++
++    end = chrono::steady_clock::now();
++    double nearestDecSelectTime = chrono::duration<double>(end - start).count();
++    cout << "done (" << nearestDecSelectTime << "s)" << endl;
++    cout << fixed << setprecision(12)
++         << "IDENTIFICATION_RESULT"
++         << " accepted=" << (nearestAccepted ? "true" : "false")
++         << " index=" << (nearestAccepted ? to_string(nearestIndex) : string("NONE"))
++         << " nearest_index=" << nearestIndex
++         << " max_score=" << nearestScore
++         << " clear_accepted=" << (clearAccepted ? "true" : "false")
++         << " clear_index=" << (clearAccepted ? to_string(clearNearestIndex) : string("NONE"))
++         << " clear_nearest_index=" << clearNearestIndex
++         << " clear_max_score=" << clearNearestScore
++         << " correct=" << (identificationCorrect ? "true" : "false")
++         << " max_abs_error=" << maxAbsError
++         << " max_padding_abs=" << maxPaddingAbs
++         << " valid_scores=" << numVectors
++         << " decrypted_scores=" << decryptedScores.size()
++         << " response_ciphertexts=" << nearestScoreCipher.size()
++         << " server_seconds=" << nearestCompTime
++         << " client_seconds=" << nearestDecSelectTime
++         << endl;
++    print_mem_usage("[Peak RAM after nearest/no-match]", prevPeakMemKB);
++    prevPeakMemKB = getPeakMemoryKB();
++  }
++
+ #ifdef USE_GPU_ACCELERATION
+   // Pre-cache baby-step rotations OUTSIDE membership timing window for fair comparison.
+   // Approach 81 (BSGS-Simple-GPU): cache only n1 baby steps.
+@@ -1296,6 +1485,111 @@ int main(int argc, char *argv[])
+   }
+ #endif
+ 
++  if (runPrivateNearestIdentification)
++  {
++    cout << "[Sender]\tComputing packed BSGS scores for private nearest/no-match... " << flush;
++    start = chrono::steady_clock::now();
++    vector<Ciphertext<DCRTPoly>> privateScoreCipher = sender->computeSimilarity(queryCipher);
++    end = chrono::steady_clock::now();
++    const double privateScoreSeconds = chrono::duration<double>(end - start).count();
++    cout << "done (wall: " << privateScoreSeconds << "s)" << endl;
++
++    if (privateScoreCipher.size() != 1 || 2 * numVectors > batchSize)
++    {
++      cerr << "Error: private selector currently requires one packed score ciphertext and 2N <= batch size" << endl;
++      return 2;
++    }
++
++    // Append N encrypted reject sentinels at the acceptance threshold. Argmax
++    // over 2N returns a real identity (<N) only when some real score wins;
++    // otherwise its encrypted scalar index is in [N,2N), encoding no-match.
++    vector<double> sentinelSlots(batchSize, 0.0);
++    fill(sentinelSlots.begin() + numVectors,
++         sentinelSlots.begin() + 2 * numVectors, MATCH_THRESHOLD);
++    Plaintext sentinelPlaintext = cc->MakeCKKSPackedPlaintext(
++        sentinelSlots, 1, privateScoreCipher[0]->GetLevel(), nullptr, batchSize);
++    cc->EvalAddInPlace(privateScoreCipher[0], sentinelPlaintext);
++
++    cout << "[Sender]\tSelecting encrypted argmax/index sentinel via CKKS-FHEW scheme switching... " << flush;
++    start = chrono::steady_clock::now();
++    vector<Ciphertext<DCRTPoly>> privateSelection = cc->EvalMaxSchemeSwitching(
++        privateScoreCipher[0], pk, static_cast<uint32_t>(2 * numVectors),
++        static_cast<uint32_t>(2 * numVectors));
++    end = chrono::steady_clock::now();
++    const double privateSelectionSeconds = chrono::duration<double>(end - start).count();
++    cout << "done (wall: " << privateSelectionSeconds << "s)" << endl;
++
++    // Only the encrypted scalar index/sentinel crosses the server boundary.
++    // The encrypted maximum privateSelection[0] remains server-side.
++    cout << "[Receiver]\tDecrypting one encrypted index/sentinel... " << flush;
++    start = chrono::steady_clock::now();
++    Plaintext privateIndexPlaintext;
++    cc->Decrypt(sk, privateSelection[1], &privateIndexPlaintext);
++    privateIndexPlaintext->SetLength(1);
++    const double privateIndexValue = privateIndexPlaintext->GetRealPackedValue()[0];
++    const long privateIndex = lround(privateIndexValue);
++    const bool privateAccepted = privateIndex >= 0 && privateIndex < static_cast<long>(numVectors);
++    end = chrono::steady_clock::now();
++    const double privateDecryptSeconds = chrono::duration<double>(end - start).count();
++    cout << "done (" << privateDecryptSeconds << "s)" << endl;
++
++    size_t clearNearestIndex = 0;
++    double clearNearestScore = -numeric_limits<double>::infinity();
++    for (size_t i = 0; i < numVectors; ++i)
++    {
++      const double clearScore = VectorUtils::plaintextCosineSim(queryVector, plaintextVectors[i]);
++      if (clearScore > clearNearestScore)
++      {
++        clearNearestScore = clearScore;
++        clearNearestIndex = i;
++      }
++    }
++    const bool clearAccepted = clearNearestScore > MATCH_THRESHOLD;
++    const bool privateCorrect =
++        privateAccepted == clearAccepted &&
++        (privateAccepted ? privateIndex == static_cast<long>(clearNearestIndex)
++                         : privateIndex >= static_cast<long>(numVectors) &&
++                               privateIndex < static_cast<long>(2 * numVectors));
++
++    cout << fixed << setprecision(12)
++         << "PRIVATE_BSGS_IDENTIFICATION_RESULT"
++         << " accepted=" << (privateAccepted ? "true" : "false")
++         << " index=" << (privateAccepted ? to_string(privateIndex) : string("NONE"))
++         << " decrypted_index_value=" << privateIndexValue
++         << " rounded_index=" << privateIndex
++         << " clear_accepted=" << (clearAccepted ? "true" : "false")
++         << " clear_index=" << (clearAccepted ? to_string(clearNearestIndex) : string("NONE"))
++         << " clear_max_score=" << clearNearestScore
++         << " correct=" << (privateCorrect ? "true" : "false")
++         << " response_ciphertexts=1"
++         << " bsgs_score_seconds=" << privateScoreSeconds
++         << " private_selection_seconds=" << privateSelectionSeconds
++         << " client_decrypt_seconds=" << privateDecryptSeconds
++         << endl;
++    print_mem_usage("[Peak RAM after private BSGS identification]", prevPeakMemKB);
++
++    expStream << "PRIVATE_BSGS," << privateScoreSeconds << ","
++              << privateSelectionSeconds << "," << privateDecryptSeconds << ","
++              << (privateCorrect ? "true" : "false") << endl;
++    expStream.close();
++    delete receiver;
++    delete sender;
++
++    try
++    {
++      const std::uintmax_t numFilesRemoved = fs::remove_all("serial");
++      cout << "Cleaned up serialized data (" << numFilesRemoved << " items removed from serial/)" << endl;
++    }
++    catch (const fs::filesystem_error &e)
++    {
++      cerr << "Warning: Could not remove serial/ folder: " << e.what() << endl;
++    }
++
++    cout << "\n\tProgram " << (privateCorrect ? "successfully" : "unsuccessfully")
++         << " terminated" << endl;
++    return privateCorrect ? 0 : 3;
++  }
++
+   // Perform membership scenario
+   cout << "[Sender]\tComputing membership scenario... " << flush;
+   start = chrono::steady_clock::now();
+@@ -1430,4 +1724,4 @@ int main(int argc, char *argv[])
+   cout << endl
+        << "\tProgram successfully terminated" << endl;
+   return 0;
+-}
+\ No newline at end of file
++}
+diff --git a/src/receiver/receiver_diag_bsgs_precomp_opt.cpp b/src/receiver/receiver_diag_bsgs_precomp_opt.cpp
+index 2d3c50b..94dff40 100644
+--- a/src/receiver/receiver_diag_bsgs_precomp_opt.cpp
++++ b/src/receiver/receiver_diag_bsgs_precomp_opt.cpp
+@@ -23,11 +23,7 @@ bool DiagonalBSGSPrecompOptReceiver::decryptMembership(Ciphertext<DCRTPoly> &mem
+ 
+     vector<double> membershipValues = OpenFHEWrapper::decryptToVector(cc, sk, membershipCipher);
+ 
+-    for (double value : membershipValues) {
+-        if (value >= 1.0) {
+-            return true;
+-        }
+-    }
+-
+-    return false;
++    // membershipScenario defines the aggregate result in slot zero. Ignore all
++    // other CKKS slots so padding can never change the decision.
++    return !membershipValues.empty() && membershipValues[0] >= 1.0;
+ }
+diff --git a/src/receiver/receiver_hers.cpp b/src/receiver/receiver_hers.cpp
+index 4ab79a0..60d7ba5 100644
+--- a/src/receiver/receiver_hers.cpp
++++ b/src/receiver/receiver_hers.cpp
+@@ -61,7 +61,9 @@ vector<size_t> HersReceiver::decryptIndex(vector<Ciphertext<DCRTPoly>> &indexCip
+   {
+     indexValues = OpenFHEWrapper::decryptToVector(cc, sk, indexCipher[i]);
+ 
+-    for (size_t j = 0; j < batchSize; j++)
++    const size_t firstIndex = i * batchSize;
++    const size_t validSlots = min(batchSize, numVectors - firstIndex);
++    for (size_t j = 0; j < validSlots; j++)
+     {
+       if (indexValues[j] >= 1.0)
+       {
+@@ -97,4 +99,4 @@ Ciphertext<DCRTPoly> HersReceiver::encryptQueryAlt(vector<double> query)
+   }
+ 
+   return OpenFHEWrapper::encryptFromVector(cc, pk, batchedQuery);
+-}
+\ No newline at end of file
++}
+diff --git a/src/sender/sender_diag.cpp b/src/sender/sender_diag.cpp
+index fad1063..80b2400 100644
+--- a/src/sender/sender_diag.cpp
++++ b/src/sender/sender_diag.cpp
+@@ -59,9 +59,17 @@ Ciphertext<DCRTPoly> DiagonalSender::membershipScenario(vector<Ciphertext<DCRTPo
+     scoreCipher[i] = OpenFHEWrapper::chebyshevCompare(cc, scoreCipher[i], MATCH_THRESHOLD, COMP_DEPTH);
+   }
+ 
+-  // sum up all values into single result value at first slot of first cipher
++  // Reduce only valid gallery slots. The comparison polynomial has a small
++  // non-zero value at zero, so summing the full CKKS batch makes padding affect
++  // membership whenever numVectors is smaller than the batch size.
++  const size_t batchSize = cc->GetEncodingParams()->GetBatchSize();
++  for (size_t i = 0; i < scoreCipher.size(); ++i)
++  {
++    const size_t firstIndex = i * batchSize;
++    const size_t validSlots = min(batchSize, numVectors - firstIndex);
++    scoreCipher[i] = cc->EvalSum(scoreCipher[i], validSlots);
++  }
+   Ciphertext<DCRTPoly> membershipCipher = cc->EvalAddManyInPlace(scoreCipher);
+-  membershipCipher = cc->EvalSum(membershipCipher, cc->GetEncodingParams()->GetBatchSize());
+ 
+   return membershipCipher;
+ }
+@@ -115,4 +123,4 @@ Ciphertext<DCRTPoly> DiagonalSender::computeSimilarityThread(Ciphertext<DCRTPoly
+   }
+ 
+   return cc->EvalMultNoRelin(queryCipher, databaseCipher);
+-}
+\ No newline at end of file
++}
+diff --git a/src/sender/sender_diag_bsgs_precomp_ctagg_member.cpp b/src/sender/sender_diag_bsgs_precomp_ctagg_member.cpp
+index f9eb32a..ff85d1c 100644
+--- a/src/sender/sender_diag_bsgs_precomp_ctagg_member.cpp
++++ b/src/sender/sender_diag_bsgs_precomp_ctagg_member.cpp
+@@ -177,7 +177,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSPrecompCtAggMemberSender::computeMembershipFuse
+ 
+     // --- Phase C: Accumulate into this thread's running sum ---
+     if (!threadHasData[tid]) {
+-      threadAccumulators[tid] = move(product);
++      threadAccumulators[tid] = std::move(product);
+       threadHasData[tid] = true;
+     } else {
+       cc->EvalAddInPlace(threadAccumulators[tid], product);
+@@ -190,7 +190,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSPrecompCtAggMemberSender::computeMembershipFuse
+   for(size_t t = 0; t < numThreads; t++) {
+     if (threadHasData[t]) {
+       if (first) {
+-        accumulator = move(threadAccumulators[t]);
++        accumulator = std::move(threadAccumulators[t]);
+         first = false;
+       } else {
+         cc->EvalAddInPlace(accumulator, threadAccumulators[t]);
+diff --git a/src/sender/sender_diag_bsgs_precomp_member_aggr_ct.cpp b/src/sender/sender_diag_bsgs_precomp_member_aggr_ct.cpp
+index 99e5a52..4cd0fe0 100644
+--- a/src/sender/sender_diag_bsgs_precomp_member_aggr_ct.cpp
++++ b/src/sender/sender_diag_bsgs_precomp_member_aggr_ct.cpp
+@@ -177,7 +177,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSPrecompMemberAggrCtSender::computeMembershipFus
+ 
+     // --- Phase C: Accumulate into this thread's running sum ---
+     if (!threadHasData[tid]) {
+-      threadAccumulators[tid] = move(product);
++      threadAccumulators[tid] = std::move(product);
+       threadHasData[tid] = true;
+     } else {
+       cc->EvalAddInPlace(threadAccumulators[tid], product);
+@@ -190,7 +190,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSPrecompMemberAggrCtSender::computeMembershipFus
+   for(size_t t = 0; t < numThreads; t++) {
+     if (threadHasData[t]) {
+       if (first) {
+-        accumulator = move(threadAccumulators[t]);
++        accumulator = std::move(threadAccumulators[t]);
+         first = false;
+       } else {
+         cc->EvalAddInPlace(accumulator, threadAccumulators[t]);
+diff --git a/src/sender/sender_diag_bsgs_precomp_opt.cpp b/src/sender/sender_diag_bsgs_precomp_opt.cpp
+index 887af2e..7426d75 100644
+--- a/src/sender/sender_diag_bsgs_precomp_opt.cpp
++++ b/src/sender/sender_diag_bsgs_precomp_opt.cpp
+@@ -131,7 +131,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSPrecompOptSender::computeSimilarityMatrixPrecom
+ 
+     // Accumulate into this thread's running sum; product is freed after move/add
+     if (!threadHasData[tid]) {
+-      threadAccumulators[tid] = move(product);
++      threadAccumulators[tid] = std::move(product);
+       threadHasData[tid] = true;
+     } else {
+       cc->EvalAddInPlace(threadAccumulators[tid], product);
+@@ -144,7 +144,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSPrecompOptSender::computeSimilarityMatrixPrecom
+   for(size_t t = 0; t < numThreads; t++) {
+     if (threadHasData[t]) {
+       if (first) {
+-        accumulator = move(threadAccumulators[t]);
++        accumulator = std::move(threadAccumulators[t]);
+         first = false;
+       } else {
+         cc->EvalAddInPlace(accumulator, threadAccumulators[t]);
+diff --git a/src/sender/sender_diag_bsgs_simple.cpp b/src/sender/sender_diag_bsgs_simple.cpp
+index ca79df7..02f3f32 100644
+--- a/src/sender/sender_diag_bsgs_simple.cpp
++++ b/src/sender/sender_diag_bsgs_simple.cpp
+@@ -182,7 +182,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSSimpleSender::computeSimilarityMatrixPrecompOpt
+ 
+     // Accumulate into this thread's running sum; product is freed after move/add
+     if (!threadHasData[tid]) {
+-      threadAccumulators[tid] = move(product);
++      threadAccumulators[tid] = std::move(product);
+       threadHasData[tid] = true;
+     } else {
+       cc->EvalAddInPlace(threadAccumulators[tid], product);
+@@ -195,7 +195,7 @@ Ciphertext<DCRTPoly> DiagonalBSGSSimpleSender::computeSimilarityMatrixPrecompOpt
+   for(size_t t = 0; t < numThreads; t++) {
+     if (threadHasData[t]) {
+       if (first) {
+-        accumulator = move(threadAccumulators[t]);
++        accumulator = std::move(threadAccumulators[t]);
+         first = false;
+       } else {
+         cc->EvalAddInPlace(accumulator, threadAccumulators[t]);

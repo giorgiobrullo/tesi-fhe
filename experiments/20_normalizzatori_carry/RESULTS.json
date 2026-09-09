@@ -1,0 +1,38 @@
+{
+  "schema": "consolidated-findings.v1",
+  "experiment": 20,
+  "status": "included_in_later_selected_composition",
+  "carry_exhaustive": {
+    "inputs": 4096,
+    "modes": 4,
+    "fresh_key_families": 3,
+    "extractions": 49152,
+    "consumer_selections": 384,
+    "population_failure_bound_proved": false
+  },
+  "standalone_carry_reduction_percent_rounded": 12.39,
+  "standalone_carry_pairs": 24,
+  "standalone_carry_key_families": 1,
+  "classic_parallel_confirmation_reduction_percent_rounded": 6.51,
+  "classic_parallel_confirmation_pairs": 56,
+  "night_composite_confirmation_reduction_percent": 19.239031,
+  "night_composite_confirmation_pairs": 28,
+  "night_composite_screen_percent": 20.816853,
+  "negative_screens": {
+    "fused_normalizer_maps_slower_percent_rounded": 0.14,
+    "classic_selector_batch_slower_percent_rounded": 0.34
+  },
+  "component_effects_are_additive": false,
+  "evidence": [
+    "evidence/normalizer-timing.json",
+    "evidence/classic-confirmation.json",
+    "evidence/night-composition.json",
+    "evidence/THREE_FAMILY_RESULT.json"
+  ],
+  "limitations": [
+    "Recorded external CPU load",
+    "Different source wrappers for component, sweep and query timing",
+    "No full-circuit failure probability",
+    "Later source integration has its own experiment22 qualification"
+  ]
+}

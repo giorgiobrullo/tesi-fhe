@@ -1,0 +1,4572 @@
+{
+  "conditional_arithmetic": {
+    "blind_rotation_event_accounting": {
+      "conditional_union_log2": -59.56396639831889,
+      "conditional_union_upper": 1.1734361229957779e-18,
+      "event_count": 4273,
+      "nominal_per_event_probability": 2.7461645752299975e-22
+    },
+    "end_to_end_numeric_upper": null,
+    "final_unbootstrapped_decode_failure": {
+      "probability_upper": null,
+      "reason": "The final code is a linear sum at Delta=2^56 with no trailing PBS. The pinned TFHE-rs per-PBS value does not by itself bound its decryption error.",
+      "status": "unvalued"
+    },
+    "nominal_log2_p_fail": -71.625,
+    "output_marginal_accounting": {
+      "conditional_union_log2": -59.36408046633709,
+      "conditional_union_upper": 1.3478175735228827e-18,
+      "event_count": 4908,
+      "nominal_per_event_probability": 2.7461645752299975e-22
+    },
+    "status": "conditional_arithmetic_incomplete_until_final_decode_is_bounded"
+  },
+  "conditional_model": {
+    "assumption_A": [
+      "honest bounded client plaintext",
+      "valid clear templates and public domain",
+      "honestly generated and correctly matched secret/evaluation keys",
+      "honest evaluator/server execution",
+      "correct software, hardware, serialization and transport"
+    ],
+    "claimed_form_only": "P(wrong output | A) <= sum_i P(F_i | A, correct prefix) + P(final decode failure | A, all BR/PBS events correct)",
+    "outside_A": "No probability guarantee is claimed. P(A^c) requires a separately justified model for assumption violations."
+  },
+  "empirical_primary_suite": {
+    "actual_authorized": 131,
+    "all_probe_ciphertexts_unique": true,
+    "confidence": 0.95,
+    "discrepancy_rows": [],
+    "error_rows": [],
+    "expected_authorized": 131,
+    "iid_binomial_one_sided_upper": 0.004728866248583152,
+    "measured_queries": 632,
+    "observed_wrong_outputs": 0,
+    "operational_errors": 0,
+    "pbs_values": [
+      4273
+    ],
+    "planned_queries": 632,
+    "probe_ciphertexts_measured": 632,
+    "probe_ciphertexts_unique": 632,
+    "rows_recorded": 632,
+    "semantic_discrepancies": 0,
+    "success": true,
+    "warning": "The confidence limit assumes iid Bernoulli queries; one empirical campaign cannot resolve probabilities near the nominal cryptographic tail."
+  },
+  "evidence_snapshot": {
+    "clean_frontier": {
+      "csv": {
+        "actual_authorized": 48,
+        "expected_authorized": 48,
+        "probe_ciphertexts_measured": 80,
+        "probe_ciphertexts_unique": 80,
+        "rows_recorded": 80
+      },
+      "provenance": {
+        "inputs_before_after_match": true,
+        "inputs_unchanged_during_run": true,
+        "server_binary_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59"
+      },
+      "results": {
+        "actual_authorized": 48,
+        "all_probe_ciphertexts_unique": true,
+        "discrepancy_rows": [],
+        "error_rows": [],
+        "expected_authorized": 48,
+        "measured_queries": 80,
+        "operational_errors": 0,
+        "pbs_values": [
+          4273
+        ],
+        "planned_queries": 80,
+        "probe_ciphertexts_measured": 80,
+        "probe_ciphertexts_unique": 80,
+        "rows_recorded": 80,
+        "semantic_discrepancies": 0,
+        "success": true
+      },
+      "server_state": {
+        "argmin_path": "a33_aligned_sparse",
+        "exact_contract": {
+          "code_delta_log": 56,
+          "codice": "0=rifiuto; i+1=identita_accettata",
+          "output_mode": 2,
+          "un_solo_lwe": true
+        },
+        "exact_contract_and_query_headers_verified": true,
+        "execution_domain": {
+          "l": -1019,
+          "larghezza": 3349,
+          "u": 2329
+        },
+        "gallery_size": 127,
+        "server_exit_code": -15,
+        "server_termination": "validator_sigterm",
+        "tight_domain": {
+          "l": -987,
+          "larghezza": 3317,
+          "u": 2329
+        },
+        "uniform_threshold": 4
+      }
+    },
+    "configuration": "a33_n127_uniform_aligned_sparse",
+    "diagnostic_full_fhe": {
+      "all_correct": true,
+      "cases": 6,
+      "ephemeral_key": true,
+      "evaluations": 7,
+      "exact_tail_identity_code": 127,
+      "n127_pbs": 4273,
+      "replay_verified": true
+    },
+    "gallery_size": 127,
+    "primary_suite": {
+      "csv": {
+        "actual_authorized": 131,
+        "expected_authorized": 131,
+        "probe_ciphertexts_measured": 632,
+        "probe_ciphertexts_unique": 632,
+        "rows_recorded": 632
+      },
+      "provenance": {
+        "inputs_before_after_match": true,
+        "inputs_unchanged_during_run": true,
+        "server_binary_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59"
+      },
+      "results": {
+        "actual_authorized": 131,
+        "all_probe_ciphertexts_unique": true,
+        "discrepancy_rows": [],
+        "error_rows": [],
+        "expected_authorized": 131,
+        "measured_queries": 632,
+        "operational_errors": 0,
+        "pbs_values": [
+          4273
+        ],
+        "planned_queries": 632,
+        "probe_ciphertexts_measured": 632,
+        "probe_ciphertexts_unique": 632,
+        "rows_recorded": 632,
+        "semantic_discrepancies": 0,
+        "success": true
+      },
+      "server_state": {
+        "argmin_path": "a33_aligned_sparse",
+        "exact_contract": {
+          "code_delta_log": 56,
+          "codice": "0=rifiuto; i+1=identita_accettata",
+          "output_mode": 2,
+          "un_solo_lwe": true
+        },
+        "exact_contract_and_query_headers_verified": true,
+        "execution_domain": {
+          "l": -1019,
+          "larghezza": 3349,
+          "u": 2329
+        },
+        "gallery_size": 127,
+        "server_exit_code": -15,
+        "server_termination": "validator_sigterm",
+        "tight_domain": {
+          "l": -987,
+          "larghezza": 3317,
+          "u": 2329
+        },
+        "uniform_threshold": 4
+      }
+    }
+  },
+  "interpretation": {
+    "independence_required_for_union_bound": false,
+    "key_switches_not_added_as_independent_events": "In the intended shortint KS-to-PBS path, key-switch noise enters the following PBS input. Structural KS counts are reported, but adding them again as nominal failure trials is not justified.",
+    "marginal_scope": "The N=127 conservative count is BR+5N=4908 output marginals. It does not count linear score-lane sample extractions as nominal PBS events.",
+    "missing_obligations": [
+      "Prove a conditional marginal bound for every reachable custom PBS input.",
+      "Cover initial and score-lane noise in the first reachable PBS-input proof.",
+      "Justify the nominal bound for both correlated outputs of multi-output rotations.",
+      "Bound the final unbootstrapped Delta=2^56 code-sum decode error.",
+      "Keep assumption violations and implementation faults outside the noise union."
+    ],
+    "score_lane_noise": "Initial encryption noise and the GLWE/plaintext score product require no separate discrete event only if covered by the reachable-input argument for the first downstream PBS; that formal proof remains open."
+  },
+  "operation_accounting": {
+    "a33_n127_uniform_aligned_sparse": {
+      "blind_rotations": 4273,
+      "gallery_size": 127,
+      "key_switches_structural": 3892,
+      "multi_output_rotations": 635,
+      "output_marginals_conservative": 4908,
+      "stage_breakdown": {
+        "aligned_admission_and_argmin_8_bits": {
+          "blind_rotations": 2250,
+          "key_switches": 2250
+        },
+        "aligned_extraction_and_sparse_classifier": {
+          "blind_rotations": 1651,
+          "key_switches": 1270
+        },
+        "encrypted_id_encoding": {
+          "blind_rotations": 150,
+          "key_switches": 150
+        },
+        "first_minimum_scan": {
+          "blind_rotations": 222,
+          "key_switches": 222
+        },
+        "score_linear": {
+          "blind_rotations": 0,
+          "key_switches": 0
+        },
+        "uniform_threshold_folded_into_admission": {
+          "blind_rotations": 0,
+          "key_switches": 0
+        }
+      }
+    },
+    "derivation": {
+      "canonicalizer_output_marginal_effect": "Zero. Global bit 7 is canonicalized by reusing the existing correction ciphertext; the assignment performs no blind rotation or additional sample extraction, so it adds neither a BR event nor an output marginal.",
+      "fixtures": {
+        "1": {
+          "blind_rotations": 31,
+          "key_switches_structural": 28
+        },
+        "127": {
+          "blind_rotations": 4273,
+          "key_switches_structural": 3892
+        },
+        "128": {
+          "blind_rotations": 4303,
+          "key_switches_structural": 3919
+        },
+        "3": {
+          "blind_rotations": 100,
+          "key_switches_structural": 91
+        },
+        "64": {
+          "blind_rotations": 2141,
+          "key_switches_structural": 1949
+        }
+      },
+      "frozen_core_contract": {
+        "complete_new_file_member": true,
+        "required_structural_fragments_present": [
+          "fn aligned_sparse_pbs_count(gallery_size: usize) -> Option<u64>",
+          "27 * n",
+          "+ 9 * or_reduction_pbs(gallery_size)",
+          "+ or_reduction_pbs(pairs)",
+          "fn aligned_sparse_ks_count(gallery_size: usize) -> Option<u64>",
+          "pbs - 3 * gallery_size as u64",
+          "fn private_argmin_aligned_sparse_impl(",
+          "let sparse_outputs: Vec<SparseClassifierOutput>",
+          "classify_sparse(residual, &aligned_classifier_accumulators[index % 2])",
+          "make_correction_accumulators(FULL_DELTA_LOG, LOW_EXTRACTED_BITS, 3..4)",
+          "make_correction_accumulators(HIGH_DELTA_LOG, ALIGNED_HIGH_EXTRACTED_BITS - 1, 0..3)",
+          "Some(extracted.corrections_lsb_first[3].clone())"
+        ],
+        "utf8_bytes": 144885
+      },
+      "method": "independent reconstruction from the frozen A33 control flow, checked against the complete extracted core and five exact fixtures",
+      "multi_output_dependency": "Each two-output pair shares one blind rotation and is one BR event, not two independent trials. The conservative marginal count adds one extra output per such rotation without asserting independence.",
+      "multi_output_rotation_classes_per_template": {
+        "high_fused_bits4_to6": 3,
+        "low_to_full_fused_bit3": 1,
+        "sparse_code_and_signed_flag": 1,
+        "total": 5
+      },
+      "stage_formulas": {
+        "aligned_admission_and_argmin_8_bits": {
+          "blind_rotations": "14*N + 9*OR(N) + ceil(N/2) + OR(ceil(N/2))",
+          "key_switches": "same as blind rotations"
+        },
+        "aligned_extraction_and_sparse_classifier": {
+          "blind_rotations": "13*N",
+          "key_switches": "10*N"
+        },
+        "encrypted_id_encoding": {
+          "blind_rotations": "OUTPUT_CODE(N)",
+          "key_switches": "same as blind rotations"
+        },
+        "first_minimum_scan": {
+          "blind_rotations": "FIRST_ONE_SCAN(N)",
+          "key_switches": "same as blind rotations"
+        },
+        "score_linear": {
+          "blind_rotations": "0",
+          "key_switches": "0"
+        },
+        "uniform_threshold_folded_into_admission": {
+          "blind_rotations": "0",
+          "key_switches": "0"
+        }
+      }
+    },
+    "gallery_sizes_1_to_128": [
+      {
+        "blind_rotations": 31,
+        "gallery_size": 1,
+        "key_switches_structural": 28,
+        "multi_output_rotations": 5,
+        "output_marginals_conservative": 36,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 15,
+            "key_switches": 15
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 13,
+            "key_switches": 10
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 2,
+            "key_switches": 2
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 1,
+            "key_switches": 1
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 70,
+        "gallery_size": 2,
+        "key_switches_structural": 64,
+        "multi_output_rotations": 10,
+        "output_marginals_conservative": 80,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 38,
+            "key_switches": 38
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 26,
+            "key_switches": 20
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 3,
+            "key_switches": 3
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 3,
+            "key_switches": 3
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 100,
+        "gallery_size": 3,
+        "key_switches_structural": 91,
+        "multi_output_rotations": 15,
+        "output_marginals_conservative": 115,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 54,
+            "key_switches": 54
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 39,
+            "key_switches": 30
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 3,
+            "key_switches": 3
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 4,
+            "key_switches": 4
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 129,
+        "gallery_size": 4,
+        "key_switches_structural": 117,
+        "multi_output_rotations": 20,
+        "output_marginals_conservative": 149,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 68,
+            "key_switches": 68
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 52,
+            "key_switches": 40
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 4,
+            "key_switches": 4
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 5,
+            "key_switches": 5
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 177,
+        "gallery_size": 5,
+        "key_switches_structural": 162,
+        "multi_output_rotations": 25,
+        "output_marginals_conservative": 202,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 101,
+            "key_switches": 101
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 65,
+            "key_switches": 50
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 4,
+            "key_switches": 4
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 7,
+            "key_switches": 7
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 205,
+        "gallery_size": 6,
+        "key_switches_structural": 187,
+        "multi_output_rotations": 30,
+        "output_marginals_conservative": 235,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 115,
+            "key_switches": 115
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 78,
+            "key_switches": 60
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 4,
+            "key_switches": 4
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 8,
+            "key_switches": 8
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 235,
+        "gallery_size": 7,
+        "key_switches_structural": 214,
+        "multi_output_rotations": 35,
+        "output_marginals_conservative": 270,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 130,
+            "key_switches": 130
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 91,
+            "key_switches": 70
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 4,
+            "key_switches": 4
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 10,
+            "key_switches": 10
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 266,
+        "gallery_size": 8,
+        "key_switches_structural": 242,
+        "multi_output_rotations": 40,
+        "output_marginals_conservative": 306,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 144,
+            "key_switches": 144
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 104,
+            "key_switches": 80
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 6,
+            "key_switches": 6
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 12,
+            "key_switches": 12
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 308,
+        "gallery_size": 9,
+        "key_switches_structural": 281,
+        "multi_output_rotations": 45,
+        "output_marginals_conservative": 353,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 170,
+            "key_switches": 170
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 117,
+            "key_switches": 90
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 8,
+            "key_switches": 8
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 13,
+            "key_switches": 13
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 339,
+        "gallery_size": 10,
+        "key_switches_structural": 309,
+        "multi_output_rotations": 50,
+        "output_marginals_conservative": 389,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 184,
+            "key_switches": 184
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 130,
+            "key_switches": 100
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 10,
+            "key_switches": 10
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 15,
+            "key_switches": 15
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 369,
+        "gallery_size": 11,
+        "key_switches_structural": 336,
+        "multi_output_rotations": 55,
+        "output_marginals_conservative": 424,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 199,
+            "key_switches": 199
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 143,
+            "key_switches": 110
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 10,
+            "key_switches": 10
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 17,
+            "key_switches": 17
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 401,
+        "gallery_size": 12,
+        "key_switches_structural": 365,
+        "multi_output_rotations": 60,
+        "output_marginals_conservative": 461,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 213,
+            "key_switches": 213
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 156,
+            "key_switches": 120
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 14,
+            "key_switches": 14
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 18,
+            "key_switches": 18
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 440,
+        "gallery_size": 13,
+        "key_switches_structural": 401,
+        "multi_output_rotations": 65,
+        "output_marginals_conservative": 505,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 237,
+            "key_switches": 237
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 169,
+            "key_switches": 130
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 14,
+            "key_switches": 14
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 20,
+            "key_switches": 20
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 469,
+        "gallery_size": 14,
+        "key_switches_structural": 427,
+        "multi_output_rotations": 70,
+        "output_marginals_conservative": 539,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 251,
+            "key_switches": 251
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 182,
+            "key_switches": 140
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 14,
+            "key_switches": 14
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 22,
+            "key_switches": 22
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 498,
+        "gallery_size": 15,
+        "key_switches_structural": 453,
+        "multi_output_rotations": 75,
+        "output_marginals_conservative": 573,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 266,
+            "key_switches": 266
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 195,
+            "key_switches": 150
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 14,
+            "key_switches": 14
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 23,
+            "key_switches": 23
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 529,
+        "gallery_size": 16,
+        "key_switches_structural": 481,
+        "multi_output_rotations": 80,
+        "output_marginals_conservative": 609,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 280,
+            "key_switches": 280
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 208,
+            "key_switches": 160
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 15,
+            "key_switches": 15
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 26,
+            "key_switches": 26
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 588,
+        "gallery_size": 17,
+        "key_switches_structural": 537,
+        "multi_output_rotations": 85,
+        "output_marginals_conservative": 673,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 323,
+            "key_switches": 323
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 221,
+            "key_switches": 170
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 16,
+            "key_switches": 16
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 28,
+            "key_switches": 28
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 617,
+        "gallery_size": 18,
+        "key_switches_structural": 563,
+        "multi_output_rotations": 90,
+        "output_marginals_conservative": 707,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 337,
+            "key_switches": 337
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 234,
+            "key_switches": 180
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 17,
+            "key_switches": 17
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 29,
+            "key_switches": 29
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 647,
+        "gallery_size": 19,
+        "key_switches_structural": 590,
+        "multi_output_rotations": 95,
+        "output_marginals_conservative": 742,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 352,
+            "key_switches": 352
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 247,
+            "key_switches": 190
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 17,
+            "key_switches": 17
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 31,
+            "key_switches": 31
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 679,
+        "gallery_size": 20,
+        "key_switches_structural": 619,
+        "multi_output_rotations": 100,
+        "output_marginals_conservative": 779,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 366,
+            "key_switches": 366
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 260,
+            "key_switches": 200
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 20,
+            "key_switches": 20
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 33,
+            "key_switches": 33
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 717,
+        "gallery_size": 21,
+        "key_switches_structural": 654,
+        "multi_output_rotations": 105,
+        "output_marginals_conservative": 822,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 390,
+            "key_switches": 390
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 273,
+            "key_switches": 210
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 20,
+            "key_switches": 20
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 34,
+            "key_switches": 34
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 746,
+        "gallery_size": 22,
+        "key_switches_structural": 680,
+        "multi_output_rotations": 110,
+        "output_marginals_conservative": 856,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 404,
+            "key_switches": 404
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 286,
+            "key_switches": 220
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 20,
+            "key_switches": 20
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 36,
+            "key_switches": 36
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 776,
+        "gallery_size": 23,
+        "key_switches_structural": 707,
+        "multi_output_rotations": 115,
+        "output_marginals_conservative": 891,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 419,
+            "key_switches": 419
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 299,
+            "key_switches": 230
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 20,
+            "key_switches": 20
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 38,
+            "key_switches": 38
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 806,
+        "gallery_size": 24,
+        "key_switches_structural": 734,
+        "multi_output_rotations": 120,
+        "output_marginals_conservative": 926,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 433,
+            "key_switches": 433
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 312,
+            "key_switches": 240
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 22,
+            "key_switches": 22
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 39,
+            "key_switches": 39
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 847,
+        "gallery_size": 25,
+        "key_switches_structural": 772,
+        "multi_output_rotations": 125,
+        "output_marginals_conservative": 972,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 458,
+            "key_switches": 458
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 325,
+            "key_switches": 250
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 23,
+            "key_switches": 23
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 41,
+            "key_switches": 41
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 877,
+        "gallery_size": 26,
+        "key_switches_structural": 799,
+        "multi_output_rotations": 130,
+        "output_marginals_conservative": 1007,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 472,
+            "key_switches": 472
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 338,
+            "key_switches": 260
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 24,
+            "key_switches": 24
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 43,
+            "key_switches": 43
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 906,
+        "gallery_size": 27,
+        "key_switches_structural": 825,
+        "multi_output_rotations": 135,
+        "output_marginals_conservative": 1041,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 487,
+            "key_switches": 487
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 351,
+            "key_switches": 270
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 24,
+            "key_switches": 24
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 44,
+            "key_switches": 44
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 939,
+        "gallery_size": 28,
+        "key_switches_structural": 855,
+        "multi_output_rotations": 140,
+        "output_marginals_conservative": 1079,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 501,
+            "key_switches": 501
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 364,
+            "key_switches": 280
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 27,
+            "key_switches": 27
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 47,
+            "key_switches": 47
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 978,
+        "gallery_size": 29,
+        "key_switches_structural": 891,
+        "multi_output_rotations": 145,
+        "output_marginals_conservative": 1123,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 525,
+            "key_switches": 525
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 377,
+            "key_switches": 290
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 27,
+            "key_switches": 27
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 49,
+            "key_switches": 49
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1006,
+        "gallery_size": 30,
+        "key_switches_structural": 916,
+        "multi_output_rotations": 150,
+        "output_marginals_conservative": 1156,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 539,
+            "key_switches": 539
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 390,
+            "key_switches": 300
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 27,
+            "key_switches": 27
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 50,
+            "key_switches": 50
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1036,
+        "gallery_size": 31,
+        "key_switches_structural": 943,
+        "multi_output_rotations": 155,
+        "output_marginals_conservative": 1191,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 554,
+            "key_switches": 554
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 403,
+            "key_switches": 310
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 27,
+            "key_switches": 27
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 52,
+            "key_switches": 52
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1066,
+        "gallery_size": 32,
+        "key_switches_structural": 970,
+        "multi_output_rotations": 160,
+        "output_marginals_conservative": 1226,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 568,
+            "key_switches": 568
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 416,
+            "key_switches": 320
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 28,
+            "key_switches": 28
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 54,
+            "key_switches": 54
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1119,
+        "gallery_size": 33,
+        "key_switches_structural": 1020,
+        "multi_output_rotations": 165,
+        "output_marginals_conservative": 1284,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 604,
+            "key_switches": 604
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 429,
+            "key_switches": 330
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 31,
+            "key_switches": 31
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 55,
+            "key_switches": 55
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1151,
+        "gallery_size": 34,
+        "key_switches_structural": 1049,
+        "multi_output_rotations": 170,
+        "output_marginals_conservative": 1321,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 618,
+            "key_switches": 618
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 442,
+            "key_switches": 340
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 34,
+            "key_switches": 34
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 57,
+            "key_switches": 57
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1181,
+        "gallery_size": 35,
+        "key_switches_structural": 1076,
+        "multi_output_rotations": 175,
+        "output_marginals_conservative": 1356,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 633,
+            "key_switches": 633
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 455,
+            "key_switches": 350
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 34,
+            "key_switches": 34
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 59,
+            "key_switches": 59
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1214,
+        "gallery_size": 36,
+        "key_switches_structural": 1106,
+        "multi_output_rotations": 180,
+        "output_marginals_conservative": 1394,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 647,
+            "key_switches": 647
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 468,
+            "key_switches": 360
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 39,
+            "key_switches": 39
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 60,
+            "key_switches": 60
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1253,
+        "gallery_size": 37,
+        "key_switches_structural": 1142,
+        "multi_output_rotations": 185,
+        "output_marginals_conservative": 1438,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 671,
+            "key_switches": 671
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 481,
+            "key_switches": 370
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 39,
+            "key_switches": 39
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 62,
+            "key_switches": 62
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1282,
+        "gallery_size": 38,
+        "key_switches_structural": 1168,
+        "multi_output_rotations": 190,
+        "output_marginals_conservative": 1472,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 685,
+            "key_switches": 685
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 494,
+            "key_switches": 380
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 39,
+            "key_switches": 39
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 64,
+            "key_switches": 64
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1311,
+        "gallery_size": 39,
+        "key_switches_structural": 1194,
+        "multi_output_rotations": 195,
+        "output_marginals_conservative": 1506,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 700,
+            "key_switches": 700
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 507,
+            "key_switches": 390
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 39,
+            "key_switches": 39
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 65,
+            "key_switches": 65
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1345,
+        "gallery_size": 40,
+        "key_switches_structural": 1225,
+        "multi_output_rotations": 200,
+        "output_marginals_conservative": 1545,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 714,
+            "key_switches": 714
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 520,
+            "key_switches": 400
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 43,
+            "key_switches": 43
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 68,
+            "key_switches": 68
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1386,
+        "gallery_size": 41,
+        "key_switches_structural": 1263,
+        "multi_output_rotations": 205,
+        "output_marginals_conservative": 1591,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 739,
+            "key_switches": 739
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 533,
+            "key_switches": 410
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 44,
+            "key_switches": 44
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 70,
+            "key_switches": 70
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1415,
+        "gallery_size": 42,
+        "key_switches_structural": 1289,
+        "multi_output_rotations": 210,
+        "output_marginals_conservative": 1625,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 753,
+            "key_switches": 753
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 546,
+            "key_switches": 420
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 45,
+            "key_switches": 45
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 71,
+            "key_switches": 71
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1445,
+        "gallery_size": 43,
+        "key_switches_structural": 1316,
+        "multi_output_rotations": 215,
+        "output_marginals_conservative": 1660,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 768,
+            "key_switches": 768
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 559,
+            "key_switches": 430
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 45,
+            "key_switches": 45
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 73,
+            "key_switches": 73
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1477,
+        "gallery_size": 44,
+        "key_switches_structural": 1345,
+        "multi_output_rotations": 220,
+        "output_marginals_conservative": 1697,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 782,
+            "key_switches": 782
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 572,
+            "key_switches": 440
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 48,
+            "key_switches": 48
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 75,
+            "key_switches": 75
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1515,
+        "gallery_size": 45,
+        "key_switches_structural": 1380,
+        "multi_output_rotations": 225,
+        "output_marginals_conservative": 1740,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 806,
+            "key_switches": 806
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 585,
+            "key_switches": 450
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 48,
+            "key_switches": 48
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 76,
+            "key_switches": 76
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1544,
+        "gallery_size": 46,
+        "key_switches_structural": 1406,
+        "multi_output_rotations": 230,
+        "output_marginals_conservative": 1774,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 820,
+            "key_switches": 820
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 598,
+            "key_switches": 460
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 48,
+            "key_switches": 48
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 78,
+            "key_switches": 78
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1574,
+        "gallery_size": 47,
+        "key_switches_structural": 1433,
+        "multi_output_rotations": 235,
+        "output_marginals_conservative": 1809,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 835,
+            "key_switches": 835
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 611,
+            "key_switches": 470
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 48,
+            "key_switches": 48
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 80,
+            "key_switches": 80
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1608,
+        "gallery_size": 48,
+        "key_switches_structural": 1464,
+        "multi_output_rotations": 240,
+        "output_marginals_conservative": 1848,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 849,
+            "key_switches": 849
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 624,
+            "key_switches": 480
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 54,
+            "key_switches": 54
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 81,
+            "key_switches": 81
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1658,
+        "gallery_size": 49,
+        "key_switches_structural": 1511,
+        "multi_output_rotations": 245,
+        "output_marginals_conservative": 1903,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 883,
+            "key_switches": 883
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 637,
+            "key_switches": 490
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 55,
+            "key_switches": 55
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 83,
+            "key_switches": 83
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1688,
+        "gallery_size": 50,
+        "key_switches_structural": 1538,
+        "multi_output_rotations": 250,
+        "output_marginals_conservative": 1938,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 897,
+            "key_switches": 897
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 650,
+            "key_switches": 500
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 56,
+            "key_switches": 56
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 85,
+            "key_switches": 85
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1717,
+        "gallery_size": 51,
+        "key_switches_structural": 1564,
+        "multi_output_rotations": 255,
+        "output_marginals_conservative": 1972,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 912,
+            "key_switches": 912
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 663,
+            "key_switches": 510
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 56,
+            "key_switches": 56
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 86,
+            "key_switches": 86
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1750,
+        "gallery_size": 52,
+        "key_switches_structural": 1594,
+        "multi_output_rotations": 260,
+        "output_marginals_conservative": 2010,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 926,
+            "key_switches": 926
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 676,
+            "key_switches": 520
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 59,
+            "key_switches": 59
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 89,
+            "key_switches": 89
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1789,
+        "gallery_size": 53,
+        "key_switches_structural": 1630,
+        "multi_output_rotations": 265,
+        "output_marginals_conservative": 2054,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 950,
+            "key_switches": 950
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 689,
+            "key_switches": 530
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 59,
+            "key_switches": 59
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 91,
+            "key_switches": 91
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1817,
+        "gallery_size": 54,
+        "key_switches_structural": 1655,
+        "multi_output_rotations": 270,
+        "output_marginals_conservative": 2087,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 964,
+            "key_switches": 964
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 702,
+            "key_switches": 540
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 59,
+            "key_switches": 59
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 92,
+            "key_switches": 92
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1847,
+        "gallery_size": 55,
+        "key_switches_structural": 1682,
+        "multi_output_rotations": 275,
+        "output_marginals_conservative": 2122,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 979,
+            "key_switches": 979
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 715,
+            "key_switches": 550
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 59,
+            "key_switches": 59
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 94,
+            "key_switches": 94
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1879,
+        "gallery_size": 56,
+        "key_switches_structural": 1711,
+        "multi_output_rotations": 280,
+        "output_marginals_conservative": 2159,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 993,
+            "key_switches": 993
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 728,
+            "key_switches": 560
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 62,
+            "key_switches": 62
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 96,
+            "key_switches": 96
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1919,
+        "gallery_size": 57,
+        "key_switches_structural": 1748,
+        "multi_output_rotations": 285,
+        "output_marginals_conservative": 2204,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1018,
+            "key_switches": 1018
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 741,
+            "key_switches": 570
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 63,
+            "key_switches": 63
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 97,
+            "key_switches": 97
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1949,
+        "gallery_size": 58,
+        "key_switches_structural": 1775,
+        "multi_output_rotations": 290,
+        "output_marginals_conservative": 2239,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1032,
+            "key_switches": 1032
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 754,
+            "key_switches": 580
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 64,
+            "key_switches": 64
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 99,
+            "key_switches": 99
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 1979,
+        "gallery_size": 59,
+        "key_switches_structural": 1802,
+        "multi_output_rotations": 295,
+        "output_marginals_conservative": 2274,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1047,
+            "key_switches": 1047
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 767,
+            "key_switches": 590
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 64,
+            "key_switches": 64
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 101,
+            "key_switches": 101
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2011,
+        "gallery_size": 60,
+        "key_switches_structural": 1831,
+        "multi_output_rotations": 300,
+        "output_marginals_conservative": 2311,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1061,
+            "key_switches": 1061
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 780,
+            "key_switches": 600
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 68,
+            "key_switches": 68
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 102,
+            "key_switches": 102
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2051,
+        "gallery_size": 61,
+        "key_switches_structural": 1868,
+        "multi_output_rotations": 305,
+        "output_marginals_conservative": 2356,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1085,
+            "key_switches": 1085
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 793,
+            "key_switches": 610
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 68,
+            "key_switches": 68
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 105,
+            "key_switches": 105
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2080,
+        "gallery_size": 62,
+        "key_switches_structural": 1894,
+        "multi_output_rotations": 310,
+        "output_marginals_conservative": 2390,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1099,
+            "key_switches": 1099
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 806,
+            "key_switches": 620
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 68,
+            "key_switches": 68
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 107,
+            "key_switches": 107
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2109,
+        "gallery_size": 63,
+        "key_switches_structural": 1920,
+        "multi_output_rotations": 315,
+        "output_marginals_conservative": 2424,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1114,
+            "key_switches": 1114
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 819,
+            "key_switches": 630
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 68,
+            "key_switches": 68
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 108,
+            "key_switches": 108
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2141,
+        "gallery_size": 64,
+        "key_switches_structural": 1949,
+        "multi_output_rotations": 320,
+        "output_marginals_conservative": 2461,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1128,
+            "key_switches": 1128
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 832,
+            "key_switches": 640
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 70,
+            "key_switches": 70
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 111,
+            "key_switches": 111
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2211,
+        "gallery_size": 65,
+        "key_switches_structural": 2016,
+        "multi_output_rotations": 325,
+        "output_marginals_conservative": 2536,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1181,
+            "key_switches": 1181
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 845,
+            "key_switches": 650
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 72,
+            "key_switches": 72
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 113,
+            "key_switches": 113
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2241,
+        "gallery_size": 66,
+        "key_switches_structural": 2043,
+        "multi_output_rotations": 330,
+        "output_marginals_conservative": 2571,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1195,
+            "key_switches": 1195
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 858,
+            "key_switches": 660
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 74,
+            "key_switches": 74
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 114,
+            "key_switches": 114
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2271,
+        "gallery_size": 67,
+        "key_switches_structural": 2070,
+        "multi_output_rotations": 335,
+        "output_marginals_conservative": 2606,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1210,
+            "key_switches": 1210
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 871,
+            "key_switches": 670
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 74,
+            "key_switches": 74
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 116,
+            "key_switches": 116
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2304,
+        "gallery_size": 68,
+        "key_switches_structural": 2100,
+        "multi_output_rotations": 340,
+        "output_marginals_conservative": 2644,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1224,
+            "key_switches": 1224
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 884,
+            "key_switches": 680
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 78,
+            "key_switches": 78
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 118,
+            "key_switches": 118
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2342,
+        "gallery_size": 69,
+        "key_switches_structural": 2135,
+        "multi_output_rotations": 345,
+        "output_marginals_conservative": 2687,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1248,
+            "key_switches": 1248
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 897,
+            "key_switches": 690
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 78,
+            "key_switches": 78
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 119,
+            "key_switches": 119
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2371,
+        "gallery_size": 70,
+        "key_switches_structural": 2161,
+        "multi_output_rotations": 350,
+        "output_marginals_conservative": 2721,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1262,
+            "key_switches": 1262
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 910,
+            "key_switches": 700
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 78,
+            "key_switches": 78
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 121,
+            "key_switches": 121
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2401,
+        "gallery_size": 71,
+        "key_switches_structural": 2188,
+        "multi_output_rotations": 355,
+        "output_marginals_conservative": 2756,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1277,
+            "key_switches": 1277
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 923,
+            "key_switches": 710
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 78,
+            "key_switches": 78
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 123,
+            "key_switches": 123
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2432,
+        "gallery_size": 72,
+        "key_switches_structural": 2216,
+        "multi_output_rotations": 360,
+        "output_marginals_conservative": 2792,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1291,
+            "key_switches": 1291
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 936,
+            "key_switches": 720
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 81,
+            "key_switches": 81
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 124,
+            "key_switches": 124
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2473,
+        "gallery_size": 73,
+        "key_switches_structural": 2254,
+        "multi_output_rotations": 365,
+        "output_marginals_conservative": 2838,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1316,
+            "key_switches": 1316
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 949,
+            "key_switches": 730
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 82,
+            "key_switches": 82
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 126,
+            "key_switches": 126
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2503,
+        "gallery_size": 74,
+        "key_switches_structural": 2281,
+        "multi_output_rotations": 370,
+        "output_marginals_conservative": 2873,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1330,
+            "key_switches": 1330
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 962,
+            "key_switches": 740
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 83,
+            "key_switches": 83
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 128,
+            "key_switches": 128
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2532,
+        "gallery_size": 75,
+        "key_switches_structural": 2307,
+        "multi_output_rotations": 375,
+        "output_marginals_conservative": 2907,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1345,
+            "key_switches": 1345
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 975,
+            "key_switches": 750
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 83,
+            "key_switches": 83
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 129,
+            "key_switches": 129
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2565,
+        "gallery_size": 76,
+        "key_switches_structural": 2337,
+        "multi_output_rotations": 380,
+        "output_marginals_conservative": 2945,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1359,
+            "key_switches": 1359
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 988,
+            "key_switches": 760
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 86,
+            "key_switches": 86
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 132,
+            "key_switches": 132
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2604,
+        "gallery_size": 77,
+        "key_switches_structural": 2373,
+        "multi_output_rotations": 385,
+        "output_marginals_conservative": 2989,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1383,
+            "key_switches": 1383
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1001,
+            "key_switches": 770
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 86,
+            "key_switches": 86
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 134,
+            "key_switches": 134
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2632,
+        "gallery_size": 78,
+        "key_switches_structural": 2398,
+        "multi_output_rotations": 390,
+        "output_marginals_conservative": 3022,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1397,
+            "key_switches": 1397
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1014,
+            "key_switches": 780
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 86,
+            "key_switches": 86
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 135,
+            "key_switches": 135
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2662,
+        "gallery_size": 79,
+        "key_switches_structural": 2425,
+        "multi_output_rotations": 395,
+        "output_marginals_conservative": 3057,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1412,
+            "key_switches": 1412
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1027,
+            "key_switches": 790
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 86,
+            "key_switches": 86
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 137,
+            "key_switches": 137
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2696,
+        "gallery_size": 80,
+        "key_switches_structural": 2456,
+        "multi_output_rotations": 400,
+        "output_marginals_conservative": 3096,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1426,
+            "key_switches": 1426
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1040,
+            "key_switches": 800
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 91,
+            "key_switches": 91
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 139,
+            "key_switches": 139
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2745,
+        "gallery_size": 81,
+        "key_switches_structural": 2502,
+        "multi_output_rotations": 405,
+        "output_marginals_conservative": 3150,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1460,
+            "key_switches": 1460
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1053,
+            "key_switches": 810
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 92,
+            "key_switches": 92
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 140,
+            "key_switches": 140
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2775,
+        "gallery_size": 82,
+        "key_switches_structural": 2529,
+        "multi_output_rotations": 410,
+        "output_marginals_conservative": 3185,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1474,
+            "key_switches": 1474
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1066,
+            "key_switches": 820
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 93,
+            "key_switches": 93
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 142,
+            "key_switches": 142
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2805,
+        "gallery_size": 83,
+        "key_switches_structural": 2556,
+        "multi_output_rotations": 415,
+        "output_marginals_conservative": 3220,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1489,
+            "key_switches": 1489
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1079,
+            "key_switches": 830
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 93,
+            "key_switches": 93
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 144,
+            "key_switches": 144
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2836,
+        "gallery_size": 84,
+        "key_switches_structural": 2584,
+        "multi_output_rotations": 420,
+        "output_marginals_conservative": 3256,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1503,
+            "key_switches": 1503
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1092,
+            "key_switches": 840
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 96,
+            "key_switches": 96
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 145,
+            "key_switches": 145
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2875,
+        "gallery_size": 85,
+        "key_switches_structural": 2620,
+        "multi_output_rotations": 425,
+        "output_marginals_conservative": 3300,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1527,
+            "key_switches": 1527
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1105,
+            "key_switches": 850
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 96,
+            "key_switches": 96
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 147,
+            "key_switches": 147
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2904,
+        "gallery_size": 86,
+        "key_switches_structural": 2646,
+        "multi_output_rotations": 430,
+        "output_marginals_conservative": 3334,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1541,
+            "key_switches": 1541
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1118,
+            "key_switches": 860
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 96,
+            "key_switches": 96
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 149,
+            "key_switches": 149
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2933,
+        "gallery_size": 87,
+        "key_switches_structural": 2672,
+        "multi_output_rotations": 435,
+        "output_marginals_conservative": 3368,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1556,
+            "key_switches": 1556
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1131,
+            "key_switches": 870
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 96,
+            "key_switches": 96
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 150,
+            "key_switches": 150
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 2966,
+        "gallery_size": 88,
+        "key_switches_structural": 2702,
+        "multi_output_rotations": 440,
+        "output_marginals_conservative": 3406,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1570,
+            "key_switches": 1570
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1144,
+            "key_switches": 880
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 99,
+            "key_switches": 99
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 153,
+            "key_switches": 153
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3007,
+        "gallery_size": 89,
+        "key_switches_structural": 2740,
+        "multi_output_rotations": 445,
+        "output_marginals_conservative": 3452,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1595,
+            "key_switches": 1595
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1157,
+            "key_switches": 890
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 100,
+            "key_switches": 100
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 155,
+            "key_switches": 155
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3036,
+        "gallery_size": 90,
+        "key_switches_structural": 2766,
+        "multi_output_rotations": 450,
+        "output_marginals_conservative": 3486,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1609,
+            "key_switches": 1609
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1170,
+            "key_switches": 900
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 101,
+            "key_switches": 101
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 156,
+            "key_switches": 156
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3066,
+        "gallery_size": 91,
+        "key_switches_structural": 2793,
+        "multi_output_rotations": 455,
+        "output_marginals_conservative": 3521,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1624,
+            "key_switches": 1624
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1183,
+            "key_switches": 910
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 101,
+            "key_switches": 101
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 158,
+            "key_switches": 158
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3099,
+        "gallery_size": 92,
+        "key_switches_structural": 2823,
+        "multi_output_rotations": 460,
+        "output_marginals_conservative": 3559,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1638,
+            "key_switches": 1638
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1196,
+            "key_switches": 920
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 105,
+            "key_switches": 105
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 160,
+            "key_switches": 160
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3137,
+        "gallery_size": 93,
+        "key_switches_structural": 2858,
+        "multi_output_rotations": 465,
+        "output_marginals_conservative": 3602,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1662,
+            "key_switches": 1662
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1209,
+            "key_switches": 930
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 105,
+            "key_switches": 105
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 161,
+            "key_switches": 161
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3166,
+        "gallery_size": 94,
+        "key_switches_structural": 2884,
+        "multi_output_rotations": 470,
+        "output_marginals_conservative": 3636,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1676,
+            "key_switches": 1676
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1222,
+            "key_switches": 940
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 105,
+            "key_switches": 105
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 163,
+            "key_switches": 163
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3196,
+        "gallery_size": 95,
+        "key_switches_structural": 2911,
+        "multi_output_rotations": 475,
+        "output_marginals_conservative": 3671,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1691,
+            "key_switches": 1691
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1235,
+            "key_switches": 950
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 105,
+            "key_switches": 105
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 165,
+            "key_switches": 165
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3228,
+        "gallery_size": 96,
+        "key_switches_structural": 2940,
+        "multi_output_rotations": 480,
+        "output_marginals_conservative": 3708,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1705,
+            "key_switches": 1705
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1248,
+            "key_switches": 960
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 109,
+            "key_switches": 109
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 166,
+            "key_switches": 166
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3280,
+        "gallery_size": 97,
+        "key_switches_structural": 2989,
+        "multi_output_rotations": 485,
+        "output_marginals_conservative": 3765,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1740,
+            "key_switches": 1740
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1261,
+            "key_switches": 970
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 111,
+            "key_switches": 111
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 168,
+            "key_switches": 168
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3311,
+        "gallery_size": 98,
+        "key_switches_structural": 3017,
+        "multi_output_rotations": 490,
+        "output_marginals_conservative": 3801,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1754,
+            "key_switches": 1754
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1274,
+            "key_switches": 980
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 113,
+            "key_switches": 113
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 170,
+            "key_switches": 170
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3340,
+        "gallery_size": 99,
+        "key_switches_structural": 3043,
+        "multi_output_rotations": 495,
+        "output_marginals_conservative": 3835,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1769,
+            "key_switches": 1769
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1287,
+            "key_switches": 990
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 113,
+            "key_switches": 113
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 171,
+            "key_switches": 171
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3374,
+        "gallery_size": 100,
+        "key_switches_structural": 3074,
+        "multi_output_rotations": 500,
+        "output_marginals_conservative": 3874,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1783,
+            "key_switches": 1783
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1300,
+            "key_switches": 1000
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 117,
+            "key_switches": 117
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 174,
+            "key_switches": 174
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3413,
+        "gallery_size": 101,
+        "key_switches_structural": 3110,
+        "multi_output_rotations": 505,
+        "output_marginals_conservative": 3918,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1807,
+            "key_switches": 1807
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1313,
+            "key_switches": 1010
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 117,
+            "key_switches": 117
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 176,
+            "key_switches": 176
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3441,
+        "gallery_size": 102,
+        "key_switches_structural": 3135,
+        "multi_output_rotations": 510,
+        "output_marginals_conservative": 3951,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1821,
+            "key_switches": 1821
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1326,
+            "key_switches": 1020
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 117,
+            "key_switches": 117
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 177,
+            "key_switches": 177
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3471,
+        "gallery_size": 103,
+        "key_switches_structural": 3162,
+        "multi_output_rotations": 515,
+        "output_marginals_conservative": 3986,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1836,
+            "key_switches": 1836
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1339,
+            "key_switches": 1030
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 117,
+            "key_switches": 117
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 179,
+            "key_switches": 179
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3504,
+        "gallery_size": 104,
+        "key_switches_structural": 3192,
+        "multi_output_rotations": 520,
+        "output_marginals_conservative": 4024,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1850,
+            "key_switches": 1850
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1352,
+            "key_switches": 1040
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 121,
+            "key_switches": 121
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 181,
+            "key_switches": 181
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3544,
+        "gallery_size": 105,
+        "key_switches_structural": 3229,
+        "multi_output_rotations": 525,
+        "output_marginals_conservative": 4069,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1875,
+            "key_switches": 1875
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1365,
+            "key_switches": 1050
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 122,
+            "key_switches": 122
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 182,
+            "key_switches": 182
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3574,
+        "gallery_size": 106,
+        "key_switches_structural": 3256,
+        "multi_output_rotations": 530,
+        "output_marginals_conservative": 4104,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1889,
+            "key_switches": 1889
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1378,
+            "key_switches": 1060
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 123,
+            "key_switches": 123
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 184,
+            "key_switches": 184
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3604,
+        "gallery_size": 107,
+        "key_switches_structural": 3283,
+        "multi_output_rotations": 535,
+        "output_marginals_conservative": 4139,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1904,
+            "key_switches": 1904
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1391,
+            "key_switches": 1070
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 123,
+            "key_switches": 123
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 186,
+            "key_switches": 186
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3636,
+        "gallery_size": 108,
+        "key_switches_structural": 3312,
+        "multi_output_rotations": 540,
+        "output_marginals_conservative": 4176,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1918,
+            "key_switches": 1918
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1404,
+            "key_switches": 1080
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 127,
+            "key_switches": 127
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 187,
+            "key_switches": 187
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3676,
+        "gallery_size": 109,
+        "key_switches_structural": 3349,
+        "multi_output_rotations": 545,
+        "output_marginals_conservative": 4221,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1942,
+            "key_switches": 1942
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1417,
+            "key_switches": 1090
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 127,
+            "key_switches": 127
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 190,
+            "key_switches": 190
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3705,
+        "gallery_size": 110,
+        "key_switches_structural": 3375,
+        "multi_output_rotations": 550,
+        "output_marginals_conservative": 4255,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1956,
+            "key_switches": 1956
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1430,
+            "key_switches": 1100
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 127,
+            "key_switches": 127
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 192,
+            "key_switches": 192
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3734,
+        "gallery_size": 111,
+        "key_switches_structural": 3401,
+        "multi_output_rotations": 555,
+        "output_marginals_conservative": 4289,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1971,
+            "key_switches": 1971
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1443,
+            "key_switches": 1110
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 127,
+            "key_switches": 127
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 193,
+            "key_switches": 193
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3770,
+        "gallery_size": 112,
+        "key_switches_structural": 3434,
+        "multi_output_rotations": 560,
+        "output_marginals_conservative": 4330,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 1985,
+            "key_switches": 1985
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1456,
+            "key_switches": 1120
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 133,
+            "key_switches": 133
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 196,
+            "key_switches": 196
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3820,
+        "gallery_size": 113,
+        "key_switches_structural": 3481,
+        "multi_output_rotations": 565,
+        "output_marginals_conservative": 4385,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2019,
+            "key_switches": 2019
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1469,
+            "key_switches": 1130
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 134,
+            "key_switches": 134
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 198,
+            "key_switches": 198
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3849,
+        "gallery_size": 114,
+        "key_switches_structural": 3507,
+        "multi_output_rotations": 570,
+        "output_marginals_conservative": 4419,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2033,
+            "key_switches": 2033
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1482,
+            "key_switches": 1140
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 135,
+            "key_switches": 135
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 199,
+            "key_switches": 199
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3879,
+        "gallery_size": 115,
+        "key_switches_structural": 3534,
+        "multi_output_rotations": 575,
+        "output_marginals_conservative": 4454,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2048,
+            "key_switches": 2048
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1495,
+            "key_switches": 1150
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 135,
+            "key_switches": 135
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 201,
+            "key_switches": 201
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3912,
+        "gallery_size": 116,
+        "key_switches_structural": 3564,
+        "multi_output_rotations": 580,
+        "output_marginals_conservative": 4492,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2062,
+            "key_switches": 2062
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1508,
+            "key_switches": 1160
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 139,
+            "key_switches": 139
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 203,
+            "key_switches": 203
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3950,
+        "gallery_size": 117,
+        "key_switches_structural": 3599,
+        "multi_output_rotations": 585,
+        "output_marginals_conservative": 4535,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2086,
+            "key_switches": 2086
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1521,
+            "key_switches": 1170
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 139,
+            "key_switches": 139
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 204,
+            "key_switches": 204
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 3979,
+        "gallery_size": 118,
+        "key_switches_structural": 3625,
+        "multi_output_rotations": 590,
+        "output_marginals_conservative": 4569,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2100,
+            "key_switches": 2100
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1534,
+            "key_switches": 1180
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 139,
+            "key_switches": 139
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 206,
+            "key_switches": 206
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4009,
+        "gallery_size": 119,
+        "key_switches_structural": 3652,
+        "multi_output_rotations": 595,
+        "output_marginals_conservative": 4604,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2115,
+            "key_switches": 2115
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1547,
+            "key_switches": 1190
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 139,
+            "key_switches": 139
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 208,
+            "key_switches": 208
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4041,
+        "gallery_size": 120,
+        "key_switches_structural": 3681,
+        "multi_output_rotations": 600,
+        "output_marginals_conservative": 4641,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2129,
+            "key_switches": 2129
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1560,
+            "key_switches": 1200
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 143,
+            "key_switches": 143
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 209,
+            "key_switches": 209
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4082,
+        "gallery_size": 121,
+        "key_switches_structural": 3719,
+        "multi_output_rotations": 605,
+        "output_marginals_conservative": 4687,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2154,
+            "key_switches": 2154
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1573,
+            "key_switches": 1210
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 144,
+            "key_switches": 144
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 211,
+            "key_switches": 211
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4112,
+        "gallery_size": 122,
+        "key_switches_structural": 3746,
+        "multi_output_rotations": 610,
+        "output_marginals_conservative": 4722,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2168,
+            "key_switches": 2168
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1586,
+            "key_switches": 1220
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 145,
+            "key_switches": 145
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 213,
+            "key_switches": 213
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4141,
+        "gallery_size": 123,
+        "key_switches_structural": 3772,
+        "multi_output_rotations": 615,
+        "output_marginals_conservative": 4756,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2183,
+            "key_switches": 2183
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1599,
+            "key_switches": 1230
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 145,
+            "key_switches": 145
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 214,
+            "key_switches": 214
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4176,
+        "gallery_size": 124,
+        "key_switches_structural": 3804,
+        "multi_output_rotations": 620,
+        "output_marginals_conservative": 4796,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2197,
+            "key_switches": 2197
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1612,
+            "key_switches": 1240
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 150,
+            "key_switches": 150
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 217,
+            "key_switches": 217
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4215,
+        "gallery_size": 125,
+        "key_switches_structural": 3840,
+        "multi_output_rotations": 625,
+        "output_marginals_conservative": 4840,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2221,
+            "key_switches": 2221
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1625,
+            "key_switches": 1250
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 150,
+            "key_switches": 150
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 219,
+            "key_switches": 219
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4243,
+        "gallery_size": 126,
+        "key_switches_structural": 3865,
+        "multi_output_rotations": 630,
+        "output_marginals_conservative": 4873,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2235,
+            "key_switches": 2235
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1638,
+            "key_switches": 1260
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 150,
+            "key_switches": 150
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 220,
+            "key_switches": 220
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4273,
+        "gallery_size": 127,
+        "key_switches_structural": 3892,
+        "multi_output_rotations": 635,
+        "output_marginals_conservative": 4908,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2250,
+            "key_switches": 2250
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1651,
+            "key_switches": 1270
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 150,
+            "key_switches": 150
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 222,
+            "key_switches": 222
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      },
+      {
+        "blind_rotations": 4303,
+        "gallery_size": 128,
+        "key_switches_structural": 3919,
+        "multi_output_rotations": 640,
+        "output_marginals_conservative": 4943,
+        "stage_breakdown": {
+          "aligned_admission_and_argmin_8_bits": {
+            "blind_rotations": 2264,
+            "key_switches": 2264
+          },
+          "aligned_extraction_and_sparse_classifier": {
+            "blind_rotations": 1664,
+            "key_switches": 1280
+          },
+          "encrypted_id_encoding": {
+            "blind_rotations": 151,
+            "key_switches": 151
+          },
+          "first_minimum_scan": {
+            "blind_rotations": 224,
+            "key_switches": 224
+          },
+          "score_linear": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          },
+          "uniform_threshold_folded_into_admission": {
+            "blind_rotations": 0,
+            "key_switches": 0
+          }
+        }
+      }
+    ]
+  },
+  "parameter": {
+    "log2_p_fail": -71.625,
+    "name": "V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64",
+    "security_bits_reported": 132,
+    "tfhe_rs": "0.11.3",
+    "value_source": "frozen_tfhe_rs_parameter_source_not_overridden"
+  },
+  "provenance": {
+    "byte_reproducibility": "No generation timestamp, host state, or runtime version is embedded. Sorted JSON over pinned inputs produces identical bytes on tested Python 3.9/3.12.",
+    "canonical_command": [
+      "uv",
+      "run",
+      "--python",
+      "3.12",
+      "python",
+      "benchmark/a33_pfail_accounting.py",
+      "--output",
+      "benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.json"
+    ],
+    "generator": "benchmark/a33_pfail_accounting.py",
+    "generator_sha256": "4b32a4da363e4a2562b42a04f03b462eda98be0926dc3236c5d33acd675ac785",
+    "inputs": {
+      "benchmark/patches/a33_aligned_sparse_source_2026-09-02.patch": "6d07077efc52e721399740ef7d443ca87ee0a6c575cd19b7a453d5109224f7f5",
+      "benchmark/patches/a33_aligned_sparse_source_2026-09-02.patch::experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d",
+      "benchmark/results/fhe_digiface_exact_frontier_a33_final_2026-09-02.csv": "e72dd64db5751ee49ca2016908698f583e1f7d16c33c44d77beb3d9a7e68e98d",
+      "benchmark/results/fhe_digiface_exact_frontier_a33_final_2026-09-02.json": "d15933731a313ed82445e03ca37e999178cdf18c2f7953c86e8b38b9d7cd3e15",
+      "benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.csv": "0d35640d7803969f4fb4781bac3975e367e477447ecbf6ffc9fb6a090669a011",
+      "benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.json": "e3ef7b5ae74c85e883d8ed3b2670fb6efbd20291775752fefe1ec56c0f1a9467",
+      "tfhe-0.11.3/README.md": "c224297542eff2e6bae585b320144be02b6475dd43656be2c59aaed41d704052",
+      "tfhe-0.11.3/src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs": "14a3c8cae508fec1f96e76ed74e186efbd005c0c84292975333dc202a6987bb6",
+      "tmp/a33-aligned-sparse-2026-09-02/a33_full_validation.txt": "2c3fd446b4f0a2f382a2ec5c939facd427680b0d1e88315c57a474e55a279595"
+    },
+    "python_compatibility_tested": [
+      "3.9",
+      "3.12"
+    ]
+  },
+  "schema_version": 1,
+  "status": "conditional_accounting_not_end_to_end_certificate"
+}
