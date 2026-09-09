@@ -1,0 +1,3181 @@
+{
+  "schema": "fhe-progress-observational-figure.v1",
+  "arms": [
+    "concrete",
+    "tfhe13",
+    "a28",
+    "a29",
+    "a33",
+    "a38",
+    "a66",
+    "r3",
+    "head_m",
+    "general",
+    "cpu",
+    "final"
+  ],
+  "positions": [
+    0,
+    1.15,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "labels": [
+    "Concrete",
+    "TFHE\niniziale",
+    "A28",
+    "A29",
+    "A33",
+    "A38",
+    "A66",
+    "R3",
+    "Head M",
+    "Head\ngenerale",
+    "FFT +\nCGU1",
+    "Finale"
+  ],
+  "points": [
+    {
+      "n": 18,
+      "median_ns": 264797784896.0,
+      "q25_ns": 254585034437.75,
+      "q75_ns": 271403972427.0,
+      "min_ns": 237608745042,
+      "max_ns": 305841869250,
+      "by_family": {
+        "0": {
+          "n": 6,
+          "median_ns": 266869649188.0,
+          "q25_ns": 259674387104.0,
+          "q75_ns": 270694453239.75,
+          "min_ns": 254524171417,
+          "max_ns": 284461255250
+        },
+        "1": {
+          "n": 6,
+          "median_ns": 251765206166.5,
+          "q25_ns": 248650714271.0,
+          "q75_ns": 254214773343.75,
+          "min_ns": 237608745042,
+          "max_ns": 285893031500
+        },
+        "2": {
+          "n": 6,
+          "median_ns": 268387193541.5,
+          "q25_ns": 264466693375.0,
+          "q75_ns": 292425099895.5,
+          "min_ns": 260472108083,
+          "max_ns": 305841869250
+        }
+      },
+      "by_scene": {
+        "first_tie": {
+          "n": 6,
+          "median_ns": 266968155167.0,
+          "q25_ns": 252346038375.25,
+          "q75_ns": 270694453239.75,
+          "min_ns": 237608745042,
+          "max_ns": 299560499458
+        },
+        "unique_first": {
+          "n": 6,
+          "median_ns": 260875060354.0,
+          "q25_ns": 255321384771.0,
+          "q75_ns": 280429047593.75,
+          "min_ns": 252556222875,
+          "max_ns": 305841869250
+        },
+        "unique_last": {
+          "n": 6,
+          "median_ns": 263015291000.0,
+          "q25_ns": 256193744645.75,
+          "q75_ns": 269653794385.25,
+          "min_ns": 250974189458,
+          "max_ns": 284461255250
+        }
+      }
+    },
+    {
+      "n": 18,
+      "median_ns": 49767460083.5,
+      "q25_ns": 49699727509.75,
+      "q75_ns": 49869375833.5,
+      "min_ns": 49540121459,
+      "max_ns": 50163649375,
+      "by_family": {
+        "0": {
+          "n": 6,
+          "median_ns": 49769202375.0,
+          "q25_ns": 49767045750.25,
+          "q75_ns": 49821200343.5,
+          "min_ns": 49705523041,
+          "max_ns": 50162148708
+        },
+        "1": {
+          "n": 6,
+          "median_ns": 49678012145.5,
+          "q25_ns": 49617038812.5,
+          "q75_ns": 49995616853.75,
+          "min_ns": 49540121459,
+          "max_ns": 50147045417
+        },
+        "2": {
+          "n": 6,
+          "median_ns": 49769421166.5,
+          "q25_ns": 49743208218.75,
+          "q75_ns": 49856224989.75,
+          "min_ns": 49642047125,
+          "max_ns": 50163649375
+        }
+      },
+      "by_scene": {
+        "first_tie": {
+          "n": 6,
+          "median_ns": 49729370145.5,
+          "q25_ns": 49670052229.0,
+          "q75_ns": 49765891312.5,
+          "min_ns": 49642047125,
+          "max_ns": 50147045417
+        },
+        "unique_first": {
+          "n": 6,
+          "median_ns": 49776956916.5,
+          "q25_ns": 49644553843.75,
+          "q75_ns": 49825077614.25,
+          "min_ns": 49540121459,
+          "max_ns": 49879758292
+        },
+        "unique_last": {
+          "n": 6,
+          "median_ns": 49930761000.0,
+          "q25_ns": 49746561760.5,
+          "q75_ns": 50145334176.75,
+          "min_ns": 49697795666,
+          "max_ns": 50163649375
+        }
+      }
+    },
+    {
+      "n": 30,
+      "median_ns": 7351781312.5,
+      "q25_ns": 7319670479.5,
+      "q75_ns": 7399280499.5,
+      "min_ns": 7254823542,
+      "max_ns": 7513718208,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 7330519313.0,
+          "q25_ns": 7310465813.0,
+          "q75_ns": 7352928927.5,
+          "min_ns": 7254823542,
+          "max_ns": 7466353083
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 7327427812.5,
+          "q25_ns": 7293158886.0,
+          "q75_ns": 7340438510.0,
+          "min_ns": 7273969167,
+          "max_ns": 7382407625
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 7418494562.5,
+          "q25_ns": 7379494884.75,
+          "q75_ns": 7431339094.25,
+          "min_ns": 7366132292,
+          "max_ns": 7513718208
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 7340445521.0,
+          "q25_ns": 7327820896.25,
+          "q75_ns": 7362553177.25,
+          "min_ns": 7317093042,
+          "max_ns": 7447547584
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 7336854416.5,
+          "q25_ns": 7314604511.0,
+          "q75_ns": 7362053823.0,
+          "min_ns": 7279202250,
+          "max_ns": 7419930708
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 7371605104.5,
+          "q25_ns": 7333914614.5,
+          "q75_ns": 7399280499.5,
+          "min_ns": 7285180834,
+          "max_ns": 7417058417
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 7359462708.5,
+          "q25_ns": 7301933791.25,
+          "q75_ns": 7411133656.25,
+          "min_ns": 7254823542,
+          "max_ns": 7434882459
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 7361802666.5,
+          "q25_ns": 7324493166.75,
+          "q75_ns": 7442729447.5,
+          "min_ns": 7273969167,
+          "max_ns": 7513718208
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 7351781312.5,
+          "q25_ns": 7319670479.5,
+          "q75_ns": 7399280499.5,
+          "min_ns": 7254823542,
+          "max_ns": 7513718208
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 7381031459,
+          "q25_ns": 7347710271.0,
+          "q75_ns": 7394918938.0,
+          "min_ns": 7263029916,
+          "max_ns": 7478844417
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 6667234083.0,
+      "q25_ns": 6639578072.75,
+      "q75_ns": 6748379771.5,
+      "min_ns": 6595003500,
+      "max_ns": 6957973791,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 6651931437.5,
+          "q25_ns": 6645807812.75,
+          "q75_ns": 6690597301.5,
+          "min_ns": 6615501875,
+          "max_ns": 6709782125
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 6631323979.0,
+          "q25_ns": 6605576770.5,
+          "q75_ns": 6646817666.75,
+          "min_ns": 6595003500,
+          "max_ns": 6957973791
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 6756981729.0,
+          "q25_ns": 6742439146.5,
+          "q75_ns": 6777368510.5,
+          "min_ns": 6705439250,
+          "max_ns": 6859531958
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 6675225562.0,
+          "q25_ns": 6644882458.5,
+          "q75_ns": 6744424166.75,
+          "min_ns": 6635091875,
+          "max_ns": 6859531958
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 6675427917.0,
+          "q25_ns": 6630233843.75,
+          "q75_ns": 6704273427.25,
+          "min_ns": 6595003500,
+          "max_ns": 6752928916
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 6651931437.5,
+          "q25_ns": 6649379104.25,
+          "q75_ns": 6698388926.75,
+          "min_ns": 6605236666,
+          "max_ns": 6794843958
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 6709039458.5,
+          "q25_ns": 6652940364.75,
+          "q75_ns": 6756843583.75,
+          "min_ns": 6606597084,
+          "max_ns": 6957973791
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 6674405791.5,
+          "q25_ns": 6621383770.75,
+          "q75_ns": 6740958094.25,
+          "min_ns": 6600687500,
+          "max_ns": 6782279625
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 6667234083.0,
+          "q25_ns": 6639578072.75,
+          "q75_ns": 6748379771.5,
+          "min_ns": 6595003500,
+          "max_ns": 6957973791
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 6698684000,
+          "q25_ns": 6670450833.5,
+          "q75_ns": 6710513354.0,
+          "min_ns": 6640625000,
+          "max_ns": 6797486542
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 5595929583.5,
+      "q25_ns": 5571611344.0,
+      "q75_ns": 5639238052.25,
+      "min_ns": 5520990458,
+      "max_ns": 5814798542,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 5575854729.5,
+          "q25_ns": 5567590448.0,
+          "q75_ns": 5593872999.75,
+          "min_ns": 5552197000,
+          "max_ns": 5650625292
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 5584543000.5,
+          "q25_ns": 5561316573.5,
+          "q75_ns": 5597393343.75,
+          "min_ns": 5520990458,
+          "max_ns": 5704845458
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 5650904792.0,
+          "q25_ns": 5631308271.25,
+          "q75_ns": 5675029280.75,
+          "min_ns": 5593872459,
+          "max_ns": 5814798542
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 5589759291.5,
+          "q25_ns": 5565682656.75,
+          "q75_ns": 5623733833.75,
+          "min_ns": 5555830750,
+          "max_ns": 5814798542
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 5607041771.0,
+          "q25_ns": 5581693656.75,
+          "q75_ns": 5657097073.0,
+          "min_ns": 5564067542,
+          "max_ns": 5676367666
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 5632131062.5,
+          "q25_ns": 5582771166.75,
+          "q75_ns": 5653764052.25,
+          "min_ns": 5563311541,
+          "max_ns": 5704845458
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 5589648208.5,
+          "q25_ns": 5578256823.0,
+          "q75_ns": 5604958749.75,
+          "min_ns": 5552197000,
+          "max_ns": 5721011750
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 5588511271.5,
+          "q25_ns": 5573474583.75,
+          "q75_ns": 5629383708.75,
+          "min_ns": 5520990458,
+          "max_ns": 5650625292
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 5595929583.5,
+          "q25_ns": 5571611344.0,
+          "q75_ns": 5639238052.25,
+          "min_ns": 5520990458,
+          "max_ns": 5814798542
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 5611628167,
+          "q25_ns": 5588220604.0,
+          "q75_ns": 5659741416.5,
+          "min_ns": 5551338834,
+          "max_ns": 5738000542
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 4764888583.0,
+      "q25_ns": 4745148781.5,
+      "q75_ns": 4822369302.25,
+      "min_ns": 4701436791,
+      "max_ns": 4908017500,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 4757701354.5,
+          "q25_ns": 4742255062.5,
+          "q75_ns": 4765500562.0,
+          "min_ns": 4701436791,
+          "max_ns": 4885804291
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 4749555021.0,
+          "q25_ns": 4740703656.75,
+          "q75_ns": 4777273208.5,
+          "min_ns": 4720693583,
+          "max_ns": 4829426875
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 4822129083.5,
+          "q25_ns": 4799184625.0,
+          "q75_ns": 4844717562.75,
+          "min_ns": 4758327333,
+          "max_ns": 4908017500
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 4757551833.5,
+          "q25_ns": 4729714270.75,
+          "q75_ns": 4764166239.0,
+          "min_ns": 4713175541,
+          "max_ns": 4812730667
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 4794615625.0,
+          "q25_ns": 4755854031.25,
+          "q75_ns": 4812401188.0,
+          "min_ns": 4740409709,
+          "max_ns": 4901580416
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 4767335875.0,
+          "q25_ns": 4733488375.0,
+          "q75_ns": 4817158375.0,
+          "min_ns": 4701436791,
+          "max_ns": 4831527500
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 4805983771.0,
+          "q25_ns": 4756709125.0,
+          "q75_ns": 4876428947.5,
+          "min_ns": 4741585500,
+          "max_ns": 4908017500
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 4779144042.0,
+          "q25_ns": 4748810521.25,
+          "q75_ns": 4817963781.25,
+          "min_ns": 4740861125,
+          "max_ns": 4833961500
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 4764888583.0,
+          "q25_ns": 4745148781.5,
+          "q75_ns": 4822369302.25,
+          "min_ns": 4701436791,
+          "max_ns": 4908017500
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 4786205208,
+          "q25_ns": 4757939125.0,
+          "q75_ns": 4818609146.0,
+          "min_ns": 4734202333,
+          "max_ns": 4865519917
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 4151290896.0,
+      "q25_ns": 4122019395.75,
+      "q75_ns": 4192330490.0,
+      "min_ns": 4101114625,
+      "max_ns": 4272569708,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 4124982999.5,
+          "q25_ns": 4105545448.5,
+          "q75_ns": 4162003989.25,
+          "min_ns": 4101114625,
+          "max_ns": 4193743709
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 4150954416.5,
+          "q25_ns": 4122019395.75,
+          "q75_ns": 4222505864.5,
+          "min_ns": 4118899959,
+          "max_ns": 4271401917
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 4178461541.5,
+          "q25_ns": 4151101969.0,
+          "q75_ns": 4203128301.75,
+          "min_ns": 4145640542,
+          "max_ns": 4272569708
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 4171370250.0,
+          "q25_ns": 4127907115.0,
+          "q75_ns": 4188021104.0,
+          "min_ns": 4110629292,
+          "max_ns": 4203282916
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 4167316604.0,
+          "q25_ns": 4155201802.0,
+          "q75_ns": 4175810031.75,
+          "min_ns": 4123463958,
+          "max_ns": 4193743709
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 4148796666.5,
+          "q25_ns": 4145975469.0,
+          "q75_ns": 4150668646.0,
+          "min_ns": 4103809041,
+          "max_ns": 4271401917
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 4191510167.0,
+          "q25_ns": 4115962499.5,
+          "q75_ns": 4262125395.75,
+          "min_ns": 4103850834,
+          "max_ns": 4272569708
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 4143387500.0,
+          "q25_ns": 4124407395.5,
+          "q75_ns": 4189726604.75,
+          "min_ns": 4101114625,
+          "max_ns": 4237295833
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 4151290896.0,
+          "q25_ns": 4122019395.75,
+          "q75_ns": 4192330490.0,
+          "min_ns": 4101114625,
+          "max_ns": 4272569708
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 4182266042,
+          "q25_ns": 4147890166.5,
+          "q75_ns": 4222167271.0,
+          "min_ns": 4110039917,
+          "max_ns": 4259102709
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 3019728916.5,
+      "q25_ns": 2988997916.5,
+      "q75_ns": 3042506677.0,
+      "min_ns": 2966989125,
+      "max_ns": 3137580375,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 3021483687.5,
+          "q25_ns": 2996910458.5,
+          "q75_ns": 3060433594.0,
+          "min_ns": 2966989125,
+          "max_ns": 3137580375
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 3009986291.5,
+          "q25_ns": 2978887145.5,
+          "q75_ns": 3023658614.25,
+          "min_ns": 2967240584,
+          "max_ns": 3051860125
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 3025634354.0,
+          "q25_ns": 3009503323.25,
+          "q75_ns": 3042524645.75,
+          "min_ns": 2986772333,
+          "max_ns": 3094412000
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 3016960000.0,
+          "q25_ns": 2982143479.75,
+          "q75_ns": 3027440270.5,
+          "min_ns": 2966989125,
+          "max_ns": 3110081625
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 3018097374.5,
+          "q25_ns": 3013859041.75,
+          "q75_ns": 3053611896.0,
+          "min_ns": 2987471708,
+          "max_ns": 3137580375
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 3022827645.5,
+          "q25_ns": 3010459749.75,
+          "q75_ns": 3030963197.5,
+          "min_ns": 2967240584,
+          "max_ns": 3051666084
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 3004318666.5,
+          "q25_ns": 2986423958.0,
+          "q75_ns": 3040963000.0,
+          "min_ns": 2978120541,
+          "max_ns": 3051860125
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 3014424542.0,
+          "q25_ns": 2995715729.5,
+          "q75_ns": 3040910635.5,
+          "min_ns": 2976413583,
+          "max_ns": 3094412000
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 3019728916.5,
+          "q25_ns": 2988997916.5,
+          "q75_ns": 3042506677.0,
+          "min_ns": 2966989125,
+          "max_ns": 3137580375
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 3018984167,
+          "q25_ns": 2995809542.0,
+          "q75_ns": 3040801354.5,
+          "min_ns": 2988300625,
+          "max_ns": 3105482458
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 2094266313.0,
+      "q25_ns": 2066471989.0,
+      "q75_ns": 2110409083.75,
+      "min_ns": 2032825708,
+      "max_ns": 2151557417,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 2055204833.5,
+          "q25_ns": 2045282292.0,
+          "q75_ns": 2092225031.25,
+          "min_ns": 2032825708,
+          "max_ns": 2151557417
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 2109566417.0,
+          "q25_ns": 2095999031.5,
+          "q75_ns": 2113984020.5,
+          "min_ns": 2064356666,
+          "max_ns": 2131795167
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 2084929541.5,
+          "q25_ns": 2075957593.5,
+          "q75_ns": 2107272208.5,
+          "min_ns": 2059854958,
+          "max_ns": 2115709709
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 2087202062.5,
+          "q25_ns": 2076358489.25,
+          "q75_ns": 2105525417.25,
+          "min_ns": 2039852000,
+          "max_ns": 2115003666
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 2098290271.5,
+          "q25_ns": 2064213240.0,
+          "q75_ns": 2107272208.5,
+          "min_ns": 2053559292,
+          "max_ns": 2110925084
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 2112022563.0,
+          "q25_ns": 2084869385.5,
+          "q75_ns": 2118965739.5,
+          "min_ns": 2072817958,
+          "max_ns": 2151557417
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 2093554312.5,
+          "q25_ns": 2081279437.5,
+          "q75_ns": 2099986968.75,
+          "min_ns": 2032825708,
+          "max_ns": 2131795167
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 2062105812.0,
+          "q25_ns": 2057098552.0,
+          "q75_ns": 2099187229.25,
+          "min_ns": 2042523292,
+          "max_ns": 2112894625
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 2094266313.0,
+          "q25_ns": 2066471989.0,
+          "q75_ns": 2110409083.75,
+          "min_ns": 2032825708,
+          "max_ns": 2151557417
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 2057884959,
+          "q25_ns": 2050092666.5,
+          "q75_ns": 2103891437.5,
+          "min_ns": 2023869250,
+          "max_ns": 2144238292
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 2080595250.0,
+      "q25_ns": 2065626104.0,
+      "q75_ns": 2096758260.25,
+      "min_ns": 2032569750,
+      "max_ns": 2168429625,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 2066087833.0,
+          "q25_ns": 2048604447.5,
+          "q75_ns": 2081538927.75,
+          "min_ns": 2032569750,
+          "max_ns": 2168429625
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 2071727146.0,
+          "q25_ns": 2064309198.0,
+          "q75_ns": 2077770521.25,
+          "min_ns": 2043154750,
+          "max_ns": 2141363000
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 2098825771.0,
+          "q25_ns": 2094975541.5,
+          "q75_ns": 2129590864.5,
+          "min_ns": 2082938208,
+          "max_ns": 2152206084
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 2073544354.5,
+          "q25_ns": 2057838687.0,
+          "q75_ns": 2090213989.5,
+          "min_ns": 2046962458,
+          "max_ns": 2101873000
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 2090011520.5,
+          "q25_ns": 2075252646.0,
+          "q75_ns": 2124884520.5,
+          "min_ns": 2067011291,
+          "max_ns": 2168429625
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 2091013813.0,
+          "q25_ns": 2072055739.25,
+          "q75_ns": 2095676760.75,
+          "min_ns": 2065164375,
+          "max_ns": 2141363000
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 2081554250.5,
+          "q25_ns": 2067023229.0,
+          "q75_ns": 2089749114.5,
+          "min_ns": 2032569750,
+          "max_ns": 2115910209
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 2067468188.0,
+          "q25_ns": 2049950635.75,
+          "q75_ns": 2121556521.0,
+          "min_ns": 2043154750,
+          "max_ns": 2152206084
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 2080595250.0,
+          "q25_ns": 2065626104.0,
+          "q75_ns": 2096758260.25,
+          "min_ns": 2032569750,
+          "max_ns": 2168429625
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 2072047042,
+          "q25_ns": 2065931625.0,
+          "q75_ns": 2087226312.5,
+          "min_ns": 2048787208,
+          "max_ns": 2095313667
+        }
+      },
+      "exact_speedup_qualified": false
+    },
+    {
+      "n": 30,
+      "median_ns": 2082289146.0,
+      "q25_ns": 2064327385.5,
+      "q75_ns": 2095219104.5,
+      "min_ns": 2045826833,
+      "max_ns": 2361905459,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 2092083750.0,
+          "q25_ns": 2067223468.25,
+          "q75_ns": 2095219104.5,
+          "min_ns": 2045826833,
+          "max_ns": 2122422750
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 2081639291.5,
+          "q25_ns": 2069892177.25,
+          "q75_ns": 2099281291.75,
+          "min_ns": 2055066750,
+          "max_ns": 2203334500
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 2075444646.0,
+          "q25_ns": 2060112875.0,
+          "q75_ns": 2086632354.25,
+          "min_ns": 2054268667,
+          "max_ns": 2361905459
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 2089963146.0,
+          "q25_ns": 2088125698.0,
+          "q75_ns": 2114493312.5,
+          "min_ns": 2054268667,
+          "max_ns": 2203334500
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 2067303916.5,
+          "q25_ns": 2060112875.0,
+          "q75_ns": 2087667052.0,
+          "min_ns": 2045826833,
+          "max_ns": 2103220334
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 2075444646.0,
+          "q25_ns": 2065789896.25,
+          "q75_ns": 2087010020.75,
+          "min_ns": 2062521166,
+          "max_ns": 2095713042
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 2088492604.5,
+          "q25_ns": 2076439447.75,
+          "q75_ns": 2100410291.75,
+          "min_ns": 2062402375,
+          "max_ns": 2130654084
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 2075546521.0,
+          "q25_ns": 2060722823.25,
+          "q75_ns": 2109741281.75,
+          "min_ns": 2055066750,
+          "max_ns": 2361905459
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 2082289146.0,
+          "q25_ns": 2064327385.5,
+          "q75_ns": 2095219104.5,
+          "min_ns": 2045826833,
+          "max_ns": 2361905459
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 2071973750,
+          "q25_ns": 2051364604.0,
+          "q75_ns": 2093617708.0,
+          "min_ns": 2032435083,
+          "max_ns": 2135725000
+        }
+      },
+      "exact_speedup_qualified": true
+    },
+    {
+      "n": 30,
+      "median_ns": 1622570437.0,
+      "q25_ns": 1611278719.25,
+      "q75_ns": 1641609438.0,
+      "min_ns": 1598075750,
+      "max_ns": 1710992833,
+      "by_family": {
+        "0": {
+          "n": 10,
+          "median_ns": 1627219854.0,
+          "q25_ns": 1615485739.5,
+          "q75_ns": 1635893176.75,
+          "min_ns": 1599359167,
+          "max_ns": 1707970500
+        },
+        "1": {
+          "n": 10,
+          "median_ns": 1633378875.0,
+          "q25_ns": 1620721458.75,
+          "q75_ns": 1655331833.75,
+          "min_ns": 1602622625,
+          "max_ns": 1709766041
+        },
+        "2": {
+          "n": 10,
+          "median_ns": 1611920979.5,
+          "q25_ns": 1607693562.75,
+          "q75_ns": 1625838437.75,
+          "min_ns": 1598075750,
+          "max_ns": 1710992833
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "n": 6,
+          "median_ns": 1634505479.0,
+          "q25_ns": 1617089864.25,
+          "q75_ns": 1692687718.75,
+          "min_ns": 1610636459,
+          "max_ns": 1709766041
+        },
+        "genuine_last": {
+          "n": 6,
+          "median_ns": 1617996584.0,
+          "q25_ns": 1613842896.0,
+          "q75_ns": 1630231645.75,
+          "min_ns": 1607364917,
+          "max_ns": 1642868459
+        },
+        "boundary_equal": {
+          "n": 6,
+          "median_ns": 1622674729.0,
+          "q25_ns": 1604864500.5,
+          "q75_ns": 1637541770.75,
+          "min_ns": 1599359167,
+          "max_ns": 1689947917
+        },
+        "boundary_reject": {
+          "n": 6,
+          "median_ns": 1625598229.0,
+          "q25_ns": 1620802635.5,
+          "q75_ns": 1628750823.0,
+          "min_ns": 1618672250,
+          "max_ns": 1655847416
+        },
+        "tie_first_last": {
+          "n": 6,
+          "median_ns": 1620525979.5,
+          "q25_ns": 1604362354.25,
+          "q75_ns": 1652482323.25,
+          "min_ns": 1598075750,
+          "max_ns": 1710992833
+        }
+      },
+      "by_phase": {
+        "measured": {
+          "n": 30,
+          "median_ns": 1622570437.0,
+          "q25_ns": 1611278719.25,
+          "q75_ns": 1641609438.0,
+          "min_ns": 1598075750,
+          "max_ns": 1710992833
+        },
+        "warmup": {
+          "n": 15,
+          "median_ns": 1618115042,
+          "q25_ns": 1608711375.0,
+          "q75_ns": 1629534021.0,
+          "min_ns": 1588721709,
+          "max_ns": 1668237625
+        }
+      },
+      "exact_speedup_qualified": true
+    }
+  ],
+  "break_after": "tfhe13",
+  "correctness": {
+    "a28": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "a29": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "a33": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "a38": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "a66": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "r3": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "head_m": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "general": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": true,
+      "exact_speedup_qualified": false,
+      "qualification_failures": [
+        "general:unresolved_wrong_output_in_original_campaign"
+      ]
+    },
+    "cpu": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    },
+    "final": {
+      "all": {
+        "outputs": 45,
+        "correct": 45,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "measured": {
+        "outputs": 30,
+        "correct": 30,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "warmup": {
+        "outputs": 15,
+        "correct": 15,
+        "incorrect": 0,
+        "all_outputs_correct": true
+      },
+      "by_family": {
+        "0": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "1": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "2": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "by_scene": {
+        "genuine_first": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "genuine_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_equal": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "boundary_reject": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "tie_first_last": {
+          "outputs": 9,
+          "correct": 9,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        }
+      },
+      "historical_failure_unresolved": false,
+      "exact_speedup_qualified": true,
+      "qualification_failures": []
+    }
+  },
+  "original_failure_context": {
+    "pins": {
+      "report": {
+        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/late-exact/audit/main-failure-01/REPORT.json",
+        "sha256": "a6ba08d5f7ebf8fc59aae119338e5cc04ce671a9f82874bffa22f966075374ee"
+      },
+      "same_input_replay": {
+        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/runs/general-failure-replay-01/RESULT.json",
+        "sha256": "02eafa90539d91fb51f6e6f26192350b04fbda6ef37842eddcba6b76949b25df"
+      },
+      "root_acceptance": {
+        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/control/EXACT_MAIN_FAILURE_REVIEW_ACCEPTED.json",
+        "sha256": "6ada9e4f599e16f3dd1b3288504e3682ac150dff861d473f8c5fa293cd4e6c2d"
+      }
+    },
+    "original_campaign_complete": false,
+    "original_campaign_qualified": false,
+    "total": {
+      "planned_outputs": 450,
+      "observed_outputs": 269,
+      "correct_outputs": 268,
+      "incorrect_outputs": 1,
+      "missing_outputs": 181,
+      "measured_observed_outputs": 169,
+      "measured_correct_outputs": 168,
+      "excluded_warmup_outputs": 100,
+      "third_family_generated": false
+    },
+    "failure": {
+      "arm": "general",
+      "key_index": 1,
+      "scene": "tie_first_last",
+      "group": 26,
+      "repeat": 2,
+      "phase": "measured",
+      "expected_id": 1,
+      "decoded_id": 75,
+      "expected_digits": [
+        1,
+        0,
+        0
+      ],
+      "independently_decoded_digits": [
+        0,
+        5,
+        0
+      ],
+      "independently_decrypted_phases": [
+        18446034363642926158,
+        2881760739586496527,
+        866727281509462
+      ],
+      "errors_from_expected": [
+        -577170462370048946,
+        2881760739586496527,
+        866727281509462
+      ],
+      "expected_half_cell_pass": [
+        false,
+        false,
+        true
+      ],
+      "errors_from_rounded_digits": [
+        -709710066625458,
+        -543021930620913,
+        866727281509462
+      ],
+      "rounded_centres_half_cell_pass": [
+        true,
+        true,
+        true
+      ],
+      "raw_ciphertext_hashes": [
+        "2d18f2813b5f4db42a152221bfc69304ab9d63cf08ac490beba14c85e42a3d3f",
+        "151af68ba5de8d5ad93fceb4158f52e80fe283abc3ab3c54c477a5009801ad39",
+        "e5eda2d73156b0b341568008ce2ef60b823acbcd59e2eb27bec1416e6ec920ae"
+      ],
+      "native_and_independent_phase_agreement": true,
+      "interpretation": "The actual native ciphertexts encode an incorrect exact ID; independent decryption agrees with the worker. This is not a JSON/decoder disagreement or a near-boundary rounding ambiguity. Terminal ID75 does not identify the internal stage or prove that candidate75 won the encrypted tournament.",
+      "input_sha256": "e15091540ef23964d2967456db33bc5a6c6986a83ae94aca8b39b0ab4a24f4e8",
+      "source_sha256": "586b94fadeaba7268866eedc1a2cf7f9d7b1bafad031d11cfaa708f61b24ad78",
+      "binary_sha256": "9b6d108cbea1c7f50fe5a1e37a12f68a0dbcd599d9f219ceb67f353e70bc62aa",
+      "public_key_fingerprint": "e2a63b90283b157cb39779f53e3e5cbf0ffc80af381a6c2619453825c1d402f4",
+      "input_phase_replay": {
+        "coefficients": 2048,
+        "full_delta_log": 51,
+        "low_delta_log": 60,
+        "maximum_absolute_phase_error": 183757,
+        "exclusive_error_bound": 1125899906842624,
+        "pass": true
+      },
+      "oracle": {
+        "minimum_score": -350,
+        "all_minimum_ids": [
+          1,
+          127
+        ],
+        "earliest_minimum_id": 1,
+        "score_at_output_id75": 509
+      },
+      "prior_same_native_family_scene": [
+        {
+          "group": 18,
+          "phase": "warmup",
+          "repeat": 0,
+          "decoded_id": 1,
+          "native_pass": true,
+          "input_sha256": "eb02c5f8b038e3542dfb5e97b0a6d16252c6ef4895656be94222fe27a1943502"
+        },
+        {
+          "group": 22,
+          "phase": "measured",
+          "repeat": 1,
+          "decoded_id": 1,
+          "native_pass": true,
+          "input_sha256": "6451ba58ba15cf7d55f8cb2015bee1567f7161a3337ba4d9e596c1a0bcd0f34f"
+        },
+        {
+          "group": 26,
+          "phase": "measured",
+          "repeat": 2,
+          "decoded_id": 75,
+          "native_pass": false,
+          "input_sha256": "e15091540ef23964d2967456db33bc5a6c6986a83ae94aca8b39b0ab4a24f4e8"
+        }
+      ],
+      "sampled_load": {
+        "high_load": true,
+        "unknown": false,
+        "unknown_reasons": [],
+        "coverage_complete": true,
+        "uncovered_intervals_unix_ns": []
+      }
+    },
+    "excluded_same_input_replay": {
+      "excluded_from_main": true,
+      "new_independent_key_or_input": false,
+      "ciphertext_equality_independently_verified": true,
+      "phase_equality_independently_verified": true,
+      "independently_replayed_phases": 3,
+      "decoded_id": 75,
+      "expected_id": 1,
+      "source_sha256": "586b94fadeaba7268866eedc1a2cf7f9d7b1bafad031d11cfaa708f61b24ad78",
+      "binary_sha256": "9b6d108cbea1c7f50fe5a1e37a12f68a0dbcd599d9f219ceb67f353e70bc62aa",
+      "input_sha256": "e15091540ef23964d2967456db33bc5a6c6986a83ae94aca8b39b0ab4a24f4e8",
+      "worker_exit": {
+        "exit_code": 1,
+        "cleanup_actions": [],
+        "group_absence": {
+          "pgid": 99987,
+          "absent": true,
+          "observed_unix_ns": 1788920742648994000,
+          "actions": []
+        },
+        "shutdown_acknowledged": false,
+        "shutdown_protocol_errors": []
+      },
+      "interpretation": "A separate native execution reproduced the same three wrong ciphertexts on the exact retained binary/key/input. It is one repeated failing instance, not a second independent key or input observation."
+    },
+    "unresolved_failed_arms": [
+      "general"
+    ],
+    "included_in_new_timing": false,
+    "interpretation": "The original incomplete 269-output attempt and same-input diagnostic remain separate. New successful observations do not resolve the historical general-core failure."
+  },
+  "exact_acceptance": {
+    "schema": "fhe-progress-observational-analysis-acceptance.v1",
+    "passed": true,
+    "evidence_valid": true,
+    "full_schedule_complete": true,
+    "all_outputs_correct": true,
+    "observation_policy": "retain_semantic_failure_continue",
+    "section": "exact_id_observational",
+    "primary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/analysis/observational-main-01/ANALYSIS.json",
+    "primary_sha256": "0be2cec68529690a2d823862d53d63cce0c8337c36453d4f7ac70d80bc833444",
+    "independent_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/observational/audit/independent-reader/MAIN_REPORT-01.json",
+    "independent_sha256": "c8a77cd679a09203b5d5464e1ca9d66a74fd5c834bb4fafed86a8a333dbcc695",
+    "checker_sha256": "dbf2d926115af55540381c679c04ee243000be801a1909d67022a94e4c467db4",
+    "verified_independent_pins": 922,
+    "scalar_checks": 1632,
+    "key_groups": 21,
+    "analysis_source": {
+      "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/control/analyze_observational.py",
+      "sha256": "74a81466024495144a57acd030286a041a9d13becca583cd15edc0ee29be5647"
+    },
+    "maximum_numerical_difference": "9.627428658401226043000898306E-14",
+    "observations": {
+      "independently_replayed_inputs": 315,
+      "independently_replayed_input_coefficients": 645120,
+      "ciphertexts": 855,
+      "independently_replayed_phases": 855,
+      "witness_only_phases": 0,
+      "outputs": 450,
+      "correct_outputs": 450,
+      "incorrect_outputs": 0,
+      "measured_incorrect_outputs": 0
+    },
+    "original_failure_context": {
+      "pins": {
+        "report": {
+          "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/late-exact/audit/main-failure-01/REPORT.json",
+          "sha256": "a6ba08d5f7ebf8fc59aae119338e5cc04ce671a9f82874bffa22f966075374ee"
+        },
+        "same_input_replay": {
+          "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/runs/general-failure-replay-01/RESULT.json",
+          "sha256": "02eafa90539d91fb51f6e6f26192350b04fbda6ef37842eddcba6b76949b25df"
+        },
+        "root_acceptance": {
+          "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/control/EXACT_MAIN_FAILURE_REVIEW_ACCEPTED.json",
+          "sha256": "6ada9e4f599e16f3dd1b3288504e3682ac150dff861d473f8c5fa293cd4e6c2d"
+        }
+      },
+      "original_campaign_complete": false,
+      "original_campaign_qualified": false,
+      "total": {
+        "planned_outputs": 450,
+        "observed_outputs": 269,
+        "correct_outputs": 268,
+        "incorrect_outputs": 1,
+        "missing_outputs": 181,
+        "measured_observed_outputs": 169,
+        "measured_correct_outputs": 168,
+        "excluded_warmup_outputs": 100,
+        "third_family_generated": false
+      },
+      "failure": {
+        "arm": "general",
+        "key_index": 1,
+        "scene": "tie_first_last",
+        "group": 26,
+        "repeat": 2,
+        "phase": "measured",
+        "expected_id": 1,
+        "decoded_id": 75,
+        "expected_digits": [
+          1,
+          0,
+          0
+        ],
+        "independently_decoded_digits": [
+          0,
+          5,
+          0
+        ],
+        "independently_decrypted_phases": [
+          18446034363642926158,
+          2881760739586496527,
+          866727281509462
+        ],
+        "errors_from_expected": [
+          -577170462370048946,
+          2881760739586496527,
+          866727281509462
+        ],
+        "expected_half_cell_pass": [
+          false,
+          false,
+          true
+        ],
+        "errors_from_rounded_digits": [
+          -709710066625458,
+          -543021930620913,
+          866727281509462
+        ],
+        "rounded_centres_half_cell_pass": [
+          true,
+          true,
+          true
+        ],
+        "raw_ciphertext_hashes": [
+          "2d18f2813b5f4db42a152221bfc69304ab9d63cf08ac490beba14c85e42a3d3f",
+          "151af68ba5de8d5ad93fceb4158f52e80fe283abc3ab3c54c477a5009801ad39",
+          "e5eda2d73156b0b341568008ce2ef60b823acbcd59e2eb27bec1416e6ec920ae"
+        ],
+        "native_and_independent_phase_agreement": true,
+        "interpretation": "The actual native ciphertexts encode an incorrect exact ID; independent decryption agrees with the worker. This is not a JSON/decoder disagreement or a near-boundary rounding ambiguity. Terminal ID75 does not identify the internal stage or prove that candidate75 won the encrypted tournament.",
+        "input_sha256": "e15091540ef23964d2967456db33bc5a6c6986a83ae94aca8b39b0ab4a24f4e8",
+        "source_sha256": "586b94fadeaba7268866eedc1a2cf7f9d7b1bafad031d11cfaa708f61b24ad78",
+        "binary_sha256": "9b6d108cbea1c7f50fe5a1e37a12f68a0dbcd599d9f219ceb67f353e70bc62aa",
+        "public_key_fingerprint": "e2a63b90283b157cb39779f53e3e5cbf0ffc80af381a6c2619453825c1d402f4",
+        "input_phase_replay": {
+          "coefficients": 2048,
+          "full_delta_log": 51,
+          "low_delta_log": 60,
+          "maximum_absolute_phase_error": 183757,
+          "exclusive_error_bound": 1125899906842624,
+          "pass": true
+        },
+        "oracle": {
+          "minimum_score": -350,
+          "all_minimum_ids": [
+            1,
+            127
+          ],
+          "earliest_minimum_id": 1,
+          "score_at_output_id75": 509
+        },
+        "prior_same_native_family_scene": [
+          {
+            "group": 18,
+            "phase": "warmup",
+            "repeat": 0,
+            "decoded_id": 1,
+            "native_pass": true,
+            "input_sha256": "eb02c5f8b038e3542dfb5e97b0a6d16252c6ef4895656be94222fe27a1943502"
+          },
+          {
+            "group": 22,
+            "phase": "measured",
+            "repeat": 1,
+            "decoded_id": 1,
+            "native_pass": true,
+            "input_sha256": "6451ba58ba15cf7d55f8cb2015bee1567f7161a3337ba4d9e596c1a0bcd0f34f"
+          },
+          {
+            "group": 26,
+            "phase": "measured",
+            "repeat": 2,
+            "decoded_id": 75,
+            "native_pass": false,
+            "input_sha256": "e15091540ef23964d2967456db33bc5a6c6986a83ae94aca8b39b0ab4a24f4e8"
+          }
+        ],
+        "sampled_load": {
+          "high_load": true,
+          "unknown": false,
+          "unknown_reasons": [],
+          "coverage_complete": true,
+          "uncovered_intervals_unix_ns": []
+        }
+      },
+      "excluded_same_input_replay": {
+        "excluded_from_main": true,
+        "new_independent_key_or_input": false,
+        "ciphertext_equality_independently_verified": true,
+        "phase_equality_independently_verified": true,
+        "independently_replayed_phases": 3,
+        "decoded_id": 75,
+        "expected_id": 1,
+        "source_sha256": "586b94fadeaba7268866eedc1a2cf7f9d7b1bafad031d11cfaa708f61b24ad78",
+        "binary_sha256": "9b6d108cbea1c7f50fe5a1e37a12f68a0dbcd599d9f219ceb67f353e70bc62aa",
+        "input_sha256": "e15091540ef23964d2967456db33bc5a6c6986a83ae94aca8b39b0ab4a24f4e8",
+        "worker_exit": {
+          "exit_code": 1,
+          "cleanup_actions": [],
+          "group_absence": {
+            "pgid": 99987,
+            "absent": true,
+            "observed_unix_ns": 1788920742648994000,
+            "actions": []
+          },
+          "shutdown_acknowledged": false,
+          "shutdown_protocol_errors": []
+        },
+        "interpretation": "A separate native execution reproduced the same three wrong ciphertexts on the exact retained binary/key/input. It is one repeated failing instance, not a second independent key or input observation."
+      },
+      "unresolved_failed_arms": [
+        "general"
+      ],
+      "included_in_new_timing": false,
+      "interpretation": "The original incomplete 269-output attempt and same-input diagnostic remain separate. New successful observations do not resolve the historical general-core failure."
+    },
+    "correctness": {
+      "a28": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "a29": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "a33": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "a38": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "a66": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "r3": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "head_m": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "general": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": true,
+        "exact_speedup_qualified": false,
+        "qualification_failures": [
+          "general:unresolved_wrong_output_in_original_campaign"
+        ]
+      },
+      "cpu": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      },
+      "final": {
+        "all": {
+          "outputs": 45,
+          "correct": 45,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "measured": {
+          "outputs": 30,
+          "correct": 30,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "warmup": {
+          "outputs": 15,
+          "correct": 15,
+          "incorrect": 0,
+          "all_outputs_correct": true
+        },
+        "by_family": {
+          "0": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "1": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "2": {
+            "outputs": 15,
+            "correct": 15,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "by_scene": {
+          "genuine_first": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "genuine_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_equal": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "boundary_reject": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          },
+          "tie_first_last": {
+            "outputs": 9,
+            "correct": 9,
+            "incorrect": 0,
+            "all_outputs_correct": true
+          }
+        },
+        "historical_failure_unresolved": false,
+        "exact_speedup_qualified": true,
+        "qualification_failures": []
+      }
+    },
+    "load_summary": {
+      "measured": {
+        "outputs": 300,
+        "high_load": 300,
+        "unknown": 196,
+        "coverage_complete": 300,
+        "unknown_reasons": {
+          "process_churn": 196
+        },
+        "by_arm": {
+          "a28": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 30,
+            "coverage_complete": 30
+          },
+          "a29": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 22,
+            "coverage_complete": 30
+          },
+          "a33": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 20,
+            "coverage_complete": 30
+          },
+          "a38": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 19,
+            "coverage_complete": 30
+          },
+          "a66": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 19,
+            "coverage_complete": 30
+          },
+          "r3": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 16,
+            "coverage_complete": 30
+          },
+          "head_m": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 17,
+            "coverage_complete": 30
+          },
+          "general": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 17,
+            "coverage_complete": 30
+          },
+          "cpu": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 17,
+            "coverage_complete": 30
+          },
+          "final": {
+            "outputs": 30,
+            "high_load": 30,
+            "unknown": 19,
+            "coverage_complete": 30
+          }
+        }
+      },
+      "warmup": {
+        "outputs": 150,
+        "high_load": 150,
+        "unknown": 108,
+        "coverage_complete": 150,
+        "unknown_reasons": {
+          "process_churn": 108
+        },
+        "by_arm": {
+          "a28": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 13,
+            "coverage_complete": 15
+          },
+          "a29": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 12,
+            "coverage_complete": 15
+          },
+          "a33": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 11,
+            "coverage_complete": 15
+          },
+          "a38": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 12,
+            "coverage_complete": 15
+          },
+          "a66": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 8,
+            "coverage_complete": 15
+          },
+          "r3": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 11,
+            "coverage_complete": 15
+          },
+          "head_m": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 8,
+            "coverage_complete": 15
+          },
+          "general": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 12,
+            "coverage_complete": 15
+          },
+          "cpu": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 10,
+            "coverage_complete": 15
+          },
+          "final": {
+            "outputs": 15,
+            "high_load": 15,
+            "unknown": 11,
+            "coverage_complete": 15
+          }
+        }
+      }
+    },
+    "exports": {
+      "observations.csv": {
+        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/analysis/observational-main-01/observations.csv",
+        "sha256": "a5bcea0d949da82c34dfdb875deaca769c77015ce91fe5ba7179592a1b303f18",
+        "verified_rows": 450
+      },
+      "points.csv": {
+        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/analysis/observational-main-01/points.csv",
+        "sha256": "c95c7f9471293fa4212469c66a9032153f4dc18f9e5ee6bb4c8c6695c4f2e9b9",
+        "verified_rows": 10
+      }
+    },
+    "claim": "The complete fixed raw campaign, all runtime statistics, correctness counts, qualification flags and both CSV exports agree with independent replay. Incorrect outputs remain included; passed means evidence/statistical agreement, not all outputs correct or the historical failure resolved."
+  },
+  "prototype_acceptance": {
+    "schema": "fhe-progress-prototype-analysis-acceptance.v1",
+    "passed": true,
+    "primary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/analysis/prototype-main-01/ANALYSIS.json",
+    "primary_sha256": "9738394e83f3648034fb2fa7b6444a1fd45cc20f560c28d487de73cf09e3554b",
+    "independent_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/prototypes/audit/independent-reader-v2/MAIN_REPORT-01.json",
+    "independent_sha256": "dcf4e3500960b5544ed9849e195105c92e641a0489caa09d51a5a0c11e57de88",
+    "checker_sha256": "8c4571736110ea8f2f988fe3054d0b946e34c1cb3a8df4edab4c5357ec7e13be",
+    "verified_independent_pins": 191,
+    "scalar_checks": 96,
+    "maximum_numerical_difference": "4.948929225432757611334839292E-16",
+    "verified_outputs": 54,
+    "load_summary": {
+      "warmup": {
+        "outputs": 18,
+        "high_load": 18,
+        "unknown": 18,
+        "coverage_complete": 18
+      },
+      "measure": {
+        "outputs": 36,
+        "high_load": 36,
+        "unknown": 36,
+        "coverage_complete": 36
+      }
+    },
+    "claim": "Same complete raw campaign; primary statistics agree with the independent Decimal reader. Native decryption witnesses; no recovered main keys or removed observations."
+  },
+  "acceptance_pins": {
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/control/OBSERVATIONAL_ANALYSIS_ACCEPTED.json": "e2337fd013022efe46eba585530fb4001df099ef676b3f536e389b1f36098f6a",
+    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/progress-common-benchmark-20260909/control/PROTOTYPE_ANALYSIS_ACCEPTED.json": "fde0f434ec29bc94e33ef4ceda0ad681ac97c6a8742c71dd880a09e5ec9da565"
+  },
+  "creator_sha256": "83134a1d5dc9546c5ae2895680f785e18c3fa50004324add294dbc94549a86e4",
+  "primary_scale": "logarithmic",
+  "dispersion": "Type 7 interquartile range, not a confidence interval"
+}

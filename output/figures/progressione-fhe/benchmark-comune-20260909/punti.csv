@@ -1,0 +1,13 @@
+versione,sezione,n_misure,mediana_secondi,q25_secondi,q75_secondi,output_totali,output_corretti,errori_misurati,errore_storico_irrisolto,qualifica_exact
+concrete,prototipi,18,264.797784896,254.58503443775,271.403972427,27,27,0,False,non_applicabile_argmin
+tfhe13,prototipi,18,49.7674600835,49.69972750975,49.8693758335,27,27,0,False,non_applicabile_argmin
+a28,exact_0_ID,30,7.3517813125,7.3196704795,7.3992804995,45,45,0,False,True
+a29,exact_0_ID,30,6.667234083,6.63957807275,6.7483797715,45,45,0,False,True
+a33,exact_0_ID,30,5.5959295835,5.571611344,5.63923805225,45,45,0,False,True
+a38,exact_0_ID,30,4.764888583,4.7451487815,4.82236930225,45,45,0,False,True
+a66,exact_0_ID,30,4.151290896,4.12201939575,4.19233049,45,45,0,False,True
+r3,exact_0_ID,30,3.0197289165,2.9889979165,3.042506677,45,45,0,False,True
+head_m,exact_0_ID,30,2.094266313,2.066471989,2.11040908375,45,45,0,False,True
+general,exact_0_ID,30,2.08059525,2.065626104,2.09675826025,45,45,0,True,False
+cpu,exact_0_ID,30,2.082289146,2.0643273855,2.0952191045,45,45,0,False,True
+final,exact_0_ID,30,1.622570437,1.61127871925,1.641609438,45,45,0,False,True
