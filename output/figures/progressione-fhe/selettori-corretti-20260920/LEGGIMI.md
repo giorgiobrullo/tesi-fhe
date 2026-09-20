@@ -4,6 +4,10 @@ Campagna del 20 settembre 2026, Apple M4 Max, 16 thread.
 [PNG per email](progressione-email.png), [PNG completo](progressione.png),
 [SVG](progressione.svg) e [PDF](progressione.pdf).
 
+Il grafico riporta le statistiche e le condizioni essenziali. Questo
+documento lo accompagna con il dettaglio delle verifiche e dell'attività
+di altri processi durante le misure.
+
 ## Percorso e perimetro
 
 Dieci versioni complete 0/ID sono ricompilate e rimisurate su cinque scene

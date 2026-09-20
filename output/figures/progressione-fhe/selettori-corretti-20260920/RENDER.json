@@ -1,16 +1,16 @@
 {
-  "creator_sha256": "a20963f304e07b229c68928d9ac414b1e036bc2da019d68e215aa83340a2bfdb",
+  "creator_sha256": "df927064333bff3e283ac0dc6ebe90422c2510f6fce3f1fccd0d671615b032b8",
   "outputs": {
     "dati.json": "6382dcadf0f984f9bb3c15930b377e069965815896bd46a9b380e0dc8f09d2ef",
     "misure.csv": "562e95792bf33438eba1a3985f830b4239edea1ce39bc6825654c7a60ba31227",
-    "progressione-email.png": "c4f3741e7da1c05b81a31b41827393e5f411bc639182430fe9cf49bd86a1b071",
-    "progressione.pdf": "c2be9fad03370e86a8c121e8e6675237ecb1929f4ba759c996da8c9fba8ca5d2",
-    "progressione.png": "eb91c94105acca223096e572ea68e075a9b3eb153aefc02adf613cdf359bdec2",
-    "progressione.svg": "f4007d77d961aa41d4405162ad2ae13cde80709a476a82ab648d759baf3f038a",
+    "progressione-email.png": "ee77c896ba33d32c1f6a51631b89241e6c7ebc62ea9a9469747d20a222bdacb8",
+    "progressione.pdf": "ff631acd6faac81b8b30c08db8d3b6f9d341c71fd6cfcb57f65f084398347b90",
+    "progressione.png": "bb7da7eb40a31000db6d3854070ed1f27e7d652f7f3a638febed4d521723d441",
+    "progressione.svg": "87e682ee22ebbef749212d0182ea9c374274d099067809dcfdb34c3eec748bc2",
     "punti.csv": "5d2d2fc3000b74f8b25d0e4db2c43d087fa9ff2f4627e592a3937d0be64355ff"
   },
   "independent_quartile_crosscheck": true,
-  "previous_render_sha256": "8ae144fb81a5791fc61eb4f732e141c592b012ba25be0992181851784d2469ba",
-  "previous_creator_sha256": "417847be1695778ea12ac9d687cdcb846dcb49625dd92c8ee206875ce1dca502",
-  "change": "Explain four-digit grouping and background CPU activity; preserve all data, plotted values and quartiles."
+  "previous_render_sha256": "8243ec898f329e8bb60abcfc222aacb7f048cf94486b6534eb008d1fdc69e95f",
+  "previous_creator_sha256": "a20963f304e07b229c68928d9ac414b1e036bc2da019d68e215aa83340a2bfdb",
+  "change": "Shorten figure notes; detailed verification and CPU activity remain in the accompanying method. All data and plotted values unchanged."
 }

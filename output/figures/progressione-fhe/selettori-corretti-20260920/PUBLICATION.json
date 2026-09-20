@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-09-20T20:13:12.090565+00:00",
+  "created_at": "2026-09-20T20:21:59.116256+00:00",
   "passed": true,
   "visual_review": {
     "pdf_render_inspected": true,
@@ -10,8 +10,8 @@
   "main_audit_sha256": "061bdc0dfc4c4cdc9c593145029993b307085aef5450ecc6bc70d29c32b79c5b",
   "gate_audit_sha256": "67a513cfcdbc6ece651c195b758f6107f27ede1dcdbe2430c79b979bb24d2ef0",
   "source_freeze_sha256": "e43c03d6e827492e260b5a9f5392f6455a3349d2b5192fae4584b3926d17b983",
-  "pdf_sha256": "c2be9fad03370e86a8c121e8e6675237ecb1929f4ba759c996da8c9fba8ca5d2",
-  "method_sha256": "ac6bb9eaf29574ffa9350d48eaa383ac70c8dd137aa959752b1f5207aee1e7ef",
-  "render_sha256": "8243ec898f329e8bb60abcfc222aacb7f048cf94486b6534eb008d1fdc69e95f",
-  "previous_publication_sha256": "784a7525560dfa8b3c4ba0203e1c0e7c0922c5ad37b1d72d3d9c883b6509cc3f"
+  "pdf_sha256": "ff631acd6faac81b8b30c08db8d3b6f9d341c71fd6cfcb57f65f084398347b90",
+  "method_sha256": "b1e9b1002ba507b3b067d99009a84fab77c7d24299aa5f9c271fb55a0a04aec8",
+  "render_sha256": "1cad4f03035f8c8a0a7a641f50ac546694910b9455f99511c19caaba62b1ec4e",
+  "previous_publication_sha256": "8b6ae33e2a6af9dea2122976026726540844f860e019be27e765d31585305f8b"
 }

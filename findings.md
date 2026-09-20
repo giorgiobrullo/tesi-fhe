@@ -42,7 +42,7 @@ locali a ciascun confronto, non nomi di versioni condivisi fra campagne.
 | Normalizzatore, componenti e demo (F88–F90) | [Composizione e servizio](docs/risultati/normalizzatore-e-demo.md) |
 | Alternative (F91–F92) | [Tetris, DAG e altri filoni](docs/risultati/alternative.md) |
 | Confronto comune precedente alla correzione (F93) | [Campagna del 9 settembre](docs/risultati/campagna-comune.md) |
-| Prime revisioni (F0–F83) | [Sintesi storica](docs/risultati/storico.md) |
+| Prime revisioni (F0–F83) | [Diario completo](docs/risultati/diario/README.md) · [Sintesi e correzioni](docs/risultati/storico.md) |
 
 ## F84 - Contratto exact 0/ID e implementazione selezionata
 
@@ -144,4 +144,6 @@ vicino alla soglia è stato invalidato; le vecchie suite e i formati di risposta
 appartengono alle revisioni che li hanno prodotti. Le misure iniziali non
 qualificano automaticamente il core attuale.
 
-[Condizioni, risultati e fonti](docs/risultati/storico.md#f0f83---risultati-storici-e-correzioni-consolidate).
+[Tutte le 84 schede](docs/risultati/diario/README.md), con tabelle e passaggi
+tecnici, sono consultabili separatamente dalla
+[sintesi con le correzioni](docs/risultati/storico.md#f0f83---risultati-storici-e-correzioni-consolidate).

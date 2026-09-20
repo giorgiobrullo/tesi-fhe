@@ -8,7 +8,9 @@ alla probabilità di fallimento del circuito.
 
 ## F0–F83 - Risultati storici e correzioni consolidate
 
-La tabella riassume i principali risultati dei primi esperimenti, includendo
+Le [84 schede complete](diario/README.md) conservano tabelle, ragionamenti
+e dettagli delle prove, con le correzioni successive indicate nel testo.
+La tabella seguente riassume i principali risultati dei primi esperimenti, includendo
 le correzioni emerse nelle prove successive. I formati e le prestazioni delle
 versioni iniziali non descrivono automaticamente l'implementazione attuale.
 
