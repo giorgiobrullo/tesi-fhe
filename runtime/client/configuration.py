@@ -22,5 +22,5 @@ class ClientConfiguration:
     @property
     def assets(self) -> Path:
         return next(parent for parent in self.runtime.parents
-                    if (parent / "RESEARCH_STATE.md").is_file()
+                    if (parent / "pyproject.toml").is_file()
                     and (parent / "experiments/08_cnn/embedding.py").is_file())

@@ -143,7 +143,7 @@ cargo test --manifest-path candidate/Cargo.toml \
 I test FHE con chiavi nuove sono ignorati per default. Per la regressione
 del percorso mantenuto usare il comando dedicato nella
 [guida ai test](../../docs/riproducibilita.md#eseguire-i-test-della-demo).
-Per questa revisione usare il [registro di qualifica](../../SELECTOR_REPAIR_VALIDATION.md).
+Per questa revisione usare il [registro di qualifica](../../docs/validazione/SELECTOR_REPAIR_VALIDATION.md).
 I risultati storici osservati del servizio precedente sono nel
 [rapporto sperimentale](../../experiments/22_demo_composita/evidence/ORIGINAL_SERVICE_RESULTS.md).
 Il rumore delle soglie dopo la selezione, la profondità del torneo e le

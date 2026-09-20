@@ -67,7 +67,7 @@ la demo storica integrata è documentata nel 22; per avviare la versione
 corrente seguire [BUILD_AND_RUN.md](../BUILD_AND_RUN.md).
 
 I [risultati](../findings.md) raccolgono le conclusioni dei confronti.
-Le [questioni aperte](../OPEN_QUESTIONS.md) descrivono le verifiche e le
+Le [questioni aperte](../docs/limiti.md) descrivono le verifiche e le
 possibili estensioni ancora necessarie.
 
 ## Confronto comune del 9 settembre

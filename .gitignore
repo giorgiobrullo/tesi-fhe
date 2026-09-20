@@ -86,3 +86,10 @@ targets/
 !/output/figures/ckks-tfhe/
 /output/figures/ckks-tfhe/*
 !/output/figures/ckks-tfhe/selettore-corretto-20260920/
+
+# Note operative e file di preparazione locali.
+/RESEARCH_STATE.md
+/OPEN_QUESTIONS.md
+/DELIVERY_PREPARATION.json
+/SOURCE_DELTA.patch
+/SELECTOR_REPAIR_VALIDATION.md

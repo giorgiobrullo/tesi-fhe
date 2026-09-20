@@ -67,8 +67,8 @@ PY
 ```
 
 Generare una coppia `client.key`/`server.key` in una directory nuova.
-La correzione del selettore ha una nuova identità di circuito e rifiuta le chiavi dei vecchi
-snapshot. Il comando rifiuta di sovrascrivere file di chiave già presenti; ai successivi
+Le chiavi sono legate all’identità del runtime: dopo questo aggiornamento
+ricompilare il binario e generare una nuova coppia. Il comando rifiuta di sovrascrivere file di chiave già presenti; ai successivi
 avvii riutilizzare la coppia generata, senza ripetere questo passaggio:
 
 ```sh

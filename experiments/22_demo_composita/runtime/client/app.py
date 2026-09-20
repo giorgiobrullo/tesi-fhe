@@ -36,7 +36,7 @@ from . import protocol
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 QUI = pathlib.Path(__file__).resolve().parent
-ASSET_ROOT = next(parent for parent in ROOT.parents if (parent / "RESEARCH_STATE.md").is_file()
+ASSET_ROOT = next(parent for parent in ROOT.parents if (parent / "pyproject.toml").is_file()
                   and (parent / "experiments/08_cnn/embedding.py").is_file())
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ASSET_ROOT / "experiments" / "08_cnn"))

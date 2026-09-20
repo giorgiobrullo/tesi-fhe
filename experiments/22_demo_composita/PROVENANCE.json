@@ -41,7 +41,7 @@
     "runtime/circuit.sha256": {"sha256": "7e5ded36ffb32807ed53499d84f28d84e2507d76753742e38cb46da9b594678a", "bytes": 64},
     "runtime/circuit.template.json": {"sha256": "44235731e8b242ca97ad24483d74b837cc79ca52197cfb839d44580d45bdee04", "bytes": 2517},
     "runtime/client/__init__.py": {"sha256": "5f66b02ddc41d63d25f54f3c24552bc3efff4744090d3bd76a1e112650fbb9b4", "bytes": 70},
-    "runtime/client/app.py": {"sha256": "ae762ac90d9b0942fca2b2fdbef5ab15a427fac0f7345cd789db78e5c9faa63b", "bytes": 20592},
+    "runtime/client/app.py": {"sha256": "84898772caf3f4051f317b8796cb8b72954ad28943b2cfc21131ab52af9eb629", "bytes": 20589, "historical_selection_sha256": "ae762ac90d9b0942fca2b2fdbef5ab15a427fac0f7345cd789db78e5c9faa63b", "historical_selection_bytes": 20592, "change": "Asset root lookup uses pyproject.toml instead of a local research note; historical native code and recorded run hashes are unchanged."},
     "runtime/client/ledger.py": {"sha256": "b9bcdc9e189acdd363ea60a50d268a2bc7af03806f83eb520a8d5a802e0c3299", "bytes": 3278},
     "runtime/client/protocol.py": {"sha256": "bb57883112cb5f11cd361fc7ceb4a9170f64f8dd012a269a0090058d2a4f96bc", "bytes": 12603},
     "runtime/client/test_protocol.py": {"sha256": "ae4e2e2877b748a17d1cf49b18d271746928832dec16d7fdf183d7bf739de688", "bytes": 16760},

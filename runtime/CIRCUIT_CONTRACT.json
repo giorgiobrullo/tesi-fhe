@@ -2,7 +2,7 @@
   "binding": "four string lengths then parameter id, parameter fingerprint, variant id and this canonical JSON byte digest",
   "core_id_contract": "head-pfks-refresh4-12-w127-pack4-b22-mean2-three-id-winner-threshold.v3",
   "core_package": "selector_four_core_20260920",
-  "core_source_sha256": "07e596858189b3b5d2324b66541ca6408fc6b495bb95e4621183e3b3053f2c42",
+  "core_source_sha256": "a5bda17d7851d55b15a1736f020517ee35a52b54ccc8b53b66ae507607459416",
   "decision": "first minimum true score, inclusive comparison to that winner own threshold; reject0; preserve left-stable ties and no alternate passing candidate",
   "g4_key_binding": "v9 sidecar bound to base server envelope SHA256",
   "g4_required": false,
@@ -103,7 +103,7 @@
     "scheme": "ordinary-centered-refresh4-12-then-centered-selection",
     "selection_radius_degrees": 127
   },
-  "service_source_sha256": "5de9b8d3e33820fb8e7d001d45c7c3660c91a794786fb49f64f6ba4a86d07a07",
+  "service_source_sha256": "a9fec2c1550a20cea17b9f08f6970d81abbcdf1d515c9a3ff4afca9f82e5ed3c",
   "source_digest_scope": "non-generated source leaves and BUILD_SELECTION.json; generated bindings closed by SOURCE_PINS.json",
   "state_binding": [
     "installed evaluation key SHA256",

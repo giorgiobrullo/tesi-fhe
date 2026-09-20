@@ -1,4 +1,4 @@
-# Questioni aperte - exact 0/ID
+# Limiti e sviluppi futuri
 
 20 settembre 2026. I problemi che restano e l'evidenza necessaria per risolverli.
 
@@ -12,9 +12,9 @@ né il `p_fail` di una singola primitiva forniscono quel limite.
 
 La prova deve usare parametri, scale e indirizzi effettivi e giustificare le
 premesse su sampler, generatore casuale e calcolo floating point. Le
-[mappe del normalizzatore](experiments/20_normalizzatori_carry/evidence/NORMALIZER_ERROR_MAPS.md)
+[mappe del normalizzatore](../experiments/20_normalizzatori_carry/evidence/NORMALIZER_ERROR_MAPS.md)
 vincolano vettori salvati, non la distribuzione su chiavi future.
-[Diagnosi e correzione del selettore](docs/selector-repair-20260920.md).
+[Diagnosi e correzione del selettore](selector-repair-20260920.md).
 
 ## 2. Accuratezza biometrica e validità degli input
 
@@ -44,7 +44,7 @@ effettiva. Gli intervalli attuali sono condizionati alle famiglie osservate;
 il carico esterno limita l'interpretazione. La capacità di rappresentare un
 ID non dimostra prestazioni a quella taglia. Cattura e utenti concorrenti
 richiedono misure distinte dal core.
-[Metodo e limiti del confronto diretto](docs/selector-direct-cost-20260920.md).
+[Metodo e limiti del confronto diretto](selector-direct-cost-20260920.md).
 
 ## 5. Possibili sviluppi e prove necessarie
 
@@ -56,9 +56,9 @@ richiedono misure distinte dal core.
 | Un produttore Tetris con meno conversioni è vantaggioso? | Correttezza delle interfacce e costo di tutte le conversioni, prima sul componente e poi sulla query. |
 | Il circuito custom è utile su GPU? | Prototipo CUDA compilato, correttezza FHE e tempi comprensivi di conversioni e trasferimenti. |
 
-Precedenti: [DAG](experiments/26_torneo_dag/evidence/POST_SCREEN_INTERPRETATION.md),
-[Tetris](experiments/25_tetris/README.md), [CPU](experiments/19_runtime_cpu/README.md)
-e [servizio](experiments/22_demo_composita/README.md).
+Precedenti: [DAG](../experiments/26_torneo_dag/evidence/POST_SCREEN_INTERPRETATION.md),
+[Tetris](../experiments/25_tetris/README.md), [CPU](../experiments/19_runtime_cpu/README.md)
+e [servizio](../experiments/22_demo_composita/README.md).
 
 ## 6. Filoni alternativi
 
@@ -69,5 +69,5 @@ premessa concreta delle costruzioni già studiate. Il CKKS ottimizzato resta
 un valutatore con contratto distinto. Gli esiti negativi non dimostrano
 l'impossibilità di un'intera famiglia di metodi.
 
-Precedenti: [CKKS](experiments/23_ckks_ottimizzazioni/README.md),
-[common-mask e BGV](experiments/24_frontiere_common_mask_bgv/README.md).
+Precedenti: [CKKS](../experiments/23_ckks_ottimizzazioni/README.md),
+[common-mask e BGV](../experiments/24_frontiere_common_mask_bgv/README.md).

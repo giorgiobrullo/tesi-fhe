@@ -89,5 +89,5 @@ Le campagne usano Apple M4 Max e 16 thread, con carico esterno osservato.
 Misurano il core, escludendo chiavi, cifratura, embedding e HTTP. La demo
 corrente aggiunge anche la trasformazione anchor: il suo circuito è distinto
 dal finale del grafico e dal TFHE del confronto CKKS. Le
-[questioni aperte](../OPEN_QUESTIONS.md) riguardano rumore composto,
+[questioni aperte](limiti.md) riguardano rumore composto,
 validazione biometrica e sicurezza del protocollo.

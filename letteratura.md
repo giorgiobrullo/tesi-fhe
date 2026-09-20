@@ -59,7 +59,7 @@ Un confronto di prestazioni richiede output e modello di fiducia comparabili.
 
 Le [implicazioni storiche](docs/letteratura/implicazioni-storiche.md) discutono
 A28/A29/A33. La prova del rumore composto resta una
-[questione aperta](OPEN_QUESTIONS.md), distinta dai risultati sperimentali.
+[questione aperta](docs/limiti.md), distinta dai risultati sperimentali.
 
 ## 7. Fonti
 

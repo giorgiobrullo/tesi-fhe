@@ -23,7 +23,8 @@ Rust sono già in cache.
 
 La [guida della demo](demo/dual_view/README.md#avvio-locale) usa questo binario
 per generare le chiavi e avviare il servizio. Occorre una coppia generata per
-il circuito attuale: le chiavi delle versioni precedenti alla correzione
+l’identità del runtime attuale. Dopo questo aggiornamento ricompilare il
+binario e generare una nuova coppia: le chiavi del pacchetto precedente
 non sono compatibili. Generarla in una directory nuova e riutilizzarla agli
 avvii successivi.
 

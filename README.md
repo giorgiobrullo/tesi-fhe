@@ -33,7 +33,7 @@ Il server segue il protocollo ma può cercare di ricavare informazioni dai
 messaggi: conosce galleria e soglie, mentre query e risposta sono cifrate.
 Il client deve rispettare i vincoli numerici degli input. Il prototipo non
 fornisce una prova generale del rumore composto o sicurezza contro client
-malevoli; questi problemi sono descritti nelle [questioni aperte](OPEN_QUESTIONS.md).
+malevoli; questi problemi sono descritti nelle [questioni aperte](docs/limiti.md).
 
 ## Demo
 

@@ -67,6 +67,12 @@ sono elencate nel suo README. Per provare un servizio completo usare il runtime 
 
 ## Provenienza dei dati inclusi
 
+Le misure FHE si riferiscono alle revisioni identificate nei rapporti.
+L’aggiornamento che elimina la dipendenza dalle note locali cambia il client
+Python e le impronte del pacchetto, mantenendo invariati tutti i sorgenti Rust,
+i parametri e le operazioni cifrate. I tempi archiviati conservano le identità
+originali; l’aggiornamento non costituisce una nuova campagna temporale.
+
 Alcuni report e JSON sono estratti pubblici privi dei metadati personali
 o dei percorsi locali degli originali. Il
 [registro delle impronte](provenienza-dati.json) distingue lo SHA-256
@@ -197,5 +203,5 @@ successiva lo localizza nel selettore: indirizzo 341 fuori da 300…340, con
 estrazioni Head corrette in quell'istanza. La baseline del 19 settembre passa
 il replay separato con ID1 e indirizzo 318 nel nodo interessato. Queste prove
 non qualificano da sole il nuovo selettore o la probabilità globale di errore.
-I [risultati](../findings.md) e le [questioni aperte](../OPEN_QUESTIONS.md)
+I [risultati](../findings.md) e le [questioni aperte](limiti.md)
 descrivono queste distinzioni nel dettaglio.

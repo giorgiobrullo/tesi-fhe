@@ -3,7 +3,7 @@
   "meaning": "Hash references within these JSONs and related PUBLICATION receipts identify frozen local originals. Public SHA values here verify distributed projections. local-archive: and local-home: strings are archive/environment identifiers, not distributed file paths.",
   "files": [
     {
-      "path": "DELIVERY_PREPARATION.json",
+      "path": "docs/validazione/DELIVERY_PREPARATION.json",
       "original_sha256": "1166fc3aef890e8e5f8105260f990f240ebf2f972f5be84ede7c1855d0ad54e9",
       "public_sha256": "800f3a5a5291da9cd4486d95afe95f369441af6f99acf67a885823179a05d763",
       "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."
