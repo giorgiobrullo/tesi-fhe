@@ -51,8 +51,10 @@ il selettore. Head e confronto erano corretti, ma il controllo raggiungeva
 l'indirizzo 341, oltre la finestra 300–340. Il selettore mescolava cifre di
 posizioni diverse e il torneo restituiva ID75 invece di ID1.
 
-La correzione rigenera il controllo prima della selezione. Il successivo
-packing a quattro cifre riduce il numero di operazioni mantenendo il refresh.
+La correzione rigenera il controllo prima della selezione. L'ottimizzazione
+successiva, chiamata `pack4` nei sorgenti, trasferisce insieme fino a quattro
+cifre che codificano punteggio, ID e soglia. Richiede meno operazioni e
+mantiene la rigenerazione del controllo.
 La lezione è verificare insieme rumore, finestre e cifre trasportate: un'uscita
 corretta nella demo non garantisce il margine su altre chiavi.
 [Diagnosi e correzione](selector-repair-20260920.md).
@@ -85,7 +87,9 @@ restituisce uno scalare approssimato, arrotondato sul client; TFHE tre cifre
 discrete. Il tempo va letto insieme a questa differenza di contratto.
 [Dati e metodo CKKS/TFHE](../output/figures/ckks-tfhe/selettore-corretto-20260920/LEGGIMI.md).
 
-Le campagne usano Apple M4 Max e 16 thread, con carico esterno osservato.
+Le campagne usano Apple M4 Max e 16 thread. Durante le misure erano attivi
+anche altri processi sul computer: i tempi descrivono queste condizioni,
+senza quantificare il rallentamento dovuto all'attività in background.
 Misurano il core, escludendo chiavi, cifratura, embedding e HTTP. La demo
 corrente aggiunge anche la trasformazione anchor: il suo circuito è distinto
 dal finale del grafico e dal TFHE del confronto CKKS. Le

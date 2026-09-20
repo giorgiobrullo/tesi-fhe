@@ -10,17 +10,22 @@ ricostruisce lo sviluppo; le schede F raccolgono le prove e i relativi riferimen
 |---|---|---|
 | Progressione dei circuiti, N127/D512 | Mediane da 7,79 s a 1,82 s | [Dieci versioni rimisurate](output/figures/progressione-fhe/selettori-corretti-20260920/LEGGIMI.md) |
 | Confronto CKKS/TFHE, N128 e soglia generale | Mediane dei blocchi: 3,41 s / 2,60 s | [Metodo e differenze fra gli output](output/figures/ckks-tfhe/selettore-corretto-20260920/LEGGIMI.md) |
-| Packing a quattro cifre rispetto alla prima correzione | −4,74% di tempo sui confronti primari | [Prova pack4](docs/validazione/PACK4_VALIDATION.md) |
+| Selezione in gruppi fino a quattro cifre, rispetto alla prima correzione | −4,74% di tempo sui confronti primari | [Metodo e verifica](docs/validazione/PACK4_VALIDATION.md) |
 | Baseline corretta rispetto all'originale del 19 settembre | +6,87%; differenza mediana appaiata 0,121 s | [Confronto diretto](docs/selector-direct-cost-20260920.md) |
 
 Sono tempi del core su Apple M4 Max con 16 thread. I confronti usano versioni
 e campioni diversi; il finale del grafico non coincide con il motore della
 demo corrente. I rapporti appaiati non derivano dal rapporto delle mediane.
-Ogni rapporto documenta campione, carico esterno e incertezza.
+Durante le misure erano attivi anche altri processi sul computer. I tempi
+descrivono quelle condizioni; non sappiamo quantificare quanto sarebbero
+diversi su una macchina libera. Ogni rapporto documenta questa attività e
+i limiti della sua osservazione.
 
 La correzione risolve il meccanismo del guasto osservato nel selettore storico.
-Il packing a quattro cifre ne riduce il costo mantenendo il refresh del
-controllo. La [nota tecnica](docs/selector-repair-20260920.md) descrive la causa,
+L'ultima ottimizzazione trasferisce insieme fino a quattro cifre che codificano
+punteggio, ID e soglia, riducendo le operazioni necessarie. Nei sorgenti si
+chiama `pack4`; mantiene la rigenerazione del controllo introdotta dal fix.
+La [nota tecnica](docs/selector-repair-20260920.md) descrive la causa,
 le prove e i tentativi successivi. Resta aperto il limite di probabilità di
 fallimento del circuito completo.
 

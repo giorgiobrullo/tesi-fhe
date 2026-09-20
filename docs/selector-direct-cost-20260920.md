@@ -1,6 +1,6 @@
 # Costo diretto del fix nella baseline corrente
 
-Misura conclusa il 20 settembre 2026. **La baseline corretta con pack4 richiede
+Misura conclusa il 20 settembre 2026. **La baseline corretta e ottimizzata richiede
 il 6,87% di tempo in più rispetto all'originale pre-fix del 19 settembre**, nel
 confronto appaiato sui cinque scenari principali. La differenza mediana fra
 i tempi di ciascuna coppia è **0,1207 secondi per query**. Questo è un confronto
@@ -11,7 +11,9 @@ Il rapporto geometrico è **1,068737456**, con intervallo bootstrap al 95%
 **[1,062058655; 1,075158509]**, cioè **+6,21%–+7,52%**, condizionato alle famiglie
 e ai casi osservati. Le mediane marginali sono **1,701612 s per l'originale**
 e **1,824226 s per pack4 corretto**; il loro rapporto non definisce il risultato
-appaiato. Il timer riguarda il calcolo cifrato del core, non l'intera demo.
+appaiato. `Pack4` indica il trasferimento di gruppi fino a quattro cifre
+cifrate di punteggio, ID e soglia, che riduce il numero di operazioni del
+selettore. Il timer riguarda il calcolo cifrato del core, non l'intera demo.
 
 ## Che cosa è stato confrontato
 
@@ -73,10 +75,14 @@ un costo uniforme per qualsiasi galleria o distribuzione degli input.
 
 ## Limiti della misura e rapporto con i risultati precedenti
 
-Tutte le 144 query misurate hanno un indicatore di carico esterno oltre il 20%
-di un core. Per 67 finestre la contabilità CPU è parzialmente incerta a causa
-dei processi comparsi o terminati; la copertura temporale è completa in tutte.
-I dati restano inclusi. Il bootstrap usa 10.000 ricampionamenti delle coppie
+Durante tutte le 144 query misurate, l'attività CPU di altri processi supera
+la soglia diagnostica del 20% di un singolo core in almeno un intervallo
+campionato. Questa soglia non indica la saturazione dell'intera macchina.
+In 67 casi il monitor non ricostruisce interamente il consumo CPU dei
+processi comparsi o terminati. Tutti i tempi sono disponibili e inclusi;
+la copertura temporale del monitor è completa. La misura non quantifica il
+rallentamento causato dall'attività in background.
+Il bootstrap usa 10.000 ricampionamenti delle coppie
 entro ciascuna cella famiglia/scena, seed 20260919, senza ricampionare le famiglie.
 L'intervallo non copre nuove chiavi, altre macchine, popolazioni di input o effetti
 sistematici del carico. Non si dichiara isolamento continuo della macchina.

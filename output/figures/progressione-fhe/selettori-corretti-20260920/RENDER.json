@@ -1,13 +1,16 @@
 {
-  "creator_sha256": "417847be1695778ea12ac9d687cdcb846dcb49625dd92c8ee206875ce1dca502",
+  "creator_sha256": "a20963f304e07b229c68928d9ac414b1e036bc2da019d68e215aa83340a2bfdb",
   "outputs": {
     "dati.json": "6382dcadf0f984f9bb3c15930b377e069965815896bd46a9b380e0dc8f09d2ef",
     "misure.csv": "562e95792bf33438eba1a3985f830b4239edea1ce39bc6825654c7a60ba31227",
-    "progressione-email.png": "9aea3617d89b96f599e0d5e75b1f946b6a1aa38dde2e776c0747120c057051dc",
-    "progressione.pdf": "c6ebd709d072757b9da24545e71415c8d73f9266bb4acd45dd2b407119b14f93",
-    "progressione.png": "18823a2c254c63e09107b0e5bacbacda412511bec7d10a3a87ec503c2680d890",
-    "progressione.svg": "cf9040fc6b11ed08e40d512d9a0f9142139175d4784a841db801bc15f93e48fa",
+    "progressione-email.png": "c4f3741e7da1c05b81a31b41827393e5f411bc639182430fe9cf49bd86a1b071",
+    "progressione.pdf": "c2be9fad03370e86a8c121e8e6675237ecb1929f4ba759c996da8c9fba8ca5d2",
+    "progressione.png": "eb91c94105acca223096e572ea68e075a9b3eb153aefc02adf613cdf359bdec2",
+    "progressione.svg": "f4007d77d961aa41d4405162ad2ae13cde80709a476a82ab648d759baf3f038a",
     "punti.csv": "5d2d2fc3000b74f8b25d0e4db2c43d087fa9ff2f4627e592a3937d0be64355ff"
   },
-  "independent_quartile_crosscheck": true
+  "independent_quartile_crosscheck": true,
+  "previous_render_sha256": "8ae144fb81a5791fc61eb4f732e141c592b012ba25be0992181851784d2469ba",
+  "previous_creator_sha256": "417847be1695778ea12ac9d687cdcb846dcb49625dd92c8ee206875ce1dca502",
+  "change": "Explain four-digit grouping and background CPU activity; preserve all data, plotted values and quartiles."
 }

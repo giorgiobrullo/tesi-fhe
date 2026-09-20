@@ -9,8 +9,10 @@ Campagna del 20 settembre 2026, Apple M4 Max, 16 thread.
 Dieci versioni complete 0/ID sono ricompilate e rimisurate su cinque scene
 comuni N127/D512/T4. I primi sei circuiti, A28 fino a R3, sono invariati.
 Head M, Head generale, CPU e finale ricevono il refresh del selettore.
-Head M, generale e CPU usano gruppi di tre cifre; il finale adotta pack4,
-con gli stessi margini della correzione. Nessun anchor viene importato.
+Head M, generale e CPU usano gruppi di tre cifre; il finale trasferisce
+insieme fino a quattro cifre che codificano punteggio, ID e soglia.
+Questa ottimizzazione, chiamata `pack4` nei sorgenti, riduce le operazioni
+mantenendo i margini della correzione. Nessun anchor viene importato.
 Questa è una ricostruzione corretta della progressione: ogni punto ha tempi
 nuovi e nessun dato storico è moltiplicato per un fattore di correzione.
 
@@ -44,10 +46,20 @@ conservano famiglie proprie. Non si presume una chiave comune fra profili.
 
 I baffi sono l'intervallo interquartile, non intervalli di confidenza.
 Il timer comprende il calcolo cifrato ed esclude preparazione delle chiavi,
-cifratura, decifratura e HTTP. Carico esterno alto è segnalato in
-300/300 misure; contabilità incompleta in 164/300.
-Nessun campione è escluso. La campagna non dimostra isolamento continuo
-della macchina o una probabilità generale di fallimento.
+cifratura, decifratura e HTTP.
+
+Durante il benchmark erano attivi anche altri processi sul computer.
+In tutte le 300 misure, il loro consumo CPU supera la soglia diagnostica
+del 20% di un singolo core in almeno un intervallo campionato. Il flag
+non significa che l'intera macchina fosse satura o che la soglia fosse
+superata per tutta la durata della query.
+
+In 164 misure l'attribuzione del consumo CPU è parziale, soprattutto perché
+alcuni processi compaiono o terminano fra due campioni. Tutti i tempi sono
+disponibili e nessuno è escluso; la copertura temporale del monitor è completa.
+I tempi descrivono la macchina con quell'attività in background: non sappiamo
+quantificare quanto cambierebbero a macchina libera. La campagna non stabilisce
+una probabilità generale di fallimento del circuito.
 
 I due prototipi nel pannello sinistro mantengono i dati del 9 settembre:
 N8/D64, 18 misure ciascuno, 54 uscite verificate includendo i warmup.
