@@ -70,7 +70,7 @@ Il binario consegnato è quello ricompilato e verificato successivamente.
 Rust 1.93.1, TFHE-rs 1.7.0, 16 thread, ottimizzazione 3, una codegen unit e
 LTO disattivato. I tempi del core includono pianificazione e preparazione degli
 anchor, ma escludono generazione/caricamento chiavi, cifratura, decifratura e I/O
-dei report. Per compilazione e avvio vedere il [runtime](runtime/README.md).
+dei report. Per compilazione e avvio vedere il [runtime](../../runtime/README.md).
 L'archivio contiene sorgenti e documenti, senza le chiavi delle prove.
 
 ## Ricerca ancora aperta

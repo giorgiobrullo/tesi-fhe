@@ -108,7 +108,7 @@ del computer. La fotocamera richiede l'autorizzazione del browser e viene
 attivata dall'utente. Non vengono effettuate richieste di accesso automatiche.
 
 Il motore FHE e i risultati sperimentali sono descritti
-nel [rapporto della baseline pack4](../../PACK4_VALIDATION.md).
+nel [rapporto della baseline pack4](../../docs/validazione/PACK4_VALIDATION.md).
 L'[esperimento 22](../../experiments/22_demo_composita/README.md) descrive
 la composizione precedente, con le sue misure storiche.
 Le due pagine usano lo stesso protocollo di cifratura e verifica. I tempi

@@ -9,13 +9,13 @@
       "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."
     },
     {
-      "path": "PACK4_SERVICE_VALIDATION.json",
+      "path": "docs/validazione/PACK4_SERVICE_VALIDATION.json",
       "original_sha256": "7f26e1b02ee49fc35b2c61b680e6f25952bbc1104edeea3500fe20dba2802e6f",
       "public_sha256": "8d87fc5c69b0131a97071d24ac3e4e5c49b44a165474df4b9bd3249c5a596708",
       "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."
     },
     {
-      "path": "PACK4_FINAL_AUDIT.json",
+      "path": "docs/validazione/PACK4_FINAL_AUDIT.json",
       "original_sha256": "163da9e43e6e8009198a15137ff6cdd3eb786af322c7710ecea1834f317bf781",
       "public_sha256": "d5cab9876a4312bdf224df48e9ee3235bf19652685a0da069c14833ec391c752",
       "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."

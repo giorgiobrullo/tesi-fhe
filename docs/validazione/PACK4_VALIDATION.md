@@ -62,7 +62,7 @@ correttezza universale, sicurezza complessiva o accuratezza biometrica segue
 sulle basi di questa campagna finita. La prova formale composta rimane aperta.
 
 La progressione storica corretta e il confronto CKKS/TFHE sono stati
-rimisurati in campagne separate. Il [percorso corrente](docs/percorso-sperimentale-20260920.md)
+rimisurati in campagne separate. Il [percorso corrente](../percorso-sperimentale-20260920.md)
 include dati, grafici e finding tecnico; la documentazione della distribuzione
 è allineata. Il finale ricostruito, la versione TFHE del confronto CKKS e
 il runtime anchor/pack4 selezionato sono distinti: ogni numero mantiene il

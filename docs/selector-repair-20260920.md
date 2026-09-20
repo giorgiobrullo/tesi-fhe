@@ -1,7 +1,7 @@
 # Selettore: origine del guasto, correzione e costo
 
 Aggiornamento del 20 settembre 2026. La baseline corrente è
-[pack4](../PACK4_VALIDATION.md), con selettore corretto e gruppi fino a quattro
+[pack4](validazione/PACK4_VALIDATION.md), con selettore corretto e gruppi fino a quattro
 payload. Questa nota accompagna il [percorso della tesi](percorso-sperimentale-20260920.md)
 e il [catalogo dei risultati](../findings.md). Le campagne storiche e i loro
 identificatori restano conservati; la documentazione non modifica il runtime.
@@ -27,7 +27,7 @@ causalmente a una singola ottimizzazione.
 
 ## Correzione B e successivo pack4
 
-La [correzione B del selettore](../SELECTOR_REPAIR_VALIDATION.md) applica
+La [correzione B del selettore](validazione/SELECTOR_REPAIR_VALIDATION.md) applica
 KS e correzione pubblica della media, rigenera il controllo verso 4/12 con
 un bootstrap ordinario, poi applica una seconda KS con correzione della media.
 La finestra PFKS è centrata a 1536, con raggio 127 e offset 0/256/512.

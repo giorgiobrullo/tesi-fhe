@@ -3,7 +3,7 @@
 Questa pagina conserva i controlli della revisione del 18 settembre, precedente
 alla riparazione del selettore. Il [runtime mantenuto](../runtime/README.md)
 ha ora sorgenti e binding diversi: la sua qualifica è documentata separatamente
-in [PACK4_VALIDATION.md](../PACK4_VALIDATION.md).
+in [PACK4_VALIDATION.md](validazione/PACK4_VALIDATION.md).
 I test, gli accessi e gli hash sotto non vengono trasferiti alla nuova revisione.
 Gli snapshot e i risultati in `experiments/` conservano il proprio ambito.
 
@@ -79,7 +79,7 @@ corrette. Il replay separato della baseline del 19 settembre restituisce ID1;
 nel medesimo nodo osserva indirizzo 318. Questo pass non dimostra una robustezza
 generale né identifica una singola modifica responsabile del cambio di
 ciphertext. Diagnosi, replay e riparazione restano prove distinte nel
-[registro della riparazione](../SELECTOR_REPAIR_VALIDATION.md).
+[registro della riparazione](validazione/SELECTOR_REPAIR_VALIDATION.md).
 
 ## Identità della revisione verificata
 

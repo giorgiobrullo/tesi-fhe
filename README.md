@@ -1,94 +1,76 @@
-# Tesi-FHE: baseline pack4 del 20 settembre 2026
+# Tesi-FHE: identificazione facciale con query cifrata
 
-<a id="implementazione-selezionata"></a>
+Tesi sperimentale sul riconoscimento facciale 1:N con crittografia omomorfica.
+Il client estrae l'embedding di un volto e lo cifra; il server lo confronta
+con una galleria e restituisce un risultato cifrato. Il client scopre
+l'identità corrispondente, oppure che nessun accesso è consentito.
 
-Questa consegna locale contiene la baseline **pack4**, adottata dopo verifiche
-di correttezza, confronto appaiato, regressione storica e collaudo del servizio.
-Il [rapporto pack4](PACK4_VALIDATION.md) raccoglie risultati e limiti;
-[BUILD_AND_RUN.md](BUILD_AND_RUN.md) descrive compilazione e avvio.
-Il runtime selezionato e congelato è [runtime/](runtime/README.md).
+Il lavoro segue due filoni: la qualità del riconoscimento dopo la quantizzazione
+e il costo della ricerca sul dato cifrato. Gli esperimenti partono da PCA,
+descrittori locali e reti preaddestrate, poi confrontano i circuiti Concrete,
+TFHE-rs e CKKS. L'implementazione attuale usa TFHE-rs.
 
-Per seguire la tesi in ordine, partire dal
-[percorso sperimentale](docs/percorso-sperimentale-20260920.md): prototipi,
-contratto exact 0/ID, ottimizzazioni, diagnosi e correzione del selettore.
-I [findings](findings.md) sono il catalogo dei risultati, con gli identificatori
-storici F; la [nota tecnica](docs/selector-repair-20260920.md) approfondisce
-il guasto e i limiti della correzione.
+## Come funziona
 
-<a id="modello-di-fiducia"></a>
-
-Il progetto studia identificazione facciale mediante query cifrata. Il
-terminale fidato acquisisce, trasforma e cifra il probe; il server conosce
-galleria e soglie ed esegue il confronto cifrato. Il contratto intero è:
+Per ogni template della galleria il server calcola il punteggio
+`score_i(q) = ||g_i||² − 2〈g_i,q〉`. Sceglie il primo minimo e controlla
+la soglia associata a quel template:
 
 ```text
-k = primo argmin_i (||g_i||² - 2 <g_i,q>)
-output = k + 1, se score_k <= T_k
-         0, altrimenti
+k = primo argmin_i score_i(q)
+risultato = k + 1, se score_k(q) <= T_k
+            0, altrimenti
 ```
 
-I pareggi favoriscono il primo indice e conta la soglia del vincitore. La
-risposta contiene tre cifre LWE in base 15, senza restituire gli score.
-La rappresentazione ammette fino a 3374 identità, coordinate in `[-3,3]`,
-norma quadrata del probe al massimo 1024 e un intervallo pubblico degli score
-di al massimo 4096 interi. La capacità non è una qualifica FHE a ogni taglia;
-il server non prova che un ciphertext arbitrario rispetti i vincoli del terminale.
+La risposta contiene soltanto l'ID o zero, codificato in tre cifre LWE in
+base 15. I pareggi favoriscono il primo indice; la soglia di un altro
+iscritto non può autorizzare la richiesta.
 
-Pack4 mantiene il refresh 4/12 e la finestra PFKS di raggio 127 della prima
-correzione B del selettore, raggruppando fino a quattro cifre dello score
-e di ID/soglia.
-Conserva anchor, specializzazioni pubbliche e i margini condizionali ±63/±127.
-Usa TFHE-rs 1.7.0, 16 thread, FFT fissa e modalità `public_parallel`; G4 è
-rifiutato. La PFKS interna B è compatibile, mentre l'envelope del servizio
-richiede la nuova identità di circuito. Per le chiavi seguire la
-[guida della demo](demo/dual_view/README.md), senza riutilizzare implicitamente
-quelle di una precedente consegna.
+### Modello di fiducia
 
-Tre famiglie nuove, 90 coppie di correttezza, 18 di riscaldamento e 108
-misurate danno 432 risposte attese, comprese le scorciatoie pubbliche. L'audit
-indipendente verifica 1.296 LWE finali. Tre roundtrip CLI/HTTP danno 1/0/0;
-il vecchio envelope W287 viene rifiutato senza modificare lo stato.
+Il client è fidato e gestisce acquisizione, embedding, quantizzazione e chiavi.
+Il server segue il protocollo ma può cercare di ricavare informazioni dai
+messaggi: conosce galleria e soglie, mentre query e risposta sono cifrate.
+Il client deve rispettare i vincoli numerici degli input. Il prototipo non
+fornisce una prova generale del rumore composto o sicurezza contro client
+malevoli; questi problemi sono descritti nelle [questioni aperte](OPEN_QUESTIONS.md).
 
-Sulle 90 coppie primarie, il rapporto **pack4/B è 0,952561993**, ossia
-**−4,7438% di tempo**, con intervallo bootstrap95%
-**[0,948049442; 0,957387164]**, condizionato alle tre famiglie osservate.
-Le mediane aggregate sono 2,123361813 s per B e 2,010978417 s per pack4;
-il rapporto appaiato non è il rapporto delle mediane. Qui B indica la prima
-correzione del selettore, non le varianti B di altre campagne. Tutte le durate
-restano incluse, con carico esterno osservato e finestre di attribuzione incerta.
-Il timer esclude chiavi, cifratura, decifratura, serializzazione e HTTP.
+## Demo
 
-Il [rapporto storico della correzione B](SELECTOR_REPAIR_VALIDATION.md)
-documenta il precedente +13,17% rispetto alla versione pre-fix. Sono campagne
-distinte: non si combinano le percentuali per ottenere un confronto diretto
-pack4/pre-fix.
+La demo offre una pagina server per iscrivere e gestire i volti e una pagina
+client per richiedere l'accesso da foto o fotocamera. La galleria parte vuota.
 
-Il successivo [confronto diretto](docs/selector-direct-cost-20260920.md)
-misura **+6,8737456%** per pack4 rispetto all'originale pre-fix, con intervallo
-bootstrap al 95% **[+6,21%; +7,52%]**, condizionato alle tre famiglie riusate
-e ai casi osservati. La differenza mediana appaiata è **0,1207 s per query**.
-Entrambe le versioni passano: **216 chiamate complessive e 648 LWE finali**
-verificate indipendentemente. Sono 60 coppie primarie misurate; carico esterno
-presente, nessun campione escluso. Il dato riguarda il core, non l'intera demo.
+Per preparare l'ambiente Python:
 
-I quattro approfondimenti sul costo sono conclusi. L'analisi delle ridondanze
-non ha individuato un refresh duplicato; la guardia pubblica esaminata non
-ha qualificato casi in cui ometterlo. La sovrapposizione di refresh e PFKS
-ha superato il replay, ma non il criterio temporale, e non è adottata.
-La quarta fase è la misura diretta appena riportata. Questi esiti non sono
-una prova formale del circuito composto.
+```sh
+uv sync --locked --python 3.12
+```
 
-I [risultati precedenti](findings.md) e gli
-[esperimenti 17–26](experiments/README.md) conservano le rispettive versioni.
-Le due rimisurazioni del 20 settembre sono concluse: progressione con
-mediane A28/finale 7,787/1,821 s (N127/D512/T4), gate 50/50 e campagna 450/450;
-CKKS/TFHE 216/216, con mediane di blocco 3,411/2,604 s a N128/general.
-Il finale ricostruito e la baseline anchor/pack4 sono circuiti distinti.
-[Percorso, nuove figure e metodo](docs/percorso-sperimentale-20260920.md).
+Seguire la [guida della demo](demo/dual_view/README.md) per i requisiti,
+la compilazione del motore Rust, i modelli, le chiavi e l'avvio.
 
-La [cronologia](docs/selector-repair/INTRODUCTION_HISTORY.md) distingue il
-guasto storico ID75 dal replay della baseline pre-fix che restituisce ID1.
-Le prove finite non forniscono una probabilità generale di fallimento,
-circuit privacy o accuratezza biometrica. Le [questioni aperte](OPEN_QUESTIONS.md)
-conservano questi obblighi; la [rassegna](letteratura.md) non attribuisce a
-questa revisione completezza bibliografica o un primato SOTA.
+## Implementazione selezionata
+
+Il motore è in [runtime/](runtime/README.md). Usa TFHE-rs 1.7, estrazione
+Head/PFKS, un torneo per il minimo e selezione finale a soglia. La versione
+attuale rigenera il controllo del selettore e raggruppa fino a quattro cifre
+per ridurre il numero di operazioni. Il servizio usa 16 thread e una FFT fissa.
+
+## Risultati
+
+![Evoluzione del tempo di calcolo cifrato](output/figures/progressione-fhe/selettori-corretti-20260920/progressione.png)
+
+Nel confronto comune a 127 iscritti e 512 coordinate, il tempo mediano del
+calcolo cifrato passa da **7,79 s a 1,82 s**. La misura è su Apple M4 Max,
+con 16 thread, ed esclude embedding, cifratura e comunicazione HTTP.
+Il pannello dei primi prototipi usa un compito e dimensioni diversi.
+[Dati e metodo del grafico](output/figures/progressione-fhe/selettori-corretti-20260920/LEGGIMI.md).
+
+## Struttura e lettura
+
+- [Percorso sperimentale](docs/percorso-sperimentale-20260920.md): domande, scelte e risultati dello sviluppo.
+- [Findings](findings.md): risultati e riferimenti alle singole prove.
+- [Letteratura](letteratura.md): sistemi precedenti e confronto delle loro ipotesi.
+- [Esperimenti](experiments/README.md): sorgenti delle diverse versioni, inclusi i tentativi senza miglioramenti.
+- [Benchmark](benchmark/): valutazioni dei modelli e dei circuiti; [core/](core/README.md) contiene le utility Python dei prototipi.
+- [Riproducibilità](docs/riproducibilita.md): ambiente, test, dati e provenienza delle misure.

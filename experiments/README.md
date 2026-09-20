@@ -6,8 +6,8 @@ soglia. Le cartelle sono raggruppate per domanda di ricerca.
 
 Per la baseline corrente pack4 partire dal [runtime](../runtime/README.md),
 da [compilazione e avvio](../BUILD_AND_RUN.md) e dal
-[rapporto di validazione](../PACK4_VALIDATION.md).
-La [prima correzione B](../SELECTOR_REPAIR_VALIDATION.md) conserva un rapporto
+[rapporto di validazione](../docs/validazione/PACK4_VALIDATION.md).
+La [prima correzione B](../docs/validazione/SELECTOR_REPAIR_VALIDATION.md) conserva un rapporto
 storico separato. Pack4 mantiene refresh e finestra ampia, raggruppando fino
 a quattro cifre; il suo confronto appaiato e le sue prove sono autonomi.
 La [demo 22](22_demo_composita/README.md) conserva la versione misurata

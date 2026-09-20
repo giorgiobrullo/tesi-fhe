@@ -33,7 +33,7 @@ il primo errore nel selettore PFKS, con indirizzo 341 fuori dalla finestra
 300…340. Le estrazioni Head risultano corrette in quella capsula. Il replay
 della baseline più recente restituisce invece ID1 e indirizzo 318 nello
 stesso nodo. La correzione e le sue nuove misure sono trattate nel
-[rapporto separato](../../SELECTOR_REPAIR_VALIDATION.md); i dati di questa
+[rapporto separato](../validazione/SELECTOR_REPAIR_VALIDATION.md); i dati di questa
 campagna restano quelli delle versioni storiche.
 
 Un tentativo precedente aveva prodotto un errore: fra 269 risultati, 268 erano

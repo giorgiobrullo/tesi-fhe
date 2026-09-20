@@ -1,113 +1,43 @@
 # Risultati sperimentali
 
-Aggiornamento della baseline corrente: 20 settembre 2026. Il
-[rapporto pack4](PACK4_VALIDATION.md) documenta la versione selezionata;
-le schede F84–F93 riportate sotto conservano le campagne precedenti e i
-rispettivi programmi. Gli identificatori F permettono di seguirne le revisioni.
+I risultati seguono due filoni: riconoscimento sui dati quantizzati e costo
+del confronto cifrato. Il [percorso sperimentale](docs/percorso-sperimentale-20260920.md)
+ricostruisce lo sviluppo; le schede F raccolgono le prove e i relativi riferimenti.
 
-Questa pagina è un **catalogo delle evidenze**, dal risultato corrente alle
-schede storiche. Per il racconto cronologico della tesi, leggere prima il
-[percorso sperimentale](docs/percorso-sperimentale-20260920.md), poi usare
-gli identificatori F per approfondire ogni tappa.
+## Risultati del 20 settembre
 
-## Risultato corrente: selettore corretto con packing a quattro cifre
+| Esperimento | Risultato | Riferimento |
+|---|---|---|
+| Progressione dei circuiti, N127/D512 | Mediane da 7,79 s a 1,82 s | [Dieci versioni rimisurate](output/figures/progressione-fhe/selettori-corretti-20260920/LEGGIMI.md) |
+| Confronto CKKS/TFHE, N128 e soglia generale | Mediane dei blocchi: 3,41 s / 2,60 s | [Metodo e differenze fra gli output](output/figures/ckks-tfhe/selettore-corretto-20260920/LEGGIMI.md) |
+| Packing a quattro cifre rispetto alla prima correzione | −4,74% di tempo sui confronti primari | [Prova pack4](docs/validazione/PACK4_VALIDATION.md) |
+| Baseline corretta rispetto all'originale del 19 settembre | +6,87%; differenza mediana appaiata 0,121 s | [Confronto diretto](docs/selector-direct-cost-20260920.md) |
 
-Pack4 mantiene refresh 4/12, finestra PFKS ±127 e margine condizionale ±63
-prima del refresh. Raggruppa fino a quattro cifre dello score e quelle
-variabili di ID/soglia. Nel confronto fra correzione B del selettore e pack4,
-i due bracci usano identica funzione e gli stessi byte PFKS. Il diverso
-accumulatore ha una propria verifica FHE.
+Sono tempi del core su Apple M4 Max con 16 thread. I confronti usano versioni
+e campioni diversi; il finale del grafico non coincide con il motore della
+demo corrente. I rapporti appaiati non derivano dal rapporto delle mediane.
+Ogni rapporto documenta campione, carico esterno e incertezza.
 
-Tre famiglie nuove: 90 coppie di correttezza, 18 di riscaldamento e 108
-misurate. Tutte le 432 chiamate sono corrette, comprese le scorciatoie
-pubbliche. Il lettore indipendente decifra 1.296 LWE finali e verifica ID
-canonici e distanza stretta dalla mezza cella. Il plaintext completo degli
-input GLWE rimane vincolato dal codice e dagli hash, non ridecifrato da quel
-lettore. Passano 83 test core, 36 del servizio, un test fixture e 32 controlli
-Python; quattro test FHE storici restano ignorati. Tre roundtrip del servizio
-danno 1/0/0 e il vecchio envelope W287 è rifiutato senza cambiare stato.
+La correzione risolve il meccanismo del guasto osservato nel selettore storico.
+Il packing a quattro cifre ne riduce il costo mantenendo il refresh del
+controllo. La [nota tecnica](docs/selector-repair-20260920.md) descrive la causa,
+le prove e i tentativi successivi. Resta aperto il limite di probabilità di
+fallimento del circuito completo.
 
-Il rapporto primario appaiato **pack4/B è 0,952561993**, su 90 coppie:
-**−4,7438% di tempo**, intervallo bootstrap95% **[0,948049442; 0,957387164]**
-condizionato alle tre famiglie osservate. Le mediane aggregate sono
-**2,123361813 s per B e 2,010978417 s per pack4**; non definiscono il rapporto
-appaiato. Pack4 è più veloce in 83 coppie primarie su 90 e nei cinque scenari,
-con riduzioni dal 1,95% al 5,83%. Il controllo secondario migliora del 4,92%.
+## Risultati precedenti
 
-Tutte le 216 chiamate misurate superano la soglia diagnostica di carico esterno
-del 20% di un core; 76 hanno finestre con copertura o turnover incerti. Tutti
-i campioni restano inclusi. Il timer comprende il calcolo cifrato completo,
-escludendo chiavi, cifratura, decifratura, serializzazione e HTTP. Le condizioni
-osservate non stabiliscono latenza universale o isolamento continuo.
+Le schede seguenti riportano le misure delle rispettive versioni, fino al
+9 settembre. F93 conserva la campagna precedente alla correzione; per la
+progressione corretta usare il grafico sopra. Le lettere A/B sono etichette
+locali a ciascun confronto, non nomi di versioni condivisi fra campagne.
 
-Il [rapporto B/pre-fix](SELECTOR_REPAIR_VALIDATION.md) conserva il precedente
-+13,17%: non lo combiniamo con pack4/B. Il confronto diretto successivo è
-riportato nella sezione seguente. Il replay storico restituisce ID1 sia con B
-sia con pack4; non è una nuova famiglia indipendente o una misura di latenza.
-Le due rimisurazioni del 20 settembre sono concluse: progressione con
-mediane A28/finale 7,787/1,821 s (N127/D512/T4), gate 50/50 e campagna 450/450;
-CKKS/TFHE 216/216, con mediane di blocco 3,411/2,604 s a N128/general.
-Il finale ricostruito e la baseline anchor/pack4 sono circuiti distinti.
-[Percorso, nuove figure e metodo](docs/percorso-sperimentale-20260920.md).
-Le [questioni aperte](OPEN_QUESTIONS.md)
-mantengono distinto questo risultato dal limite formale di fallimento.
-
-## Costo residuo: confronto diretto con l'originale pre-fix
-
-Il [confronto diretto del 20 settembre](docs/selector-direct-cost-20260920.md)
-misura un rapporto pack4/originale di **1,068737456**, cioè **+6,8737456%**,
-su 60 coppie primarie. L'intervallo bootstrap al 95% è
-**[+6,21%; +7,52%]**, condizionato alle tre famiglie B riusate e ai casi
-osservati. La differenza mediana appaiata è **0,1207 s per query**;
-le mediane marginali sono 1,701612 s per l'originale e 1,824226 s per pack4.
-Il loro rapporto non definisce quello appaiato.
-
-Passano entrambe le versioni: **216 chiamate complessive e 648 LWE finali**
-verificate indipendentemente, con cifre canoniche e residui in valore assoluto
-strettamente inferiori alla mezza cella. L'originale riproduce i byte delle
-proprie uscite archiviate; fra i
-due circuiti si confronta l'esito decifrato. I tre gate precedono i tempi:
-18 coppie gate, 18 warmup e 72 misurate, di cui 12 secondarie. Gli input GLWE
-sono vincolati per hash al corpus salvato, senza una nuova decifratura completa.
-
-Tutte le 144 chiamate misurate hanno un indicatore di carico esterno; in 67
-la contabilità CPU è parzialmente incerta. Nessuna misura viene esclusa.
-Il timer riguarda il core e l'intervallo non copre chiavi future o altre
-condizioni di esecuzione. Questo dato diretto sostituisce la stima indiretta
-di circa +7,8%; conserva i risultati storici +13,17% e −4,7438% e non modifica
-i punti dei grafici, ottenuti da campagne e circuiti distinti.
-
-I quattro approfondimenti sul costo sono conclusi: nessun refresh duplicato
-individuato; nessuna copertura qualificata per la guardia pubblica esaminata;
-sovrapposizione refresh/PFKS corretta nel replay ma non adottata, perché
-senza il risparmio richiesto; confronto diretto completato. Il mancato
-superamento della guardia non dimostra un errore o un'impossibilità generale.
-Il limite formale di fallimento resta aperto. La
-[nota tecnica](docs/selector-repair-20260920.md) separa diagnosi e prove finite.
-
-## Schede storiche F84–F93
-
-Le sezioni seguenti conservano le campagne fino al 9 settembre, con diagnosi
-aggiornata il 19 settembre. La demo selezionata in quei confronti è il
-[pacchetto 22](experiments/22_demo_composita/README.md). Tempi, conteggi e suite
-appartengono alle versioni indicate; i riferimenti alla «nuova riparazione»
-descrivono la prima correzione B, documentata nel suo rapporto storico.
-Le percentuali non si sommano e le prove finite non stabiliscono la
-probabilità globale di fallimento. L'errore chiamato «Head generale» è
-localizzato nel selettore, come descritto in F93.
-
-Le etichette B sono locali alle campagne: **correzione B del selettore**
-(19–20 settembre), **composizione `public_parallel`, variante B** (F90) e
-**controllo DAG con barriera B** (F91) indicano tre costruzioni distinte.
-Gli identificatori originali delle schede e degli archivi restano invariati.
-
-| Lettura | Scheda completa |
+| Argomento | Schede complete |
 |---|---|
-| Contratto, primo core, scaling e CPU (F84–F87) | [Core e scaling](docs/risultati/core-e-scaling.md) |
+| Contratto, core, scaling e CPU (F84–F87) | [Core e scaling](docs/risultati/core-e-scaling.md) |
 | Normalizzatore, componenti e demo (F88–F90) | [Composizione e servizio](docs/risultati/normalizzatore-e-demo.md) |
-| Esiti negativi e alternative (F91–F92) | [Tetris, DAG e altri filoni](docs/risultati/alternative.md) |
-| Dodici versioni rimisurate (F93) | [Campagna comune](docs/risultati/campagna-comune.md) |
-| Prime revisioni, con le correzioni successive (F0–F83) | [Sintesi storica](docs/risultati/storico.md) |
+| Alternative (F91–F92) | [Tetris, DAG e altri filoni](docs/risultati/alternative.md) |
+| Confronto comune precedente alla correzione (F93) | [Campagna del 9 settembre](docs/risultati/campagna-comune.md) |
+| Prime revisioni (F0–F83) | [Sintesi storica](docs/risultati/storico.md) |
 
 ## F84 - Contratto exact 0/ID e implementazione selezionata
 
@@ -197,7 +127,7 @@ con le 127 estrazioni Head corrette. L'intervento diagnostico su quel solo
 controllo, 341→340, riporta il torneo a ID1. La baseline del 19 settembre
 passa un replay separato con ID1 e indirizzo 318 nel medesimo nodo.
 Questi risultati non stimano una frequenza di fallimento né qualificano
-la nuova riparazione; il suo [registro](SELECTOR_REPAIR_VALIDATION.md)
+la nuova riparazione; il suo [registro](docs/validazione/SELECTOR_REPAIR_VALIDATION.md)
 resta separato dai tempi storici sopra.
 
 [Condizioni, risultati e fonti](docs/risultati/campagna-comune.md#f93---nuova-campagna-comune-e-precedente-errore-di-head-generale).

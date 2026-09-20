@@ -4,7 +4,7 @@ Il repository offre una demo interattiva, implementazioni sperimentali e
 misure delle prestazioni. Questi punti di ingresso permettono di provare
 il sistema, studiarne il funzionamento e controllare i risultati.
 La qualifica del runtime con il nuovo selettore è separata dalle campagne
-storiche e si legge in [PACK4_VALIDATION.md](../PACK4_VALIDATION.md).
+storiche e si legge in [PACK4_VALIDATION.md](validazione/PACK4_VALIDATION.md).
 
 ## Ambiente e piattaforme
 
@@ -146,7 +146,7 @@ cargo test --release --locked \
 del circuito. Le diagnostiche FHE storiche ignorate restano separate.
 I comandi descrivono come eseguire le verifiche; gli esiti già attestati
 per questa revisione sono soltanto quelli del
-[registro di qualifica](../SELECTOR_REPAIR_VALIDATION.md).
+[registro di qualifica](validazione/SELECTOR_REPAIR_VALIDATION.md).
 
 ## Grafici correnti e rigenerazione storica
 
