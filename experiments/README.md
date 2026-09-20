@@ -82,7 +82,7 @@ Il replay separato della baseline del 19 settembre restituisce ID1 con
 indirizzo 318 nel nodo interessato. Il grafico resta una misura delle versioni
 storiche e non include la nuova riparazione del selettore.
 
-La progressione corretta e il confronto CKKS/TFHE sono oggetto di nuove
-campagne separate. Le figure saranno inserite dopo i rispettivi audit;
-nessun vecchio punto viene aggiornato moltiplicandolo per le percentuali
-della correzione B o di pack4.
+La progressione corretta e il confronto CKKS/TFHE sono stati rimisurati in
+due campagne separate. Il [percorso sperimentale](../docs/percorso-sperimentale-20260920.md)
+contiene figure, dati e verifiche del 20 settembre. I punti derivano dalle
+nuove misure; non sono ottenuti applicando percentuali ai tempi precedenti.

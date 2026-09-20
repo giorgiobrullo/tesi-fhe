@@ -2,7 +2,7 @@
   "baseline_core_source_sha256": "c0d6b2302d6a25d3cc51dba712bbb42bf13327eb472ba447184e1d5f8f132b91",
   "current_core_leaves": {
     "core/Cargo.toml": "a829daad520dd34c31a361da6bbbd79f9ed036d25bb9412d50db8e5dcd39320d",
-    "core/README.md": "d42b5ac717fd68b2692a1b1d3424310dc8a6d74a9f8fb9a2f3abeeb41772d223",
+    "core/README.md": "0e22584d4eeb2194df660e03e2789dcb1b1a6008e284d0d06b929173ec00449a",
     "core/artifacts/fused_candidate_zero_body.u64le": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
     "core/src/a112.rs": "4f9ee8169c737597bbdb6120d59f4effb0a9d9702b73d35739f884bba9da1e9d",
     "core/src/a53_scan.rs": "24afeac53d99abeaba9ef3ff245d6f97f74114e76a35f3a438ced8960a2fbf3d",
@@ -77,6 +77,6 @@
     "core/src/wide_id.rs": "0e9639bddd7e268a91234fbb2d16614b39b2b36094003e50d86c4c8cc6ecf35d",
     "core/src/wide_id_tests.rs": "c7b9a2c89e02213f60adb3ce6386229d903eb8a0049b3d0f390a6e77831ad51b"
   },
-  "runtime_source_sha256": "a5bda17d7851d55b15a1736f020517ee35a52b54ccc8b53b66ae507607459416",
+  "runtime_source_sha256": "b089a235004e6b607fd1f3d4b1884d3b685a01efaac6d1d7dc212ff0afd8fe38",
   "schema": "maintained-core-origins.v1"
 }

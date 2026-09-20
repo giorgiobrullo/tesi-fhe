@@ -26,10 +26,10 @@ confronti e terminali e dipendono dal piano pubblico effettivo.
 La geometria conserva i margini di B, ma accumulare quattro payload cambia il
 rumore dell'accumulatore rispetto a tre. La prova statica non dimostra la
 correttezza rumorosa, la probabilità di fallimento o un vantaggio temporale.
-I relativi esiti appartengono alla campagna e ai gate separati del root.
+Le prove con chiavi reali e il confronto temporale sono descritti nel
+[rapporto pack4](../docs/validazione/PACK4_VALIDATION.md).
 
-Questa delivery non modifica alcuna funzione matematica del core congelato.
-La sola modifica Rust di produzione è l'identità `service::ID_CONTRACT`.
-I moduli storici inattivi restano conservati e non acquistano una nuova qualifica.
-G4 resta rifiutato. La compatibilità della PFKS interna non implica compatibilità
-automatica di vecchi envelope legati ad altre identità di sorgente e circuito.
+G4 non è compatibile con questo refresh e viene rifiutato. La compatibilità
+della PFKS interna non implica compatibilità degli envelope legati ad altre
+identità di sorgente e circuito: valgono i vincoli descritti nella
+[guida di compilazione](../BUILD_AND_RUN.md#modificare-il-progetto).

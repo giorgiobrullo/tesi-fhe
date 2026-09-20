@@ -1,4 +1,4 @@
-"""Fake-crypto transport controls. Root must schedule execution; no models or FHE."""
+"""Transport tests with simulated cryptography; no models or FHE required."""
 
 import copy
 import json

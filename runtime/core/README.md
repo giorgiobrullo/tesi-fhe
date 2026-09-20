@@ -15,8 +15,8 @@ lo aggiorna per le voci con al massimo 16 coordinate diverse. Le altre voci
 usano la convoluzione completa. La funzione interna conserva tutte le parole
 dell'LWE estratto al coefficiente 511; gli altri coefficienti del corpo GLWE
 non fanno parte di questo risultato. La soglia e il bias della singola voce
-restano invariati. La qualifica della delivery richiede il rapporto esterno della campagna pack4
-e i suoi controlli di servizio. Questo documento non ne anticipa l'esito.
+restano invariati. Le prove con cifrati reali e i controlli del servizio
+sono descritti nel [rapporto pack4](../../docs/validazione/PACK4_VALIDATION.md).
 
 ## Contratto
 
@@ -135,15 +135,18 @@ sostituiscono una prova con chiavi e rumore reali. Dalla cartella `runtime/`:
 
 ```sh
 cargo test --manifest-path candidate/Cargo.toml \
-  -p selector_four_core_20260920 --lib mixed_tests:: --locked
+  --target-dir ../.local/target-service --release --locked \
+  -p selector_four_core_20260920 --lib mixed_tests::
 cargo test --manifest-path candidate/Cargo.toml \
-  -p selector_four_core_20260920 --lib wide_id_tests:: --locked
+  --target-dir ../.local/target-service --release --locked \
+  -p selector_four_core_20260920 --lib wide_id_tests::
 ```
 
 I test FHE con chiavi nuove sono ignorati per default. Per la regressione
 del percorso mantenuto usare il comando dedicato nella
 [guida ai test](../../docs/riproducibilita.md#eseguire-i-test-della-demo).
-Per questa revisione usare il [registro di qualifica](../../docs/validazione/SELECTOR_REPAIR_VALIDATION.md).
+I [rapporti sperimentali](../../docs/validazione/README.md) specificano
+le versioni e i casi effettivamente verificati.
 I risultati storici osservati del servizio precedente sono nel
 [rapporto sperimentale](../../experiments/22_demo_composita/evidence/ORIGINAL_SERVICE_RESULTS.md).
 Il rumore delle soglie dopo la selezione, la profondità del torneo e le

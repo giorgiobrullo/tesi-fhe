@@ -1,4 +1,4 @@
-//! Fixed protocol values bound to the root-owned canonical circuit contract.
+//! Fixed protocol values bound to the circuit contract.
 //!
 //! The frozen core keeps its older arithmetic module private. These wire constants
 //! describe the selected native input and output, not its retained legacy scale.

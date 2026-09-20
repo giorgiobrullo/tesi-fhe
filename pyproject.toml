@@ -19,17 +19,12 @@ dependencies = [
 ]
 
 [tool.basedpyright]
-# Progetto scientifico (numpy/sklearn/Concrete non hanno stub di tipo completi):
-# usiamo il type-checking "standard" come il pyright normale: hover e errori
-# reali sì, ma senza le pignolerie della modalità strict (es. "dict/ndarray
-# vogliono i parametri di tipo") che qui sarebbero solo rumore.
+# Controlli standard; alcune librerie scientifiche hanno stub incompleti.
 typeCheckingMode = "standard"
 reportMissingTypeStubs = false
 
-# Concrete tipizza encrypt()/run()/decrypt()/keys in modo troppo largo (Optional,
-# tuple[Value | None, ...]), ma a runtime per i nostri circuiti restituiscono sempre
-# un singolo Value / array. Questi quattro check darebbero solo falsi positivi su
-# .serialize()/.generate()/np.argmin (codice verificato funzionante a runtime).
+# Queste diagnostiche sono disabilitate per le annotazioni ampie delle API
+# Concrete. I test verificano separatamente i valori restituiti dai circuiti.
 reportOptionalMemberAccess = false
 reportAttributeAccessIssue = false
 reportCallIssue = false

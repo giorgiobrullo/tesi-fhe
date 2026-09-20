@@ -116,8 +116,8 @@ fn recorded_synthetic_domains_admit_127_uniform_then_128_mixed() {
     assert!(metadata.counts.br < 1663);
     assert!(metadata.counts.marginals < 2429);
     assert!(metadata.counts.pfks < 1149);
-    // Exact composite ledgers are cross-checked against the independent Python
-    // planner by the root-scheduled plan-json/service qualification harness.
+    // Composite operation counts are cross-checked against the independent
+    // Python planner during plan-json and service validation.
 }
 
 #[test]

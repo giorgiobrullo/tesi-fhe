@@ -150,9 +150,11 @@ cargo test --release --locked \
 
 È una regressione su quei casi, non una misura di velocità o una prova generale
 del circuito. Le diagnostiche FHE storiche ignorate restano separate.
-I comandi descrivono come eseguire le verifiche; gli esiti già attestati
-per questa revisione sono soltanto quelli del
-[registro di qualifica](validazione/SELECTOR_REPAIR_VALIDATION.md).
+I [rapporti sperimentali](validazione/README.md) distinguono la prima
+correzione B dalle prove pack4 e specificano sorgenti, chiavi e casi misurati.
+Gli esiti valgono per quelle versioni: dopo una modifica al runtime,
+ricompilare e ripetere le verifiche pertinenti seguendo la
+[procedura di sviluppo](../BUILD_AND_RUN.md#modificare-il-progetto).
 
 ## Grafici correnti e rigenerazione storica
 
