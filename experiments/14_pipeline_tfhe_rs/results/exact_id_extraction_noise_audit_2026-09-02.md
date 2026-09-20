@@ -48,25 +48,25 @@ Il core locale implementa la stessa sequenza dell'algoritmo WoP-PBS di TFHE-rs 0
 7. aggiunta di \(\alpha\);
 8. sottrazione della correzione dal residuo.
 
-Fonti locali del progetto:
+Fonti del progetto (numeri di riga dello snapshot analizzato):
 
-- costanti e dimensioni: /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs:17-31;
-- estrattore strumentato: /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs:701-755;
-- accumulatori di correzione: /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs:895-909;
-- punteggi duali ed estrazioni: /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs:1095-1183;
-- contratto della vista duale: /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs:822-831;
-- codifica client delle due viste nello stesso GLWE: /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs:540-570.
+- costanti e dimensioni: [src/private_argmin.rs, righe 17–31](../src/private_argmin.rs#L17-L31);
+- estrattore strumentato: [src/private_argmin.rs, righe 701–755](../src/private_argmin.rs#L701-L755);
+- accumulatori di correzione: [src/private_argmin.rs, righe 895–909](../src/private_argmin.rs#L895-L909);
+- punteggi duali ed estrazioni: [src/private_argmin.rs, righe 1095–1183](../src/private_argmin.rs#L1095-L1183);
+- contratto della vista duale: [src/private_argmin.rs, righe 822–831](../src/private_argmin.rs#L822-L831);
+- codifica client delle due viste nello stesso GLWE: [src/bin/varco_demo.rs, righe 540–570](../src/bin/varco_demo.rs#L540-L570).
 
 Fonti ufficiali TFHE-rs 0.11.3:
 
-- specifica e implementazione di extract_bits: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/fft_impl/fft64/crypto/wop_pbs/mod.rs:57-70 e 153-221;
+- specifica e implementazione di extract_bits: TFHE-rs `0.11.3`, `src/core_crypto/fft_impl/fft64/crypto/wop_pbs/mod.rs:57-70` e 153-221;
 - centratura a \(q/4\), accumulatore \(-\alpha\), aggiunta di \(\alpha\) e sottrazione: stesso file, righe 189-220;
-- API high-level marcata Experimental: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/shortint/wopbs/mod.rs:626-657;
-- test ufficiale di estrazione basato su parametri toy insicuri: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/fft_impl/fft64/crypto/wop_pbs/tests.rs:92-130 e 209-235.
+- API high-level marcata Experimental: TFHE-rs `0.11.3`, `src/shortint/wopbs/mod.rs:626-657`;
+- test ufficiale di estrazione basato su parametri toy insicuri: TFHE-rs `0.11.3`, `src/core_crypto/fft_impl/fft64/crypto/wop_pbs/tests.rs:92-130` e 209-235.
 
 La corrispondenza algoritmica non trasferisce automaticamente una garanzia sui parametri. L'API WoP-PBS usa un proprio server key e parametri dedicati. Il set legacy 2+2 usa PBS \(2^{15}\times2\), non il PBS ordinario \(2^{23}\times1\) del progetto:
 
-- /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/shortint/parameters/parameters_wopbs_message_carry.rs:403-428.
+- TFHE-rs `0.11.3`, `src/shortint/parameters/parameters_wopbs_message_carry.rs:403-428`.
 
 ## Parametri effettivi
 
@@ -88,8 +88,8 @@ Le distribuzioni sono TUniform(46) per LWE e TUniform(17) per GLWE; il limite sh
 
 Fonti:
 
-- runtime 0.11.3: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs:8-25;
-- copia mantenuta nella 1.7.0, incluso ModulusSwitchType::Standard: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/shortint/parameters/v0_11/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs:7-25.
+- runtime 0.11.3: TFHE-rs `0.11.3`, `src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs:8-25`;
+- copia mantenuta nella 1.7.0, incluso ModulusSwitchType::Standard: TFHE-rs `1.7.0`, `src/shortint/parameters/v0_11/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs:7-25`.
 
 ## Rumore iniziale del punteggio
 
@@ -113,7 +113,7 @@ V_{\mathrm{TU}(b)}
 
 Fonte:
 
-- /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/math/random/t_uniform.rs:75-79.
+- TFHE-rs `1.7.0`, `src/core_crypto/commons/math/random/t_uniform.rs:75-79`.
 
 Con \(b=17\), \(q=2^{64}\) e il bound progettuale \(\lVert g\rVert_2^2=1024\):
 
@@ -246,20 +246,20 @@ Il valore PBS usa correttamente una mantissa FFT64 di 53 bit. Eliminare per erro
 
 Fonti:
 
-- formula PBS TUniform: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/lwe_programmable_bootstrap.rs:83-152;
-- formula KS TUniform: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/lwe_keyswitch.rs:59-107;
-- mantissa FFT64 pari a 53: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/noise_simulation/mod.rs:25-30;
-- condizioni di validità delle formule PBS: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/lwe_programmable_bootstrap.rs:79-106;
-- il simulatore KS somma input e varianza additiva: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/noise_simulation/lwe_keyswitch.rs:92-129;
-- il simulatore PBS sostituisce il rumore d'ingresso con varianza accumulatore più varianza PBS: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/noise_simulation/lwe_programmable_bootstrap.rs:115-164.
+- formula PBS TUniform: TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/lwe_programmable_bootstrap.rs:83-152`;
+- formula KS TUniform: TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/lwe_keyswitch.rs:59-107`;
+- mantissa FFT64 pari a 53: TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/noise_simulation/mod.rs:25-30`;
+- condizioni di validità delle formule PBS: TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/lwe_programmable_bootstrap.rs:79-106`;
+- il simulatore KS somma input e varianza additiva: TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/noise_simulation/lwe_keyswitch.rs:92-129`;
+- il simulatore PBS sostituisce il rumore d'ingresso con varianza accumulatore più varianza PBS: TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/noise_simulation/lwe_programmable_bootstrap.rs:115-164`.
 
 ## Sensibilità separata al modulus switch
 
 Il blind rotation classico arrotonda corpo e maschera LWE al modulo di rotazione \(2N=4096\):
 
-- chiamate a pbs_modulus_switch su corpo e maschera: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/fft_impl/fft64/crypto/bootstrap.rs:284-324;
-- implementazione dell'arrotondamento: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/fft_impl/common.rs:10-24;
-- modulo \(2N\) dovuto alla negaciclicità: /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/commons/parameters.rs:156-160.
+- chiamate a pbs_modulus_switch su corpo e maschera: TFHE-rs `0.11.3`, `src/core_crypto/fft_impl/fft64/crypto/bootstrap.rs:284-324`;
+- implementazione dell'arrotondamento: TFHE-rs `0.11.3`, `src/core_crypto/fft_impl/common.rs:10-24`;
+- modulo \(2N\) dovuto alla negaciclicità: TFHE-rs `0.11.3`, `src/core_crypto/commons/parameters.rs:156-160`.
 
 La formula standard di modulus switch è:
 
@@ -279,7 +279,7 @@ n\left(
 
 Fonte:
 
-- /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/modulus_switch.rs:9-31.
+- TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/modulus_switch.rs:9-31`.
 
 Per \(n=879\), \(q=2^{64}\), \(2N=4096\):
 
@@ -297,7 +297,7 @@ V_{\mathrm{MS}}
 
 Il simulatore tratta il modulus switch come operazione separata che aggiunge varianza:
 
-- /Users/giorgiobrullo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/commons/noise_formulas/noise_simulation/modulus_switch.rs:31-61.
+- TFHE-rs `1.7.0`, `src/core_crypto/commons/noise_formulas/noise_simulation/modulus_switch.rs:31-61`.
 
 Per evitare di presentare come ufficiale una composizione che la formula PBS monolitica non espone, il risultato principale usa \(W_j\) senza \(V_{\mathrm{MS}}\). Una seconda colonna di sensibilità usa:
 

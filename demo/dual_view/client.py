@@ -1,16 +1,13 @@
-"""Access-only client around the unchanged, qualified exact-ID pipeline."""
+"""Access-only client with an explicitly configured exact-ID pipeline."""
 from __future__ import annotations
 
 import base64
 import binascii
-import importlib
-import importlib.util
 import io
 import json
 import math
 import os
 import re
-import sys
 import threading
 import time
 from contextlib import asynccontextmanager
@@ -26,8 +23,11 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from PIL import Image
 
+from runtime.client.configuration import ClientConfiguration
+from runtime.client.pipeline import AccessPipeline
+
 HERE = Path(__file__).resolve().parent
-QUALIFIED = HERE.parents[1] / "experiments/22_demo_composita/runtime"
+RUNTIME = HERE.parents[1] / "runtime"
 MAX_FRAME_BYTES = 4 * 1024 * 1024
 MAX_BODY_BYTES = 17 * 1024 * 1024
 MAX_PIXELS = 4_000_000
@@ -101,26 +101,13 @@ class LocalGateway:
             return body, dict(response.headers)
 
 
-def load_qualified_client(settings: ClientSettings):
-    name = "_dual_view_access_qualified_client"
-    package_path = QUALIFIED / "client"
-    if name not in sys.modules:
-        spec = importlib.util.spec_from_file_location(
-            name, package_path / "__init__.py", submodule_search_locations=[str(package_path)])
-        package = importlib.util.module_from_spec(spec)
-        sys.modules[name] = package
-        spec.loader.exec_module(package)
-    module = importlib.import_module(name + ".app")
-    if Path(module.__file__).resolve() != package_path / "app.py":
-        raise AccessError(503, "Modulo del client non valido.")
-    if module.CFG["contratto_esatto"]["g4_required"]:
+def load_pipeline(settings: ClientSettings) -> AccessPipeline:
+    configuration = ClientConfiguration(RUNTIME, settings.binary, settings.keys)
+    pipeline = AccessPipeline(configuration, LocalGateway(settings.gateway))
+    if pipeline.config["contratto_esatto"]["g4_required"]:
         raise AccessError(503, "Configurazione del client non valida.")
-    module.SERVER = settings.gateway
-    module.BIN = str(settings.binary)
-    module.CHIAVI = settings.keys
-    module.srv = LocalGateway(settings.gateway)
-    return module
-
+    pipeline.require_existing_keys()
+    return pipeline
 
 def check_local_models() -> None:
     root = Path.home() / ".insightface/models"
@@ -180,12 +167,12 @@ def parse_payload(raw: bytes) -> list[str]:
 
 class AccessRuntime:
     def __init__(self, settings: ClientSettings | None = None,
-                 loader: Callable = load_qualified_client,
+                 loader: Callable = load_pipeline,
                  model_check: Callable = check_local_models):
         self.settings = settings
         self.loader = loader
         self.model_check = model_check
-        self.module = None
+        self.pipeline = None
         self.lock = threading.Lock()
         self.cached_status = {"pronto": False, "iscritti": 0, "frame_richiesti": 3}
 
@@ -193,21 +180,17 @@ class AccessRuntime:
         if self.settings is None:
             self.settings = ClientSettings.from_environment()
         self.settings.validate()
-        if self.module is None:
-            self.module = self.loader(self.settings)
-        return self.module
+        if self.pipeline is None:
+            self.pipeline = self.loader(self.settings)
+        return self.pipeline
 
-    def _status(self, module):
-        raw, _ = module.srv("/stato")
-        state = module.protocol.strict_json(raw)
-        snapshot = module.protocol.validate_status(state, module.CFG["contratto_esatto"], allow_empty=True)
+    def _status(self, pipeline):
+        state, snapshot = pipeline.server_status()
         if not state["chiave"]:
-            module.assicura_chiave()
-            raw, _ = module.srv("/stato")
-            state = module.protocol.strict_json(raw)
-            snapshot = module.protocol.validate_status(state, module.CFG["contratto_esatto"], allow_empty=True)
-        module.valida_fingerprint_chiave(state)
-        module.valida_fingerprint_g4(state)
+            pipeline.assicura_chiave()
+            state, snapshot = pipeline.server_status()
+        pipeline.valida_fingerprint_chiave(state)
+        pipeline.valida_fingerprint_g4(state)
         count = snapshot["iscritti"]
         self.cached_status = {"pronto": count > 0, "iscritti": count, "frame_richiesti": 3}
         if not count:
@@ -217,9 +200,9 @@ class AccessRuntime:
     def initialize(self) -> None:
         with self.lock:
             try:
-                module = self.configured()
-                module.assicura_chiave()
-                self._status(module)
+                pipeline = self.configured()
+                pipeline.assicura_chiave()
+                self._status(pipeline)
             except Exception as error:
                 self._unavailable(error)
 
@@ -243,29 +226,26 @@ class AccessRuntime:
             raise AccessError(409, "Una verifica è già in corso. Attendi il risultato.")
         started = time.perf_counter()
         try:
-            module = self.configured()
+            pipeline = self.configured()
             for frame in frames:
                 validate_frame(frame)
             try:
-                images = [module.da_dataurl(frame) for frame in frames]
+                images = [pipeline.da_dataurl(frame) for frame in frames]
                 if any(len(image.shape) != 3 or image.shape[2] != 3 for image in images):
                     raise ValueError("expected RGB images")
             except Exception as error:
                 raise AccessError(400, "Le immagini non possono essere lette.") from error
             self.model_check()
             try:
-                query, _ = module.embedding_fuso(images)
+                query, _ = pipeline.embedding_fuso(images)
             except ValueError as error:
                 if "nessun volto" in str(error).lower():
                     raise AccessError(422, "Nessun volto rilevato. Inquadra il viso e riprova.") from error
                 raise AccessError(400, "Le immagini non possono essere usate per la verifica.") from error
-            module.assicura_chiave()
-            snapshot = module.snapshot_galleria()
-            ciphertext, _ = module.cifra(query, snapshot["query_profile"])
-            encrypted_result, headers = module.srv("/varco", ciphertext)
-            headers = module.valida_header_varco(headers, snapshot)
-            decoded = module.decifra(encrypted_result)
-            module.identita_da_esito(decoded, snapshot)
+            verification = pipeline.verify_vector(query)
+            decoded = verification.decoded
+            headers = verification.headers
+            snapshot = verification.snapshot
             server_ms = float(headers["x-tempo-ms"])
             if type(decoded["autorizzato"]) is not bool or not math.isfinite(server_ms) or server_ms < 0:
                 raise AccessError(503, UNAVAILABLE)

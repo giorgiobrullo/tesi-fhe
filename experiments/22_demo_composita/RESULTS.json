@@ -1,14 +1,6 @@
 {
   "schema": "numbered-demo-results.v1",
   "experiment": 22,
-  "origin_completion": {
-    "source": "tmp/tetris-composite-demo-20260908/COMPLETION.json",
-    "sha256": "66977370fc0b376fe54ac13fedb2a18b8a3a0c2533ea3394237e31c90a85452e"
-  },
-  "origin_service_completion": {
-    "source": "tmp/tetris-composite-demo-20260908/service-audit/final-results-v4/COMPLETION.json",
-    "sha256": "683647a2f8fb0ba6d283fc9d6dd0dbe716e5307fb6eb7cd270d7c40836ce2228"
-  },
   "selected_mode": {
     "service_mode": "public_parallel",
     "g4_used": false,
@@ -444,16 +436,6 @@
   ],
   "qualified_origin_source_sha256": "abd3a1091776f8273cbdee96d6be0a6ca9fd928ece5305be2fc758826e0d2c39",
   "qualified_origin_binary_sha256": "a6d0d5fe694b4c4134f1d1367a7f27b8e52f8b3498fa50a1f9dda6508764649f",
-  "new_copy_validation": {
-    "runtime_files": 87,
-    "byte_identical": true,
-    "existing_client_tests_passed": 18,
-    "source_only_configuration_identical": true,
-    "native_build_executed": false,
-    "fhe_executed": false,
-    "timings_measured": false,
-    "receipt": "evidence/PACKAGE_CHECKS.json"
-  },
   "limitations": [
     "Measured paired synthetic conditions, not old personal-gallery latency.",
     "First and confirmation, backend and image estimates are separate and not additive.",
@@ -461,5 +443,7 @@
     "Empirical noisy correctness is not a formal whole-query failure bound or biometric accuracy certificate.",
     "Tetris negative concerns the concrete six-fresh-CBS conversion and reused pilot family.",
     "Actual final demo and browser functional checks are additional to the 288 campaign outputs."
-  ]
+  ],
+  "provenance_manifest": "PROVENANCE.json",
+  "recorded_digest_scope": "Existing source, binary and original-result digests identify historical run artifacts. PROVENANCE.json separately hashes the files distributed in this publication."
 }

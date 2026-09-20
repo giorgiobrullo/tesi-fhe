@@ -47,14 +47,14 @@
     "decryption_policy": "diagnostic copy with noiseBound set to zero; original already admitted and unchanged",
     "paired_query_latency_measured": false
   },
-  "source_packaging": "archival source excerpts with explicitly unresolved original local dependencies; not standalone portable builds",
   "evidence": [
     "evidence/BGV_FINAL_REVIEW.md",
-    "EVIDENCE_ORIGINS.json"
+    "PROVENANCE.json"
   ],
   "limits": [
     "No N127 extrapolation for these results",
     "Capacity and serialized bytes are not runtime or RSS",
     "Finite noisy correctness is not a universal cryptographic failure bound"
-  ]
+  ],
+  "provenance_manifest": "PROVENANCE.json"
 }

@@ -1,15 +1,15 @@
 # Audit statico upgrade TFHE-rs 0.11.3 -> 1.7.0 per exact open-set ID (A38/A41)
 
-Data: 2026-09-02. Snapshot locale letto alle `2026-09-02T14:17:58Z`.
+Data: 2026-09-02. Snapshot analizzato alle `2026-09-02T14:17:58Z`.
 
 ## Esito in breve
 
-**NO-GO per sostituire subito il runtime A38 o dichiarare risolto l'argmin.** TFHE-rs 1.7.0 non
+L'audit non giustifica la sostituzione del runtime A38. TFHE-rs 1.7.0 non
 offre un `argmin` exact pronto. Le API CPU `min_parallelized` e `first_index_of_parallelized`
 utili a comporlo esistevano gia' in 0.11.3, e la release 1.7 non dichiara un'accelerazione del PBS
 classico CPU.
 
-**GO per un port e benchmark isolato, a fasi e con pin esatti.** Le ragioni concrete sono:
+L'audit propone un port e un benchmark isolati, per fasi e con pin esatti, per valutare:
 
 1. i parametri moderni p16/p128 con centered-mean noise reduction (CMNR), che migliorano di circa
    58 bit il termine nominale del union bound rispetto al parametro p16/p64 corrente;
@@ -33,12 +33,12 @@ parametri e cambiamento di algoritmo.
   non ancora misurata sull'exact-ID completo.
 - **Ipotesi**: possibile vantaggio che richiede compilazione, chiavi effimere e benchmark futuro.
 
-Durante questo audit non sono stati eseguiti Cargo, compilazione, FHE, keygen o Docker. Non sono
-state aperte o lette chiavi. L'unico nuovo artefatto e' questo report.
+L'analisi e' statica: non comprende nuove compilazioni, esecuzioni FHE, generazioni di chiavi
+o prove Docker.
 
-## Baseline che non va persa
+## Contratto della baseline
 
-L'oggetto da preservare non e' un semplice varco booleano. A38 implementa il protocollo completo:
+A38 implementa il protocollo completo di identificazione:
 
 - `0 = reject`;
 - `i+1 = identita' iscritta esattamente piu' vicina`;
@@ -60,7 +60,7 @@ ancora solo modellata, porta `N=127` a 3,909 BR, 3,528 KS e 4,460 marginali.
 | elemento | evidenza statica |
 |---|---|
 | progetto | `Cargo.toml` richiede `tfhe = "0.11"`; il lock risolve esattamente `0.11.3` |
-| candidato locale | sorgenti registry `tfhe-1.7.0` presenti |
+| candidato analizzato | sorgenti del crate `tfhe-1.7.0` |
 | upstream | la pagina release ufficiale marcava 1.7.0 come `Latest`, tag firmato `4267a92`, al momento dell'audit |
 | MSRV 0.11.3 | Rust 1.83 |
 | MSRV 1.7.0 | Rust 1.91.1 |
@@ -78,11 +78,11 @@ e [repository ufficiale](https://github.com/zama-ai/tfhe-rs).
 | `argmin`/`first accepted nearest` pronto | no | no | requisito finale della tesi | assente |
 | ManyLUT shortint | si' | si' | un BR, piu' sample extraction dallo stesso input | gia' sfruttato manualmente da A38 |
 | batch PBS FFT64 | si' | si' | carica il BSK una volta, ma il loop non sostituisce il parallelismo esterno | gia' provato sfavorevole |
-| Rayon/parallelismo CPU integer | si' | si' | utile, ma A38 lo usa gia' sulle PBS indipendenti | nessun salto di paradigma |
+| Rayon/parallelismo CPU integer | si' | si' | utile, ma A38 lo usa gia' sulle PBS indipendenti | nessun nuovo meccanismo per questo circuito |
 | `pbs-stats` | si' | si' | conta PBS delle API instrumentate | contatore, non bound di correttezza |
 | `NoiseLevel`/`MaxNoiseLevel` | si' | si' | contratto shortint se non si scende in core-crypto raw | A38 raw lo aggira |
 | noise simulation core-crypto | non trovata | si' | modello di varianza per KS/PBS/modulus switch | utile come cross-check, non prova |
-| parametri p16/p128 + CMNR | non nel catalogo corrente 0.11 | si' | termine nominale molto piu' forte | motivo serio di migrazione parametri |
+| parametri p16/p128 + CMNR | non nel catalogo corrente 0.11 | si' | termine nominale del union bound ridotto | motivo per valutare nuovi parametri |
 | CPU KS32 | non trovato | si', atomic pattern stabile | meno payload e potenzialmente meno memory bandwidth | candidato benchmark prioritario |
 | common-mask LWE | no | si', `experimental` | quattro corpi possono condividere una mask | manca la riduzione cross-slot |
 | extended PBS | no | si', `experimental` | LUT effettivamente piu' larga con parallelismo interno | un solo output, oversubscription probabile |
@@ -310,8 +310,7 @@ per slot. Non c'e' un'API pronta per OR/prefix/first-one cross-slot. Quindi il v
 B: riduzione di quattro slot senza estrazione/repacking a ogni livello, output decifrati e vantaggio
 misurato end-to-end.
 
-**Verdetto:** no-go per integrare in A38 ora; go soltanto per completare il POC isolato gia'
-specificato.
+L'integrazione in A38 richiede prima il completamento del POC isolato gia' specificato.
 
 ### Extended PBS
 
@@ -339,22 +338,21 @@ throughput, una singola PBS dovrebbe compensare l'intero consumo dei thread. Il 
 questo confronto. La primitiva potrebbe invece aiutare una coda stretta del DAG o sostituire un
 sottografo che necessita davvero di LUT piu' larga.
 
-**Verdetto:** no-go sull'intero A38; microbenchmark opzionale solo su uno strato stretto, a budget
-totale di thread fissato e dopo Standard/KS32.
+L'integrazione nell'intero A38 non e' giustificata. Resta da valutare un microbenchmark su uno
+strato stretto, a budget totale di thread fissato e dopo Standard/KS32.
 
 ## Piano benchmark isolato e falsificabile
 
-Nessuno dei passi seguenti e' stato eseguito in questo audit. Vanno avviati soltanto quando il
-benchmark primario corrente e' terminato.
+I confronti seguenti sono proposti e non sono stati eseguiti nell'analisi. Richiedono misure
+senza benchmark concorrenti sulla stessa CPU.
 
 ### Isolamento
 
-1. Copiare gli input A38/A41 congelati, verificandone gli SHA-256, in una nuova directory sotto
-   `tmp/`; non modificare `experiments/14_pipeline_tfhe_rs/Cargo.toml`, lock o core live.
+1. Preparare copie separate degli input A38/A41, verificate tramite SHA-256, conservando
+   manifest, lockfile e sorgenti della baseline per ogni braccio.
 2. Usare manifest con pin esatti (`=0.11.3`, `=1.7.0`) e `Cargo.lock` separati.
 3. Usare `CARGO_TARGET_DIR` separati per evitare artefatti condivisi e invalidazioni concorrenti.
-4. Generare soltanto chiavi effimere nel workspace isolato; non leggere, convertire o sovrascrivere
-   chiavi del demo.
+4. Generare chiavi effimere fresche e separate dal materiale della demo.
 5. Congelare host, governor/energia, numero di thread e commit/input hash nel report.
 
 ### Bracci da non confondere
@@ -423,24 +421,24 @@ Metriche obbligatorie:
 | X1 common-mask | decrypt di tutti gli stati, niente per-slot extraction, bridge+stage >=1.5x e OR/prefix a 4 slot resta packed | extraction/repack a ogni livello o vantaggio eliminato dal bridge |
 | X2 extended PBS | stesso layer exact, stessi thread totali, speedup layer >=1.25x con CI lower >1.10, p-fail del parametro giustificato | oversubscription, throughput <=1.10x o solo una LUT identity favorevole |
 
-## Decisione operativa
+## Criteri per la migrazione
 
-1. **Non cambiare ora il pin live.** A38/A41 e il benchmark primario devono rimanere riproducibili.
+1. **Conservare la baseline versionata.** A38/A41 e il benchmark primario devono rimanere
+   riproducibili con i propri pin e input identificati.
 2. **Aprire un port isolato 1.7 same-parameter.** E' il prerequisito per attribuire qualsiasi
    differenza alla versione.
-3. **Portare prima A41 prudent a p128 Standard/CMNR.** Questo e' il guadagno scientifico piu'
-   difendibile, anche se non garantisce velocita'.
-4. **Confrontare subito dopo p128 Standard vs p128 KS32.** E' la pista stabile con il miglior
-   potenziale pratico nuovo: -30.39% di payload teorico delle chiavi rispetto all'old, ma speedup
-   ancora da dimostrare.
-5. **Usare il noise simulator come secondo ledger.** Non sostituire i lemma sui cammini correlati.
+3. **Portare prima A41 prudent a p128 Standard/CMNR.** Consente di valutare il termine nominale
+   del union bound con i nuovi parametri; non garantisce una latenza inferiore.
+4. **Confrontare subito dopo p128 Standard vs p128 KS32.** La variazione del payload teorico
+   delle chiavi e' -30.39% rispetto al parametro precedente; lo speedup resta da dimostrare.
+5. **Usare il noise simulator come controllo aggiuntivo.** Non sostituisce i lemma sui cammini correlati.
 6. **Tenere first-index/min come baseline di controllo.** Non presentarlo come novita' 1.7.
-7. **Tenere common-mask ed extended PBS dietro gate.** Sono ricerca utile per la tesi, ma oggi non
+7. **Valutare separatamente common-mask ed extended PBS.** Nelle implementazioni esaminate non
    soddisfano il requisito exact first-winner 1:N end-to-end.
 
-In sintesi: **l'upgrade e' promettente come piattaforma per p128 + KS32, non come soluzione pronta
-dell'argmin.** La prossima evidenza che puo' cambiare la decisione e' il confronto U0/U1/U2/U3
-isolato e semanticamente matched.
+L'upgrade rende disponibili p128 e KS32 per ulteriori prove sul circuito exact-ID.
+Il confronto isolato U0/U1/U2/U3, a parita' di semantica, deve stabilire l'effetto della versione,
+dei parametri e del backend sulla latenza e sul rumore.
 
 ## Fonti e provenienza
 

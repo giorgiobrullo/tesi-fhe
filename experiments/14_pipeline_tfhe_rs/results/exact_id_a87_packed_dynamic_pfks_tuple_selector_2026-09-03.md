@@ -1,4 +1,4 @@
-# A87 — selettore dinamico packed per tuple PFKS A30
+# A87 - selettore dinamico packed per tuple PFKS A30
 
 Data: 2026-09-03  
 Ambito: prova statica nel ring plaintext e ledger strutturale; nessun Cargo,
@@ -7,7 +7,7 @@ keygen, carico FHE o benchmark.
 ## Domanda
 
 Nel piano A30 scalar ogni nodo non-root deve selezionare cifratamente quattro
-payload — tre limb dello score e l'ID — e quindi ripete quattro volte la blind
+payload - tre limb dello score e l'ID - e quindi ripete quattro volte la blind
 rotation dinamica. Si può costruire un solo accumulatore cifrato contenente
 l'intera tuple e ottenere i quattro payload con una sola blind rotation più
 quattro sample extraction?
@@ -124,8 +124,8 @@ GLWE costante” a livello sorgente, non a livello di esecuzione.
 - Gli output condividono accumulatore, control LWE, bootstrap e PFPK riusata:
   gli errori sono correlati e non si possono moltiplicare probabilità marginali.
 - Il supporto quadratico esatto delle maschere D2 non-root è `8*127=1.016`,
-  contro `2*1024=2.048` nello screen scalar A86. Può essere promettente, ma non
-  è una formula di rumore senza covarianze e decomposizione PFPKS reali.
+  contro `2*1024=2.048` nello screen scalar A86. Questa riduzione non determina
+  il rumore senza covarianze e decomposizione PFPKS reali.
 - L'ID usa la scala più debole `Delta=2^56`; deve essere decifrato e misurato.
 - D1 somma left rumoroso al delta selezionato rumoroso e richiede un audit
   separato della correlazione/cancellazione.
@@ -147,20 +147,5 @@ pipeline completa. Per entrambe le fasi control e per fixture di bordo bisogna:
 4. ripetere in processi/chiavi freschi sui parametri A86 ordinati;
 5. testare D1 solo dopo il pass causale di D2.
 
-## Artefatti e digest
-
-- Directory: `tmp/a87-packed-dynamic-pfks-tuple-selector/`
-- Risultato JSON: `artifacts/a87_static_result.json`
-- Catalogo delle 16 maschere dentro il JSON: canonical SHA-256
-  `950f79ffe31658d4626210d83a7ab69eb0c4b9b3ed43b158ed220bfc134a06ee`
-- Canonical SHA-256 del risultato:
-  `f95f1d0c5eeb3e9d190cf3ab7b96c7fbf2686afb6392d84fa21f798fb4afea45`
-- SHA-256 del file JSON pretty-printed:
-  `72f20b2c9e1c3eca45eca0043b843971a8ad698fcf54682b72cb34bacd1536fc`
-- Gli hash dei file riproducibili e di questo report in prosa sono in
-  `SHA256SUMS`.
-
-La riproduzione richiede Python 3.10+, questo snapshot del repository e i
-sorgenti TFHE-rs 0.11.3 pin-nati nel Cargo registry locale. Python da solo non è
-sufficiente; il verifier fallisce chiuso se un sorgente manca o ha hash diverso,
-senza eseguire Cargo o carichi FHE.
+Il prototipo e il verificatore specifici di questa analisi non sono inclusi
+nella distribuzione.

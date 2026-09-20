@@ -1,26 +1,43 @@
-# 25 — Tetris: consumatore corretto, produttore più lento
+# 25 - Tetris: consumatore corretto, produttore più lento
 
-Il prototipo supera i controlli con rumore del componente e del consumatore:
-54 output completi e 2091 verifiche LWE nel percorso accelerato. Il confronto
-del produttore comprende però sei circuit bootstrap freschi per creare il
-controllo. In questo pilot **Tetris è 66,401451% più lento**, zero vittorie su
-18 coppie, una famiglia di chiavi e tre scene. Medie geometriche circa
-23,688078 contro 14,235500 ms.
+Il prototipo studia un'accelerazione Tetris includendo il costo necessario
+per produrre il controllo cifrato consumato dalla primitiva. Il produttore
+ibrido esegue sei circuit bootstrap freschi.
 
-Il costo comprende la conversione necessaria al consumatore; non è una
-misura della query completa. Il negativo vale per questa costruzione,
-non per ogni possibile variante Tetris. Il prototipo è escluso dalla demo.
+## Risultati e limiti
 
-Il [runtime misurato](runtime/Cargo.toml) include core locale, lockfile, piano
-di timing incorporato e l'accelerazione split-FFT con
-[licenza RevHomTrace](runtime/LICENSE-RevHomTrace). L'implementazione conserva
-l'attribuzione nel sorgente. Il [primo tentativo fallito](failed-first/RESULT.json)
-e il suo [sorgente](failed-first/tetris.rs) sono conservati separatamente.
+Il componente e il consumatore superano i controlli con rumore: **54 uscite
+complete e 2091 verifiche LWE** nel percorso accelerato. Il produttore è però
+**66,401451% più lento** nel pilot, con zero vittorie su 18 coppie,
+una famiglia di chiavi e tre scene. Le medie geometriche sono
+**23,688078 contro 14,235500 ms**.
 
-[Risultati](RESULTS.json), [tempi del produttore](evidence/producer-timing.json),
-[origini delle prove](EVIDENCE_ORIGINS.json) e
-[verifica delle copie](COPY_ORIGINS.json) distinguono ogni revisione.
-Il `SOURCE_DIGEST.txt` incorporato è un identificatore ereditato; non identifica
-da solo tutta questa nuova cartella. I risultati sono quelli delle prove
-originali, senza nuova compilazione o esecuzione durante il consolidamento.
-Le dipendenze registry TFHE-rs 1.7.0 non sono vendorizzate.
+La misura comprende la conversione del produttore; non è la latenza della
+query completa. Il risultato negativo riguarda questa costruzione e non
+ogni possibile variante Tetris. Il prototipo è escluso dalla demo selezionata.
+[Dati del produttore](evidence/producer-timing.json) e [riepilogo](RESULTS.json).
+
+Un [primo controllo aritmetico fallito](failed-first/RESULT.json), con
+[sorgente](failed-first/tetris.rs), rileva al nibble 5/prefix bit 3 un valore
+3 invece di −1. Quel tentativo non esegue FHE e resta distinto dalle prove
+successive del consumatore e dai tempi del produttore.
+
+## Codice e compilazione
+
+Il [runtime](runtime/Cargo.toml) include il core, il piano di timing e
+l'accelerazione split-FFT con [licenza RevHomTrace](runtime/LICENSE-RevHomTrace).
+Servono Rust e le dipendenze TFHE-rs 1.7.0 del lockfile. Da questa cartella:
+
+```sh
+cargo build --release --locked --manifest-path runtime/Cargo.toml \
+  --target-dir .local/target-tetris
+```
+
+La [demo 22](../22_demo_composita/README.md) usa la variante selezionata senza Tetris.
+
+## Provenienza
+
+[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
+dai documenti storici e dalle copie redatte. I digest degli esperimenti
+identificano le esecuzioni originali; questa pubblicazione non aggiunge
+una nuova compilazione nativa o una nuova prova FHE.

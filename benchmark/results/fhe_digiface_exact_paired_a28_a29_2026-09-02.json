@@ -1,12 +1,8 @@
 {
-  "argv": [
-    "benchmark/fhe_exact_id_paired_latency.py",
-    "--run"
-  ],
   "artifacts": {
-    "csv": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.csv",
+    "csv": "benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.csv",
     "csv_sha256": "7f18bbc584cb82ed60a5e7e7bd2adb6266ebd7c4c718265d2a7c46e2c6ae26df",
-    "json": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.json",
+    "json": "benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.json",
     "publication": "atomic same-filesystem hard-link; existing files are never replaced"
   },
   "blocks": [
@@ -54,39 +50,23 @@
       "seed": 29092026,
       "server_processes": {
         "a28": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
-            "serve",
-            "58636",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a",
           "bind_address": "127.0.0.1:58636",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+          "expected_binary_path": "a28-split4-2026-09-02::varco_demo",
           "label": "a28",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+          "observed_executable_path": "a28-split4-2026-09-02::varco_demo",
           "pid": 66966,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo serve 58636 512 4",
           "ps_started": "Wed Sep  2 09:55:18 2026"
         },
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "58637",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:58637",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 66969,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 58637 512 4",
           "ps_started": "Wed Sep  2 09:55:18 2026"
         }
       },
@@ -1400,39 +1380,23 @@
       "seed": 30092029,
       "server_processes": {
         "a28": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
-            "serve",
-            "62733",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a",
           "bind_address": "127.0.0.1:62733",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+          "expected_binary_path": "a28-split4-2026-09-02::varco_demo",
           "label": "a28",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+          "observed_executable_path": "a28-split4-2026-09-02::varco_demo",
           "pid": 67526,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo serve 62733 512 4",
           "ps_started": "Wed Sep  2 10:01:08 2026"
         },
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "62734",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:62734",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 67523,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 62734 512 4",
           "ps_started": "Wed Sep  2 10:01:07 2026"
         }
       },
@@ -2746,39 +2710,23 @@
       "seed": 31092032,
       "server_processes": {
         "a28": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
-            "serve",
-            "50582",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a",
           "bind_address": "127.0.0.1:50582",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+          "expected_binary_path": "a28-split4-2026-09-02::varco_demo",
           "label": "a28",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+          "observed_executable_path": "a28-split4-2026-09-02::varco_demo",
           "pid": 68021,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo serve 50582 512 4",
           "ps_started": "Wed Sep  2 10:07:00 2026"
         },
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "50583",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:50583",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 68024,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 50583 512 4",
           "ps_started": "Wed Sep  2 10:07:00 2026"
         }
       },
@@ -10651,12 +10599,12 @@
     "frozen_binaries": {
       "a28": {
         "bytes": 2215680,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+        "path": "a28-split4-2026-09-02::varco_demo",
         "sha256": "09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a"
       },
       "a29": {
         "bytes": 2240816,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+        "path": "a29-manylut-2026-09-02::varco_demo",
         "sha256": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102"
       }
     },
@@ -10780,186 +10728,7 @@
   "provenance": {
     "git": {
       "branch": "thesis-evidence-audit-2026-09",
-      "head": "6611c185adc9a658a075519b4316386f0bb48656",
-      "status_short": [
-        "M .gitignore",
-        " M README.md",
-        " M benchmark/cascata.py",
-        " M benchmark/figura_architettura.py",
-        " M benchmark/figure_percorso.py",
-        " M benchmark/norma_limitata.py",
-        " M benchmark/results/architettura.png",
-        " M benchmark/results/architettura.svg",
-        " M benchmark/results/percorso.png",
-        " M benchmark/results/percorso.svg",
-        " M benchmark/soglia_dominio.py",
-        " M demo/README.md",
-        " M demo/calibra.py",
-        " M demo/client/Dockerfile",
-        " M demo/client/app.py",
-        " M demo/client/static/index.html",
-        " M demo/config.json",
-        " M demo/docker-compose.yml",
-        " M demo/server/Dockerfile",
-        " M experiments/08_cnn/embedding.py",
-        " M experiments/14_pipeline_tfhe_rs/Cargo.lock",
-        " M experiments/14_pipeline_tfhe_rs/Cargo.toml",
-        " M experiments/14_pipeline_tfhe_rs/RISULTATI.md",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/argmin_delta.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/argmin_torneo.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/banda_soglia.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/galleria_cifrata.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/pbs_largo.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/rumore.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/selezione.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/uscita_impacchettata.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/varco.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/varco_leveled.rs",
-        " M experiments/15_ckks_confronto/ckks_packing_forte.py",
-        " M experiments/15_ckks_confronto/ckks_varco.py",
-        " M findings.md",
-        " M letteratura.md",
-        "?? .dockerignore",
-        "?? attempts.md",
-        "?? benchmark/a29_pfail_accounting.py",
-        "?? benchmark/demo_e2e.py",
-        "?? benchmark/fasthe_private_bsgs_inputs.py",
-        "?? benchmark/fhe_digiface_validation.py",
-        "?? benchmark/fhe_exact_id_paired_latency.py",
-        "?? benchmark/oracle_leakage.py",
-        "?? benchmark/patches/",
-        "?? benchmark/results/demo_e2e_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_2026-09-01.json",
-        "?? benchmark/results/demo_e2e_exact_id_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_exact_id_2026-09-01.json",
-        "?? benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.csv",
-        "?? benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.json",
-        "?? benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.md",
-        "?? benchmark/results/demo_e2e_exact_id_noise_bounded_2026-09-02.csv",
-        "?? benchmark/results/demo_e2e_exact_id_noise_bounded_2026-09-02.json",
-        "?? benchmark/results/demo_e2e_exact_id_noise_bounded_2026-09-02.md",
-        "?? benchmark/results/demo_e2e_exact_id_optimized_2026-09-02.csv",
-        "?? benchmark/results/demo_e2e_exact_id_optimized_2026-09-02.json",
-        "?? benchmark/results/demo_e2e_exact_id_optimized_2026-09-02.md",
-        "?? benchmark/results/demo_e2e_exact_id_split4_2026-09-02.csv",
-        "?? benchmark/results/demo_e2e_exact_id_split4_2026-09-02.json",
-        "?? benchmark/results/demo_e2e_exact_id_split4_2026-09-02.md",
-        "?? benchmark/results/demo_e2e_periodic_fold_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_periodic_fold_2026-09-01.json",
-        "?? benchmark/results/demo_e2e_periodic_fold_final_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_periodic_fold_final_2026-09-01.json",
-        "?? benchmark/results/docker_runtime_validation_2026-09-01.md",
-        "?? benchmark/results/exact_comparator_scratch_2026-09-01.md",
-        "?? benchmark/results/exact_id_boolean_comparator_edges_2026-09-01.md",
-        "?? benchmark/results/exact_id_end_to_end_2026-09-01.md",
-        "?? benchmark/results/exact_id_manylut_pfail_accounting_2026-09-02.json",
-        "?? benchmark/results/exact_id_noise_hardening_2026-09-01.md",
-        "?? benchmark/results/exact_id_output_bitwise_edges_2026-09-01.md",
-        "?? benchmark/results/exact_id_refreshed_edges_2026-09-01.md",
-        "?? benchmark/results/external_routes_2026-09-01.md",
-        "?? benchmark/results/fasthe_private_bsgs_2026-09-01.md",
-        "?? benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.md",
-        "?? benchmark/results/fhe_digiface_exact_frontier_manylut_2026-09-02.csv",
-        "?? benchmark/results/fhe_digiface_exact_frontier_manylut_2026-09-02.json",
-        "?? benchmark/results/fhe_digiface_exact_frontier_manylut_2026-09-02.md",
-        "?? benchmark/results/fhe_digiface_exact_noise_bounded_targeted_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_noise_bounded_targeted_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_noise_bounded_targeted_2026-09-01.md",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_final_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_final_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_paired_a28_a29_smoke_2026-09-02T072454.381238Z.csv",
-        "?? benchmark/results/fhe_digiface_exact_paired_a28_a29_smoke_2026-09-02T072454.381238Z.json",
-        "?? benchmark/results/fhe_digiface_exact_paired_a28_a29_smoke_2026-09-02T074955.805693Z.csv",
-        "?? benchmark/results/fhe_digiface_exact_paired_a28_a29_smoke_2026-09-02T074955.805693Z.json",
-        "?? benchmark/results/fhe_digiface_exact_post_trace_gate_smoke_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_post_trace_gate_smoke_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.csv",
-        "?? benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.json",
-        "?? benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.md",
-        "?? benchmark/results/fhe_digiface_exact_primary_noise_bounded_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_primary_noise_bounded_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_primary_noise_bounded_2026-09-01.md",
-        "?? benchmark/results/fhe_digiface_exact_primary_optimized_2026-09-02.csv",
-        "?? benchmark/results/fhe_digiface_exact_primary_optimized_2026-09-02.json",
-        "?? benchmark/results/fhe_digiface_exact_primary_optimized_2026-09-02.md",
-        "?? benchmark/results/fhe_digiface_exact_primary_split4_2026-09-02.csv",
-        "?? benchmark/results/fhe_digiface_exact_primary_split4_2026-09-02.json",
-        "?? benchmark/results/fhe_digiface_exact_primary_split4_2026-09-02.md",
-        "?? benchmark/results/fhe_digiface_exact_threshold_refresh_targeted_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_threshold_refresh_targeted_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_periodic_fold_final_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_periodic_fold_final_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_periodic_fold_regression_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_periodic_fold_regression_2026-09-01.json",
-        "?? benchmark/results/oracle_leakage.csv",
-        "?? benchmark/results/protocol_boundary_audit_2026-09-01.md",
-        "?? demo/config.env",
-        "?? demo/screenshots/",
-        "?? experiments/14_pipeline_tfhe_rs/LICENSE.tfhe-rs-BSD-3-Clause-Clear",
-        "?? experiments/14_pipeline_tfhe_rs/precisione_bucket_dominio.py",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_fresh_keys_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_lut_fixed_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_optimized_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_real_probe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_real_probe_lut_fixed_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_exact_norm12_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_exact_split_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_adversarial_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_adversarial_fixed_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_candidate_diag_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_optimized_adversarial_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_packed_bool59_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_pairwise_periodic_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_pairwise_safe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_torneo_periodic_fold_cbs_sweep_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_torneo_q3_pairwise_safe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_torneo_qm3_cap110_pairwise_safe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/bucket_bit_bridge_audit_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_circuit_invariants_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_circuit_invariants_split4_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_extraction_noise_audit_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_boundaries_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_design_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_pfail_accounting_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_replay_probe87_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_semantics_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_small_gallery_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_novelty_claims_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_split4_boundaries_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/exact_id_uniform_threshold_fastpath_design_2026-09-02.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/precisione_bucket_dominio_2026-09-01.csv",
-        "?? experiments/14_pipeline_tfhe_rs/results/private_argmin_core_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/ritaratura_soglia.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/score_bit_bridge_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/score_mod16_lowbits_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/a33_sparse_manylut.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/a33_sparse_residual_trace.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_bisect_periodic_fold.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_bucket_bits_periodic.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_pairwise_periodic.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_torneo_periodic_fold.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/bucket_bit_periodic.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/exact_comparator_scratch.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/exact_id_replay_trace.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/score_bit_extraction.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/score_mod16_lowbits.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/split4_boundary_trace.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/lib.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/private_argmin.rs",
-        "?? experiments/15_ckks_confronto/results/ckks_packing_forte_n128_2026-09-01.csv",
-        "?? experiments/15_ckks_confronto/results/ckks_rerun_2026-09-01.md",
-        "?? experiments/15_ckks_confronto/results/ckks_varco_cfg0_n4_2026-09-01.csv",
-        "?? experiments/16_common_mask_poc/",
-        "?? tests/",
-        "?? tmp/",
-        "?? ultimo-meeting-transcription.md"
-      ]
+      "head": "6611c185adc9a658a075519b4316386f0bb48656"
     },
     "host_runtime_after": {
       "load_average_1m_5m_15m": [
@@ -10982,114 +10751,114 @@
     "inputs_after": {
       "a28_binary": {
         "bytes": 2215680,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+        "path": "a28-split4-2026-09-02::varco_demo",
         "sha256": "09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a"
       },
       "a28_source_patch": {
         "bytes": 322070,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a28_split4_source_2026-09-02.patch",
+        "path": "benchmark/patches/a28_split4_source_2026-09-02.patch",
         "sha256": "58182d45efbfd8d6f87c5f5c842b83952e36a408f4639fb0e2ba019ed259115b"
       },
       "a29_binary": {
         "bytes": 2240816,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+        "path": "a29-manylut-2026-09-02::varco_demo",
         "sha256": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102"
       },
       "a29_snapshot_binary_manifest": {
         "bytes": 455,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/binaries.sha256",
+        "path": "a29-manylut-2026-09-02::binaries.sha256",
         "sha256": "7165dec9918115c503e9d04e0efcc357bed7647930709dfdbe4b25de32d3481c"
       },
       "a29_snapshot_input_manifest": {
         "bytes": 1513,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/inputs-before.sha256",
+        "path": "a29-manylut-2026-09-02::inputs-before.sha256",
         "sha256": "2f9aaba5c4aa585fb76d28d6f7fa43eae03104d6e9007089c538fb3f22b8881c"
       },
       "a29_snapshot_readme": {
         "bytes": 1356,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/README.md",
+        "path": "a29-manylut-2026-09-02::README.md",
         "sha256": "14e0f4624700e0635ab3445f959eabeb205164a6d58b463fa49ef09140a9ff81"
       },
       "a29_source_patch": {
         "bytes": 388796,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a29_manylut_source_2026-09-02.patch",
+        "path": "benchmark/patches/a29_manylut_source_2026-09-02.patch",
         "sha256": "7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54"
       },
       "cache": {
         "bytes": 638255,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+        "path": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
         "sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99"
       },
       "config": {
         "bytes": 4146,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/config.json",
+        "path": "demo/config.json",
         "sha256": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc"
       },
       "paired_harness": {
         "bytes": 69360,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_exact_id_paired_latency.py",
+        "path": "benchmark/fhe_exact_id_paired_latency.py",
         "sha256": "d4f553591f6fcb92f9cefdf7c9ffa65e394b1014c0045e0650b4377625fd1bed"
       },
       "validation_dependency": {
         "bytes": 62853,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_digiface_validation.py",
+        "path": "benchmark::fhe_digiface_validation.py",
         "sha256": "eabb803d3c8e85f4c38ac395a8907b7b0579fede89f9c23362006da675523398"
       }
     },
     "inputs_before": {
       "a28_binary": {
         "bytes": 2215680,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a28-split4-2026-09-02/varco_demo",
+        "path": "a28-split4-2026-09-02::varco_demo",
         "sha256": "09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a"
       },
       "a28_source_patch": {
         "bytes": 322070,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a28_split4_source_2026-09-02.patch",
+        "path": "benchmark/patches/a28_split4_source_2026-09-02.patch",
         "sha256": "58182d45efbfd8d6f87c5f5c842b83952e36a408f4639fb0e2ba019ed259115b"
       },
       "a29_binary": {
         "bytes": 2240816,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+        "path": "a29-manylut-2026-09-02::varco_demo",
         "sha256": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102"
       },
       "a29_snapshot_binary_manifest": {
         "bytes": 455,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/binaries.sha256",
+        "path": "a29-manylut-2026-09-02::binaries.sha256",
         "sha256": "7165dec9918115c503e9d04e0efcc357bed7647930709dfdbe4b25de32d3481c"
       },
       "a29_snapshot_input_manifest": {
         "bytes": 1513,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/inputs-before.sha256",
+        "path": "a29-manylut-2026-09-02::inputs-before.sha256",
         "sha256": "2f9aaba5c4aa585fb76d28d6f7fa43eae03104d6e9007089c538fb3f22b8881c"
       },
       "a29_snapshot_readme": {
         "bytes": 1356,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/README.md",
+        "path": "a29-manylut-2026-09-02::README.md",
         "sha256": "14e0f4624700e0635ab3445f959eabeb205164a6d58b463fa49ef09140a9ff81"
       },
       "a29_source_patch": {
         "bytes": 388796,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a29_manylut_source_2026-09-02.patch",
+        "path": "benchmark/patches/a29_manylut_source_2026-09-02.patch",
         "sha256": "7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54"
       },
       "cache": {
         "bytes": 638255,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+        "path": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
         "sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99"
       },
       "config": {
         "bytes": 4146,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/config.json",
+        "path": "demo/config.json",
         "sha256": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc"
       },
       "paired_harness": {
         "bytes": 69360,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_exact_id_paired_latency.py",
+        "path": "benchmark/fhe_exact_id_paired_latency.py",
         "sha256": "d4f553591f6fcb92f9cefdf7c9ffa65e394b1014c0045e0650b4377625fd1bed"
       },
       "validation_dependency": {
         "bytes": 62853,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_digiface_validation.py",
+        "path": "benchmark::fhe_digiface_validation.py",
         "sha256": "eabb803d3c8e85f4c38ac395a8907b7b0579fede89f9c23362006da675523398"
       }
     },

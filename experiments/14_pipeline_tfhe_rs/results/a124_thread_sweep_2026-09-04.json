@@ -10,7 +10,7 @@
       "pbs": 1713,
       "scalar_pbs_equivalents": 0.9240601261046868,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         0.9797517911548583,
@@ -61,7 +61,7 @@
       "pbs": 1713,
       "scalar_pbs_equivalents": 1.7967861383434307,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         1.917567153382922,
@@ -112,7 +112,7 @@
       "pbs": 1713,
       "scalar_pbs_equivalents": 3.3966541205557745,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         3.6475108824256934,
@@ -163,7 +163,7 @@
       "pbs": 1713,
       "scalar_pbs_equivalents": 4.716995254620606,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         4.961079777114599,
@@ -214,7 +214,7 @@
       "pbs": 1713,
       "scalar_pbs_equivalents": 6.429921332314346,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         6.0790055126144855,
@@ -265,7 +265,7 @@
       "pbs": 1713,
       "scalar_pbs_equivalents": 7.768970260535504,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         8.147317727376029,
@@ -316,7 +316,7 @@
       "pbs": 1713,
       "scalar_pbs_equivalents": 8.640289989859465,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         9.11813038724266,
@@ -367,7 +367,7 @@
       "pbs": 3390,
       "scalar_pbs_equivalents": 0.9280558026065078,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         0.9973878556743839,
@@ -418,7 +418,7 @@
       "pbs": 3390,
       "scalar_pbs_equivalents": 1.7870100221332348,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         1.915211314271007,
@@ -469,7 +469,7 @@
       "pbs": 3390,
       "scalar_pbs_equivalents": 3.44100459646944,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         3.7032431016751315,
@@ -520,7 +520,7 @@
       "pbs": 3390,
       "scalar_pbs_equivalents": 4.789862203389361,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         4.955116656499404,
@@ -571,7 +571,7 @@
       "pbs": 3390,
       "scalar_pbs_equivalents": 6.5726743285606934,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         7.055812451086107,
@@ -622,7 +622,7 @@
       "pbs": 3390,
       "scalar_pbs_equivalents": 8.876178279580971,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         9.362550858586866,
@@ -673,7 +673,7 @@
       "pbs": 3390,
       "scalar_pbs_equivalents": 9.99166052682076,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         10.702031650050067,
@@ -724,7 +724,7 @@
       "pbs": 3415,
       "scalar_pbs_equivalents": 0.9264092306988922,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         0.9937299884341113,
@@ -775,7 +775,7 @@
       "pbs": 3415,
       "scalar_pbs_equivalents": 1.7830333421171185,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         1.911768412461223,
@@ -826,7 +826,7 @@
       "pbs": 3415,
       "scalar_pbs_equivalents": 3.464610769126057,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         3.7159002623212327,
@@ -877,7 +877,7 @@
       "pbs": 3415,
       "scalar_pbs_equivalents": 4.9001652575996895,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         5.139535828933951,
@@ -928,7 +928,7 @@
       "pbs": 3415,
       "scalar_pbs_equivalents": 6.608785122000102,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         7.088122737279216,
@@ -979,7 +979,7 @@
       "pbs": 3415,
       "scalar_pbs_equivalents": 8.979159168795533,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl"
       ],
       "speedup_ci95": [
         9.048844233684814,
@@ -1030,7 +1030,7 @@
       "pbs": 3415,
       "scalar_pbs_equivalents": 9.707855450176238,
       "source_files": [
-        "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl"
+        "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl"
       ],
       "speedup_ci95": [
         9.995839142179872,
@@ -1085,27 +1085,27 @@
     "performance": 12
   },
   "inputs": [
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl"
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl"
   ],
   "measured_queries_total": 210,
   "replicates": 20000,

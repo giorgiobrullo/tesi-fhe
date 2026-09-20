@@ -1,6 +1,6 @@
-# Audit locale delle route esterne — 1 settembre 2026
+# FastHE e scheme switching: risultati preliminari - 1 settembre 2026
 
-Questa nota preserva risultati e condizioni osservati durante l'audit. Non e' un benchmark
+Questo rapporto descrive risultati e condizioni dei confronti preliminari. Non e' un benchmark
 matched contro il prototipo TFHE: dataset, funzione, hardware pubblicato e metriche non sono
 allineati. I checkout temporanei e i file di input non fanno parte del repository, quindi i run
 vanno trattati come **riproduzioni preliminari limitate alla sessione, con hash**, non come
@@ -23,9 +23,7 @@ Fonti:
 configurazione di build è annotata, ma il comando di build effettivamente usato non è stato
 preservato.
 
-Interfaccia usata, dalla directory di esecuzione:
-
-    ../app-build-123/ImageMatching INPUT.dat 8 --keep-serial
+È stata usata l'approach 8 di `ImageMatching`, con `--keep-serial`.
 
 L'opzione `--keep-serial` conserva o riusa artefatti serializzati. Non è stata preservata una
 prova di isolamento della cache per ogni input/caso; non si può quindi escludere riuso di stato
@@ -46,7 +44,7 @@ Gli input erano vettori numerici sintetici nel formato della release. Hash SHA-2
 |---|---:|---:|---:|---:|---|
 | N=128 | 1,071 s | 13 ms | 2,277 s | 2,255 s | 8/8 indici piantati |
 | N=1.024, primo run | 1,016 s | 14 ms | 2,255 s | 2,191 s | 16/16 |
-| N=1.024, tre warm run | — | 13 ms | 2,194 s media, sd 0,049 | 2,145 s media, sd 0,075 | 16/16 in ogni run |
+| N=1.024, tre warm run | - | 13 ms | 2,194 s media, sd 0,049 | 2,145 s media, sd 0,075 | 16/16 in ogni run |
 
 Il tempo wall complessivo era 7,59 s a N=128, 6,73 s al primo N=1.024 e 5,34 s in media nei tre
 warm run. Il picco RSS era circa 4,50 GiB. Il footprint serializzato del run N=1.024 era
@@ -92,11 +90,7 @@ Apple. Nessun numero GPU pubblicato viene quindi presentato come misura locale.
 
 Fonte: OpenFHE 1.5.1, commit
 1306d14f8c26bb6150d3e6ad54f28dfe1007689e. Build Release CPU arm64, esempi ed extras attivi,
-OpenMP disattivato:
-
-    cmake -S openfhe-development -B build -DCMAKE_BUILD_TYPE=Release \
-      -DBUILD_EXAMPLES=ON -DBUILD_EXTRAS=ON -DWITH_OPENMP=OFF
-    cmake --build build --target scheme-switching scheme-switching-timing -j 16
+OpenMP disattivato.
 
 La configurazione includeva BUILD_EXAMPLES=ON, BUILD_EXTRAS=ON e WITH_OPENMP=OFF. Per isolare i
 casi, il main degli esempi e' stato ridotto a una sola chiamata. Non sono stati cambiati gli
@@ -137,14 +131,15 @@ Setup 0,055 s, keygen CKKS 0,004 s, evaluation-key generation **35,794 s**, prec
 picco RSS 6.603.000.000 byte. I due vettori includono la frontiera a mezzi interi e gli estremi
 `+/-3705,5`, ma sono soltanto due ciphertext. L'intervallo online inizia dopo la cifratura CKKS
 di score sintetici precomputati: **esclude scoring del probe e cifratura della query**. Produce
-l'uscita discreta desiderata, ma e' gia' circa 47--54 volte piu' lento della mediana server del
-percorso TFHE corrente a N=127, prima di aggiungere gli stadi esclusi.
+un bit globale cifrato. I 30,4695–35,2800 s risultano circa 47–54 volte la mediana del
+checkpoint TFHE periodic-fold `any_match` allora confrontato a N=127, prima di aggiungere gli
+stadi esclusi. Il confronto riguarda quel vecchio predicato, non il servizio exact-ID attuale.
 
-- sorgente temporaneo: `/private/tmp/ckks_fhew_direct_global.cpp`, SHA-256
+- sorgente del test dedicato, non incluso nel clone, SHA-256
   `01c502d9586fb8f4a92a0c99b8614cd23580b4671791d651a926806918157b3c`;
-- binario: `/private/tmp/ckks_fhew_direct_global_omp`, SHA-256
+- binario del test dedicato, non incluso nel clone, SHA-256
   `b634662cc80fed79589c8e342a53bc050f49f2e89d11a0338f0563e77cb4fc2f`;
-- trascrizione dei risultati: `/private/tmp/ckks_route_results_2026-09-01.txt`, SHA-256
+- trascrizione originale delle due misure, non inclusa nel clone, SHA-256
   `e48b624b4e537308fa470a488636c8bf281e1d9f77b7cd9e4f785ebb1e824c87`.
 
 ### CKKS aggregate-first: solo prefisso numerico
@@ -160,14 +155,14 @@ precalcolate, mancavano lo scoring CKKS e soprattutto lo switch/segno FHEW final
 non espone il ponte OpenFHE, quindi il risultato e' soltanto un test numerico del prefisso. Non va
 tracciato come latenza di pipeline ne' descritto come decisione esatta.
 
-## Conseguenza per la tesi
+## Interpretazione
 
-La sessione FastHE indica che BSGS-Diagonal e CKKS meritano un confronto matched, specialmente su
+Il test FastHE indica che BSGS-Diagonal e CKKS meritano un confronto matched, specialmente su
 GPU, ma non dimostra da sola né la riproducibilità del risultato né che il padding sia l'unica
 causa dei negativi errati. La release V1.0.0 non puo' essere usata come baseline open-set senza
 un harness negativo riproducibile, cache isolate e validazione DIR@FPIR.
 OpenFHE scheme switching offre una decisione discreta dopo uno score CKKS approssimato, ma sia gli
 esempi generici sia il percorso diretto a 128 slot sono troppo lenti e pesanti per competere su
-questa CPU a N=128. L'aggregazione CKKS prima dello switch resta la sola falsificazione sensata,
-ma non e' stata integrata. Il confronto finale richiede gli stessi embedding, split held-out,
+questa CPU a N=128. L'aggregazione CKKS prima dello switch costituisce un'ipotesi alternativa,
+ma non è stata integrata in queste prove. Il confronto finale richiede gli stessi embedding, split held-out,
 soglia inclusiva, output e hardware.

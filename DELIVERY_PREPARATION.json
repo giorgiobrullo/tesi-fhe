@@ -1,0 +1,131 @@
+{
+  "campaign_core_math_and_grouping_unchanged": true,
+  "circuit_sha256": "b16e8cb4cc74bf38d924b2ee7f3cd262c539d62942ce7f9676bfb5deae7efc05",
+  "compiled": false,
+  "core_source_sha256": "07e596858189b3b5d2324b66541ca6408fc6b495bb95e4621183e3b3053f2c42",
+  "executed_fhe": false,
+  "generated_files": [
+    "BUILD_SELECTION.json",
+    "CIRCUIT_CONTRACT.json",
+    "CORE_ORIGINS.json",
+    "SOURCE_DIGEST.txt",
+    "SOURCE_PINS.json",
+    "circuit.sha256",
+    "config.json",
+    "core-source.sha256",
+    "runtime-mode.txt",
+    "service-source.sha256",
+    "variant-id.txt"
+  ],
+  "keys_read": false,
+  "only_core_rust_change": "service::ID_CONTRACT literal",
+  "origin": "local-archive:tmp/selector-overhead-optimization-20260920/repair-runtime",
+  "preparation_freeze_sha256": "2e379d4d040f0f9bf8e74b5f04f80c1522dc1318e8140e4635fe14fdfe681e7f",
+  "runtime": "local-archive:tmp/selector-overhead-optimization-20260920/service-delivery/runtime",
+  "runtime_manifest_sha256": "671220073ff0f5054d7f21236591848c0e4d425cecd46a4723c7b7fab99001af",
+  "schema": "selector-pack4-service-delivery-preparation.v1",
+  "service_source_sha256": "5de9b8d3e33820fb8e7d001d45c7c3660c91a794786fb49f64f6ba4a86d07a07",
+  "source_delta": {
+    "BUILD_SELECTION.json": {
+      "after_sha256": "29f9b9ff7498ea0196e2035b90bf93f48e6e07ab558f2d18094563cee678af25",
+      "before_sha256": "6b8259fe7c4bd927e79db4c725a279543c69b89d61f54dbe9180b8b2b8c39543",
+      "generated_binding": true
+    },
+    "CIRCUIT_CONTRACT.json": {
+      "after_sha256": "b16e8cb4cc74bf38d924b2ee7f3cd262c539d62942ce7f9676bfb5deae7efc05",
+      "before_sha256": "2b3d8a932533d483ec18b0325d31296aaafe3e7326e6eb035a74d7afd313324c",
+      "generated_binding": true
+    },
+    "CORE_ORIGINS.json": {
+      "after_sha256": "9819743289ee505afee2f9dc4f2f2f91c940b223b8a67070267f77c5d875ec25",
+      "before_sha256": "2b4050e518b2b0c8af7934a3b7121486529fef3319a001590824b5a3d531d00e",
+      "generated_binding": true
+    },
+    "README.md": {
+      "after_sha256": "6edac5baa21ffe1da525c81de60fbed342c9b963f190a3bef48b983fb8cf3b56",
+      "before_sha256": "223e0417d7e6126f8d03f3e43667baed09ceffb55bff6edad6078fb1660f4cde",
+      "generated_binding": false
+    },
+    "REPAIR.md": {
+      "after_sha256": "825322a6242234fdb49dfde3cbbcaf4d65ee6c76a3c67860125a85a4f234f537",
+      "before_sha256": "a973257e645e1c751d2cd3a4b1de0cc050aebf4292b2143c3a2cb84adbbcae90",
+      "generated_binding": false
+    },
+    "SOURCE_DIGEST.txt": {
+      "after_sha256": "6887000842802e991db757277a66b0e9c649f5cb48e1c4a52206c01213ef8f34",
+      "before_sha256": "5b2864a07daed0bb8b3a76c156fdb38fe848d55fcbe242b4f698c360ee605b98",
+      "generated_binding": true
+    },
+    "SOURCE_PINS.json": {
+      "after_sha256": "671220073ff0f5054d7f21236591848c0e4d425cecd46a4723c7b7fab99001af",
+      "before_sha256": "89d6c706470906c0bc1923868956e463bd7c4717d5bbe143ccb88d741c4aa337",
+      "generated_binding": true
+    },
+    "candidate/src/metadata.rs": {
+      "after_sha256": "4db9aa80a68edeec86c0192807008b79e2267c354985daa2c9c58c00c58d225e",
+      "before_sha256": "c26bff22a92abf2975a3dfb426b3effdb935ba91b63b3a6e0843cce99cd4a8e2",
+      "generated_binding": false
+    },
+    "circuit.sha256": {
+      "after_sha256": "e46d0710120c11ae152348b3a7773174ad2521f1a3859e1ab0b8588b449bdac8",
+      "before_sha256": "08ed164af9f32cb539539fccb08a652ed9612e021e15a5776dcf1f671a8b9253",
+      "generated_binding": true
+    },
+    "circuit.template.json": {
+      "after_sha256": "f81fcfb748f9671d14a2a2d0f55fc69e04f487ac87498c0a22eac27f9f02914b",
+      "before_sha256": "e786dd807023d79a8037f8191f4c7d1e98513f1fd3b1849105400ced4780b6ce",
+      "generated_binding": false
+    },
+    "client/ledger.py": {
+      "after_sha256": "4a9229eb752c8860ee9ef1bd1d75db12b895fab5c84452d316d3d44a682fba53",
+      "before_sha256": "b9bcdc9e189acdd363ea60a50d268a2bc7af03806f83eb520a8d5a802e0c3299",
+      "generated_binding": false
+    },
+    "client/test_pack4_ledger.py": {
+      "after_sha256": "38841f85d38e9cc465e7766f1fd0779fe68e7ce538a756898e1d48c927538afc",
+      "before_sha256": null,
+      "generated_binding": false
+    },
+    "config.json": {
+      "after_sha256": "7067fd7f6f825055e591de5beb9d6c6dee487ebcf63b253e560cc3d74aa30bd3",
+      "before_sha256": "9ac758d34e8c279852e4d1b26a22f4229b4e63cdcb999dac2999a3098d8f4408",
+      "generated_binding": true
+    },
+    "config.template.json": {
+      "after_sha256": "177e262dfee80b5be04ab1f22dea153a2801624469615a55b2351e41c5d7e19d",
+      "before_sha256": "ea5d7d6c3e0fb921151bad127303fa9dc110a9b86e03902742e6e26615449db1",
+      "generated_binding": false
+    },
+    "configure.py": {
+      "after_sha256": "f28467bb0556a57953f1434440b3c1e0a34fe66ff2df6713e0cce7afba9e6563",
+      "before_sha256": "946a3666c3986ddb184e1370922f71e93ced3ad4b0b8f9cdc56bd35283136ac1",
+      "generated_binding": false
+    },
+    "core-source.sha256": {
+      "after_sha256": "6887000842802e991db757277a66b0e9c649f5cb48e1c4a52206c01213ef8f34",
+      "before_sha256": "22f4318bf01f7af1f000ecf08d94d65dd1e4ef7201ff1e87010623f0f1a87005",
+      "generated_binding": true
+    },
+    "core/README.md": {
+      "after_sha256": "555f08556472f4e8957498a5b075249eb0d6b66b34b079836f3dce2ebb44ea91",
+      "before_sha256": "ae223ce0d392963fce582596df0167fcd65c1f8f4a904a28959868f368a47503",
+      "generated_binding": false
+    },
+    "core/src/service.rs": {
+      "after_sha256": "65f57f569abb0ad97ab3709799f5144c8f87fb20f071893cbf0d85e968bb2b3d",
+      "before_sha256": "13f565c7a776cb85e7a2b588f09bb2b5d636cc4add49de1240e268044397df89",
+      "generated_binding": false
+    },
+    "service-source.sha256": {
+      "after_sha256": "ebcb017a80e6ac82dc3aae834e1681d7610007c76c0779f1713024e753942a80",
+      "before_sha256": "5149dcee67618d15e3bb0d6f8c79a7ca085dcaec183c54ac44943ba0c32be0c2",
+      "generated_binding": true
+    },
+    "variant-id.txt": {
+      "after_sha256": "84db63e558327af498d91af07e8bef1b4086227fa2dc2e210ca14286e8689aec",
+      "before_sha256": "31a7641aeb57bf863e2436d7ddeccff7e776c190ec4fef78b23ed07ef6e66ae7",
+      "generated_binding": true
+    }
+  },
+  "source_input_sha256": "d5a29c78f3e6edd3375c575da1bf219a571fb90a77234f76ee786d3157c863a6"
+}

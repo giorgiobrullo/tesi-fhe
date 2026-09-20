@@ -42,70 +42,29 @@ Il load average host passa da `34,710/44,341/50,900` a `61,819/58,734/56,071`. Q
 latenze sono quindi una diagnostica di integrazione sotto carico alto, non una baseline idle e non
 sostituiscono il paired A33/A38. Il paired resta la fonte del delta relativo `-13,828%`.
 
-## Binding e stabilita'
+## Ambiente di esecuzione
 
-Il gate A55 ha ricostruito entrambe le immagini dai cinque input Rust dello snapshot integrato,
-non dal crate live. I controlli prima/dopo confermano:
+Client e server Linux arm64 usavano la stessa revisione A38 e lo stesso binario Rust,
+SHA-256 `54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211`.
+I controlli prima e dopo le richieste hanno verificato la stabilità di sorgenti,
+configurazione, dataset e galleria.
 
-- input host, config e dataset invariati durante il run;
-- stato Docker stabile durante preload e query;
-- server Linux PID 1 uguale al `varco_demo` costruito, SHA-256
-  `54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211`;
-- stesso binario Rust nell'immagine client;
-- immagine server arm64 `sha256:b7f7a69db31e3f2df252be8c09d542c238fdd6a252c873de44ba6449cabc5b9c`;
-- immagine client arm64 `sha256:874d750ee26b1fcce84b1d3209e4f47f3a666b1e12ac0d6a681b72a8052f1bc4`;
-- modello runtime `glintr100.onnx`, 260.665.334 B, SHA-256
-  `4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf`;
-- dataset e modello montati read-only, server senza mount o porta host, client esposto soltanto su
-  `127.0.0.1:18038`;
-- unico mount scrivibile del client: volume di chiavi dedicato al progetto.
+Il modello `glintr100.onnx` occupava 260.665.334 byte, SHA-256
+`4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf`.
+Il client usava Python 3.12, InsightFace 1.0.1, NumPy 1.26.4,
+ONNX Runtime 1.29.0 e Uvicorn 0.52.4. Dataset e modello erano in sola lettura;
+le chiavi erano conservate in un volume separato. Il server non montava
+file client e non esponeva porte host.
 
-Il runtime client congelato ha usato Python 3.12, InsightFace 1.0.1, NumPy 1.26.4,
-ONNX Runtime 1.29.0 e Uvicorn 0.52.4. L'identity manifest A38 e il pin manifest A55 sono entrambi
-verificati prima e dopo il run.
 
-## Lifecycle e cleanup
+## Dati del run
 
-Dopo la pubblicazione atomica di CSV e JSON e' stato eseguito:
+- [CSV delle sei richieste](demo_e2e_exact_id_a38_frozen_2026-09-02_gate01.csv)
+- [JSON con configurazione e verifiche](demo_e2e_exact_id_a38_frozen_2026-09-02_gate01.json)
 
-```bash
-A38_MODEL_CACHE=/Users/giorgiobrullo/.insightface docker compose \
-  -p thesis-a38-frozen-a55 \
-  -f tmp/a55-a38-docker-gate-design/docker-compose.e2e.yml \
-  down --volumes --remove-orphans
-```
-
-La verifica successiva non trova container, network o volumi con il label del progetto
-`thesis-a38-frozen-a55`. Il volume effimero `chiavi` e' stato rimosso; dataset e cache modello
-read-only non sono stati modificati. Le due immagini costruite restano disponibili localmente per
-audit/riproduzione.
-
-## Artifact e riproducibilita'
-
-Comando del gate:
-
-```bash
-A38_MODEL_CACHE=/Users/giorgiobrullo/.insightface uv run python \
-  tmp/a55-a38-docker-gate-design/run_gate.py \
-  --base-url http://127.0.0.1:18038 \
-  --preload --expect-n 127 --expect-pbs 3655 \
-  --positivi 3 --negativi 3 \
-  --docker-project thesis-a38-frozen-a55 \
-  --docker-compose-file tmp/a55-a38-docker-gate-design/docker-compose.e2e.yml \
-  --require-docker-provenance --require-calibration-cache \
-  --output benchmark/results/demo_e2e_exact_id_a38_frozen_2026-09-02_gate01.csv
-```
-
-| artifact | SHA-256 |
-|---|---|
-| CSV | `e45b143f3f3d728bb6d20be2b57471676a10100f99b18827aba4a35033b74784` |
-| JSON | `1e5e07c2ab3171ce7919ddc3935ca8c6e8aa1416c92e14fd44572f154bf88e39` |
-| identity manifest A38 | `648bb14f9ec785d60e0610fec95d932d8b74a0e81dad72e7b5770b3609fe836a` |
-| pin manifest A55 | `95af59bdc12a3b78a7ee281796b61a4b3a41d33ee23c862c2185f9a62e687c1c` |
-| gate runner | `41c281f68500b4d7b0688dd01c820066dfbb1628079d2d1915979487edf22c37` |
-
-Il JSON grezzo contiene le righe complete, gli snapshot Docker, gli hash di build/runtime e le
-verifiche di stabilita'; e' l'artifact autorevole.
+I dati riportano esiti, tempi, parametri e identificatori del codice eseguito.
+Il wrapper di esecuzione e il Compose A38 usati in questo esperimento non sono
+inclusi nel clone; questi dati non costituiscono da soli una procedura di replica.
 
 ## Limiti
 
@@ -113,5 +72,7 @@ Sei casi non sostituiscono la primary suite da 632 query, non misurano DIR/FPIR 
 non sono un benchmark di latenza robusto. Il gate non prova webcam o rendering browser, client
 malevolo, integrita' del trasporto o sicurezza production-grade. Soprattutto, non chiude il
 `p-fail`: l'audit A56 mostra raw L1 A36 oltre il massimo nominale corrente e un decode finale
-code56 senza coda formale. Il PASS Docker chiude l'integrazione e la provenienza nel perimetro
-testato; non promuove da solo A38 e non costituisce un claim di novita'.
+code56 senza coda formale. Il PASS Docker documenta l'integrazione nel perimetro testato; non prova affidabilità
+crittografica generale o novità scientifica.
+
+Questo report descrive la revisione storica indicata. I dati CSV/JSON documentano il run; il clone corrente non include il suo ambiente Docker completo e non ne riproduce automaticamente la misura. Per avviare il servizio attuale seguire la [guida della demo](../../demo/dual_view/README.md).

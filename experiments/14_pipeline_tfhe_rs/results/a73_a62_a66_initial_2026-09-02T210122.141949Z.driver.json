@@ -1,10 +1,10 @@
 {
-  "binary": "/private/tmp/a73-isolated-target-vOd9fz/release/a73_a62_a66_paired",
+  "binary": "a73-isolated-target-vOd9fz::release/a73_a62_a66_paired",
   "binary_sha256": "265c81a6591dfbfae229f3bc355bfb4bd88d8e32c216067b90adf51c36250b16",
   "extension_ack": false,
   "outputs": [
-    "experiments/14_pipeline_tfhe_rs/results/a73_a62_a66_initial_threads1_2026-09-02T210122.141949Z.jsonl",
-    "experiments/14_pipeline_tfhe_rs/results/a73_a62_a66_initial_threads16_2026-09-02T210122.141949Z.jsonl"
+    "experiment14::14_pipeline_tfhe_rs/results/a73_a62_a66_initial_threads1_2026-09-02T210122.141949Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a73_a62_a66_initial_threads16_2026-09-02T210122.141949Z.jsonl"
   ],
   "record": "driver",
   "scene_sha256": "d6a1f12da7133a38b5d09cf2f81e93f5aa2e4f09a0c2aaaedc362e61d22a2795",

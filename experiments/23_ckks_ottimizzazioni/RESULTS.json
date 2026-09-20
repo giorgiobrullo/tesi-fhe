@@ -419,34 +419,6 @@
   "attribution": "The complete combined change is measured directly against the cached original arithmetic. Prior isolated percentages are not added or multiplied. No uncached-original or all-PARALLEL thread-harness comparison is claimed.",
   "schema": "numbered-ckks-results.v1",
   "experiment": 23,
-  "origin_result": {
-    "source": "tmp/speed-campaign-20260907-night/ckks-runtime/combined-v3/COMBINED_THREE_KEY_RESULT.json",
-    "sha256": "65b845da32313002f09ba9b7843d62518318d7394261687b2d5876e682501bbf",
-    "copied_fields": [
-      "created_utc",
-      "status",
-      "qualifying_outputs",
-      "qualifying_complete_stage_input_equalities",
-      "timing_outputs",
-      "timing_complete_output_input_equalities",
-      "timing_key_processes",
-      "excluded_warmup_pairs",
-      "measured_pairs",
-      "total_outputs",
-      "total_complete_ciphertext_input_equalities",
-      "candidate_binary_sha256",
-      "pooled_timing",
-      "pooled_stage_timing",
-      "scope",
-      "attribution",
-      "runs projected without native PID and pins: label, evaluations, complete_ciphertext_input_equalities, labels, max_scalar_error, process_load, peak_rss_bytes, measured_pairs, timing, stage_timing"
-    ]
-  },
-  "new_package_validation": {
-    "native_build": false,
-    "fhe_execution": false,
-    "performance_measurements": false
-  },
   "limitations": [
     "These are compact projections of completed original campaign results, not new measurements.",
     "Shared public plaintext cache exists in both measured arms; earlier isolated gains are not additive.",
@@ -1734,5 +1706,7 @@
         }
       }
     }
-  ]
+  ],
+  "provenance_manifest": "PROVENANCE.json",
+  "recorded_digest_scope": "Existing source, binary and original-result digests identify historical run artifacts. PROVENANCE.json separately hashes the files distributed in this publication."
 }

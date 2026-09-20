@@ -54,9 +54,7 @@ Il piano e' stato fissato prima del run:
 - tempo primario preso dall'header server `X-Tempo-Ms`; HTTP wall conservato come secondario.
 
 Tutti i 144 ciphertext sono distinti fra coppie e byte-identici fra A33 e A38 dentro la rispettiva
-coppia. I sei blocchi usano sei hash distinti della server key. Le directory con chiavi effimere
-sono state rimosse, i processi server terminati e le porte chiuse. Nessuna chiave client o relativo
-hash e' registrato nell'artifact.
+coppia. I sei blocchi usano sei hash distinti della server key.
 
 L'intervallo ricampiona prima i blocchi-chiave, poi le righe dentro gli strati fissati
 probe-per-ordine, preservandone la numerosita'. L'estimando e'
@@ -106,17 +104,11 @@ la separazione osservata in ogni blocco.
 | 1943 | 5 | 14,817% | 23/24 |
 | 407 | 7 | 14,158% | 22/24 |
 
-## Provenienza e riproducibilita'
-
-Invocazione:
-
-```bash
-uv run python benchmark/fhe_exact_id_paired_a33_a38.py --run
-```
+## Dati e identificazione della revisione
 
 | artefatto/input | SHA-256 |
 |---|---|
-| JSON finale | `003ae3ec413c5788a689f63c79d97b1141f641752846f09e131a2eba1a0cb808` |
+| JSON pubblico | `d12ac5ecdd5a7b8887ef315a0fbdb809d6159d17e478ba2dd63c5956c39fd0f9` |
 | CSV finale | `d8dd128e2eaf8f5a13c302220a1113bdc509f182da0e67c5ba903cc5357979e6` |
 | harness paired | `ea14a7d07f079418910c6a21dababd3d1c918d9f06554edf7eb492494c10755e` |
 | test harness | `1d12d230357ea5c71c0cfb0aa586926e54e6545068fd77a8cec14a8930658661` |
@@ -154,3 +146,10 @@ I 120 pair ripetono cinque probe di frontiera: stimano la latenza di implementaz
 campioni biometrici indipendenti. Il run non sostituisce la suite primaria da 632 query, non stima
 DIR/FPIR della popolazione, non prova il `p-fail` crittografico composto, non valida Docker e non
 copre il fallback A29 per soglie arbitrarie. Non sostiene claim di novita' o priorita' scientifica.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

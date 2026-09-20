@@ -1,4 +1,4 @@
-# Demo end-to-end exact-ID sul core bounded — 2 settembre 2026
+# Demo end-to-end exact-ID sul core bounded - 2 settembre 2026
 
 > **Snapshot Docker storico della revisione bounded da 7.804 PBS.** Conteggi, correttezza e tempi
 > di questo file valgono esclusivamente per quell'immagine e non validano revisioni successive del
@@ -13,19 +13,10 @@
 Data dell'artefatto: `2026-09-01T22:12:55.131750+00:00`, cioe' 00:12:55 del 2 settembre in
 Europe/Rome.
 
-## Ambito e comando
+## Ambito
 
 La galleria DigiFace contiene 127 iscritti, embedding quantizzati a 512 dimensioni e soglia
-uniforme `T=4`. Il comando registrato nel JSON e':
-
-```sh
-benchmark/demo_e2e.py \
-  --preload \
-  --require-calibration-cache \
-  --positivi 3 \
-  --negativi 3 \
-  --output benchmark/results/demo_e2e_exact_id_noise_bounded_2026-09-02.csv
-```
+uniforme `T=4`. Sono stati valutati tre genuini e tre impostori dopo il preload.
 
 Il preload ha iscritto 127 template in **92,7 s**. Il contratto osservato e'
 `exact-open-set-id-v2`, con un singolo codice cifrato `0=rifiuto` oppure
@@ -50,7 +41,7 @@ Tutte le sei righe riportano:
 - esito e, quando applicabile, identita' esatta corretti.
 
 Questo lega operativamente estrazione dell'embedding, cifratura, preload della galleria, endpoint
-HTTP, core `private_argmin` e decifratura al contratto bounded corrente. Non dimostra da solo la
+HTTP, core `private_argmin` e decifratura al contratto bounded di questa revisione. Non dimostra da solo la
 correttezza biometrica di popolazione; quella resta separata dalla correttezza del percorso E2E.
 
 ## Tempi osservati sotto carico alto e non isolato
@@ -68,21 +59,14 @@ worst-case o una regressione affidabile rispetto alla suite primaria eseguita in
 
 ## Docker e confine della prova
 
-Le immagini Linux sono state ricostruite prima del run. L'ispezione Docker successiva riporta:
+L'esecuzione usa immagini Linux arm64 in Docker su macOS. Il JSON identifica
+sorgenti e configurazione, ma non contiene gli identificatori delle immagini
+né il collegamento verificato al processo e all'eseguibile dentro il container.
+La provenienza del binario è quindi meno completa di quella delle suite host.
 
-| servizio | piattaforma | image ID |
-|---|---|---|
-| server | `linux/arm64` | `sha256:f8bc16aa34b65a5373d6cc3f8d1d11d4d60bba31c722a28bc9e4a436503c1b9d` |
-| client | `linux/arm64` | `sha256:658a6afd8433fcfeec52a40d9bb8bcb7c68d77f37094eb974af3bde969f8fcbf` |
-
-Gli image ID sono evidenza locale dell'ambiente ricostruito, ma non sono incorporati nel JSON. Il
-JSON registra gli hash dei sorgenti e della configurazione, mentre lascia nulli path, SHA-256 e PID
-del binario server perche' l'esecuzione avviene nel container. Non va quindi presentato come un
-binding del PID/binario analogo alla suite host.
-
-Lo script `demo_e2e.py` invia richieste al servizio e controlla i risultati decifrati. Non apre un
-browser, non acquisisce dalla webcam e non verifica DOM, testo o rendering della UI. Gli screenshot
-browser preesistenti appartengono a un run storico differente e non sono artefatti di questa prova.
+La verifica invia richieste al servizio e controlla i risultati decifrati.
+Non apre un browser, non acquisisce dalla webcam e non verifica il rendering
+dell'interfaccia.
 
 ## Provenienza
 
@@ -107,16 +91,21 @@ Artefatti del run:
 | artefatto | SHA-256 |
 |---|---|
 | `demo_e2e_exact_id_noise_bounded_2026-09-02.csv` | `d2ca4b98150a405acbf36d6cbdf7179b610e4d17ff6c04520ae8b064b84fef22` |
-| `demo_e2e_exact_id_noise_bounded_2026-09-02.json` | `f7c07d8876b6f95d0d31ecbc408c6811a9880c05b0751b732be4f03ee46e46a6` |
+| `demo_e2e_exact_id_noise_bounded_2026-09-02.json` | `8a778f5c27849bab618f4485220a736b4c350ff97abcbffdba41c0c7cd5c5288` |
 
 Lo SHA-256 del CSV coincide con quello incorporato nel JSON.
 
 ## Limiti della conclusione
 
-Il risultato 3+3 e' una verifica funzionale del percorso E2E corrente su sei casi scelti. Non
+Il risultato 3+3 e' una verifica funzionale del percorso E2E della revisione bounded su sei casi scelti. Non
 sostituisce la suite FHE-clear da 632 query, non stima DIR@FPIR, non deriva il `p-fail` composto e
 non valida una galleria mista o soglie per-template reali. Una sola evaluation key e un solo
 ambiente Docker non misurano variabilita' fra chiavi o host.
 
 Webcam, browser e rendering restano fuori da questo script. I tempi sotto carico elevato sono
 riportati per trasparenza, non come prestazioni nominali del sistema.
+
+Questo report descrive la revisione storica indicata. I dati CSV/JSON documentano il run; il clone corrente non include il suo ambiente Docker completo e non ne riproduce automaticamente la misura. Per avviare il servizio attuale seguire la [guida della demo](../../demo/dual_view/README.md).
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

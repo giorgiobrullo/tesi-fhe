@@ -61,20 +61,11 @@ non stazionario: load average 1/5/15 minuti `31,425/23,691/23,799` prima e
 contaminato e non vanno interpretate come prestazioni nominali su macchina idle. La mediana A33 di
 un run separato era 8.458,2 ms, ma la differenza fra finestre non e' una stima causale.
 
-## Provenienza e riproducibilita'
-
-Invocazione eseguita (l'`argv` completo e' persistito nel JSON):
-
-```bash
-uv run python benchmark/fhe_digiface_validation.py --run --primary-suite \
-  --regression-repetitions 1 --skip-build \
-  --binary tmp/a38-combined-prototype/varco_demo \
-  --output-stem fhe_digiface_exact_primary_a38_2026-09-02 --timeout 900
-```
+## Dati e identificazione della revisione
 
 | artefatto/input | SHA-256 |
 |---|---|
-| JSON finale | `21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0` |
+| JSON pubblico | `ad44e627e0bae017643bf492bca5d055224bf07e67774b86eaf0066521d396b0` |
 | CSV finale | `51b1539d894c3aa69cb4d91b77046dc741fee409685fa960d2cc84ba7653c610` |
 | binario servizio congelato A38 `varco_demo` | `f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02` |
 | core integrato `private_argmin.rs` | `5230f3863a5cad726aefe51a3c6a786899e4f1cdd47aeb0ff8f7141fcc3917ae` |
@@ -86,15 +77,9 @@ uv run python benchmark/fhe_digiface_validation.py --run --primary-suite \
 | `Cargo.toml` | `290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6` |
 | `Cargo.lock` | `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a` |
 
-Il processo osservato e il path atteso coincidevano col binario congelato. Il run ha usato
-`--skip-build`; la copia sorgente conservata sotto `tmp/a38-combined-prototype/source/` coincide con
-gli hash di core, servizio, libreria, manifest, validator e configurazione registrati dal run.
-
-La provenienza Git e' il branch `thesis-evidence-audit-2026-09`, base
-`6611c185adc9a658a075519b4316386f0bb48656`, con worktree esplicitamente sporco. Binario,
-sorgenti, harness, cache, configurazione e manifest Cargo risultano identici prima e dopo. La
-coppia di chiavi era fresca e temporanea; la directory e' stata rimossa e nessuna chiave client e'
-inclusa negli artifact.
+Il run ha usato il binario A38 identificato sopra, senza ricompilarlo fra le query.
+I sorgenti associati, l'harness, la cache, la configurazione e i manifest Cargo
+sono rimasti stabili. È stata generata una sola coppia di chiavi per il run.
 
 Artifact grezzi:
 
@@ -103,14 +88,20 @@ Artifact grezzi:
 - [component FHE A38](../../experiments/14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md)
 - [validator](../fhe_digiface_validation.py)
 
-## Limiti e gate successivi
+## Limiti
 
 Il run usa una sola chiave, una sola galleria DigiFace `N=127`, soglia uniforme `T=4` e il dominio
 allineato che abilita il fast path A38. Non valida il fallback A29 per soglie arbitrarie, non stima
 l'accuratezza biometrica della popolazione e non prova la correttezza su ogni plaintext ammesso.
 
-Zero errori in 632 query e' evidenza funzionale empirica, non una derivazione della probabilita' di
-fallimento crittografico end-to-end. Restano separati il benchmark paired A33/A38, il gate Docker,
-il formato terminale A41 a due LWE e il retuning A44. A38 ha quindi superato il gate primary, ma
-non viene ancora promosso come configurazione finale. Questo artifact non sostiene claim di
-novita' o priorita' scientifica.
+Zero errori in 632 query è evidenza funzionale empirica, non una derivazione della probabilità
+di fallimento crittografico end-to-end. Il benchmark abbinato A33/A38, l'integrazione Docker,
+il formato terminale A41 a due LWE e il cambio di parametri A44 sono esperimenti separati.
+Questa suite non fornisce da sola una prova di sicurezza o di novità scientifica.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

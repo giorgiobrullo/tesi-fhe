@@ -1,34 +1,32 @@
-# CKKS8/12/16 — 8 settembre2026
+# CKKS thread-budget comparison
 
-Il primo confronto conserva16thread:12è quasi alla pari e8è più lento.
-Tutti69output e151confronti completi dei ciphertext/input passano, oltre alle
-quattro transizioni reali8→12→16→8 senza contesto o chiavi crittografiche.
+A separate comparison retains 16 threads: 12 is near parity and 8 is slower.
+All 69 outputs and 151 complete ciphertext/input comparisons pass, together
+with four actual thread-budget transitions 8→12→16→8 that require no new
+cryptographic context or keys.
 
-| Budget | Mediana query | Variazione tempo rispetto a16 | Coppie più veloci |
+| Threads | Median query time | Paired time change versus 16 | Faster pairs |
 |---|---:|---:|---:|
-|8|3.220313s|+8.9820%|0/6|
-|12|2.964014s|+0.2011%|1/6|
-|16|2.957853s|riferimento|—|
+| 8 | 3.220313 s | +8.9820% | 0/6 |
+| 12 | 2.964014 s | +0.2011% | 1/6 |
+| 16 | 2.957853 s | reference | - |
 
-La variazione deriva dalla media geometrica dei rapporti appaiati; non dal
-rapporto delle mediane. Ogni tripla condivide chiave, ingresso cifrato e cache
-pubblica. Sono escluse le due triple di riscaldamento; le sei misurate
-coprono tutti gli ordini possibili. I team OpenMP predefiniti ed espliciti
-osservati coincidono con i budget richiesti; ciò non identifica l'affinità
-dei core o il numero di worker attivi in ogni kernel.
+The change is the geometric mean of paired time ratios, not a ratio of
+medians. Every triple shares the key, encrypted input and public cache.
+Two warmup triples are excluded; six measured triples cover every order.
+Observed default and explicit OpenMP team sizes match the requested budgets;
+this does not identify physical-core affinity or active workers per kernel.
 
-Prima della misura passano18output/45checkpoint del confronto originale e
-combinato a16thread, quindi27output/90checkpoint fra8/12/16 suN128, soglie e
-paritàN4 e intervallo4096N64. La misura aggiunge24output/16uguaglianze finali.
-Tutte le unità di compilazione usano coerentementePARALLEL/OpenMP; non è
-misurato separatamente l'effetto di cambiare quei flag rispetto ai vecchi
-eseguibili.
+Correctness checks comprise 18 outputs/45 checkpoints for baseline versus
+combined at 16 threads, followed by 27 outputs/90 checkpoints across the
+three budgets on N128, N4 threshold/tie cases and N64 range 4096. Timing
+adds 24 outputs and 16 complete final equalities.
 
-Un solo processo con chiave nuova sostiene la misura: carico esterno medio
-ponderato261.76%, copertura completa, stato high/unknown per ricambio processi.
-Il risultato non trasferisce tempi al servizio e non è una prova del tasso
-di fallimento. Tutti i processi dell'esperimento sono terminati.
+All compilation units use consistent `PARALLEL`/OpenMP definitions. The
+comparison does not separately measure the effect of changing those flags
+relative to `combined-v3`; its times belong to this campaign alone.
+One fresh-key process supplies the timing sample. Sampled external CPU load
+averages 261.76%, with complete coverage and high/unknown status due to process
+churn. These observations are neither service times nor a failure-rate bound.
 
-Ricevuta: `THREAD_BUDGET_RESULT.json`,
-SHA256 `f5a8c938ea1ad645d9d9fcddbdf2cd0d1f1364178ea99040a5850e536c0eddb6`.
-Sorgenti, binario, log e analisi sono vincolati da `ONE_KEY_FREEZE.json`.
+[Combined runtime experiment](../README.md).

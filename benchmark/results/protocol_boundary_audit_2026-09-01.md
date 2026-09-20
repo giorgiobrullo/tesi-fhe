@@ -1,13 +1,13 @@
 # Audit del confine cifrato del varco (2026-09-01)
 
-> **CHECKPOINT STORICO RITIRATO — F70 / periodic-fold / `any_match`.** Questo report conserva
+> **CHECKPOINT STORICO RITIRATO - F70 / periodic-fold / `any_match`.** Questo report conserva
 > misure e verifiche del servizio che restituiva soltanto
 > `OR_i[score_i <= T_i]`: non descrive il contratto finale di identificazione exact-ID, non
 > restituisce l'identita' piu' vicina e i suoi tempi/PBS non sono trasferibili all'argmin esatto.
 > Le parole "corrente" e "finale" eventualmente presenti nei nomi degli artefatti si riferiscono
 > esclusivamente a quel checkpoint del 1 settembre 2026. Per lo stato exact-ID attuale vedere il
-> [README principale](../../README.md#stato-corrente-ed-evidenza-storica) e
-> [`status.md`](../../status.md); la cronologia tecnica dell'hardening exact-ID e' in
+> [README principale](../../README.md#implementazione-selezionata) e
+> i [risultati sperimentali](../../findings.md); la cronologia tecnica dell'hardening exact-ID e' in
 > [`exact_id_noise_hardening_2026-09-01.md`](exact_id_noise_hardening_2026-09-01.md).
 
 ## Esito del checkpoint periodic-fold allora corrente
@@ -26,7 +26,7 @@ Il modello chiaro del circuito verifica esaustivamente il predicato inclusivo pe
 `score-T in [-4095,4095]` alla scala predefinita, oltre ai domini interi dei `log_delta` supportati.
 Le regressioni cifrate con chiavi e cifrature fresche coprono ripetutamente i due punti adiacenti
 alla soglia, un template denso vicino al bound, gli estremi del dominio e l'OR a galleria piena.
-Questa e' evidenza funzionale forte, ma non costituisce una prova del `p-fail` della composizione
+Questa evidenza funzionale non costituisce una prova del `p-fail` della composizione
 dei tre PBS per template e dell'albero OR. L'header del servizio lo dichiara
 `experimental-periodic-fold-3pbs`: il percorso e' integrato, non production-ready.
 
@@ -72,8 +72,6 @@ frequenza degli esiti
 vicino alla soglia dipendeva anche dalla casualita' di chiave e cifratura, mentre il fallimento
 qualitativo fu riprodotto su molte cifrature fresche.
 
-- commit di base: `6611c185adc9a658a075519b4316386f0bb48656`
-- branch: `thesis-evidence-audit-2026-09`
 - SHA-256 sorgente `varco_demo.rs`: `d03aef39a2a328f0f47698bc9317f4623931f27379da10b7f51a00d0bd9df7d0`
 - SHA-256 binario release: `7a8a88978aadbd3a51f0671a61d86665799516df9055340b436d91e97e850b92`
 - parametri: `V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`, `LOG_DO=60`

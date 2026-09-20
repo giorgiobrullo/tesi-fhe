@@ -1,7 +1,7 @@
 # A36: chunk da quattro valido, fusione interlacciata `B=13` respinta
 
-Data: 2026-09-02. Questo e' un audit statico e un modello clear separato: non e' stato eseguito
-alcun workload FHE/Cargo e non e' stato modificato il core A33 congelato.
+Data: 2026-09-02. Analisi statica e modello clear; nessuna compilazione o
+valutazione FHE è compresa in questo risultato.
 
 ## Esito
 
@@ -113,8 +113,8 @@ non una derivazione della `p-fail` end-to-end.
 
 Artefatti:
 
-- `benchmark/a36_chunked_candidate_model.py`;
-- `tests/test_a36_chunked_candidate_model.py`.
+- [benchmark/a36_chunked_candidate_model.py](../../../benchmark/a36_chunked_candidate_model.py);
+- [tests/test_a36_chunked_candidate_model.py](../../../tests/test_a36_chunked_candidate_model.py).
 
 Comandi eseguiti:
 
@@ -138,11 +138,10 @@ Rust eseguito, distribuzione reale del rumore o latenza.
 
 ## Prototipo Rust isolato materializzato
 
-E' stato materializzato anche `tmp/a36-chunked-candidate-prototype`, un crate separato che dipende
-dal source snapshot A33 congelato tramite la feature diagnostica, senza modificarlo. Il prototipo:
+È stato materializzato un prototipo Rust che usa la feature diagnostica
+del core A33. Il prototipo:
 
-- rifiuta l'avvio se `private_argmin.rs` non conserva lo SHA-256
-  `1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d`;
+- verifica l'identità della sorgente A33 prima dell'esecuzione;
 - riusa dal trace A33 i candidati cifrati dopo `b8` e gli otto ciphertext pesati di `b7..b0`, senza
   decrypt-then-reencrypt nel circuito;
 - applica soltanto il fallback non fuso raw `p=16`, con refresh `0/2` dopo `b4` e finalizzazione

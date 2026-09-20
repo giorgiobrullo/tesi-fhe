@@ -73,15 +73,9 @@ La fase automatica aggiuntiva non e' stata eseguita, coerentemente con il piano:
 dell'intervallo (1,636 punti) e la differenza A/B vs B/A (0,270 punti) sono entrambe sotto le soglie
 preregistrate di 2 punti.
 
-## Provenienza e riproducibilita'
+## Dati e identificazione della revisione
 
-Comando canonico:
-
-```bash
-python3 benchmark/fhe_exact_id_paired_latency.py --run
-```
-
-- base Git: `6611c185adc9a658a075519b4316386f0bb48656`, worktree esplicitamente sporco;
+- revisione a cui applicare le patch: `c5ab1b325c5c1a7c234d137bdedbbd7950222b16`;
 - harness: `d4f553591f6fcb92f9cefdf7c9ffa65e394b1014c0045e0650b4377625fd1bed`;
 - binario congelato A28: `09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a`;
 - binario congelato A29: `cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102`;
@@ -89,11 +83,10 @@ python3 benchmark/fhe_exact_id_paired_latency.py --run
 - patch sorgente A29: `7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54`;
 - core A29: `06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4`;
 - CSV: `7f18bbc584cb82ed60a5e7e7bd2adb6266ebd7c4c718265d2a7c46e2c6ae26df`;
-- JSON: `590a6256bbd895780fa643a6497ca8bf8f2f710231ec2cded2cc56fb2aaf6f44`.
+- JSON: `80e1a9e835434f0c4e8dcc023db30713e7aafd309e253796e377deb578c2d356`.
 
-Gli hash e le metriche sono stati ricalcolati in un audit indipendente. Alla fine del run tutti i
-server risultano terminati, le porte chiuse e le directory temporanee/chiavi effimere rimosse; gli
-input congelati risultano invariati.
+Un controllo indipendente ha ricalcolato hash e metriche. Gli input identificati per
+ciascuna revisione sono rimasti invariati durante il confronto.
 
 Artifact grezzi:
 
@@ -118,3 +111,10 @@ Questo artifact misura l'accordo exact-ID osservato e la latenza di implementazi
 frontiera con galleria DigiFace `N=127`. Non stima l'accuratezza biometrica della popolazione, non
 dimostra la probabilita' di fallimento crittografico end-to-end e non sostiene alcun claim di
 novita'.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

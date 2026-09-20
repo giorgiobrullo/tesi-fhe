@@ -1,0 +1,13 @@
+{
+  "creator_sha256": "417847be1695778ea12ac9d687cdcb846dcb49625dd92c8ee206875ce1dca502",
+  "outputs": {
+    "dati.json": "6382dcadf0f984f9bb3c15930b377e069965815896bd46a9b380e0dc8f09d2ef",
+    "misure.csv": "562e95792bf33438eba1a3985f830b4239edea1ce39bc6825654c7a60ba31227",
+    "progressione-email.png": "9aea3617d89b96f599e0d5e75b1f946b6a1aa38dde2e776c0747120c057051dc",
+    "progressione.pdf": "c6ebd709d072757b9da24545e71415c8d73f9266bb4acd45dd2b407119b14f93",
+    "progressione.png": "18823a2c254c63e09107b0e5bacbacda412511bec7d10a3a87ec503c2680d890",
+    "progressione.svg": "cf9040fc6b11ed08e40d512d9a0f9142139175d4784a841db801bc15f93e48fa",
+    "punti.csv": "5d2d2fc3000b74f8b25d0e4db2c43d087fa9ff2f4627e592a3937d0be64355ff"
+  },
+  "independent_quartile_crosscheck": true
+}

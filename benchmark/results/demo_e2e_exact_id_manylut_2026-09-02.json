@@ -1,27 +1,5 @@
 {
   "timestamp_utc": "2026-09-02T06:46:45.073305+00:00",
-  "argv": [
-    "benchmark/demo_e2e.py",
-    "--base-url",
-    "http://127.0.0.1:18080",
-    "--preload",
-    "--expect-n",
-    "127",
-    "--expect-pbs",
-    "4965",
-    "--positivi",
-    "3",
-    "--negativi",
-    "3",
-    "--docker-project",
-    "thesis-a29-manylut",
-    "--docker-compose-file",
-    "tmp/a29-manylut-2026-09-02/docker-compose.e2e.yml",
-    "--require-docker-provenance",
-    "--require-calibration-cache",
-    "--output",
-    "benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.csv"
-  ],
   "base_url": "http://127.0.0.1:18080",
   "platform": "macOS-27.0-arm64-arm-64bit",
   "python": "3.12.11",
@@ -375,18 +353,18 @@
   },
   "provenienza": {
     "host_input_sha256": {
-      "benchmark/demo_e2e.py": "751a90fc313c38e5e5595d76bec42357fe9f2412f50dfe7d2a74cc88a9cf2a2b",
+      "benchmark::demo_e2e.py": "751a90fc313c38e5e5595d76bec42357fe9f2412f50dfe7d2a74cc88a9cf2a2b",
       "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
       "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
       "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
       "demo/docker-compose.yml": "20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7",
       "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
       "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-      "experiments/14_pipeline_tfhe_rs/Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
+      "experiment14::experiments/14_pipeline_tfhe_rs/Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
       "experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
-      "experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
-      "experiments/14_pipeline_tfhe_rs/src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
-      "experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4"
+      "experiment14::src/bin/varco_demo.rs": "e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a",
+      "experiment14::14_pipeline_tfhe_rs/src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+      "experiment14::14_pipeline_tfhe_rs/src/private_argmin.rs": "06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4"
     },
     "host_inputs_stable_during_run": true,
     "config_snapshot": {
@@ -594,11 +572,11 @@
       "uvicorn": "0.52.4"
     },
     "dataset": {
-      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "dataset_root": "datasets::digiface/estratto",
       "selected_image_count": 272,
       "selected_image_bytes": 5518658,
       "selected_content_manifest_sha256": "76fe33addfd57b2023b50bec80a8daf29a70f7f6c107f7ae3cf46b85e9a0c960",
-      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
       "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
       "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
       "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"
@@ -607,7 +585,7 @@
     "docker_required": true,
     "docker_preload": {
       "project": "thesis-a29-manylut",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/docker-compose.e2e.yml",
+      "compose_file": "a29-manylut-2026-09-02::docker-compose.e2e.yml",
       "compose_config_sha256": "c04ef1ccb9ea31b39df3001b3f3516081faeefe5d2373f92ae5b52c1fa4ebe1d",
       "context_file_sha256": {
         "compose": "5c28e8348144970ca793cb4ffc09814bbde0b4dc4d77ca270ead4d058bdead7f",
@@ -646,7 +624,7 @@
             "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
             "src/private_argmin.rs": "06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4",
             "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
-            "target/release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
+            "demo_e2e_exact_id_manylut::release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
           },
           "host_source_hashes": {
             "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
@@ -672,7 +650,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -732,7 +709,7 @@
             "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
             "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
             "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-            "target/release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
+            "demo_e2e_exact_id_manylut::release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
           },
           "host_source_hashes": {
             "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
@@ -766,7 +743,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",
@@ -845,7 +821,7 @@
     },
     "docker": {
       "project": "thesis-a29-manylut",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/docker-compose.e2e.yml",
+      "compose_file": "a29-manylut-2026-09-02::docker-compose.e2e.yml",
       "compose_config_sha256": "c04ef1ccb9ea31b39df3001b3f3516081faeefe5d2373f92ae5b52c1fa4ebe1d",
       "context_file_sha256": {
         "compose": "5c28e8348144970ca793cb4ffc09814bbde0b4dc4d77ca270ead4d058bdead7f",
@@ -884,7 +860,7 @@
             "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
             "src/private_argmin.rs": "06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4",
             "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
-            "target/release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
+            "demo_e2e_exact_id_manylut::release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
           },
           "host_source_hashes": {
             "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
@@ -910,7 +886,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -970,7 +945,7 @@
             "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
             "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
             "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-            "target/release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
+            "demo_e2e_exact_id_manylut::release/varco_demo": "6bb220bf50837eb02a1cfb20e378a5e74f5647b5ca9224977d54938967d94415"
           },
           "host_source_hashes": {
             "Cargo.toml": "676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501",
@@ -1004,7 +979,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",

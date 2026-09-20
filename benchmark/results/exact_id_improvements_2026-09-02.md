@@ -4,13 +4,13 @@ Data di congelamento: 2 settembre 2026.
 
 ![Percorso di ottimizzazione exact-ID](exact_id_improvements_2026-09-02.png)
 
-La figura riassume quanto e' stato guadagnato mantenendo il requisito forte del sistema: il
+La figura riassume le riduzioni di costo osservate mantenendo il contratto del sistema: il
 server deve restituire **l'identita' esatta piu' vicina**, oppure `0` quando il minimo supera la
 soglia. Non rappresenta quindi tecniche che calcolano soltanto il bit accept/reject.
 
 La serie quantitativa parte da A23 perche' e' il primo circuito completo confrontabile con questo
 contratto. A1--A22 erano esplorazioni, primitive o protocolli parziali: inserirne i secondi nella
-stessa curva farebbe sembrare uno speedup il semplice fatto che calcolavano meno cose.
+stessa curva confonderebbe la riduzione della latenza con la differenza di funzione calcolata.
 
 ## Come leggere i quattro pannelli
 
@@ -41,7 +41,7 @@ stessa curva farebbe sembrare uno speedup il semplice fatto che calcolavano meno
    (-73). La cascata spiega da dove proviene il guadagno, senza attribuire a ogni singolo blocco
    una latenza misurata isolatamente.
 
-## Stato che la figura autorizza a dichiarare
+## Risultati e limiti al 2 settembre 2026
 
 - A38 ha preservato il codice exact-ID in tutte le 632 query della suite primaria e in tutte le
   144 coppie totali del paired, incluse 24 coppie di warm-up escluse dalle statistiche temporali.
@@ -70,7 +70,7 @@ stessa curva farebbe sembrare uno speedup il semplice fatto che calcolavano meno
   A N=127 osserva 3.390 BR, 3.009 KS e 3.930 marginali e ricostruisce
   `code=low+15*high`, inclusi ID 60/64/127/128, rifiuto e pareggi. Resta una validazione di
   componente: servizio, primary, paired e bound `p-fail` raw non sono ancora chiusi.
-- Questi dati supportano un miglioramento ingegneristico riproducibile nel perimetro testato; da
+- Questi dati documentano un miglioramento ingegneristico nel perimetro testato; da
   soli non dimostrano novita' scientifica rispetto alla letteratura.
 
 Le alternative vuote hanno inoltre precondizioni diverse:
@@ -90,37 +90,38 @@ applicare quella percentuale agli 8,328 s del run primario A38.
 
 | serie | artifact JSON | SHA-256 |
 |---|---|---|
-| primary A23 | `fhe_digiface_exact_primary_noise_bounded_2026-09-01.json` | `b6e54b92bef8f53c0ce057f1e68e9b473487fdd423776962579661669d4fa512` |
-| primary A25 | `fhe_digiface_exact_primary_optimized_2026-09-02.json` | `a322ee946b6f5f7a031d1f59f6e9a5ae26cc42b642333295526aa7b9a6e7a009` |
-| primary A28 | `fhe_digiface_exact_primary_split4_2026-09-02.json` | `683fdf98ccc5dc45222c0b51b4b3ce678e3b5bd1aa9d9fbc10ed67fcb5108465` |
-| primary A29 | `fhe_digiface_exact_primary_manylut_2026-09-02.json` | `328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34` |
-| primary A33 | `fhe_digiface_exact_primary_a33_2026-09-02.json` | `e3ef7b5ae74c85e883d8ed3b2670fb6efbd20291775752fefe1ec56c0f1a9467` |
-| primary A38 | `fhe_digiface_exact_primary_a38_2026-09-02.json` | `21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0` |
-| paired A28/A29 | `fhe_digiface_exact_paired_a28_a29_2026-09-02.json` | `590a6256bbd895780fa643a6497ca8bf8f2f710231ec2cded2cc56fb2aaf6f44` |
-| paired A29/A33 | `fhe_digiface_exact_paired_a29_a33_2026-09-02.json` | `659a996f5094112b3ea34ee3306a65bf03c8b308cd0d212c597890fc6fd71b8d` |
-| paired A33/A38 | `fhe_digiface_exact_paired_a33_a38_2026-09-02.json` | `003ae3ec413c5788a689f63c79d97b1141f641752846f09e131a2eba1a0cb808` |
+| primary A23 | `fhe_digiface_exact_primary_noise_bounded_2026-09-01.json` | `4a601d84b006e6fd8b3267c51b280f65e1fed017384c861e0dea0e4885dc016d` |
+| primary A25 | `fhe_digiface_exact_primary_optimized_2026-09-02.json` | `1cef42ab0fa13ef8b7ef50ee80aeb6ca0d8c26a33535feefeded595a8ca2cf10` |
+| primary A28 | `fhe_digiface_exact_primary_split4_2026-09-02.json` | `14ab4e07807744f547d4e042fc768202962e110322c4562cd21ae84d4b8b764d` |
+| primary A29 | `fhe_digiface_exact_primary_manylut_2026-09-02.json` | `152e64280efcfec925e3638c3aefedd0c8ce1166df8e631b4831ef87b5099908` |
+| primary A33 | `fhe_digiface_exact_primary_a33_2026-09-02.json` | `51be273a6a81274b1314f56af3a0ae62328131f035a7bff236d01b70751f9c49` |
+| primary A38 | `fhe_digiface_exact_primary_a38_2026-09-02.json` | `ad44e627e0bae017643bf492bca5d055224bf07e67774b86eaf0066521d396b0` |
+| paired A28/A29 | `fhe_digiface_exact_paired_a28_a29_2026-09-02.json` | `80e1a9e835434f0c4e8dcc023db30713e7aafd309e253796e377deb578c2d356` |
+| paired A29/A33 | `fhe_digiface_exact_paired_a29_a33_2026-09-02.json` | `f24c767dc305419571deb740350a6cc19d995344cadabf7883bca1db8fc1e4ed` |
+| paired A33/A38 | `fhe_digiface_exact_paired_a33_a38_2026-09-02.json` | `d12ac5ecdd5a7b8887ef315a0fbdb809d6159d17e478ba2dd63c5956c39fd0f9` |
 
-La proiezione A53 proviene da
-`tmp/a53-radix15-group4-scan-model/a53_radix15_group4_scan_model.py`, SHA-256
-`a03c8753298e0959133b0c915b911172795bafba353d86b75c7cdfb38d31eb9f`; i suoi nove test hanno
-SHA-256 `c64026b21134d6df1b0e2d2dfdf4358137a98dc6b832f5cfde2e43b50d9166ae`.
+La proiezione A53 nasce da un modello statico radix-15 con nove test.
+Il modello standalone non è incluso nel clone; la successiva materializzazione
+è descritta nel [rapporto del componente A62](../../experiments/14_pipeline_tfhe_rs/results/exact_id_a62_component_fhe_2026-09-02.md).
+Questo riferimento documenta il passaggio alla verifica FHE senza trasformare
+la proiezione statica in una misura di latenza.
 
 Il punto A41 e' ancorato al gate
 `exact_id_a41_component_gate_2026-09-02_gate01.json`, SHA-256
-`fea5cc41867744edf708145574009a13274b12d06ebdaa8bee01b5ab4abe4224`, e alla suite completa
+`e9b4f469d6070dbeb903ca2d6b34777e7016fa759c7c3c5138e6367d73f452d1`, e alla suite completa
 `exact_id_a41_component_full_2026-09-02_run01.log`, SHA-256
 `a603f5e6b646cac2d51b3466c1587dcbdf8fd2f0434b608d88bf8d57bc57b2ba`. Il report interpretativo
 ha SHA-256 `f733c8476a3dcce756124f0decd28bc0d52407385d7e708c5b8931ed11b5f3ac`.
 
 Il punto A44 e' ancorato al gate canonico richiesto-full
 `exact_id_a44_component_gate_2026-09-02.json`, SHA-256
-`fadc3ddd7562fc4192c89f4c759630888472a35dc1a1b441175b3bd1f6796c83`, e al log completo
+`3867c858d46bcbc55282d220596a8114f86098101e988e8d3b66f6d59813973b`, e al log completo
 87/87, SHA-256 `921fea38c0fd6ca00af5fbe79812a04a677d5b002317ab744e3126f8de70fbec`.
 Il report interpretativo e' `exact_id_a44_component_fhe_2026-09-02.md`.
 
 Il punto A62 e' ancorato al gate canonico
 `exact_id_a62_component_gate_2026-09-02.json`, SHA-256
-`c72c22b4560093f437cce0029bef098556e27d6f1a4b520cc3180f221be5ce3a`, e al log full
+`c82489b80dde17d2ea1c34484f9a03c33a9810f0ac629012a9d58e16f175938a`, e al log full
 96/96, SHA-256 `13b9e9e20b4f03d6931b963f0f3220ba091ce2d8c90e016f4803e0a09767688e`.
 Il report interpretativo e' `exact_id_a62_component_fhe_2026-09-02.md`.
 
@@ -137,6 +138,8 @@ che le discrepanze clear/FHE siano zero e che ogni stima paired cada nel proprio
 Rigenerazione:
 
 ```bash
-env MPLCONFIGDIR=/tmp/tesi-fhe-mpl-exact-id \
-  uv run python benchmark/figure_exact_id_improvements.py
+uv run python benchmark/figure_exact_id_improvements.py
 ```
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

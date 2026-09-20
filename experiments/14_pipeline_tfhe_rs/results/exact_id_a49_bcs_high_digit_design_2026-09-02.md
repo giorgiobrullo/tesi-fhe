@@ -248,22 +248,18 @@ A49 non dimostra ancora:
 - un bound `p-fail` end-to-end;
 - novita' rispetto all'intera letteratura o priorita' di una primitiva.
 
-## Artefatti e fonti fissate
+## Modello, test e fonti
 
-- modello: `benchmark/a49_bcs_high_digit_design.py`;
-- test: `tests/test_a49_bcs_high_digit_design.py`;
-- A45: `tmp/a45-multilane-nibble-model/`;
-- A46: `benchmark/a46_blind_top1_delta.py` e relativo report;
-- RevoLUT `blind_topk.rs`: SHA-256
-  `54d0fe24a497b3c08c595098fd3ee706e2b733c3fb2c0f0a1d0f3f33de22ace5`;
-- RevoLUT `blind_sort.rs`: SHA-256
-  `06d3180b7e6bbc3dc7eb0082b4b90c39c90f6e2f83ffa31e33e1760c64d66c90`;
-- tfhe-rs 0.11.3 `fft_impl/common.rs`: SHA-256
-  `64768c9574e1d932610c3859dfab0a6736f023d0982457b00d6c422b92c33ac5`;
-- tfhe-rs 0.11.3 accumulator helper: SHA-256
-  `0da5809a35c275c04fa6959d97c2c362ddc1764002cad4597606241d948abb95`;
-- Rayon local `par_bridge.rs`: SHA-256
-  `ba4457370b5f1c53ce02c1512604d29849a82d741f02780eeccfe6c32ef7a18c`.
+- [Modello A49](../../../benchmark/a49_bcs_high_digit_design.py).
+- [Test A49](../../../tests/test_a49_bcs_high_digit_design.py).
+- [Modello A46](../../../benchmark/a46_blind_top1_delta.py) e
+  [confronto BCS/exact-ID](exact_id_a46_blind_top1_delta_2026-09-02.md), che identifica
+  la revisione RevoLUT ispezionata.
+- TFHE-rs 0.11.3: implementazione del modulus switch e helper dell'accumulatore.
+- Rayon: implementazione `par_bridge`.
+
+Il prototipo multilane A45, da cui deriva la quarta lane, non e' incluso
+in questa distribuzione. La geometria impiegata da A49 e' descritta sopra.
 
 Verifica statica eseguita:
 

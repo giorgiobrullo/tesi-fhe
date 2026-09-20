@@ -33,18 +33,10 @@ From `run02`, the following completed work is provable:
 
 No encrypted substage is provable.  Inferring a stage from CPU time alone would be invalid.
 
-## Preserved interrupted run
+## Interrupted run
 
-The A68 source and isolated A72 binary hashes still match the compile gate:
-
-- release binary: `df4825cdc5784e81e5ddbf31dd376c249db063154f8ef74592332596d6e9663a`;
-- `src/lib.rs`: `54f13ce39681aeb5156cc8abc9fe9e65481dd541489e37ff221f1478cb480d0e`;
-- harness: `350e9b2585c84a650f1457bcd6b638d550b6e11c0c935d990d9526a40dd12c9e`;
-- `Cargo.toml`: `79447b26df3582785996ce251f992ebfed0e7c40ea7c09c409e13f13ca83d9ce`;
-- ledger: `cf8577bbd903ca5ae00b295996bf77c1bcce2ae9a8a46622cd2623e1c66b1d89`.
-
-The `run02` log has SHA-256
-`95c9731655e682bcc2a8f0a93cecafa4882faf269c2d19b8ffc06c96350f272f` and records:
+The A68 source and the isolated A72 binary matched the earlier compilation check.
+The `run02` resource report records:
 
 ```text
 time: command terminated abnormally
@@ -55,16 +47,12 @@ time: command terminated abnormally
 302187240 peak memory footprint
 ```
 
-The earlier partial run remains separately preserved with SHA-256
-`6d4640f5e0716de6cb72bfbd3ec59b7b7e0a8047f6ec59092ab74365718b6fe8`.
-No A68 process remained after interruption, and no key was persisted.
+An earlier partial run is separate from `run02`. No key was persisted.
 
 ## A76 instrumentation boundary
 
-A76 lives at `tmp/a76-a68-progress-instrumentation` and uses its own `target-a76`.  It was
-compiled locked/offline against exact `tfhe 0.11.3`; the lockfile records checksum
-`ebacd6973a20d4967a64bac147ad6890182fd8ce910ce841ecbb3cae47bdf5ff`.
-There was no shared target, network, Docker, or secret persistence.
+A76 was compiled in an exclusive build directory against TFHE-rs 0.11.3.
+The A68/A76 prototype sources and diagnostic harness are not included in this distribution.
 
 The copy retains the same three calls to `checked_bitand`, `checked_bitor`, and
 `checked_bitxor`.  After each successful call it increments a diagnostic counter.  At the exact
@@ -75,21 +63,11 @@ The CLI permits only `--case=n1`, requires an explicit positive prefix, and reje
 greater than or equal to 43,013.  A direct attempt with `--prefix-gates=43013` was rejected before
 key generation with `full evaluation is deliberately disabled`.
 
-Canonical A76 hashes:
-
-- release binary: `0f1b8a16009df25108979cf8168b0db2df22f4c07bc68182abfbca7271f4735b`;
-- instrumented library: `f96f3cc0525c5cc817a24893c4e96d6d74da2626be39146437af600f94061f6b`;
-- bounded harness: `21483d9b2f0d9fb8979fd1995819a7b816af4ad49d93a14790c6e6d1e639d75a`;
-- `Cargo.toml`: `8acfa1418f4dc6952a505474340873b055c9ebf5705286ee092836f6d9b3c041`;
-- `Cargo.lock`: `e13ecb3dd52a54465458a086c3ee78f0e431d7ed8b28d7709ba4e1e78bb60e34`.
-
 ## Bounded calibration
 
-The command wrapped the process in `/usr/bin/time -l` and an inherited 180-second Perl alarm:
-
-```text
-a76-a68-progress --run --case=n1 --prefix-gates=1024 --report-every=128
-```
+The calibration used a 180-second timeout, the N=1 fixture, a prefix of 1,024
+checked calls, and progress reports every 128 calls. Wall time and memory were
+measured with the operating system's process resource monitor.
 
 It emitted all eight deterministic 128-call milestones and then:
 
@@ -113,9 +91,6 @@ Measured checkpoints and resources:
 | peak memory footprint | 274,432,696 bytes (261.72 MiB) |
 | timeout signal | not triggered |
 | termination | expected internal prefix stop, exit 0 |
-
-The calibration log has SHA-256
-`0b45d75bbc35bd79a5887d007b7f1b5147b909a5d4b2c4849f0cb8dae62d62e4`.
 
 ## Completion-time estimate and limits
 
@@ -157,15 +132,3 @@ Not claimable:
 - a measured full-N=1 latency or final checked-call count;
 - p-fail transfer from a prefix;
 - practical performance beyond this single diagnostic prefix.
-
-## Evidence hashes
-
-| Evidence | SHA-256 |
-|---|---|
-| A68 interrupted `run02` | `95c9731655e682bcc2a8f0a93cecafa4882faf269c2d19b8ffc06c96350f272f` |
-| A76 lock generation | `6dd823235a73c111bca870851e61fd945ea7483253f59c3f6ba298944bb21f4c` |
-| A76 isolated release build | `25412e80352e117ebc0c93b8340c64161192a78a4307f8695160d42fabaa2a84` |
-| A76 dry plan | `dae68e911b605b1703246bc1dd0d710270feefede20ab35d0f1bef0504743d84` |
-| A76 prefix-1024 calibration | `0b45d75bbc35bd79a5887d007b7f1b5147b909a5d4b2c4849f0cb8dae62d62e4` |
-| A68-to-A76 instrumented library diff | `46a60632d3e96c414c8c275ff2e8b86cd2f2228cfc8dba339fd8dc3638c7d225` |
-| A76 full-run rejection guard | `761888e469751dcb7bf547e79055e2094f677bdf871c4165d9344ff820ac6dae` |

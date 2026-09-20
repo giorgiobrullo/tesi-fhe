@@ -379,7 +379,7 @@ Gli hash vincolano questo audit agli input e agli artefatti effettivamente esegu
 |---|---|
 | `src/private_argmin.rs` | `7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596` |
 | report confini split4 | `eafa0c0bf32388089a9de868d53beab80ddda4bf483cf1ad46fbc6a8effc4a18` |
-| JSON host 632 query | `683fdf98ccc5dc45222c0b51b4b3ce678e3b5bd1aa9d9fbc10ed67fcb5108465` |
+| JSON host 632 query | `14ab4e07807744f547d4e042fc768202962e110322c4562cd21ae84d4b8b764d` |
 | CSV host 632 query | `8ab4ff23b7f81fa48eb629c9d1b64c93e051d2c8456728f6815f3ba19b79704a` |
 | patch sorgenti/config A28 | `58182d45efbfd8d6f87c5f5c842b83952e36a408f4639fb0e2ba019ed259115b` |
 
@@ -402,9 +402,12 @@ Anche il servizio distingue esplicitamente la compatibilita' geometrica della ch
 garanzia di failure probability del circuito composto
 ([servizio, L489-L491](../src/bin/varco_demo.rs#L489-L491)).
 
-La conclusione difendibile e' quindi limitata ma forte: sotto il contratto honest-input e nel
+Sotto il contratto honest-input e nel
 dominio a 12 bit, A28 preserva esattamente primo argmin, tie-break al primo indice, soglia del solo
 vincitore e unica uscita cifrata `0`/ID; riduce staticamente l'estrazione da `16N` a `12N` KS senza
 cambiare i conteggi PBS; e coincide empiricamente con l'oracolo clear nei 198 casi mirati e nelle
 632 query complete documentate. Non segue da questi risultati un bound end-to-end del `p-fail`,
 un claim di novita' o una validazione automatica di revisioni successive.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../../docs/provenienza-dati.json) conserva entrambe le impronte.

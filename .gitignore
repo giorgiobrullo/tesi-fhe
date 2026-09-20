@@ -12,7 +12,7 @@ wheels/
 # Concrete debug dump (scritto quando una compilazione fallisce)
 .artifacts/
 
-# Materiale messo da parte (benchmark di scaling) — serve dopo, non condividere
+# Esperimenti in preparazione
 wip/
 
 # Output generati dagli esperimenti (si rigenerano da soli: figure, CSV, specifiche macchina)
@@ -34,23 +34,23 @@ demo/chiavi/
 # Materiale FHE generato: la client key e' segreta e nessuna chiave runtime va versionata.
 **/chiavi/*.key
 
-# Output di build Cargo (si rigenerano con cargo build; esclusi anche dagli snapshot di Codex)
+# Output di compilazione Cargo
 target/
 target-*/
 target_*/
 targets/
 
-# Dump di stdout degli esperimenti (stdout.log, run.stdout.jsonl, gate.stdout.jsonl: da 1 a 10 GB, fanno impazzire gli snapshot di Codex)
+# Log grezzi delle esecuzioni
 *stdout.log
 *stdout.jsonl
 
 # Binari degli esperimenti (bundle.bin da 0,3 GB, secret.bin, input-*.bin): nessun file .bin e' tracciato
 *.bin
 
-# Chiavi runtime generate dagli esperimenti (server.key, ecc.): mai negli snapshot
+# Chiavi generate durante le esecuzioni
 *.key
 
-# Archivi operativi e stato privato: conservati solo localmente.
+# Note di lavoro, dati privati e file generati
 /tmp/
 /docs/archive/
 /docs/research-state/
@@ -80,3 +80,9 @@ targets/
 /output/pdf/*
 !/output/pdf/progressione-fhe-benchmark-comune-20260909.pdf
 !/output/pdf/progressione-fhe-benchmark-comune-matplotlib-20260909.pdf
+
+# Campagne rimisurate dopo la correzione del selettore.
+!/output/figures/progressione-fhe/selettori-corretti-20260920/
+!/output/figures/ckks-tfhe/
+/output/figures/ckks-tfhe/*
+!/output/figures/ckks-tfhe/selettore-corretto-20260920/

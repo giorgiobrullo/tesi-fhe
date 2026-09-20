@@ -1,0 +1,39 @@
+{
+  "schema": "publication-provenance.v1",
+  "experiment": 23,
+  "publication_date": "2026-09-18",
+  "path_base": "directory containing this manifest",
+  "scope": "All distributed package files except the introductory README.md and this manifest. File entries describe publication bytes, not a new runtime qualification.",
+  "digest_semantics": {
+    "sha256": "SHA-256 of the current public file bytes.",
+    "historical_selection_sha256": "SHA-256 of the same path in the preserved 2026-09-09 publication selection, present only when those bytes differ. These are historical identities, not hashes of the current public copy.",
+    "unchanged_files": "When historical_selection_sha256 is absent, the public bytes match the preserved selection unless historical_selection explicitly states otherwise.",
+    "historical_evidence": "Original evidence identities retained from the source provenance records. A digest-only record is not a downloadable file; RESULTS.json is a curated summary, not the full original evidence.",
+    "embedded_run_digests": "SOURCE_DIGEST files and recorded source/binary identifiers belong to historical runs or ancestors. Use the per-file hashes below to identify this distribution."
+  },
+  "historical_selection": {
+    "date": "2026-09-09",
+    "commit": "38e8ccdf15985b99e3ff960a4eccaa83d2ee56cd"
+  },
+  "file_count": 13,
+  "files": {
+    ".gitignore": {"sha256": "d8974a1bd0952e55874013d796a654bfe6278147b832cc19879b3c5338ea85a3", "bytes": 27},
+    "DEPENDENCIES.json": {"sha256": "59b0f4a78e15b2ba176d188454cc6708ca15091d2a1d22fe227943efc9532850", "bytes": 1039, "historical_selection_sha256": "ab8854946ed726a32f619826c29636963d8a8ce763ef2635d6ef6246eaae175a", "historical_selection_bytes": 1279},
+    "PUBLIC_TIMING_PAIRS.csv": {"sha256": "b76df0fd28e50b6261bb292b659ff6d0430023bdeab431270d63389dbf18c09c", "bytes": 4087},
+    "RESULTS.json": {"sha256": "771b150d484b88f6e463e75833bf511dc0eb44f5696e4731b30cde3f9e78c1bc", "bytes": 45330, "historical_selection_sha256": "a2aab847e08e4558cce0225969eec37dfefc073b7b8d4c73cbfcb44bd81e176e", "historical_selection_bytes": 46138},
+    "evidence/ORIGINAL_COMBINED_DESIGN.md": {"sha256": "80792cccb1677d02579f7291235fbaa8be3b0957520330b7343a31a455956b5b", "bytes": 1837, "historical_selection_sha256": "92e171dc302a666c31e780bad84737693c68225e981c197c8a688222129b056c", "historical_selection_bytes": 2428},
+    "evidence/ORIGINAL_COMBINED_RESULTS.md": {"sha256": "ae42017d28eae6f4accefbbae3824a48d17ea3b678e191dde93621e142c98249", "bytes": 1700, "historical_selection_sha256": "2fcf6b33a438b2f6c85390c97dd64b96476a1cde5c4c0224e2d4913e790a7b41", "historical_selection_bytes": 1898},
+    "evidence/ORIGINAL_THREAD_RESULTS.md": {"sha256": "0540131e96b707eb0191f19fc2a233829d30fa5b37b78e8b0104e06d98619675", "bytes": 1641, "historical_selection_sha256": "5478cd0c5cd1800a3ae785ad02c5cfbdf8102791a14923c8fe55f54c7413290b", "historical_selection_bytes": 1767},
+    "generate_synthetic.py": {"sha256": "3dfadc0f9707ccbacd519faf115a797fc156e283ad2facc2f905688e3b0ec85f", "bytes": 6753},
+    "runtime/CMakeLists.txt": {"sha256": "34e281651c78af89ba81445097141ce017a27de33dff67d9b7f0f86a0628c886", "bytes": 682},
+    "runtime/balanced_odd7.h": {"sha256": "285bd439e953cb5f7a0d1755b8bb6b0496ed0cd8a21426746cdb772fa03e4b61", "bytes": 1354},
+    "runtime/balanced_shared_powers.h": {"sha256": "1354f48cb130cb6133898d8935f95fa07b13f5f1def8e7716bca636bf1044100", "bytes": 2587},
+    "runtime/balanced_shared_rescale.h": {"sha256": "f24ead7fc3ddbf48966ad1eb2b74e6ae0f036e8555104444e31f028ef6a60a9d", "bytes": 1838},
+    "runtime/ckks_identify.cpp": {"sha256": "225b765b4baad84a51163b272acdcb68b712a1135aa74178adc38bbfed2d8f37", "bytes": 46245}
+  },
+  "historical_evidence": [
+    {"id": "synthetic-fixture-generator-ancestor", "sha256": "8facac27bac3bba81de6d0f83ecb95ba20073178dcc028f5536d6193ea1e0e49", "distribution": "digest-only; full original is not distributed"},
+    {"id": "public-integer-fixture-formula", "sha256": "2330847d6cefc487aeaa74fc108a506b7282706dc2d4f9aca8ac6081fd5f5692", "distribution": "digest-only; full original is not distributed"},
+    {"id": "original-run-plan", "sha256": "87137c12a47547a4dcb9dff762545a1fbc9b873ca1f0e3c48a2fbe07c93a001d", "distribution": "digest-only; full original is not distributed"}
+  ]
+}

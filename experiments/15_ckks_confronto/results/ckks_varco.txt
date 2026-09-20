@@ -35,5 +35,5 @@
   N=128: distanze 3.457s (4 blocchi), soglia 0.98s, totale 4.44s | errore CKKS sui punteggi: 0.027
   esattezza a N=128 su 32 probe: 0/4096 discrepanze []; genuini one-hot giusto 30/32, impostori accettati 0/0
 
-scritto /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/15_ckks_confronto/results/ckks_varco.csv
+scritto experiments/15_ckks_confronto/results/ckks_varco.csv
 EXIT 0

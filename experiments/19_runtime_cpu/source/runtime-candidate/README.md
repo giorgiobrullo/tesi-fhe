@@ -1,105 +1,78 @@
-# Isolated runtime options for the current Head/PFKS core
+# Head/PFKS runner with adaptive FFT planning
 
-This source candidate copies the previous compiler-comparison runner and its
-general three-digit core. The original source, timed binaries, service and key
-directories are untouched. `SOURCE_ORIGINS.json` records the copied bytes.
-No native build, key generation or benchmark was run by the implementation owner.
+This runner compares two allocation/cache options on the general
+three-digit Head/PFKS core. It uses TFHE's adaptive FFT plan selection.
+The options affect PFKS intermediates and immutable lookup-table bodies;
+[the fixed-plan runner](../runtime-fixed-fft/README.md) provides a separate
+numerical-backend control.
 
-The two Cargo features are independent and disabled by default:
+## Optional runtime changes
 
-| Arm | Root Cargo features | Actual `runtime_features` receipt |
+The Cargo features are independent and disabled by default:
+
+| Configuration | Cargo features | Reported `runtime_features` |
 |---|---|---|
-| Unchanged algorithm | none | `[]` |
-| Consume PFKS intermediates | `opt-owned-pfks` | `["opt-owned-pfks"]` |
-| Immutable LUT bodies | `opt-lut-cache` | `["opt-lut-cache"]` |
+| Baseline | none | `[]` |
+| Move PFKS intermediates | `opt-owned-pfks` | `["opt-owned-pfks"]` |
+| Cache immutable LUT bodies | `opt-lut-cache` | `["opt-lut-cache"]` |
 | Both | `opt-owned-pfks,opt-lut-cache` | `["opt-lut-cache","opt-owned-pfks"]` |
 
-The root manifest forwards these features to its `./core` dependency. The
-receipt reads the core's actual compiled features, even if dependency features
-are enabled directly. The core package name, `service::EvaluationKeys` API,
-parameters, bundle serialization and native51/60 input layout are retained.
-The explicit workspace includes the core so both packages share the root lockfile.
+The workspace forwards the features to its `core` dependency. The worker
+reports the core's actual compiled feature set. Core APIs, parameters,
+serialized key shape and native full51/low60 input layout remain unchanged.
 
-## What changes
+`opt-owned-pfks` moves each selected PFKS GLWE into its group and each
+extracted correction into its add-back. Lane order, offsets 0/41/82,
+wrapping arithmetic, blind-rotation controls and metric updates remain the
+same. The two eliminated clone sites account for 49,160 payload bytes per
+lane (4096 + 2049 u64 words). This is a source-derived payload count, not
+measured memory traffic, RSS, allocation count or saved time.
 
-`opt-owned-pfks` changes only the six-lane and nine-lane selectors. An owned
-PFKS GLWE is moved out of its lane exactly once into its existing group. An
-owned extracted correction is moved into its existing add-back. Lane/group
-order, offsets0/41/82, wrapping arithmetic, BR controls and every metric update
-remain unchanged. Difference ciphertexts, mean centering, comparator inputs,
-odd-tail handling and ingress return values retain their original copies.
+`opt-lut-cache` stores six ingress body tables and the requested comparator
+body in `OnceLock` values. Each blind rotation still receives a fresh mutable
+GLWE with zero mask and a copy of the immutable body; mutated accumulators
+are never shared. The M3 path retains seven 2048-word bodies, 114,688 bytes
+before container overhead. A separately requested final-control body can
+add 16,384 bytes; the current three-PBS comparator does not request it.
+Cache first use and steady-state timing must be distinguished.
 
-The two removed clone sites copy49,160 payload bytes per lane:4096 and2049
-u64 words. That is source-implied cloned payload, not measured memory traffic,
-allocation counts, RSS or saved time. Both selectors retain the original path
-when the feature is disabled.
+These features do not change scratch buffers, polynomial convolution,
+gallery preparation or worker scheduling. Neither was selected for the
+final configuration in the [CPU experiment](../../README.md).
 
-`opt-lut-cache` stores the six ingress body tables and the requested comparator
-body in process-local `OnceLock` values. It avoids regenerating their values and
-2048-coefficient bodies on every call. Every BR still receives a newly allocated
-GLWE with a zero mask and the copied immutable body. Mutated accumulators are
-never reused or shared. Existing FFT planning, scratch buffers, polynomial
-convolution, gallery preparation and worker scheduling are unchanged.
+## Build and worker interface
 
-The active M3 path retains seven2048-word body payloads,114,688 bytes before
-container overhead. A separately requested final-control comparator body can
-add16,384 bytes; the current three-PBS comparator does not request that body.
-First use initializes the cache. Report setup/first use separately and use
-excluded warmups for steady-state comparisons.
+The binary is `fast_compiler_comparison_20260906`. The two packages share a
+lockfile and TFHE-rs 1.7.0. Build feature configurations into separate target
+directories with the same toolchain and profile. From this directory:
 
-## Build and protocol interface for the benchmark owner
-
-Python3.11+ is required. After source review, root freezes the closure once:
-
-```text
-python3 source.py freeze
-python3 source.py check
+```sh
+cargo build --release --locked --target-dir ../../.local/target-adaptive
 ```
 
-`SOURCE_DIGEST.txt` starts as `UNFROZEN`; no compiled/native result is claimed.
-The freeze binds relative local files and rejects escaping Rust include paths.
-It excludes its own digest/manifest to avoid a circular identity. The old source
-digests are lineage records only.
-
-The root package keeps the existing binary name
-`fast_compiler_comparison_20260906`. Build all four arms with the same selected
-compiler profile/toolchain and separate target directories. For example, the
-feature argument for the combined arm is:
-
-```text
---features opt-owned-pfks,opt-lut-cache
-```
-
-The unchanged worker command is:
+For the combined feature variant add
+`--features opt-owned-pfks,opt-lut-cache`. The worker interface is:
 
 ```text
 BINARY worker ABS_FIXTURE_DIRECTORY THREADS baseline
 ```
 
-It retains `COMPILER_SOURCE_SHA256`, `COMPILER_BINARY_SHA256` and
-`COMPILER_FIXTURE_SHA256` checks. The feature metadata is present in both
-`ready` and `evaluation` records. External arm labels can use protocol arm
-`baseline`; the old allowed protocol labels remain unchanged. No new mutable
-runtime switch or worker command was added.
+The fixture directory and `COMPILER_SOURCE_SHA256`, `COMPILER_BINARY_SHA256`
+and `COMPILER_FIXTURE_SHA256` checks bind the worker to its benchmark inputs.
+The `ready` and `evaluation` records report the active features. This runner
+is a benchmark component; the [integrated application](../../../22_demo_composita/README.md)
+provides the client/server entry point.
 
-The root-owned comparison controller supplies same-key, byte-identical fresh
-queries, verifies adapted fixture source/thread metadata, and checks all raw
-output words. These two options require **complete ciphertext equality** with
-the default runtime candidate as well as correct IDs, terminal phases and
-operation counts. A failure is retained for investigation; it must not be
-silently weakened to a decode-only gate. Separate process FFT behavior is not
-assumed to be byte-identical merely because these edits are integer/ownership
-changes.
+## Correctness criteria
 
-The existing key-free semantic suites are copied unchanged. Two additional
-cache tests cover all ingress coefficients, negacyclic comparator values and
-fresh mutable-accumulator state. They are source only until root runs the
-appropriate core-library tests with and without features. Full noisy tests,
-paired timings and any performance decision remain pending. Public-gallery
-preparation and a repeat of historical scratch reuse are outside this change.
+The comparison requires byte-identical fresh inputs under the same key
+family and complete output-ciphertext equality, together with correct IDs,
+terminal phases and operation counts. Decode-only agreement is a weaker
+criterion. Separate-process adaptive FFT choices are not assumed to be
+byte-identical merely because a code change affects integer ownership.
 
-From this directory, the combined core-test selection is:
-
-```text
-cargo test --locked --release -p fast_core_mixed_20260906 --features opt-owned-pfks,opt-lut-cache
-```
+The cache tests cover ingress coefficients, negacyclic comparator values
+and fresh mutable accumulator state. A full core test invocation can also
+execute FHE tests; it is not limited to arithmetic without keys. Measured
+results, failed comparisons and load limitations are in the
+[experiment report](../../README.md).

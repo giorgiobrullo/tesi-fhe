@@ -1,23 +1,5 @@
 {
   "timestamp_utc": "2026-09-02T02:32:21.074065+00:00",
-  "argv": [
-    "benchmark/demo_e2e.py",
-    "--preload",
-    "--expect-n",
-    "127",
-    "--expect-pbs",
-    "5600",
-    "--positivi",
-    "3",
-    "--negativi",
-    "3",
-    "--docker-project",
-    "demo",
-    "--require-docker-provenance",
-    "--require-calibration-cache",
-    "--output",
-    "benchmark/results/demo_e2e_exact_id_optimized_2026-09-02.csv"
-  ],
   "base_url": "http://127.0.0.1:8000",
   "platform": "macOS-27.0-arm64-arm-64bit",
   "python": "3.12.11",
@@ -371,18 +353,18 @@
   },
   "provenienza": {
     "host_input_sha256": {
-      "benchmark/demo_e2e.py": "5e3939fa5b5b5954bba09947ebc180fc5ee5087893bc981863982fc54a04b70c",
+      "benchmark::demo_e2e.py": "5e3939fa5b5b5954bba09947ebc180fc5ee5087893bc981863982fc54a04b70c",
       "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
       "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
       "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
       "demo/docker-compose.yml": "20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7",
-      "demo/config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
+      "demo::config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
       "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-      "experiments/14_pipeline_tfhe_rs/Cargo.toml": "1175ef45ffefe5c4e99989bf115c5d2213eba36f18789fab1e411523695c97a8",
+      "experiment14::experiments/14_pipeline_tfhe_rs/Cargo.toml": "1175ef45ffefe5c4e99989bf115c5d2213eba36f18789fab1e411523695c97a8",
       "experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
-      "experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "457e0563f4e6cbc372159242781ffe99ec5dae75909329664cdfe4f50dc32e8a",
-      "experiments/14_pipeline_tfhe_rs/src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
-      "experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba"
+      "experiment14::src/bin/varco_demo.rs": "457e0563f4e6cbc372159242781ffe99ec5dae75909329664cdfe4f50dc32e8a",
+      "experiment14::14_pipeline_tfhe_rs/src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
+      "experiment14::14_pipeline_tfhe_rs/src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba"
     },
     "host_inputs_stable_during_run": true,
     "config_snapshot": {
@@ -590,11 +572,11 @@
       "uvicorn": "0.52.4"
     },
     "dataset": {
-      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "dataset_root": "datasets::digiface/estratto",
       "selected_image_count": 272,
       "selected_image_bytes": 5518658,
       "selected_content_manifest_sha256": "76fe33addfd57b2023b50bec80a8daf29a70f7f6c107f7ae3cf46b85e9a0c960",
-      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
       "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
       "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
       "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"
@@ -603,7 +585,7 @@
     "docker_required": true,
     "docker_preload": {
       "project": "demo",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/docker-compose.yml",
+      "compose_file": "demo/docker-compose.yml",
       "compose_config_sha256": "047dd373b79a19c10939a42009c005ce7e99ea6d352f1367f78c9319e9c525db",
       "context_file_sha256": {
         "compose": "20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7",
@@ -642,7 +624,7 @@
             "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
             "src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba",
             "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
-            "target/release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
+            "demo_e2e_exact_id_optimized::release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
           },
           "host_source_hashes": {
             "Cargo.toml": "1175ef45ffefe5c4e99989bf115c5d2213eba36f18789fab1e411523695c97a8",
@@ -668,7 +650,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -733,9 +714,9 @@
             "src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba",
             "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
             "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
-            "demo/config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
+            "demo::config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
             "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-            "target/release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
+            "demo_e2e_exact_id_optimized::release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
           },
           "host_source_hashes": {
             "Cargo.toml": "1175ef45ffefe5c4e99989bf115c5d2213eba36f18789fab1e411523695c97a8",
@@ -745,7 +726,7 @@
             "src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba",
             "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
             "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
-            "demo/config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
+            "demo::config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
             "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428"
           },
           "live_binary_path": "/usr/local/bin/varco_demo",
@@ -769,7 +750,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",
@@ -786,7 +766,7 @@
             },
             "/app/demo/config.json": {
               "sha256": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
-              "manifest_path": "demo/config.json"
+              "manifest_path": "demo::config.json"
             },
             "/app/experiments/08_cnn/embedding.py": {
               "sha256": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
@@ -848,7 +828,7 @@
     },
     "docker": {
       "project": "demo",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/docker-compose.yml",
+      "compose_file": "demo/docker-compose.yml",
       "compose_config_sha256": "047dd373b79a19c10939a42009c005ce7e99ea6d352f1367f78c9319e9c525db",
       "context_file_sha256": {
         "compose": "20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7",
@@ -887,7 +867,7 @@
             "src/lib.rs": "3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1",
             "src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba",
             "demo/server/Dockerfile": "91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d",
-            "target/release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
+            "demo_e2e_exact_id_optimized::release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
           },
           "host_source_hashes": {
             "Cargo.toml": "1175ef45ffefe5c4e99989bf115c5d2213eba36f18789fab1e411523695c97a8",
@@ -913,7 +893,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -978,9 +957,9 @@
             "src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba",
             "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
             "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
-            "demo/config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
+            "demo::config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
             "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-            "target/release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
+            "demo_e2e_exact_id_optimized::release/varco_demo": "d66d5f1f1a705372c8b62c0256906e598b5470c8bb083e115f7e4ab73990f8a3"
           },
           "host_source_hashes": {
             "Cargo.toml": "1175ef45ffefe5c4e99989bf115c5d2213eba36f18789fab1e411523695c97a8",
@@ -990,7 +969,7 @@
             "src/private_argmin.rs": "6384d202ae7ca54fafed805d6eb01747e9a03b265a0737faeb9645c74851c2ba",
             "demo/client/Dockerfile": "bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec",
             "demo/client/app.py": "7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e",
-            "demo/config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
+            "demo::config.json": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
             "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428"
           },
           "live_binary_path": "/usr/local/bin/varco_demo",
@@ -1014,7 +993,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",
@@ -1031,7 +1009,7 @@
             },
             "/app/demo/config.json": {
               "sha256": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e",
-              "manifest_path": "demo/config.json"
+              "manifest_path": "demo::config.json"
             },
             "/app/experiments/08_cnn/embedding.py": {
               "sha256": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",

@@ -58,20 +58,11 @@ alto e non stazionario: load average 1/5/15 minuti `91,983/139,333/107,115` prim
 run contaminato dal carico, non le prestazioni di A33 su una macchina idle e non un confronto
 causale con un run A29 separato.
 
-## Provenienza e riproducibilita'
-
-Invocazione eseguita (l'`argv` interno e' persistito nel JSON):
-
-```bash
-uv run python benchmark/fhe_digiface_validation.py --run --primary-suite \
-  --regression-repetitions 1 --skip-build \
-  --binary tmp/a33-aligned-sparse-2026-09-02/varco_demo \
-  --output-stem fhe_digiface_exact_primary_a33_2026-09-02 --timeout 900
-```
+## Dati e identificazione della revisione
 
 | artefatto/input | SHA-256 |
 |---|---|
-| JSON finale | `e3ef7b5ae74c85e883d8ed3b2670fb6efbd20291775752fefe1ec56c0f1a9467` |
+| JSON pubblico | `51be273a6a81274b1314f56af3a0ae62328131f035a7bff236d01b70751f9c49` |
 | CSV finale | `0d35640d7803969f4fb4781bac3975e367e477447ecbf6ffc9fb6a090669a011` |
 | binario congelato A33 `varco_demo` | `13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59` |
 | patch sorgente A33 | `6d07077efc52e721399740ef7d443ca87ee0a6c575cd19b7a453d5109224f7f5` |
@@ -82,11 +73,9 @@ uv run python benchmark/fhe_digiface_validation.py --run --primary-suite \
 | cache DigiFace | `1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99` |
 | configurazione | `eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc` |
 
-La provenienza Git registrata e' il branch `thesis-evidence-audit-2026-09`, base
-`6611c185adc9a658a075519b4316386f0bb48656`, con worktree esplicitamente sporco. Il run ha usato
-Python 3.12.11 e il binario congelato, senza ricompilarlo. Binario, sorgenti, harness, cache,
-configurazione e manifest Cargo risultano identici prima e dopo. La coppia di chiavi era fresca e
-temporanea; la directory e' stata rimossa e nessuna chiave client e' inclusa negli artifact.
+Il run usava Python 3.12.11 e il binario A33 identificato sopra, senza ricompilarlo
+fra le query. Sorgenti, eseguibile, harness, cache, configurazione e manifest Cargo
+sono rimasti stabili. La coppia di chiavi è stata generata appositamente per il run.
 
 Artifact grezzi:
 
@@ -106,3 +95,10 @@ Zero errori in 632 query e' evidenza funzionale empirica, non una derivazione de
 fallimento crittografico end-to-end. Il conteggio conservativo `p-fail`, l'uscita finale e la
 circuit privacy richiedono argomenti separati. Questo artifact non sostiene claim di novita' o di
 priorita' scientifica.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

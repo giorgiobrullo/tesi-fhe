@@ -1,0 +1,204 @@
+{
+  "passed": true,
+  "correctness_qualified": true,
+  "primary": {
+    "bootstrap": {
+      "draws": 10000,
+      "families_resampled": false,
+      "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+      "resampling_unit": "whole paired log-ratio",
+      "seed": 20260919,
+      "strata": "family x scene"
+    },
+    "candidate_faster_pairs": 83,
+    "candidate_mean_seconds": 2.2984595578222224,
+    "candidate_median_seconds": 2.0109784165,
+    "candidate_over_stock_geometric_ratio": 0.9525619932522605,
+    "candidate_relative_cost_percent": -4.743800674773945,
+    "conditional_bootstrap95_ratio": [
+      0.9480494420916173,
+      0.9573871635449458
+    ],
+    "families": 3,
+    "median_candidate_minus_stock_seconds": -0.1188975,
+    "pairs": 90,
+    "stock_mean_seconds": 2.4130305204333333,
+    "stock_median_seconds": 2.1233618125
+  },
+  "secondary": {
+    "bootstrap": {
+      "draws": 10000,
+      "families_resampled": false,
+      "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+      "resampling_unit": "whole paired log-ratio",
+      "seed": 20260919,
+      "strata": "family x scene"
+    },
+    "candidate_faster_pairs": 17,
+    "candidate_mean_seconds": 1.9956212175,
+    "candidate_median_seconds": 1.988831896,
+    "candidate_over_stock_geometric_ratio": 0.9507740290355968,
+    "candidate_relative_cost_percent": -4.922597096440318,
+    "conditional_bootstrap95_ratio": [
+      0.9428427501454315,
+      0.9602635177921549
+    ],
+    "families": 3,
+    "median_candidate_minus_stock_seconds": -0.1101304165,
+    "pairs": 18,
+    "stock_mean_seconds": 2.098704817,
+    "stock_median_seconds": 2.100108375
+  },
+  "per_scene": {
+    "n127_uniform_general": {
+      "bootstrap": {
+        "draws": 10000,
+        "families_resampled": false,
+        "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+        "resampling_unit": "whole paired log-ratio",
+        "seed": 20260919,
+        "strata": "family x scene"
+      },
+      "candidate_faster_pairs": 17,
+      "candidate_mean_seconds": 1.9749476271666668,
+      "candidate_median_seconds": 1.9638892915,
+      "candidate_over_stock_geometric_ratio": 0.9416653161025406,
+      "candidate_relative_cost_percent": -5.833468389745944,
+      "conditional_bootstrap95_ratio": [
+        0.9290913248712201,
+        0.9561243695782742
+      ],
+      "families": 3,
+      "median_candidate_minus_stock_seconds": -0.126861292,
+      "pairs": 18,
+      "stock_mean_seconds": 2.0967960000555554,
+      "stock_median_seconds": 2.085749167
+    },
+    "n128_anchor_fallback_control": {
+      "bootstrap": {
+        "draws": 10000,
+        "families_resampled": false,
+        "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+        "resampling_unit": "whole paired log-ratio",
+        "seed": 20260919,
+        "strata": "family x scene"
+      },
+      "candidate_faster_pairs": 17,
+      "candidate_mean_seconds": 1.9956212175,
+      "candidate_median_seconds": 1.988831896,
+      "candidate_over_stock_geometric_ratio": 0.9507740290355968,
+      "candidate_relative_cost_percent": -4.922597096440318,
+      "conditional_bootstrap95_ratio": [
+        0.9428427501454315,
+        0.9602635177921549
+      ],
+      "families": 3,
+      "median_candidate_minus_stock_seconds": -0.1101304165,
+      "pairs": 18,
+      "stock_mean_seconds": 2.098704817,
+      "stock_median_seconds": 2.100108375
+    },
+    "n128_block_thresholds": {
+      "bootstrap": {
+        "draws": 10000,
+        "families_resampled": false,
+        "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+        "resampling_unit": "whole paired log-ratio",
+        "seed": 20260919,
+        "strata": "family x scene"
+      },
+      "candidate_faster_pairs": 18,
+      "candidate_mean_seconds": 1.9848139026666667,
+      "candidate_median_seconds": 1.9836731455,
+      "candidate_over_stock_geometric_ratio": 0.9447878748095596,
+      "candidate_relative_cost_percent": -5.521212519044038,
+      "conditional_bootstrap95_ratio": [
+        0.9362314628632212,
+        0.9518422641431761
+      ],
+      "families": 3,
+      "median_candidate_minus_stock_seconds": -0.1171771035,
+      "pairs": 18,
+      "stock_mean_seconds": 2.1008699282222225,
+      "stock_median_seconds": 2.0904119375
+    },
+    "n128_uniform_aligned": {
+      "bootstrap": {
+        "draws": 10000,
+        "families_resampled": false,
+        "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+        "resampling_unit": "whole paired log-ratio",
+        "seed": 20260919,
+        "strata": "family x scene"
+      },
+      "candidate_faster_pairs": 17,
+      "candidate_mean_seconds": 1.9911629285,
+      "candidate_median_seconds": 1.9781104375,
+      "candidate_over_stock_geometric_ratio": 0.9482685328303692,
+      "candidate_relative_cost_percent": -5.173146716963084,
+      "conditional_bootstrap95_ratio": [
+        0.9400458239045268,
+        0.9584709573807711
+      ],
+      "families": 3,
+      "median_candidate_minus_stock_seconds": -0.1203200205,
+      "pairs": 18,
+      "stock_mean_seconds": 2.099486217611111,
+      "stock_median_seconds": 2.1020179585
+    },
+    "n129_alternating_thresholds": {
+      "bootstrap": {
+        "draws": 10000,
+        "families_resampled": false,
+        "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+        "resampling_unit": "whole paired log-ratio",
+        "seed": 20260919,
+        "strata": "family x scene"
+      },
+      "candidate_faster_pairs": 14,
+      "candidate_mean_seconds": 2.1876764581666666,
+      "candidate_median_seconds": 2.165857562,
+      "candidate_over_stock_geometric_ratio": 0.9804675864974131,
+      "candidate_relative_cost_percent": -1.9532413502586943,
+      "conditional_bootstrap95_ratio": [
+        0.9693008664513111,
+        0.9925334302965186
+      ],
+      "families": 3,
+      "median_candidate_minus_stock_seconds": -0.062000979,
+      "pairs": 18,
+      "stock_mean_seconds": 2.2307337315555555,
+      "stock_median_seconds": 2.236565688
+    },
+    "n225_uniform_general": {
+      "bootstrap": {
+        "draws": 10000,
+        "families_resampled": false,
+        "interpretation": "Conditional on the observed key families; repeated pairs are not independent key families.",
+        "resampling_unit": "whole paired log-ratio",
+        "seed": 20260919,
+        "strata": "family x scene"
+      },
+      "candidate_faster_pairs": 17,
+      "candidate_mean_seconds": 3.353696872611111,
+      "candidate_median_seconds": 3.3474708545,
+      "candidate_over_stock_geometric_ratio": 0.9481363157043626,
+      "candidate_relative_cost_percent": -5.186368429563737,
+      "conditional_bootstrap95_ratio": [
+        0.9392383848159657,
+        0.9571722904375981
+      ],
+      "families": 3,
+      "median_candidate_minus_stock_seconds": -0.1769474375,
+      "pairs": 18,
+      "stock_mean_seconds": 3.5372667247222225,
+      "stock_median_seconds": 3.5203325
+    }
+  },
+  "created_at": "2026-09-20T13:20:33.612516+00:00",
+  "audit_sha256": "163da9e43e6e8009198a15137ff6cdd3eb786af322c7710ecea1834f317bf781",
+  "load_sha256": "70f3ff81453531b304f0083d33e85a851a5d2754c9983d1d5d414ab504311ffc",
+  "adopted": false,
+  "next_gate": "historical full-query regression and service validation",
+  "old_original_ratio_not_combined": true
+}

@@ -1,27 +1,5 @@
 {
   "timestamp_utc": "2026-09-02T17:04:55.839665+00:00",
-  "argv": [
-    "tmp/a55-a38-docker-gate-design/run_gate.py",
-    "--base-url",
-    "http://127.0.0.1:18038",
-    "--preload",
-    "--expect-n",
-    "127",
-    "--expect-pbs",
-    "3655",
-    "--positivi",
-    "3",
-    "--negativi",
-    "3",
-    "--docker-project",
-    "thesis-a38-frozen-a55",
-    "--docker-compose-file",
-    "tmp/a55-a38-docker-gate-design/docker-compose.e2e.yml",
-    "--require-docker-provenance",
-    "--require-calibration-cache",
-    "--output",
-    "benchmark/results/demo_e2e_exact_id_a38_frozen_2026-09-02_gate01.csv"
-  ],
   "base_url": "http://127.0.0.1:18038",
   "platform": "macOS-27.0-arm64-arm-64bit",
   "python": "3.12.11",
@@ -382,7 +360,7 @@
   "provenienza": {
     "host_input_sha256": {
       ".dockerignore": "ce6a4a8172bf8d347b3a6b0aa1669ebdd97af37f2b4d01a06e91e468cd0e7b1e",
-      "benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.json": "21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0",
+      "benchmark::results/fhe_digiface_exact_primary_a38_2026-09-02.json": "21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0",
       "benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.csv": "51b1539d894c3aa69cb4d91b77046dc741fee409685fa960d2cc84ba7653c610",
       "core/__init__.py": "344fe4ff1fe17f4366d53f3aabc2c80b3992cc7492f5c4ac28a5123e35c76198",
       "core/client.py": "9f272a7a7bec2c64f9f00422e0bef70a116fdaf936a7bcad4448fab48068d68e",
@@ -395,26 +373,26 @@
       "demo/client/static/index.html": "f253f6e847c6acdabc79e6c49a51d8f05efbce8fb68f299845c726ef6d9b428a",
       "demo/config.env": "2b3d15d19e336493b5819c83bb0cf3b4557cf0b3c547238da58dbeeeca8e608e",
       "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-      "experiments/14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md": "184f4b08a03b8d71f999466df8127bfb0afd7baa10c4f732934cdd59f01b0229",
-      "tmp/a38-combined-prototype/README.md": "156a35f3407a5914ea6712ad2c5e76f413f1f125bc275371e8fe6d4f7dcd4d37",
-      "tmp/a38-combined-prototype/bin/a38_combined_prototype_macos_arm64_2026-09-02": "6ffd60e6c9396153ec3e139c55b63da3864e48865519c361f684fc8fb0694a58",
-      "tmp/a38-combined-prototype/source/benchmark/demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
-      "tmp/a38-combined-prototype/source/demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
-      "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
-      "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
-      "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "89eb3df057fd69e2ed3c96df94be9fdbd9e998eafe4401554da93ee168404f44",
-      "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/lib.rs": "855288001429bf9148412d984b26acc4df9179b0bfc79f91469a1eb274807532",
-      "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "5230f3863a5cad726aefe51a3c6a786899e4f1cdd47aeb0ff8f7141fcc3917ae",
-      "tmp/a38-combined-prototype/src/private_argmin.rs": "9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79",
-      "tmp/a38-combined-prototype/varco_demo": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
-      "tmp/a55-a38-docker-gate-design/Dockerfile.server": "2ae90e2ff1c3efe3251a4cf7a3cd53ffe125fae88f05bcbfefe878c639c5ab75",
-      "tmp/a55-a38-docker-gate-design/Dockerfile.client": "77652011c953816cc8f9dea0babda4be44434bb58e43208d2bee989c971133a0",
-      "tmp/a55-a38-docker-gate-design/README.md": "703b2bd58fec0de1244b22377fa471d236faac75a1526d970622a681bb50bd95",
-      "tmp/a55-a38-docker-gate-design/a38-identity.json": "648bb14f9ec785d60e0610fec95d932d8b74a0e81dad72e7b5770b3609fe836a",
-      "tmp/a55-a38-docker-gate-design/docker-compose.e2e.yml": "f15f5e8f431f55980c50445f629dc116e2978bc5fc5865c82aa64e5fe8b2feca",
-      "tmp/a55-a38-docker-gate-design/run_gate.py": "41c281f68500b4d7b0688dd01c820066dfbb1628079d2d1915979487edf22c37",
-      "tmp/a55-a38-docker-gate-design/test_static_gate.py": "4379acf82d454041aa2e233e33e5b1ff8ccc03d8bd3a1b3fe7323c79c8142a26",
-      "tmp/a55-a38-docker-gate-design/frozen-inputs.sha256": "95af59bdc12a3b78a7ee281796b61a4b3a41d33ee23c862c2185f9a62e687c1c"
+      "experiment14::14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md": "184f4b08a03b8d71f999466df8127bfb0afd7baa10c4f732934cdd59f01b0229",
+      "a38-combined-prototype::README.md": "156a35f3407a5914ea6712ad2c5e76f413f1f125bc275371e8fe6d4f7dcd4d37",
+      "a38-combined-prototype::bin/a38_combined_prototype_macos_arm64_2026-09-02": "6ffd60e6c9396153ec3e139c55b63da3864e48865519c361f684fc8fb0694a58",
+      "benchmark/demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
+      "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+      "experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+      "experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
+      "experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "89eb3df057fd69e2ed3c96df94be9fdbd9e998eafe4401554da93ee168404f44",
+      "experiments/14_pipeline_tfhe_rs/src/lib.rs": "855288001429bf9148412d984b26acc4df9179b0bfc79f91469a1eb274807532",
+      "experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "5230f3863a5cad726aefe51a3c6a786899e4f1cdd47aeb0ff8f7141fcc3917ae",
+      "a38-combined-prototype::src/private_argmin.rs": "9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79",
+      "a38-combined-prototype::varco_demo": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
+      "a55-a38-docker-gate-design::Dockerfile.server": "2ae90e2ff1c3efe3251a4cf7a3cd53ffe125fae88f05bcbfefe878c639c5ab75",
+      "a55-a38-docker-gate-design::Dockerfile.client": "77652011c953816cc8f9dea0babda4be44434bb58e43208d2bee989c971133a0",
+      "a55-a38-docker-gate-design::README.md": "703b2bd58fec0de1244b22377fa471d236faac75a1526d970622a681bb50bd95",
+      "a55-a38-docker-gate-design::a38-identity.json": "648bb14f9ec785d60e0610fec95d932d8b74a0e81dad72e7b5770b3609fe836a",
+      "a55-a38-docker-gate-design::docker-compose.e2e.yml": "f15f5e8f431f55980c50445f629dc116e2978bc5fc5865c82aa64e5fe8b2feca",
+      "a55-a38-docker-gate-design::run_gate.py": "41c281f68500b4d7b0688dd01c820066dfbb1628079d2d1915979487edf22c37",
+      "a55-a38-docker-gate-design::test_static_gate.py": "4379acf82d454041aa2e233e33e5b1ff8ccc03d8bd3a1b3fe7323c79c8142a26",
+      "a55-a38-docker-gate-design::frozen-inputs.sha256": "95af59bdc12a3b78a7ee281796b61a4b3a41d33ee23c862c2185f9a62e687c1c"
     },
     "host_inputs_stable_during_run": true,
     "config_snapshot": {
@@ -622,11 +600,11 @@
       "uvicorn": "0.52.4"
     },
     "dataset": {
-      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "dataset_root": "datasets::digiface/estratto",
       "selected_image_count": 272,
       "selected_image_bytes": 5518658,
       "selected_content_manifest_sha256": "76fe33addfd57b2023b50bec80a8daf29a70f7f6c107f7ae3cf46b85e9a0c960",
-      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
       "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
       "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
       "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"
@@ -635,7 +613,7 @@
     "docker_required": true,
     "docker_preload": {
       "project": "thesis-a38-frozen-a55",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a55-a38-docker-gate-design/docker-compose.e2e.yml",
+      "compose_file": "a55-a38-docker-gate-design::docker-compose.e2e.yml",
       "compose_config_sha256": "5fa31a4dd3ea4ad6803d5c4c2809c5ae1a539f4e41ebac33e82e47032cd0fbbd",
       "context_file_sha256": {
         "compose": "f15f5e8f431f55980c50445f629dc116e2978bc5fc5865c82aa64e5fe8b2feca",
@@ -683,7 +661,7 @@
             "gate/a38-identity.json": "648bb14f9ec785d60e0610fec95d932d8b74a0e81dad72e7b5770b3609fe836a",
             "gate/frozen_demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
             "snapshot/README.md": "156a35f3407a5914ea6712ad2c5e76f413f1f125bc275371e8fe6d4f7dcd4d37",
-            "target/release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
+            "A38::release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -715,7 +693,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -789,7 +766,7 @@
             "core/metriche.py": "32d9f02ba36531fb6b4cc87a30581329b2b26c71fca92ddbfae60089cef2011b",
             "core/quantize.py": "300aa3ba17c1482cd57aaaea77ce723a9c95ba182ed13199c38966c2252dbcf8",
             "core/server.py": "2ab40f779082c214d8d499c1168d5f8ef966715701281525a5ca4af360e38660",
-            "target/release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
+            "A38::release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -837,7 +814,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",
@@ -947,7 +923,7 @@
       },
       "frozen_snapshot": {
         "candidate": "A38",
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a38-combined-prototype",
+        "path": "a38-combined-prototype",
         "contract": {
           "n": 127,
           "pbs_per_query": 3655,
@@ -958,32 +934,32 @@
         "identity_manifest_sha256": "648bb14f9ec785d60e0610fec95d932d8b74a0e81dad72e7b5770b3609fe836a",
         "pin_manifest_sha256": "95af59bdc12a3b78a7ee281796b61a4b3a41d33ee23c862c2185f9a62e687c1c",
         "frozen_service_binary": {
-          "path": "tmp/a38-combined-prototype/varco_demo",
+          "path": "a38-combined-prototype::varco_demo",
           "platform": "macOS arm64",
           "bytes": 2685248,
           "sha256": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
           "note": "reference only; Docker rebuilds a Linux binary from service_build_inputs"
         },
         "identity_file_sha256": {
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "89eb3df057fd69e2ed3c96df94be9fdbd9e998eafe4401554da93ee168404f44",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/lib.rs": "855288001429bf9148412d984b26acc4df9179b0bfc79f91469a1eb274807532",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "5230f3863a5cad726aefe51a3c6a786899e4f1cdd47aeb0ff8f7141fcc3917ae",
-          "tmp/a38-combined-prototype/varco_demo": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
-          "tmp/a38-combined-prototype/src/private_argmin.rs": "9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79",
-          "tmp/a38-combined-prototype/bin/a38_combined_prototype_macos_arm64_2026-09-02": "6ffd60e6c9396153ec3e139c55b63da3864e48865519c361f684fc8fb0694a58",
-          "tmp/a38-combined-prototype/source/benchmark/demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
-          "tmp/a38-combined-prototype/source/demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
-          "benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.json": "21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0",
+          "experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
+          "experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+          "experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "89eb3df057fd69e2ed3c96df94be9fdbd9e998eafe4401554da93ee168404f44",
+          "experiments/14_pipeline_tfhe_rs/src/lib.rs": "855288001429bf9148412d984b26acc4df9179b0bfc79f91469a1eb274807532",
+          "experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "5230f3863a5cad726aefe51a3c6a786899e4f1cdd47aeb0ff8f7141fcc3917ae",
+          "a38-combined-prototype::varco_demo": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
+          "a38-combined-prototype::src/private_argmin.rs": "9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79",
+          "a38-combined-prototype::bin/a38_combined_prototype_macos_arm64_2026-09-02": "6ffd60e6c9396153ec3e139c55b63da3864e48865519c361f684fc8fb0694a58",
+          "benchmark/demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
+          "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+          "benchmark::results/fhe_digiface_exact_primary_a38_2026-09-02.json": "21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0",
           "benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.csv": "51b1539d894c3aa69cb4d91b77046dc741fee409685fa960d2cc84ba7653c610",
-          "experiments/14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md": "184f4b08a03b8d71f999466df8127bfb0afd7baa10c4f732934cdd59f01b0229"
+          "experiment14::14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md": "184f4b08a03b8d71f999466df8127bfb0afd7baa10c4f732934cdd59f01b0229"
         }
       }
     },
     "docker": {
       "project": "thesis-a38-frozen-a55",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a55-a38-docker-gate-design/docker-compose.e2e.yml",
+      "compose_file": "a55-a38-docker-gate-design::docker-compose.e2e.yml",
       "compose_config_sha256": "5fa31a4dd3ea4ad6803d5c4c2809c5ae1a539f4e41ebac33e82e47032cd0fbbd",
       "context_file_sha256": {
         "compose": "f15f5e8f431f55980c50445f629dc116e2978bc5fc5865c82aa64e5fe8b2feca",
@@ -1031,7 +1007,7 @@
             "gate/a38-identity.json": "648bb14f9ec785d60e0610fec95d932d8b74a0e81dad72e7b5770b3609fe836a",
             "gate/frozen_demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
             "snapshot/README.md": "156a35f3407a5914ea6712ad2c5e76f413f1f125bc275371e8fe6d4f7dcd4d37",
-            "target/release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
+            "A38::release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -1063,7 +1039,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -1137,7 +1112,7 @@
             "core/metriche.py": "32d9f02ba36531fb6b4cc87a30581329b2b26c71fca92ddbfae60089cef2011b",
             "core/quantize.py": "300aa3ba17c1482cd57aaaea77ce723a9c95ba182ed13199c38966c2252dbcf8",
             "core/server.py": "2ab40f779082c214d8d499c1168d5f8ef966715701281525a5ca4af360e38660",
-            "target/release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
+            "A38::release/varco_demo": "54114e5f6f0a1d17585bd3d8bca9abb358af6d6113273058756ef8128031c211"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -1185,7 +1160,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",
@@ -1306,7 +1280,7 @@
       },
       "frozen_snapshot": {
         "candidate": "A38",
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a38-combined-prototype",
+        "path": "a38-combined-prototype",
         "contract": {
           "n": 127,
           "pbs_per_query": 3655,
@@ -1317,26 +1291,26 @@
         "identity_manifest_sha256": "648bb14f9ec785d60e0610fec95d932d8b74a0e81dad72e7b5770b3609fe836a",
         "pin_manifest_sha256": "95af59bdc12a3b78a7ee281796b61a4b3a41d33ee23c862c2185f9a62e687c1c",
         "frozen_service_binary": {
-          "path": "tmp/a38-combined-prototype/varco_demo",
+          "path": "a38-combined-prototype::varco_demo",
           "platform": "macOS arm64",
           "bytes": 2685248,
           "sha256": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
           "note": "reference only; Docker rebuilds a Linux binary from service_build_inputs"
         },
         "identity_file_sha256": {
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "89eb3df057fd69e2ed3c96df94be9fdbd9e998eafe4401554da93ee168404f44",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/lib.rs": "855288001429bf9148412d984b26acc4df9179b0bfc79f91469a1eb274807532",
-          "tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "5230f3863a5cad726aefe51a3c6a786899e4f1cdd47aeb0ff8f7141fcc3917ae",
-          "tmp/a38-combined-prototype/varco_demo": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
-          "tmp/a38-combined-prototype/src/private_argmin.rs": "9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79",
-          "tmp/a38-combined-prototype/bin/a38_combined_prototype_macos_arm64_2026-09-02": "6ffd60e6c9396153ec3e139c55b63da3864e48865519c361f684fc8fb0694a58",
-          "tmp/a38-combined-prototype/source/benchmark/demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
-          "tmp/a38-combined-prototype/source/demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
-          "benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.json": "21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0",
+          "experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
+          "experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+          "experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "89eb3df057fd69e2ed3c96df94be9fdbd9e998eafe4401554da93ee168404f44",
+          "experiments/14_pipeline_tfhe_rs/src/lib.rs": "855288001429bf9148412d984b26acc4df9179b0bfc79f91469a1eb274807532",
+          "experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "5230f3863a5cad726aefe51a3c6a786899e4f1cdd47aeb0ff8f7141fcc3917ae",
+          "a38-combined-prototype::varco_demo": "f4cdc28f92ffae8d34c207a06896299015aca2673fce14a959cc3bea34dc1e02",
+          "a38-combined-prototype::src/private_argmin.rs": "9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79",
+          "a38-combined-prototype::bin/a38_combined_prototype_macos_arm64_2026-09-02": "6ffd60e6c9396153ec3e139c55b63da3864e48865519c361f684fc8fb0694a58",
+          "benchmark/demo_e2e.py": "bb687d632e6b5c260b2423edd4bf06823a027ffc55597929a5c1d660d633438c",
+          "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+          "benchmark::results/fhe_digiface_exact_primary_a38_2026-09-02.json": "21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0",
           "benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.csv": "51b1539d894c3aa69cb4d91b77046dc741fee409685fa960d2cc84ba7653c610",
-          "experiments/14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md": "184f4b08a03b8d71f999466df8127bfb0afd7baa10c4f732934cdd59f01b0229"
+          "experiment14::14_pipeline_tfhe_rs/results/exact_id_a38_combined_component_fhe_2026-09-02.md": "184f4b08a03b8d71f999466df8127bfb0afd7baa10c4f732934cdd59f01b0229"
         }
       }
     },

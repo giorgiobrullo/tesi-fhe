@@ -1,8 +1,8 @@
 # Componibilita' statica: A34-top + due nibble + radix-5 + A36
 
 Data: 2026-09-02. Questo documento riguarda soltanto modello clear, contratti di scala/LUT e
-conteggi strutturali. Non e' stato modificato o compilato il core Rust, non sono state generate
-chiavi e non e' stato eseguito alcun workload FHE.
+conteggi strutturali. Non include compilazione Rust, generazione di chiavi
+o esecuzione FHE.
 
 ## Esito
 
@@ -17,7 +17,7 @@ revisione integrata o promossa. La proiezione condizionale a `N=127` e':
 | risparmio strutturale contro A33 | **618** | **618** | **702** |
 
 `3.655/3.274` non e' una misura di latenza, non e' stato osservato da un binario e non deve essere
-attribuito al core A33/A34/A36 vivo. E' il risultato di una decomposizione per stadi disgiunti che
+attribuito a un'esecuzione dei componenti A33/A34/A36. E' il risultato di una decomposizione per stadi disgiunti che
 passa i controlli statici descritti sotto.
 
 ## Ledger disgiunto, non somma di percentuali
@@ -140,7 +140,7 @@ proiezione statica condizionale.
 
 ## Validazione clear
 
-Il modello `benchmark/a34_a36_composability_model.py` compone realmente i tre trasformatori clear:
+Il modello [benchmark/a34_a36_composability_model.py](../../../benchmark/a34_a36_composability_model.py) compone realmente i tre trasformatori clear:
 top-category, A36 sui byte bassi e scan/output a due nibble. La variante radix-5 ricostruisce il
 prefisso e le riduzioni dei digit, quindi viene confrontata sia con la scan radix-4 sia con
 l'oracolo `min(score,index)` seguito dalla soglia 1023.
@@ -163,6 +163,6 @@ paired o l'accounting `p-fail`.
 
 ## File
 
-- `benchmark/a34_a36_composability_model.py`
-- `tests/test_a34_a36_composability_model.py`
-- `experiments/14_pipeline_tfhe_rs/results/exact_id_a34_a36_composability_2026-09-02.md`
+- [benchmark/a34_a36_composability_model.py](../../../benchmark/a34_a36_composability_model.py)
+- [tests/test_a34_a36_composability_model.py](../../../tests/test_a34_a36_composability_model.py)
+- [experiments/14_pipeline_tfhe_rs/results/exact_id_a34_a36_composability_2026-09-02.md](exact_id_a34_a36_composability_2026-09-02.md)

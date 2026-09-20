@@ -20,14 +20,6 @@ embedding quantizzati a 512 dimensioni e soglia uniforme `T=4`.
 Il validator ha eseguito otto cifrature per ciascuno dei sei probe mirati `113`, `647`, `73`,
 `37`, `41` e `87`, per 48 query:
 
-```sh
-benchmark/fhe_digiface_validation.py --run \
-  --only-probe 113 --only-probe 647 --only-probe 73 \
-  --only-probe 37 --only-probe 41 --only-probe 87 \
-  --regression-repetitions 8 \
-  --output-stem fhe_digiface_exact_noise_bounded_targeted_2026-09-01
-```
-
 Una sola coppia di chiavi temporanee fresca e' stata generata per l'intero run. Le 48 righe sono
 quindi cifrature nuovamente campionate sotto la stessa chiave, non 48 chiavi indipendenti.
 
@@ -87,16 +79,15 @@ Il checkout era dirty; gli hash, non il solo commit Git, identificano il materia
 | `experiments/14_pipeline_tfhe_rs/Cargo.lock` | `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a` |
 
 La evaluation key temporanea aveva SHA-256
-`3ef97df6bbc5b2f23e18aca9a4cd33f86e889efaeca091a1e02b6f18d187ca27`; la directory temporanea
-contenente le chiavi e' stata rimossa al termine. Scena e holdout corrispondono agli hash fissati
-nel config. Il commit di base era `6611c185adc9a658a075519b4316386f0bb48656`.
+`3ef97df6bbc5b2f23e18aca9a4cd33f86e889efaeca091a1e02b6f18d187ca27`. Scena e holdout corrispondono agli hash fissati
+nel config.
 
 Artefatti del run:
 
 | artefatto | SHA-256 |
 |---|---|
 | `fhe_digiface_exact_noise_bounded_targeted_2026-09-01.csv` | `eadca32e02728c96bbd529b09a6ccf0f9c1a3a6254f13c4323f657d42c37d0f9` |
-| `fhe_digiface_exact_noise_bounded_targeted_2026-09-01.json` | `d75c3e7cf17a9680c433408b185ae6dc5c345e6a5b70699a2f0039e4ce6fb983` |
+| `fhe_digiface_exact_noise_bounded_targeted_2026-09-01.json` | `6956501e13387d0c5a72db7509a8d92c382068da7894eca87acbaceade9a9998` |
 
 Lo SHA-256 del CSV coincide con quello incorporato nel JSON.
 
@@ -116,7 +107,7 @@ Artefatti canonici separati:
 | artefatto | SHA-256 |
 |---|---|
 | [`fhe_digiface_exact_primary_noise_bounded_2026-09-01.csv`](fhe_digiface_exact_primary_noise_bounded_2026-09-01.csv) | `804aa4390ad00deed08698905540e458176bfd91db0618bd826baa93edebb80b` |
-| [`fhe_digiface_exact_primary_noise_bounded_2026-09-01.json`](fhe_digiface_exact_primary_noise_bounded_2026-09-01.json) | `b6e54b92bef8f53c0ce057f1e68e9b473487fdd423776962579661669d4fa512` |
+| [`fhe_digiface_exact_primary_noise_bounded_2026-09-01.json`](fhe_digiface_exact_primary_noise_bounded_2026-09-01.json) | `4a601d84b006e6fd8b3267c51b280f65e1fed017384c861e0dea0e4885dc016d` |
 
 Anche questa e' evidenza empirica: usa una sola coppia di chiavi temporanee, la stessa galleria a
 soglia uniforme `T=4` e non fornisce un bound whole-circuit del `p-fail` dei 7.804 PBS.
@@ -133,3 +124,10 @@ Il risultato 48/48 e la trace interna senza divergenze sono evidenza funzionale 
 non derivano una probabilita' di fallimento composta dai 7.804 PBS, non misurano DIR/FPIR di
 popolazione e non costituiscono una validazione biometrica esterna. Il successivo 632/632 estende
 la copertura empirica pianificata, ma non cambia questi limiti formali.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

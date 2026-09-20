@@ -8,6 +8,7 @@ let source = null;
 let busy = false;
 let serviceReady = false;
 let pollTimer;
+let pollGeneration = 0;
 let leaving = false;
 
 function updateControls() {
@@ -126,22 +127,26 @@ async function attemptAccess() {
   }
 }
 
-async function pollStatus() {
-  if (leaving) return;
+async function pollStatus(generation = pollGeneration) {
+  if (leaving || generation !== pollGeneration) return;
   try {
     const status = await api('/api/stato', { timeout: 8000 });
+    if (leaving || generation !== pollGeneration) return;
     serviceReady = Boolean(status.pronto);
     setConnection(byId('connection'), serviceReady);
     byId('service-notice').hidden = serviceReady;
     byId('service-notice').textContent = status.errore || 'Avvio del servizio in corso.';
   } catch {
+    if (leaving || generation !== pollGeneration) return;
     serviceReady = false;
     setConnection(byId('connection'), false);
     byId('service-notice').textContent = 'Servizio non raggiungibile. Riconnessione in corso.';
     byId('service-notice').hidden = false;
   } finally {
-    updateControls();
-    if (!leaving) pollTimer = setTimeout(pollStatus, 1800);
+    if (!leaving && generation === pollGeneration) {
+      updateControls();
+      pollTimer = setTimeout(function () { pollStatus(generation); }, 1800);
+    }
   }
 }
 
@@ -152,6 +157,7 @@ byId('photos').addEventListener('change', choosePhotos);
 byId('access').addEventListener('click', attemptAccess);
 window.addEventListener('pagehide', function () {
   leaving = true;
+  pollGeneration += 1;
   clearTimeout(pollTimer);
   camera.stop();
 });

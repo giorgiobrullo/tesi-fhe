@@ -1,36 +1,34 @@
-# CKKS: combinazione misurata su tre chiavi nuove
+# CKKS: combined runtime on three key families
 
-Il confronto diretto riduce il tempo della query dell’**8,10%**: tutte le18
-coppie misurate favoriscono la variante combinata. Le mediane passano da
-**3,212 a2,948secondi**. Il riferimento e la variante usano la stessa cache
-pubblica, chiave e query cifrata all’interno di ogni coppia.
+The direct comparison reduces query time by **8.098463%**, with all 18
+measured pairs favoring `combined-powers`. The reference and candidate
+medians are **3.211634 and 2.948412 seconds**. Within each pair both use the
+same public cache, key and encrypted input.
 
-| Famiglia nuova | Riduzione geometrica sulle coppie | Coppie più veloci |
+| Key family | Geometric paired reduction | Faster pairs |
 |---|---:|---:|
-|0|7,657%|6/6|
-|1|8,034%|6/6|
-|2|8,602%|6/6|
-|Tutte|8,098%|18/18|
+| 0 | 7.657% | 6/6 |
+| 1 | 8.034% | 6/6 |
+| 2 | 8.602% | 6/6 |
+| All | 8.098% | 18/18 |
 
-La combinazione condivide le riduzioni dell’input e di x² nei polinomi e
-riusa la decomposizione delle rotazioni del calcolo dei punteggi. Il confronto
-tra punteggi migliora del14,094% e la fase punteggi del9,763%. Layout e prodotto
-restano vicini alla parità; l’uscita peggiora dell’1,035% in questa misura.
-Questi valori vengono dalle stesse coppie; le percentuali degli esperimenti
-separati non sono state sommate o moltiplicate.
+Shared input/x² reductions and score-rotation precomputation improve the
+score-comparison stage by **14.094%** and score formation by **9.763%**.
+Layout and product stages remain near parity; output takes **1.035% longer**.
+These stage values come from the same pairs. They are not additive effects
+or products of separate experiment percentages.
 
-Prima dei tempi passano18 uscite e45 uguaglianze complete dei cifrati nei
-cinque stadi, comprese soglia inclusiva, scarti di una unità, parità e R4096.
-Le tre famiglie temporali aggiungono48 uscite e24 uguaglianze complete finali,
-con input invariato:66 uscite e69 uguaglianze in totale. Ogni famiglia temporale
-ha due coppie iniziali escluse e sei misurate, con ordine alternato.
+Before timing, 18 outputs and 45 complete ciphertext/input equalities pass
+across five stages, including inclusive thresholds, gap-one cases, stable
+ties and range 4096. The timing families add 48 outputs and 24 complete final
+equalities, for 66 outputs and 69 equalities overall. Each timing family
+excludes two warmup pairs and measures six pairs in alternating order.
 
-Resta carico esterno elevato e non completamente determinabile: circa2,18–2,31
-core comparabili nelle tre famiglie. È quindi un risultato descrittivo sotto
-carico, non una conferma a macchina libera né un tempo dell’app completa.
-La correttezza riguarda i casi provati; non costituisce un limite formale alla
-probabilità di fallimento.
+All families retain high external-load flags and partially uncertain process
+accounting. The result is not a measurement at an idle machine, HTTP latency,
+biometric accuracy or a formal failure probability. Correctness applies to
+the tested inputs and numerical tolerances.
 
-Dati e verifiche: [risultato completo](COMBINED_THREE_KEY_RESULT.json),
-[impronte degli artefatti](THREE_KEY_FREEZE.json), [piano](RUN_PLAN.json).
-La successiva prova8/12/16 thread è una sorgente separata, ancora da eseguire.
+[Machine-readable results](../RESULTS.json), [all 18 timing pairs](../PUBLIC_TIMING_PAIRS.csv)
+and [method](ORIGINAL_COMBINED_DESIGN.md). The later
+[8/12/16-thread comparison](ORIGINAL_THREAD_RESULTS.md) is a separate campaign.

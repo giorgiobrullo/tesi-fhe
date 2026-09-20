@@ -1,4 +1,4 @@
-# A33: accumulatore sparso multi-output sul residuo rumoroso A29 — 2026-09-02
+# A33: accumulatore sparso multi-output sul residuo rumoroso A29 - 2026-09-02
 
 ## Esito
 
@@ -74,43 +74,18 @@ Per chiave, i tempi del core/classificatore/canonicalizzatore sono stati rispett
 `9.232139/0.497575/0.872334` secondi. Sono misure di un micro-harness locale, non un benchmark
 isolato di latenza del servizio.
 
-## Riproducibilita'
+## Configurazione e dati
 
-Comando del run:
+L'esecuzione usa Rust/Cargo 1.97.1 e il parametro
+`V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`.
+Compilazione, controlli Clippy e test del target passano. Il target non
+contiene unit test separati: il risultato FHE è il run assertivo che termina
+con `total_mismatches=0`.
 
-```bash
-cargo run --release --features diagnostic-trace --bin a33_sparse_residual_trace
-```
-
-Verifiche successive alla sola formattazione del sorgente:
-
-```bash
-cargo check --release --features diagnostic-trace --bin a33_sparse_residual_trace
-cargo clippy --release --features diagnostic-trace --bin a33_sparse_residual_trace -- -D warnings
-cargo test --release --features diagnostic-trace --bin a33_sparse_residual_trace
-```
-
-Tutte PASS. Il target non contiene unit test separati (`0` test); l'evidenza FHE e' l'esecuzione
-assertiva sopra, che termina con `total_mismatches=0`.
-
-Provenienza:
-
-- Rust `1.97.1`, Cargo `1.97.1`;
-- parameter set `V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`;
-- `src/bin/a33_sparse_residual_trace.rs` SHA-256
-  `1b03d510ae8c560bb4f9df58f13ac31b8a71e35e55775132cb4c0bdcd4efc281`;
-- binario eseguito `target/release/a33_sparse_residual_trace` SHA-256
-  `a2e49f21f367c3797eb7d4bdf61e005b06a119a40a42718c396fe6309c3d0af7`;
-- `src/private_argmin.rs` SHA-256
-  `06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4`;
-- `Cargo.lock` SHA-256
-  `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a`;
-- transcript stdout SHA-256
-  `4d0663a5289609ad5bc5bcd3e376a7e1cc5409ec4beac29c9d2ca6dbbb952980`.
-
-Il transcript stdout completo del run e' preservato in
-[`exact_id_a33_sparse_residual_trace_2026-09-02.txt`](exact_id_a33_sparse_residual_trace_2026-09-02.txt)
-e ne registra configurazione, tutti i 54 casi, i riepiloghi per chiave e il riepilogo globale.
+Il [resoconto completo](exact_id_a33_sparse_residual_trace_2026-09-02.txt)
+registra configurazione, tutti i 54 casi, i riepiloghi per chiave e il
+riepilogo globale. Il report riguarda la revisione A33 del micro-percorso;
+il comando di build della revisione misurata non è fornito qui.
 
 ## Limiti
 

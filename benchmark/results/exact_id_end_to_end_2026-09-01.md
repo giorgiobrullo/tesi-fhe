@@ -32,7 +32,7 @@ Artefatti:
 - `benchmark/results/demo_e2e_exact_id_2026-09-01.csv`
   (`sha256 dee402f4173033135330343db674edf95d17a85e423515ac446f267d8d2855fd`)
 - `benchmark/results/demo_e2e_exact_id_2026-09-01.json`
-  (`sha256 feedc7a3e2974475eda12b5f6e14fc32e93ff141137a75b99f3be6b993bbaa3e`)
+  (`sha256 1930cf7f5fbc7723f07f633903ed3d50c67d3074c1a14d0676e0b6ec6095139f`)
 
 ## Docker e browser reale
 
@@ -80,3 +80,6 @@ uno smoke singolo, non un bound di latenza o di probabilita' di fallimento.
   invece il percorso operativo al contratto di identificazione.
 - Il client fidato deve far rispettare `q_j in [-3,3]` e `||q||^2 <= 1024` prima della cifratura.
 - La galleria e le soglie sono in chiaro sul server nel modello corrente.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

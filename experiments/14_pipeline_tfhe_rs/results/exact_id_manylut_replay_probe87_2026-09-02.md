@@ -34,8 +34,8 @@ tutti i checkpoint e non e' una misura della latenza del servizio.
 
 ## Provenienza
 
-Il binario e' stato compilato dalla copia sorgente congelata
-`tmp/a29-manylut-2026-09-02/source/`, non dalla `target/` ordinaria che conteneva ancora A28.
+Il binario e' stato compilato dallo snapshot sorgente A29 identificato dagli hash seguenti.
+Il replay utilizza quindi A29; gli artefatti di compilazione precedenti appartenevano ad A28.
 
 - core `src/private_argmin.rs`:
   `06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4`;
@@ -52,8 +52,8 @@ Il binario e' stato compilato dalla copia sorgente congelata
 - probe ciphertext fresco, 32.840 byte:
   `682794eca67247d9c3900a76df5f3c22a8d6ce6031595d3cd1575b90f78af276`.
 
-La coppia client/server e la cifratura del probe sono state generate apposta in una directory
-temporanea esterna al repository e rimosse dopo il gate. Nessuna chiave storica e' stata letta.
+La coppia client/server e la cifratura del probe sono materiale effimero generato apposta per
+il gate, senza riuso di chiavi storiche.
 
 ## Limiti
 

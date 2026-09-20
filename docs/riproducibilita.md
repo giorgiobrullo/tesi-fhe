@@ -1,106 +1,201 @@
-# Riproducibilità e provenienza
+# Eseguire il progetto e leggere i risultati
 
-Questa versione del repository distribuisce il codice della demo,
-documentazione consolidata, esperimenti recenti e risultati scientifici
-selezionati. Conserva separatamente gli archivi originali locali: non è una
-copia integrale di tutte le prove e dei relativi ambienti di esecuzione.
+Il repository offre una demo interattiva, implementazioni sperimentali e
+misure delle prestazioni. Questi punti di ingresso permettono di provare
+il sistema, studiarne il funzionamento e controllare i risultati.
+La qualifica del runtime con il nuovo selettore è separata dalle campagne
+storiche e si legge in [PACK4_VALIDATION.md](../PACK4_VALIDATION.md).
 
-## Materiale pubblicato
+## Ambiente e piattaforme
 
-- Il [README](../README.md), i [risultati consolidati](../findings.md) e le
-  [questioni aperte](../OPEN_QUESTIONS.md) descrivono contratto, conclusioni e limiti.
-- I [pacchetti 17–26](../experiments/README.md) raccolgono sorgenti storici,
-  lockfile, include pubblici, riepiloghi `RESULTS.json` e prove selezionate
-  nelle rispettive cartelle `evidence/`.
-- La [demo client/server](../demo/dual_view/README.md) usa il core del
-  [pacchetto 22](../experiments/22_demo_composita/README.md). I suoi requisiti
-  e le istruzioni di avvio sono nei README; modelli e dipendenze esterne
-  richiedono il proprio ambiente.
-- La [campagna comune del 9 settembre](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md)
-  include figura e dati leggibili. Le osservazioni e i riepiloghi consentono
-  di controllare le statistiche pubblicate; non contengono l'intera prova FHE.
+Usare Python 3.12 con uv. La campagna del nuovo runtime usa Rust/Cargo 1.98.0
+su macOS ARM64; i comandi Rust sotto assumono quella versione nell'ambiente.
+Le revisioni storiche conservano le proprie versioni del compilatore.
+Dalla radice, `uv sync --locked --python 3.12` crea l'ambiente `.venv`.
+Il lock include anche Concrete e TenSEAL: le wheel vincolano l'installazione
+completa a macOS e Linux x86_64 secondo i
+[prerequisiti della demo](../demo/dual_view/README.md#prerequisiti).
+Linux ARM e Windows non sono coperti da questo bootstrap. La guida specifica
+anche i casi macOS che richiedono compilazione da sorgente; non implica
+che ogni piattaforma sia stata verificata.
 
-I sorgenti ripetuti fra esperimenti sono snapshot dei programmi confrontati.
-Sostituirli con l'ultima libreria cambierebbe la sorgente del risultato
-storico. Le copie conservano i file incorporati e i propri identificatori;
-i nomi storici non attestano una nuova misura nella posizione pubblicata.
+Dataset biometrici e pesi dei modelli sono asset esterni. I sorgenti e i dati
+riepilogativi inclusi permettono di studiare le implementazioni e rigenerare
+le figure; alcune campagne storiche richiedono anche cache, binari o manifest
+non distribuiti, come indicato nei relativi report.
 
-## Cosa attestano manifest e controlli
+## Provare la demo
 
-`PROVENANCE.json`, `COPY_ORIGINS.json`, `EVIDENCE_ORIGINS.json` e
-`PACKAGE_PINS.json`, dove presenti, identificano origini e impronte dei file.
-I `RESULTS.json` distinguono risultati originali, controlli sulle copie,
-stimatori e limiti. Un'impronta permette di confrontare i byte disponibili;
-non dimostra da sola correttezza matematica, compilabilità su ogni ambiente
-o correttezza dell'esecuzione originaria.
+Seguire il [README della demo](../demo/dual_view/README.md) per installare
+le dipendenze Python, compilare il motore Rust e preparare modelli e chiavi.
+La galleria parte vuota: dalla pagina server si registra una persona;
+dalla pagina client si effettua una richiesta di accesso usando una foto
+o la fotocamera.
 
-Verificare una copia per hash, eseguire test senza crittografia, ricompilare,
-controllare risultati FHE con rumore e ripetere un benchmark sono attività
-diverse. I pacchetti dichiarano quali siano state effettivamente eseguite.
-In particolare, i controlli del client con rete e crittografia simulate non
-sono una nuova qualificazione FHE. La preparazione del repository non ha
-rieseguito i benchmark storici.
+Il client calcola l'embedding del volto e cifra la query. Il server cerca
+il primo minimo sui dati cifrati e verifica la soglia di quel vincitore.
+Il client decifra la risposta e mostra accesso consentito o negato.
+Le fotografie d'iscrizione e la galleria sono visibili al server.
 
-I grandi archivi di input/output cifrati, chiavi, replay e ricevute native
-restano locali. Le tabelle pubblicate non consentono di ripetere da sole
-le decifrature originali. Una nuova esecuzione richiede dipendenze compatibili,
-nuove chiavi e un piano esplicito: i suoi risultati sono nuove osservazioni,
-senza ereditare automaticamente la qualifica delle vecchie chiavi o revisioni.
+La demo richiede un terminale fidato ed è pensata per l'esecuzione sullo
+stesso computer. Il [modello di fiducia](../README.md#modello-di-fiducia)
+spiega quali informazioni sono protette e quali ipotesi sono necessarie.
 
-## Dipendenze e copie parziali
+## Studiare le implementazioni
 
-I README indicano le chiusure dei sorgenti e le dipendenze esterne necessarie.
-I crate registry, i modelli biometrici, le librerie compilate e i target
-di build non sono vendorizzati nei nuovi pacchetti. Le piccole LUT binarie
-incluse sono corpi pubblici deterministici, non chiavi o probe cifrati.
+L'[indice degli esperimenti](../experiments/README.md) presenta il percorso
+dai primi prototipi all'implementazione usata dalla demo. Ogni esperimento
+descrive la domanda, il metodo, i risultati e le condizioni del confronto.
 
-Il [pacchetto 24](../experiments/24_frontiere_common_mask_bgv/README.md)
-contiene **estratti storici** common-mask e BGV, con dipendenze locali non
-completamente chiuse. Serve a leggere le costruzioni e i risultati provati;
-non è presentato come build autonoma portabile. Per il servizio integrato
-il punto d'ingresso è il [pacchetto 22](../experiments/22_demo_composita/README.md).
+Il [runtime mantenuto](../runtime/README.md) contiene il servizio modulare
+e la libreria Rust da cui partire per il riuso. Il
+[pacchetto 22](../experiments/22_demo_composita/README.md) conserva la versione
+su cui sono stati misurati i risultati storici del servizio. I suoi tempi
+e conteggi non descrivono automaticamente il selettore nuovo, che aggiunge
+un refresh del controllo e richiede una diversa chiave funzionale PFKS.
+I pacchetti precedenti permettono di confrontare le varianti dell'algoritmo;
+i sorgenti possono differire intenzionalmente, perché rappresentano
+implementazioni diverse. I file `RESULTS.json` riportano i dati delle prove.
 
-Il [riepilogo pubblico della ricerca](../RESEARCH_STATE.md) conserva anche
-il nome usato dal client immagini per trovare la radice del repository.
-Non contiene il registro operativo locale né ne sostituisce le evidenze.
+I README specificano compilatore, librerie e comandi necessari. I lockfile
+fissano le dipendenze Rust; le tabelle LUT incluse sono dati pubblici usati
+dal circuito. Le chiavi vanno generate per la propria esecuzione.
 
-## Riferimenti agli archivi locali
+L'[esperimento 24](../experiments/24_frontiere_common_mask_bgv/README.md)
+fornisce risultati e sorgenti parziali common-mask/BGV: le dipendenze mancanti
+sono elencate nel suo README. Per provare un servizio completo usare il runtime mantenuto.
 
-Le cartelle originali `docs/archive/`, `docs/research-state/`, `docs/personal/`
-e `tmp/` non fanno parte di questa selezione pubblica. Vi rimangono diari,
-audit completi, rapporti personali e ricevute dei run. I percorsi citati
-come *locali* nella documentazione e nei manifest sono identificatori di
-provenienza, non collegamenti a file scaricabili dal repository pubblico.
-Gli originali e i tentativi falliti sono conservati senza eliminarli.
+## Provenienza dei dati inclusi
 
-Alcuni rapporti originali copiati mantengono intenzionalmente il testo e
-i collegamenti relativi della posizione d'origine. In particolare:
+Alcuni report e JSON sono estratti pubblici privi dei metadati personali
+o dei percorsi locali degli originali. Il
+[registro delle impronte](provenienza-dati.json) distingue lo SHA-256
+dell'originale da quello della copia pubblicata: una modifica editoriale
+cambia l'impronta del file anche quando conserva le misure riportate.
+Il [registro del 20 settembre](publication-provenance-20260920.json) documenta
+le ulteriori copie redatte della qualifica pack4 e del confronto CKKS/TFHE.
+I riferimenti hash interni e le ricevute dei grafici identificano gli originali
+congelati; il registro distingue gli hash delle copie pubbliche.
+Il [confronto diretto del costo](selector-direct-cost-20260920.md) include
+un proprio registro e il comando per ricalcolare le statistiche.
 
-- [Rapporto originale della composizione](../experiments/22_demo_composita/evidence/ORIGINAL_RISULTATI.md)
-  rinvia a sottoarchivi quali `service-audit/`, `composite/`, `tetris/` e
-  ricevute di lancio/verifica del browser, disponibili nell'archivio locale.
-- [Rapporto originale CKKS](../experiments/23_ckks_ottimizzazioni/evidence/ORIGINAL_COMBINED_RESULTS.md)
-  rinvia a `COMBINED_THREE_KEY_RESULT.json`, `THREE_KEY_FREEZE.json` e
-  `RUN_PLAN.json` della posizione originale.
+I manifest `PROVENANCE.json` dei pacchetti 16–26 indicano le impronte dei
+file distribuiti e distinguono i sorgenti invariati dalle evidenze redatte.
 
-Anche tre rapporti storici in `benchmark/results/` rinviano al vecchio
-`status.md`, che resta un registro operativo locale.
+## Eseguire i test della demo
 
-Quei collegamenti storici non si risolvono dalla cartella pubblicata.
-Il testo rimane identico per preservare le impronte dichiarate: per la
-navigazione pubblica usare README, `RESULTS.json` e le prove selezionate
-del pacchetto. Un riepilogo pubblico non viene presentato come equivalente
-al rapporto integrale o al replay degli originali mancanti.
+Dalla radice, dopo avere installato l'ambiente Python:
 
-## Limiti da preservare nella lettura
+```sh
+.venv/bin/python -B -m unittest demo.dual_view.test_client demo.dual_view.test_server
+.venv/bin/python -B - <<'PYTHON'
+import sys
+import unittest
+from pathlib import Path
+sys.path.insert(0, str(Path('runtime').resolve()))
+names = ['client.test_app', 'client.test_protocol',
+         'client.test_pack4_ledger', 'runtime.test_configure']
+suite = unittest.defaultTestLoader.loadTestsFromNames(names)
+result = unittest.TextTestRunner(verbosity=2).run(suite)
+raise SystemExit(not result.wasSuccessful())
+PYTHON
+```
 
-Le riduzioni di tempo appartengono ai rispettivi confronti appaiati e non
-si sommano. Campioni correlati, chiavi limitate e carico esterno conservano
-il proprio ruolo nelle conclusioni; capacità rappresentativa, correttezza
-FHE osservata, accuratezza biometrica e probabilità formale di errore
-rimangono affermazioni distinte.
+Questi test verificano interfaccia, richieste, risposte, pipeline del client
+e binding dei sorgenti usando rete e crittografia simulate. Non richiedono una fotocamera
+o un servizio attivo. Le prove con cifrati reali e i benchmark sono descritti
+separatamente nei risultati degli esperimenti.
 
-La figura del 9 settembre mantiene due sezioni con uno stacco di contratto
-e dimensioni, barre interquartili e tempo logaritmico. Il precedente errore
-di Head generale rimane irrisolto anche dopo i nuovi risultati corretti:
-conservarne l'indicazione è parte del metodo, non una scelta grafica opzionale.
+Per le regressioni asincrone del browser, con Node.js (26.8.1 nella verifica
+storica del 18 settembre):
+
+```sh
+node --test demo/dual_view/test_ui.mjs
+```
+
+Non occorrono pacchetti npm. I test controllano risposte della galleria in
+ritardo, ritorno alla pagina dalla cache e chiusura della fotocamera durante
+l'avvio. Usano un DOM minimo e stream simulati; la prova storica con immagini
+e servizi attivi è descritta nella [verifica del 18 settembre](runtime-verification.md).
+
+I test Rust del servizio controllano codec, galleria, CLI e parser HTTP;
+quelli ordinari del core controllano domini, LUT, conteggi e pareggi. Dalla
+radice, mantenendo gli output di compilazione fuori dai sorgenti:
+
+```sh
+cargo test --release --locked \
+  --manifest-path runtime/candidate/Cargo.toml --target-dir .local/target-service \
+  -p composite_camera_service_20260908 -p selector_four_core_20260920 \
+  -- --test-threads=1
+```
+
+La regressione FHE mirata genera chiavi fresche soltanto in memoria ed esegue
+tre query a N2: soglia inclusiva, rifiuto uniforme e rifiuto del primo vincitore
+con soglie miste. Usa 16 thread e la politica FFT del servizio. Eseguirla
+isolatamente, senza altre build o benchmark:
+
+```sh
+cargo test --release --locked \
+  --manifest-path runtime/candidate/Cargo.toml --target-dir .local/target-service \
+  -p selector_four_core_20260920 --lib \
+  service_smoke_tests::fresh_key_public_parallel_preserves_exact_ids_without_benchmarking \
+  -- --ignored --exact --test-threads=1
+```
+
+È una regressione su quei casi, non una misura di velocità o una prova generale
+del circuito. Le diagnostiche FHE storiche ignorate restano separate.
+I comandi descrivono come eseguire le verifiche; gli esiti già attestati
+per questa revisione sono soltanto quelli del
+[registro di qualifica](../SELECTOR_REPAIR_VALIDATION.md).
+
+## Grafici correnti e rigenerazione storica
+
+Le due nuove campagne del 20 settembre, CSV e figure sono nel
+[percorso corrente](percorso-sperimentale-20260920.md). I loro audit
+completi richiedono i cifrati e le chiavi conservati localmente, esclusi
+dalla consegna. Il comando seguente rigenera soltanto la figura storica.
+
+### Figura storica del 9 settembre
+
+La [campagna del 9 settembre](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md)
+include il grafico, le osservazioni in CSV e le statistiche riepilogative.
+Per produrre PNG, SVG e PDF dai dati, eseguire dalla radice:
+
+```sh
+.venv/bin/python -B benchmark/figure_common_benchmark.py --output .local/grafico
+```
+
+La cartella di destinazione deve essere nuova. Il comando verifica le
+impronte dei dati e disegna la figura; non esegue nuovi calcoli FHE.
+Il grafico conserva le versioni misurate il 9 settembre e non include
+misure della riparazione del selettore del 19 settembre.
+
+`osservazioni-exact.csv` e `osservazioni-prototipi.csv` contengono anche il
+riscaldamento, identificato nella colonna `phase`. `duration_ns` è espresso
+in nanosecondi. Le mediane e i quartili usano soltanto le righe `measured`
+nel CSV exact e `measure` nel CSV dei prototipi; le righe `warmup` sono escluse.
+Gli accoppiamenti confrontano la stessa scena, famiglia
+e ripetizione: un rapporto appaiato non è il rapporto delle due mediane.
+
+## Interpretare correttamente le misure
+
+Il grafico ha due sezioni: primo minimo a N=8 e 64 coordinate; risultato
+0/ID a N=127 e 512 coordinate. Lo stacco cambia il compito, quindi non si
+calcola una percentuale di miglioramento fra i due lati. I tempi sono
+logaritmici e le barre mostrano l'intervallo interquartile, non un intervallo
+di confidenza.
+
+Ogni confronto vale per le chiavi, scene, parametri e condizioni indicati.
+I tempi del core escludono interfaccia, embedding e rete; le misure del
+servizio seguono un protocollo diverso. I guadagni di campagne diverse non
+si sommano. Il metodo segnala inoltre il carico concorrente della macchina.
+
+Un risultato esatto sui casi provati non stabilisce la probabilità di errore
+dell'intero circuito né l'accuratezza biometrica su nuove persone. La croce
+su Head generale conserva il fallimento storico ID75 anziché ID1. La diagnosi
+successiva lo localizza nel selettore: indirizzo 341 fuori da 300…340, con
+estrazioni Head corrette in quell'istanza. La baseline del 19 settembre passa
+il replay separato con ID1 e indirizzo 318 nel nodo interessato. Queste prove
+non qualificano da sole il nuovo selettore o la probabilità globale di errore.
+I [risultati](../findings.md) e le [questioni aperte](../OPEN_QUESTIONS.md)
+descrivono queste distinzioni nel dettaglio.

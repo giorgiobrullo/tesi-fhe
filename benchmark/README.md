@@ -1,50 +1,69 @@
-# Benchmark duri -- tecniche già fatte su set più difficili di LFW
+# Benchmark e risultati
 
-Cartella trasversale: misura come reggono le tecniche che
-abbiamo già, cioè **PCA/eigenfaces** (gradino 05) e **descrittori locali LBP/HOG**
-(gradino 07), su benchmark più duri di LFW, prima di salire alla CNN.
+Questa cartella raccoglie misure biometriche in chiaro, verifiche FHE,
+confronti di latenza e generatori di figure. La sintesi delle conclusioni
+è in [findings.md](../findings.md); le istruzioni comuni sono nella
+[guida alla riproducibilità](../docs/riproducibilita.md).
 
-## I set
+## Scegliere il percorso
 
-A buona risoluzione (112×112 allineati), formato InsightFace `.bin`, protocollo nativo
-di **verifica 1:1** (6.000 coppie, 10-fold, soglia migliore):
+| Obiettivo | Punto di ingresso | Cosa misura |
+|---|---|---|
+| Confrontare le tecniche biometriche | [verifica.py](verifica.py), [identificazione_1n.py](identificazione_1n.py) | Accuratezza in chiaro, con protocolli distinti |
+| Leggere le campagne exact-ID storiche | [Risultati A33](results/fhe_digiface_exact_primary_a33_2026-09-02.md), [A29/A33 appaiato](results/fhe_digiface_exact_paired_a29_a33_2026-09-02.md) | Concordanza FHE/clear e latenza nelle condizioni riportate |
+| Studiare il servizio corrente | [Esperimento 22](../experiments/22_demo_composita/README.md) | Backend e richieste complete con immagini |
+| Rigenerare il grafico comune | [Guida del grafico](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md), [generatore](figure_common_benchmark.py) | Figura dai dati inclusi, senza nuove esecuzioni FHE |
 
-| set | difficoltà |
-|---|---|
-| `lfw` | baseline (facile) |
-| `cplfw` | **cross-posa** (il più duro dei pair-set) |
-| `cfp_fp` | **frontale ↔ profilo** |
+## Biometria in chiaro
 
-## Come procurare i dati
+`verifica.py` confronta PCA, LBP, HOG e CNN sui file InsightFace `.bin` in
+`datasets/bench/`: LFW, CPLFW, CFP-FP, AgeDB-30 e CALFW. Salta i set assenti.
+Il protocollo è verifica **1:1**, con soglia selezionata sui fold di training
+e accuratezza sui fold di test. I dati sono esterni; le indicazioni per
+procurarli e per i dataset 1:N sono nella [guida ai dataset](../docs/benchmark_dataset.md).
 
-Download diretto dal bundle HuggingFace (pubblico, ~60-76 MB ciascuno) in
-`datasets/bench/` (cartella gitignorata):
+`identificazione_1n.py` usa DigiFace e VGGFace2 con uno split open-set:
+galleria, probe noti e probe ignoti. Riporta Rank-1 e DIR alle soglie FPIR
+considerate. Il risultato riguarda lo split e la calibrazione usati nello
+script; non è una misura della demo live né una verifica crittografica.
 
-```bash
-mkdir -p datasets/bench
-for f in lfw cplfw cfp_fp; do
-  curl -L -o "datasets/bench/$f.bin" \
-    "https://huggingface.co/datasets/gaunernst/face-recognition-eval/resolve/main/$f.bin"
-done
+Dalla radice, dopo la [preparazione Python](../demo/dual_view/README.md#prerequisiti)
+e dei dataset:
+
+```sh
+.venv/bin/python -B benchmark/verifica.py
+.venv/bin/python -B benchmark/identificazione_1n.py
 ```
 
-## Esecuzione
+Gli script scrivono in `benchmark/results/`, rispettivamente
+`verifica_duri.csv` e `identificazione_1n.csv`, e possono sostituire risultati
+omonimi: eseguirli su una copia di lavoro se si vogliono conservare i dati inclusi.
 
-```bash
-uv run python benchmark/verifica.py
+## Campagne FHE
+
+I file `fhe_*.py` conservano i driver delle campagne della demo precedente
+(es. [validator DigiFace](fhe_digiface_validation.py)). Possono richiedere
+cache biometriche, binari congelati o manifest locali non distribuiti.
+I report in [results/](results/) descrivono prerequisiti, prove e limiti di
+ciascuna campagna; il solo clone non ricrea automaticamente quelle esecuzioni.
+Per compilare e usare il servizio incluso partire dall'esperimento 22.
+
+Anche `a29_pfail_accounting.py`, `a33_pfail_accounting.py` e
+`figure_exact_id_improvements.py` conservano i controlli sugli hash originali:
+gli estratti JSON pubblici non sostituiscono gli input completi di quei generatori
+storici. Il [registro dei dati](../docs/provenienza-dati.json) distingue le due impronte.
+
+Il [grafico comune del 9 settembre](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md)
+confronta i prototipi a N8/D64 e l'exact-ID a N127/D512 in due sezioni separate.
+Non si calcola un guadagno attraverso lo stacco. Mantiene l'errore storico
+Head generale e le condizioni di carico; i test successivi riusciti non
+risolvono quel fallimento.
+
+Per rigenerare PNG, SVG e PDF in una cartella nuova:
+
+```sh
+.venv/bin/python -B benchmark/figure_common_benchmark.py --output .local/grafico
 ```
 
-Per ogni set e tecnica: accuratezza di verifica 1:1 (10-fold). Output in
-`results/verifica_duri.csv`. (I risultati e la lettura sono in `findings.md`.)
-
-## Due protocolli, due script
-
-| script | protocollo | set | cosa misura |
-|---|---|---|---|
-| `verifica.py` | **verifica 1:1** (coppie) | LFW, CPLFW, CFP-FP (`.bin`) | degrado facile→duro su posa/profilo |
-| `identificazione_1n.py` | **identificazione 1:N open-set** (il varco) | DigiFace, VGGFace2 | Rank-1 + DIR@FPIR (identifica i noti *e* rifiuta gli ignoti) |
-
-`verifica.py` è il protocollo nativo dei benchmark `.bin` (confrontabile con la
-letteratura). `identificazione_1n.py` è il protocollo del **nostro** sistema:
-costruisce lo split open-set con `core.dataset.split_openset` e riporta il `DIR@FPIR`,
-il numero che conta per il controllo-accessi (vedi `findings.md` F9, F10).
+Correttezza sui cifrati provati, accuratezza biometrica e probabilità formale
+di errore del circuito restano risultati diversi.

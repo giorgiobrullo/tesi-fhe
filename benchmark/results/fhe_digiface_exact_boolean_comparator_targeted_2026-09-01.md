@@ -16,14 +16,6 @@ dimensione 512 e soglia uniforme `T=4`.
 Il validator ha eseguito otto cifrature per ciascuno dei cinque probe mirati `113`, `647`, `73`,
 `37` e `41`, per un totale di 40 query:
 
-```sh
-benchmark/fhe_digiface_validation.py --run \
-  --only-probe 113 --only-probe 647 --only-probe 73 \
-  --only-probe 37 --only-probe 41 \
-  --regression-repetitions 8 \
-  --output-stem fhe_digiface_exact_boolean_comparator_targeted_2026-09-01
-```
-
 Una sola coppia di chiavi temporanee fresca e' stata generata per l'intero run. Le 40 query usano
 quindi cifrature nuovamente campionate sotto la stessa chiave, non 40 chiavi indipendenti. Lo
 SHA-256 della evaluation key caricata e verificata dal server e':
@@ -90,7 +82,6 @@ Ulteriori identificatori registrati:
 
 - scena quantizzata: `ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66`;
 - holdout non-tuning: `0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`;
-- commit di base: `6611c185adc9a658a075519b4316386f0bb48656`;
 - host/toolchain: macOS arm64, Python 3.12.11, NumPy 1.26.4, Rust/Cargo 1.97.1.
 
 Artefatti del run, ricontrollati dopo la scrittura:
@@ -98,7 +89,7 @@ Artefatti del run, ricontrollati dopo la scrittura:
 | artefatto | SHA-256 |
 |---|---|
 | `fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.csv` | `84b159c62aeaaa843a90c9887154cffc4ed2f3614462d16cc6a7d02398a4e93c` |
-| `fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.json` | `9ddf02bc7e902128ff43f91146e51c30f51c830362a67c2a44f7f89cf6ab2f64` |
+| `fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.json` | `6aa8c9f55de4ff01b7cb234a48991b2f41a58aa98284b2380af2002801a4cec8` |
 
 Lo SHA-256 del CSV coincide anche con quello incorporato nel JSON.
 
@@ -114,3 +105,10 @@ caso generale di soglie per-template diverse. Non stima DIR/FPIR di popolazione,
 validazione biometrica esterna e non deriva una probabilita' di fallimento dell'intera query. In
 particolare, il `log2_p_fail` nominale del parameter set standard non diventa automaticamente un
 bound composto per i **5.166 PBS**, i fan-in custom, i riscalamenti e la decodifica finale.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

@@ -22,13 +22,6 @@ Galleria DigiFace: 127 iscritti, embedding quantizzati a 512 dimensioni, soglia 
 Il contratto e' `exact-open-set-id-v2`: il server restituisce un solo LWE cifrato che decodifica
 `0=rifiuto` oppure `i+1=identita' piu' vicina accettata`.
 
-```sh
-benchmark/fhe_digiface_validation.py --run \
-  --primary-suite \
-  --regression-repetitions 1 \
-  --output-stem fhe_digiface_exact_primary_noise_bounded_2026-09-01
-```
-
 La suite pianificata e misurata contiene:
 
 | coorte | query | autorizzate attese clear | autorizzate FHE | output FHE=clear |
@@ -98,18 +91,16 @@ checkout era dirty; gli hash, non il solo commit Git, identificano il materiale 
 | `experiments/14_pipeline_tfhe_rs/Cargo.lock` | `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a` |
 
 La evaluation key temporanea aveva SHA-256
-`8abe4652d923d4ff63d663dd73c670da0578071c640028d1277c61689bb780ee`; la directory temporanea
-contenente le chiavi e' stata rimossa al termine. Scena e holdout corrispondono rispettivamente a
+`8abe4652d923d4ff63d663dd73c670da0578071c640028d1277c61689bb780ee`. Scena e holdout corrispondono rispettivamente a
 `ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66` e
-`0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`. Il commit di base era
-`6611c185adc9a658a075519b4316386f0bb48656`.
+`0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`.
 
 Artefatti del run:
 
 | artefatto | SHA-256 |
 |---|---|
 | `fhe_digiface_exact_primary_noise_bounded_2026-09-01.csv` | `804aa4390ad00deed08698905540e458176bfd91db0618bd826baa93edebb80b` |
-| `fhe_digiface_exact_primary_noise_bounded_2026-09-01.json` | `b6e54b92bef8f53c0ce057f1e68e9b473487fdd423776962579661669d4fa512` |
+| `fhe_digiface_exact_primary_noise_bounded_2026-09-01.json` | `4a601d84b006e6fd8b3267c51b280f65e1fed017384c861e0dea0e4885dc016d` |
 
 Lo SHA-256 del CSV coincide con quello incorporato nel JSON.
 
@@ -125,3 +116,10 @@ La correttezza 632/632 e' quindi un claim di equivalenza funzionale FHE-clear pe
 metriche biometriche restano quelle dell'oracolo sul campione dichiarato; generalizzazione,
 galleria mista, soglie per-template reali, coorti indipendenti e bound analitico del `p-fail`
 restano separati.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

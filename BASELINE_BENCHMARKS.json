@@ -1,0 +1,547 @@
+{
+  "schema": "local-baseline-evidence-summary.v1",
+  "created_at": "2026-09-19T11:20:27.269092+00:00",
+  "adopted_scope": "separate verified local baseline, anchor only",
+  "established_final_speedup": false,
+  "reference_tree": "0b39b5307884bb36b101e9e6b85eb978c5344846",
+  "confirmation": {
+    "anchor": {
+      "qualifies": true,
+      "primary": {
+        "pairs": 60,
+        "ratio": 0.983927949100899,
+        "reduction_percent": 1.607205089910102,
+        "candidate_wins": 36,
+        "stock_median_seconds": 1.8991931035,
+        "candidate_median_seconds": 1.865688625,
+        "median_saved_seconds": 0.0284028125,
+        "bootstrap95_ratio": [
+          0.9735376228085801,
+          0.9938626323606959
+        ]
+      },
+      "per_key": {
+        "6ffa9f59f83ca765dc22774b3bf1d9de4123598d842a612172433d1f87437b2e": {
+          "pairs": 30,
+          "ratio": 0.9794698668542169,
+          "reduction_percent": 2.0530133145783114,
+          "candidate_wins": 17,
+          "stock_median_seconds": 1.9170827085,
+          "candidate_median_seconds": 1.8427365625,
+          "median_saved_seconds": 0.015862333,
+          "bootstrap95_ratio": [
+            0.9613146065867592,
+            0.9963988917899708
+          ]
+        },
+        "c65a8c59c1e772e586d25076e11a084cdbf5b7be315f61fe95e92dff0fdfb00c": {
+          "pairs": 30,
+          "ratio": 0.9884063224233871,
+          "reduction_percent": 1.1593677576612893,
+          "candidate_wins": 19,
+          "stock_median_seconds": 1.8866213755,
+          "candidate_median_seconds": 1.8711713545,
+          "median_saved_seconds": 0.036623146,
+          "bootstrap95_ratio": [
+            0.9783275272911087,
+            0.9988111512937499
+          ]
+        }
+      },
+      "scenes": {
+        "n127_uniform_general": {
+          "pairs": 12,
+          "ratio": 0.9869984275756749,
+          "reduction_percent": 1.3001572424325092,
+          "candidate_wins": 8,
+          "stock_median_seconds": 1.81276,
+          "candidate_median_seconds": 1.7963268335,
+          "median_saved_seconds": 0.0216951035
+        },
+        "n128_anchor_fallback_control": {
+          "pairs": 12,
+          "ratio": 1.0091000345773162,
+          "reduction_percent": -0.910003457731623,
+          "candidate_wins": 4,
+          "stock_median_seconds": 1.825884708,
+          "candidate_median_seconds": 1.822526646,
+          "median_saved_seconds": -0.021040979
+        },
+        "n128_block_thresholds": {
+          "pairs": 12,
+          "ratio": 0.9765236868840664,
+          "reduction_percent": 2.3476313115933567,
+          "candidate_wins": 9,
+          "stock_median_seconds": 1.844305937,
+          "candidate_median_seconds": 1.7776628745,
+          "median_saved_seconds": 0.03088625
+        },
+        "n128_uniform_aligned": {
+          "pairs": 12,
+          "ratio": 0.981430744547548,
+          "reduction_percent": 1.8569255452452027,
+          "candidate_wins": 7,
+          "stock_median_seconds": 1.866978104,
+          "candidate_median_seconds": 1.8118238745,
+          "median_saved_seconds": 0.047167167
+        },
+        "n129_alternating_thresholds": {
+          "pairs": 12,
+          "ratio": 0.9721815782446229,
+          "reduction_percent": 2.7818421755377076,
+          "candidate_wins": 8,
+          "stock_median_seconds": 1.9860935415,
+          "candidate_median_seconds": 1.943669354,
+          "median_saved_seconds": 0.053143541
+        },
+        "n225_uniform_general": {
+          "pairs": 12,
+          "ratio": 1.002790467160144,
+          "reduction_percent": -0.27904671601439723,
+          "candidate_wins": 4,
+          "stock_median_seconds": 3.045181979,
+          "candidate_median_seconds": 3.150729229,
+          "median_saved_seconds": -0.033207333
+        }
+      }
+    },
+    "normalizer": {
+      "qualifies": false,
+      "primary": {
+        "pairs": 60,
+        "ratio": 0.9975653809643886,
+        "reduction_percent": 0.2434619035611374,
+        "candidate_wins": 30,
+        "stock_median_seconds": 1.971306521,
+        "candidate_median_seconds": 1.924548625,
+        "median_saved_seconds": -0.0035515625,
+        "bootstrap95_ratio": [
+          0.9829991758636987,
+          1.012196414032978
+        ]
+      },
+      "per_key": {
+        "6ffa9f59f83ca765dc22774b3bf1d9de4123598d842a612172433d1f87437b2e": {
+          "pairs": 30,
+          "ratio": 1.0083546932832128,
+          "reduction_percent": -0.8354693283212811,
+          "candidate_wins": 10,
+          "stock_median_seconds": 1.935193646,
+          "candidate_median_seconds": 1.9083279375,
+          "median_saved_seconds": -0.0183895625,
+          "bootstrap95_ratio": [
+            0.9897850825013144,
+            1.0255440342844162
+          ]
+        },
+        "c65a8c59c1e772e586d25076e11a084cdbf5b7be315f61fe95e92dff0fdfb00c": {
+          "pairs": 30,
+          "ratio": 0.9868915134003601,
+          "reduction_percent": 1.3108486599639924,
+          "candidate_wins": 20,
+          "stock_median_seconds": 1.984881979,
+          "candidate_median_seconds": 1.959984375,
+          "median_saved_seconds": 0.036271938,
+          "bootstrap95_ratio": [
+            0.9645562982989595,
+            1.0108397190691976
+          ]
+        }
+      },
+      "scenes": {
+        "n127_uniform_general": {
+          "pairs": 12,
+          "ratio": 0.9906376866712346,
+          "reduction_percent": 0.9362313328765359,
+          "candidate_wins": 5,
+          "stock_median_seconds": 1.8919070415,
+          "candidate_median_seconds": 1.812096146,
+          "median_saved_seconds": -0.0155781875
+        },
+        "n128_anchor_fallback_control": {
+          "pairs": 12,
+          "ratio": 1.004156913212765,
+          "reduction_percent": -0.4156913212765012,
+          "candidate_wins": 7,
+          "stock_median_seconds": 1.8540034585,
+          "candidate_median_seconds": 1.8136541665,
+          "median_saved_seconds": 0.0103461045
+        },
+        "n128_block_thresholds": {
+          "pairs": 12,
+          "ratio": 1.0121347434987802,
+          "reduction_percent": -1.2134743498780187,
+          "candidate_wins": 7,
+          "stock_median_seconds": 1.902229438,
+          "candidate_median_seconds": 1.8814629995,
+          "median_saved_seconds": 0.0200413965
+        },
+        "n128_uniform_aligned": {
+          "pairs": 12,
+          "ratio": 0.9889712415535575,
+          "reduction_percent": 1.1028758446442466,
+          "candidate_wins": 7,
+          "stock_median_seconds": 1.8625137705,
+          "candidate_median_seconds": 1.8091794995,
+          "median_saved_seconds": 0.0308656045
+        },
+        "n129_alternating_thresholds": {
+          "pairs": 12,
+          "ratio": 0.9946747006126958,
+          "reduction_percent": 0.5325299387304194,
+          "candidate_wins": 6,
+          "stock_median_seconds": 1.979092333,
+          "candidate_median_seconds": 1.959984375,
+          "median_saved_seconds": -0.0031623545
+        },
+        "n225_uniform_general": {
+          "pairs": 12,
+          "ratio": 1.001587584119241,
+          "reduction_percent": -0.15875841192409812,
+          "candidate_wins": 5,
+          "stock_median_seconds": 3.1911342295,
+          "candidate_median_seconds": 3.235932896,
+          "median_saved_seconds": -0.0201084795
+        }
+      }
+    },
+    "combined": {
+      "qualifies": false,
+      "primary": {
+        "pairs": 60,
+        "ratio": 0.9996778645890838,
+        "reduction_percent": 0.03221354109161911,
+        "candidate_wins": 34,
+        "stock_median_seconds": 2.1641564585,
+        "candidate_median_seconds": 2.130896708,
+        "median_saved_seconds": 0.004019084,
+        "bootstrap95_ratio": [
+          0.9821281280904536,
+          1.0183415967341718
+        ]
+      },
+      "per_key": {
+        "6ffa9f59f83ca765dc22774b3bf1d9de4123598d842a612172433d1f87437b2e": {
+          "pairs": 30,
+          "ratio": 0.9906241595891034,
+          "reduction_percent": 0.9375840410896563,
+          "candidate_wins": 18,
+          "stock_median_seconds": 2.1641564585,
+          "candidate_median_seconds": 2.091059958,
+          "median_saved_seconds": 0.0519555415,
+          "bootstrap95_ratio": [
+            0.9641337502299722,
+            1.01893398745941
+          ]
+        },
+        "c65a8c59c1e772e586d25076e11a084cdbf5b7be315f61fe95e92dff0fdfb00c": {
+          "pairs": 30,
+          "ratio": 1.0088143149707847,
+          "reduction_percent": -0.8814314970784665,
+          "candidate_wins": 16,
+          "stock_median_seconds": 2.1779925625,
+          "candidate_median_seconds": 2.154548458,
+          "median_saved_seconds": 0.0013067715,
+          "bootstrap95_ratio": [
+            0.9856765164481408,
+            1.0333305934123542
+          ]
+        }
+      },
+      "scenes": {
+        "n127_uniform_general": {
+          "pairs": 12,
+          "ratio": 1.0247067568781725,
+          "reduction_percent": -2.4706756878172476,
+          "candidate_wins": 5,
+          "stock_median_seconds": 1.9668136875,
+          "candidate_median_seconds": 1.994445625,
+          "median_saved_seconds": -0.025855604
+        },
+        "n128_anchor_fallback_control": {
+          "pairs": 12,
+          "ratio": 1.0117105618153928,
+          "reduction_percent": -1.1710561815392762,
+          "candidate_wins": 3,
+          "stock_median_seconds": 2.1411314375,
+          "candidate_median_seconds": 2.1315643955,
+          "median_saved_seconds": -0.0248265205
+        },
+        "n128_block_thresholds": {
+          "pairs": 12,
+          "ratio": 0.981985929468,
+          "reduction_percent": 1.8014070531999993,
+          "candidate_wins": 8,
+          "stock_median_seconds": 2.114995729,
+          "candidate_median_seconds": 2.0776195625,
+          "median_saved_seconds": 0.0532741665
+        },
+        "n128_uniform_aligned": {
+          "pairs": 12,
+          "ratio": 1.0149850506266809,
+          "reduction_percent": -1.4985050626680874,
+          "candidate_wins": 6,
+          "stock_median_seconds": 2.134096729,
+          "candidate_median_seconds": 2.059933396,
+          "median_saved_seconds": -0.0080228125
+        },
+        "n129_alternating_thresholds": {
+          "pairs": 12,
+          "ratio": 1.0014071976834362,
+          "reduction_percent": -0.14071976834362232,
+          "candidate_wins": 7,
+          "stock_median_seconds": 2.1604592085,
+          "candidate_median_seconds": 2.1440028955,
+          "median_saved_seconds": 0.0380537505
+        },
+        "n225_uniform_general": {
+          "pairs": 12,
+          "ratio": 0.9761693330705701,
+          "reduction_percent": 2.3830666929429922,
+          "candidate_wins": 8,
+          "stock_median_seconds": 3.6147386875,
+          "candidate_median_seconds": 3.5264967705,
+          "median_saved_seconds": 0.1133190835
+        }
+      }
+    }
+  },
+  "cleaned_final_bridge": {
+    "bridge_pass": true,
+    "decision_rule": "one new family; primary geometric ratio < 1; each scene including fallback <= 1.02",
+    "primary": {
+      "bootstrap95_ratio": [
+        0.9891599025716526,
+        1.0059901316774709
+      ],
+      "candidate_median_seconds": 1.834881125,
+      "candidate_wins": 12,
+      "median_saved_seconds": -0.0080126665,
+      "pairs": 30,
+      "ratio": 0.9980055208927178,
+      "reduction_percent": 0.1994479107282232,
+      "stock_median_seconds": 1.858083479
+    },
+    "secondary": {
+      "bootstrap95_ratio": [
+        0.9877399275586876,
+        1.0224101278558575
+      ],
+      "candidate_median_seconds": 1.791802292,
+      "candidate_wins": 2,
+      "median_saved_seconds": -0.0113817085,
+      "pairs": 6,
+      "ratio": 1.0052893774652532,
+      "reduction_percent": -0.5289377465253153,
+      "stock_median_seconds": 1.791674
+    },
+    "scenes": {
+      "n127_uniform_general": {
+        "candidate_median_seconds": 1.7916708125,
+        "candidate_wins": 1,
+        "median_saved_seconds": -0.0153832295,
+        "pairs": 6,
+        "ratio": 1.0086876969433318,
+        "reduction_percent": -0.8687696943331824,
+        "stock_median_seconds": 1.7804472085
+      },
+      "n128_anchor_fallback_control": {
+        "candidate_median_seconds": 1.791802292,
+        "candidate_wins": 2,
+        "median_saved_seconds": -0.0113817085,
+        "pairs": 6,
+        "ratio": 1.0052893774652532,
+        "reduction_percent": -0.5289377465253153,
+        "stock_median_seconds": 1.791674
+      },
+      "n128_block_thresholds": {
+        "candidate_median_seconds": 1.807581479,
+        "candidate_wins": 3,
+        "median_saved_seconds": -0.0022119585,
+        "pairs": 6,
+        "ratio": 0.9927237579658763,
+        "reduction_percent": 0.7276242034123692,
+        "stock_median_seconds": 1.8350171035
+      },
+      "n128_uniform_aligned": {
+        "candidate_median_seconds": 1.8094733335,
+        "candidate_wins": 1,
+        "median_saved_seconds": -0.019090521,
+        "pairs": 6,
+        "ratio": 1.002152447642979,
+        "reduction_percent": -0.21524476429790607,
+        "stock_median_seconds": 1.7903828125
+      },
+      "n129_alternating_thresholds": {
+        "candidate_median_seconds": 1.898900188,
+        "candidate_wins": 3,
+        "median_saved_seconds": 0.0059948335,
+        "pairs": 6,
+        "ratio": 0.9996399369782761,
+        "reduction_percent": 0.03600630217238665,
+        "stock_median_seconds": 1.892044771
+      },
+      "n225_uniform_general": {
+        "candidate_median_seconds": 3.0407987915,
+        "candidate_wins": 4,
+        "median_saved_seconds": 0.048458771,
+        "pairs": 6,
+        "ratio": 0.9869659947375581,
+        "reduction_percent": 1.3034005262441917,
+        "stock_median_seconds": 3.0946715
+      }
+    },
+    "pairs": 64,
+    "queries": 128,
+    "bootstrap": {
+      "draws": 10000,
+      "seed": 20260919,
+      "strata": "fixed scene order within the one new key family"
+    }
+  },
+  "measured_binary_sha256": "cfaec62010bc0e4d4f01b3e87f567afe689ea81de06de6ccd9f721ca05909384",
+  "pre_documentation_service_binary_sha256": "7c5cee533fcd6ec1f9272e2c9bd876f3daffadf887fa8dcf899c2f5b9dc8f846",
+  "delivered_binary_sha256": "97568954176d500acd7f77b2b03293b638f330edca12eaa4f2ff468f6ea09461",
+  "delivery_source_changes": {
+    "reason": "Four relative documentation links corrected for repository-root runtime placement; generated bindings refreshed. Frozen measured source preserved.",
+    "changed": [
+      "BUILD_SELECTION.json",
+      "CIRCUIT_CONTRACT.json",
+      "CORE_ORIGINS.json",
+      "README.md",
+      "SOURCE_DIGEST.txt",
+      "SOURCE_PINS.json",
+      "circuit.sha256",
+      "config.json",
+      "core-source.sha256",
+      "core/README.md",
+      "service-source.sha256"
+    ],
+    "computational_sources_identical": true,
+    "cargo_files_identical": true,
+    "native_timing_rerun": false,
+    "timing_scope": "Final bridge remains evidence of frozen pre-documentation binary; no performance claim for packaging build."
+  },
+  "delivery_tests": {
+    "core_pass": 79,
+    "core_historically_ignored": 4,
+    "service_pass": 36
+  },
+  "delivered_service": {
+    "passed": true,
+    "cases": [
+      {
+        "case": 0,
+        "name": "accept",
+        "thresholds": [
+          -1,
+          -1
+        ],
+        "scores": [
+          -1,
+          -1
+        ],
+        "expected": 1,
+        "observed": 1,
+        "digits": [
+          1,
+          0,
+          0
+        ],
+        "input_sha256": "cf0339eee20253dd53bc53d8b7df2b53eda671995a2605c35657b0f2ebed38a2",
+        "output_sha256": "17d615107b94bc2b14c7ea34c5b704640f021503045e51ffd821952dbea99c22",
+        "pass": true
+      },
+      {
+        "case": 1,
+        "name": "reject",
+        "thresholds": [
+          -2,
+          -2
+        ],
+        "scores": [
+          -1,
+          -1
+        ],
+        "expected": 0,
+        "observed": 0,
+        "digits": [
+          0,
+          0,
+          0
+        ],
+        "input_sha256": "71c935dcf488e1a54ad48593dbcf5089dc91880650ec59d8437b64441de068e0",
+        "output_sha256": "10c1138e2dd98f36076df3022ed22f8f1b2b1b5ad6c8327744f0f269bd6e8aa9",
+        "pass": true
+      },
+      {
+        "case": 2,
+        "name": "winner_own_threshold",
+        "thresholds": [
+          -2,
+          100
+        ],
+        "scores": [
+          -1,
+          -1
+        ],
+        "expected": 0,
+        "observed": 0,
+        "digits": [
+          0,
+          0,
+          0
+        ],
+        "input_sha256": "095a389c68e5b0054796027f255996ac1089b6b785334fad84ea3640a370b35e",
+        "output_sha256": "df8dd98b77b8439c456dfb1b367915a720b519e7976cd1d86d41bf149c2bf0ab",
+        "pass": true
+      }
+    ],
+    "fresh_key_families": 1,
+    "scope": "Three local native wire/CLI queries, one fresh key family; no latency or tail claim."
+  },
+  "affine_component": {
+    "pass": true,
+    "active": 54,
+    "fallback": 6,
+    "payload_decryptions": 1440,
+    "actual_small_addresses": 492,
+    "max_absolute_displacement": {
+      "ternary": 24,
+      "selector": 11
+    },
+    "scope": "Independent integer/word/phase/address and artifact validation; no new FHE, timing claim or general failure bound.",
+    "key_binding_limit": "Observer vectors exported from the same client by frozen prepare; original client and bundle hash-bound, not reparsed by this Python auditor."
+  },
+  "limits": [
+    "The1.61percent effect belongs to the instrumented two-key candidate; the cleaned final bridge estimates0.20percent and its95percent interval crosses1.",
+    "The final median paired saving is negative; separate marginal medians are not paired savings.",
+    "The2percent per-scene guard concerns point estimates, not statistical non-regression.",
+    "The delivered binary corrects documentation/bindings only, with identical computational sources and its own fresh-key service validation, without separate timing.",
+    "The first packaging cache/binding failure is preserved; the initial packaging freeze incorrectly claimed core tests despite a default-members service-only command. The002 revision uses full workspace tests and rebuilt binary.",
+    "No full-query affine validation or general FHE failure bound. Historical Head issue remains unresolved."
+  ],
+  "research_artifact_prefix": "tmp/baseline-candidates-20260919/",
+  "research_artifact_sha256": {
+    "PROTOCOL.md": "7ed2e7e0723bb849e7c97d5aa83341471ae24313fa26b538ca883be00625ad1f",
+    "CONFIRMATION_FREEZE.json": "af5369a10df515e2dd4b7f6cda358692f8bd3d0b26bacb00556a07fae54c3c36",
+    "ANALYSIS-anchor.json": "88773ba2272bf92dc939ab3bc23f263e735937d22936a4345fe64e1320696bc5",
+    "ANALYSIS-normalizer.json": "01e31ed5314229c4c52cde5453c1702c7f2c4a9d88d1e36aae55260c64b96acf",
+    "ANALYSIS-combined.json": "25118bdbfb8d367f3961c9e7997e9ed513489cdf6ebbcbb71d0eb8e8fb0d8399",
+    "audit/RESULTS-001.json": "ffe9df54bb42234242a2310fba5130c9588ba707b006d2c99ba00f67ee9d4507",
+    "FINAL_DEFAULT_PROTOCOL.md": "e8fc68c27f135cfa2c3b6e04ca4f5dd216cce011966c19dd09aed6fd66948539",
+    "FINAL_DEFAULT_REGISTRATION.json": "bb90d98b0802d313d8a479ca52f266510a2d1fed7807b0fdc984e75fe8026d33",
+    "FINAL_DEFAULT_FREEZE.json": "c9090bf6ef6d4dbd3234bfc629041e02b3807255d9ed9e55f20cef24c10ae9b7",
+    "FINAL_BRIDGE_ANALYSIS.json": "d2fabfcce806ad092f4e2253f89a9f180d6ba0601cf62dc9b00787d7708c5a7b",
+    "FINAL_RESULT_REVIEW.md": "249acacabe96c0ec99151cf9f7f2e311f842d79b7bcff1edaf1a9303d4598833",
+    "final-service-run-0/complete.json": "9d6b743db3fa7bcc17cea2cdf510fd4b3294b0a83cc43e87eb2243e8c4334b33",
+    "DELIVERY_DOCUMENTATION_CHANGE.json": "a952315f44e0cd894158a2ee2703b57346eccb4f7cca51b8517bc5e98f9f016c",
+    "DELIVERY_SOURCE_FREEZE.json": "2888f99a9cb44cba8b8cf532771d8950561f8a4d7fdbceef7a5475c271f80b55",
+    "DELIVERY_SOURCE_FREEZE_002.json": "e554b7b3f635fccb6b576761999cebec90107cdede94c16dbb6dbcc4a315fdbb",
+    "delivery-service-run-0/complete.json": "44de61bf708f7a90e049d857a8158724d25a061c6e3aea75ed513c03fce1e5c8",
+    "delivery-service-run-1/complete.json": "e38a3d1eb6a263e1390052a2e86b33f849521d7d9bd53b485c0db81256fadedf",
+    "affine/FREEZE.json": "07fbe1b78f1c300d12f8b5b682c090167b35db5a040a200a892d4d0b0562806e",
+    "affine/AUDIT-001.json": "f59d1df802e7420837ec18e062c1e8cf4a7b9937f6a49be738d5bce2571b1925"
+  },
+  "published": false
+}

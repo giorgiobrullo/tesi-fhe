@@ -16,8 +16,8 @@ runtime gate count and it nearly doubles the projected response from 16,464 to 3
 
 ## Executed gates
 
-The fail-closed A57 gate first verified 17 pinned inputs, the exhaustive clear/count model, source
-shape, and exact count anchors. It then used locked dependencies and Cargo offline mode to run:
+The A57 validation first checked input identities, the exhaustive clear/count
+model, source shape and exact count anchors. It then used locked dependencies and Cargo offline mode to run:
 
 1. standalone `rustfmt --check`;
 2. release library tests;
@@ -55,19 +55,10 @@ The two very short uniform-template cases take a degenerate/trivial path and are
 measurements. The host was also under unrelated load. These timings are therefore functional
 diagnostics only, not a replacement for an A38/A41 paired service benchmark.
 
-## Evidence
+## Data
 
-| artifact | SHA-256 |
-|---|---|
-| fail-closed gate JSON | `fea5cc41867744edf708145574009a13274b12d06ebdaa8bee01b5ab4abe4224` |
-| independent 29-case full-run log | `a603f5e6b646cac2d51b3466c1587dcbdf8fd2f0434b608d88bf8d57bc57b2ba` |
-| exact executed binary | `b573a990a097574189266b6abe3e3b6c672b0e14cb2b973e8ab8e096d8355910` |
-| A57 pin manifest | `4c95ffecd9489b7f106b015071a7f6c2d15fd18ce9aa6a2162eb0653e6277e4b` |
-
-The primary machine-readable evidence is
-`exact_id_a41_component_gate_2026-09-02_gate01.json`; its seven command logs are individually
-hashed inside the JSON. The independent complete-suite evidence is
-`exact_id_a41_component_full_2026-09-02_run01.log`.
+[Machine-readable component result](exact_id_a41_component_gate_2026-09-02_gate01.json).
+The standalone prototype and complete build procedure are not included.
 
 ## Probability and promotion boundary
 

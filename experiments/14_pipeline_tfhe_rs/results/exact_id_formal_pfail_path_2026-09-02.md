@@ -86,15 +86,15 @@ Il parameter set usato dal progetto dichiara:
 - PBS `base_log=23, level=1`, KS `base_log=3, level=5`;
 - plaintext totale p16, `max_noise_level=5` e `log2_p_fail=-71.625`.
 
-Fonte locale:
-`~/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs:8-25`.
+Fonte: TFHE-rs `0.11.3`,
+`src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs:8-25`.
 
 La documentazione di `MaxNoiseLevel` dice esplicitamente che traccia il massimo rumore che
 garantisce il target p-error quando si esegue una PBS; il codice corrente lega questo limite al
 norm2 che mantiene pulito il padding bit. Fonte:
-`.../tfhe-0.11.3/src/shortint/ciphertext/common.rs:22-49`. Le somme aggiungono i `NoiseLevel` e le
-moltiplicazioni clear li moltiplicano: `.../server_key/add.rs:518-528` e
-`.../server_key/bivariate_pbs.rs:22-42`.
+TFHE-rs `0.11.3`, `src/shortint/ciphertext/common.rs:22-49`. Le somme aggiungono i `NoiseLevel` e le
+moltiplicazioni clear li moltiplicano: `src/shortint/server_key/add.rs:518-528` e
+`src/shortint/server_key/bivariate_pbs.rs:22-42`.
 
 Questa e' una base difendibile come **contratto nominale della libreria**, non una dimostrazione
 matematica autocontenuta dell'implementazione FFT. Nel sorgente locale non c'e' un teorema che
@@ -171,7 +171,7 @@ etichette di freschezza indipendenti.
 L'A34 selector low/high e', invece, un buon candidato per l'API ManyLUT ufficiale. Con due funzioni
 e p16, `fill_many_lut_accumulator` ammette input degree `0..7`, assegna due sotto-LUT da 1024
 coefficienti e campiona ai gradi `0` e `N/2`; sono esattamente la griglia e lo stride del selector.
-Fonte: `.../tfhe-0.11.3/src/shortint/engine/mod.rs:190-266`. Va comunque conservato lo stesso
+Fonte: TFHE-rs `0.11.3`, `src/shortint/engine/mod.rs:190-266`. Va comunque conservato lo stesso
 `blind_rotation_id` nella provenance dei due output.
 
 ### Ricorrenza concreta che il certificato upstream deve coprire
@@ -338,8 +338,8 @@ Le due uscite sono gia' comprese nel totale delle marginali e non vanno ricontat
 ### Distinzione necessaria dal prototipo A38 corrente
 
 Il prototipo A38 corrente produce due radici **a `Delta=2^56`**, pesa gia' la radice high per 16 e
-poi le somma in un solo LWE (`tmp/a38-combined-prototype/src/private_argmin.rs:2297-2357,
-2811-2829`). La sola freschezza di quelle radici non trasferisce il `p-fail` p16. Restituirle tali
+poi le somma in un solo LWE (`src/private_argmin.rs` dello snapshot A38, righe 2297-2357
+e 2811-2829; si veda il [report componente A38](exact_id_a38_combined_component_fhe_2026-09-02.md)). La sola freschezza di quelle radici non trasferisce il `p-fail` p16. Restituirle tali
 e quali separatamente lascerebbe due decode stretti e non sarebbe l'opzione qui certificata.
 
 La modifica richiesta e' precisa:

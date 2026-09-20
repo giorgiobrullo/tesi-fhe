@@ -1,19 +1,10 @@
-# Exact winner-specific thresholds with three encrypted ID digits
+# Winner-specific thresholds with three encrypted identity digits
 
-This local source sibling starts from the final wider uniform core at
-`tmp/fast-core-wide-id-20260906/core`. It retains N1..3374, native full51/low60
-packed queries and three base15 ID outputs. Uniform galleries use the exact
-parent six-payload primitive module. Differing public thresholds use a separate
-nine-payload real tournament and an explicit final winner-threshold predicate.
-Root owns all compilation, key generation and noisy execution. This author has
-run only source hashing/diff checks and syntax parsing, with no source rewrites.
-
-The package name is `fast_core_mixed_20260906`. Root supplies the runner lockfile
-and actual whole-package `SOURCE_DIGEST.txt` one directory above this core.
-Parent pins and the current source/primitive diffs are in `../audit`; the
-independent wider-parent review and integer design model are in `../design`.
-No parent core, key container, canonical baseline, protected source record or
-interactive demo was changed.
+The `fast_core_mixed_20260906` library supports N1..3374, native full51/low60
+packed queries and three base-15 output digits. Uniform thresholds use a
+six-payload tournament. Mixed thresholds use nine payloads so that the
+winning score, ID and threshold travel together, followed by an explicit
+winner-threshold predicate.
 
 ## Public API and dispatch
 
@@ -44,11 +35,9 @@ ID greater than actualN. ID0 means rejection; ID3374=(14,14,14). N3375 is outsid
 this representation and fails public admission.
 
 Input is one native GLWE with two2048-coefficient polynomials at full51/low60.
-Output is three2049-word native LWE digits atDelta59. A new source/plan/circuit
-identity is required: the selected `ID_CONTRACT` is
-`head-pfks-split333-b22-mean-three-id-winner-threshold.v1`. The preserved old
-private diagnostic SCHEMA is not this public contract. No existing HTTP wire
-or client profile is relabeled or claimed compatible by this core-only package.
+Output is three2049-word native LWE digits atDelta59. The `ID_CONTRACT` is
+`head-pfks-split333-b22-mean-three-id-winner-threshold.v1`. The private diagnostic SCHEMA is different from the public contract;
+HTTP adapters must implement the matching format.
 
 ## Exact winner and threshold semantics
 
@@ -88,7 +77,7 @@ between that six-lane score+ID payload and six zero ciphertexts. An ordinary
 merge against zero would compare against score0 and be wrong: score1210 with
 threshold1210 must accept. The key-free tests pin this operand distinction.
 
-Uniform dispatch leaves `wide_id.rs` and its arithmetic byte-identical. The
+Uniform dispatch uses the same `wide_id.rs` arithmetic. The
 uniform selected adapter calls its original uniform planner directly. Old
 aligned cases retain exact offsets and sentinel1024, even if a public shortcut
 could save work. Other uniform cases retain the parent's dynamic sentinel and
@@ -116,51 +105,36 @@ and complete internal counts are checked before and after the final predicate.
 Counts are structural quantities, not latency or failure probabilities.
 
 Ordinary keys, Head15x2, PFKS22x1/W287, serialized bundle fields and key
-validation/installation remain exact wider-parent bytes. Larger payload arrays
+validation/installation retain the wider uniform implementation. Larger payload arrays
 and extra PFKS invocations do not by themselves grow the key container.
 Threshold lanes gain encrypted noise ancestry after selection; the preserved
 key shape supplies no new correctness or noise guarantee.
 
-## Validation supplied and pending native gate
+## Tests and limitations
 
-Nine `mixed_tests::` key-free tests cover uniform parent-plan projection,
-actual mixed public admission, signed clamp/ID-zero behavior,29,889 actual
-W287 matrix identities, actual root operand aliases, complete and accumulated
-mixed ledgers, nearest-rejects/farther-passes and strict first ties, every
-4096 scalar center around ten threshold cuts, and stable larger trees through
-ID3374. Ten parent `wide_id_tests::` tests remain registered. They reach the
-unified public planner through an explicit uniform projection and wrap uniform
-count modes; their original planner, representation, LUT and count assertions
-remain. Additional mixed tests require the formerly rejected mixed cases to
-be admitted by the unified plan.
+Nine `mixed_tests::` arithmetic/API tests cover uniform-plan projection,
+mixed admission, signed clamping, zero-ID behavior, 29,889 W287 coefficient
+identities, root operand views, complete/partial operation counts, strict
+ties, nearest-rejects/farther-passes, 4096 scalar centers around ten cuts
+and larger trees through ID3374. Ten `wide_id_tests::` tests also cover the
+uniform modes of the unified API.
 
-The tests allocate trivial ciphertexts for public operand/zero-word checks but
-create no key and execute no PBS/FHE. Root can compile/run these two filters:
+From this core directory:
 
-```text
-cargo test --manifest-path candidate/Cargo.toml -p fast_core_mixed_20260906 --lib mixed_tests:: --locked --offline
-cargo test --manifest-path candidate/Cargo.toml -p fast_core_mixed_20260906 --lib wide_id_tests:: --locked --offline
+```sh
+cargo test --manifest-path ../Cargo.toml -p fast_core_mixed_20260906 --lib mixed_tests:: --locked
+cargo test --manifest-path ../Cargo.toml -p fast_core_mixed_20260906 --lib wide_id_tests:: --locked
 ```
 
-The author has not executed those commands. Eight touched Rust files passed
-syntax parsing only, without type checking or file rewrites. Historical
-unrelated modules still contain FHE tests, so do not treat an unfiltered test
-run as key-free.
+These filters create no key and execute no PBS; unfiltered inherited tests
+may perform FHE. The [experiment results](../../../README.md) report the separate
+noisy and timing evaluations. Correctness requires checking all three ID
+digits and the selected winner's own threshold, including nearest rejection,
+strict ties, signed extremes and ID carries. Uniform-branch ciphertext
+equality is meaningful against the same wider core under matched inputs
+and keys. Low/middle ciphertexts need not equal the older five-payload
+core because its ID accumulator has different noise contributions.
 
-Root separately ran `design/model.py` once at a native-run boundary. Its
-`MODEL_RESULT.json` is PASS:3375 identity encodings,40,960 scalar cuts,
-8,420 small mixed galleries,745 wider trees,27,675 signed matrix coefficients
-and the explicit wrong-final-comparator counterexample. This independent
-integer model did not execute production Rust or FHE. It does not replace the
-compiled tests or a fresh noisy gate. The model/result identities are retained
-in the design records.
-
-The next noisy gate must bind actual native queries, one key family, actual
-plans/modes/domains, all three decrypted digits and full ledgers. Test the
-nearest-rejects/farther-passes and strict-tie cases, signed thresholds,
-clamped threshold edges, three-digit IDs and serial/parallel equality. Require
-uniform-branch ciphertext equality with the exact wider parent under matched
-inputs/keys. Do not require wider low/middle ciphertext bytes to equal the older
-five-payload core, whose ID accumulator has different noise contributions.
-Selected threshold noise, deeper paths and shared-key correlations remain
-separate proof obligations; no whole-circuit failure or runtime claim is made.
+Selected-threshold noise, deeper paths and shared-key correlations remain
+separate proof obligations. The key-container shape does not establish
+a whole-circuit failure bound.

@@ -78,7 +78,7 @@ Artefatti:
 - `fhe_digiface_exact_threshold_refresh_targeted_2026-09-01.csv`
   (`sha256 26da8edcf7434f42d9f0c82d34db79d89218f6275ea987f2609e37a6e0e43548`)
 - `fhe_digiface_exact_threshold_refresh_targeted_2026-09-01.json`
-  (`sha256 e604c405a3ff4349c3e806871ad919ffaca881baca263bbd59392100273f99fa`)
+  (`sha256 f87facc140e9fc687bea205eddefda77fac6535b65c720d386717a23c0269742`)
 
 Il JSON registra `success=true`, i fingerprint di sorgente/binario/cache/config, l'eseguibile
 legato al PID, la chiave fresca e l'immutabilita' di tutti gli input durante il run.
@@ -140,7 +140,7 @@ Artefatti:
 - `fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.csv`
   (`sha256 84b159c62aeaaa843a90c9887154cffc4ed2f3614462d16cc6a7d02398a4e93c`)
 - `fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.json`
-  (`sha256 9ddf02bc7e902128ff43f91146e51c30f51c830362a67c2a44f7f89cf6ab2f64`)
+  (`sha256 6aa8c9f55de4ff01b7cb234a48991b2f41a58aa98284b2380af2002801a4cec8`)
 
 Il JSON registra `success=true`, zero modifiche agli input durante il run e il core
 `sha256 91d3470dc089f277000d4f78047a9a96d29351c0ed0025c9c177c2684b9e5862`. Gli estremi del codice
@@ -235,7 +235,7 @@ Artefatti canonici:
 | artefatto | SHA-256 |
 |---|---|
 | [`fhe_digiface_exact_primary_noise_bounded_2026-09-01.csv`](fhe_digiface_exact_primary_noise_bounded_2026-09-01.csv) | `804aa4390ad00deed08698905540e458176bfd91db0618bd826baa93edebb80b` |
-| [`fhe_digiface_exact_primary_noise_bounded_2026-09-01.json`](fhe_digiface_exact_primary_noise_bounded_2026-09-01.json) | `b6e54b92bef8f53c0ce057f1e68e9b473487fdd423776962579661669d4fa512` |
+| [`fhe_digiface_exact_primary_noise_bounded_2026-09-01.json`](fhe_digiface_exact_primary_noise_bounded_2026-09-01.json) | `4a601d84b006e6fd8b3267c51b280f65e1fed017384c861e0dea0e4885dc016d` |
 
 Il JSON vincola il run al core SHA-256
 `61200a3d97626d4617b50cdb3101909e634ae597788fe05bb4d73f422b8abc8b`, al binario release
@@ -256,3 +256,6 @@ trace completa copre un solo ciphertext preservato e la nuova regressione 48/48 
 selezionati sotto una singola coppia di chiavi. La validazione completa post-fix resta un artefatto
 separato e ha superato tutte le 632 query pianificate senza divergenze; rafforza l'evidenza
 funzionale ma non certifica la coda di errore del circuito composto.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

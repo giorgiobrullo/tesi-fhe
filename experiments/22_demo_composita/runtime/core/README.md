@@ -1,166 +1,131 @@
-# Exact winner-specific thresholds with three encrypted ID digits
+# Core TFHE: minimo esatto e soglia del vincitore
 
-This local source sibling starts from the final wider uniform core at
-`tmp/fast-core-wide-id-20260906/core`. It retains N1..3374, native full51/low60
-packed queries and three base15 ID outputs. Uniform galleries use the exact
-parent six-payload primitive module. Differing public thresholds use a separate
-nine-payload real tournament and an explicit final winner-threshold predicate.
-Root owns all compilation, key generation and noisy execution. This author has
-run only source hashing/diff checks and syntax parsing, with no source rewrites.
+Il crate `fast_core_mixed_20260906` valuta una galleria pubblica su un probe
+cifrato e restituisce tre cifre ID cifrate. Supporta soglie uniformi o diverse
+per ciascuna voce. Il servizio HTTP e la demo sono descritti nella
+[guida dell'esperimento 22](../../README.md).
 
-The package name is `fast_core_mixed_20260906`. Root supplies the runner lockfile
-and actual whole-package `SOURCE_DIGEST.txt` one directory above this core.
-Parent pins and the current source/primitive diffs are in `../audit`; the
-independent wider-parent review and integer design model are in `../design`.
-No parent core, key container, canonical baseline, protected source record or
-interactive demo was changed.
+## Contratto
 
-## Public API and dispatch
+Il risultato segue due passaggi: scegliere il punteggio minimo, conservando
+il primo ID nei pareggi; verificare che quel vincitore passi la propria soglia
+inclusiva. Restituisce il suo ID se `score <= threshold`, altrimenti zero.
+Un candidato più lontano, o un candidato successivo a pari punteggio, non
+sostituisce il vincitore perché ha una soglia più permissiva. Le soglie non
+normalizzano i punteggi e non filtrano le voci prima del torneo.
 
-`service::plan(&templates)` returns `ExecutionPlan` with `cauchy_domain`,
-`execution_domain`, `aligned_fast_path`, `threshold: Option<i64>` and `mode`:
+Sono ammesse da 1 a 3374 voci. Ogni cifra ID decifrata deve essere in `0..14`;
+il client ricostruisce `low + 15 * middle + 225 * high` e rifiuta codici maggiori
+della dimensione effettiva della galleria. Zero indica rifiuto;
+3374 corrisponde a `(14, 14, 14)`. Una galleria di 3375 voci eccede questa
+rappresentazione.
 
-- `ExecutionMode::Uniform(ThresholdMode)` contains the parent mode. The threshold
-  field is Some(T), and every old plan field and primitive operation is retained.
-- `ExecutionMode::MixedWinnerThreshold` uses the common Cauchy domain, sets
-  alignment false and has threshold None. Individual thresholds remain attached
-  to their actual templates; no single threshold is synthesized.
+L'ingresso è un GLWE nativo con due polinomi di 2048 coefficienti, nel profilo
+impacchettato full51/low60. L'uscita comprende tre LWE nativi da 2049 parole,
+con scala Delta59. L'identificatore del contratto del core è
+`head-pfks-split333-b22-mean-three-id-winner-threshold.v1`.
+Configurazione, geometria e identificatori HTTP sono definiti separatamente
+nel [contratto del servizio](../CIRCUIT_CONTRACT.json).
 
-The inherited private planner validates nonempty size, template dimensions,
-coordinate range, declared norms and twelve-bit Cauchy width before dispatch.
-`service::request::validate` retains native packed geometry and exact execution-
-domain equality. The two public evaluators derive their mode from actual
-validated templates. A caller cannot supply a forged public mode or plan object
-to change the encrypted endpoint.
+## API e validazione
 
-`EvaluationKeys::evaluate(&packed, &templates, domain)` and `evaluate_serial`
-retain the wider parent's signature and return `(low, middle, high, Counts)`.
-`service::operation_counts(n, mode)` dispatches structural ledgers. This count
-query does not itself admit a gallery; its mixed N1 arithmetic is meaningful,
-although an actual one-entry gallery always has a uniform threshold.
-`MAX_GALLERY_SIZE`, `ID_BASE` and `ID_DIGITS` remain3374,15,3. Require each
-decrypted ID digit0..14, reconstruct `low + 15*middle + 225*high`, and reject an
-ID greater than actualN. ID0 means rejection; ID3374=(14,14,14). N3375 is outside
-this representation and fails public admission.
+`service::plan(&templates)` deriva un `ExecutionPlan` dalla galleria effettiva.
+Il piano contiene `cauchy_domain`, `execution_domain`, `aligned_fast_path`,
+`threshold: Option<i64>` e una delle modalità:
 
-Input is one native GLWE with two2048-coefficient polynomials at full51/low60.
-Output is three2049-word native LWE digits atDelta59. A new source/plan/circuit
-identity is required: the selected `ID_CONTRACT` is
-`head-pfks-split333-b22-mean-three-id-winner-threshold.v1`. The preserved old
-private diagnostic SCHEMA is not this public contract. No existing HTTP wire
-or client profile is relabeled or claimed compatible by this core-only package.
+- `ExecutionMode::Uniform(ThresholdMode)`: tutte le voci hanno la stessa
+  soglia; `threshold` vale `Some(T)` e il piano seleziona confronto con
+  sentinella, accettazione pubblica o rifiuto pubblico.
+- `ExecutionMode::MixedWinnerThreshold`: il dominio di esecuzione coincide
+  con il dominio Cauchy comune, l'allineamento è falso e `threshold` è `None`.
+  Ogni soglia rimane associata al proprio template.
 
-## Exact winner and threshold semantics
+Il pianificatore controlla dimensione non vuota, numero di voci, coordinate,
+norme dichiarate e dominio Cauchy largo al massimo 4096 valori. La validazione
+della richiesta controlla geometria del probe e corrispondenza del dominio.
+Gli endpoint derivano il piano dai template: il chiamante non può imporre
+una modalità pubblica incoerente con la galleria.
 
-First minimize the true score, choosing the earliest input ID on ties. Test
-that winner's own inclusive threshold. Return its ID when `score <= threshold`,
-and0 otherwise. A rejected nearest candidate is not replaced by a farther
-candidate that happens to pass. A later tied candidate with a more permissive
-threshold does not replace the first tied winner. Scores are never normalized
-against individual thresholds or prefiltered before the true-score tournament.
+`EvaluationKeys::evaluate` e `evaluate_serial` restituiscono
+`(low, middle, high, Counts)`. Il servizio composito usa
+`evaluate_public_thresholds(&packed, &templates, domain, parallel)` e confronta
+i contatori restituiti con `public_digits::operation_counts(&templates)`.
+Questi conteggi descrivono il lavoro strutturale, non latenza o probabilità
+di errore. Chiedere un conteggio per una dimensione non ammette automaticamente
+una galleria.
 
-For mixed thresholds, let the validated common Cauchy domain be[L,U]. The nine
-leaf lanes are:
+## Soglie diverse nel torneo
 
-`[score_top, score_middle, score_low, id_low, id_middle, id_high, tau_top, tau_middle, tau_low]`
-
-Head supplies the first three nibbles of `true_score-L`. ID and threshold lanes
-are public trivial encryptions atDelta59. The threshold payload is
-`tau = clamp(T_i,L,U)-L`; public clamping precedes a checked wide subtraction.
-If T_i<L, that leaf's ID is public zero but its true score and original position
-remain in the tree. It can never accept. Above-domain thresholds clamp to U,
-which admits every contracted score. Both signed threshold extremes are valid;
-invalid public domains or templates remain rejected even if every threshold is
-below the domain.
-
-The nine-lane tree compares only the first three score lanes, preserving the
-parent's left-stable odd-tail topology. Groups are score[0,1,2], ID[3,4,5] and
-threshold[6,7,8], each with offsets0/41/82. One switched, mean-corrected control
-drives all three rotations. Every chosen threshold travels with its own score
-and ID. The W287 key function and key geometry remain unchanged; the ninth lane
-adds invocations of the same PFKS function.
-
-At the root, `mixed::root_parts` returns three distinct operand views:
-winning score[0..3], winning threshold[6..9] and payload-to-keep[0..6]. The
-explicit comparator computes score-versus-threshold. Positive means reject;
-zero and negative keep the winner. The unchanged `wide_id::select` then selects
-between that six-lane score+ID payload and six zero ciphertexts. An ordinary
-merge against zero would compare against score0 and be wrong: score1210 with
-threshold1210 must accept. The key-free tests pin this operand distinction.
-
-Uniform dispatch leaves `wide_id.rs` and its arithmetic byte-identical. The
-uniform selected adapter calls its original uniform planner directly. Old
-aligned cases retain exact offsets and sentinel1024, even if a public shortcut
-could save work. Other uniform cases retain the parent's dynamic sentinel and
-public AllAccept/AllReject handling. Mixed galleries conservatively always use
-the nine-lane tree and final predicate, even when all their public IDs will be0.
-
-## Complete structural work
-
-| Mode | BR | KS | PFKS | Marginals | Initial samples |
-|---|---:|---:|---:|---:|---:|
-| Uniform compare sentinel | 11N | 8N | 6N | 15N | N |
-| Uniform all accept | 11N-5 | 8N-4 | 6N-6 | 15N-9 | N |
-| Uniform public all reject | 0 | 0 | 0 | 0 | 0 |
-| Mixed winner threshold | 12N-1 | 8N | 9N-3 | 18N-3 | N |
-
-Mixed work is N Head ingresses, N-1 nine-lane real merges and one explicit
-comparison plus six-lane selection. A nine-lane merge has6 BR/4 KS/9 PFKS/
-12 marginals/6 gadget levels. The final predicate has5 BR/4 KS/6 PFKS/
-9 marginals/5 levels. The total gadget level count is14N-1. It has N mean calls,
-859N mask terms and N body additions;9N-3 monomial rotations,6N-2 nonidentity
-rotations,18N-6 polynomial permutations,6N-2 GLWE additions and9N-3 LWE
-subtractions and addbacks. The actual Metrics fields are checked per selection,
-and complete internal counts are checked before and after the final predicate.
-`N127_COUNTS` remains the uniform six-payload regression constant, not mixed.
-Counts are structural quantities, not latency or failure probabilities.
-
-Ordinary keys, Head15x2, PFKS22x1/W287, serialized bundle fields and key
-validation/installation remain exact wider-parent bytes. Larger payload arrays
-and extra PFKS invocations do not by themselves grow the key container.
-Threshold lanes gain encrypted noise ancestry after selection; the preserved
-key shape supplies no new correctness or noise guarantee.
-
-## Validation supplied and pending native gate
-
-Nine `mixed_tests::` key-free tests cover uniform parent-plan projection,
-actual mixed public admission, signed clamp/ID-zero behavior,29,889 actual
-W287 matrix identities, actual root operand aliases, complete and accumulated
-mixed ledgers, nearest-rejects/farther-passes and strict first ties, every
-4096 scalar center around ten threshold cuts, and stable larger trees through
-ID3374. Ten parent `wide_id_tests::` tests remain registered. They reach the
-unified public planner through an explicit uniform projection and wrap uniform
-count modes; their original planner, representation, LUT and count assertions
-remain. Additional mixed tests require the formerly rejected mixed cases to
-be admitted by the unified plan.
-
-The tests allocate trivial ciphertexts for public operand/zero-word checks but
-create no key and execute no PBS/FHE. Root can compile/run these two filters:
+Per un dominio validato `[L,U]`, la rappresentazione di base usa nove campi:
 
 ```text
-cargo test --manifest-path candidate/Cargo.toml -p fast_core_mixed_20260906 --lib mixed_tests:: --locked --offline
-cargo test --manifest-path candidate/Cargo.toml -p fast_core_mixed_20260906 --lib wide_id_tests:: --locked --offline
+[score_top, score_middle, score_low,
+ id_low, id_middle, id_high,
+ tau_top, tau_middle, tau_low]
 ```
 
-The author has not executed those commands. Eight touched Rust files passed
-syntax parsing only, without type checking or file rewrites. Historical
-unrelated modules still contain FHE tests, so do not treat an unfiltered test
-run as key-free.
+Head produce i tre nibble del punteggio `true_score - L`. ID e soglia iniziano
+come cifrature triviali pubbliche; la soglia normalizzata è
+`tau = clamp(T_i, L, U) - L`. Il clamp precede una sottrazione controllata
+in un tipo più largo. Se `T_i < L`, l'ID di quella foglia è zero, ma punteggio
+e posizione rimangono nel torneo. Soglie superiori a `U` vengono limitate a `U`.
 
-Root separately ran `design/model.py` once at a native-run boundary. Its
-`MODEL_RESULT.json` is PASS:3375 identity encodings,40,960 scalar cuts,
-8,420 small mixed galleries,745 wider trees,27,675 signed matrix coefficients
-and the explicit wrong-final-comparator counterexample. This independent
-integer model did not execute production Rust or FHE. It does not replace the
-compiled tests or a fresh noisy gate. The model/result identities are retained
-in the design records.
+Le fusioni confrontano soltanto il punteggio. Soglia e ID viaggiano con il
+candidato selezionato. La topologia conserva la precedenza al ramo sinistro
+nei pareggi e propaga l'ultima voce quando il livello ha cardinalità dispari.
+La rappresentazione di base usa gruppi punteggio, ID e soglia con offset
+0, 41 e 82, pilotati dallo stesso controllo corretto rispetto alla media.
 
-The next noisy gate must bind actual native queries, one key family, actual
-plans/modes/domains, all three decrypted digits and full ledgers. Test the
-nearest-rejects/farther-passes and strict-tie cases, signed thresholds,
-clamped threshold edges, three-digit IDs and serial/parallel equality. Require
-uniform-branch ciphertext equality with the exact wider parent under matched
-inputs/keys. Do not require wider low/middle ciphertext bytes to equal the older
-five-payload core, whose ID accumulator has different noise contributions.
-Selected threshold noise, deeper paths and shared-key correlations remain
-separate proof obligations; no whole-circuit failure or runtime claim is made.
+Alla fine, `mixed::root_parts` separa punteggio vincente, soglia vincente e
+payload da conservare. Un confronto esplicito punteggio/soglia determina il
+rifiuto; `wide_id::select` conserva il payload oppure produce zero. Una fusione
+ordinaria contro punteggio zero non realizza questo predicato: per esempio,
+punteggio 1210 e soglia 1210 devono dare accettazione.
+
+## Conteggi di riferimento
+
+La tabella descrive le implementazioni uniformi e miste di base, prima di
+tagli ID, normalizzatori condivisi e specializzazione delle costanti pubbliche.
+Il servizio selezionato applica queste ottimizzazioni: per il suo conteggio
+usare il piano derivato dalla galleria tramite `public_digits::operation_counts`.
+BR indica blind rotation, KS key switching e PFKS private functional key switching.
+
+| Modalità di base | BR | KS | PFKS | Marginali | Campioni iniziali |
+|---|---:|---:|---:|---:|---:|
+| Uniforme con sentinella | 11N | 8N | 6N | 15N | N |
+| Uniforme, accettazione pubblica | 11N − 5 | 8N − 4 | 6N − 6 | 15N − 9 | N |
+| Uniforme, rifiuto pubblico | 0 | 0 | 0 | 0 | 0 |
+| Misto, soglia del vincitore | 12N − 1 | 8N | 9N − 3 | 18N − 3 | N |
+
+Il caso misto di base contiene N ingressi Head, N − 1 fusioni a nove campi e
+un predicato finale con selezione a sei campi. Una fusione usa 6 BR, 4 KS,
+9 PFKS e 12 marginali; il predicato finale usa 5 BR, 4 KS, 6 PFKS e 9 marginali.
+`N127_COUNTS` è il riferimento uniforme a sei campi, non il conteggio di ogni
+variante composita per una galleria di 127 voci.
+
+La funzione PFKS W287 usa decomposizione 22×1. La finestra serializzata
+occupa 67.141.632 byte di payload. Aggiungere campi al torneo aumenta le
+invocazioni della stessa funzione, senza introdurre automaticamente una nuova
+chiave. Dimensione serializzata e consumo RSS restano misure diverse.
+
+## Verifiche e limiti
+
+I test `mixed_tests::` e `wide_id_tests::` controllano ammissione pubblica,
+clamp delle soglie, rappresentazione ID, predicato finale, conteggi e pareggi
+stabili. Usano anche cifrature triviali per controllare gli operandi; non
+sostituiscono una prova con chiavi e rumore reali. Dalla cartella `runtime/`:
+
+```sh
+cargo +1.93.1 test --manifest-path candidate/Cargo.toml \
+  -p fast_core_mixed_20260906 --lib mixed_tests:: --locked
+cargo +1.93.1 test --manifest-path candidate/Cargo.toml \
+  -p fast_core_mixed_20260906 --lib wide_id_tests:: --locked
+```
+
+Altri moduli contengono test FHE: un'esecuzione senza filtri può generare chiavi
+e svolgere calcolo crittografico. I risultati osservati del servizio sono nel
+[rapporto sperimentale](../../evidence/ORIGINAL_SERVICE_RESULTS.md).
+Il rumore delle soglie dopo la selezione, la profondità del torneo e le
+correlazioni dovute al riuso delle chiavi richiedono un'analisi distinta.
+Correttezza dei test e conteggi delle operazioni non provano da soli un limite
+complessivo di fallimento del circuito.

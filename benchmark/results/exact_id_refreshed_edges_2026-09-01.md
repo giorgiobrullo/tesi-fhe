@@ -20,13 +20,6 @@ Il circuito intermedio qui provato applicava due hardening senza cambiare il con
 
 Il server continua a restituire un solo LWE: `0=rifiuto`, `i+1=identita' accettata`.
 
-Comando:
-
-```sh
-RAYON_NUM_THREADS=16 target/release/argmin_bucket_bits_periodic \
-  --run --keys 1 --sizes 127,128 --cases edges --real-probes 1 --allow-slow
-```
-
 `--allow-slow` disabilita soltanto il gate prestazionale storico sotto 10 secondi; non modifica il
 circuito, l'oracolo o il gate di correttezza.
 
@@ -61,3 +54,7 @@ Il run dimostra l'aritmetica dell'encoding, i sentinel di soglia e la correttezz
 quattro casi eseguiti. Non deriva la probabilita' di fallimento composta: i fan-in custom, i
 riscalamenti e la somma finale a `Delta=2^55` non sono certificati dal `log2_p_fail` nominale della
 primitiva standard.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.

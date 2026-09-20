@@ -1,4 +1,4 @@
-# Esperimento 14 — identificazione TFHE 1:N esatta con tfhe-rs
+# Esperimento 14 - identificazione TFHE 1:N esatta con tfhe-rs
 
 Obiettivo dell'incontro di luglio (findings F35): calcolare sul server la selezione a N=64/128,
 restituire l'identita' piu' vicina se sufficientemente vicina oppure un rifiuto, e non restituire
@@ -394,7 +394,7 @@ primitive supportate, non un bound del varco low-level composto. **MESSAGE_1_CAR
 N=128 **0,100 s**, N=1024 **0,72 s** (~2× sul default), con 0 errori osservati su 131.072 confronti
 a N=1024; nella simulazione di `effetto_banda.py` la DIR resta invariata con σ≈50, anche a σ=100.
 `2_1` sta in mezzo (0,134 s a N=128, σ≈30). `2_0`/`1_0` (N≤512, GLWE rumoroso) crollano: banda
-~1900, metà confronti errati — il varco vive del budget di rumore leveled. Il numero finale del
+~1900, metà confronti errati - il varco vive del budget di rumore leveled. Il numero finale del
 sistema: **0,10 s a N=128, 0,72 s a N=1024**. `results/varco_leveled_16thread_params.txt`,
 `banda_soglia_{1_1,2_1}.txt`. Non spremuto: GPU con tfhe-rs (lotto di N PBS indipendenti; serve NVIDIA).
 
@@ -415,7 +415,7 @@ Misurato tappa per tappa (400 campioni, Delta=2^52): GLWE fresco 2^15,7 -> dopo 
 leveled 2^22,2 (x92,7, atteso ||p||=90,5) -> dopo il keyswitch 2^56 -> col modulus switch 2^56,5.
 **L'accumulo leveled contribuisce 2^-34 della varianza**: la banda viene tutta da keyswitch e
 modulus switch, cioe' dalle tappe che qualunque PBS fa comunque. Regola in forma chiusa:
-**banda ~ range/90** (set 1_1) e ~range/360 (set 2_2), quindi banda ∝ 1/N — il rapporto 22,5/4,9
+**banda ~ range/90** (set 1_1) e ~range/360 (set 2_2), quindi banda ∝ 1/N - il rapporto 22,5/4,9
 misurato coincide con 2048/512. Probabilita' d'errore a distanza d dalla soglia: 1,3e-2 a d=50,
 4e-6 a d=100, 3e-19 a d=200; sui dati reali le distanze sono 300-3600.
 
@@ -498,4 +498,5 @@ cargo run --release --bin banda_soglia -- --params 1_1 --d 200                  
 cargo run --release --bin varco -- keygen results/e2e/chiavi   # poi encrypt/server/decrypt (F41)
 ```
 
-Su macOS beta, se il linker fallisce, anteporre il wrapper di `ld` (`PATH=/tmp/ldfix:$PATH`).
+Su macOS, se Concrete cerca un SDK inesistente, usare il
+[wrapper del linker](../../tools/README.md).

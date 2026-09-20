@@ -2,7 +2,7 @@
   "schema": "local-review-curated-results.v1",
   "experiment": 19,
   "title": "Runtime CPU, FFT e compilatore",
-  "evidence_status": "Previously accepted original results; no new-location build or execution",
+  "evidence_status": "Historical experimental results.",
   "fixed_fft_source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
   "selected": {
     "compiler_opt_level": 3,
@@ -103,60 +103,6 @@
     "PGO and runtime negatives apply to these concrete source/configuration comparisons",
     "Selected CGU1 settings require the recorded configuration; default Cargo profile remains the frozen original source"
   ],
-  "original_evidence": [
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/actions/FINAL_CONFIRMATION_AGGREGATE.json",
-      "sha256": "e20c634f65a96f623f64134b738f54262276120cd3a36af9732b6e7e92cae21b",
-      "bytes": 15507,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/actions/FINAL_CONTEXT_ANALYSIS.json",
-      "sha256": "f0de222f1674de71c143a63dc8ac06e3a6589c19fed7ad2164868cb3462dffee",
-      "bytes": 56017,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/actions/FINAL_CONFIRMATION_SELECTION.json",
-      "sha256": "6c4c269519a68efd34776c4825a93a96b47eac0dcdee81dbd2d1744103fbd80b",
-      "bytes": 1490,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/runs/final-confirmation-key1-first/INDEPENDENT_PUBLIC_REPLAY.json",
-      "sha256": "710bf95dd491be6f08ff172c962f991c269c8cc6d7608987edb79a6c9f1c262a",
-      "bytes": 81045,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/runs/final-confirmation-key2-first/INDEPENDENT_PUBLIC_REPLAY.json",
-      "sha256": "e595cc95c5c3e483aa9ae1a74c4e0832c528ec12f520ea9f17c50c5631028858",
-      "bytes": 81033,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/runs/pgo-heldout-key0-first/RESULT.json",
-      "sha256": "b7bd71f2c2343b264ad3676bf9bd5c67ff79778cb022435d2bb2cf00133b3578",
-      "bytes": 18857,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/runs/fixed-runtime-screen-key0-first/RESULT.json",
-      "sha256": "cc0b4f77b628864b1419d89e8c8f571a2a0686707fd49a1f70a86a745f9fbf99",
-      "bytes": 36863,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-opts-complete-20260906/audit/PGO_USE_BUILD_REVIEW.md",
-      "sha256": "4e2b429cf7272b6747baba77e92832f5443fbc20ec59e9b4b6bec7026a319793",
-      "bytes": 3185,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "docs/personal/ottimizzazioni-complete-2026-09-07.md",
-      "sha256": "456b0f668a4f62f565c4c7be884b5ac507ec1698a18013245082017bf9f75556",
-      "bytes": 16179,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    }
-  ]
+  "provenance_manifest": "PROVENANCE.json",
+  "recorded_digest_scope": "Existing source, binary and original-result digests identify historical run artifacts. PROVENANCE.json separately hashes the files distributed in this publication."
 }

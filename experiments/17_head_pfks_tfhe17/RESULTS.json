@@ -2,7 +2,7 @@
   "schema": "local-review-curated-results.v1",
   "experiment": 17,
   "title": "Head/PFKS exact 0/ID con media pubblica",
-  "evidence_status": "Previously accepted original results; no new-location build or execution",
+  "evidence_status": "Historical experimental results.",
   "implementation": {
     "source_sha256": "01565f07630daa7f9837d2120c36c2a32ebc0d59cc8b3adbba504afad8475b17",
     "tfhe_version": "1.7.0",
@@ -61,42 +61,6 @@
     "Older canonical baseline; newer mixed/core/demo are in18 and22",
     "Retained source fixtures are public synthetic data; keys and encrypted outputs remain in original local evidence"
   ],
-  "original_evidence": [
-    {
-      "source": "tmp/wrapup-head-service-20260906/SOURCE_PINS.json",
-      "sha256": "9c316427fd340a6aaa11ae4746042a0e5d80f4a74bb8d6a3b4fbe7179f30e399",
-      "bytes": 6690,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/wrapup-head-service-20260906/runs/first-native-env/result.json",
-      "sha256": "41ce4d2273b187ee85810b5fcec8ca16ec5d98d63d6da4f40fe8a4ef88c948b0",
-      "bytes": 334678,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "docs/research-state/2026-09-06/continuation/sep06-head-service-env-first/binding.json",
-      "sha256": "8546f2c87d5e72838939b8004ea5dea223509bf79684d0e34c7b4de50ca191a5",
-      "bytes": 57742,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "docs/research-state/2026-09-06/wrap-up/BASELINE_PROMOTION.json",
-      "sha256": "e7a11c5f697cff2a985b282e38ee896748d44a8acacc0102e56fb08db6edc78a",
-      "bytes": 2345,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "docs/research-state/2026-09-06/wrap-up/finalist-result-review.md",
-      "sha256": "0e3f5fd53e1ae8a8ff1faa42901414b7ca56a7c4eab3d5c3f039b60949f27301",
-      "bytes": 8660,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "docs/research-state/2026-09-06/continuation/HEAD_MEAN_THREE_KEYS_RESULT.json",
-      "sha256": "10e6fedf5ad434855c2f47dbbfbbcbda8d50fe18c9d2c85822c9a9ab61c82e87",
-      "bytes": 8630,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    }
-  ]
+  "provenance_manifest": "PROVENANCE.json",
+  "recorded_digest_scope": "Existing source, binary and original-result digests identify historical run artifacts. PROVENANCE.json separately hashes the files distributed in this publication."
 }

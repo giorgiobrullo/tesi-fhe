@@ -1,10 +1,11 @@
 # A66: audit indipendente del candidato latency-ready
 
-Data: 2 settembre 2026. Ambito: confronto statico read-only tra
-`tmp/a62-a53-a44-integrated-prototype` e `tmp/a66-a62-latency-ready-prototype`.
-Questo audit non ha invocato Cargo, rustc, FHE, key generation, Docker o rete.
+Data: 2 settembre 2026. Ambito: confronto statico fra i prototipi A62 e A66.
+I sorgenti specifici dei due prototipi non sono inclusi in questa distribuzione;
+i nomi dei file sotto identificano le parti ispezionate. Questo rapporto non aggiunge
+compilazione, esecuzione FHE o misure di latenza.
 
-## Verdetto
+## Esito dell'audit
 
 Non emerge una divergenza bloccante della semantica exact-ID sul percorso valido. A66 conserva il
 grafo logico A62, il primo vincitore nei tie, i contatori `3390/3009/3930` a N=127 e il wire a due
@@ -22,13 +23,9 @@ prodotte separatamente, devono restare artefatti distinti. Il confronto causale 
 
 ## Superficie del cambiamento e provenienza
 
-`a62-inputs.sha256` contiene esattamente i 12 file dell'A62 congelato e tutti i digest sono stati
-riverificati. I seguenti file A66 sono byte-identici ad A62:
-
-- `.cargo/config.toml`;
-- `frozen-inputs.sha256`;
-- `src/lib.rs`;
-- `src/a53_scan.rs`.
+Il confronto ha coperto i 12 file del prototipo A62. La configurazione Cargo,
+`src/lib.rs` e `src/a53_scan.rs` sono byte-identici in A66; rimane identico anche
+il manifest degli input derivati.
 
 Il `Cargo.lock` cambia soltanto il nome del package root. In `src/private_argmin.rs` le sole
 modifiche operative sono il backend A53, i suoi contatori e la chiamata al nuovo adapter; score,
@@ -63,7 +60,7 @@ Ne segue che prefix esclusivo, posizione locale e indice globale continuano a sc
 argmin ammesso. Il controllo statico composto A50+A53 conferma 512 fixture (reject, primo tie e
 ultima identita' per ogni N=1..128), ma non sostituisce una replica FHE.
 
-Una replica particolarmente forte dovrebbe confrontare anche i coefficienti delle due radici A62
+Per verificare l'equivalenza byte per byte, una replica dovrebbe confrontare i coefficienti delle due radici A62
 e A66 sullo stesso input, oltre al codice decifrato. La valutazione server e' deterministica e gli
 accumulatori triviali ricostruiti da A62 hanno gli stessi coefficienti di quelli riusati da A66;
 una differenza byte-level sarebbe quindi un segnale da indagare, anche se il gate semantico minimo
@@ -202,21 +199,9 @@ ordine AB/BA, per probe, per blocco, differenza prima/seconda meta' e CI. Una pr
 richiede almeno limite inferiore del CI sopra zero e nessun segnale materiale di ordine/OOM; la
 soglia pratica di speed-up va dichiarata prima dell'esecuzione.
 
-## Digest osservati
+## Esito e confronto necessario
 
-| artefatto | SHA-256 |
-|---|---|
-| manifest A62 dentro A66 | `f157bce936bfd10c4fb9abaea933da6db39cf14c0b2d71530748c524e24f0ce5` |
-| A62 `src/private_argmin.rs` | `69049071d6c72b32d2db8cbe2f9972ec61c06266382f448f5a199c49b3b5fbab` |
-| A62 `src/a53_scan/fhe.rs` | `a4dfbc7cd15bdc65ee699847b46147a0614bceccbdeb5317226103f7ffa68f9e` |
-| A66 `src/private_argmin.rs` | `92289e44e9c26c3190ac61c16c50e0e338bc9399d19fbf9231dacd50a6c3102b` |
-| A66 `src/a53_scan/fhe.rs` | `ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99` |
-| `src/a53_scan.rs`, identico A62/A66 | `81752a5da894797faeecda02c4fff3ad5aba93efde60a400dd1c36304e4940a5` |
-| `src/lib.rs`, identico A62/A66 | `6023d1ca3594897b54b216f85580897aef5c4fe12c7245278f4b12e90f25116b` |
-| A66 `Cargo.lock` | `b1d93f4a90df0b5a4fee8dabad7c71764e265f299a2baf3923d1aace76c6ab78` |
-| TFHE-rs 0.11.3 `fft64.rs` locale ispezionato | `174c74c30625316491a408b34f5a7bd135ead4652df63d102b8791b13e957e52` |
-
-Conclusione operativa: A66 supera l'audit statico di equivalenza con le cautele sopra, ma nessun
-claim di latenza e' ancora autorizzato da questo documento. Il prossimo confronto deve essere
+A66 supera l'audit statico di equivalenza con le cautele sopra, ma nessun
+claim di latenza e' ancora supportato da questo documento. Il prossimo confronto deve essere
 A62/A66, con target isolato, input byte-identici, ordine bilanciato, strati a 1 thread e produzione,
 RSS registrato e analisi paired gerarchica.

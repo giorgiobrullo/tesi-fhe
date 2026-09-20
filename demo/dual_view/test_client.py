@@ -47,7 +47,7 @@ async def asgi_request(app, method, path, body=b"", headers=None):
     return start["status"], json.loads(response) if response else None
 
 
-class FakeQualified:
+class FakePipeline:
     def __init__(self):
         self.events = []
         self.accepted = True
@@ -56,11 +56,13 @@ class FakeQualified:
         self.decode_error = False
         self.installed = False
         self.count = 2
-        self.CFG = {"contratto_esatto": {"g4_required": False}}
-        self.protocol = types.SimpleNamespace(strict_json=json.loads, validate_status=self.validate_status)
 
-    def validate_status(self, state, expected, allow_empty=False):
-        return {"iscritti": state["iscritti"]}
+    verify_vector = client.AccessPipeline.verify_vector
+
+    def server_status(self):
+        raw, _ = self.srv("/stato")
+        state = json.loads(raw)
+        return state, {"iscritti": state["iscritti"]}
 
     def assicura_chiave(self):
         self.events.append("ensure_eval_key")
@@ -135,7 +137,7 @@ class ClientTests(unittest.TestCase):
         for name in ("client.key", "server.key"):
             (self.keys / name).write_bytes(b"fake local test data")
         self.key_before = {p.name: (p.read_bytes(), p.stat().st_mode) for p in self.keys.iterdir()}
-        self.original = FakeQualified()
+        self.original = FakePipeline()
         self.settings = client.ClientSettings(self.binary, self.keys)
         self.runtime = client.AccessRuntime(self.settings, loader=lambda _: self.original, model_check=lambda: None)
         self.runtime.initialize()
@@ -276,6 +278,28 @@ class ClientTests(unittest.TestCase):
         self.assertEqual(request.data, b"encrypted-probe")
         self.assertEqual(body, b"encrypted-output")
         self.assertEqual(headers["X-Request-Id"], "request-123")
+
+    def test_real_pipeline_loader_keeps_clients_independent_without_loading_legacy_app(self):
+        other_keys = self.directory / "other-keys"
+        other_keys.mkdir()
+        for name in ("client.key", "server.key"):
+            (other_keys / name).write_bytes(b"another local key")
+        other = client.ClientSettings(self.binary, other_keys, gateway="http://127.0.0.1:8015/fhe")
+        left = client.load_pipeline(self.settings)
+        right = client.load_pipeline(other)
+        self.assertIsNot(left, right)
+        self.assertEqual((left.settings.keys, right.settings.keys), (self.keys, other_keys))
+        self.assertEqual((left.srv.url, right.srv.url), (self.settings.gateway, other.gateway))
+        self.assertNotEqual(left.fingerprint_chiave_locale(), right.fingerprint_chiave_locale())
+        left.config["modello"] = "only left"
+        self.assertNotEqual(left.config["modello"], right.config["modello"])
+
+    def test_real_pipeline_loader_rejects_absent_keys_without_creating_them(self):
+        missing = self.directory / "absent-keys"
+        settings = client.ClientSettings(self.binary, missing)
+        with self.assertRaises(RuntimeError):
+            client.load_pipeline(settings)
+        self.assertFalse(missing.exists())
 
     def test_direct_old_backend_configuration_is_rejected(self):
         settings = client.ClientSettings(self.binary, self.keys, gateway="http://127.0.0.1:9004")

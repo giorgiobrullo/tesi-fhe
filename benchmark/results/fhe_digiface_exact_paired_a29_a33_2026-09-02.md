@@ -65,8 +65,6 @@ Per ciascun blocco:
 
 In totale sono 120 coppie misurate e 24 warm-up, su sei chiavi di valutazione distinte. La
 decifratura usa il client A33 congelato, compatibile col formato di output di entrambe le varianti.
-Alla fine tutti i server sono terminati, le porte risultano chiuse e le directory delle chiavi
-effimere sono state rimosse. Nessun percorso, hash o contenuto della chiave client e' persistito.
 
 L'intervallo usa 20.000 repliche di bootstrap non parametrico gerarchico e stratificato: vengono
 ricampionati prima i blocchi-chiave, poi le righe entro gli strati fissi `probe x ordine`,
@@ -110,18 +108,11 @@ cronologiche e' invece 2,344 punti; le pendenze OLS delle latenze sono +19,139 m
 relativo compare in tutti e sei i blocchi, ma la deriva temporale e la variabilita' fra blocchi non
 sono trascurabili.
 
-## Provenienza e riproducibilita'
-
-Invocazione eseguita (l'`argv` interno e' persistito nel JSON):
-
-```bash
-uv run --python 3.12 python benchmark/fhe_exact_id_paired_a29_a33.py \
-  --run --timeout 900
-```
+## Dati e identificazione della revisione
 
 | artefatto/input | SHA-256 |
 |---|---|
-| JSON finale | `659a996f5094112b3ea34ee3306a65bf03c8b308cd0d212c597890fc6fd71b8d` |
+| JSON pubblico | `f24c767dc305419571deb740350a6cc19d995344cadabf7883bca1db8fc1e4ed` |
 | CSV finale | `c61f99136912b667cc051f4d33dd2c3cb890ceb891eb26c6c70468684b460329` |
 | harness paired | `cb41379d9f77601f321ff14c2deaf439f3b9b3fe0ec922a47feaa92d0e525910` |
 | dipendenza validator | `b54fbc7ef278e53a08ad08eed4429833a7fba62b15ba810bc12c31af4904e79d` |
@@ -132,12 +123,9 @@ uv run --python 3.12 python benchmark/fhe_exact_id_paired_a29_a33.py \
 | cache DigiFace | `1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99` |
 | configurazione | `eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc` |
 
-Il paired harness non interroga Git durante il run: dichiara autorevoli binari, patch e manifest
-degli snapshot congelati. I README degli snapshot li legano al branch
-`thesis-evidence-audit-2026-09`, base
-`6611c185adc9a658a075519b4316386f0bb48656`, piu' gli input copiati dal worktree sporco. Tutti gli
-input registrati risultano invariati prima/dopo. L'ambiente registrato e' macOS arm64, Python
-3.12.11 e NumPy 1.26.4.
+L'harness identifica binari, patch e manifest delle revisioni A29 e A33.
+Tutti gli input registrati risultano invariati prima e dopo. L'ambiente era
+macOS arm64, Python 3.12.11 e NumPy 1.26.4.
 
 Artifact grezzi:
 
@@ -162,3 +150,10 @@ Il benchmark copre cinque probe di frontiera fissi, una galleria DigiFace `N=127
 la correttezza per tutti gli input, non deriva una `p-fail` crittografica end-to-end e non sostiene
 claim di novita'. Il CI e' un intervallo empirico condizionato al disegno e al carico di questo
 run, non una garanzia universale di speedup.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

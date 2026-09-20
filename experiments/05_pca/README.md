@@ -1,9 +1,8 @@
-# Gradino 05 — PCA (eigenfaces)
+# Gradino 05 - PCA (eigenfaces)
 
-Primo gradino di **riconoscimento** della scaletta (tecniche geometriche): prototipo
-end-to-end con embedding PCA in chiaro lato client + matching cifrato lato server
-(distanza in forma espansa). È il punto di convergenza dei due filoni: accuratezza
-del riconoscimento e costo FHE sullo stesso esperimento.
+Prototipo di riconoscimento con embedding PCA in chiaro sul client e calcolo
+cifrato della distanza in forma espansa sul server. L'esperimento misura
+accuratezza del riconoscimento e costo FHE sullo stesso protocollo.
 
 ## Architettura
 
@@ -24,19 +23,19 @@ del riconoscimento e costo FHE sullo stesso esperimento.
 
 L'unico ingresso cifrato è il probe; `b` e `‖b‖²` sono costanti nel circuito, quindi
 il client non ha bisogno di conoscere la galleria. Tutto ciò che attraversa il
-confine (frecce) è **serializzato in byte**.
+confine (frecce) è serializzato in byte.
 
-> ⚠️ Limite noto: l'**argmin è ancora sul client**: decifra tutti gli N punteggi e
-> prende il minimo, quindi vede le distanze con tutta la galleria. Lo sposta sotto
-> FHE il gradino [`06_argmin_soglia`](../06_argmin_soglia/).
+L'argmin è sul client: decifra tutti gli N punteggi e sceglie il minimo,
+quindi accede alle distanze rispetto all'intera galleria. L'[esperimento 06](../06_argmin_soglia/)
+sposta questa operazione sotto FHE sul server.
 
 ## File
 
-| file | ruolo | dove vive |
+| File | Ruolo | Collocazione |
 |---|---|---|
-| `embedding.py` | base PCA (eigenfaces): volto -> vettore | **locale** (la tecnica di questo gradino) |
-| `demo.py` | wiring end-to-end; accuratezza float/quant/cifrata + tempi | locale |
-| `core/server.py`, `core/client.py` | plumbing FHE (chiavi, run, serializzazione) | condiviso |
+| `embedding.py` | base PCA (eigenfaces): volto -> vettore | locale |
+| `demo.py` | pipeline completa; accuratezza float/quant/cifrata + tempi | locale |
+| `core/server.py`, `core/client.py` | operazioni FHE (chiavi, run, serializzazione) | condiviso |
 | `core/matching.py` | il circuito `‖b‖² − 2·a·b` (fonte unica) | condiviso |
 | `core/quantize.py`, `core/dataset.py` | quantizzazione, caricamento dataset | condiviso |
 
@@ -50,11 +49,11 @@ uv run python experiments/05_pca/demo.py [olivetti|lfw]
 
 ## Note
 
-- Il più vicino lo sceglie il **client** dopo aver decifrato i punteggi: in questo
-  gradino nessun confronto cifrato, quindi nessun bootstrapping. (Cambia col 06.)
-- Client e server si scambiano **solo byte serializzati**: la chiave segreta resta
+- Il client sceglie il più vicino dopo la decifratura: il circuito non contiene
+  confronti cifrati né bootstrapping.
+- Client e server si scambiano solo byte serializzati: la chiave segreta resta
   nel `Client` e non attraversa mai il confine. I due ruoli vivono nello stesso
-  processo per comodità del demo.
-- **Esito (vedi `findings.md`):** su Olivetti la PCA regge e il percorso cifrato dà
-  le identiche predizioni del chiaro quantizzato; su LFW (volti reali) la PCA crolla,
-  motivo per salire di gradino (CNN leggera, gradino 07).
+  processo per l'esecuzione della demo.
+- Su Olivetti il percorso cifrato produce le stesse predizioni del chiaro
+  quantizzato. Su LFW l'accuratezza della PCA è inferiore; gli esperimenti
+  successivi valutano descrittori locali e CNN. Vedi `findings.md`.

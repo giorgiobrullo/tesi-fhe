@@ -27,8 +27,7 @@ codice `indice+1`, quindi non puo' essere soddisfatto da un circuito membership-
 - 80/80 result ciphertext distinti, 16.464 byte ciascuno;
 - **4.965 PBS in ogni query**;
 - contratto `exact-open-set-id-v2` in ogni risposta;
-- chiave client/server fresca in directory temporanea, rimossa a fine run;
-- server terminato con SIGTERM (`exit_code=-15`) e porta rilasciata.
+- una coppia di chiavi client/server fresca per il run.
 
 ## Tempi osservati, non confronto prestazionale
 
@@ -46,7 +45,7 @@ usare la stessa chiave e gli stessi ciphertext in coppie A28/A29 sul sistema ina
 
 ## Provenienza verificata
 
-- base Git `6611c185adc9a658a075519b4316386f0bb48656`, worktree esplicitamente sporco;
+- revisione a cui applicare la patch: `c5ab1b325c5c1a7c234d137bdedbbd7950222b16`;
 - core A29 `src/private_argmin.rs`:
   `06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4`;
 - validator `benchmark/fhe_digiface_validation.py`:
@@ -56,7 +55,7 @@ usare la stessa chiave e gli stessi ciphertext in coppie A28/A29 sul sistema ina
 - CSV:
   `de609a07ffb4ba21f9228c96662aedd1ed3fb22af898fb663c470adfea7c4a5f`;
 - JSON:
-  `7a41459ce8eed969996365f6c3da41e135a989a925046e501368ec18e60d800c`.
+  `68d88b595453314ff2681328726f4280a0f8705a5135b4bf508ddc384a5815ed`.
 
 Il JSON attesta gli stessi hash prima e dopo, il path eseguibile osservato e il PID. Il CSV e'
 vincolato dall'hash registrato nel JSON. L'unicita' dei ciphertext di risultato e' stata
@@ -72,3 +71,6 @@ Artifact grezzi:
 Il gate usa soltanto cinque probe scelti per la frontiera. Non sostituisce la suite primaria da
 632 query, l'E2E HTTP/Docker su immagini, il confronto paired A28/A29 o un bound composto della
 `p-fail`. A29 resta candidato non promosso finche' quei gate non sono chiusi.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

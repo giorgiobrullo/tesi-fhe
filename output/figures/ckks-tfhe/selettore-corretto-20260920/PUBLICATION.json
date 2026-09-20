@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-09-20T14:01:20.525115+00:00",
+  "passed": true,
+  "visual_review": {
+    "pdf_render_inspected": true,
+    "clipped_or_overlapping_text": false,
+    "labels_and_ranges_match_analysis": true
+  },
+  "source_pins_sha256": "f6cc2e6554df0613943da84003b9137e5924e1115682de4e899bc2605cff987b",
+  "final_audit_sha256": "a39a97a6b47d422e75c1758810c39464bd3512abdcfd5a32de383be313798d0b",
+  "post_key_auditor_correction_sha256": "a0e75ea6201a0aa7109fa80b3758632a6c7279b54c5102ff4cb814e5a09731f7",
+  "method_sha256": "74a9a5d7c2b615bcfdf1ea2d18db585204665e16154be1b7c541807148b300f7",
+  "pdf_sha256": "e266a7810c4c4f72f54102659ff5379a856bf077b50fe02222939d2c713874ce"
+}

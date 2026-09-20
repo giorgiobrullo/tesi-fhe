@@ -1,17 +1,9 @@
-# Selected M with three encrypted identity digits
+# Head/PFKS with three encrypted identity digits
 
-This source-only sibling starts from the independently reviewed final uniform
-core at `tmp/fast-core-uniform-20260906/core`. It admits galleries1..3374 with
-a single public threshold, retains the same twelve-bit score-domain planner,
-and returns three encrypted base-15 ID digits. Identity0 means reject. This is
-an implementation candidate; the author ran syntax/source checks only. Root
-owns compilation, noisy FHE, execution records and later paired timing.
-
-The package is `fast_core_wide_id_20260906`. Root supplies the runner lockfile
-and the actual whole-package `SOURCE_DIGEST.txt` one directory above this core
-before compilation. Parent/source pins, a complete patch and selected-primitive
-comparison are under `../audit/core`. No parent core, old control, key, source
-record or interactive service was edited.
+The `fast_core_wide_id_20260906` library admits N1..3374 with a single public
+threshold and a twelve-bit score domain. It extends the identity output to
+three base-15 digits while keeping the score width unchanged. Identity 0
+means rejection.
 
 ## Public API and representation
 
@@ -43,7 +35,7 @@ arithmetic and the interior sentinel fits1..4095. Mixed thresholds, malformed
 templates, incorrect declared norms, invalid packed geometry and score-domain
 width above4096 still reject, including when T would publicly reject everyone.
 
-## Selected arithmetic and preservation
+## Six-payload arithmetic
 
 `src/wide_id.rs` owns the active six-lane tuple
 `[score_top, score_middle, score_low, id_low, id_middle, id_high]`, with all
@@ -57,16 +49,15 @@ The parent five-lane helper modules remain byte-identical and are not the
 selected endpoint. Their root constants and historical assertions do not
 control `wide_id`'s local six-lane geometry. The selected comparator, window,
 mean correction, Head ingress, packed template product and key generation/
-validation/container functions are preserved; the primitive audit states the
-exact type/ID/count differences. The legacy private planner still caps128;
+validation/container functions retain their definitions. The legacy private planner still caps128;
 no older A126 or R3 arm was generalized by this sibling.
 
 The real tournament performs N-1 stable merges, preserving the earlier ID on
 equal scores and carrying an odd tail. Compare mode adds a left ID0 sentinel;
 all-accept omits it. Three ID digits permit3374 real identities without widening
 the score representation. Maximum real-plus-sentinel depth is
-ceil(log2(N))+1, including9/10/11 atN256/512/1024. This is a representation
-extension, not a noise or runtime qualification.
+ceil(log2(N))+1, including9/10/11 atN256/512/1024. The representation limit alone does not establish correctness or latency
+at every admitted size.
 
 ## Complete structural counts
 
@@ -89,32 +80,25 @@ framing and the ordinary adapter. A six-lane tuple holds98352 raw LWE bytes;
 retained PFKS GLWEs hold196608 raw bytes. These are container quantities, not
 RSS or serialization measurements. Primitive counts do not imply latency.
 
-## Validation supplied and limits
+## Tests and limitations
 
-The author provides ten key-free tests under the single `wide_id_tests::`
-filter. They exercise the actual public planner, all uniform modes, signed
-extremes, every twelve-bit score around inclusive cuts, all3375 valid ID codes,
-capacity rejection, exact19,926 coefficient identities from actual W287/group
-constants, complete/partial six-lane ledgers, legacy128 admission, trivial
-three-root rejection and stable trees across ID carries and larger sizes.
-The original five-lane scaling/uniform test source files are retained unchanged
-but unregistered for this API; historical unrelated modules still include FHE
-tests. Root should run only the supplied filter initially:
+Ten `wide_id_tests::` arithmetic/API tests cover uniform modes, signed
+extremes, inclusive cuts, all 3375 valid ID codes, capacity rejection,
+19,926 W287 coefficient identities, six-lane operation counts, legacy N128
+admission, trivial rejection and stable trees across digit carries.
+From this core directory:
 
-```text
-cargo test --manifest-path candidate/Cargo.toml -p fast_core_wide_id_20260906 --lib wide_id_tests:: --locked --offline
+```sh
+cargo test --manifest-path ../candidate/Cargo.toml -p fast_core_wide_id_20260906 --lib wide_id_tests:: --locked
 ```
 
-This command is provided, not reported as executed. Syntax parsing is not
-Rust type checking. Existing five-payload noisy results do not validate a
-third identity marginal, a third PFKS noise contribution in the ID group,
-or deeper trees. A zero high-ID plaintext can still acquire noisy ciphertext
-coefficients after extraction. Exact W287 matrix separation establishes only
-plaintext coefficients, not error independence or a whole-circuit failure
-probability. The old depth8/two-ID reference envelope cannot be copied unchanged.
+The [experiment results](../../../README.md) distinguish qualification
+through N1024 from the representational limit N3374. Five-payload results
+do not alone validate a third identity marginal, another PFKS noise
+contribution in the ID group or deeper trees. Even a high digit with zero
+plaintext can have noisy coefficients. Exact W287 coefficient separation
+is not error independence or a whole-circuit failure probability.
 
-Next gate: compile the filtered tests, then actual noisy native-input cases at
-ID carry224/225 and sizes228/256/512/1024 with last/tie/inclusive/reject scenes,
-three decrypted digit checks, actual ledgers and serial/parallel equality.
-A fair larger-N older control requires its separately designed A53 extension;
-this sibling does not manufacture a paired result beyond the old control's cap.
+The [adapted A126 control](../older-control/README.md) supplies a separate
+three-digit comparator for the larger-size timing pilot. It is not the
+unchanged A126 used at sizes through N128.

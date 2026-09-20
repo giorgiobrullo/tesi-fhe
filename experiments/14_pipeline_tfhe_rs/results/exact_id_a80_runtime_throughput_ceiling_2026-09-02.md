@@ -2,7 +2,7 @@
 
 Data: 2026-09-02. Stato: `PASS_DIAGNOSTIC_NOT_INFERENTIAL`.
 
-A80 non esegue FHE. Incrocia due artefatti congelati:
+A80 non esegue FHE. Incrocia due risultati sperimentali:
 
 - smoke paired pulito A73 a 16 thread: 2 coppie misurate, una sola chiave indipendente;
 - microbenchmark scalare A77: 480 coppie su due run pulite, PBS wrapper mediano 12,444375 ms.
@@ -28,8 +28,8 @@ provvisoria `5,53..5,95` di extract/select; il range relativo tra i tre stadi e'
 
 Per l'intera A66, `3390` PBS e 7,2143 s equivalgono a 5,848 PBS scalari concorrenti. Se tutti i
 PBS corressero al miglior rate di stadio osservato, la proiezione sarebbe 7,0901 s: soltanto 1,75%
-sotto il wall time osservato. Questo non prova la causa hardware, ma rende meno promettente un'altra
-riscrittura limitata alla schedulazione della scan.
+sotto il wall time osservato. Questo non prova la causa hardware; nel modello, resta poco margine
+per una riscrittura limitata alla schedulazione della scan.
 
 ## Gate temporale derivato per A30
 
@@ -43,30 +43,21 @@ D1 break-even medio: PFKS < 3,0594 ms per chiamata
 
 D1 resta condizionale e non e' ancora una route API/provata. Anche D2 non e' promosso: il calcolo
 assume che i PBS rimossi conservino il throughput medio attuale e ignora effetti di integrazione.
-Serve il microbenchmark causale gia' preparato da A30.
+Serve un microbenchmark che misuri il costo PFKS con le stesse condizioni.
 
-## Decisione
+## Limiti e verifiche successive
 
-- completare A73 initial/extension prima di trasformare il pattern in un claim;
-- conservare un thread sweep `1/2/4/6/8/12/16` come test discriminante successivo;
-- non abbandonare ulteriore scheduling, ma abbassarne la priorita' rispetto a riduzione dei PBS,
-  common-mask batching e minore traffico di evaluation key;
-- usare 1,5297 ms/PFKS come gate misurabile del primo POC A30 D2.
+Il confronto A73 completo e uno sweep 1/2/4/6/8/12/16 thread sono necessari
+prima di generalizzare questo pattern. Il modello suggerisce di confrontare
+ulteriore scheduling con riduzione dei PBS, common-mask batching e minore
+traffico delle evaluation key, senza dichiarare esaurita la prima strada.
+Il valore 1,5297 ms/PFKS è una soglia di break-even condizionale per A30 D2.
 
-Non sono stabiliti: saturazione della banda memoria, utilizzo di sei core fisici, speedup A66
-statisticamente affidabile o convenienza temporale di A30.
+Non sono stabiliti saturazione della banda memoria, utilizzo di sei core
+fisici, uno speedup A66 statisticamente affidabile o convenienza temporale A30.
 
-## Riproduzione
+## Verifica del modello
 
-```sh
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m unittest -v \
-  tmp/a80-runtime-throughput-ceiling/test_a80_throughput.py
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python \
-  tmp/a80-runtime-throughput-ceiling/a80_throughput.py
-uv run ruff check --no-cache \
-  tmp/a80-runtime-throughput-ceiling/a80_throughput.py \
-  tmp/a80-runtime-throughput-ceiling/test_a80_throughput.py
-```
-
-Esito corrente: 5/5 test, Ruff pulito. Gli input sono verificati per SHA-256 dal modello; il
-modello A30 e' importato dal sorgente congelato invece di ricopiare manualmente i conteggi.
+Passano 5/5 test e i controlli statici. Gli input sono verificati per identità;
+i conteggi A30 sono ricavati dal suo modello eseguibile. I programmi di
+questa diagnosi non sono inclusi in questa distribuzione.

@@ -271,7 +271,7 @@
   ],
   "promotion": false,
   "provenance": {
-    "binary": "tmp/a67-a62-service-materialization/target-a71/release/varco_demo",
+    "binary": "a67-a62-service-materialization::target-a71/release/varco_demo",
     "binary_sha256": "35dd29890573790158d1174f391b83c607693183f663e79fbdfc69f658819021",
     "circuit_sha256": "ee76afd8ad3f6ee48fb3da4806e52fee3edf9db773c4adbe2c986fe713789b79",
     "params_fingerprint_sha256": "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",

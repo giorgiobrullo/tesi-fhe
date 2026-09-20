@@ -1,13 +1,11 @@
 # Rerun CKKS del 1 settembre 2026
 
-Questo e' un controllo di riproducibilita' locale delle due implementazioni interne, non un
-benchmark finale TFHE-vs-CKKS. La macchina non era quieta; per questo i tempi sotto sono
-**engineering measurements** e non misure comparabili fra schemi.
+La prova verifica la riproducibilità locale di due implementazioni CKKS.
+Durante le misure erano attivi altri processi: i tempi descrivono queste
+esecuzioni e non consentono un confronto finale con TFHE.
 
 ## Stato riprodotto
 
-- branch: `thesis-evidence-audit-2026-09`
-- commit di base: `6611c185adc9a658a075519b4316386f0bb48656`
 - host: Apple M4 Max, 16 CPU logiche, 64 GiB, macOS 27.0 build 26A5421a
 - Python 3.12.11; TenSEAL 0.3.17 (`tenseal.sealapi`, Microsoft SEAL)
 - `ckks_varco.py` SHA-256:

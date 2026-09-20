@@ -1,0 +1,68 @@
+{
+  "completed_at": "2026-09-20T18:28:57.023248+00:00",
+  "stage": 4,
+  "status": "complete",
+  "four_step_plan_complete": true,
+  "baseline_changed": false,
+  "source_copies_unmodified": {
+    "original_files": 131,
+    "corrected_files": 134
+  },
+  "reused_families": 3,
+  "queries": 216,
+  "final_lwe_independently_decoded": 648,
+  "all_original_and_corrected_outputs_correct": true,
+  "all_original_bytes_equal_archives": true,
+  "primary_pairs": 60,
+  "secondary_pairs": 12,
+  "primary_ratio": 1.0687374561630976,
+  "primary_cost_percent": 6.873745616309757,
+  "conditional_bootstrap95_ratio": [
+    1.0620586546059834,
+    1.0751585086676914
+  ],
+  "median_paired_extra_seconds": 0.120721667,
+  "external_load_flagged_measured_queries": 144,
+  "load_unknown_measured_queries": 67,
+  "temporally_covered_measured_queries": 144,
+  "exclusions": 0,
+  "frozen_files_unchanged": 289,
+  "originals_and_protected_files_unchanged": 269,
+  "native_processes_live_at_completion": [],
+  "other_research_remains_paused": true,
+  "remaining_in_this_plan": [],
+  "general_research_limits_still_open": [
+    "Formal composed failure bound",
+    "Generalization to unseen keys and input populations",
+    "Circuit privacy",
+    "Biometric validation"
+  ],
+  "evidence_sha256": {
+    "RESULT.md": "46d19787211acf8322f7119f5a1918ed2a253a780477e9f092df0435bd237235",
+    "PROTOCOL.json": "bc61748596afb1f9cf481633a0258f88408c5c61ab3db55d1e8f6a4a309498e8",
+    "FREEZE.json": "d8bbc4a99849ae7f3f86edb700731b59fdafa0a3c98f4d56801a19cf5e49d41b",
+    "BUILD.json": "2b68033ec704487771b7a64faebb6c2fd34a698a1afb24ce83643d9441918ae9",
+    "VERIFICATION.json": "0d8ca8e5d56c34a59400e691772c55761d3628e545359cb3a669c5f6e79966d3",
+    "TIMING_RESULT.json": "35836c15f36749a5d112182ca02c9433574b608e03245236aadc7d5b01ae6c33",
+    "SUMMARY_BINDING_FREEZE.json": "6c5ca0a9ffff8f142f4adfbb851838a2e705dac29c338c98a97059b764bedbdb",
+    "SUMMARY_BINDING_AUDIT.json": "cfeb41c8813a1b0df561eb868c32967526e3168057f323b2b48a20a0aecc4a9c",
+    "verified_summary.py": "1e115f9f9d2cf2f33ec88ff8ae3df469ef61425be29a38c618917c95602b711a",
+    "review/SOURCE_REVIEW.md": "6418baacfc0ba15714a2660040033e9cd291b02dde5f4502207c81029a077dfa",
+    "NATIVE_WINDOW_RELEASE.json": "49246329de23edb2815d3c25b92ad360d3f0704fba1966566857c9f52196f6d7"
+  },
+  "audit_sha256": {
+    "GATE_0": "4a179f27b77a1ddd1e7990dcf18d7f70a01d4d048d168b3a010c293c1cd4eeb3",
+    "GATE_1": "d09cdfc3b86851258aeaefab3e3c123aa3d20f0deaf17e270f9e1dbb5adb4af0",
+    "GATE_2": "52ed507f887014923fa4792975e43a530ad4767b9ebd75b74e844534ce7e67f0",
+    "MEASURE_0": "532303b995ad68456562d969a1ec83496930222108c5465800907bd62a3fa682",
+    "MEASURE_1": "fe97b2e30c10c76fc359303d4aae6b0212e92330d55df775ad3a17b7e11a4922",
+    "MEASURE_2": "931a31c87201f90d62cb19fe8de7a6e353ae0c797836669c707e3fd6e5577d66"
+  },
+  "current_document_sha256": {
+    "README.md": "09608e2ec7b5f2df20d24f3df97639c11fcb962c2c424370668e1f414abf3425",
+    "findings.md": "81fce9c2548e6f52b3b94a3693add2cc75985a979c4b453a294e5821c41874b0",
+    "docs/selector-repair-20260920.md": "ac00bdc52f45f7b48625c748b581ab39ed754266f85d2220505d7ca61dfca0e2",
+    "docs/percorso-sperimentale-20260920.md": "a6f879f35c21f60841111c5200e110208eedda3576360c2b5cd5eaa732a37079",
+    "docs/selector-direct-cost-20260920.md": "cc23d35e6f48773102dc485ea5793b57e9953f198cc7a898a98e8f812d09167c"
+  }
+}

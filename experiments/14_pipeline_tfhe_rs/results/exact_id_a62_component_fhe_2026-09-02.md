@@ -54,10 +54,9 @@ Le fixture includono confine accept/reject, rifiuto globale, primo e secondo ID,
 
 Il gate fail-closed A69 rilegge i log senza eseguire crittografia, impone ordine/cardinalita' delle
 fixture, binding del parametro, ricostruzione base-15, contatori, sommari e assenza di failure
-marker. Il JSON canonico risultante ha SHA-256
-`c72c22b4560093f437cce0029bef098556e27d6f1a4b520cc3180f221be5ce3a`.
+marker. Tutti questi controlli passano.
 
-## Tempi: cosa non si puo' ancora dire
+## Limiti delle misure temporali
 
 Il full harness usa un probe nullo e gallerie artificiali minimali. Alcuni casi producono
 ciphertext triviali e terminano in circa 0,04 s pur incrementando il contatore logico; i casi con
@@ -67,7 +66,7 @@ A38.
 
 Inoltre l'adapter A53 iniziale esegue parti della scan sequenzialmente e rialloca accumulatori raw.
 Serve prima una revisione latency-ready, poi un paired A44/A62 con ordine bilanciato e gli stessi
-byte cifrati. Il rapporto dei conteggi non e' una promessa automatica di secondi.
+byte cifrati. Il rapporto dei conteggi non determina il rapporto delle latenze.
 
 ## Limiti e stato
 
@@ -85,20 +84,7 @@ semantica con provenance del rumore, ma il suo ledger N=127 e' 2.434.997 possibi
 volte i 3.930 marginali conservativi A62. E' un riferimento di correttezza/formalizzazione, non
 ancora un'alternativa pratica.
 
-## Artefatti congelati
+## Dati
 
-| artefatto | SHA-256 |
-|---|---|
-| build | `8e5a4cb49edd20b2e30b7a106ec7496478264db917418e862481cb028540e1e3` |
-| test libreria Rust | `c143b72a04ef35bb9eea039d39e41fdbe678ae8d308ef4f27348258762eff5d6` |
-| test harness Rust | `326aace6a7ce27863dbd3494b022bb53bddada8ab93a7af05aba31feb5251261` |
-| dry plan | `8b89e7b92e344eeedf1e00f4454bd9b7423ab0b384813968e5b1f5cc01fc1596` |
-| small 22/22 | `84ad8ce3471f02e825c72fa400f9e51f0eabe8fd15e97ee0514a21a47ce02ee1` |
-| focused 6/6 | `931d9d57a4f47dcdc1645b194700f0cc0d41d7f310ef5cd51e300ab52d2bd258` |
-| focused 18/18 | `70450f0bcfa02f6f070bae0372b4c2c71392f04cab90aa56c00d92f067416dd6` |
-| full 96/96 | `13b9e9e20b4f03d6931b963f0f3220ba091ce2d8c90e016f4803e0a09767688e` |
-| gate JSON A69 | `c72c22b4560093f437cce0029bef098556e27d6f1a4b520cc3180f221be5ce3a` |
-| binario release eseguito | `99095bdb884bfc9be0174d4f5e487987b07692ee8eb32d6c677d3a0726a80991` |
-
-Sorgente isolato: `tmp/a62-a53-a44-integrated-prototype`. Validatore read-only:
-`tmp/a69-a62-evidence-gate`.
+[Risultato numerico del componente](exact_id_a62_component_gate_2026-09-02.json).
+Il prototipo standalone e il validatore A69 non sono inclusi qui.

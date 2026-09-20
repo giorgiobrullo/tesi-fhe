@@ -1,22 +1,5 @@
 {
   "timestamp_utc": "2026-09-01T11:36:04.226520+00:00",
-  "argv": [
-    "benchmark/demo_e2e.py",
-    "--base-url",
-    "http://127.0.0.1:18000",
-    "--preload",
-    "--positivi",
-    "20",
-    "--negativi",
-    "20",
-    "--server-binary",
-    "experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
-    "--server-pid",
-    "47887",
-    "--require-calibration-cache",
-    "--output",
-    "benchmark/results/demo_e2e_2026-09-01.csv"
-  ],
   "base_url": "http://127.0.0.1:18000",
   "platform": "macOS-27.0-arm64-arm-64bit",
   "python": "3.12.11",
@@ -128,14 +111,13 @@
       "score_abs_massimo_osservato": 926
     },
     "server_comparatore": "non_affidabile_vicino_soglia",
-    "server_binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
+    "server_binary": "experiment14::target/release/varco_demo",
     "server_binary_sha256": "82afe5639e2451ab7176fcd89040bebe55855e5241b33cf194f6b83ed467d63b",
     "server_process": {
       "pid": 47887,
-      "ps_lstart_command": "Tue Sep  1 13:31:37 2026     /Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo serve 19000 512 4 51",
       "binding": "exact_path_in_ps_command"
     },
-    "model_file": "/Users/giorgiobrullo/.insightface/models/antelopev2/antelopev2/glintr100.onnx",
+    "model_file": "model::glintr100.onnx",
     "model_file_sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf",
     "runtime_packages": {
       "insightface": "1.0.1",
@@ -144,11 +126,11 @@
       "uvicorn": "0.52.4"
     },
     "dataset": {
-      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "dataset_root": "datasets::digiface/estratto",
       "selected_image_count": 374,
       "selected_image_bytes": 7592227,
       "selected_content_manifest_sha256": "563bee6f660a30f05292287f1e348c7b151bf84d2fe47eb4a3c8c4a305d41408",
-      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
       "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
       "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
       "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"

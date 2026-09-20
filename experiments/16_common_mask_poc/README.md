@@ -1,20 +1,20 @@
-# Esperimento 16 — common-mask TFHE: benchmark di primitive e POC pianificato
+# Esperimento 16 - common-mask TFHE: primitive e piano del prototipo
 
 Questa directory conserva il microbenchmark usato il 2 settembre 2026 per valutare le
-primitive **common-mask LWE** sperimentali di `tfhe-rs 1.7.0`. La dipendenza è bloccata
+primitive common-mask LWE sperimentali di `tfhe-rs 1.7.0`. La dipendenza è bloccata
 esattamente a `=1.7.0`; i due `Cargo.lock` conservano anche la risoluzione transitiva usata.
 
-Il risultato importante è circoscritto: su questa macchina, con precisione p=2 e quattro
+Il risultato riguarda queste condizioni: su questa macchina, con precisione p=2 e quattro
 body per maschera, uno stage di 128 PBS logiche ha margine sufficiente per giustificare un
-POC. **Non è ancora un argmin common-mask, non misura la pipeline completa e non dimostra
-la correttezza dell'identificazione.**
+POC. Non è ancora un argmin common-mask, non misura la pipeline completa e non dimostra
+la correttezza dell'identificazione.
 
 ## Contenuto
 
-- `src/main.rs`: copia semanticamente identica del microbenchmark common-mask originariamente
-  eseguito da `/private/tmp/tfhe-cm-bench/src/main.rs`; l'unica trasformazione è `cargo fmt`.
+- [src/main.rs](src/main.rs): microbenchmark common-mask semanticamente identico al sorgente
+  eseguito nelle misure; l'unica trasformazione è `cargo fmt`.
 - `ordinary_baseline/`: sorgente del benchmark ordinary/Rayon usato come baseline. Il solo
-  cambiamento funzionale rispetto al materiale temporaneo è il pin del manifest da `1.7.0`
+  cambiamento funzionale rispetto al sorgente misurato è il pin del manifest da `1.7.0`
   a `=1.7.0`; anche questo sorgente è stato soltanto formattato con `cargo fmt`.
 - `results/2026-09-02_common_mask_primitives.txt`: ambiente, comandi di riproduzione, misure
   conservate e limiti metodologici.
@@ -34,8 +34,7 @@ batch PBS seriale stampata dallo stesso programma.
 
 ## Riproduzione
 
-Non eseguire questi comandi mentre sono attivi altri benchmark CPU della tesi. Dalla presente
-directory:
+Per misure confrontabili, usare una CPU libera da altri benchmark. Dalla presente directory:
 
 ```sh
 RAYON_NUM_THREADS=16 cargo run --release --locked -- 4x2
@@ -64,11 +63,11 @@ della shell.
 - Le dimensioni delle chiavi sono i payload dei container calcolati dal programma, non il
   picco RSS o la dimensione serializzata. Escludono chiavi segrete, accumulatori, ciphertext,
   allocator e la BSK standard eliminata dopo la conversione Fourier.
-- Nessuna misura qui autorizza un claim di speedup end-to-end per l'argmin esatto.
+- Queste misure non stabiliscono un'accelerazione dell'intero argmin esatto.
 
-## Perché p=2 è solo una route di ricerca
+## Limiti dei parametri p=2
 
-Il circuito exact-ID corrente usa LUT a 16 stati per OR a fan-in quattro, transizioni del
+Il circuito exact-ID usato come riferimento il 2 settembre usa LUT a 16 stati per OR a fan-in quattro, transizioni del
 comparatore, aggiornamenti del candidato e output raggruppato. `CM_PARAM_4_2_MINUS_64` offre
 solo quattro stati: prima di riusare i numeri di questo benchmark, tali LUT devono essere
 scomposte in microstep a due bit e lo stato deve restare common-mask fra gli stage.
@@ -84,9 +83,12 @@ Inoltre, in `tfhe-rs 1.7.0`:
 Il packing ripetuto a ogni livello può consumare il vantaggio osservato. Anche la memoria
 delle sole chiavi valutative misurate è sostanziale: circa 435,7 MiB per p2/w4.
 
-## POC falsificabile
+## Piano del prototipo al 2 settembre 2026
 
-### POC A — stage senza comunicazione fra slot
+I criteri seguenti documentano il piano successivo al microbenchmark.
+Il lavoro successivo è descritto nell'esperimento [24](../24_frontiere_common_mask_bgv/README.md).
+
+### POC A - stage senza comunicazione fra slot
 
 Implementare quattro aggiornamenti booleani/2-bit indipendenti per gruppo, con packing una
 sola volta, CM key switch, CM PBS e output mantenuto in forma common-mask. Decifrare e
@@ -99,10 +101,10 @@ Criteri di successo:
 - almeno 1,5× rispetto alla baseline ordinary includendo il bridge iniziale;
 - memoria delle chiavi e picco RSS registrati separatamente.
 
-### POC B — riduzione cross-slot, vero go/no-go
+### POC B - riduzione cross-slot
 
 Implementare almeno una OR/prefix reduction di quattro slot, conservando la rappresentazione
-common-mask. La route è **no-go** se occorre estrarre e reimpacchettare a ogni livello oppure
+common-mask. Il criterio esclude la variante se occorre estrarre e reimpacchettare a ogni livello oppure
 se packing e trasformazioni consumano il margine temporale rispetto alla baseline ordinary.
 Solo dopo questo test ha senso tentare l'intero first-argmin con soglia del vincitore e ID
 cifrato.
@@ -121,3 +123,10 @@ cifrato.
   <https://github.com/zama-ai/tfhe-rs/blob/tfhe-rs-1.7.0/tfhe/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_packing.rs#L12-L116>
 - Helper LUT e TODO per funzioni distinte:
   <https://github.com/zama-ai/tfhe-rs/blob/tfhe-rs-1.7.0/tfhe/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_programmable_bootstrapping/mod.rs#L11-L51>
+
+## Provenienza
+
+[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
+dai documenti storici e dalle copie redatte. I digest degli esperimenti
+identificano le esecuzioni originali; questa pubblicazione non aggiunge
+una nuova compilazione nativa o una nuova prova FHE.

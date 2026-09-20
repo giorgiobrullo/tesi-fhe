@@ -1,15 +1,13 @@
-# Explicitly adapted A126 three-digit control
+# A126 control with three identity digits
 
-This source-only library preserves the frozen A126 score, fused extraction and
-bitwise-elimination arithmetic while extending gallery admission and A53 output
-to three base-15 ID digits. Its package is `a126_wide_control_20260906`, separate
-from the frozen `baseline_20260905_tfhe17` arm and from selected M3. It is not
-an unchanged older baseline or a measured scaling result. Root owns compilation,
-all noisy FHE and later native51/native52 paired experiments.
+The `a126_wide_control_20260906` library extends A126 gallery admission and
+A53 output to three base-15 ID digits. It retains the score computation,
+fused extraction and bitwise elimination. This is the explicitly adapted
+A126_3 control used for wider comparisons with M3, not an unchanged baseline.
 
 ## API and admitted domain
 
-The root exports inherited `TemplateView`, `ScoreDomain`, native A44 parameter
+The crate exports inherited `TemplateView`, `ScoreDomain`, native A44 parameter
 binding and other baseline types. The new public module is `a126_wide`:
 
 - `MAX_GALLERY_SIZE=3374`, `ID_BASE=15`, `ID_DIGITS=3`.
@@ -39,21 +37,17 @@ low+15*middle+225*high, with0 for reject and1..actualN for an identity. Keys can
 be the same ordinary A44 family used by M3, but its native51 input must be
 separately encrypted for M3; do not relabel either input profile.
 
-## Preserved prefix and exact exceptions
+## Score prefix and wider output
 
-The six copied origin files and new source are pinned in `audit`. The original
-private_argmin.rs, a53_scan.rs, and a53_scan/fhe.rs keep all their original bytes
-with only one new child-module declaration appended. lib.rs appends a public
-alias. The original128-limited A126 and two-digit A53 functions remain present
-and unchanged. Cargo only renames the library package and omits the old pilot
-binary declaration. The fused candidate-zero LUT is byte-identical.
+The original N128-limited A126 and two-digit A53 functions remain available.
+The `a126_wide` module adds a separate limit and output format.
 
-The new `private_argmin/wide_control.rs` copies the full active A126 prefix
+The new `private_argmin/wide_control.rs` uses the full A126 score prefix
 through completed bitwise elimination, including the old setup preparations,
 and invokes the unchanged native backend. Public validation/Cauchy/planner
-bodies are copied exactly into a scope with MAX3374. The prefix has these
+bodies use a separate scope with MAX3374. The prefix has these
 explicit exceptions: new function/result names, an adjusted relative path to
-the same frozen LUT bytes, and normalization in one unused old group3 LUT.
+the same public LUT bytes, and normalization in one unused old group3 LUT.
 The actual score product, extraction, top classification, candidate elimination,
 radix15 reductions, refresh fusion and refresh schedule are untouched.
 
@@ -63,16 +57,13 @@ N512 that unused high value reaches32 and overflows debug arithmetic. The new
 copy prepares `(ID/16) mod32` only for that unused high value. Every resulting
 u64 torus word equals the old release-wrapping word, and multiplication now
 fits in both build profiles. This exception is explicitly covered by an
-all-ID key-free test and source-diff guard. Its allocations and preparation
-loops remain in source; machine-code optimization and actual setup cost still
-require the later compiled/runtime check.
+all-ID key-free test and source-diff guard. Its allocation and preparation loops remain in the evaluated algorithm;
+source-level work counts do not isolate their compiled runtime cost.
 
 The former two-digit scan/output tail is replaced by the explicit wider tail.
 The old backend implementation, PBS methods, raw LUT helper, group4 local-first,
 radix15 prefix and digit reduction helpers are reused, not rewritten.
-The existing experimental/source gate checks the inherited A44 core premises;
-it is not proof that these new three-root source files were previously run.
-The new contract and root's whole-source digest must identify this adaptation.
+The three-root output uses a distinct contract from the two-digit service.
 
 ## Constructive three-digit A53 output
 
@@ -114,31 +105,21 @@ KS21N+8R(N)-1, marginals29N+8R(N)-1, and2N initial samples.
 
 These counts are not latency estimates or success probabilities.
 
-## Key-free checks and next actual gate
+## Tests and limitations
 
-Eight tests are registered under `private_argmin::wide_control::tests`:
-source-exact prefix/admission preservation; unused-LUT release-word equality;
-all3375 ID codes and3374 possible last-group layouts with every error-63..63
-(8675751 three-lane coefficient checks); old dual-body compatibility and the
-N228 parity case; malformed layouts and bounds; all-size ledgers with old
-A126 prefix equality and larger-size anchors; original planner/guard semantics;
-and68 executions of the actual generic scan control flow on an exact plaintext
-backend over17 gallery sizes and reject/late-ID/tie scenes. That last test is
-not a noisy backend or an end-to-end A126 execution.
+Eight `private_argmin::wide_control::tests` cover prefix/admission invariants,
+unused-LUT torus-word equality, all 3375 ID codes, 3374 last-group layouts
+with displacements −63..63 (8,675,751 coefficient checks), dual-body
+compatibility, the N228 parity case, invalid layouts, size-dependent counts
+and 68 executions of the scan on an exact plaintext backend.
+From this directory:
 
-Root's filter is exactly:
-
-```text
-cargo test --manifest-path candidate/Cargo.toml -p a126_wide_control_20260906 --lib wide_control::tests:: --locked --offline
+```sh
+cargo test --manifest-path ../candidate/Cargo.toml -p a126_wide_control_20260906 --lib wide_control::tests:: --locked
 ```
 
-The tests are supplied, not reported as executed by the author. Eight changed
-or new Rust files pass syntax-only parsing; this is not a type check or build.
-Retained historical tests include FHE and are excluded by this filter.
-
-After compilation and these checks pass, run real noisy three-digit cases
-with native52 inputs and actual count binding. The intended matched sizes are
-224/225/256/512/1024 against M3, under the same key family, query plaintext,
-templates and aligned domain. Existing A1262 remains a separate unchanged
-control at1..128. Wider source coverage does not promote a new failure bound,
-held-out biometric result, sustained-runtime result or measured speedup.
+The plaintext backend does not execute noisy FHE. The [larger-size pilot](../../../README.md)
+uses actual native52 inputs for A126_3 and separately encrypted native51
+inputs for M3 at N224/225/256/512/1024. The shared ordinary key family does
+not make those input profiles interchangeable. One pilot does not establish
+a failure bound, biometric accuracy or sustained-runtime performance.

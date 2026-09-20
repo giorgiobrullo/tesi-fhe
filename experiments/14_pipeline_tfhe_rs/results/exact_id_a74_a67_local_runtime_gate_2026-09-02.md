@@ -1,4 +1,4 @@
-# A74 — gate runtime locale del servizio A67/A62
+# A74 - gate runtime locale del servizio A67/A62
 
 Data: 2 settembre 2026.
 
@@ -26,22 +26,14 @@ Tutti i 31 casi negativi previsti sono stati rifiutati:
 - 9 output legacy, base-16, troncati, con una sola LWE o binding errato.
 
 I rifiuti lato server non riportano un conteggio PBS: avvengono prima della valutazione FHE. La
-chiave segreta non e' stata installata nel server; il materiale effimero e' stato rimosso alla
-fine del gate.
+chiave segreta non e' stata installata nel server; le due query usano una nuova famiglia effimera.
 
-## Audit indipendente del report
+## Controllo dei risultati
 
-Il report JSON e' stato riletto separatamente verificando:
-
-1. coerenza tra i 31 casi e i quattro subtotali;
-2. uguaglianza tra output atteso e osservato per entrambe le query;
-3. ricostruzione base-15 dei codici `16` e `0`;
-4. hash SHA-256 del binario A71 e dei cinque sorgenti dichiarati;
-5. assenza di promozione e dichiarazione esplicita del limite del campione.
-
-L'audit passa. Il binario verificato ha SHA-256
-`35dd29890573790158d1174f391b83c607693183f663e79fbdfc69f658819021` e dichiara la variante
-`a62-a50-a53-radix15-group4-two-p16-v1`.
+La verifica del report conferma i 31 rifiuti e i quattro subtotali,
+l'uguaglianza fra output attesi e osservati e la ricostruzione base-15 dei
+codici 16 e 0. Il programma usa la variante
+`a62-a50-a53-radix15-group4-two-p16-v1` del core A62.
 
 ## Limite della claim
 
@@ -57,8 +49,6 @@ zero**, e che il nuovo wire rifiuta i formati incompatibili. Non prova ancora:
 Per questi motivi A67 resta un servizio candidato e A62 resta un componente FHE valido, non un
 nuovo percorso promosso.
 
-## Artefatti
+## Dati
 
-- `exact_id_a74_a67_local_runtime_gate_2026-09-02.json`: report machine-readable;
-- `exact_id_a74_a67_local_runtime_command_2026-09-02.log`: sequenza temporale del gate;
-- `exact_id_a74_a67_local_runtime_server_2026-09-02.log`: log del servizio senza chiave segreta.
+[Report numerico del servizio](exact_id_a74_a67_local_runtime_gate_2026-09-02.json).

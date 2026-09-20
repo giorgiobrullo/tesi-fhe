@@ -1,14 +1,8 @@
 {
-  "argv": [
-    "benchmark/fhe_exact_id_paired_a29_a33.py",
-    "--run",
-    "--timeout",
-    "900"
-  ],
   "artifacts": {
-    "csv": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.csv",
+    "csv": "benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.csv",
     "csv_sha256": "c61f99136912b667cc051f4d33dd2c3cb890ceb891eb26c6c70468684b460329",
-    "json": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.json",
+    "json": "benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.json",
     "publication": "atomic same-filesystem hard-link; existing files are never replaced"
   },
   "blocks": [
@@ -56,39 +50,23 @@
       "seed": 29092026,
       "server_processes": {
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "50919",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:50919",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 22703,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 50919 512 4",
           "ps_started": "Wed Sep  2 13:56:17 2026"
         },
         "a33": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
-            "serve",
-            "50920",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
           "bind_address": "127.0.0.1:50920",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "expected_binary_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "label": "a33",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "observed_executable_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "pid": 22706,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo serve 50920 512 4",
           "ps_started": "Wed Sep  2 13:56:17 2026"
         }
       },
@@ -1446,39 +1424,23 @@
       "seed": 30092029,
       "server_processes": {
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "57079",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:57079",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 24186,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 57079 512 4",
           "ps_started": "Wed Sep  2 14:03:37 2026"
         },
         "a33": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
-            "serve",
-            "57080",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
           "bind_address": "127.0.0.1:57080",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "expected_binary_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "label": "a33",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "observed_executable_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "pid": 24183,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo serve 57080 512 4",
           "ps_started": "Wed Sep  2 14:03:37 2026"
         }
       },
@@ -2836,39 +2798,23 @@
       "seed": 31092032,
       "server_processes": {
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "63675",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:63675",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 25768,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 63675 512 4",
           "ps_started": "Wed Sep  2 14:11:33 2026"
         },
         "a33": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
-            "serve",
-            "63676",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
           "bind_address": "127.0.0.1:63676",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "expected_binary_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "label": "a33",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "observed_executable_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "pid": 25773,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo serve 63676 512 4",
           "ps_started": "Wed Sep  2 14:11:33 2026"
         }
       },
@@ -4226,39 +4172,23 @@
       "seed": 32092035,
       "server_processes": {
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "55866",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:55866",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 29408,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 55866 512 4",
           "ps_started": "Wed Sep  2 14:20:37 2026"
         },
         "a33": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
-            "serve",
-            "55867",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
           "bind_address": "127.0.0.1:55867",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "expected_binary_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "label": "a33",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "observed_executable_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "pid": 29404,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo serve 55867 512 4",
           "ps_started": "Wed Sep  2 14:20:37 2026"
         }
       },
@@ -5616,39 +5546,23 @@
       "seed": 33092038,
       "server_processes": {
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "64391",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:64391",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 34163,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 64391 512 4",
           "ps_started": "Wed Sep  2 14:29:16 2026"
         },
         "a33": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
-            "serve",
-            "64392",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
           "bind_address": "127.0.0.1:64392",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "expected_binary_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "label": "a33",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "observed_executable_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "pid": 34166,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo serve 64392 512 4",
           "ps_started": "Wed Sep  2 14:29:16 2026"
         }
       },
@@ -7006,39 +6920,23 @@
       "seed": 34092041,
       "server_processes": {
         "a29": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
-            "serve",
-            "56610",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102",
           "bind_address": "127.0.0.1:56610",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "expected_binary_path": "a29-manylut-2026-09-02::varco_demo",
           "label": "a29",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+          "observed_executable_path": "a29-manylut-2026-09-02::varco_demo",
           "pid": 38982,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo serve 56610 512 4",
           "ps_started": "Wed Sep  2 14:38:36 2026"
         },
         "a33": {
-          "argv": [
-            "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
-            "serve",
-            "56611",
-            "512",
-            "4"
-          ],
           "binary_sha256_at_launch": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
           "bind_address": "127.0.0.1:56611",
           "exact_path_verified": true,
-          "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "expected_binary_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "label": "a33",
-          "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+          "observed_executable_path": "a33-aligned-sparse-2026-09-02::varco_demo",
           "pid": 38979,
-          "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo serve 56611 512 4",
           "ps_started": "Wed Sep  2 14:38:36 2026"
         }
       },
@@ -20134,12 +20032,12 @@
     "frozen_binaries": {
       "a29": {
         "bytes": 2240816,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+        "path": "a29-manylut-2026-09-02::varco_demo",
         "sha256": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102"
       },
       "a33": {
         "bytes": 2704704,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+        "path": "a33-aligned-sparse-2026-09-02::varco_demo",
         "sha256": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59"
       }
     },
@@ -20315,144 +20213,144 @@
     "inputs_after": {
       "a29_binary": {
         "bytes": 2240816,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+        "path": "a29-manylut-2026-09-02::varco_demo",
         "sha256": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102"
       },
       "a29_snapshot_binary_manifest": {
         "bytes": 455,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/binaries.sha256",
+        "path": "a29-manylut-2026-09-02::binaries.sha256",
         "sha256": "7165dec9918115c503e9d04e0efcc357bed7647930709dfdbe4b25de32d3481c"
       },
       "a29_snapshot_input_manifest": {
         "bytes": 1513,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/inputs-before.sha256",
+        "path": "a29-manylut-2026-09-02::inputs-before.sha256",
         "sha256": "2f9aaba5c4aa585fb76d28d6f7fa43eae03104d6e9007089c538fb3f22b8881c"
       },
       "a29_snapshot_readme": {
         "bytes": 1356,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/README.md",
+        "path": "a29-manylut-2026-09-02::README.md",
         "sha256": "14e0f4624700e0635ab3445f959eabeb205164a6d58b463fa49ef09140a9ff81"
       },
       "a29_source_patch": {
         "bytes": 388796,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a29_manylut_source_2026-09-02.patch",
+        "path": "benchmark/patches/a29_manylut_source_2026-09-02.patch",
         "sha256": "7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54"
       },
       "a33_binary": {
         "bytes": 2704704,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+        "path": "a33-aligned-sparse-2026-09-02::varco_demo",
         "sha256": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59"
       },
       "a33_snapshot_binary_manifest": {
         "bytes": 357,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/binaries.sha256",
+        "path": "a33-aligned-sparse-2026-09-02::binaries.sha256",
         "sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5"
       },
       "a33_snapshot_input_manifest": {
         "bytes": 2018,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/inputs-before.sha256",
+        "path": "a33-aligned-sparse-2026-09-02::inputs-before.sha256",
         "sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2"
       },
       "a33_snapshot_readme": {
         "bytes": 2697,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/README.md",
+        "path": "a33-aligned-sparse-2026-09-02::README.md",
         "sha256": "a6af6551632cc1c96e7a369e317605d3d74b7e6734f92e267b7131737679b0b4"
       },
       "a33_source_patch": {
         "bytes": 534684,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a33_aligned_sparse_source_2026-09-02.patch",
+        "path": "benchmark/patches/a33_aligned_sparse_source_2026-09-02.patch",
         "sha256": "6d07077efc52e721399740ef7d443ca87ee0a6c575cd19b7a453d5109224f7f5"
       },
       "cache": {
         "bytes": 638255,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+        "path": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
         "sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99"
       },
       "config": {
         "bytes": 4146,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/config.json",
+        "path": "demo/config.json",
         "sha256": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc"
       },
       "paired_harness": {
         "bytes": 75196,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_exact_id_paired_a29_a33.py",
+        "path": "benchmark/fhe_exact_id_paired_a29_a33.py",
         "sha256": "cb41379d9f77601f321ff14c2deaf439f3b9b3fe0ec922a47feaa92d0e525910"
       },
       "validation_dependency": {
         "bytes": 69707,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_digiface_validation.py",
+        "path": "benchmark::fhe_digiface_validation.py",
         "sha256": "b54fbc7ef278e53a08ad08eed4429833a7fba62b15ba810bc12c31af4904e79d"
       }
     },
     "inputs_before": {
       "a29_binary": {
         "bytes": 2240816,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/varco_demo",
+        "path": "a29-manylut-2026-09-02::varco_demo",
         "sha256": "cb0d0c1736713ae7b7a36450456a6ea45cab5bd8ac63d0c08c78220b4aaba102"
       },
       "a29_snapshot_binary_manifest": {
         "bytes": 455,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/binaries.sha256",
+        "path": "a29-manylut-2026-09-02::binaries.sha256",
         "sha256": "7165dec9918115c503e9d04e0efcc357bed7647930709dfdbe4b25de32d3481c"
       },
       "a29_snapshot_input_manifest": {
         "bytes": 1513,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/inputs-before.sha256",
+        "path": "a29-manylut-2026-09-02::inputs-before.sha256",
         "sha256": "2f9aaba5c4aa585fb76d28d6f7fa43eae03104d6e9007089c538fb3f22b8881c"
       },
       "a29_snapshot_readme": {
         "bytes": 1356,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a29-manylut-2026-09-02/README.md",
+        "path": "a29-manylut-2026-09-02::README.md",
         "sha256": "14e0f4624700e0635ab3445f959eabeb205164a6d58b463fa49ef09140a9ff81"
       },
       "a29_source_patch": {
         "bytes": 388796,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a29_manylut_source_2026-09-02.patch",
+        "path": "benchmark/patches/a29_manylut_source_2026-09-02.patch",
         "sha256": "7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54"
       },
       "a33_binary": {
         "bytes": 2704704,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/varco_demo",
+        "path": "a33-aligned-sparse-2026-09-02::varco_demo",
         "sha256": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59"
       },
       "a33_snapshot_binary_manifest": {
         "bytes": 357,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/binaries.sha256",
+        "path": "a33-aligned-sparse-2026-09-02::binaries.sha256",
         "sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5"
       },
       "a33_snapshot_input_manifest": {
         "bytes": 2018,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/inputs-before.sha256",
+        "path": "a33-aligned-sparse-2026-09-02::inputs-before.sha256",
         "sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2"
       },
       "a33_snapshot_readme": {
         "bytes": 2697,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02/README.md",
+        "path": "a33-aligned-sparse-2026-09-02::README.md",
         "sha256": "a6af6551632cc1c96e7a369e317605d3d74b7e6734f92e267b7131737679b0b4"
       },
       "a33_source_patch": {
         "bytes": 534684,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/patches/a33_aligned_sparse_source_2026-09-02.patch",
+        "path": "benchmark/patches/a33_aligned_sparse_source_2026-09-02.patch",
         "sha256": "6d07077efc52e721399740ef7d443ca87ee0a6c575cd19b7a453d5109224f7f5"
       },
       "cache": {
         "bytes": 638255,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+        "path": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
         "sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99"
       },
       "config": {
         "bytes": 4146,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/config.json",
+        "path": "demo/config.json",
         "sha256": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc"
       },
       "paired_harness": {
         "bytes": 75196,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_exact_id_paired_a29_a33.py",
+        "path": "benchmark/fhe_exact_id_paired_a29_a33.py",
         "sha256": "cb41379d9f77601f321ff14c2deaf439f3b9b3fe0ec922a47feaa92d0e525910"
       },
       "validation_dependency": {
         "bytes": 69707,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_digiface_validation.py",
+        "path": "benchmark::fhe_digiface_validation.py",
         "sha256": "b54fbc7ef278e53a08ad08eed4429833a7fba62b15ba810bc12c31af4904e79d"
       }
     },

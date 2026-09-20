@@ -62,7 +62,7 @@ let CFG = null;
 
 navigator.mediaDevices?.getUserMedia({video:{width:640,height:480}})
   .then(s => $("#video").srcObject = s)
-  .catch(() => nota("telecamera non disponibile — usa «senza telecamera»"));
+  .catch(() => nota("Telecamera non disponibile. Usa «senza telecamera»."));
 
 const nota = t => $("#nota").textContent = t;
 function esito(classe, titolo, sotto=""){

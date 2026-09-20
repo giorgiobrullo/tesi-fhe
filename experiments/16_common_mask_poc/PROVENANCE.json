@@ -1,0 +1,33 @@
+{
+  "schema": "publication-provenance.v1",
+  "experiment": 16,
+  "publication_date": "2026-09-18",
+  "path_base": "directory containing this manifest",
+  "scope": "All distributed package files except the introductory README.md and this manifest. File entries describe publication bytes, not a new runtime qualification.",
+  "digest_semantics": {
+    "sha256": "SHA-256 of the current public file bytes.",
+    "historical_selection_sha256": "SHA-256 of the same path in the preserved 2026-09-09 publication selection, present only when those bytes differ. These are historical identities, not hashes of the current public copy.",
+    "unchanged_files": "When historical_selection_sha256 is absent, the public bytes match the preserved selection unless historical_selection explicitly states otherwise.",
+    "historical_evidence": "Original evidence identities retained from the source provenance records. A digest-only record is not a downloadable file; RESULTS.json is a curated summary, not the full original evidence.",
+    "embedded_run_digests": "SOURCE_DIGEST files and recorded source/binary identifiers belong to historical runs or ancestors. Use the per-file hashes below to identify this distribution."
+  },
+  "historical_selection": {
+    "date": "2026-09-09",
+    "commit": "38e8ccdf15985b99e3ff960a4eccaa83d2ee56cd"
+  },
+  "file_count": 9,
+  "files": {
+    ".gitignore": {"sha256": "a86e78717478b41d014e6c455781d3f9ed117ce5ab3960bbb4ee9ee639c84f70", "bytes": 36},
+    "Cargo.lock": {"sha256": "1f87024c86459bbf5c3ed8a1cde82026b56a7a8db429a3041e88d3e4ee62407c", "bytes": 15435},
+    "Cargo.toml": {"sha256": "19164e11954f93962fe2d40a2d1383c0221d76a29e94edd77cb45884459e2042", "bytes": 248},
+    "ordinary_baseline/Cargo.lock": {"sha256": "ec4b3abcc04080f90e81905e2276c2b12387107d543725627751213222e6d4b7", "bytes": 18619},
+    "ordinary_baseline/Cargo.toml": {"sha256": "52c664468a8fa14df8f4c17a9354a98de90fbddd4d97a9b83ea69e52d23851c0", "bytes": 187},
+    "ordinary_baseline/src/main.rs": {"sha256": "84537ff399986b43348b112f19d3ba0f2938507889fafb4beda3aa547e1e9cd1", "bytes": 5802},
+    "results/2026-09-02_common_mask_primitives.txt": {"sha256": "e577eef5c5b0873291149938e9ab3343bd26b50555bd0c53a1d12f7d2c292797", "bytes": 4567},
+    "rust-toolchain.toml": {"sha256": "54b8e00ea6c530bbecda9bfa386552297a06b91ef09a3abcc500850cf29063e7", "bytes": 76},
+    "src/main.rs": {"sha256": "be985c635adb7f6f0166caaf8d532df5ce63aaffff9d5a0ebced981c84219b22", "bytes": 10610}
+  },
+  "historical_evidence": [
+
+  ]
+}

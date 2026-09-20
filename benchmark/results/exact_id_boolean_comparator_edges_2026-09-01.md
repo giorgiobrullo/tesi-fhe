@@ -23,15 +23,9 @@ La revisione misurata applicava i primi tre hardening senza cambiare il contratt
 
 Il server restituiva un solo LWE: `0=rifiuto`, `i+1=identita' accettata`.
 
-Comando:
-
-```sh
-RAYON_NUM_THREADS=16 target/release/argmin_bucket_bits_periodic \
-  --run --keys 1 --sizes 127,128 --cases edges --real-probes 1 --allow-slow
-```
-
-`--allow-slow` disabilita soltanto il gate storico sotto 10 secondi; non modifica circuito,
-oracolo o controllo di correttezza.
+Il controllo includeva una chiave, gallerie N127/N128 e casi di frontiera. La soglia
+diagnostica di 10 secondi era disabilitata come condizione di arresto; circuito,
+oracolo e controlli di correttezza erano invariati.
 
 ## Risultati
 
@@ -67,3 +61,7 @@ Il run verificava i sentinel di rifiuto, tutti i sette bit del codice 127, l'ott
 custom, i riscalamenti della selezione, la sottrazione non rinfrescata dei winner e la somma finale
 a `Delta=2^55`; gli hardening successivi hanno rimosso questi percorsi, ma richiedono evidenza di
 validazione separata.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.

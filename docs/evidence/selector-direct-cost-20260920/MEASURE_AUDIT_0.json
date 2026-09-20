@@ -1,0 +1,230 @@
+{
+  "schema": "selector-direct-independent-audit.v1",
+  "passed": true,
+  "stage": "measure",
+  "family": 0,
+  "pairs": 30,
+  "queries": 60,
+  "decoded_payloads": 180,
+  "candidate_correct": true,
+  "candidate_strict_expected_half_cell": true,
+  "stock_correct": true,
+  "stock_failed_pairs": [],
+  "stock_half_cell_failed_pairs": [],
+  "all_original_archived_bytes_equal": true,
+  "cross_arm_word_equality_required": false,
+  "maximum_absolute_output_residual_torus": {
+    "stock": 3349370732862921,
+    "repair": 2909885494360018
+  },
+  "run_directory": "local-archive:tmp/selector-next-steps-20260920/step4/measure-0",
+  "queries_sha256": "52a77bc3db96520acc2421f2076a4d094498c446312931a2b4df1a138d6a2430",
+  "protocol_sha256": "bc61748596afb1f9cf481633a0258f88408c5c61ab3db55d1e8f6a4a309498e8",
+  "freeze_sha256": "d8bbc4a99849ae7f3f86edb700731b59fdafa0a3c98f4d56801a19cf5e49d41b",
+  "binary_sha256": "61def36f7c8b6036e1c571487193ea2bc5df83c65fbdf82a3aa0d7b161423919",
+  "auditor_sha256": "7b41200c091cd2b9fafd1726b0109b73b1cc9cc315f96e7229e156a6e8734980",
+  "helper_pins": {
+    "tmp/selector-overhead-optimization-20260920/independent-audit/decode.py": "67cb3d8210614d74846627fb1e71d282ff465ef93393837d3701a524b720ccf5",
+    "tmp/selector-repair-20260919/independent-audit/public_work.py": "488879baf9368b7dd065b3c19f0a8624dee1928b4502c96da98312b9a1e8fddc",
+    "tmp/selector-overhead-optimization-20260920/independent-audit/public_work.py": "6743b5cb3e3e9b81782eb33830f320a7c45411e40d23b437c56e97a60bbf474d"
+  },
+  "gate_audit_sha256_by_family": {
+    "0": "4a179f27b77a1ddd1e7990dcf18d7f70a01d4d048d168b3a010c293c1cd4eeb3",
+    "1": "d09cdfc3b86851258aeaefab3e3c123aa3d20f0deaf17e270f9e1dbb5adb4af0",
+    "2": "52ed507f887014923fa4792975e43a530ad4767b9ebd75b74e844534ce7e67f0"
+  },
+  "audited_unix_ns": 1789928341001489000,
+  "limitations": [
+    "Three previously generated B families reused; not fresh replication of earlier evidence.",
+    "Saved input GLWE is hash-bound to the prior corpus, not independently decrypted again.",
+    "Final output checks do not certify every intermediate or a formal failure probability.",
+    "Reference semantic failures are reported without removing measured pairs."
+  ],
+  "timing": {
+    "primary_measured_pairs": 20,
+    "secondary_measured_pairs": 4,
+    "warmup_pairs_excluded": 6,
+    "primary_geomean_ratio": 1.068188637219617,
+    "per_scene_geomean_ratio": {
+      "n127_uniform_general": 1.0832369887640294,
+      "n128_uniform_aligned": 1.0639567542873019,
+      "n129_alternating_thresholds": 1.0669991029511796,
+      "n128_block_thresholds": 1.0906558707454825,
+      "n225_uniform_general": 1.0369086956013984,
+      "n128_anchor_fallback_control": 1.0478131356269234
+    },
+    "paired_ratios": [
+      {
+        "family": 0,
+        "scene": "n127_uniform_general",
+        "round": 0,
+        "primary": true,
+        "ratio": 1.1499957445541384
+      },
+      {
+        "family": 0,
+        "scene": "n128_uniform_aligned",
+        "round": 0,
+        "primary": true,
+        "ratio": 1.073384374308339
+      },
+      {
+        "family": 0,
+        "scene": "n129_alternating_thresholds",
+        "round": 0,
+        "primary": true,
+        "ratio": 1.0153145927753042
+      },
+      {
+        "family": 0,
+        "scene": "n128_block_thresholds",
+        "round": 0,
+        "primary": true,
+        "ratio": 1.0858377083219535
+      },
+      {
+        "family": 0,
+        "scene": "n225_uniform_general",
+        "round": 0,
+        "primary": true,
+        "ratio": 1.028419456519902
+      },
+      {
+        "family": 0,
+        "scene": "n128_anchor_fallback_control",
+        "round": 0,
+        "primary": false,
+        "ratio": 1.0774122933237318
+      },
+      {
+        "family": 0,
+        "scene": "n127_uniform_general",
+        "round": 1,
+        "primary": true,
+        "ratio": 1.06675907055705
+      },
+      {
+        "family": 0,
+        "scene": "n128_uniform_aligned",
+        "round": 1,
+        "primary": true,
+        "ratio": 1.0581063739949859
+      },
+      {
+        "family": 0,
+        "scene": "n129_alternating_thresholds",
+        "round": 1,
+        "primary": true,
+        "ratio": 1.0491527468547157
+      },
+      {
+        "family": 0,
+        "scene": "n128_block_thresholds",
+        "round": 1,
+        "primary": true,
+        "ratio": 1.0342691573657594
+      },
+      {
+        "family": 0,
+        "scene": "n225_uniform_general",
+        "round": 1,
+        "primary": true,
+        "ratio": 1.050272960922926
+      },
+      {
+        "family": 0,
+        "scene": "n128_anchor_fallback_control",
+        "round": 1,
+        "primary": false,
+        "ratio": 0.9937372253184767
+      },
+      {
+        "family": 0,
+        "scene": "n127_uniform_general",
+        "round": 2,
+        "primary": true,
+        "ratio": 1.0469447408726433
+      },
+      {
+        "family": 0,
+        "scene": "n128_uniform_aligned",
+        "round": 2,
+        "primary": true,
+        "ratio": 1.0815449811226467
+      },
+      {
+        "family": 0,
+        "scene": "n129_alternating_thresholds",
+        "round": 2,
+        "primary": true,
+        "ratio": 1.104790918661577
+      },
+      {
+        "family": 0,
+        "scene": "n128_block_thresholds",
+        "round": 2,
+        "primary": true,
+        "ratio": 1.1530846781307575
+      },
+      {
+        "family": 0,
+        "scene": "n225_uniform_general",
+        "round": 2,
+        "primary": true,
+        "ratio": 1.035757606877584
+      },
+      {
+        "family": 0,
+        "scene": "n128_anchor_fallback_control",
+        "round": 2,
+        "primary": false,
+        "ratio": 1.0397246475140705
+      },
+      {
+        "family": 0,
+        "scene": "n127_uniform_general",
+        "round": 3,
+        "primary": true,
+        "ratio": 1.072031601373991
+      },
+      {
+        "family": 0,
+        "scene": "n128_uniform_aligned",
+        "round": 3,
+        "primary": true,
+        "ratio": 1.043197933398867
+      },
+      {
+        "family": 0,
+        "scene": "n129_alternating_thresholds",
+        "round": 3,
+        "primary": true,
+        "ratio": 1.1013789486850043
+      },
+      {
+        "family": 0,
+        "scene": "n128_block_thresholds",
+        "round": 3,
+        "primary": true,
+        "ratio": 1.0926756645955942
+      },
+      {
+        "family": 0,
+        "scene": "n225_uniform_general",
+        "round": 3,
+        "primary": true,
+        "ratio": 1.0333119818844705
+      },
+      {
+        "family": 0,
+        "scene": "n128_anchor_fallback_control",
+        "round": 3,
+        "primary": false,
+        "ratio": 1.0828381034283272
+      }
+    ],
+    "all_measured_pairs_retained": true,
+    "acceptance_threshold": null,
+    "scope": "Per-family signed cost; aggregate uncertainty handled separately."
+  }
+}

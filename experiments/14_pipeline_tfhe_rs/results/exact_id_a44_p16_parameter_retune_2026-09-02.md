@@ -1,8 +1,8 @@
 # A44: retuning statico dei parametri p16 per il blocco `p-fail`
 
 Data: 2026-09-02. Perimetro: TFHE-rs 0.11.3 bloccato dal `Cargo.lock`, sorgenti ufficiali
-Zama e calcoli statici. In questo audit non sono stati eseguiti Cargo, FHE, keygen o Docker; non
-sono state lette o prodotte chiavi e non sono stati modificati core, servizio, input vivi o manifest.
+Zama e calcoli statici. Questo rapporto non aggiunge compilazione, esecuzione FHE
+o validazione del servizio.
 
 ## Esito
 
@@ -202,7 +202,7 @@ precondizione del preset o assegnargli un epsilon separato. In particolare resta
 
 Per questo lo script A44 lascia intenzionalmente `end_to_end_numeric_upper = null`.
 
-## Cambio TUniform -> Gaussian: regressione formale da non nascondere
+## Cambio TUniform -> Gaussian: perdita del bound sul supporto
 
 Il bound sul supporto del rumore iniziale del probe usato nell'audit A38 sfrutta TUniform(17), che
 ha supporto deterministico finito. Passare al preset Gaussian invalida quella specifica prova a
@@ -241,11 +241,11 @@ La stessa 0.11.3 offre M1C3 max-15 multi-bit:
 | group 2 | -64.089 | 89 |
 | group 3 | -64.242 | 86 |
 
-Il core vivo rifiuta ogni `ShortintBootstrappingKey` non `Classic`; le API raw di blind rotation e
+Il core A38 ispezionato rifiuta ogni `ShortintBootstrappingKey` non `Classic`; le API raw di blind rotation e
 ManyLUT andrebbero riscritte e `deterministic_execution=false` cambia anche la riproducibilita' del
 ciphertext. Non e' il primo benchmark A44.
 
-### Preset p128, target query forte
+### Preset p128 per il target di errore della query
 
 Le sorgenti locali TFHE-rs 1.7.0 includono il preset storico v1.4
 `V1_4_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M128`: p16, max-15, `N=2048`, LWE 904,
@@ -259,15 +259,15 @@ strada. Sarebbe pero' un parameter set non gia' distribuito: richiede riesecuzio
 audit di sicurezza, congelamento dei parametri e validazione indipendente. Cambiare soltanto il
 campo `max_noise_level` del preset corrente non e' mai valido.
 
-## Piano benchmark esatto, da eseguire soltanto dopo il primary attivo
+## Disegno proposto del confronto fra parametri
 
-### Fase 0 - freeze e separazione
+### Fase 0 - riferimento e varianti
 
-1. Attendere la fine del primary corrente e congelarne risultato, hash sorgente, dataset, ordine
-   casi, toolchain e carico macchina.
+1. Fissare risultato di riferimento, versione sorgente, dataset, ordine dei casi, toolchain
+   e carico macchina.
 2. Scegliere un solo grafo per il confronto parametri: preferibilmente A41 two-LWE dopo la sua
    validazione, cosi' il terminale `Delta=2^56` non confonde l'audit upstream.
-3. Copiare il grafo in `tmp/a44-p16-retune-prototype`; nessuna modifica al live core.
+3. Materializzare una variante con il nuovo parametro e una con il parametro di riferimento.
 
 ### Fase 1 - materializzazione e guardrail
 
@@ -298,20 +298,11 @@ Un harness clear dedicato deve:
 
 ### Fase 3 - build e component FHE con chiavi nuove
 
-Solo dopo le fasi 0-2:
-
-```bash
-cd tmp/a44-p16-retune-prototype
-cargo fmt --all -- --check
-cargo test --locked --release --features diagnostic-trace --lib
-cargo run --locked --release --features diagnostic-trace \
-  --bin a44_param_retune_prototype -- --run --small-only --keys 3
-cargo run --locked --release --features diagnostic-trace \
-  --bin a44_param_retune_prototype -- --run --keys 3
-```
-
-Il CLI `--keys 3` e la stampa della ledger sono requisiti del futuro harness, non funzionalita'
-gia' esistenti. Ogni key block genera entrambe le chiavi da zero e non le persiste.
+Dopo i controlli statici, verificare formattazione, test della libreria e compilazione
+release. Il test di componente deve usare tre famiglie di chiavi fresche, iniziando dalle
+fixture piccole e poi coprendo l'intera matrice. La stampa della ledger e la selezione dei
+key block sono requisiti del prototipo proposto, il cui harness non e' incluso in questa
+distribuzione. Ogni key block genera entrambe le chiavi da zero e non le persiste.
 
 La matrice component deve includere:
 
@@ -344,16 +335,6 @@ stessa scena clear:
 - keygen, serializzazione, eval server e decode misurati separatamente;
 - RSS peak, dimensioni key/probe/response, BR/KS/marginali e hash binario registrati.
 
-Il futuro comando previsto e':
-
-```bash
-python3 benchmark/fhe_exact_id_paired_a41_params.py \
-  --baseline v0_11_m2c2_tuniform \
-  --candidate v0_11_m1c3_gaussian \
-  --gallery-sizes 8,16,32,64,127 \
-  --key-blocks 3 --warmups 1 --runs-per-cell 5 --balanced-order
-```
-
 Il report deve dare mediane per cella, rapporto paired per scena, intervallo bootstrap e geomean;
 non deve chiamarlo "stesso ciphertext". Soglia operativa preliminare: se median eval a N=127 o
 RSS peggiorano oltre il 10%, mantenere il candidato come soluzione di correttezza e aprire
@@ -368,7 +349,7 @@ numero globale richiede la ledger per-evento con una giustificazione official/eq
 
 ### Regole finali di promozione
 
-- **Retuning implementabile:** si', dopo primary, con il classic pinned M1C3.
+- **Retuning implementabile:** si', con il classic pinned M1C3 e i controlli sopra.
 - **A34/A36 native max-noise blocker:** chiuso se la ledger runtime conferma massimi 8 e 10.
 - **Multilane top residual a due radici:** coperto a raw L1 2; LUT custom ancora da provare.
 - **Query nominale p64:** dichiarabile al massimo come `<=2^-52.0498`, condizionale a tutte le
@@ -378,17 +359,12 @@ numero globale richiede la ledger per-evento con una giustificazione official/eq
 
 ## Artefatti statici e verifica eseguita
 
-- `benchmark/a44_p16_parameter_retune.py`
-- `tests/test_a44_p16_parameter_retune.py`
+- [benchmark/a44_p16_parameter_retune.py](../../../benchmark/a44_p16_parameter_retune.py)
+- [tests/test_a44_p16_parameter_retune.py](../../../tests/test_a44_p16_parameter_retune.py)
 - questo report
 
-Verifica realmente eseguita in A44:
-
-```text
-python3 -m py_compile ...                         PASS
-python3 -m unittest tests.test_a44_p16_parameter_retune -v
-Ran 9 tests ... OK
-```
+La verifica statica A44 ha superato il controllo di sintassi Python e tutti i nove test
+del modello. I comandi di riproduzione sono riportati nella fase 1.
 
 ## Fonti primarie
 
@@ -407,7 +383,7 @@ Ran 9 tests ... OK
 - Ripetizione `1-(1-p)^N` nell'optimizer:
   <https://raw.githubusercontent.com/zama-ai/concrete/v2.11.0/compilers/concrete-optimizer/concrete-optimizer/src/noise_estimator/p_error.rs>
 
-Fonti locali aggiuntive usate per congelare la versione e la compatibilita' del core:
+Sorgenti aggiuntivi ispezionati per versione e compatibilita' del core:
 
 - `experiments/14_pipeline_tfhe_rs/Cargo.lock:463-466` (`tfhe=0.11.3`);
 - `experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs:554-578` (conformance del parametro);

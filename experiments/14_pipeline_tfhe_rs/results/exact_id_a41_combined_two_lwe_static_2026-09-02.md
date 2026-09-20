@@ -2,9 +2,9 @@
 
 ## Status
 
-A41 is a source-materialized isolated prototype, not a promoted baseline. It adapts the frozen A38
-combined circuit without touching the live core, service, validator, or wire protocol. Rust/FHE
-compilation and execution were intentionally deferred while the primary A38 benchmark was active.
+A41 is a source-materialized prototype of the A38 combined circuit. This
+report covers static validation; Rust compilation and FHE execution had not
+yet been performed at this checkpoint.
 
 Standalone `rustfmt` parsed all Rust sources and reported clean formatting. The clear/count model
 and 6/6 Python unit tests passed. This is positive semantic and structural evidence, not component
@@ -64,23 +64,8 @@ The standalone model passed:
 - tail tie ID 127/128 as `(15,7)`, therefore first-winner semantics;
 - N=127 count anchors for both terminal-only and prudent variants.
 
-Commands actually executed:
-
-```bash
-.venv/bin/python -m py_compile \
-  tmp/a41-combined-two-lwe-prototype/a41_clear_and_count_model.py
-.venv/bin/python \
-  tmp/a41-combined-two-lwe-prototype/a41_clear_and_count_model.py --json
-.venv/bin/python -m unittest discover \
-  -s tmp/a41-combined-two-lwe-prototype/tests -v
-rustfmt --edition 2021 --check \
-  tmp/a41-combined-two-lwe-prototype/src/lib.rs \
-  tmp/a41-combined-two-lwe-prototype/src/private_argmin.rs \
-  tmp/a41-combined-two-lwe-prototype/src/bin/a41_combined_two_lwe_prototype.rs
-```
-
-The exact deferred Cargo/small-FHE/large-boundary/full-FHE commands are recorded in the prototype
-README. They must run before calling A41 component-FHE-validated.
+The standalone prototype is not included. Compilation and noisy evaluation
+are distinct requirements beyond this static result.
 
 ## Wire-size tradeoff
 
@@ -112,19 +97,3 @@ Still open:
 
 Therefore neither `4206p` nor `4460p` is presented as an unconditional whole-circuit failure
 probability.
-
-## Provenance
-
-| artifact | SHA-256 |
-|---|---|
-| frozen A38 input core | `9fc9013f1b322ad89d4a3902de3d945abf5aec9f335f1fb4088d73b44c151e79` |
-| A41 `Cargo.toml` | `011c4ba3851492ebb7198e63fc28eadeecf18cfb25ebe69a434717b4adf67cb8` |
-| A41 `Cargo.lock` | `fe4b80f3495010bd4e5e16215ffd51ff04fdfffd0d5097c1b11a78233cc40689` |
-| A41 `src/lib.rs` | `4b9fd53658be45c9f6870f77b3c7b934336941d4781ce31755cc699dec938514` |
-| A41 core | `8c9675e0019e106ad673e16e1a06ceed8ced35256d4b444335708cb87cfdfd35` |
-| A41 FHE harness | `991b9a5c7db8d0b9243933fe202b6cd0f6d9a05deb9ea5101ce1e8f8d8036668` |
-| clear/count model | `e2edd204f3ada5fb0730b0213fed435833255b67c205345f311483fcbcd08b43` |
-| Python tests | `ce39bcd0cdfccb34c7f91ecfda0f42630d7f9e9460769e6b439602873e18e378` |
-| prototype README | `30a064c9d80b068bcaf349f3b927ece11b3cb687168d9dcc1b7d30eb4f9af7df` |
-
-No A41 binary, key, ciphertext, or FHE result existed at the time of this report.

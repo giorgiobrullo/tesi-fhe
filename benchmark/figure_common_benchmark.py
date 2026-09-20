@@ -15,7 +15,7 @@ from matplotlib.ticker import FixedLocator, NullFormatter, NullLocator, ScalarFo
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "output/figures/progressione-fhe/benchmark-comune-20260909"
-DATA_SHA256 = "1f6ab29a739f53c48202735d73e3d5eb0beb27f40d9889113a8d1d098d343d1f"
+DATA_SHA256 = "4849f74f06852d9981ae1e883828d06e1ca9c66b7cfac59d7d47f1c041a1d9da"
 ARMS = ["concrete", "tfhe13", "a28", "a29", "a33", "a38", "a66", "r3",
         "head_m", "general", "cpu", "final"]
 

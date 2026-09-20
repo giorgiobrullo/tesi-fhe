@@ -9,7 +9,8 @@ let people = [];
 let gallerySignature = '';
 let requestSignature = '';
 let galleryLoaded = false;
-let galleryLoading = false;
+let galleryLoading = null;
+let galleryGeneration = 0;
 let galleryLastLoaded = 0;
 let editingPerson = null;
 let deletingPerson = null;
@@ -21,6 +22,7 @@ let deleteBusy = false;
 let photoGeneration = 0;
 let toastTimer;
 let pollTimer;
+let pollGeneration = 0;
 let leaving = false;
 
 function element(tag, className, text) {
@@ -100,35 +102,46 @@ function renderGallery() {
   }
 }
 
-async function loadGallery() {
-  if (galleryLoading) return;
-  galleryLoading = true;
-  try {
-    const result = await api('/api/galleria', { timeout: 10000 });
-    if (!Array.isArray(result.iscritti)) throw new Error('La galleria non è disponibile.');
-    const signature = JSON.stringify(result.iscritti);
-    if (signature !== gallerySignature || !galleryLoaded) {
-      people = result.iscritti;
-      gallerySignature = signature;
-      renderGallery();
+async function loadGallery(force = false) {
+  if (force === true) galleryGeneration += 1;
+  if (galleryLoading) return galleryLoading;
+  galleryLoading = (async function () {
+    try {
+      let generation;
+      do {
+        generation = galleryGeneration;
+        try {
+          const result = await api('/api/galleria', { timeout: 10000 });
+          if (generation !== galleryGeneration) continue;
+          if (!Array.isArray(result.iscritti)) throw new Error('La galleria non è disponibile.');
+          const signature = JSON.stringify(result.iscritti);
+          if (signature !== gallerySignature || !galleryLoaded) {
+            people = result.iscritti;
+            gallerySignature = signature;
+            renderGallery();
+          }
+          galleryLoaded = true;
+          galleryLastLoaded = Date.now();
+        } catch (error) {
+          if (generation !== galleryGeneration) continue;
+          if (!galleryLoaded) {
+            byId('gallery').setAttribute('aria-busy', 'false');
+            byId('gallery-count').textContent = 'Non disponibile';
+            byId('gallery-empty-title').textContent = 'Galleria non disponibile';
+            byId('gallery-empty-message').textContent = error.message;
+            byId('retry-gallery').hidden = false;
+          }
+        }
+      } while (generation !== galleryGeneration);
+    } finally {
+      galleryLoading = null;
     }
-    galleryLoaded = true;
-    galleryLastLoaded = Date.now();
-  } catch (error) {
-    if (!galleryLoaded) {
-      byId('gallery').setAttribute('aria-busy', 'false');
-      byId('gallery-count').textContent = 'Non disponibile';
-      byId('gallery-empty-title').textContent = 'Galleria non disponibile';
-      byId('gallery-empty-message').textContent = error.message;
-      byId('retry-gallery').hidden = false;
-    }
-  } finally {
-    galleryLoading = false;
-  }
+  })();
+  return galleryLoading;
 }
 
 function byteSize(value) {
-  if (!Number.isFinite(value)) return '—';
+  if (!Number.isFinite(value)) return 'n/d';
   if (value < 1024) return `${value} B`;
   if (value < 1024 * 1024) return `${(value / 1024).toLocaleString('it-IT', { maximumFractionDigits: 1 })} KiB`;
   return `${(value / (1024 * 1024)).toLocaleString('it-IT', { maximumFractionDigits: 1 })} MiB`;
@@ -146,7 +159,7 @@ function createRequest(request) {
   const top = element('div', 'request-top');
   const title = element('strong', '', labels[request.stato] || 'Richiesta ricevuta');
   const date = new Date(request.ora);
-  const time = element('time', 'request-time', Number.isNaN(date.getTime()) ? '—' : date.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+  const time = element('time', 'request-time', Number.isNaN(date.getTime()) ? 'n/d' : date.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
   if (!Number.isNaN(date.getTime())) {
     time.dateTime = date.toISOString();
     time.title = date.toLocaleString('it-IT');
@@ -196,12 +209,13 @@ function renderRequests(result) {
   byId('feed-footer').textContent = result.totale > 30 ? 'Ultime 30 richieste · aggiornamento automatico' : 'Aggiornamento automatico';
 }
 
-async function refreshDashboard() {
-  if (leaving) return;
+async function refreshDashboard(generation = pollGeneration) {
+  if (leaving || generation !== pollGeneration) return;
   const results = await Promise.allSettled([
     api('/api/stato', { timeout: 8000 }),
     api('/api/richieste', { timeout: 8000 }),
   ]);
+  if (leaving || generation !== pollGeneration) return;
   const statusResult = results[0];
   if (statusResult.status === 'fulfilled') {
     const status = statusResult.value;
@@ -232,7 +246,7 @@ async function refreshDashboard() {
       byId('requests-empty-message').textContent = 'Riconnessione in corso.';
     }
   }
-  if (!leaving) pollTimer = setTimeout(refreshDashboard, 1800);
+  pollTimer = setTimeout(function () { refreshDashboard(generation); }, 1800);
 }
 
 function resetCameraPreview() {
@@ -379,7 +393,7 @@ async function savePerson(event) {
     formBusy = false;
     personDialog.close();
     galleryLastLoaded = 0;
-    await loadGallery();
+    await loadGallery(true);
   } catch (error) {
     showPersonError(error.message);
   } finally {
@@ -412,7 +426,7 @@ async function deletePerson() {
     showToast('Iscrizione rimossa.');
     deleteDialog.close();
     galleryLastLoaded = 0;
-    await loadGallery();
+    await loadGallery(true);
   } catch (error) {
     byId('delete-error').textContent = error.message;
     byId('delete-error').hidden = false;
@@ -460,6 +474,7 @@ byId('confirm-delete').addEventListener('click', deletePerson);
 deleteDialog.addEventListener('cancel', function (event) { if (deleteBusy) event.preventDefault(); });
 window.addEventListener('pagehide', function () {
   leaving = true;
+  pollGeneration += 1;
   clearTimeout(pollTimer);
   camera.stop();
 });

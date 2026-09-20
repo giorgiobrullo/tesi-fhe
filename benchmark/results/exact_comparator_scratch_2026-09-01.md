@@ -1,13 +1,13 @@
-# Comparatore periodic-fold sperimentale — 1 settembre 2026
+# Comparatore periodic-fold sperimentale - 1 settembre 2026
 
-> **CHECKPOINT STORICO RITIRATO — F70 / periodic-fold / `any_match`.** Questo report documenta il
+> **CHECKPOINT STORICO RITIRATO - F70 / periodic-fold / `any_match`.** Questo report documenta il
 > comparatore standalone e la sua integrazione nel vecchio gate
 > `OR_i[score_i <= T_i]`. Non documenta l'argmin cifrato, la soglia del solo vincitore o l'output
 > exact-ID `0`/`indice+1`; i suoi 3 PBS/template, 400 PBS a N=127 e tempi sub-secondo non sono
 > prestazioni del contratto finale. "Corrente" e "finale" nei nomi degli artefatti significano
 > soltanto corrente/finale per questo checkpoint del 1 settembre 2026. Per lo stato exact-ID
-> attuale vedere il [README principale](../../README.md#stato-corrente-ed-evidenza-storica) e
-> [`status.md`](../../status.md); la cronologia tecnica dell'hardening exact-ID e' in
+> attuale vedere il [README principale](../../README.md#implementazione-selezionata) e
+> i [risultati sperimentali](../../findings.md); la cronologia tecnica dell'hardening exact-ID e' in
 > [`exact_id_noise_hardening_2026-09-01.md`](exact_id_noise_hardening_2026-09-01.md).
 
 ## Stato del checkpoint periodic-fold
@@ -20,12 +20,10 @@ il formato del probe o dell'esito.
 
 Il predicato finito e' esatto in chiaro per ogni intero dichiarato
 `d = score - T in [-4095, 4095]`. I test cifrati avversariali, multikey e di servizio sotto non
-hanno osservato errori. Questo e' un risultato di engineering forte, ma **non e' una derivazione
-formale della probabilita' di fallimento del circuito composto**. Il comparatore era quindi
+hanno osservato errori. Questi test documentano il comportamento osservato; non derivano
+la probabilita' di fallimento del circuito composto. Il comparatore era quindi
 marcato `periodic_fold_3pbs_sperimentale`, non production-ready.
 
-- branch di lavoro: `thesis-evidence-audit-2026-09`;
-- commit di base: `6611c185adc9a658a075519b4316386f0bb48656`;
 - sorgente standalone del checkpoint:
   `experiments/14_pipeline_tfhe_rs/src/bin/exact_comparator_scratch.rs`;
 - SHA-256 sorgente standalone: `334debda099cb10e7ffe59b908347e1785f020a0de46b127cf45123e047f27d3`;
@@ -95,7 +93,7 @@ sopra.
 Il test Rust separato prova in chiaro **tutti** i `d in [-4095,4095]`; i 147 punti sono uno sweep
 cifrato mirato, non una sostituzione della prova finita.
 
-### Audit avversariale indipendente nella sessione
+### Verifica avversariale indipendente
 
 Un secondo harness temporaneo, scritto prima dell'integrazione e con implementazione separata
 della stessa trasformazione, ha prodotto:
@@ -111,20 +109,19 @@ I massimi errori di fase osservati al KSK erano circa 10,46 rotazioni nel run di
 rotazioni nei casi full-pipeline, sotto il guard empirico minimo di 64. Sono misure, non limiti
 probabilistici.
 
-Provenienza dei file temporanei:
+Identificatori degli input della verifica indipendente:
 
 | artefatto | SHA-256 |
 |---|---|
-| `/tmp/tfhe-alt-comparator/src/main.rs` | `5489fb709a65a198c90449ad9b02eef56731b0169dd10df3296523681c91be79` |
-| `/tmp/tfhe-alt-comparator/Cargo.toml` | `b440f79920239c8708cca799a3c8df6adb2097d4e0fd17d140d6192104612ef1` |
+| sorgente Rust del test indipendente (non incluso) | `5489fb709a65a198c90449ad9b02eef56731b0169dd10df3296523681c91be79` |
+| manifest Cargo del test indipendente (non incluso) | `b440f79920239c8708cca799a3c8df6adb2097d4e0fd17d140d6192104612ef1` |
 | `three_pbs_32_512_full_adversarial.log` | `bf1bf6f8ec703c1c009372c1f3df772d7c3b372afd0d1deb482c695273526eb2` |
 | `three_pbs_32_512_multikey_20x2.log` | `a62ac7a601700f33cbc5305167bf547e37ae625b5b8dbc7f43297a55a191c29c` |
 | `three_pbs_32_512_gallery_5keys.log` | `639c47287520d80f781b125959d4de54de6e0f0ce74821ce9b01f77283b10fd2` |
 
-Questi log non sono artefatti autosufficienti del repository: gli hash ne fissano l'evidenza
-della sessione, mentre il sorgente standalone versionabile sopra preserva la costruzione e i
-comandi principali. Il test multikey va mantenuto anche nella suite di servizio prima di usare i
-conteggi come evidenza di release.
+Il test indipendente e i suoi log non sono inclusi nel clone: gli hash identificano i
+materiali usati, ma non consentono di rigenerarli. Il sorgente standalone incluso implementa
+la costruzione e i test della prima tabella; non ricrea automaticamente le prove della seconda.
 
 ### Integrazione HTTP
 
@@ -155,14 +152,14 @@ Artefatti del replay:
 - `fhe_digiface_periodic_fold_final_2026-09-01.csv`, SHA-256
   `07479865858b28bad361b532e622e20fd140f38032077b61879b9d6d1e791216`;
 - `fhe_digiface_periodic_fold_final_2026-09-01.json`, SHA-256
-  `4d81ca7864bbae083cc2825bd04c85105fad0ea8e25f150227e9b04277e8b6ee`.
+  `687474237ff3eaf94e4b35d6ac49ee7eb5bfe0e6b2946206c1102281f40a17ee`.
 
 Il replay chiude la regressione funzionale su quei cinque casi, ma non e' una valutazione
 biometrica held-out completa.
 
 ### End-to-end applicativo del checkpoint periodic-fold
 
-Un run evidence-grade separato ha vincolato il processo al path assoluto del binario periodic-fold
+Una prova separata ha identificato il binario periodic-fold mediante il suo hash
 e ha attraversato embedding, cifratura, server, decifratura ed endpoint client su 127 iscritti.
 Ha dato **20/20 aperture e 20/20 rifiuti**, senza identita' restituite e sempre con 400 PBS:
 
@@ -188,7 +185,7 @@ selezionati `563bee6f660a30f05292287f1e348c7b151bf84d2fe47eb4a3c8c4a305d41408`.
 Artefatti: `demo_e2e_periodic_fold_final_2026-09-01.csv`, SHA-256
 `a79aba0151396ce45f6f2af28250f31b4ced63e39b5ef9379aca1a1b23c6a48c`, e
 `demo_e2e_periodic_fold_final_2026-09-01.json`, SHA-256
-`6b3de1feca4c86f18ad29cdd73dba3717667282561bb8574718e61f9fcc79cdf`. La coppia senza suffisso
+`997140751a63d34998c924f18cc55dff6efed2a057dc94ef91cef80d9a8dbc18`. La coppia senza suffisso
 `final` e' il run precedente alla semplificazione e non identifica il sorgente conclusivo del
 checkpoint periodic-fold.
 
@@ -246,8 +243,7 @@ questa crescita, come suggeriscono i test, ma il `log2_p_fail` nominale non cert
 
 Un modello engineering condizionato a errori gaussiani/indipendenti stima un ordine per
 comparatore vicino a `2^-71`, ma **non e' un bound** per questa distribuzione TUniform composta e
-non viene usato per rivendicare affidabilita' di access-control. La parte deterministica piu'
-forte e' che, sotto il modello di input onesto e il bound dichiarato, il rumore del prodotto GLWE
+non viene usato per rivendicare affidabilita' di access-control. Sotto il modello di input onesto e il bound dichiarato, il rumore del prodotto GLWE
 e' trascurabile rispetto alle 64 rotazioni; resta da formalizzare la catena KSK/PBS.
 
 Condizioni indispensabili: ciphertext ben formato sotto la chiave corrispondente e chiave con la
@@ -288,17 +284,15 @@ shasum -a 256 src/bin/exact_comparator_scratch.rs target/release/exact_comparato
 ./target/release/exact_comparator_scratch --run --trials 1 --domain-sweep
 ```
 
-Il run avversariale temporaneo e' stato prodotto con:
+Il secondo test avversariale richiede il proprio harness non incluso; i comandi sopra
+riguardano esclusivamente il comparatore standalone disponibile nel repository.
 
-```bash
-./target/release/tfhe-alt-comparator --route three_pbs_32_512 \
-  --boundary-only --skip-gallery --phase-diagnostics --full-pipeline --trials 100
-./target/release/tfhe-alt-comparator --multi-key 20 --trials 2
-```
-
-Verdetto storico del checkpoint: **il comparatore periodic-fold era integrato nella baseline
+Al termine del checkpoint, il comparatore periodic-fold era integrato nella baseline
 `any_match`, con aritmetica finita corretta e replay/run applicativi positivi per quella funzione;
 non era giustificato come affidabile o production-ready senza un bound p-fail composto e una
 valutazione biometrica held-out attraverso FHE. Non validava l'identificazione exact-ID ed e'
 stato ritirato dal percorso finale. Il binding fra evaluation key e secret key e l'onesta' del
-plaintext del probe non erano imposti crittograficamente.**
+plaintext del probe non erano imposti crittograficamente.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

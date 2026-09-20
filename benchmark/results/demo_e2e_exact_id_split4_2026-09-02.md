@@ -8,20 +8,7 @@
 
 Il run del 2 settembre 2026 ha precaricato 127 iscritti in 40,1 s, quindi ha eseguito tre genuine
 e tre impostori attraverso il client Docker, il server Docker e il protocollo
-`exact-open-set-id-v2`:
-
-```sh
-uv run python benchmark/demo_e2e.py \
-  --preload \
-  --expect-n 127 \
-  --expect-pbs 5600 \
-  --positivi 3 \
-  --negativi 3 \
-  --docker-project demo \
-  --require-docker-provenance \
-  --require-calibration-cache \
-  --output benchmark/results/demo_e2e_exact_id_split4_2026-09-02.csv
-```
+`exact-open-set-id-v2`.
 
 ## Esito semantico: identita' precisa, non membership
 
@@ -83,53 +70,15 @@ quindi da un benchmark isolato e non consentono di attribuire differenze rispett
 alla revisione split4. Documentano soltanto la latenza del percorso E2E effettivamente eseguito;
 l'evidenza primaria di questo run e' la correttezza del contratto exact-ID.
 
-## Provenienza Docker
+## Ambiente di esecuzione
 
-L'harness ha richiesto un client fresco col modello non ancora caricato prima del preload. Il
-binding statico Docker e' rimasto invariato durante il preload; container, immagini, processi,
-sorgenti host, modello e i 272 file DigiFace selezionati sono rimasti stabili durante le query. Entrambi i servizi erano
-`running`, con `restart_count=0`, sulla rete comune `demo_varco`; la porta client misurata era la
-8000 su `127.0.0.1`.
-
-| elemento live | server | client |
-|---|---|---|
-| image ID | `18f1fad362eb8ad0f2b7ecc4f39831f77836501049d4bf07f4ee12190d50c4c5` | `fa743db302df0baeade5f1b7cb9351acc70bede6c0b7a2c8ec22c10739290251` |
-| container ID | `17a6c8f3c5047cfe54416de36e41ba8db0f68331cfe0dd64e0d3a3b3103ca367` | `10961b86b1a36ff4345ab95a3e8f31547e68501233df002cc6b45f8cd2ffa336` |
-| manifest build | `03fc188dc58edda29f54170b288217d280a8f92f9ed153e988723ff2b8433129` | `3c7ab24608be752744c4b5f039d6ebc1a6ae24ee2de35adc25ed679485154ff1` |
-| binario live `varco_demo` | `0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a` | stesso hash |
-| PID 1 | `/usr/local/bin/varco_demo serve 9000 512 4` | Python 3.12 / uvicorn su porta 8000 |
-
-Sul server l'hash dell'eseguibile PID 1 coincide sia col binario live sia col binario nel
-manifest. Il client usa lo stesso `varco_demo` per le operazioni crittografiche, mentre il suo PID
-1 e' l'applicazione uvicorn. Le immagini sono Linux arm64. Il Compose risolto ha SHA-256
-`047dd373b79a19c10939a42009c005ce7e99ea6d352f1367f78c9319e9c525db`.
-
-I manifest delle due immagini legano `Cargo.toml`, `Cargo.lock`, `src/bin/varco_demo.rs`,
-`src/lib.rs`, `src/private_argmin.rs` e il binario. Il manifest client lega inoltre Dockerfile,
-`app.py`, `config.json` ed `embedding.py`; quello server lega il proprio Dockerfile. Per questi
-file gli hash host coincidono con i manifest. La tabella include anche il benchmark, vincolato dal
-JSON fra gli input host, e Compose, vincolato separatamente dal contesto Docker:
-
-| input | SHA-256 |
-|---|---|
-| `benchmark/demo_e2e.py` | `751a90fc313c38e5e5595d76bec42357fe9f2412f50dfe7d2a74cc88a9cf2a2b` |
-| `experiments/14_pipeline_tfhe_rs/Cargo.toml` | `676635518edecf7ff1d395036074914f4398bb23ea1d16b93f2e47f12e7d4501` |
-| `experiments/14_pipeline_tfhe_rs/Cargo.lock` | `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a` |
-| `experiments/14_pipeline_tfhe_rs/src/private_argmin.rs` | `7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596` |
-| `experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs` | `e460b840e65f79a1514ba9dfc3bf85f403b0694bc7bea2bc09addad45e3c673a` |
-| `experiments/14_pipeline_tfhe_rs/src/lib.rs` | `3fc09f32ff149ff103d38820727246f37ed068c5256b0ba71840610b65a2ecf1` |
-| `demo/config.json` | `eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc` |
-| `demo/client/app.py` | `7646223ad2649d2778771774e59913cfe7598c37c5d54a46012bbff0bc9eb92e` |
-| `experiments/08_cnn/embedding.py` | `80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428` |
-| `demo/client/Dockerfile` | `bb149dc49ebd4ead8c2f4b76e5bf302d5a260fbc2806ee5082a18f159e8f17ec` |
-| `demo/server/Dockerfile` | `91742a06c1563baacdb36e56cdf9d024dc206df297f2d43e670a427086803a6d` |
-| `demo/docker-compose.yml` | `20b9d4dcb5d7181e9f41fdf5dd564750e71b1731df249c91d47d2482f9bdb6b7` |
-
-Il contesto Docker lega anche `.dockerignore` con SHA-256
-`dc6bf01bac51e26ea6e53e8880f03d9a1b50cc5563a5f11ec95aa363ca622540`.
-La evaluation key live ha SHA-256
-`40a326572b07476dd3c7c683f4032432d1ead39fe5ac2e335e44e333a38b8e52`;
-questo identifica la chiave di valutazione, non rivela la chiave segreta del client.
+Client e server usavano immagini Linux arm64 e lo stesso binario A28,
+SHA-256 `0e543c686e0eee722d6fc85505057a3f2665929587e8f3e26526e7d0bb46368a`.
+Prima del preload la galleria era vuota e il modello non era ancora caricato.
+I due servizi non hanno avuto riavvii. Configurazione, sorgenti, binari,
+modello e i 272 file DigiFace selezionati sono rimasti stabili durante le query.
+La revisione eseguita è identificata dai dati del run; i file omonimi nella
+versione attuale del repository possono appartenere a revisioni successive.
 
 ## Modello e dataset effettivamente letti
 
@@ -149,18 +98,17 @@ hanno rispettivamente SHA-256
 `ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66` e
 `0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`.
 
-## Artefatti
+## Dati del run
 
 | artefatto | SHA-256 |
 |---|---|
 | `demo_e2e_exact_id_split4_2026-09-02.csv` | `0251217e5a3321c7326a1e861d8e5ec86a4b727315216746336e183a2301349c` |
-| `demo_e2e_exact_id_split4_2026-09-02.json` | `2afa580542500b6629e3996ac327f9bb3383ad7b4168c44a6129c8d7aac3bda8` |
+| `demo_e2e_exact_id_split4_2026-09-02.json` | `129e2681c4b20faea1c45f2f9fe586f405572a6ac5e06e73de81f4cad4a2ce82` |
 | patch sorgenti/config A28 `benchmark/patches/a28_split4_source_2026-09-02.patch` | `58182d45efbfd8d6f87c5f5c842b83952e36a408f4639fb0e2ba019ed259115b` |
 
-Lo SHA-256 del CSV coincide con quello incorporato nel JSON. Il CSV conserva le sei righe del
-test; il JSON conserva configurazione, stato stabile prima/dopo le query, provenance Docker
-pre/post preload, modello, pacchetti runtime e dataset. La patch si applica al commit base
-`6611c185adc9a658a075519b4316386f0bb48656` e ricostruisce gli input A28 con gli hash dichiarati.
+Il CSV conserva le sei query e il JSON riporta risultati, configurazione e condizioni della prova.
+Lo SHA-256 del CSV coincide con quello incorporato nel JSON. La patch dei sorgenti A28
+si applica alla revisione `c5ab1b325c5c1a7c234d137bdedbbd7950222b16`.
 
 ## Limiti
 
@@ -171,3 +119,8 @@ membership. Non valida webcam, browser, generalizzazione biometrica, gallerie di
 registrata, soglie non uniformi, sicurezza attiva/integrita' del wire o probabilita' di fallimento
 FHE. La galleria e le soglie sono in chiaro sul server; sul confine client-server probe e risposta
 viaggiano cifrati. La richiesta esterna all'API di test contiene invece l'indice sintetico in chiaro.
+
+Questo report descrive la revisione storica indicata. I dati CSV/JSON documentano il run; il clone corrente non include il suo ambiente Docker completo e non ne riproduce automaticamente la misura. Per avviare il servizio attuale seguire la [guida della demo](../../demo/dual_view/README.md).
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

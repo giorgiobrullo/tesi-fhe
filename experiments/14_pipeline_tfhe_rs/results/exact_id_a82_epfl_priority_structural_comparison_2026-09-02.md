@@ -3,14 +3,12 @@
 Data: 2026-09-02/03. Stato: **PASS strutturale ed equivalenza simbolica; runtime non
 confrontabile**.
 
-L'RTL ufficiale del benchmark priority EPFL citato da BOLT e' stato scaricato dalla repository
-LSILS e verificato con SHA-256
-`2b29f270d3f6db4cbf6307cb29d1a1192c82dd9ea08d9a8c7f8d02ef469b32f5`.
+L'analisi usa l'RTL ufficiale del benchmark priority EPFL citato da BOLT,
+disponibile dalla repository LSILS indicata nelle fonti.
 L'interfaccia e' davvero comparabile per taglia: 128 flag Boolean in ingresso, sette bit di indice
 e un flag valido in uscita.
 
-La copia ufficiale dell'RTL è ora conservata localmente accanto al checker. Un interprete
-fail-closed ha ricostruito 978 assegnazioni e verificato 258 pattern diagnostici:
+Un interprete fail-closed ha ricostruito 978 assegnazioni e verificato 258 pattern diagnostici:
 
 - nessun hit: indice 0, flag 0;
 - tutti i 128 one-hot: indice `i`, flag 1;
@@ -52,15 +50,7 @@ Python PASS e Ruff PASS. Il campo JSON usa il nome
 `arithmetic_count_complement_percent`, non “reduction”, perché l'80,175% non è una riduzione di
 costo fra unità omogenee.
 
-Artefatti riproducibili:
-
-- `tmp/a82-epfl-priority-structural-comparator/epfl_priority_audit.py`;
-- `tmp/a82-epfl-priority-structural-comparator/test_epfl_priority_audit.py`;
-- `tmp/a82-epfl-priority-structural-comparator/official_priority.v`, copia source-pinned
-  dell'input pubblico;
-- `tmp/a82-epfl-priority-structural-comparator/audit_result_compact.json`;
-- `tmp/a82-epfl-priority-structural-comparator/SHA256SUMS`;
-- `tmp/a82-epfl-priority-structural-comparator/README.md`.
+Il programma di interpretazione e verifica simbolica non è incluso qui.
 
 Fonti primarie:
 

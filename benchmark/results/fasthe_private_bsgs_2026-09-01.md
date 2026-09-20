@@ -1,8 +1,8 @@
-# FastHE/OpenFHE private BSGS identification proof — 2026-09-01
+# FastHE/OpenFHE private BSGS identification proof - 2026-09-01
 
 ## Outcome
 
-A single-server *evaluation path* now computes packed encrypted similarities with FastHE's CPU BSGS approach, selects an argmax under encryption with OpenFHE CKKS↔FHEW scheme switching, and returns one encrypted scalar that represents either the nearest gallery index or a no-match sentinel. No score vector is decrypted or returned on this path.
+The tested single-server *evaluation path* computes packed encrypted similarities with FastHE's CPU BSGS approach, selects an argmax under encryption with OpenFHE CKKS↔FHEW scheme switching, and returns one encrypted scalar that represents either the nearest gallery index or a no-match sentinel. No score vector is decrypted or returned on this path.
 
 This is a feasibility proof, not a practical result and not a new cryptographic primitive. At `N=128`, online BSGS scoring plus private selection took about 117.6 s on this host. The selector is OpenFHE's existing `EvalMaxSchemeSwitching`; the work here is a system integration, a threshold-sentinel construction, cache/padding corrections, and reproducible boundary testing.
 
@@ -73,7 +73,7 @@ A synthetic cache-refusal check exited with status 2 and:
 Error: --private-nearest requires a completely fresh run directory; scheme-switching cache serialization is intentionally disabled
 ```
 
-Each integrated log reported `Cleaned up serialized data (514 items removed from serial/)`; a following `test ! -e serial` succeeded. `/usr/bin/time -l` reported zero swaps for all three integrated runs.
+All three integrated runs reported zero swaps. Cache reuse was disabled for the private-selection experiment.
 
 ## Provenance
 
@@ -83,9 +83,8 @@ Each integrated log reported `Cleaned up serialized data (514 items removed from
 - FastHE's pinned membership/index implementation is here: [`sender_diag.cpp`](https://github.com/FastHE-Search/FastHE-Search/blob/4d5a41e13e6467373bf9f40117db39bffd85cf0e/src/sender/sender_diag.cpp).
 - Reproduction patch: [`benchmark/patches/fasthe_v1_private_bsgs_2026-09-01.patch`](../patches/fasthe_v1_private_bsgs_2026-09-01.patch), SHA-256 `71244e2d4e1e5ee0f2c08d2da5ee6373c391c01a27ebc5990aa2c93534054635`.
 - Patched `ImageMatching` binary SHA-256: `13057d5c201560af1e9fe2c1854a8730af764eb95f2c52a608640594a2f66782`.
-- Original FastHE and OpenFHE source checkouts were clean before creating the isolated FastHE clone.
 
-The OpenFHE install was reused from the prior isolated investigation, after verifying its source/tag/commit and CMake cache. That cache records: Release, shared libraries on, static libraries off, OpenMP on, native optimization off, `/usr/bin/c++`, Unix Makefiles, OpenFHE native backend size 64. The original OpenFHE configure command was not retained, so this is cache-derived build provenance rather than a claim about an exact historical command line.
+The verified OpenFHE build cache records: Release, shared libraries on, static libraries off, OpenMP on, native optimization off, `/usr/bin/c++`, Unix Makefiles, OpenFHE native backend size 64. The original OpenFHE configure command was not retained, so this is cache-derived build provenance rather than a claim about an exact historical command line.
 
 Host/toolchain:
 
@@ -102,7 +101,7 @@ AppleClang 21 rejects FastHE's unqualified `move(...)` calls because upstream Op
 Generate with:
 
 ```bash
-python3 benchmark/fasthe_private_bsgs_inputs.py "$WORK/inputs"
+python3 benchmark/fasthe_private_bsgs_inputs.py benchmark/.local/fasthe-inputs
 ```
 
 Expected SHA-256 values:
@@ -116,45 +115,18 @@ d931b412b9ad339f2e77670e5d2e9d71c4b830344cd9b3e947784fca3f38d617  n128_zero_matc
 
 The query is basis vector `e0`; every impostor is an orthogonal basis vector. Genuine cases place an exact copy of the query at index 37 or 73. These are deterministic protocol/plumbing tests, not biometric-accuracy evidence.
 
-## Exact build and run commands used
+## Build conditions and reproducibility
 
-The disposable work root was:
+The experiment used the official revisions and the linked patch above, a Release build,
+and the CPU target `ImageMatching`. Runtime settings were `OUTER_THREADS=16`,
+`OMP_NUM_THREADS=16` and `OMP_MAX_ACTIVE_LEVELS=1`, with approach 8 and
+`--private-nearest`. Each input used a separate empty directory.
 
-```text
-/var/folders/yv/06thlvt56v14nfsvzsm7yjz40000gn/T/fasthe-identify.gjGblasoaf
-```
-
-FastHE configuration/build:
-
-```bash
-cmake -S fasthe-src -B build \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DOpenFHE_DIR=/private/tmp/fasthe-v1.0.0.34ZhO0/openfhe123-install/lib/OpenFHE \
-  -DOpenMP_CXX_FLAGS='-Xpreprocessor -fopenmp' \
-  -DOpenMP_CXX_LIB_NAMES=omp \
-  -DOpenMP_omp_LIBRARY=/opt/homebrew/opt/libomp/lib/libomp.dylib \
-  -DOpenMP_CXX_INCLUDE_DIR=/opt/homebrew/opt/libomp/include
-cmake --build build --target ImageMatching -j 8
-```
-
-The source clone was at the exact FastHE commit above and had the recorded patch applied. Each run used its own empty directory. Commands (executed inside each run directory) were:
-
-```bash
-/usr/bin/time -l env \
-  OUTER_THREADS=16 OMP_NUM_THREADS=16 OMP_MAX_ACTIVE_LEVELS=1 \
-  ../../build/ImageMatching ../../inputs/n64_genuine.dat 8 --private-nearest \
-  > stdout.log 2> time.log
-
-/usr/bin/time -l env \
-  OUTER_THREADS=16 OMP_NUM_THREADS=16 OMP_MAX_ACTIVE_LEVELS=1 \
-  ../../build/ImageMatching ../../inputs/n64_zero_match.dat 8 --private-nearest \
-  > stdout.log 2> time.log
-
-/usr/bin/time -l env \
-  OUTER_THREADS=16 OMP_NUM_THREADS=16 OMP_MAX_ACTIVE_LEVELS=1 \
-  ../../build/ImageMatching ../../inputs/n128_genuine.dat 8 --private-nearest \
-  > stdout.log 2> time.log
-```
+The patch and deterministic input generator are available; the historical OpenFHE
+installation and compiled executable are not distributed. Repeating these measurements
+requires building the pinned external dependencies and patched FastHE for the target
+machine. The build-cache settings above describe the measured environment; they are
+not a complete portable build recipe or a guarantee of identical timings.
 
 ## Security and claim boundary
 

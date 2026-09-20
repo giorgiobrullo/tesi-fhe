@@ -1,49 +1,44 @@
-# Gradino 06 — argmin sul server (privacy): quanto costa
+# Gradino 06 - costo dell’argmin cifrato sul server
 
-> Misura presa. Vedi `findings.md` F6.
+Le misure sono riepilogate in `findings.md`, F6.
 
-## Perché
+## Obiettivo
 
-Nel gradino 05 l'argmin lo fa il **client**: comodo e gratis (nessun PBS), ma il
-client decifra tutti gli N punteggi e impara la distanza con *ogni* iscritto, non solo
-col match. Per privacy l'argmin (e in prospettiva la soglia open-set) **deve stare sul
-server, sotto FHE**, così il client apprende solo *chi* è il match. Qui misuriamo
-quanto costa farlo lì.
+Nel gradino 05 il client decifra tutti gli N punteggi ed esegue l'argmin.
+Questo esperimento sposta la selezione sul server, sotto FHE, per evitare di
+rilasciare le distanze rispetto all'intera galleria.
 
-Risposta scelta: **(A)** il server restituisce l'**indice/identità** del match oppure "nessun match 
-se nessun match è entro la soglia prefissata.
+Il circuito con soglia restituisce l'indice del minimo e un bit che indica
+se il vincitore rientra nella soglia. È un protocollo storico: la demo successiva
+usa una codifica 0/ID che nasconde anche l'identità nei rifiuti.
 
 ## Il costo
 
 `np.argmin` non è nativo in Concrete, quindi si riduce a confronti cifrati a coppie (ogni
 passo un PBS), in `core/matching.py::circuito_distanza_argmin`. Il costo è dominato
-dalla **larghezza in bit dei punteggi** e raddoppia ~ad ogni bit:
+dalla larghezza in bit dei punteggi e raddoppia ~ad ogni bit:
 
 | larghezza punteggi (N=10) | 5 bit | 6 bit | 7 bit | 8 bit | 9 bit | 10 bit |
 |---|---|---|---|---|---|---|
 | run argmin | 4,2 s | 5,8 s | 12,7 s | 34 s | 82 s | 172 s |
 
-**È il centro di costo del passaggio privato:** da gratis (client) a un prezzo che
-raddoppia per ogni bit di precisione del punteggio. La leva di progetto è quindi **tenere
-stretta la larghezza dei punteggi**. A larghezze realistiche pesa (i punteggi PCA del
-prototipo sono ~14 bit, quindi secondi/decine di secondi per query; a piena larghezza
-Concrete 2.11 fatica anche solo a compilare). Per riferimento, il solo calcolo dei
-punteggi senza argmin (gradino 05) è ~31 ms/query.
+Nelle configurazioni provate il costo cresce rapidamente con la larghezza dei
+punteggi. Il prototipo PCA produce punteggi di circa 14 bit; a piena larghezza
+sono emerse anche difficoltà di compilazione con Concrete 2.11. Il solo calcolo
+dei punteggi del gradino 05 richiede circa 31 ms/query. La scelta della precisione
+va valutata insieme all'accuratezza e al dominio valido della tecnica usata.
 
-La caratterizzazione fine (a quale larghezza conviene girare) si fa sulla tecnica
-finale, sui parametri validi.
-
-## La soglia "nessun match" — funziona (con l'inputset giusto)
+## Soglia di rifiuto e inputset
 
 Il circuito completo (`core/matching.py::circuito_distanza_argmin_soglia`) ritorna
 `(indice, è_match)`: la distanza² vera del match (`val_min + ‖a‖²`) è confrontata con
-la soglia, e `è_match=0` significa **"nessun match"** (impostore/sconosciuto rifiutato).
+la soglia, e `è_match=0` significa "nessun match" (impostore/sconosciuto rifiutato).
 Verificato 10/10, coi rifiuti che si attivano.
 
-⚠️ **Trappola (F11):** Concrete non ha `argmin` nativo (solo `min/max/where`, quindi si
-costruisce da `<` + select), e il rifiuto si attiva solo se l'**inputset è
-rappresentativo dei probe reali**: con un inputset troppo stretto il confronto della
-soglia va in *overflow silenzioso* e dice sempre "match". Vedi `findings.md` F11.
+Limite osservato (F11): Concrete non ha `argmin` nativo (solo `min/max/where`, quindi si
+costruisce da `<` + select), e il rifiuto si attiva solo se l'inputset è
+rappresentativo dei probe reali: con un inputset troppo stretto il confronto della
+soglia va in *overflow silenzioso* e restituisce sempre "match". Vedi `findings.md` F11.
 
 ## File
 

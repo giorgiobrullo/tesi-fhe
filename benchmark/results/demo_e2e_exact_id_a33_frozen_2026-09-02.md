@@ -6,23 +6,7 @@
 > `0` per il rifiuto oppure `i+1` per l'identita' nearest-neighbor accettata.
 
 Il run del 2 settembre 2026 ha precaricato una galleria DigiFace da 127 iscritti e ha verificato
-tre genuine e tre impostori. Il comando di misura registrato nell'artifact e':
-
-```sh
-A33_MODEL_CACHE=/Users/giorgiobrullo/.insightface uv run python \
-  tmp/a33-docker-gate-2026-09-02/run_gate.py \
-  --base-url http://127.0.0.1:18080 \
-  --preload \
-  --expect-n 127 \
-  --expect-pbs 4273 \
-  --positivi 3 \
-  --negativi 3 \
-  --docker-project thesis-a33-frozen \
-  --docker-compose-file tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml \
-  --require-docker-provenance \
-  --require-calibration-cache \
-  --output benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.csv
-```
+tre genuine e tre impostori, con verifica della revisione A33 e della cache di calibrazione.
 
 ## Esito semantico
 
@@ -67,74 +51,20 @@ sono una stima isolata della latenza A33** e non devono essere usati per attribu
 un vantaggio o uno svantaggio rispetto ad A29. Quel confronto richiede il benchmark appaiato sugli
 stessi ciphertext.
 
-## Snapshot congelato e provenienza Docker
+## Ambiente di esecuzione
 
-Il progetto Compose dedicato e' `thesis-a33-frozen`. I Dockerfile copiano e compilano lo snapshot
-congelato `tmp/a33-aligned-sparse-2026-09-02`, non il crate Rust mutabile del working tree. Il
-manifest di pin del gate lega i sorgenti A33, i file di integrazione, i Dockerfile, il Compose e il
-driver di benchmark.
+Client e server sono stati compilati dallo stesso sorgente A33 in immagini Linux arm64.
+Il binario Linux aveva SHA-256
+`f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5`.
+Sorgenti e binari sono stati identificati prima della misura e sono rimasti invariati durante
+il run; i due servizi non hanno avuto riavvii. La corrispondenza dei binari non prova da sola
+quali opzioni di cache siano state usate per la build Docker.
 
-| elemento congelato | SHA-256 |
-|---|---|
-| manifest degli input dello snapshot | `b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2` |
-| manifest dei binari macOS dello snapshot | `c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5` |
-| manifest di pin del gate Docker | `6681744dca0bc79242735ea7d3bc018ee9d1edd60a43f6cf72a178607c52b9d9` |
-| `src/private_argmin.rs` A33 | `1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d` |
-| `src/bin/varco_demo.rs` A33 | `ae23024c8cbcb3269db14d816da44fb035f72b8ba00d83b5a5c2cb1aaca4c5ca` |
-| `src/lib.rs` A33 | `c6fbdd61636f6335e6547ed17aa73cdea7c69c2a7c26f74980bb99c52a2e6f53` |
-| patch A33 | `6d07077efc52e721399740ef7d443ca87ee0a6c575cd19b7a453d5109224f7f5` |
-| Compose risolto | `765fdd8f982a56cc14300d2ce3330043d9c8575f963592e19ef4d2c0a5aade45` |
-| file Compose dedicato | `cbab393930597c3f8ccde9bf8106d84a02ebc1b35ddd50c94231b4df30badeae` |
-| Dockerfile server | `a9aa5ed1bec0f0673c43b4437b1f58c83bd549317a29735a65e4ebf36c04bf78` |
-| Dockerfile client | `d9a573ba531b4aeffad7d8e6abfba18527d16353d558ea32e5d0e40b48a49087` |
-| wrapper del gate | `6c676a2053e69ef7d927d3d4e76770812608c04960533d9434654d305b8fc3bb` |
+## Modello, dataset e separazione dei ruoli
 
-Le immagini Linux arm64 sono state create alle 12:50 UTC, circa un minuto prima dei container:
-
-| servizio | image ID | build manifest | container | stato durante il run |
-|---|---|---|---|---|
-| server | `e8a8d62cbdc490742d289128139c8096f4c1bf5ed250d623c71d5660a6745cca` | `3bfd818e8bdefae79bea1b149f1ea7067d2da0b0e310eb6e58af9598ea32dcea` | `360d4d6def17dbe86b13d63673e0968e11f860d7fbde2b82cdaf6c866354098c` | running, 0 restart |
-| client | `eca9f06cd4f3c0e9cb46d7cc83b8c2817611f8f06be1e908e90192959f394456` | `f43d62c825211408b8266cd9bae1ca9153e19de9103d19e6ad9a27a9d1e5e254` | `4dc2c327f972735c18ba699f9b26e7554074ac854566257546540f0d5d210fc2` | running, 0 restart |
-
-Il binario Linux live ha SHA-256
-`f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5` in entrambe le immagini.
-Sul server coincide anche con l'eseguibile PID 1 e con il binario elencato nel build manifest.
-I manifest incorporati nelle immagini coincidono con gli hash host congelati.
-
-Il gate documenta la build separata dall'avvio:
-
-```sh
-A33_MODEL_CACHE=/Users/giorgiobrullo/.insightface docker compose \
-  -p thesis-a33-frozen \
-  -f tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml \
-  build --pull --no-cache
-
-A33_MODEL_CACHE=/Users/giorgiobrullo/.insightface docker compose \
-  -p thesis-a33-frozen \
-  -f tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml \
-  up -d --no-build
-```
-
-Il JSON rende verificabile il prodotto del rebuild: image ID e timestamp, manifest di build,
-binario live e corrispondenza con gli input congelati. Il log della CLI Docker e i flag della fase
-di build non sono invece serializzati nel JSON/CSV; pertanto `--pull --no-cache` e' parte della
-procedura conservata del gate, non una proprieta' che questi due artifact possano provare da soli.
-
-## Stato stabile, modello e dataset
-
-Il JSON registra tutti questi controlli come veri:
-
-- input host stabili durante il run;
-- dataset stabile durante il run;
-- binding Docker stabili durante il preload;
-- container, immagini, rete e manifest stabili durante le query;
-- stato applicativo stabile durante le sei query.
-
-Il server non aveva port binding host ne' mount. Il client esponeva soltanto
-`127.0.0.1:18080`; il dataset DigiFace e la cache InsightFace erano bind mount in sola lettura,
-mentre `/app/chiavi` era un volume separato scrivibile. La evaluation key e' identificata soltanto
-dal suo SHA-256
-`938612451122adb998dcfd6af20f0ee2e72894ef4cded7cfddc7e97776f50ae2`.
+Dataset, modello, configurazione e stato della galleria sono rimasti stabili durante le query.
+Il server non esponeva porte host e non montava dati client. Il client accedeva a DigiFace e
+alla cache InsightFace in sola lettura e conservava le chiavi in un volume separato.
 
 Il modello runtime era `glintr100.onnx` (260.665.334 byte), SHA-256
 `4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf`. Il client usava
@@ -148,33 +78,17 @@ verificati hanno rispettivamente SHA-256
 `ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66` e
 `0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`.
 
-## Cleanup: limite dell'evidenza conservata
 
-La procedura del gate termina con:
-
-```sh
-A33_MODEL_CACHE=/Users/giorgiobrullo/.insightface docker compose \
-  -p thesis-a33-frozen \
-  -f tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml \
-  down --volumes --remove-orphans
-```
-
-Questo comando e' progettato per rimuovere container, rete e volume effimero `chiavi`, senza
-modificare dataset e modello montati in sola lettura. Il JSON e il CSV sono stati chiusi prima del
-teardown e osservano esplicitamente i due container ancora `running`: non contengono quindi una
-verifica post-cleanup. Questo report non afferma che container o volume siano stati rimossi; per
-renderlo auto-contenuto servirebbe un artifact separato con lo stato Docker successivo al comando.
-
-## Artifact
+## Dati del run
 
 | artifact | SHA-256 |
 |---|---|
 | `demo_e2e_exact_id_a33_frozen_2026-09-02.csv` | `884585fa5d2156df65df7afcee850c51410eafd36c54b718ab95ce493ec0ba08` |
-| `demo_e2e_exact_id_a33_frozen_2026-09-02.json` | `b94020132f369d10d60bf6201ef42337f29a84f525feaae94694166b97072d81` |
+| `demo_e2e_exact_id_a33_frozen_2026-09-02.json` | `782a62ac60fd70a8edd283de3cebd369c6d9df010bbf397d27e29443c8c83659` |
 
-Il CSV conserva le sei query. Il JSON conserva configurazione, contratto exact-ID, snapshot
-congelato, stato pre/post, provenienza live dei container, modello, pacchetti e dataset. Lo SHA-256
-del CSV ricalcolato coincide con `csv_sha256` incorporato nel JSON.
+Il CSV conserva le sei query. Il JSON riporta i risultati, la configurazione, il contratto
+exact-ID e le condizioni della prova. Lo SHA-256 del CSV coincide con `csv_sha256`
+incorporato nel JSON.
 
 ## Limiti
 
@@ -184,3 +98,8 @@ prova formale del failure probability end-to-end. Le latenze assolute sono confu
 La galleria e le soglie restano in chiaro sul server; probe e risposta sono cifrati sul confine
 client-server. L'endpoint sintetico di test riceve in chiaro l'indice del campione da valutare, e
 il run non esercita webcam/browser ne' misura l'accuratezza biometrica generale.
+
+Questo report descrive la revisione storica indicata. I dati CSV/JSON documentano il run; il clone corrente non include il suo ambiente Docker completo e non ne riproduce automaticamente la misura. Per avviare il servizio attuale seguire la [guida della demo](../../demo/dual_view/README.md).
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

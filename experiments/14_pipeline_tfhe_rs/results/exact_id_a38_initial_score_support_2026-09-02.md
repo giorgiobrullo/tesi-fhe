@@ -81,17 +81,12 @@ non possiede una prova crittografica che un client ostile abbia cifrato corretta
 lane contengano lo stesso probe. Questa e' una questione separata di validita' dell'input; non va
 confusa con il p-fail del calcolo su input ben formato.
 
-## Artefatti
+## Codice e verifica
 
-- `benchmark/a38_initial_score_bound.py`
-- `tests/test_a38_initial_score_bound.py`
+Il [modello del bound](../../../benchmark/a38_initial_score_bound.py) e i
+[test dedicati](../../../tests/test_a38_initial_score_bound.py) sono inclusi.
+La verifica comprende 13 test passati. Dalla radice del repository:
 
-Verifica:
-
-```text
+```sh
 python3 -m unittest tests.test_a38_initial_score_bound tests.test_exact_id_pfail_certificate
-.............
-Ran 13 tests
-OK
 ```
-

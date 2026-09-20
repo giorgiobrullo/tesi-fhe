@@ -15,16 +15,11 @@ correlati base 15 o la ricostruzione esatta dell'ID. Pero' rende concreta una st
 fare mapping del nostro DAG con un costo consapevole di profondita', parallelismo e runtime, invece
 di scegliere ogni ottimizzazione soltanto dal conteggio totale dei PBS.
 
-## Fonte hash-pinned
+## Fonte
 
 - Chaturvedi, Chatterjee, Chattopadhyay, Mukhopadhyay, *BOLT: Bootstrapping-Aware Logic
   Resynthesis and Technology Mapping for Efficient TFHE Circuits*, ePrint 2026/153,
   [pagina ufficiale](https://eprint.iacr.org/2026/153), PDF di 14 pagine;
-- PDF ufficiale SHA-256:
-  `dbc4ae321f47a7e6f93155fa660b0195c8f2738be1503e18888b41a6a19ad2e5`;
-- estrazione testuale locale SHA-256:
-  `3c3b1b1b3114bb13a20ced635052efbb3aa76b62a3b4d7ca87b5332f18365f9f`.
-
 Il PDF e' stato ispezionato integralmente. I numeri di pagina sotto sono quelli stampati nel PDF.
 
 ## Cosa fa davvero BOLT
@@ -128,5 +123,5 @@ benchmark paired con chiavi fresche. Fino ad allora A81 e' un **lead motivato**,
 
 - chiudere il gap documentale BOLT nell'audit A50/A53;
 - conservare A53 come segnale costruttivo stretto, senza claim di primitive nuove;
-- aggiungere il mapper bootstrapping-aware alla frontiera, dopo i gate runtime gia' in corso;
+- valutare un mapper bootstrapping-aware come ulteriore ipotesi da verificare;
 - non sostituire A30/A78/A79 con A81: il mapper deve confrontare e combinare quelle route.

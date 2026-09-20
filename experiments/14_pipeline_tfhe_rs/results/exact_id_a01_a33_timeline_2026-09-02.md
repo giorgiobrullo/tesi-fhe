@@ -125,33 +125,29 @@ Applicare meccanicamente il `p_fail` nominale darebbe `log2 <= -59,563966` sui B
 `Delta=2^56` non e' valutato e le primitive raw/custom richiedono ancora un argomento sul rumore
 raggiungibile e sulle uscite correlate.
 
-## Fonti verificate e digest correnti
+## Fonti quantitative
 
-Il registro `attempts.md` e' stato usato come indice, poi i passaggi quantitativi sono stati
-controllati sui report e sui JSON congelati. I digest seguenti identificano i byte letti durante
-questo audit:
+I passaggi quantitativi sono stati confrontati con i report e i risultati indicati sotto.
+I tre log pairwise-safe A04 del 1 settembre non sono inclusi in questa distribuzione;
+i loro risultati sono sintetizzati nella timeline.
 
-| fonte | SHA-256 | uso |
-|---|---|---|
-| `attempts.md` | `315af08b7bc7ab148a344dc23e8baab615060ed732ea429a273130e18e1ce87c` | mappa A01--A33 e stati |
-| `experiments/14_pipeline_tfhe_rs/results/argmin_pairwise_safe_2026-09-01.txt` | `8d31ae6aabf34e64a66070a625298abbede2e280a2516666c7620663fe5aa8f4` | A04, primo run pairwise-safe |
-| `experiments/14_pipeline_tfhe_rs/results/argmin_torneo_q3_pairwise_safe_2026-09-01.txt` | `1ab2d293fb660e255e5ed386492a0a01bb7477232d0b113cf12b7759d3b5f25a` | A04, replica q3 |
-| `experiments/14_pipeline_tfhe_rs/results/argmin_torneo_qm3_cap110_pairwise_safe_2026-09-01.txt` | `0c3b7ae27e01765578005b59b60549e642b28af7c635bad592f30aca321c6b14` | A04, cap L1=110 |
-| `experiments/15_ckks_confronto/results/ckks_rerun_2026-09-01.md` | `b388b35b059e2e663c25de8702699ba6c50e2c5a16ac1c269ed65c88627a3d54` | A08, A09 |
-| `benchmark/results/protocol_boundary_audit_2026-09-01.md` | `bb46efbbff570d2ec6aacc8e5ab0212060675885cba68f0a8e1b5b5ac1c78084` | A10, A17, A19 |
-| `benchmark/results/exact_comparator_scratch_2026-09-01.md` | `696b7161149abf8dd41132df24e6f82f958b7d9715061ffd62825fba844a3cc9` | A18--A20 |
-| `benchmark/results/external_routes_2026-09-01.md` | `f33689fe3c106da0a71e8b6b7aa062f540e23eea29e2d1338ba23e103a9a02bc` | A13, A14, A21, A22 |
-| `experiments/16_common_mask_poc/results/2026-09-02_common_mask_primitives.txt` | `e577eef5c5b0873291149938e9ab3343bd26b50555bd0c53a1d12f7d2c292797` | A27 common-mask |
-| `benchmark/results/fhe_digiface_exact_primary_noise_bounded_2026-09-01.json` | `b6e54b92bef8f53c0ce057f1e68e9b473487fdd423776962579661669d4fa512` | A23 primaria |
-| `benchmark/results/fhe_digiface_exact_primary_optimized_2026-09-02.json` | `a322ee946b6f5f7a031d1f59f6e9a5ae26cc42b642333295526aa7b9a6e7a009` | A25 primaria |
-| `benchmark/results/fhe_digiface_exact_primary_split4_2026-09-02.json` | `683fdf98ccc5dc45222c0b51b4b3ce678e3b5bd1aa9d9fbc10ed67fcb5108465` | A28 primaria |
-| `benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.json` | `328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34` | A29 primaria |
-| `benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.json` | `590a6256bbd895780fa643a6497ca8bf8f2f710231ec2cded2cc56fb2aaf6f44` | speedup paired A29 |
-| `experiments/14_pipeline_tfhe_rs/results/exact_id_uniform_threshold_fastpath_design_2026-09-02.md` | `3fbf444425f86bc5fe2a0b599914ba47588b9fd5a750dda772768d2072417a90` | A31 e costruzione A33 |
-| `benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.json` | `e3ef7b5ae74c85e883d8ed3b2670fb6efbd20291775752fefe1ec56c0f1a9467` | A33 primaria |
-| `benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.json` | `659a996f5094112b3ea34ee3306a65bf03c8b308cd0d212c597890fc6fd71b8d` | speedup paired A33 |
-| `benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.json` | `b94020132f369d10d60bf6201ef42337f29a84f525feaae94694166b97072d81` | integrazione Docker A33 |
-| `benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.json` | `0cfd431534d093d1ba7aeea79a5be0e4a611d2b2380e76e8fbecc8e8237bf54f` | limiti formali A33 |
+| Fonte | Uso |
+|---|---|
+| [ckks_rerun_2026-09-01.md](../../15_ckks_confronto/results/ckks_rerun_2026-09-01.md) | A08, A09 |
+| [protocol_boundary_audit_2026-09-01.md](../../../benchmark/results/protocol_boundary_audit_2026-09-01.md) | A10, A17, A19 |
+| [exact_comparator_scratch_2026-09-01.md](../../../benchmark/results/exact_comparator_scratch_2026-09-01.md) | A18--A20 |
+| [external_routes_2026-09-01.md](../../../benchmark/results/external_routes_2026-09-01.md) | A13, A14, A21, A22 |
+| [2026-09-02_common_mask_primitives.txt](../../16_common_mask_poc/results/2026-09-02_common_mask_primitives.txt) | A27 common-mask |
+| [fhe_digiface_exact_primary_noise_bounded_2026-09-01.json](../../../benchmark/results/fhe_digiface_exact_primary_noise_bounded_2026-09-01.json) | A23 primaria |
+| [fhe_digiface_exact_primary_optimized_2026-09-02.json](../../../benchmark/results/fhe_digiface_exact_primary_optimized_2026-09-02.json) | A25 primaria |
+| [fhe_digiface_exact_primary_split4_2026-09-02.json](../../../benchmark/results/fhe_digiface_exact_primary_split4_2026-09-02.json) | A28 primaria |
+| [fhe_digiface_exact_primary_manylut_2026-09-02.json](../../../benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.json) | A29 primaria |
+| [fhe_digiface_exact_paired_a28_a29_2026-09-02.json](../../../benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.json) | speedup paired A29 |
+| [exact_id_uniform_threshold_fastpath_design_2026-09-02.md](exact_id_uniform_threshold_fastpath_design_2026-09-02.md) | A31 e costruzione A33 |
+| [fhe_digiface_exact_primary_a33_2026-09-02.json](../../../benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.json) | A33 primaria |
+| [fhe_digiface_exact_paired_a29_a33_2026-09-02.json](../../../benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.json) | speedup paired A33 |
+| [demo_e2e_exact_id_a33_frozen_2026-09-02.json](../../../benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.json) | integrazione Docker A33 |
+| [exact_id_a33_pfail_accounting_2026-09-02.json](../../../benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.json) | limiti formali A33 |
 
 ## Conclusione auditata
 

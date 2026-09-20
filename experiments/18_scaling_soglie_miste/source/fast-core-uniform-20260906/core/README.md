@@ -1,16 +1,8 @@
-# Variable-N selected M with general uniform thresholds
+# Head/PFKS with general uniform thresholds
 
-Source-only sibling of `tmp/fast-core-scaling-20260906/core`. It supports N1..224
-and one public threshold shared by every template, while retaining the existing
-five-payload selected M comparator, PFKS22x1/W287 selector, mean correction,
-Head ingress and key container geometry. Root owns compilation and all native
-FHE gates. No build, key generation, noisy evaluation or HTTP run is claimed here.
-
-The package is `fast_core_uniform_20260906`. Root must provide the whole-package
-`SOURCE_DIGEST.txt` one directory above this core before compiling. All copied
-parent bytes are recorded in `../audit/PARENT_PINS.json`; current source and
-bounded changed-parent patch are in the same audit directory. Parent packages,
-the canonical baseline and both interactive demos are unchanged.
+The `fast_core_uniform_20260906` library supports N1..224 and one public
+threshold shared by all templates. It uses the five-payload M comparator,
+PFKS22×1/W287 selection, mean correction and native Head ingress.
 
 ## Public plan and API
 
@@ -43,8 +35,8 @@ thresholds or prefiltered before argmin.
 
 For example, a norm511 gallery has Cauchy domain[-937,1959]. The old aligned
 uniform interval was[-1113,86]. T273 now uses that Cauchy domain and sentinel1211.
-This is a source-level extension; that new encrypted composition is not yet
-qualified by the old service's noisy results.
+This domain changes the encrypted composition; the aligned-domain service
+results alone do not establish its correctness.
 
 - `service::MAX_GALLERY_SIZE` is224; two base15 digits represent IDs0..224.
 - `service::operation_counts(n, mode)` returns `Some(Counts)` for a supported
@@ -65,8 +57,8 @@ Output remains two2049-word LWE digits at2^59, decoded as `low + 15*high`.
 A valid public rejection has zero masks and zero bodies; do not apply a blanket
 nontrivial-mask requirement to that output. N1 all-accept also has public ID1,
 although this conservative endpoint still executes its one Head ingress.
-A new source/plan/circuit identity is required for this sibling. Existing key
-container shapes do not authorize relabeling old ciphertexts or service profiles.
+Matching key-container shapes do not make different input codings or service
+contracts interchangeable.
 
 ## Actual structural counts
 
@@ -83,31 +75,23 @@ merge. A compare-sentinel query has N merges and all-accept has N-1.
 The unchanged `N127_COUNTS` is the compare-sentinel regression constant.
 Structural counts are not runtime predictions or failure probabilities.
 
-## Supplied validation and pending native gate
+## Tests and limitations
 
-Seven new `uniform_tests::` tests are key-free. They check old aligned domains
-and sentinel words, every twelve-bit scalar center around inclusive cuts with
-the actual comparator/window bodies, signed extremes and width rejection,
-actual public input guards, mode-dependent complete counts, actual trivial zero
-output words and stable odd/even trees with late IDs. Five inherited
-`scaling_tests::` tests remain and are adapted to the explicit mode API and
-new uniform admission; their original size, coefficient and fixed-cut checks
-remain. The public-rejection test allocates trivial ciphertexts but generates
-no keys and executes no FHE/PBS.
+Seven `uniform_tests::` tests cover aligned domains, inclusive cuts across
+all twelve-bit centers, signed threshold extremes, width rejection, input
+guards, mode-dependent counts, trivial zero outputs and stable odd/even trees.
+Five `scaling_tests::` tests also cover size and coefficient invariants.
+From this core directory:
 
-Root can compile/run the two filters separately using its lockfile arrangement:
-
-```text
-cargo test --manifest-path candidate/Cargo.toml -p fast_core_uniform_20260906 --lib uniform_tests:: --locked --offline
-cargo test --manifest-path candidate/Cargo.toml -p fast_core_uniform_20260906 --lib scaling_tests:: --locked --offline
+```sh
+cargo test --manifest-path ../candidate/Cargo.toml -p fast_core_uniform_20260906 --lib uniform_tests:: --locked
+cargo test --manifest-path ../candidate/Cargo.toml -p fast_core_uniform_20260906 --lib scaling_tests:: --locked
 ```
 
-These commands are provided, not reported as executed by the author. Do not run
-all inherited tests unfiltered: some historical modules contain FHE tests.
-The separately preserved threshold plaintext proposal/model lives at
-`tmp/fast-core-scaling-20260906/audits/thresholds`; it is not a substitute for a
-compiled test or the new noisy endpoint. Dynamic offsets and terminal addresses
-require real noisy cases and full output equality checks, with explicit key,
-query, domain, mode and count binding. Extra N-depth and shared-key correlations
-retain their separate noise-proof obligations. No mixed-threshold implementation
-is included; the eight-payload design remains a later sibling.
+The public-rejection test allocates trivial ciphertexts without generating
+keys or executing PBS. These checks do not substitute for the separate
+[noisy qualification and timing results](../../../README.md). Dynamic offsets,
+terminal addresses, greater depth and shared-key correlations retain their
+own noise obligations. This variant accepts uniform thresholds only; use
+[the mixed variant](../../fast-core-mixed-20260906/core/README.md) for
+winner-specific thresholds.

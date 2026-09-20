@@ -1,0 +1,118 @@
+{
+  "binding": "four string lengths then parameter id, parameter fingerprint, variant id and this canonical JSON byte digest",
+  "core_id_contract": "head-pfks-refresh4-12-w127-pack4-b22-mean2-three-id-winner-threshold.v3",
+  "core_package": "selector_four_core_20260920",
+  "core_source_sha256": "07e596858189b3b5d2324b66541ca6408fc6b495bb95e4621183e3b3053f2c42",
+  "decision": "first minimum true score, inclusive comparison to that winner own threshold; reject0; preserve left-stable ties and no alternate passing candidate",
+  "g4_key_binding": "v9 sidecar bound to base server envelope SHA256",
+  "g4_required": false,
+  "g4_sidecar": {
+    "catalog": "V1_7_PARAM_MULTI_BIT_GROUP_4_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M128",
+    "fourier_container_bytes": 236978176,
+    "glwe_dimension": 1,
+    "grouping_factor": 4,
+    "ksk_container_bytes": 59310080,
+    "polynomial_size": 2048,
+    "small_lwe_dimension": 904
+  },
+  "gallery": {
+    "maximum_domain_width": 4096,
+    "maximum_size": 3374,
+    "minimum_size": 1,
+    "thresholds": "any signed i64 per template, including values outside the validated common score domain; derive uniform/mixed execution from exact templates"
+  },
+  "http_contract": "exact-open-set-id-v9-composite-tfhe17-base15-three-lwe",
+  "http_limits_bytes": {
+    "enrollment": 8192,
+    "g4_key": 301989888,
+    "key": 335544320,
+    "probe": 65536
+  },
+  "listener": "IPv4 loopback only",
+  "magics": {
+    "client_key": "VRCCK17!",
+    "g4_key": "VRCG4V9!",
+    "output": "VRCOUT17",
+    "probe": "VRCOPR17",
+    "server_key": "VRCHD17!"
+  },
+  "old_wire_or_profile_fallback": false,
+  "output": {
+    "base": 15,
+    "decode": "low + 15*middle + 225*high",
+    "delta_log": 59,
+    "digits": 3,
+    "fixed_header_words": 11,
+    "lwe_words": 2049,
+    "mode": 5
+  },
+  "parameters": {
+    "fingerprint_sha256": "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61",
+    "id": "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+    "modulus_switching": "Standard",
+    "preset": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+    "tfhe_rs": "1.7.0"
+  },
+  "public_modes": [
+    "uniform sentinel",
+    "uniform all accept",
+    "uniform all reject",
+    "mixed winner threshold"
+  ],
+  "query": {
+    "coordinates": [
+      -3,
+      3
+    ],
+    "dimension": 512,
+    "fixed_header_words": 9,
+    "full_delta_log": 51,
+    "glwe_size": 2,
+    "low_delta_log": 60,
+    "low_offset": 1024,
+    "maximum_norm2": 1024,
+    "polynomial_size": 2048,
+    "profile": "head51",
+    "profile_id": 2
+  },
+  "runtime_mode": "public_parallel",
+  "schema": "maintained-composite-service-circuit.v1",
+  "scope": "local exact 0/ID library service; synthetic gates required before readiness",
+  "selector_repair": {
+    "control_br_per_selector": 1,
+    "control_samples_per_selector": 1,
+    "functional_key_reference": "repaired-B-window1536-radius127",
+    "g4_supported": false,
+    "max_payloads_per_group": 4,
+    "new_functional_key_required": false,
+    "new_service_envelope_required": true,
+    "ordinary_ks_per_selector": 2,
+    "payload_offsets": [
+      0,
+      256,
+      512,
+      768
+    ],
+    "pfks_window_center": 1536,
+    "pfks_window_coefficients": 255,
+    "public_control_body_additions_per_selector": 1,
+    "public_mean_corrections_per_selector": 2,
+    "public_repacking": "three score lanes then nonconstant ID/threshold lanes, consecutive chunks of four",
+    "qualification": "conditional geometry; delivery service qualification recorded separately",
+    "refresh_radius_degrees": 63,
+    "scheme": "ordinary-centered-refresh4-12-then-centered-selection",
+    "selection_radius_degrees": 127
+  },
+  "service_source_sha256": "5de9b8d3e33820fb8e7d001d45c7c3660c91a794786fb49f64f6ba4a86d07a07",
+  "source_digest_scope": "non-generated source leaves and BUILD_SELECTION.json; generated bindings closed by SOURCE_PINS.json",
+  "state_binding": [
+    "installed evaluation key SHA256",
+    "gallery epoch",
+    "gallery revision",
+    "gallery size",
+    "input and output native profile",
+    "parameter and circuit identities"
+  ],
+  "variant_id": "head-selector-refresh4-12-w127-pack4-b22-mean2-tfhe17-base15-p16-public_parallel-v9",
+  "wire_version": 9
+}

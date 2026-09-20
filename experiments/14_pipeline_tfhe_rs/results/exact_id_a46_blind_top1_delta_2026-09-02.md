@@ -27,16 +27,12 @@ soglia.
 
 Fonti fissate:
 
-| artefatto | revisione / SHA-256 |
-|---|---|
-| [paper PoPETs 2025](https://petsymposium.org/popets/2025/popets-2025-0093.pdf) | DOI `10.56553/popets-2025-0093` |
-| `sofianeazogagh/knn` | commit `4fd244e5a52cfe218a202e3040f8540ef8879251` |
-| `knn/src/server.rs` | `a6909fb57b09793ad5cd37c098e1c182ecfe8efc62fedf49558f5e9a520cc420` |
-| `knn/src/main.rs` | `cf6660ff9ace2aace1a08981dbd47467bc818b1cb02b3a31db3fbe9309b576cf` |
-| `sofianeazogagh/revoLUT` | tag peeled commit `e93475470c126c4a0fa121f8fae0c6194988b74e` |
-| `revoLUT/src/blind_topk.rs` | `54d0fe24a497b3c08c595098fd3ee706e2b733c3fb2c0f0a1d0f3f33de22ace5` |
-| `revoLUT/src/blind_sort.rs` | `06d3180b7e6bbc3dc7eb0082b4b90c39c90f6e2f83ffa31e33e1760c64d66c90` |
-| `revoLUT/src/lib.rs` | `e66b9645cfc8649a5231311fb43bdb02fbcdb250837ad6ab1082067e7d0bd290` |
+- [Paper PoPETs 2025](https://petsymposium.org/popets/2025/popets-2025-0093.pdf),
+  DOI `10.56553/popets-2025-0093`.
+- [Sorgente knn, revisione 4fd244e](https://github.com/sofianeazogagh/knn/tree/4fd244e5a52cfe218a202e3040f8540ef8879251),
+  in particolare `src/server.rs` e `src/main.rs`.
+- [Sorgente RevoLUT, revisione e934754](https://github.com/sofianeazogagh/revoLUT/tree/e93475470c126c4a0fa121f8fae0c6194988b74e),
+  in particolare `src/blind_topk.rs`, `src/blind_sort.rs` e `src/lib.rs`.
 
 ## Cosa calcola davvero il k-NN pubblicato
 
@@ -258,8 +254,8 @@ macchina, versione TFHE o set di parametri.
 
 ## Artefatti e verifica
 
-- `benchmark/a46_blind_top1_delta.py`
-- `tests/test_a46_blind_top1_delta.py`
+- [benchmark/a46_blind_top1_delta.py](../../../benchmark/a46_blind_top1_delta.py)
+- [tests/test_a46_blind_top1_delta.py](../../../tests/test_a46_blind_top1_delta.py)
 
 Comandi statici previsti:
 

@@ -1,90 +1,85 @@
-# Modelli di embedding moderni per il gradino CNN (nota di riferimento)
+# Modelli di embedding per gli esperimenti CNN
 
-Per il prossimo gradino (CNN) serve un **estrattore di embedding pre-addestrato**. Qui
-la rosa dei modelli moderni, con accesso, licenza e **dimensione dell'embedding** (la
-cosa che conta per noi).
+Questa nota conserva la ricognizione dei modelli pre-addestrati considerati
+prima degli esperimenti CNN. Confronta architettura, dimensione dell'embedding,
+risultati dichiarati e condizioni di accesso.
 
-> ⚠️ Onestà sulle fonti: la ricerca approfondita su questo tema si è interrotta a metà
-> per un limite di budget dell'org. I claim **verificati** (verifica adversariale 3-0 /
-> 2-1) sono marcati ✅; quelli **solo da fonte primaria** (model card HuggingFace / repo
-> GitHub citati verbatim, ma verifica non completata) sono marcati 📄: affidabili come
-> origine, ma da ricontrollare prima di dipenderne.
+La verifica delle fonti è rimasta parziale. Le voci marcate [V] sono state
+controllate nella ricognizione; [P] indica dati riportati dalla fonte primaria
+senza un controllo aggiuntivo completato. Licenze e disponibilità dei pesi
+riportano lo stato delle fonti consultate, non una verifica attuale.
 
-## L'intuizione che cambia tutto
+## Costo del modello e costo FHE
 
-L'embedding lo calcola il **client in chiaro** (è fidato). Quindi **peso, FLOPs e
-profondità del modello NON toccano il costo FHE**: possiamo permetterci un modello
-**forte e grande**, non per forza leggero. L'unica proprietà del modello che pesa
-sull'FHE è la **dimensione dell'embedding** (è ciò che viene cifrato e dato al circuito
-di distanza): **512 è lo standard**, gestibile; più grande costa di più (è la leva
-lineare già vista nel gradino 07).
+Il client fidato calcola l'embedding in chiaro. Peso, FLOPs e profondità della
+rete incidono su questa fase, che precede la cifratura. A parità di dimensione,
+quantizzazione e circuito, cambiare estrattore non cambia il lavoro FHE.
+La dimensione 512 è comune ai modelli considerati; il gradino 07 aveva già
+misurato il costo di vettori più lunghi.
 
-Ribaltamento della scaletta: la "CNN leggera" non serve *per l'FHE*. Un modello
-leggero (MobileFaceNet/EdgeFace) resta interessante solo per (a) realismo edge e (b)
-l'opzione futura **split-inference** (alcuni layer dentro l'FHE).
+Un modello leggero come MobileFaceNet o EdgeFace può ridurre il lavoro sul
+client. Una possibile estensione, non valutata qui, è la split-inference,
+con alcuni layer eseguiti sotto FHE.
 
 ## I candidati
 
-### Massima accuratezza (gira in chiaro → peso libero)
+### Modelli di maggiori dimensioni
 
 | modello | backbone / training | benchmark duri | emb | accesso / licenza |
 |---|---|---|---|---|
-| **InsightFace `buffalo_l`** ✅ | ResNet50 @ WebFace600K | LFW 99,83 · CFP-FP 99,33 · AgeDB-30 98,23 · **IJB-C 97,25** | 512 📄 | pip `insightface`, scarica da solo · **research non-commerciale** ✅ |
-| InsightFace `antelopev2` ✅ | ResNet100 @ Glint360K (407 MB) | più forte di buffalo_l | 512 📄 | pip `insightface` · research non-commerciale ✅ |
-| AdaFace R100 📄 | ResNet100 @ WebFace12M | CPLFW 94,57 · CFP-FP 99,26 · AgeDB 98,00 · LFW 99,82 📄 | 512 📄 | pesi liberi su Google Drive (repo `mk-minchul/AdaFace`) 📄 |
-| LVFace 📄 | ViT-T/S/B/L @ Glint360K (ByteDance, ICCV 2025) | SOTA recente 📄 | ? 📄 | HF `bytedance-research/LVFace`, ONNX+pt · **MIT (commerciale OK)** 📄 |
+| InsightFace `buffalo_l` [V] | ResNet50 @ WebFace600K | LFW 99,83 · CFP-FP 99,33 · AgeDB-30 98,23 · IJB-C 97,25 | 512 [P] | pip `insightface`, scarica da solo · research non-commerciale [V] |
+| InsightFace `antelopev2` [V] | ResNet100 @ Glint360K (407 MB) | accuratezza dichiarata superiore a buffalo_l | 512 [P] | pip `insightface` · research non-commerciale [V] |
+| AdaFace R100 [P] | ResNet100 @ WebFace12M | CPLFW 94,57 · CFP-FP 99,26 · AgeDB 98,00 · LFW 99,82 [P] | 512 [P] | pesi liberi su Google Drive (repo `mk-minchul/AdaFace`) [P] |
+| LVFace [P] | ViT-T/S/B/L @ Glint360K (ByteDance, ICCV 2025) | modello recente [P] | ? [P] | HF `bytedance-research/LVFace`, ONNX+pt · MIT dichiarata [P] |
 
-### Leggeri / edge (per split-inference futura, non per l'FHE)
+### Modelli leggeri per il client
 
 | modello | parametri | benchmark duri | emb | licenza |
 |---|---|---|---|---|
-| **EdgeFace-S** ✅ | 3,65M (306 MFLOPs) | CPLFW 92,48 · CFP-FP 95,74 · AgeDB-30 97,03 · LFW 99,78 | 512 📄 | **vincitore EFaR 2023** (IJCB), peer-reviewed ✅ · CC BY-NC-SA 📄 |
-| EdgeFace-XS ✅ | 1,77M (154 MFLOPs) | CPLFW 91,58 · CFP-FP 94,71 · AgeDB 96,08 | 512 📄 | come sopra |
-| InsightFace `buffalo_s` 📄 | MobileFaceNet @ WebFace600K | CFP-FP 98,00 · AgeDB 96,58 · IJB-C 95,02 📄 | 512 📄 | research non-commerciale |
-| GhostFaceNets 📄 | GhostNet | — | 512 📄 | repo `HamadYA/GhostFaceNets` |
+| EdgeFace-S [V] | 3,65M (306 MFLOPs) | CPLFW 92,48 · CFP-FP 95,74 · AgeDB-30 97,03 · LFW 99,78 | 512 [P] | vincitore EFaR 2023 (IJCB), peer-reviewed [V] · CC BY-NC-SA [P] |
+| EdgeFace-XS [V] | 1,77M (154 MFLOPs) | CPLFW 91,58 · CFP-FP 94,71 · AgeDB 96,08 | 512 [P] | come sopra |
+| InsightFace `buffalo_s` [P] | MobileFaceNet @ WebFace600K | CFP-FP 98,00 · AgeDB 96,58 · IJB-C 95,02 [P] | 512 [P] | research non-commerciale |
+| GhostFaceNets [P] | GhostNet | - | 512 [P] | repo `HamadYA/GhostFaceNets` |
 
-## Raccomandazione
+## Scelte considerate
 
-1. **Primario: `buffalo_l` (InsightFace).** È il **drop-in più semplice in assoluto**:
-   `FaceAnalysis` fa detection + allineamento 112×112 + embedding in poche righe, scarica
-   i pesi da solo, ONNX runtime (leggero). Verificato forte sui benchmark duri (IJB-C
-   97,25), **emb 512** = la nostra leva FHE allo standard. Licenza *research
-   non-commerciale* = **perfetta per una tesi** (accademica).
-2. **Edge: `EdgeFace-S`.** Per la traccia leggera/split-inference: minuscolo (3,65M),
-   peer-reviewed (vincitore EFaR 2023), buono sui duri. Stesso formato 112×112, emb 512.
-3. **Se serve licenza commerciale** (oltre la tesi): **LVFace** dichiara MIT 📄, da
-   verificare.
+1. `buffalo_l` (InsightFace). `FaceAnalysis` integra detection, allineamento
+   a 112×112 ed estrazione di embedding a 512 dimensioni, con download dei pesi
+   e ONNX Runtime. Il risultato riportato su IJB-C è 97,25. I pesi hanno una
+   licenza per ricerca non commerciale.
+2. `EdgeFace-S`. Modello leggero da 3,65M parametri, vincitore EFaR 2023,
+   con input 112×112 ed embedding a 512 dimensioni.
+3. `LVFace`. La fonte primaria dichiara una licenza MIT [P], da verificare
+   per i componenti e i pesi che si intendono usare.
 
-Tutti vogliono **volti allineati 112×112 RGB**, quindi serve uno step di allineamento
-(lo fa `insightface` stesso). L'embedding va poi **L2-normalizzato** e quantizzato come
-nel gradino 07; emb 512, quindi un costo del match cifrato atteso simile o lievemente
-sopra il gradino 07 (lì dim 3776; qui 512, quindi più piccolo!).
+La pipeline prevista usa volti RGB allineati a 112×112; InsightFace comprende
+l'allineamento. Gli embedding sono poi normalizzati L2 e quantizzati.
+I vettori a 512 dimensioni sono più corti di quelli a 3776 dimensioni del
+gradino 07. Le misure FHE dei modelli integrati sono nell'[esperimento 08](../experiments/08_cnn/README.md).
 
-## Dataset sintetici license-clean (complemento)
+## Dataset sintetici complementari
 
-Volti **generati** (niente persone reali, quindi niente consenso): tematicamente perfetti
-per una tesi sulla *privacy*. Esistenza confermata (paper CVPR/WACV 2023 + repo), dettagli
-non verificati per lo stop di budget:
+La ricognizione ha considerato anche dataset di volti generati. Paper e
+repository ne confermano l'esistenza; la verifica dei dettagli è rimasta parziale:
 
-- **DCFace** (CVPR 2023) 📄, diffusion, repo `mk-minchul/dcface`.
-- **DigiFace-1M** (WACV 2023) 📄, rendering 3D, repo `microsoft/DigiFace1M`, 1M immagini.
+- DCFace (CVPR 2023) [P], diffusion, repo `mk-minchul/dcface`.
+- DigiFace-1M (WACV 2023) [P], rendering 3D, repo `microsoft/DigiFace1M`, 1M immagini.
 
-Utili come complemento controllato/pulito, **non** come prova "facce vere" (l'accuratezza
-su sintetico ≠ mondo reale).
+Questi dataset consentono esperimenti controllati. L'accuratezza su immagini
+sintetiche non dimostra l'accuratezza su persone reali.
 
-## Contesto storico (perché i benchmark restano "vecchi")
+## Contesto dei benchmark
 
-Confermato a metà: il progresso 2018→oggi è soprattutto su (a) **dati di training su
-larga scala** (WebFace600K/12M, Glint360K) e (b) **modelli migliori** (ArcFace→AdaFace→
-EdgeFace/LVFace), mentre molti dataset web sono stati **ritirati** (MS-Celeb-1M, MegaFace,
-host VGGFace2). Quindi i *modelli* sono molto migliorati ma i *benchmark pubblici* di
-valutazione restano i vecchi (LFW/CFP/CPLFW/AgeDB/IJB-C), quindi è giusto usarli, sapendo
-che per i modelli forti sono saturi e per la nostra pipeline leggera no.
+La letteratura successiva al 2018 comprende dati di addestramento su larga
+scala, come WebFace600K/12M e Glint360K, e modelli come AdaFace, EdgeFace e LVFace.
+Alcuni dataset o host sono stati ritirati, tra cui MS-Celeb-1M, MegaFace e
+VGGFace2. LFW, CFP, CPLFW, AgeDB e IJB-C restano riferimenti condivisi per i
+confronti; il grado di difficoltà dipende dal modello e dal protocollo.
 
 ## Fonti
 
-- InsightFace (buffalo_l/antelopev2, licenza): github.com/deepinsight/insightface (+ model_zoo README) ✅
-- EdgeFace: github.com/otroshi/edgeface · HF `Idiap/EdgeFace-S-GAMMA` · IJCB 2023 / T-BIOM 2024 ✅
-- AdaFace: github.com/mk-minchul/AdaFace 📄
-- LVFace: huggingface.co/bytedance-research/LVFace · arXiv 2501.13420 📄
-- DCFace: CVPR 2023 · github.com/mk-minchul/dcface 📄; DigiFace-1M: WACV 2023 · github.com/microsoft/DigiFace1M 📄
+- InsightFace (buffalo_l/antelopev2, licenza): github.com/deepinsight/insightface (+ model_zoo README) [V]
+- EdgeFace: github.com/otroshi/edgeface · HF `Idiap/EdgeFace-S-GAMMA` · IJCB 2023 / T-BIOM 2024 [V]
+- AdaFace: github.com/mk-minchul/AdaFace [P]
+- LVFace: huggingface.co/bytedance-research/LVFace · arXiv 2501.13420 [P]
+- DCFace: CVPR 2023 · github.com/mk-minchul/dcface [P]; DigiFace-1M: WACV 2023 · github.com/microsoft/DigiFace1M [P]

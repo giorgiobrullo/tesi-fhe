@@ -267,12 +267,7 @@ equivalenti**: quattro di esse per template emettono due LWE invece di uno.
 `Cargo.lock` fissa `tfhe 0.11.3`, checksum crates.io
 `ebacd6973a20d4967a64bac147ad6890182fd8ce910ce841ecbb3cae47bdf5ff`.
 
-Le API e implementazioni locali rilevanti sono sotto:
-
-```text
-/Users/giorgiobrullo/.cargo/registry/src/
-  index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/
-```
+I riferimenti seguenti sono alla directory `src/` del crate TFHE-rs `0.11.3`:
 
 - `core_crypto/algorithms/lwe_programmable_bootstrapping/fft64.rs:180-219` espone
   `blind_rotate_assign`, che modifica una GLWE in place senza imporre una singola sample extraction;

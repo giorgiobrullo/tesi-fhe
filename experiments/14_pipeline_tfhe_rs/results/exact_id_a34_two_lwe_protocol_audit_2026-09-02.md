@@ -1,8 +1,8 @@
 # A34 exact-ID: audit statico del protocollo a due LWE nibble
 
 Data: 2026-09-02. Stato: **modello clear e proiezione strutturale, non implementato e non
-validato in FHE**. Questo audit non modifica il core Rust, il servizio, il formato wire vivo, le
-chiavi o gli snapshot congelati.
+validato in FHE**. Il risultato riguarda soltanto semantica e costo strutturale
+del formato proposto.
 
 ## Esito
 

@@ -4,7 +4,6 @@
   "status": "both_fixed_screens_negative_no_selected_candidate",
   "campaigns": {
     "initial": {
-      "original_path": "tmp/torneo-dag-20260908/harness/private/key0/RESULTS.json",
       "original_sha256": "88f44423be757d94ed80748631036dd1cb06120363cfd1ff68e8d8cda7a00175",
       "family": 0,
       "outputs": 357,
@@ -264,7 +263,6 @@
       "scope": "Full encrypted query from score formation to three ID ciphertexts. One fixed key family, scenes and recorded CPU load. Profiles are separate instrumentation runs; no service or formal-tail claim."
     },
     "diagnosis": {
-      "original_path": "tmp/torneo-dag-diagnosi-20260908/harness/private/key0/RESULTS.json",
       "original_sha256": "2541d6d09300de4572272cd1acb20106a36fe1060dac028aa9ecd6e39f978f98",
       "family": 0,
       "outputs": 560,
@@ -1096,5 +1094,7 @@
     "All measured losses preserved",
     "Curated timing CSV omits unrelated process commands and keeps numeric pairs and available load flags"
   ],
-  "timing_csv": "timing-pairs.csv"
+  "timing_csv": "timing-pairs.csv",
+  "provenance_manifest": "PROVENANCE.json",
+  "recorded_digest_scope": "Existing source, binary and original-result digests identify historical run artifacts. PROVENANCE.json separately hashes the files distributed in this publication."
 }

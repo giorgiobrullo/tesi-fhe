@@ -21,7 +21,7 @@ apprende nessuno dei due nibble.
 
 ## Implementazione isolata
 
-Il crate `tmp/a39-two-lwe-prototype` e' una copia isolata dello snapshot A33. Il nuovo harness:
+Il prototipo A39 usa il core A33 e valuta il seguente percorso:
 
 1. esegue il core A33 congelato e prende direttamente i candidati finali cifrati;
 2. esegue group scan, prefix e selector A34 senza decrypt/re-encrypt;
@@ -89,15 +89,7 @@ Non chiude ancora:
 Pertanto A39 e' evidenza FHE positiva per una chiusura del **solo output**, non un nuovo baseline e
 non un certificato `p-fail` completo.
 
-## Provenienza
-
-| artefatto | SHA-256 |
-|---|---|
-| `Cargo.toml` A39 | `4596c6e032df15582cb18f4f979abd7e5ae9e64a4872cb40d157cdca5af90016` |
-| `Cargo.lock` | `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a` |
-| core A33 consumato | `1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d` |
-| harness A39 | `28024f34b27d6f9dd3fc673fd8bb6e1c953041e289317a8d0b1a5ba9907fdaff` |
-| binario realmente eseguito | `66fac82805bd11695fa9c0351615ca7608941dc57f4101198e0f943e1370e89c` |
+## Limite dei tempi
 
 Le chiavi erano effimere e non sono state serializzate. I tempi dei fixture (circa 8,58 s a N=127
 nel run completo) includono il core A33 e sono contaminati dal carico; non costituiscono un

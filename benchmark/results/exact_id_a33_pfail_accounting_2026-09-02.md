@@ -5,7 +5,7 @@ parametro `V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64`.
 
 ## Esito
 
-Questo artefatto chiude il **conteggio riproducibile** degli eventi, ma non fornisce ancora un
+Questo rapporto fornisce il **conteggio deterministico** degli eventi, ma non fornisce un
 certificato numerico end-to-end.
 
 | quantita' | valore |
@@ -64,24 +64,26 @@ probe distinti. Se, solo a fini descrittivi, si modellano le query come Bernoull
 superiore unilaterale al 95% e' `0,004728866`. Questo numero non e' un bound crittografico: un
 campione di 632 query non puo' risolvere una probabilita' dell'ordine di `2^-60`.
 
-## Riproducibilita'
+## Dati e limite della rigenerazione
 
-Comando canonico:
-
-```bash
-uv run --python 3.12 python benchmark/a33_pfail_accounting.py \
-  --output benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.json
-```
+Il [generatore del conteggio](../a33_pfail_accounting.py) è incluso, ma verifica
+anche una trascrizione diagnostica A33 non distribuita e una specifica copia
+dei sorgenti TFHE-rs. Il clone non contiene quindi tutti gli input necessari
+a rigenerare il certificato storico. Le formule e i conteggi sono riportati
+sopra; il JSON seguente documenta il risultato calcolato.
 
 | artefatto | SHA-256 |
 |---|---|
-| JSON deterministico | `0cfd431534d093d1ba7aeea79a5be0e4a611d2b2380e76e8fbecc8e8237bf54f` |
+| JSON deterministico | `d76bd4cb9337523d0b997ad6ed942a03b4345a04a376a5378ee79792430af896` |
 | generatore | `4b32a4da363e4a2562b42a04f03b462eda98be0926dc3236c5d33acd675ac785` |
 | patch A33 | `6d07077efc52e721399740ef7d443ca87ee0a6c575cd19b7a453d5109224f7f5` |
 | core A33 estratto dalla patch | `1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d` |
-| JSON suite primaria | `e3ef7b5ae74c85e883d8ed3b2670fb6efbd20291775752fefe1ec56c0f1a9467` |
+| JSON suite primaria | `51be273a6a81274b1314f56af3a0ae62328131f035a7bff236d01b70751f9c49` |
 | CSV suite primaria | `0d35640d7803969f4fb4781bac3975e367e477447ecbf6ffc9fb6a090669a011` |
 
 La generazione e' stata provata su Python 3.9 e 3.12 e il replay in un file temporaneo ha prodotto
 gli stessi byte. Il JSON grezzo resta l'artefatto autorevole:
 [exact_id_a33_pfail_accounting_2026-09-02.json](exact_id_a33_pfail_accounting_2026-09-02.json).
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

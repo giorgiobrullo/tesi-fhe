@@ -1,27 +1,5 @@
 {
   "timestamp_utc": "2026-09-02T12:54:38.023961+00:00",
-  "argv": [
-    "tmp/a33-docker-gate-2026-09-02/run_gate.py",
-    "--base-url",
-    "http://127.0.0.1:18080",
-    "--preload",
-    "--expect-n",
-    "127",
-    "--expect-pbs",
-    "4273",
-    "--positivi",
-    "3",
-    "--negativi",
-    "3",
-    "--docker-project",
-    "thesis-a33-frozen",
-    "--docker-compose-file",
-    "tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml",
-    "--require-docker-provenance",
-    "--require-calibration-cache",
-    "--output",
-    "benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.csv"
-  ],
   "base_url": "http://127.0.0.1:18080",
   "platform": "macOS-27.0-arm64-arm-64bit",
   "python": "3.12.11",
@@ -394,30 +372,30 @@
       "demo/client/static/index.html": "f253f6e847c6acdabc79e6c49a51d8f05efbce8fb68f299845c726ef6d9b428a",
       "demo/config.env": "2b3d15d19e336493b5819c83bb0cf3b4557cf0b3c547238da58dbeeeca8e608e",
       "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
-      "tmp/a33-docker-gate-2026-09-02/Dockerfile.server": "a9aa5ed1bec0f0673c43b4437b1f58c83bd549317a29735a65e4ebf36c04bf78",
-      "tmp/a33-docker-gate-2026-09-02/Dockerfile.client": "d9a573ba531b4aeffad7d8e6abfba18527d16353d558ea32e5d0e40b48a49087",
-      "tmp/a33-docker-gate-2026-09-02/README.md": "3fb1b85fb3a5ab003891789918d59a62eaf22f550a2fa037203265b6ceed932c",
-      "tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml": "cbab393930597c3f8ccde9bf8106d84a02ebc1b35ddd50c94231b4df30badeae",
-      "tmp/a33-docker-gate-2026-09-02/run_gate.py": "6c676a2053e69ef7d927d3d4e76770812608c04960533d9434654d305b8fc3bb",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/a33_full_validation.rs": "183f554f705e7fe4edbe03060436106e9e02cf0abaf987d0716bd074c4793033",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/a33_sparse_residual_trace.rs": "1b03d510ae8c560bb4f9df58f13ac31b8a71e35e55775132cb4c0bdcd4efc281",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs": "ae23024c8cbcb3269db14d816da44fb035f72b8ba00d83b5a5c2cb1aaca4c5ca",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/lib.rs": "c6fbdd61636f6335e6547ed17aa73cdea7c69c2a7c26f74980bb99c52a2e6f53",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/.cargo/config.toml": "8ea425180afe0e2fc0cd930d9a5dbd4da07aebe14263eeec4d6df9c7ab996a20",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
-      "tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
-      "tmp/a33-aligned-sparse-2026-09-02/source/benchmark/demo_e2e.py": "6b1eafd5ee420015b0c767ab8f8999cce0180ec2a30b6081caabe4e63d9539b1",
-      "tmp/a33-aligned-sparse-2026-09-02/source/benchmark/fhe_digiface_validation.py": "b54fbc7ef278e53a08ad08eed4429833a7fba62b15ba810bc12c31af4904e79d",
-      "tmp/a33-aligned-sparse-2026-09-02/source/demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
-      "tmp/a33-aligned-sparse-2026-09-02/README.md": "a6af6551632cc1c96e7a369e317605d3d74b7e6734f92e267b7131737679b0b4",
-      "tmp/a33-aligned-sparse-2026-09-02/a33_full_validation": "596792a8e306d6ba2811ade51054d0f6c9aff09ab339f65db6311e7f32e42a7d",
-      "tmp/a33-aligned-sparse-2026-09-02/a33_full_validation.txt": "2c3fd446b4f0a2f382a2ec5c939facd427680b0d1e88315c57a474e55a279595",
-      "tmp/a33-aligned-sparse-2026-09-02/a33_sparse_residual_trace": "d079cdd930b0c082221fa49c0a28549014055adfe0d01be253fa3639cfc6c7fb",
-      "tmp/a33-aligned-sparse-2026-09-02/binaries.sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5",
-      "tmp/a33-aligned-sparse-2026-09-02/inputs-before.sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2",
-      "tmp/a33-aligned-sparse-2026-09-02/varco_demo": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
-      "tmp/a33-docker-gate-2026-09-02/frozen-inputs.sha256": "6681744dca0bc79242735ea7d3bc018ee9d1edd60a43f6cf72a178607c52b9d9"
+      "a33-docker-gate-2026-09-02::Dockerfile.server": "a9aa5ed1bec0f0673c43b4437b1f58c83bd549317a29735a65e4ebf36c04bf78",
+      "a33-docker-gate-2026-09-02::Dockerfile.client": "d9a573ba531b4aeffad7d8e6abfba18527d16353d558ea32e5d0e40b48a49087",
+      "a33-docker-gate-2026-09-02::README.md": "3fb1b85fb3a5ab003891789918d59a62eaf22f550a2fa037203265b6ceed932c",
+      "a33-docker-gate-2026-09-02::docker-compose.e2e.yml": "cbab393930597c3f8ccde9bf8106d84a02ebc1b35ddd50c94231b4df30badeae",
+      "a33-docker-gate-2026-09-02::run_gate.py": "6c676a2053e69ef7d927d3d4e76770812608c04960533d9434654d305b8fc3bb",
+      "experiments/14_pipeline_tfhe_rs/src/bin/a33_full_validation.rs": "183f554f705e7fe4edbe03060436106e9e02cf0abaf987d0716bd074c4793033",
+      "experiments/14_pipeline_tfhe_rs/src/bin/a33_sparse_residual_trace.rs": "1b03d510ae8c560bb4f9df58f13ac31b8a71e35e55775132cb4c0bdcd4efc281",
+      "a33-aligned-sparse-2026-09-02::src/bin/varco_demo.rs": "ae23024c8cbcb3269db14d816da44fb035f72b8ba00d83b5a5c2cb1aaca4c5ca",
+      "a33-aligned-sparse-2026-09-02::14_pipeline_tfhe_rs/src/lib.rs": "c6fbdd61636f6335e6547ed17aa73cdea7c69c2a7c26f74980bb99c52a2e6f53",
+      "a33-aligned-sparse-2026-09-02::14_pipeline_tfhe_rs/src/private_argmin.rs": "1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d",
+      "experiments/14_pipeline_tfhe_rs/.cargo/config.toml": "8ea425180afe0e2fc0cd930d9a5dbd4da07aebe14263eeec4d6df9c7ab996a20",
+      "experiments/14_pipeline_tfhe_rs/Cargo.lock": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a",
+      "experiments/14_pipeline_tfhe_rs/Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
+      "a33-aligned-sparse-2026-09-02::source/benchmark/demo_e2e.py": "6b1eafd5ee420015b0c767ab8f8999cce0180ec2a30b6081caabe4e63d9539b1",
+      "a33-aligned-sparse-2026-09-02::source/benchmark/fhe_digiface_validation.py": "b54fbc7ef278e53a08ad08eed4429833a7fba62b15ba810bc12c31af4904e79d",
+      "demo/config.json": "eef0f46e153a6c3f23e8fb258a34db663376a391578aff03a79046e4691318dc",
+      "a33-aligned-sparse-2026-09-02::README.md": "a6af6551632cc1c96e7a369e317605d3d74b7e6734f92e267b7131737679b0b4",
+      "a33-aligned-sparse-2026-09-02::a33_full_validation": "596792a8e306d6ba2811ade51054d0f6c9aff09ab339f65db6311e7f32e42a7d",
+      "a33-aligned-sparse-2026-09-02::a33_full_validation.txt": "2c3fd446b4f0a2f382a2ec5c939facd427680b0d1e88315c57a474e55a279595",
+      "a33-aligned-sparse-2026-09-02::a33_sparse_residual_trace": "d079cdd930b0c082221fa49c0a28549014055adfe0d01be253fa3639cfc6c7fb",
+      "a33-aligned-sparse-2026-09-02::binaries.sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5",
+      "a33-aligned-sparse-2026-09-02::inputs-before.sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2",
+      "a33-aligned-sparse-2026-09-02::varco_demo": "13a1593be85d8e585bdf48d7d4e8a09a57a82902f6e8da7299a5b02415a3ea59",
+      "a33-docker-gate-2026-09-02::frozen-inputs.sha256": "6681744dca0bc79242735ea7d3bc018ee9d1edd60a43f6cf72a178607c52b9d9"
     },
     "host_inputs_stable_during_run": true,
     "config_snapshot": {
@@ -625,11 +603,11 @@
       "uvicorn": "0.52.4"
     },
     "dataset": {
-      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "dataset_root": "datasets::digiface/estratto",
       "selected_image_count": 272,
       "selected_image_bytes": 5518658,
       "selected_content_manifest_sha256": "76fe33addfd57b2023b50bec80a8daf29a70f7f6c107f7ae3cf46b85e9a0c960",
-      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
       "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
       "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
       "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"
@@ -638,7 +616,7 @@
     "docker_required": true,
     "docker_preload": {
       "project": "thesis-a33-frozen",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml",
+      "compose_file": "a33-docker-gate-2026-09-02::docker-compose.e2e.yml",
       "compose_config_sha256": "765fdd8f982a56cc14300d2ce3330043d9c8575f963592e19ef4d2c0a5aade45",
       "context_file_sha256": {
         "compose": "cbab393930597c3f8ccde9bf8106d84a02ebc1b35ddd50c94231b4df30badeae",
@@ -688,7 +666,7 @@
             "snapshot/README.md": "a6af6551632cc1c96e7a369e317605d3d74b7e6734f92e267b7131737679b0b4",
             "snapshot/inputs-before.sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2",
             "snapshot/binaries.sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5",
-            "target/release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
+            "A33::release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -723,7 +701,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -800,7 +777,7 @@
             "core/metriche.py": "32d9f02ba36531fb6b4cc87a30581329b2b26c71fca92ddbfae60089cef2011b",
             "core/quantize.py": "300aa3ba17c1482cd57aaaea77ce723a9c95ba182ed13199c38966c2252dbcf8",
             "core/server.py": "2ab40f779082c214d8d499c1168d5f8ef966715701281525a5ca4af360e38660",
-            "target/release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
+            "A33::release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -851,7 +828,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",
@@ -960,7 +936,7 @@
         }
       },
       "frozen_snapshot": {
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02",
+        "path": "a33-aligned-sparse-2026-09-02",
         "input_manifest_sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2",
         "binary_manifest_sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5",
         "pin_manifest_sha256": "6681744dca0bc79242735ea7d3bc018ee9d1edd60a43f6cf72a178607c52b9d9"
@@ -968,7 +944,7 @@
     },
     "docker": {
       "project": "thesis-a33-frozen",
-      "compose_file": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml",
+      "compose_file": "a33-docker-gate-2026-09-02::docker-compose.e2e.yml",
       "compose_config_sha256": "765fdd8f982a56cc14300d2ce3330043d9c8575f963592e19ef4d2c0a5aade45",
       "context_file_sha256": {
         "compose": "cbab393930597c3f8ccde9bf8106d84a02ebc1b35ddd50c94231b4df30badeae",
@@ -1018,7 +994,7 @@
             "snapshot/README.md": "a6af6551632cc1c96e7a369e317605d3d74b7e6734f92e267b7131737679b0b4",
             "snapshot/inputs-before.sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2",
             "snapshot/binaries.sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5",
-            "target/release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
+            "A33::release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -1053,7 +1029,6 @@
             "512",
             "4"
           ],
-          "pid1_working_directory": "/",
           "selected_pid1_environment": {
             "HOME": "/root",
             "DIM": "512",
@@ -1130,7 +1105,7 @@
             "core/metriche.py": "32d9f02ba36531fb6b4cc87a30581329b2b26c71fca92ddbfae60089cef2011b",
             "core/quantize.py": "300aa3ba17c1482cd57aaaea77ce723a9c95ba182ed13199c38966c2252dbcf8",
             "core/server.py": "2ab40f779082c214d8d499c1168d5f8ef966715701281525a5ca4af360e38660",
-            "target/release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
+            "A33::release/varco_demo": "f31cb7a659bb2395dbc6bec1e18259e230302f36f0cf8f09c2a19288b46136a5"
           },
           "host_source_hashes": {
             "Cargo.toml": "290b97cfd9af85685db419b5782d0e9ab073179b6ffe2c97ef9c8a33c4fddfb6",
@@ -1181,7 +1156,6 @@
             "--port",
             "8000"
           ],
-          "pid1_working_directory": "/app",
           "selected_pid1_environment": {
             "VARCO_SERVER": "http://server:9000",
             "VARCO_BIN": "/usr/local/bin/varco_demo",
@@ -1301,7 +1275,7 @@
         }
       },
       "frozen_snapshot": {
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a33-aligned-sparse-2026-09-02",
+        "path": "a33-aligned-sparse-2026-09-02",
         "input_manifest_sha256": "b027ea6fb564f234c93e4fa1483aa27b4987530f41c1fff7de759889ab40b5c2",
         "binary_manifest_sha256": "c353a3dc9e6729c1b6466c99ab83060428d5edf4b30c6124d91cb806efd109e5",
         "pin_manifest_sha256": "6681744dca0bc79242735ea7d3bc018ee9d1edd60a43f6cf72a178607c52b9d9"

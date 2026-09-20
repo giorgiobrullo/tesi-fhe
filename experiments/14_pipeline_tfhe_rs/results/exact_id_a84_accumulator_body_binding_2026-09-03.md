@@ -1,4 +1,4 @@
-# A84 — binding dei body degli accumulatori A53/A62
+# A84 - binding dei body degli accumulatori A53/A62
 
 Data: 2026-09-03  
 Ambito: analisi statica/source-only; nessuna compilazione Cargo, generazione di
@@ -52,8 +52,8 @@ Inoltre il self-verifier controllava che la reachable overapproximation
 contenesse le fasi necessarie, ma non ne rifiutava valori extra fuori periodo.
 Entrambi sono stati trattati come blocker, non come dettagli documentali: il
 manifest precedente è stato rigenerato, il range è ora fail-closed e ogni
-verifica A84 invoca anche il parser A79 pin-nato. I digest riportati qui sotto
-identificano soltanto la versione corretta.
+verifica A84 invoca anche il parser A79 identificato dal manifest. I risultati
+riportati qui si riferiscono alla versione corretta.
 
 ## Cosa viene vincolato
 
@@ -147,23 +147,5 @@ rifiutare chiamate raw dirette che aggirino il wrapper. Questo chiuderebbe il
 ponte source→runtime; copertura completa della topologia e premessa probabilistica
 del margine resterebbero obblighi separati.
 
-## Artefatti e digest
-
-- Directory: `tmp/a84-accumulator-body-binding/`
-- Bundle SHA-256:
-  `836f783ea806758bc0a4cb553e1870f58934260ec3ddfb5b1acbcb119305730e`
-- Manifest canonical-JSON SHA-256 richiesto dal verificatore:
-  `4b9eca2418fa17c4aed1009cf6ea8c5d8777d082f8eb280bc33177967fdbb12b`
-- SHA-256 del file JSON pretty-printed:
-  `a11bed233e1fe9afe113b93386aaebb5c4e2d9512903a0ac0245f5414ec4fb22`
-- Tutti gli hash dei file principali sono in `SHA256SUMS`.
-
-Comando di verifica:
-
-```sh
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python \
-  tmp/a84-accumulator-body-binding/a84_accumulator_binding.py verify \
-  --manifest tmp/a84-accumulator-body-binding/artifacts/a84_a53_n127_manifest.json \
-  --bundle tmp/a84-accumulator-body-binding/artifacts/a84_a53_n127_accumulator_bodies.bin \
-  --expected-manifest-sha256 4b9eca2418fa17c4aed1009cf6ea8c5d8777d082f8eb280bc33177967fdbb12b
-```
+Il prototipo e il verificatore specifici di questa analisi non sono inclusi
+nella distribuzione.

@@ -1,5 +1,5 @@
 {
-  "binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a124-a66-thread-sweep/target-a124-only/release/a124_a66_thread_sweep",
+  "binary": "a124-a66-thread-sweep::target-a124-only/release/a124_a66_thread_sweep",
   "binary_sha256": "f22329ce6ee72c921fa33b8609d0b8cd0a2a2449a47c9b24354abbaa66d1ad18",
   "cells": [
     {
@@ -50,7 +50,7 @@
         "waited_s": 7098.552785207983
       },
       "load_after_cell": 9.60791015625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -165,7 +165,7 @@
         "waited_s": 5411.133870208985
       },
       "load_after_cell": 22.29150390625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
       "scene_summary": {
         "accepted_probes": 3,
@@ -280,7 +280,7 @@
         "waited_s": 263.90520708297845
       },
       "load_after_cell": 11.71533203125,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
       "scene_summary": {
         "accepted_probes": 3,
@@ -395,7 +395,7 @@
         "waited_s": 889.2604803330032
       },
       "load_after_cell": 10.22509765625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -498,7 +498,7 @@
         "waited_s": 153.38380587502616
       },
       "load_after_cell": 11.24658203125,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
       "scene_summary": {
         "accepted_probes": 3,
@@ -613,7 +613,7 @@
         "waited_s": 20280.209883500007
       },
       "load_after_cell": 9.583984375,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
       "scene_summary": {
         "accepted_probes": 3,
@@ -728,7 +728,7 @@
         "waited_s": 524.2377421249985
       },
       "load_after_cell": 8.29345703125,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -843,7 +843,7 @@
         "waited_s": 1040.6140587080154
       },
       "load_after_cell": 8.44677734375,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
       "scene_summary": {
         "accepted_probes": 3,
@@ -942,7 +942,7 @@
         "waited_s": 117.42363862501225
       },
       "load_after_cell": 8.91650390625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
       "scene_summary": {
         "accepted_probes": 3,
@@ -1057,7 +1057,7 @@
         "waited_s": 1340.1205687500187
       },
       "load_after_cell": 8.75244140625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -1168,7 +1168,7 @@
         "waited_s": 228.37769745802507
       },
       "load_after_cell": 7.49853515625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
       "scene_summary": {
         "accepted_probes": 3,
@@ -1283,7 +1283,7 @@
         "waited_s": 744.9625612079981
       },
       "load_after_cell": 10.60205078125,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
       "scene_summary": {
         "accepted_probes": 3,
@@ -1386,7 +1386,7 @@
         "waited_s": 154.29482624999946
       },
       "load_after_cell": 5.87158203125,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -1481,7 +1481,7 @@
         "waited_s": 80.6818539579981
       },
       "load_after_cell": 17.6884765625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
       "scene_summary": {
         "accepted_probes": 3,
@@ -1580,7 +1580,7 @@
         "waited_s": 117.51198929199018
       },
       "load_after_cell": 11.310546875,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
       "scene_summary": {
         "accepted_probes": 3,
@@ -1695,7 +1695,7 @@
         "waited_s": 1782.3855742079904
       },
       "load_after_cell": 6.7451171875,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -1810,7 +1810,7 @@
         "waited_s": 523.7507824169588
       },
       "load_after_cell": 4.98681640625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
       "scene_summary": {
         "accepted_probes": 3,
@@ -1901,7 +1901,7 @@
         "waited_s": 43.739740458957385
       },
       "load_after_cell": 3.98876953125,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
       "scene_summary": {
         "accepted_probes": 3,
@@ -1992,7 +1992,7 @@
         "waited_s": 43.72898049996002
       },
       "load_after_cell": 5.978515625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -2091,7 +2091,7 @@
         "waited_s": 117.34318054205505
       },
       "load_after_cell": 10.3447265625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl",
       "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
       "scene_summary": {
         "accepted_probes": 3,
@@ -2164,31 +2164,31 @@
   "input_manifest_sha256": "b2754aae2cb0de0c5bc80ba180df3766a4ead158fdc5cd9cfc96d3550a19dc60",
   "load_max": 4.0,
   "outputs": [
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl"
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads8_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads8_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads8_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads6_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads4_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads2_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads1_2026-09-04T130912.627776Z.jsonl",
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads1_2026-09-04T130912.627776Z.jsonl"
   ],
   "record": "driver",
   "skipped_existing_cells": [
     {
-      "existing": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
+      "existing": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
       "gallery_size": 128,
       "threads": 16
     }

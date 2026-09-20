@@ -1,5 +1,5 @@
 {
-  "binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/a124-a66-thread-sweep/target-a124-only/release/a124_a66_thread_sweep",
+  "binary": "a124-a66-thread-sweep::target-a124-only/release/a124_a66_thread_sweep",
   "binary_sha256": "f22329ce6ee72c921fa33b8609d0b8cd0a2a2449a47c9b24354abbaa66d1ad18",
   "cells": [
     {
@@ -15,7 +15,7 @@
         "waited_s": 5.62501372769475e-06
       },
       "load_after_cell": 15.36962890625,
-      "output": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_smoke_n64_threads16_2026-09-04T112416.730788Z.jsonl",
+      "output": "experiment14::14_pipeline_tfhe_rs/results/a124_a66_smoke_n64_threads16_2026-09-04T112416.730788Z.jsonl",
       "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
       "scene_summary": {
         "accepted_probes": 2,
@@ -85,7 +85,7 @@
   "input_manifest_sha256": "b2754aae2cb0de0c5bc80ba180df3766a4ead158fdc5cd9cfc96d3550a19dc60",
   "load_max": 999.0,
   "outputs": [
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/results/a124_a66_smoke_n64_threads16_2026-09-04T112416.730788Z.jsonl"
+    "experiment14::14_pipeline_tfhe_rs/results/a124_a66_smoke_n64_threads16_2026-09-04T112416.730788Z.jsonl"
   ],
   "record": "driver",
   "stage": "smoke",

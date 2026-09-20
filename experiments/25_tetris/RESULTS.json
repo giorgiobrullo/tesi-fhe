@@ -19,10 +19,11 @@
     "Same retained scenes/key family",
     "Negative limited to this concrete conversion path",
     "Source includes attributed RevHomTrace split-FFT acceleration",
-    "Embedded SOURCE_DIGEST identifies a historical ancestor; COPY_ORIGINS binds the copied source"
+    "Embedded SOURCE_DIGEST identifies a historical ancestor; PROVENANCE.json binds the published source files"
   ],
   "evidence": [
     "evidence/producer-timing.json",
-    "EVIDENCE_ORIGINS.json"
-  ]
+    "PROVENANCE.json"
+  ],
+  "provenance_manifest": "PROVENANCE.json"
 }

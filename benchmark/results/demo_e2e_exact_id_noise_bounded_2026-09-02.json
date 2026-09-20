@@ -1,16 +1,5 @@
 {
   "timestamp_utc": "2026-09-01T22:12:55.131750+00:00",
-  "argv": [
-    "benchmark/demo_e2e.py",
-    "--preload",
-    "--require-calibration-cache",
-    "--positivi",
-    "3",
-    "--negativi",
-    "3",
-    "--output",
-    "benchmark/results/demo_e2e_exact_id_noise_bounded_2026-09-02.csv"
-  ],
   "base_url": "http://127.0.0.1:8000",
   "platform": "macOS-27.0-arm64-arm-64bit",
   "python": "3.12.11",
@@ -229,7 +218,7 @@
     "server_binary": null,
     "server_binary_sha256": null,
     "server_process": null,
-    "model_file": "/Users/giorgiobrullo/.insightface/models/antelopev2/antelopev2/glintr100.onnx",
+    "model_file": "model::glintr100.onnx",
     "model_file_sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf",
     "runtime_packages": {
       "insightface": "1.0.1",
@@ -238,11 +227,11 @@
       "uvicorn": "0.52.4"
     },
     "dataset": {
-      "dataset_root": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/estratto",
+      "dataset_root": "datasets::digiface/estratto",
       "selected_image_count": 272,
       "selected_image_bytes": 5518658,
       "selected_content_manifest_sha256": "76fe33addfd57b2023b50bec80a8daf29a70f7f6c107f7ae3cf46b85e9a0c960",
-      "calibration_cache": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+      "calibration_cache": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
       "calibration_cache_sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99",
       "scene_sha256_verified": "ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66",
       "holdout_sha256_verified": "0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07"

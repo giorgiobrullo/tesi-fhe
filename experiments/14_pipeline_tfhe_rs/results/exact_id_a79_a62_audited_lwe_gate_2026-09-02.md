@@ -1,4 +1,4 @@
-# A79 — gate `AuditedLwe` sul grafo A62
+# A79 - gate `AuditedLwe` sul grafo A62
 
 Data iniziale: 2026-09-02. Hardening: 2026-09-03. Stato: **PASS del
 modello/replay dichiarativo; bound numerico end-to-end, truth table runtime e
@@ -98,18 +98,8 @@ effettiva degli input raw dopo KS/modulus switching e sotto prefisso corretto.
   artifact role non stringa e riuso incompatibile di accumulatore sono
   trasformati in rifiuti controllati.
 
-Comando riproducibile, con Python >=3.10:
-
-```sh
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m unittest discover \
-  -s tmp/a79-a62-audited-lwe-model -p 'test_*.py' -v
-uv run --offline ruff check tmp/a79-a62-audited-lwe-model
-PYTHONDONTWRITEBYTECODE=1 .venv/bin/python \
-  tmp/a79-a62-audited-lwe-model/a79_audited_lwe.py
-```
-
-Il `python3` di sistema in questo host è 3.9 e non supporta
-`zip(strict=True)`; non è il runner valido del gate.
+Il modello richiede Python >=3.10 per `zip(strict=True)`. Il codice del
+modello e del replay dichiarativo non è incluso in questa distribuzione.
 
 ## Limite e prossimo gate
 
@@ -126,6 +116,3 @@ da fare:
 4. derivare un tail bound source-backed per ogni famiglia raw e propagare la
    dipendenza quando più sample della stessa blind rotation vengono ricombinati;
 5. solo allora sostituire il bound incondizionato uno con un valore non banale.
-
-Gli hash finali degli artefatti sono raccolti in
-`tmp/a79-a62-audited-lwe-model/SHA256SUMS`.

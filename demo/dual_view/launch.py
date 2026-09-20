@@ -82,7 +82,7 @@ def start(options: argparse.Namespace) -> None:
     binary = options.binary.resolve(strict=True)
     keys = options.keys.resolve(strict=True)
     if not binary.is_file() or not os.access(binary, os.X_OK):
-        raise RuntimeError("Specificare un binario eseguibile della demo composita22.")
+        raise RuntimeError("Specificare un binario eseguibile del runtime mantenuto della demo.")
     if not all((keys / name).is_file() for name in ("client.key", "server.key")):
         raise RuntimeError("Serve una coppia di chiavi client/server già generata.")
     binary_digest = sha256(binary)

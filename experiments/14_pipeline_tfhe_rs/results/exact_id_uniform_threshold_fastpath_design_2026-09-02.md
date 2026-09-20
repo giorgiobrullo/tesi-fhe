@@ -696,7 +696,7 @@ Lo snapshot A33 implementato e auditato in questo aggiornamento e':
 | binario `a33_full_validation` congelato | `596792a8e306d6ba2811ade51054d0f6c9aff09ab339f65db6311e7f32e42a7d` |
 | transcript full-core congelato | `2c3fd446b4f0a2f382a2ec5c939facd427680b0d1e88315c57a474e55a279595` |
 | frontiera finale CSV | `e72dd64db5751ee49ca2016908698f583e1f7d16c33c44d77beb3d9a7e68e98d` |
-| frontiera finale JSON | `d15933731a313ed82445e03ca37e999178cdf18c2f7953c86e8b38b9d7cd3e15` |
+| frontiera finale JSON | `7e528e254313c4a602968354f96d80d497034da61024b7eb94c8423393d4ca8a` |
 | patch A29 congelata usata per il confronto | `7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54` |
 | `results/exact_id_a33_sparse_residual_trace_2026-09-02.md` | `a596b824cb214bc2ebee3fe9c9d026fa78a224a9664873e23845c52572baf5a4` |
 | `Cargo.lock` (`tfhe 0.11.3`) | `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a` |
@@ -704,3 +704,6 @@ Lo snapshot A33 implementato e auditato in questo aggiornamento e':
 Questi hash identificano il freeze riproducibile del candidato A33, non una revisione gia' promossa.
 Un eventuale aggiornamento successivo del core o del servizio richiede nuovi hash e la ripetizione
 dei gate residui.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../../docs/provenienza-dati.json) conserva entrambe le impronte.

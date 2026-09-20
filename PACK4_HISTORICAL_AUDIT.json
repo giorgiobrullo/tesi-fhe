@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "completed_unix_ns": 1789910527898256000,
+  "fresh_key_family": false,
+  "timing": false,
+  "input_sha256": "728a605f23fe524394af1a70fd250218aafcb95e8a7fcb6ddb722035db8551cd",
+  "original_repaired_key_sha256": "11b52a200bc81d23c236dcae0f922cb94cbca379d01c0f1bf2a9218f4a6f1a48",
+  "checks": [
+    {
+      "arm": "stock",
+      "code": 1,
+      "correct": true,
+      "strict_half_cell": true,
+      "output_sha256": "73336afc369afd96451e86ea7149c4e545de830dcac798889ad6aa7e4bd4ce3b"
+    },
+    {
+      "arm": "repair",
+      "code": 1,
+      "correct": true,
+      "strict_half_cell": true,
+      "output_sha256": "2908d944a7220248de5ed96ed225e23878383b80727422739c821bb2984949ae"
+    }
+  ],
+  "freeze_sha256": "21afc2be1fe85fcb927bafdd90f28c4602c22ab047b79c0ddddd747dcad6fc48"
+}

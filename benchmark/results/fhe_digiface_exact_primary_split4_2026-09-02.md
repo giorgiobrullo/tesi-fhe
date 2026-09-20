@@ -19,14 +19,6 @@ Galleria DigiFace: 127 iscritti, embedding quantizzati a 512 dimensioni, soglia 
 Il contratto `exact-open-set-id-v2` restituisce un solo LWE cifrato:
 `0=rifiuto`, `i+1=identita' piu' vicina accettata`. Il rifiuto non contiene l'indice del vicino.
 
-```sh
-RAYON_NUM_THREADS=16 uv run python benchmark/fhe_digiface_validation.py \
-  --run \
-  --primary-suite \
-  --regression-repetitions 1 \
-  --output-stem fhe_digiface_exact_primary_split4_2026-09-02
-```
-
 La suite contiene una cifratura fresca per ciascuna delle 632 esecuzioni, sotto una singola coppia
 di chiavi temporanee fresca. Gli indici di probe distinti sono 631, perche' il probe 758 compare
 sia nella coorte di frontiera sia nel test impostori primario:
@@ -53,8 +45,7 @@ sia nella coorte di frontiera sia nel test impostori primario:
   durante il run.
 
 La diversita' dei ciphertext esclude il riuso accidentale degli stessi byte cifrati; non dimostra
-indipendenza statistica o qualita' del generatore casuale. La chiave temporanea e' stata rimossa a
-fine esecuzione.
+indipendenza statistica o qualita' del generatore casuale. La singola chiave limita la copertura della variabilità fra chiavi.
 
 ## Cosa cambia in A28
 
@@ -101,16 +92,14 @@ Il validator registra 16 CPU logiche e `RAYON_NUM_THREADS=16`. Il load average h
 `[36,604; 51,106; 58,889]` a `[52,929; 105,625; 176,465]`; la macchina non era riservata. A25,
 anch'essa a 5.600 PBS ma con 508 KS in piu', aveva mediana server 7.512,15 ms in una finestra
 diversa. I 60,4 ms di differenza osservata non sono un benchmark paired ne' una misura causale
-dell'ottimizzazione. Il claim riproducibile forte resta il conteggio di PBS/KS e la correttezza.
+dell'ottimizzazione. I risultati riproducibili restano il conteggio di PBS/KS e la correttezza nei casi eseguiti.
 
 ## Binding e provenienza
 
-Il JSON registra `success=true`, il path esatto e lo SHA-256 del binario legato al PID del server,
-e l'uguaglianza prima/dopo degli hash di tutti gli input inclusi dal validator. Il checkout era
-dirty: gli hash, non il solo commit Git, identificano il materiale eseguito. A differenza del run
-A25, questa revisione include esplicitamente anche `src/lib.rs` nel binding sorgente. Il
-`server_state.exit_code=-15` e' il SIGTERM intenzionale inviato dal validator al server dopo il
-completamento della suite, non un crash durante una query.
+Il JSON riporta `success=true` e identifica il binario eseguito e tutti gli input
+registrati dal validator, inclusa la libreria `src/lib.rs`. I controlli prima e
+dopo la misura ne confermano la stabilità. Gli hash si riferiscono alla
+revisione A28, non necessariamente ai file omonimi della versione attuale.
 
 | input vincolato | SHA-256 |
 |---|---|
@@ -128,21 +117,19 @@ La evaluation key temporanea aveva SHA-256
 `9b3cc6f337aa0c478a735508bdc0f0bb7a51e71ff3d935bea9808e04c0cc461a`. Scena e holdout
 corrispondono rispettivamente a
 `ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66` e
-`0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`. Il commit di base era
-`6611c185adc9a658a075519b4316386f0bb48656` sul branch
-`thesis-evidence-audit-2026-09`.
+`0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`.
 
 | artefatto | SHA-256 |
 |---|---|
 | `fhe_digiface_exact_primary_split4_2026-09-02.csv` | `8ab4ff23b7f81fa48eb629c9d1b64c93e051d2c8456728f6815f3ba19b79704a` |
-| `fhe_digiface_exact_primary_split4_2026-09-02.json` | `683fdf98ccc5dc45222c0b51b4b3ce678e3b5bd1aa9d9fbc10ed67fcb5108465` |
-| snapshot `tmp/a28-split4-2026-09-02/varco_demo` | `09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a` |
+| `fhe_digiface_exact_primary_split4_2026-09-02.json` | `14ab4e07807744f547d4e042fc768202962e110322c4562cd21ae84d4b8b764d` |
+| binario A28 del run storico | `09803d736d1fab5f9c26dc0799586d69ce9459408873d9d315b852280442073a` |
 | patch sorgenti/config A28 `benchmark/patches/a28_split4_source_2026-09-02.patch` | `58182d45efbfd8d6f87c5f5c842b83952e36a408f4639fb0e2ba019ed259115b` |
 
 Lo SHA-256 del CSV coincide con quello incorporato nel JSON. Lo snapshot conserva gli stessi byte
 del binario avviato dal validator, come prova l'identico SHA-256. La patch si applica al commit di
 base dichiarato e ricostruisce gli input A28 con gli hash elencati, incluso il core allora non
-tracciato; il warning su una riga vuota finale conserva intenzionalmente i byte di `.dockerignore`.
+tracciato.
 
 ## Limiti della conclusione
 
@@ -156,3 +143,10 @@ La formulazione difendibile e' quindi: A28 implementa e riproduce sulla suite pi
 esatto con tie-break al primo indice, la soglia del solo vincitore e l'unico output cifrato `0`/ID,
 riducendo staticamente i key switch senza modificare il numero di PBS. A29 e il fast path a soglia
 uniforme richiedono artefatti separati e non possono ereditare il risultato 632/632.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

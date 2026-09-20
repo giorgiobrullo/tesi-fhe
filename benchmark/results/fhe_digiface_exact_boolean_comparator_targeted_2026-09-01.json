@@ -1,26 +1,8 @@
 {
-  "argv": [
-    "benchmark/fhe_digiface_validation.py",
-    "--run",
-    "--only-probe",
-    "113",
-    "--only-probe",
-    "647",
-    "--only-probe",
-    "73",
-    "--only-probe",
-    "37",
-    "--only-probe",
-    "41",
-    "--regression-repetitions",
-    "8",
-    "--output-stem",
-    "fhe_digiface_exact_boolean_comparator_targeted_2026-09-01"
-  ],
   "artifacts": {
-    "csv": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.csv",
+    "csv": "benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.csv",
     "csv_sha256": "84b159c62aeaaa843a90c9887154cffc4ed2f3614462d16cc6a7d02398a4e93c",
-    "json": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.json"
+    "json": "benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.json"
   },
   "enrollment": {
     "templates": 127,
@@ -98,221 +80,95 @@
   },
   "provenance": {
     "build": {
-      "command": [
-        "cargo",
-        "build",
-        "--release",
-        "--bin",
-        "varco_demo"
-      ],
       "performed": true,
-      "stderr_tail": "    Finished `release` profile [optimized] target(s) in 0.11s\n",
-      "stdout_tail": "",
       "wall_s": 0.138
     },
     "cargo": "cargo 1.97.1 (c980f4866 2026-06-30) (Homebrew)",
     "git": {
       "branch": "thesis-evidence-audit-2026-09",
-      "head": "6611c185adc9a658a075519b4316386f0bb48656",
-      "status_short": [
-        "M README.md",
-        " M benchmark/cascata.py",
-        " M benchmark/figura_architettura.py",
-        " M benchmark/figure_percorso.py",
-        " M benchmark/norma_limitata.py",
-        " M benchmark/results/architettura.png",
-        " M benchmark/results/architettura.svg",
-        " M benchmark/results/percorso.png",
-        " M benchmark/results/percorso.svg",
-        " M benchmark/soglia_dominio.py",
-        " M demo/README.md",
-        " M demo/calibra.py",
-        " M demo/client/Dockerfile",
-        " M demo/client/app.py",
-        " M demo/client/static/index.html",
-        " M demo/config.json",
-        " M demo/docker-compose.yml",
-        " M demo/server/Dockerfile",
-        " M experiments/08_cnn/embedding.py",
-        " M experiments/14_pipeline_tfhe_rs/Cargo.lock",
-        " M experiments/14_pipeline_tfhe_rs/Cargo.toml",
-        " M experiments/14_pipeline_tfhe_rs/RISULTATI.md",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/argmin_delta.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/argmin_torneo.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/banda_soglia.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/galleria_cifrata.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/pbs_largo.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/rumore.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/selezione.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/uscita_impacchettata.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/varco.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs",
-        " M experiments/14_pipeline_tfhe_rs/src/bin/varco_leveled.rs",
-        " M experiments/15_ckks_confronto/ckks_packing_forte.py",
-        " M experiments/15_ckks_confronto/ckks_varco.py",
-        " M findings.md",
-        " M letteratura.md",
-        "?? .dockerignore",
-        "?? attempts.md",
-        "?? benchmark/demo_e2e.py",
-        "?? benchmark/fasthe_private_bsgs_inputs.py",
-        "?? benchmark/fhe_digiface_validation.py",
-        "?? benchmark/oracle_leakage.py",
-        "?? benchmark/patches/",
-        "?? benchmark/results/demo_e2e_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_2026-09-01.json",
-        "?? benchmark/results/demo_e2e_exact_id_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_exact_id_2026-09-01.json",
-        "?? benchmark/results/demo_e2e_periodic_fold_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_periodic_fold_2026-09-01.json",
-        "?? benchmark/results/demo_e2e_periodic_fold_final_2026-09-01.csv",
-        "?? benchmark/results/demo_e2e_periodic_fold_final_2026-09-01.json",
-        "?? benchmark/results/docker_runtime_validation_2026-09-01.md",
-        "?? benchmark/results/exact_comparator_scratch_2026-09-01.md",
-        "?? benchmark/results/exact_id_end_to_end_2026-09-01.md",
-        "?? benchmark/results/exact_id_noise_hardening_2026-09-01.md",
-        "?? benchmark/results/exact_id_output_bitwise_edges_2026-09-01.md",
-        "?? benchmark/results/exact_id_refreshed_edges_2026-09-01.md",
-        "?? benchmark/results/external_routes_2026-09-01.md",
-        "?? benchmark/results/fasthe_private_bsgs_2026-09-01.md",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_final_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_output_bitwise_targeted_final_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_exact_threshold_refresh_targeted_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_exact_threshold_refresh_targeted_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_periodic_fold_final_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_periodic_fold_final_2026-09-01.json",
-        "?? benchmark/results/fhe_digiface_periodic_fold_regression_2026-09-01.csv",
-        "?? benchmark/results/fhe_digiface_periodic_fold_regression_2026-09-01.json",
-        "?? benchmark/results/oracle_leakage.csv",
-        "?? benchmark/results/protocol_boundary_audit_2026-09-01.md",
-        "?? demo/config.env",
-        "?? demo/screenshots/",
-        "?? experiments/14_pipeline_tfhe_rs/LICENSE.tfhe-rs-BSD-3-Clause-Clear",
-        "?? experiments/14_pipeline_tfhe_rs/precisione_bucket_dominio.py",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_fresh_keys_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_lut_fixed_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_adversarial_optimized_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_real_probe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bisect_bin6_real_probe_lut_fixed_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_exact_norm12_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_exact_split_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_adversarial_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_adversarial_fixed_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_candidate_diag_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_optimized_adversarial_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_bucket_bits_official_packed_bool59_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_pairwise_periodic_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_pairwise_safe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_torneo_periodic_fold_cbs_sweep_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_torneo_q3_pairwise_safe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/argmin_torneo_qm3_cap110_pairwise_safe_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/bucket_bit_bridge_audit_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/precisione_bucket_dominio_2026-09-01.csv",
-        "?? experiments/14_pipeline_tfhe_rs/results/private_argmin_core_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/results/ritaratura_soglia.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/score_bit_bridge_2026-09-01.txt",
-        "?? experiments/14_pipeline_tfhe_rs/results/score_mod16_lowbits_2026-09-01.md",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_bisect_periodic_fold.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_bucket_bits_periodic.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_pairwise_periodic.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/argmin_torneo_periodic_fold.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/bucket_bit_periodic.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/exact_comparator_scratch.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/score_bit_extraction.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/bin/score_mod16_lowbits.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/lib.rs",
-        "?? experiments/14_pipeline_tfhe_rs/src/private_argmin.rs",
-        "?? experiments/15_ckks_confronto/results/ckks_packing_forte_n128_2026-09-01.csv",
-        "?? experiments/15_ckks_confronto/results/ckks_rerun_2026-09-01.md",
-        "?? experiments/15_ckks_confronto/results/ckks_varco_cfg0_n4_2026-09-01.csv",
-        "?? tests/",
-        "?? ultimo-meeting-transcription.md"
-      ]
+      "head": "6611c185adc9a658a075519b4316386f0bb48656"
     },
     "inputs_after": {
       "cache": {
         "bytes": 638255,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+        "path": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
         "sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99"
       },
       "cargo_lock": {
         "bytes": 15424,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/Cargo.lock",
+        "path": "experiments/14_pipeline_tfhe_rs/Cargo.lock",
         "sha256": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a"
       },
       "cargo_toml": {
         "bytes": 251,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/Cargo.toml",
+        "path": "experiment14::experiments/14_pipeline_tfhe_rs/Cargo.toml",
         "sha256": "bdd7e63b67fbcd7a6326248bed09daf33e30f95a7873b44fff37b591261a634a"
       },
       "config": {
         "bytes": 4146,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/config.json",
+        "path": "demo::config.json",
         "sha256": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e"
       },
       "exact_argmin_core": {
         "bytes": 56817,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs",
+        "path": "experiment14::14_pipeline_tfhe_rs/src/private_argmin.rs",
         "sha256": "91d3470dc089f277000d4f78047a9a96d29351c0ed0025c9c177c2684b9e5862"
       },
       "harness": {
         "bytes": 59158,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_digiface_validation.py",
+        "path": "benchmark::fhe_digiface_validation.py",
         "sha256": "33c433f836ae6f8f420f306508418384f806529e3b0eced9e4c098985ff34eae"
       },
       "rust_binary": {
         "bytes": 2179568,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
+        "path": "experiment14::target/release/varco_demo",
         "sha256": "3fa5547aa24a4f854e866cdd88c88e321afb07bc0d249700b16ab2d833b85ffe"
       },
       "rust_source": {
         "bytes": 49222,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs",
+        "path": "experiment14::src/bin/varco_demo.rs",
         "sha256": "af77fb006cda8e2b070cda28f1c3dab8d53860a531fd9be58d8e3df18ec6b95b"
       }
     },
     "inputs_before": {
       "cache": {
         "bytes": 638255,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/datasets/digiface/_q_demo_calibrazione_resnet100.npz",
+        "path": "datasets::digiface/_q_demo_calibrazione_resnet100.npz",
         "sha256": "1b5eab3a9586715583f084afebcbeb417025210d2623ce3f9b35f0c196095e99"
       },
       "cargo_lock": {
         "bytes": 15424,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/Cargo.lock",
+        "path": "experiments/14_pipeline_tfhe_rs/Cargo.lock",
         "sha256": "1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a"
       },
       "cargo_toml": {
         "bytes": 251,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/Cargo.toml",
+        "path": "experiment14::experiments/14_pipeline_tfhe_rs/Cargo.toml",
         "sha256": "bdd7e63b67fbcd7a6326248bed09daf33e30f95a7873b44fff37b591261a634a"
       },
       "config": {
         "bytes": 4146,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/demo/config.json",
+        "path": "demo::config.json",
         "sha256": "8a381c871a9f4dd4cf2f8f59e9dd06ea6448259633d6435f3c8494934463121e"
       },
       "exact_argmin_core": {
         "bytes": 56817,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs",
+        "path": "experiment14::14_pipeline_tfhe_rs/src/private_argmin.rs",
         "sha256": "91d3470dc089f277000d4f78047a9a96d29351c0ed0025c9c177c2684b9e5862"
       },
       "harness": {
         "bytes": 59158,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/benchmark/fhe_digiface_validation.py",
+        "path": "benchmark::fhe_digiface_validation.py",
         "sha256": "33c433f836ae6f8f420f306508418384f806529e3b0eced9e4c098985ff34eae"
       },
       "rust_binary": {
         "bytes": 2179568,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
+        "path": "experiment14::target/release/varco_demo",
         "sha256": "3fa5547aa24a4f854e866cdd88c88e321afb07bc0d249700b16ab2d833b85ffe"
       },
       "rust_source": {
         "bytes": 49222,
-        "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs",
+        "path": "experiment14::src/bin/varco_demo.rs",
         "sha256": "af77fb006cda8e2b070cda28f1c3dab8d53860a531fd9be58d8e3df18ec6b95b"
       }
     },
@@ -331,20 +187,12 @@
     "python": "3.12.11",
     "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)\nbinary: rustc\ncommit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452\ncommit-date: 2026-07-14\nhost: aarch64-apple-darwin\nrelease: 1.97.1\nLLVM version: 22.1.8",
     "server_process": {
-      "argv": [
-        "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
-        "serve",
-        "56999",
-        "512",
-        "4"
-      ],
       "binary_sha256_at_launch": "3fa5547aa24a4f854e866cdd88c88e321afb07bc0d249700b16ab2d833b85ffe",
       "bind_address": "127.0.0.1:56999",
       "exact_path_verified": true,
-      "expected_binary_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
-      "observed_executable_path": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo",
+      "expected_binary_path": "experiment14::target/release/varco_demo",
+      "observed_executable_path": "experiment14::target/release/varco_demo",
       "pid": 85170,
-      "ps_command": "/Users/giorgiobrullo/Documents/Tesi-FHE/experiments/14_pipeline_tfhe_rs/target/release/varco_demo serve 56999 512 4",
       "ps_started": "Tue Sep  1 19:50:14 2026"
     }
   },

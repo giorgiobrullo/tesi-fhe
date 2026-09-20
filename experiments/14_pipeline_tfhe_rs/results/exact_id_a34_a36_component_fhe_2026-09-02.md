@@ -97,26 +97,9 @@ host non e' stato controllato: non costituiscono un benchmark appaiato e non van
 attribuire una percentuale di speed-up. La prova causale di latenza andra' eseguita soltanto sul
 binario integrato congelato, contro A33, con gli stessi ciphertext per coppia.
 
-## Provenienza congelata dopo i run
+## Limite della composizione
 
-| artefatto | SHA-256 |
-|---|---|
-| A34-top `Cargo.toml` | `95952f1027654ca59211b9c5d0af875904a559c636c8d9e129274bc1937e2522` |
-| A34-top `Cargo.lock` | `a957d1cea8f5a216280a799ed54cc63a937ab71455d6bfd1a86771d151789e51` |
-| A34-top `src/lib.rs` | `40534f1df5e2cc9b9df8b21d25d0c80f5bd56604290e3064e663d627d1e565f6` |
-| A34-top `src/private_argmin.rs` | `c52a525ca454478489a6cf57b44cc4a430318b50c51b018e8a80fd84f7a1149c` |
-| A34-top harness corretto | `196d07ff15effe735daf426ed30eb354e864bf51042b24695150264e0a868fd3` |
-| A34-top binario | `eb08f3f2b7ac0719a1f5f7370a55c85a7ed51af887e69ccb301d9d5110c0c6b7` |
-| two-nibble `Cargo.toml` | `7d9d5c7c65a769f166ac5054fd57ccf8db9addce1a47fdfdb72cff11cd662bbd` |
-| two-nibble `Cargo.lock` | `1d0d15e51a7e78f6b9bef8dff3d304b233922ec2cc1beba30a9b4c6d00513a3a` |
-| two-nibble core A33 | `1d50a2b0e6f98069e0ab2de0eb228133543b5792cf0b34016031593de1e0850d` |
-| two-nibble harness | `1ebb13d244c7ac0b943e24e6db8aeba7c80d2e655908bd9cbea52a3446f20892` |
-| two-nibble binario | `c11d2dce94fe4498bfcf1346b6da628c74b06bdab5262a32937105e43f4690c7` |
-| A36 `Cargo.toml` | `443e1df88ef6f36aeb96f58b872f2fe26b5837831056a8e84bcb1f9222ed9e8b` |
-| A36 `Cargo.lock` generato | `131e5cda4e131b3a62ae4ab264dad73e53a1b74e1b31e7690296cdf5a5627db2` |
-| A36 sorgente corretto | `91a9cc206c059ee3806dc10d2ec6ef82b70fc7642bc9ac328a74884da58a2f0b` |
-| A36 binario | `b8a0b75d1fac1545e7f50d04ef65876193bbe3fbb3c91bfbe2e251d38ea091c3` |
-
-Gli hash identificano i prototipi isolati realmente eseguiti. Non trasformano le proiezioni
-composte in conteggi osservati e non sostituiscono suite primaria, Docker, paired o accounting
-`p-fail` del futuro core integrato.
+Le proiezioni composte non sono conteggi osservati di un unico circuito.
+Rimangono necessari suite primaria, test del servizio, confronto appaiato
+e analisi `p-fail` dell'integrazione. I tre prototipi standalone non sono
+inclusi in questa distribuzione.

@@ -21,13 +21,6 @@ Il circuito post-fix ricostruisce il codice `1..=N` bit per bit e restituisce an
 - la formula PBS aggiornata dopo la sostituzione della somma di `N` ciphertext con al massimo otto
   componenti fresche.
 
-Comando:
-
-```sh
-RAYON_NUM_THREADS=16 target/release/argmin_bucket_bits_periodic \
-  --run --keys 1 --sizes 127,128 --cases edges --real-probes 1 --allow-slow
-```
-
 `--allow-slow` disabilita soltanto il gate prestazionale storico sotto 10 secondi; non modifica il
 circuito, l'oracolo o il gate di correttezza.
 
@@ -61,3 +54,7 @@ Toolchain: `rustc 1.97.1 (8bab26f4f 2026-07-14)` e Cargo 1.97.1.
 Il run dimostra l'aritmetica dell'encoding e la correttezza cifrata nei quattro casi eseguiti. Non
 deriva la probabilita' di fallimento composta: la riduzione OR, i PBS custom e la somma finale a
 `Delta=2^55` restano fuori dal bound nominale della primitiva standard.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.

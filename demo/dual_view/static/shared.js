@@ -67,7 +67,7 @@ export function setConnection(element, ready, label) {
 }
 
 export function duration(milliseconds) {
-  if (!Number.isFinite(milliseconds)) return '—';
+  if (!Number.isFinite(milliseconds)) return 'n/d';
   if (milliseconds < 1000) return `${Math.round(milliseconds)} ms`;
   return `${(milliseconds / 1000).toLocaleString('it-IT', { maximumFractionDigits: 2, minimumFractionDigits: 1 })} s`;
 }
@@ -136,6 +136,7 @@ export class Camera {
       this.stream = stream;
       this.video.srcObject = stream;
       await this.video.play();
+      if (generation !== this.generation) return false;
       return true;
     } catch (error) {
       if (stream) stream.getTracks().forEach(function (track) { track.stop(); });

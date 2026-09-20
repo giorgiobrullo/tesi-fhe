@@ -1,4 +1,4 @@
-# Esperimento 15 — il varco in CKKS: quanto vale lo schema (F39)
+# Esperimento 15 - il varco in CKKS: quanto vale lo schema (F39)
 
 Stesso varco di `experiments/14` (probe cifrato, galleria in chiaro, N iscritti a 512 dim, esito
 "s_i ≤ T" per iscritto), riscritto in **CKKS** con Microsoft SEAL (via `tenseal.sealapi`),

@@ -1,28 +1,52 @@
-# 17 — Head/PFKS exact 0/ID su TFHE-rs 1.7
+# 17 - Head/PFKS exact 0/ID su TFHE-rs 1.7
 
-Qui è raccolta la prima baseline riutilizzabile selezionata il 6 settembre:
-Head con correzione media pubblica, split 3+2 e selettore PFKS 22 × 1. A N 127
-restituisce due cifre cifrate base 15:0 se il minimo supera la soglia,
-altrimenti l'ID del primo minimo. Nei pareggi prevale il primo ID.
+Questo esperimento combina Head, correzione media pubblica e selezione PFKS
+per calcolare il primo minimo e applicare la soglia inclusiva del vincitore.
+La variante M usa cinque payload, split 3+2 e PFKS 22 × 1. A N127 restituisce
+l'identità del primo minimo se accettato, altrimenti 0, in due cifre cifrate
+base 15. I pareggi favoriscono il primo ID.
 
-La libreria è in [core](source/wrapup-head-service-20260906/core/src/lib.rs);
-il servizio storico in [candidate](source/wrapup-head-service-20260906/candidate/Cargo.toml).
-Il controllo A 126 è copiato come cartella sorella per mantenere i path Cargo
-originali. I file `SOURCE_DIGEST.txt` e il piccolo artefatto LUT pubblico
-restano alle distanze richieste dagli include. Cargo.lock conserva le
-versioni; i crate registry non sono vendorizzati.
+## Metodo e risultati
 
-Il [riepilogo dei risultati](RESULTS.json) separa il pilot M/H/R 3, la verifica
-aritmetica su tre chiavi e il gate HTTP 15 output/39 controlli negativi.
-I miglioramenti appaiati del pilot sono mediane, non rapporti delle mediane
-marginali; non si sommano alle ottimizzazioni successive.
+Il confronto M/H/R3 usa una famiglia di chiavi nuova, due terne di
+riscaldamento escluse e sei terne misurate con tutti gli ordini possibili.
+Le mediane M/H/R3 sono **3,048836 / 3,071472 / 4,615544 secondi**.
+La mediana della riduzione entro coppia per M è **0,7963% rispetto a H**
+e **34,0848% rispetto a R3**, con 6/6 coppie favorevoli in entrambi i casi.
 
-Questa è una copia dei sorgenti qualificati nel percorso originale.
-**Nessuna compilazione o esecuzione è stata effettuata da questa cartella.**
-La [provenienza](PROVENANCE.json) vincola ogni copia byte per byte e le fonti
-dei riepiloghi. I test inclusi sono sorgenti storici, non test rieseguiti.
-Chiavi, output cifrati, log privati, modelli e target di build non sono copiati.
-Le prove empiriche non sono un limite formale globale di fallimento.
+La verifica aritmetica distinta copre tre chiavi. Il servizio N127 supera
+separatamente 15 uscite cifrate e 39 controlli negativi, con sei nuove
+cifrature della query sotto una nuova famiglia. Il [riepilogo numerico](RESULTS.json)
+separa questi controlli dal confronto dei tempi.
 
-La generalizzazione è nell'esperimento 18; il core più recente usato dalla demo
-è nell'esperimento 22. Questa baseline storica e i suoi originali restano distinti.
+Split, base e correzione media cambiano insieme: il contributo dei singoli
+interventi non è isolato. Le riduzioni entro coppia non sono rapporti delle
+mediane e non si sommano agli esperimenti successivi. Il confronto usa input
+full51 adattati per R3; non equivale al suo servizio con input nativi full52.
+Le prove non stabiliscono la probabilità globale di fallimento del circuito.
+
+## Codice e compilazione
+
+La [libreria Rust](source/wrapup-head-service-20260906/core/src/lib.rs) espone
+il core; il [servizio](source/wrapup-head-service-20260906/candidate/Cargo.toml)
+lo integra. Il controllo A126 è in una cartella sorella richiesta dai path
+Cargo. Il core M richiede input nativi full51/low60; le codifiche non si
+cambiano rinominando o dimezzando ciphertext già prodotti.
+
+Con Rust e le dipendenze TFHE-rs 1.7.0 del lockfile, da questa cartella:
+
+```sh
+cargo build --release --locked \
+  --manifest-path source/wrapup-head-service-20260906/candidate/Cargo.toml \
+  --target-dir .local/target-service
+```
+
+La generalizzazione a taglie e soglie diverse è nell'[esperimento 18](../18_scaling_soglie_miste/README.md).
+Per l'applicazione client/server usare la [demo 22](../22_demo_composita/README.md).
+
+## Provenienza
+
+[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
+dai documenti storici e dalle copie redatte. I digest degli esperimenti
+identificano le esecuzioni originali; questa pubblicazione non aggiunge
+una nuova compilazione nativa o una nuova prova FHE.

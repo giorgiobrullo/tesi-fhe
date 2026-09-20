@@ -14,7 +14,7 @@ coinciso con l'atteso.
 | 1 | non registrato | 66/66 | 0 | ~0.513 (`0.512695`) | `13.527430` |
 | 2 | 16 | 66/66 | 0 | `0.597414` | `13.458183` |
 | 3 | 16 | 66/66 | 0 | `0.488344` | `13.484801` |
-| totale | — | **198/198** | **0** | — | — |
+| totale | - | **198/198** | **0** | - | - |
 
 La griglia baseline di ogni run copre 40 valori distinti di `x`, cioe' 120 coppie `(chiave, x)`;
 le scene rumorose aggiungono 78 esecuzioni su valori in parte ripetuti, per 198 casi complessivi.
@@ -73,9 +73,8 @@ cargo run --release --features diagnostic-trace --bin split4_boundary_trace
 RAYON_NUM_THREADS=16 target/release/split4_boundary_trace
 ```
 
-Ambiente osservato: `rustc 1.97.1`, `cargo 1.97.1`, branch
-`thesis-evidence-audit-2026-09`, base Git `6611c185adc9a658a075519b4316386f0bb48656`
-con working tree modificato. Gli hash, non il commit base, identificano quindi gli input attuali.
+Ambiente osservato: `rustc 1.97.1`, `cargo 1.97.1`.
+Gli hash seguenti identificano i sorgenti e gli input della prova.
 
 | file | SHA-256 |
 | --- | --- |

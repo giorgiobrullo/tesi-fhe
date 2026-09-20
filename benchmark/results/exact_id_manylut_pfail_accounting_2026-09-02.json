@@ -107,13 +107,13 @@
       "--output",
       "benchmark/results/exact_id_manylut_pfail_accounting_2026-09-02.json"
     ],
-    "generator": "benchmark/a29_pfail_accounting.py",
+    "generator": "benchmark::a29_pfail_accounting.py",
     "generator_sha256": "5e68a2eeb89d3725b742c870e780cebf1a34abc2c99c89cd8420829baf443292",
     "inputs": {
       "benchmark/patches/a29_manylut_source_2026-09-02.patch": "7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54",
-      "benchmark/patches/a29_manylut_source_2026-09-02.patch::experiments/14_pipeline_tfhe_rs/src/private_argmin.rs": "06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4",
+      "benchmark::src/private_argmin.rs": "06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4",
       "benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.csv": "7337057cc97eeafe102cd330df154f31656e142a97029ac388dbd8aefd8eed5b",
-      "benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.json": "328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34",
+      "benchmark::results/fhe_digiface_exact_primary_manylut_2026-09-02.json": "328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34",
       "tfhe-0.11.3/README.md": "c224297542eff2e6bae585b320144be02b6475dd43656be2c59aaed41d704052",
       "tfhe-0.11.3/src/shortint/parameters/classic/tuniform/p_fail_2_minus_64/ks_pbs.rs": "14a3c8cae508fec1f96e76ed74e186efbd005c0c84292975333dc202a6987bb6"
     },

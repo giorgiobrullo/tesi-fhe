@@ -34,5 +34,6 @@
     "Different source wrappers for component, sweep and query timing",
     "No full-circuit failure probability",
     "Later source integration has its own experiment22 qualification"
-  ]
+  ],
+  "provenance_manifest": "PROVENANCE.json"
 }

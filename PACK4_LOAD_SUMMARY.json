@@ -1,0 +1,3402 @@
+{
+  "created_at": "2026-09-20T13:20:33.610240+00:00",
+  "queries": [
+    {
+      "family": 0,
+      "pair": 6,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 386.1323377021477,
+      "comparable_cpu_percent_range": [
+        317.8645922815661,
+        395.35280352723476
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 6,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 381.1337579885501,
+      "comparable_cpu_percent_range": [
+        379.2815414940224,
+        395.35280352723476
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 7,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 384.24632468986385,
+      "comparable_cpu_percent_range": [
+        379.2815414940224,
+        385.0349894292786
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 7,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 385.63386557766705,
+      "comparable_cpu_percent_range": [
+        385.0349894292786,
+        385.73390106353816
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 8,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 381.7485153539386,
+      "comparable_cpu_percent_range": [
+        381.2313827979254,
+        385.73390106353816
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 8,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 331.0721487208274,
+      "comparable_cpu_percent_range": [
+        328.30642544315265,
+        381.2313827979254
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 9,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.7509686225032,
+      "comparable_cpu_percent_range": [
+        310.2085094858256,
+        328.30642544315265
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 9,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 305.9505689954407,
+      "comparable_cpu_percent_range": [
+        305.45845765133913,
+        310.2085094858256
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 10,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 330.25618939769504,
+      "comparable_cpu_percent_range": [
+        305.45845765133913,
+        343.7696969440223
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 10,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.7549945149726,
+      "comparable_cpu_percent_range": [
+        294.00649482625204,
+        320.541907331807
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 11,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 295.90790029538795,
+      "comparable_cpu_percent_range": [
+        294.00649482625204,
+        312.84328500687343
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 11,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.7034991180609,
+      "comparable_cpu_percent_range": [
+        311.3225949565935,
+        312.84328500687343
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 12,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 311.71313605726664,
+      "comparable_cpu_percent_range": [
+        311.3225949565935,
+        323.26040310512036
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 12,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 322.4288139859044,
+      "comparable_cpu_percent_range": [
+        294.6599914890543,
+        323.26040310512036
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 13,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 295.1588625577234,
+      "comparable_cpu_percent_range": [
+        294.6599914890543,
+        306.6959124911846
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 13,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.6959124911846,
+      "comparable_cpu_percent_range": [
+        306.6959124911846,
+        306.6959124911846
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 14,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 294.9751518380625,
+      "comparable_cpu_percent_range": [
+        294.6792786134733,
+        302.99314678886657
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 14,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 311.02156347300223,
+      "comparable_cpu_percent_range": [
+        302.99314678886657,
+        385.65036401168027
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 15,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 374.23004425501864,
+      "comparable_cpu_percent_range": [
+        313.3965004938298,
+        385.65036401168027
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 15,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 321.18255034349306,
+      "comparable_cpu_percent_range": [
+        313.3965004938298,
+        377.20165096800844
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 16,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 352.7169846904108,
+      "comparable_cpu_percent_range": [
+        325.1779530935335,
+        377.20165096800844
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 16,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.42150437303854,
+      "comparable_cpu_percent_range": [
+        299.3367121057358,
+        325.1779530935335
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 17,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 293.19030295608377,
+      "comparable_cpu_percent_range": [
+        284.09404615020225,
+        299.3367121057358
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 17,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 288.1851027662883,
+      "comparable_cpu_percent_range": [
+        284.09404615020225,
+        296.16298187774044
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 18,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 295.4883302571227,
+      "comparable_cpu_percent_range": [
+        293.9958375813458,
+        296.16298187774044
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 18,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 309.9343602347189,
+      "comparable_cpu_percent_range": [
+        293.9958375813458,
+        355.864735032144
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 19,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 344.90246251076115,
+      "comparable_cpu_percent_range": [
+        308.4122575557881,
+        355.864735032144
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 19,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 314.01301768974264,
+      "comparable_cpu_percent_range": [
+        308.4122575557881,
+        332.487777220576
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 20,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 327.03958073930227,
+      "comparable_cpu_percent_range": [
+        312.74165253719434,
+        332.487777220576
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 20,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.30801546766367,
+      "comparable_cpu_percent_range": [
+        312.74165253719434,
+        314.63761803416935
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 21,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 321.0404409977023,
+      "comparable_cpu_percent_range": [
+        314.63761803416935,
+        338.7617114340178
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 21,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 327.45178921112995,
+      "comparable_cpu_percent_range": [
+        293.08652699688423,
+        338.7617114340178
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 22,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 291.34528982658605,
+      "comparable_cpu_percent_range": [
+        289.8940368518607,
+        293.08652699688423
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 22,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.31258746505534,
+      "comparable_cpu_percent_range": [
+        289.8940368518607,
+        319.28550983151973
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 23,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 309.2822496352455,
+      "comparable_cpu_percent_range": [
+        305.1671104378597,
+        312.3471358246747
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 23,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 299.6365504369638,
+      "comparable_cpu_percent_range": [
+        291.2130480718303,
+        305.1671104378597
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 24,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 293.16924335322886,
+      "comparable_cpu_percent_range": [
+        291.2130480718303,
+        296.4485149869868
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 24,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 299.37656774920424,
+      "comparable_cpu_percent_range": [
+        296.4485149869868,
+        304.8298032615813
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 25,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 307.3755836158886,
+      "comparable_cpu_percent_range": [
+        304.8298032615813,
+        312.6067191183159
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 25,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 348.67757707511936,
+      "comparable_cpu_percent_range": [
+        312.6067191183159,
+        448.7114652992567
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 26,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 406.4175323576294,
+      "comparable_cpu_percent_range": [
+        309.6954525961221,
+        448.7114652992567
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 26,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.10889369142916,
+      "comparable_cpu_percent_range": [
+        309.6954525961221,
+        335.8038546059238
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 27,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 328.1811683080967,
+      "comparable_cpu_percent_range": [
+        315.9644529794226,
+        335.8038546059238
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 27,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.32202260868763,
+      "comparable_cpu_percent_range": [
+        300.22729915842797,
+        315.9644529794226
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 28,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.0624980219405,
+      "comparable_cpu_percent_range": [
+        300.22729915842797,
+        331.88432264077966
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 28,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 296.35428236861713,
+      "comparable_cpu_percent_range": [
+        292.17301744767207,
+        331.88432264077966
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 29,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.24641266253207,
+      "comparable_cpu_percent_range": [
+        299.4404909440005,
+        332.6945824989889
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 29,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 318.8906798391165,
+      "comparable_cpu_percent_range": [
+        308.0651227627674,
+        332.6945824989889
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 30,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 304.5875045512004,
+      "comparable_cpu_percent_range": [
+        301.3338905623401,
+        308.0651227627674
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 30,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 305.116534274399,
+      "comparable_cpu_percent_range": [
+        301.3338905623401,
+        309.74229240719427
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 31,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 303.42936840488136,
+      "comparable_cpu_percent_range": [
+        293.01990753265494,
+        309.74229240719427
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 31,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 298.3457132056933,
+      "comparable_cpu_percent_range": [
+        293.01990753265494,
+        307.13759576904175
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 32,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.87449244398084,
+      "comparable_cpu_percent_range": [
+        307.13759576904175,
+        322.9586408454961
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 32,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.6801635684492,
+      "comparable_cpu_percent_range": [
+        295.6009404259203,
+        322.9586408454961
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 33,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 308.55427080785734,
+      "comparable_cpu_percent_range": [
+        295.6009404259203,
+        326.4347942806898
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 33,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.68584641244155,
+      "comparable_cpu_percent_range": [
+        309.72326167575164,
+        326.4347942806898
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 34,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 298.3830967424877,
+      "comparable_cpu_percent_range": [
+        291.38579653859745,
+        309.72326167575164
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 34,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 297.8021364916366,
+      "comparable_cpu_percent_range": [
+        292.9615291113976,
+        301.2769961071574
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 35,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 292.15651585793796,
+      "comparable_cpu_percent_range": [
+        291.68674173862536,
+        292.9615291113976
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 35,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 295.3358143753419,
+      "comparable_cpu_percent_range": [
+        291.68674173862536,
+        297.84350458353936
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 36,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.41314745233024,
+      "comparable_cpu_percent_range": [
+        297.84350458353936,
+        320.6531999758118
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 36,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.4029159498207,
+      "comparable_cpu_percent_range": [
+        310.09746208596357,
+        320.6531999758118
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 37,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 302.9027285975645,
+      "comparable_cpu_percent_range": [
+        294.7973540196191,
+        310.09746208596357
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 37,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 320.48795496740235,
+      "comparable_cpu_percent_range": [
+        294.7973540196191,
+        354.90404502703836
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 38,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 347.69355637578434,
+      "comparable_cpu_percent_range": [
+        338.7310825316645,
+        354.90404502703836
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 38,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 334.6400681130338,
+      "comparable_cpu_percent_range": [
+        330.8589371320524,
+        338.7310825316645
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 39,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.6569843668189,
+      "comparable_cpu_percent_range": [
+        303.12256153310136,
+        330.8589371320524
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 39,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 298.1673959652293,
+      "comparable_cpu_percent_range": [
+        293.2938859447144,
+        303.12256153310136
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 40,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 323.2373152352753,
+      "comparable_cpu_percent_range": [
+        291.9270337183135,
+        341.4024188716969
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 40,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 294.3396970059273,
+      "comparable_cpu_percent_range": [
+        291.9270337183135,
+        297.24408155892934
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 41,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 317.0254802249366,
+      "comparable_cpu_percent_range": [
+        297.24408155892934,
+        324.590963685912
+      ]
+    },
+    {
+      "family": 0,
+      "pair": 41,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 305.5024554995442,
+      "comparable_cpu_percent_range": [
+        296.48327000497494,
+        324.590963685912
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 6,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 309.5905813657458,
+      "comparable_cpu_percent_range": [
+        306.7436634605435,
+        317.10410943657223
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 6,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.5292567795389,
+      "comparable_cpu_percent_range": [
+        295.79955612047877,
+        317.10410943657223
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 7,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 299.78143252549194,
+      "comparable_cpu_percent_range": [
+        295.79955612047877,
+        321.8118570695856
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 7,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 326.932831853815,
+      "comparable_cpu_percent_range": [
+        321.8118570695856,
+        356.30696060427863
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 8,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 346.0390789581253,
+      "comparable_cpu_percent_range": [
+        308.4205146727024,
+        356.30696060427863
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 8,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 307.84278354552106,
+      "comparable_cpu_percent_range": [
+        306.08677454597347,
+        308.4205146727024
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 9,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 308.6081408426309,
+      "comparable_cpu_percent_range": [
+        306.08677454597347,
+        318.01365373972084
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 9,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.7936681872191,
+      "comparable_cpu_percent_range": [
+        305.57182783927755,
+        318.01365373972084
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 10,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 299.84203412776696,
+      "comparable_cpu_percent_range": [
+        294.2858493985253,
+        305.57182783927755
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 10,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 305.3828708454175,
+      "comparable_cpu_percent_range": [
+        294.2858493985253,
+        306.7515263711707
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 11,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 301.09987648846186,
+      "comparable_cpu_percent_range": [
+        291.3343236725167,
+        306.51124298911435
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 11,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 294.12053639298057,
+      "comparable_cpu_percent_range": [
+        291.3343236725167,
+        300.21769918268507
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 12,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.67495464160817,
+      "comparable_cpu_percent_range": [
+        300.21769918268507,
+        352.46892659063775
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 12,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 345.0959078880157,
+      "comparable_cpu_percent_range": [
+        322.99103466293093,
+        352.46892659063775
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 13,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 314.6952007168321,
+      "comparable_cpu_percent_range": [
+        293.0802696603439,
+        322.99103466293093
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 13,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 314.2578506111633,
+      "comparable_cpu_percent_range": [
+        293.0802696603439,
+        379.4731018242466
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 14,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 365.5049763391535,
+      "comparable_cpu_percent_range": [
+        330.74233365573593,
+        379.4731018242466
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 14,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 324.72720585954556,
+      "comparable_cpu_percent_range": [
+        312.4576899532845,
+        330.74233365573593
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 15,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 308.34374160782426,
+      "comparable_cpu_percent_range": [
+        300.6875474538573,
+        312.4576899532845
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 15,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 303.803941811447,
+      "comparable_cpu_percent_range": [
+        300.6875474538573,
+        310.4715435277393
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 16,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 311.0995102296013,
+      "comparable_cpu_percent_range": [
+        310.4715435277393,
+        311.5589355450082
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 16,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 300.7602506178118,
+      "comparable_cpu_percent_range": [
+        299.7847997897693,
+        311.5589355450082
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 17,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.35831474495654,
+      "comparable_cpu_percent_range": [
+        299.7847997897693,
+        316.6134926366911
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 17,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 317.3600667064655,
+      "comparable_cpu_percent_range": [
+        316.6134926366911,
+        317.8535421602479
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 18,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 301.5788938185278,
+      "comparable_cpu_percent_range": [
+        288.43882178150164,
+        317.8535421602479
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 18,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 293.99907868258856,
+      "comparable_cpu_percent_range": [
+        288.43882178150164,
+        300.2979628289787
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 19,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 337.77108783186503,
+      "comparable_cpu_percent_range": [
+        300.2979628289787,
+        393.8866307603091
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 19,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 360.595438947298,
+      "comparable_cpu_percent_range": [
+        313.5467185400672,
+        393.8866307603091
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 20,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 316.6291211803869,
+      "comparable_cpu_percent_range": [
+        313.5467185400672,
+        320.0514789087906
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 20,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 309.12422290991043,
+      "comparable_cpu_percent_range": [
+        298.2798036999173,
+        320.0514789087906
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 21,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 309.2429793839634,
+      "comparable_cpu_percent_range": [
+        298.2798036999173,
+        322.1714478313805
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 21,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.3937233003996,
+      "comparable_cpu_percent_range": [
+        299.16646794979687,
+        322.1714478313805
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 22,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 296.9229055093672,
+      "comparable_cpu_percent_range": [
+        294.5497115250895,
+        309.16810650815574
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 22,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 314.278872917274,
+      "comparable_cpu_percent_range": [
+        309.16810650815574,
+        320.88235579903517
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 23,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 307.20178826845375,
+      "comparable_cpu_percent_range": [
+        300.91487305235233,
+        320.88235579903517
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 23,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 299.2142619446092,
+      "comparable_cpu_percent_range": [
+        298.34502404012846,
+        300.91487305235233
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 24,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 331.293309147708,
+      "comparable_cpu_percent_range": [
+        298.34502404012846,
+        350.53431515857153
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 24,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 348.1535375905356,
+      "comparable_cpu_percent_range": [
+        346.66374951333194,
+        350.53431515857153
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 25,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 316.5019148699104,
+      "comparable_cpu_percent_range": [
+        300.47033990250765,
+        346.66374951333194
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 25,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 311.64979739944386,
+      "comparable_cpu_percent_range": [
+        300.47033990250765,
+        318.2282538325956
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 26,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 302.1881800792322,
+      "comparable_cpu_percent_range": [
+        292.53652329552796,
+        318.2282538325956
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 26,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 311.1456656547695,
+      "comparable_cpu_percent_range": [
+        292.53652329552796,
+        319.71168226358003
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 27,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 301.12970176152754,
+      "comparable_cpu_percent_range": [
+        293.6550001516347,
+        319.71168226358003
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 27,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 300.114459446682,
+      "comparable_cpu_percent_range": [
+        293.6550001516347,
+        303.40262706968946
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 28,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.0801702613948,
+      "comparable_cpu_percent_range": [
+        303.40262706968946,
+        323.6039009834779
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 28,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 347.38604997646377,
+      "comparable_cpu_percent_range": [
+        323.6039009834779,
+        366.32057122436964
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 29,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 334.72368323508425,
+      "comparable_cpu_percent_range": [
+        312.441281749845,
+        366.32057122436964
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 29,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.441281749845,
+      "comparable_cpu_percent_range": [
+        312.441281749845,
+        312.441281749845
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 30,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 330.32347417470146,
+      "comparable_cpu_percent_range": [
+        312.441281749845,
+        330.8676882616764
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 30,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 294.1201525844759,
+      "comparable_cpu_percent_range": [
+        293.4730769035499,
+        330.8676882616764
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 31,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.7505942582073,
+      "comparable_cpu_percent_range": [
+        293.4730769035499,
+        318.22230321763305
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 31,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 309.7017222876551,
+      "comparable_cpu_percent_range": [
+        308.0610615225916,
+        318.22230321763305
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 32,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 337.2183780564019,
+      "comparable_cpu_percent_range": [
+        308.0610615225916,
+        341.3537593759449
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 32,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.2119359816842,
+      "comparable_cpu_percent_range": [
+        303.663240004478,
+        341.3537593759449
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 33,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.44957839935296,
+      "comparable_cpu_percent_range": [
+        303.663240004478,
+        306.72329155207785
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 33,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.3518802740171,
+      "comparable_cpu_percent_range": [
+        306.72329155207785,
+        322.0807291384634
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 34,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 342.9841363883014,
+      "comparable_cpu_percent_range": [
+        322.0807291384634,
+        394.206448762301
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 34,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 352.7835001836267,
+      "comparable_cpu_percent_range": [
+        318.69234760376196,
+        394.206448762301
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 35,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 318.11250456298524,
+      "comparable_cpu_percent_range": [
+        307.5067192223225,
+        318.69234760376196
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 35,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.794723355694,
+      "comparable_cpu_percent_range": [
+        297.1940697694369,
+        307.5067192223225
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 36,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 297.6340775743285,
+      "comparable_cpu_percent_range": [
+        297.1940697694369,
+        309.83275549385945
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 36,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.2153230441789,
+      "comparable_cpu_percent_range": [
+        309.83275549385945,
+        317.3569280536612
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 37,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.82285383452677,
+      "comparable_cpu_percent_range": [
+        299.3811706292407,
+        317.3569280536612
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 37,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 299.7382679842396,
+      "comparable_cpu_percent_range": [
+        299.3811706292407,
+        305.70927878791315
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 38,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.42075793189855,
+      "comparable_cpu_percent_range": [
+        305.70927878791315,
+        312.30092810033585
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 38,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.1852444997284,
+      "comparable_cpu_percent_range": [
+        312.30092810033585,
+        317.14192143289483
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 39,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.9681206616169,
+      "comparable_cpu_percent_range": [
+        298.93456879101007,
+        317.14192143289483
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 39,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 303.8652533661448,
+      "comparable_cpu_percent_range": [
+        298.93456879101007,
+        324.14108970474234
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 40,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.14089426829327,
+      "comparable_cpu_percent_range": [
+        313.6428630331964,
+        324.14108970474234
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 40,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 329.1335512240771,
+      "comparable_cpu_percent_range": [
+        313.6428630331964,
+        337.1685094050509
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 41,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.9735308778091,
+      "comparable_cpu_percent_range": [
+        305.04276786082073,
+        319.63514590267056
+      ]
+    },
+    {
+      "family": 1,
+      "pair": 41,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 332.65105958370566,
+      "comparable_cpu_percent_range": [
+        305.04276786082073,
+        366.74483102186906
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 6,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 332.75846025379263,
+      "comparable_cpu_percent_range": [
+        320.0805142211243,
+        335.31932867888844
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 6,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 321.29990289048607,
+      "comparable_cpu_percent_range": [
+        320.0805142211243,
+        331.2036752202916
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 7,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 329.85082919529816,
+      "comparable_cpu_percent_range": [
+        310.93190738491535,
+        331.2036752202916
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 7,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 311.4468259260943,
+      "comparable_cpu_percent_range": [
+        310.93190738491535,
+        319.40181551637346
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 8,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 318.30795684403444,
+      "comparable_cpu_percent_range": [
+        310.3009221910442,
+        319.40181551637346
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 8,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.9852214270884,
+      "comparable_cpu_percent_range": [
+        310.3009221910442,
+        326.87830077992425
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 9,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 325.83564801593246,
+      "comparable_cpu_percent_range": [
+        319.93454759880046,
+        326.87830077992425
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 9,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 321.5696441926956,
+      "comparable_cpu_percent_range": [
+        319.93454759880046,
+        331.02363306041724
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 10,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 316.92738752338846,
+      "comparable_cpu_percent_range": [
+        302.73838857609326,
+        331.02363306041724
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 10,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.63585590716997,
+      "comparable_cpu_percent_range": [
+        291.04984076033276,
+        323.66588108811106
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 11,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 300.9517258012174,
+      "comparable_cpu_percent_range": [
+        291.04984076033276,
+        320.81122276641685
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 11,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 328.2349254325047,
+      "comparable_cpu_percent_range": [
+        320.81122276641685,
+        345.95248757848333
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 12,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 350.84008489625734,
+      "comparable_cpu_percent_range": [
+        345.95248757848333,
+        364.8863434528835
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 12,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 348.6201870995907,
+      "comparable_cpu_percent_range": [
+        304.79481820534596,
+        364.8863434528835
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 13,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 304.3324424123616,
+      "comparable_cpu_percent_range": [
+        303.05972884534356,
+        304.79481820534596
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 13,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.34652966944776,
+      "comparable_cpu_percent_range": [
+        303.05972884534356,
+        318.3259537243269
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 14,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 314.9899690390676,
+      "comparable_cpu_percent_range": [
+        304.5824391864394,
+        318.3259537243269
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 14,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.2627074859228,
+      "comparable_cpu_percent_range": [
+        304.5824391864394,
+        310.4670162599323
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 15,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.217212987099,
+      "comparable_cpu_percent_range": [
+        310.4670162599323,
+        316.5240898943313
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 15,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.2230179203258,
+      "comparable_cpu_percent_range": [
+        311.38416233533013,
+        316.5240898943313
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 16,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.6665496230145,
+      "comparable_cpu_percent_range": [
+        311.38416233533013,
+        319.5975160301558
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 16,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 364.63613622048314,
+      "comparable_cpu_percent_range": [
+        319.5975160301558,
+        392.4304613093275
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 17,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 322.55192725268466,
+      "comparable_cpu_percent_range": [
+        317.82824927939026,
+        327.57242795199096
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 17,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.5217942762628,
+      "comparable_cpu_percent_range": [
+        305.86771828906336,
+        317.82824927939026
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 18,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.98766077931725,
+      "comparable_cpu_percent_range": [
+        305.86771828906336,
+        318.83398777041793
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 18,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 316.5161417951125,
+      "comparable_cpu_percent_range": [
+        312.7059395585027,
+        318.83398777041793
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 19,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 318.1969435172772,
+      "comparable_cpu_percent_range": [
+        312.7059395585027,
+        329.2199770217651
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 19,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 326.1614527071301,
+      "comparable_cpu_percent_range": [
+        319.0688186723993,
+        329.2199770217651
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 20,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 316.9939444390921,
+      "comparable_cpu_percent_range": [
+        312.63247639640423,
+        319.0688186723993
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 20,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 309.4667982428433,
+      "comparable_cpu_percent_range": [
+        303.82261422360693,
+        312.63247639640423
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 21,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.34399537840653,
+      "comparable_cpu_percent_range": [
+        303.82261422360693,
+        322.9975866702324
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 21,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 320.67633326250007,
+      "comparable_cpu_percent_range": [
+        315.0705252840414,
+        322.9975866702324
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 22,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 320.33396823714423,
+      "comparable_cpu_percent_range": [
+        315.0705252840414,
+        324.40659416128835
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 22,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.32568728733713,
+      "comparable_cpu_percent_range": [
+        306.6176045224088,
+        324.40659416128835
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 23,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.43011665287884,
+      "comparable_cpu_percent_range": [
+        313.29874604685324,
+        323.42578759633295
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 23,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.4338936799076,
+      "comparable_cpu_percent_range": [
+        305.7438184370342,
+        313.29874604685324
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 24,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 311.12342529402196,
+      "comparable_cpu_percent_range": [
+        305.7438184370342,
+        320.7472877475501
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 24,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.6625183287049,
+      "comparable_cpu_percent_range": [
+        317.49016084643023,
+        320.7472877475501
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 25,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.7308312174528,
+      "comparable_cpu_percent_range": [
+        305.55323796443537,
+        317.49016084643023
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 25,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 306.9168441635009,
+      "comparable_cpu_percent_range": [
+        305.55323796443537,
+        310.88961626271623
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 26,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 316.8418653928832,
+      "comparable_cpu_percent_range": [
+        310.88961626271623,
+        332.74521966837625
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 26,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 325.71414473813417,
+      "comparable_cpu_percent_range": [
+        311.00103491990546,
+        332.74521966837625
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 27,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 318.13082319132553,
+      "comparable_cpu_percent_range": [
+        311.00103491990546,
+        333.1076768751408
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 27,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 326.86880999225906,
+      "comparable_cpu_percent_range": [
+        310.4511964092347,
+        333.1076768751408
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 28,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 305.99402406944955,
+      "comparable_cpu_percent_range": [
+        302.03896731383713,
+        310.4511964092347
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 28,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.08152064367715,
+      "comparable_cpu_percent_range": [
+        302.03896731383713,
+        312.1769052976669
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 29,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.01218967495856,
+      "comparable_cpu_percent_range": [
+        312.1769052976669,
+        314.06300555020596
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 29,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 320.52389842398406,
+      "comparable_cpu_percent_range": [
+        314.06300555020596,
+        329.84328394523203
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 30,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 326.00545023756314,
+      "comparable_cpu_percent_range": [
+        319.9079095696819,
+        329.84328394523203
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 30,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 362.45958511992586,
+      "comparable_cpu_percent_range": [
+        319.9079095696819,
+        441.73271424102
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 31,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 395.26630899648245,
+      "comparable_cpu_percent_range": [
+        310.5196137687289,
+        441.73271424102
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 31,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 317.2705987895022,
+      "comparable_cpu_percent_range": [
+        310.5196137687289,
+        328.5161723350168
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 32,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 317.71939018582094,
+      "comparable_cpu_percent_range": [
+        302.98470220625796,
+        328.5161723350168
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 32,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 313.10776743605885,
+      "comparable_cpu_percent_range": [
+        302.98470220625796,
+        324.12311531524153
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 33,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 330.60685578878633,
+      "comparable_cpu_percent_range": [
+        324.12311531524153,
+        338.7235695707168
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 33,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 322.2041598724455,
+      "comparable_cpu_percent_range": [
+        297.20399488486044,
+        338.7235695707168
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 34,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 312.6458409377449,
+      "comparable_cpu_percent_range": [
+        297.20399488486044,
+        321.4052803749545
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 34,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 332.826843856261,
+      "comparable_cpu_percent_range": [
+        317.0851575663503,
+        354.7279016233676
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 35,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 351.8841406736011,
+      "comparable_cpu_percent_range": [
+        350.30632271260356,
+        354.7279016233676
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 35,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 340.44902175102527,
+      "comparable_cpu_percent_range": [
+        334.82380353232446,
+        350.30632271260356
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 36,
+      "arm": "repair",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 415.3038487886379,
+      "comparable_cpu_percent_range": [
+        334.82380353232446,
+        458.7028705242002
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 36,
+      "arm": "stock",
+      "scene": "n127_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 360.4562661535067,
+      "comparable_cpu_percent_range": [
+        309.1824530705611,
+        458.7028705242002
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 37,
+      "arm": "stock",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 310.9575093603214,
+      "comparable_cpu_percent_range": [
+        309.1824530705611,
+        311.9905458825824
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 37,
+      "arm": "repair",
+      "scene": "n128_uniform_aligned",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 328.1030699759139,
+      "comparable_cpu_percent_range": [
+        311.9905458825824,
+        338.08488624488047
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 38,
+      "arm": "repair",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 342.6759949514513,
+      "comparable_cpu_percent_range": [
+        338.08488624488047,
+        345.43617662358673
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 38,
+      "arm": "stock",
+      "scene": "n129_alternating_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.56032198991164,
+      "comparable_cpu_percent_range": [
+        301.24661746695494,
+        345.43617662358673
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 39,
+      "arm": "stock",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 314.88549410990896,
+      "comparable_cpu_percent_range": [
+        301.24661746695494,
+        320.8961680418746
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 39,
+      "arm": "repair",
+      "scene": "n128_block_thresholds",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 323.58139749653014,
+      "comparable_cpu_percent_range": [
+        320.8961680418746,
+        324.9423957780319
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 40,
+      "arm": "repair",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": true,
+      "unknown_reasons": [
+        "process_churn"
+      ],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 325.44963413500324,
+      "comparable_cpu_percent_range": [
+        321.30986213781483,
+        326.57895897208397
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 40,
+      "arm": "stock",
+      "scene": "n225_uniform_general",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 315.80375308240826,
+      "comparable_cpu_percent_range": [
+        311.0920356128584,
+        321.30986213781483
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 41,
+      "arm": "stock",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 301.16130207484036,
+      "comparable_cpu_percent_range": [
+        299.770688487038,
+        311.0920356128584
+      ]
+    },
+    {
+      "family": 2,
+      "pair": 41,
+      "arm": "repair",
+      "scene": "n128_anchor_fallback_control",
+      "flagged": true,
+      "unknown": false,
+      "unknown_reasons": [],
+      "coverage_complete": true,
+      "comparable_cpu_percent_weighted": 319.19564933900085,
+      "comparable_cpu_percent_range": [
+        299.770688487038,
+        322.69105002771386
+      ]
+    }
+  ],
+  "measured_queries": 216,
+  "flagged_queries": 216,
+  "unknown_queries": 76,
+  "measurement_filtering": false,
+  "interpretation": "20% of one CPU core threshold; sampled comparable process deltas, not continuous isolation."
+}

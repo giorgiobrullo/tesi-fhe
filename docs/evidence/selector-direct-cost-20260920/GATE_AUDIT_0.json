@@ -1,0 +1,39 @@
+{
+  "schema": "selector-direct-independent-audit.v1",
+  "passed": true,
+  "stage": "gate",
+  "family": 0,
+  "pairs": 6,
+  "queries": 12,
+  "decoded_payloads": 36,
+  "candidate_correct": true,
+  "candidate_strict_expected_half_cell": true,
+  "stock_correct": true,
+  "stock_failed_pairs": [],
+  "stock_half_cell_failed_pairs": [],
+  "all_original_archived_bytes_equal": true,
+  "cross_arm_word_equality_required": false,
+  "maximum_absolute_output_residual_torus": {
+    "stock": 3346780526788045,
+    "repair": 2576161950053635
+  },
+  "run_directory": "local-archive:tmp/selector-next-steps-20260920/step4/gate-0",
+  "queries_sha256": "a491164eeb93058e241bac2d79bd7caa333e67a5a7181e74953934ec2b3dab9d",
+  "protocol_sha256": "bc61748596afb1f9cf481633a0258f88408c5c61ab3db55d1e8f6a4a309498e8",
+  "freeze_sha256": "d8bbc4a99849ae7f3f86edb700731b59fdafa0a3c98f4d56801a19cf5e49d41b",
+  "binary_sha256": "61def36f7c8b6036e1c571487193ea2bc5df83c65fbdf82a3aa0d7b161423919",
+  "auditor_sha256": "7b41200c091cd2b9fafd1726b0109b73b1cc9cc315f96e7229e156a6e8734980",
+  "helper_pins": {
+    "tmp/selector-overhead-optimization-20260920/independent-audit/decode.py": "67cb3d8210614d74846627fb1e71d282ff465ef93393837d3701a524b720ccf5",
+    "tmp/selector-repair-20260919/independent-audit/public_work.py": "488879baf9368b7dd065b3c19f0a8624dee1928b4502c96da98312b9a1e8fddc",
+    "tmp/selector-overhead-optimization-20260920/independent-audit/public_work.py": "6743b5cb3e3e9b81782eb33830f320a7c45411e40d23b437c56e97a60bbf474d"
+  },
+  "gate_audit_sha256_by_family": {},
+  "audited_unix_ns": 1789928127374172000,
+  "limitations": [
+    "Three previously generated B families reused; not fresh replication of earlier evidence.",
+    "Saved input GLWE is hash-bound to the prior corpus, not independently decrypted again.",
+    "Final output checks do not certify every intermediate or a formal failure probability.",
+    "Reference semantic failures are reported without removing measured pairs."
+  ]
+}

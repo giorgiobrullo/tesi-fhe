@@ -195,11 +195,11 @@ uv run python benchmark/a29_pfail_accounting.py \
 ```
 
 Lo script non riceve override per conteggi o `log2_p_fail`: estrae il core A29 completo dal membro
-new-file della patch congelata, senza dipendere dal `private_argmin.rs` vivo; ricostruisce lo stage
+new-file della patch congelata, senza dipendere dalla versione corrente di `private_argmin.rs`; ricostruisce lo stage
 breakdown per `N=127`, verifica `ManyLUT=4N` e `KS=PBS-3N`, legge
 success/query/errori/discrepanze dal JSON primario e fallisce se uno degli hash congelati cambia.
 Non inserisce un timestamp di generazione; due esecuzioni canoniche consecutive hanno prodotto
-byte identici anche dopo l'avanzamento del worktree ad A33.
+byte identici anche con la versione A33 dei sorgenti del progetto.
 
 SHA-256:
 
@@ -208,7 +208,7 @@ SHA-256:
 - patch sorgente A29:
   `7858a3e51c50ddbd94ea76dbcc50410ffa37b10b99cad1eebb8609851b66cb54`;
 - JSON/CSV della suite primaria:
-  `328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34` /
+  `152e64280efcfec925e3638c3aefedd0c8ce1166df8e631b4831ef87b5099908` /
   `7337057cc97eeafe102cd330df154f31656e142a97029ac388dbd8aefd8eed5b`;
 - parameter file TFHE-rs 0.11.3:
   `14a3c8cae508fec1f96e76ed74e186efbd005c0c84292975333dc202a6987bb6`;
@@ -217,7 +217,7 @@ SHA-256:
 - script:
   `5e68a2eeb89d3725b742c870e780cebf1a34abc2c99c89cd8420829baf443292`;
 - JSON:
-  `f18da093a5b611d04bc5cdc1f3da931246ac5f7acb723780f6496c71a9e6672b`.
+  `a0448bcef31a911259dc048bdb9c84eeb88f120aab5d9cc056e997170fb24a4b`.
 
 Fonti locali vincolate:
 
@@ -238,3 +238,6 @@ Fonti locali vincolate:
 Il JSON porta lo stato esplicito
 `conditional_accounting_not_end_to_end_certificate`; il suo valore principale non deve essere
 rinominato in `p-fail A29` finche' gli obblighi sopra non sono chiusi.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../../docs/provenienza-dati.json) conserva entrambe le impronte.

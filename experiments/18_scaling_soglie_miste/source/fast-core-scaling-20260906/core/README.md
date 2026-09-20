@@ -1,17 +1,9 @@
-# Variable-N selected M core
+# Variable-size Head/PFKS core
 
-Source-only successor of `tmp/wrapup-head-service-20260906/core`, prepared for
-the user's old/new scaling comparison. The current scope is every N1..224
-within the unchanged uniform/aligned/Cauchy score-domain contract. Two base15
-ID digits represent0..224. N0 and N225+ fail public admission. Larger identity
-formats and threshold generalization are separate work.
-
-The package name is `fast_core_scaling_20260906`. The root runner supplies its
-lockfile, source digest, fixtures and execution schedule. The preserved
-`src/lib.rs` include requires `../SOURCE_DIGEST.txt` relative to this core
-directory; root will write the real whole-package digest before compilation.
-The copied binary LUT at `artifacts/fused_candidate_zero_body.u64le` remains
-byte-identical to the parent. No parent source, key or runtime file was edited.
+The `fast_core_scaling_20260906` library evaluates exact 0/ID for N1..224
+under a uniform threshold and an aligned score domain. Two base-15 digits
+represent 0..224; empty galleries and N225 or above are rejected. Wider
+identity formats and general or mixed thresholds are separate variants.
 
 ## Public API
 
@@ -32,10 +24,10 @@ byte-identical to the parent. No parent source, key or runtime file was edited.
 
 Native inputs remain one2048-coefficient, two-polynomial GLWE at51/60 scales.
 No old input is silently halved or relabeled. Outputs remain two2049-word LWE
-digits at2^59, interpreted as low+15×high. The caller must use a new circuit
-identity for this successor, even though the mathematical key shapes match.
+digits at2^59, interpreted as low+15×high. Two-output and three-output services have different contracts even when
+some key-container shapes match.
 
-## Changes and preserved arithmetic
+## Algorithm and operation counts
 
 1. The former fixed127 planner guard is replaced by a Head-specific224 limit.
    Internal `*_with_limit` validation helpers preserve every original arithmetic,
@@ -50,12 +42,11 @@ identity for this successor, even though the mathematical key shapes match.
    BR11N, KS8N, PFKS5N, BR-output marginals14N, gadget levels13N and initial
    samplesN. Public centering isN calls/body additions and859N mask terms.
 4. M's actual comparator, PFKS/mean selection, merge accounting and odd-tail
-   reduction bodies are byte-identical. The real-template tree finishes before
+   reduction bodies are unchanged in this extension. The real-template tree finishes before
    `[sentinel, winner]`; sentinel score1024/ID0 stays on the left. N1 still runs
    that final threshold merge.
 5. The core exports a public planner, dynamic counts and serial evaluation.
-   It adds five key-free Rust tests without changing the key container or key
-   validation/generation arithmetic.
+   Key container shapes and validation/generation arithmetic remain unchanged.
 
 All five payloads remain `[score_top, score_middle, score_low, id_low, id_high]`.
 Head/normalizer, PFKS22×1, W287, groups3+2, offsets, two shared-control rotations,
@@ -63,27 +54,20 @@ Delta59, public mean formula and final output extraction are unchanged. The
 older private H selector and its fixed diagnostic counters remain unused by
 the public M endpoint and are not a variable-N H implementation.
 
-## Validation status and root commands
+## Tests and limitations
 
-The author has not run Cargo, native code, key generation, FHE or HTTP. The
-independent integer audit in `../audits/core/` passes26320 tree cases over all
-N1..224, all4096 normalized sentinel scores and27 ternary-sign combinations.
-It distinguishes a proposal/static result from actual noisy evaluation.
+Five `scaling_tests::` tests cover size-dependent counts, admission,
+invalid geometry/domain/template inputs, 14,391 W287 matrix coefficients,
+winning IDs, stable ties, odd tails, ID capacity and rejection.
+From this core directory:
 
-Root can run only the new key-free tests with its existing build arrangement:
-
-```text
-cargo test --manifest-path core/Cargo.toml --lib scaling_tests:: --locked --offline
+```sh
+cargo test --manifest-path ../candidate/Cargo.toml -p fast_core_scaling_20260906 --lib scaling_tests:: --locked
 ```
 
-When the root candidate lockfile is the build entrypoint, use
-`--manifest-path candidate/Cargo.toml -p fast_core_scaling_20260906 --lib scaling_tests::`
-instead. The inherited crate contains older tests, some of which perform FHE;
-the `scaling_tests::` filter names only the five new key-free tests.
-
-Those tests cover all-size/partial counters, original versus scoped admission,
-invalid geometry/domain/template checks,14391 actual W287 matrix coefficients,
-every winning ID, all-tie stability, odd carries, ID capacity and rejection.
-They are supplied for root to compile/run, not reported as executed here.
-Actual N129 introduces a ninth maximum merge on a selected path; the old
-eight-merge conditional noise allocation cannot be transferred unchanged.
+These are arithmetic and API tests; other test modules may perform FHE.
+The [experiment results](../../../README.md) report the separate noisy and
+timing campaigns. At N129 a selected path can reach nine merges, so the
+conditional noise allocation for an eight-merge path cannot be transferred
+unchanged. Structural counts and integer tests are not a whole-circuit
+failure bound.

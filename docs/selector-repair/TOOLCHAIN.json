@@ -1,0 +1,15 @@
+{
+  "utc": "2026-09-19T16:55:14.693281+00:00",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18) (Homebrew)\nbinary: rustc\ncommit-hash: 88d9e12ae178fab0fb5cc050a94da85685d449ea\ncommit-date: 2026-08-18\nhost: aarch64-apple-darwin\nrelease: 1.98.0\nLLVM version: 22.1.8\n",
+  "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05) (Homebrew)\n",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.2\nBuildVersion:\t\t26B5086k\n",
+  "hardware": "Mac16,9\n16\n16\n68719476736\n",
+  "threads": 16,
+  "fft": "Dif4/base1024 before key generation/deserialization",
+  "release": {
+    "opt": 3,
+    "cgu": 1,
+    "lto": false
+  },
+  "old_readme_rust1931_not_used_for_this_campaign": true
+}

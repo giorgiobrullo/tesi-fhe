@@ -12,10 +12,5 @@
   "cmake_minimum": "3.16.3",
   "openmp_required_for_recorded_configuration": true,
   "external_install_setting": "OpenFHE_DIR points to a fresh local install/lib/OpenFHE; no tmp dependency in runtime sources.",
-  "historical_dependency_receipt": {
-    "source": "tmp/ckks-route-verification-20260907/DEPENDENCIES.json",
-    "sha256": "2a5db90f406f9484f5753264645f116a112a5626b31e5f351ae71ff839532efa"
-  },
-  "qualification_limit": "Combined-v3 inherits historical macro configuration. Separate thread-budget code made PARALLEL definitions consistent; its times are not the combined-v3 estimator.",
-  "vendor_source_or_binaries_copied": false
+  "qualification_limit": "Combined-v3 inherits historical macro configuration. Separate thread-budget code made PARALLEL definitions consistent; its times are not the combined-v3 estimator."
 }

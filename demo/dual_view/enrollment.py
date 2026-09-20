@@ -20,7 +20,7 @@ from PIL import Image, UnidentifiedImageError
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-CONFIG_PATH = ROOT / "experiments/22_demo_composita/runtime/config.json"
+CONFIG_PATH = ROOT / "runtime/config.json"
 MAX_IMAGE_BYTES = 4 * 1024 * 1024
 MAX_PIXELS = 4_000_000
 MAX_SIDE = 4096

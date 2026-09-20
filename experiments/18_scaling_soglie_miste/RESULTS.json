@@ -2,7 +2,7 @@
   "schema": "local-review-curated-results.v1",
   "experiment": 18,
   "title": "Scaling e soglie del vincitore",
-  "evidence_status": "Previously accepted original results; no new-location build or execution",
+  "evidence_status": "Historical experimental results.",
   "selected_mixed_source_sha256": "4e81e3cb37001cf585628e2415657c00c7ff4fea21afa9b482dc805a72613cf7",
   "scaling": {
     "fresh_key_families": 3,
@@ -141,42 +141,6 @@
     "Representation capacity3374, core noisy cases1024 and historical HTTP cases225 are distinct",
     "The mixed threshold belongs to the chosen minimum only; a farther passing candidate does not replace a rejected nearest candidate"
   ],
-  "original_evidence": [
-    {
-      "source": "tmp/fast-core-scaling-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
-      "sha256": "e90af6efd3a5de3e40a5b80ec2a5cc52ef259b809b99cb9da56246d1a506fb63",
-      "bytes": 738841,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-uniform-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
-      "sha256": "7c3e478fb6492615391f214156ac6f01dc672fa73f1014060445b6007783eefb",
-      "bytes": 70297,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-wide-id-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
-      "sha256": "cc7dc1cc288c4df6c2e395e32fd25066c570ca04b83dc210233cdb9af41329fa",
-      "bytes": 43190,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-mixed-20260906/runs/THREE_KEYS_FINAL_CHECK.json",
-      "sha256": "a5137f8209503d541c39b2b385ea7da9347c9fe4f6ad1d7f04196fa53f2fa2bf",
-      "bytes": 153457,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "tmp/fast-core-wide-id-20260906/runs/THREE_KEYS_AND_PILOT_FINAL_CHECK.json",
-      "sha256": "8fe54cbc27f51678e1d26f5a3ef24f640b50a8499dc5559ea036a5167515cb69",
-      "bytes": 110799,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    },
-    {
-      "source": "docs/personal/fast-core-scaling-2026-09-06.md",
-      "sha256": "48f67668db56ba518b1fb82b7dca442e65569834de1798f44f05822de75daa05",
-      "bytes": 15249,
-      "use": "Existing accepted summary/report; no raw process or ciphertext data copied"
-    }
-  ]
+  "provenance_manifest": "PROVENANCE.json",
+  "recorded_digest_scope": "Existing source, binary and original-result digests identify historical run artifacts. PROVENANCE.json separately hashes the files distributed in this publication."
 }

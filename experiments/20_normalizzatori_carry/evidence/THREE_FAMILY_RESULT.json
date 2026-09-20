@@ -49,11 +49,6 @@
       "index": 0,
       "result_sha256": "592d70f009a3f2105a059eac20773f6c7f9b780c209434b5b44f98ff3cd923c1",
       "raw_sha256": "eaece9384c5f1b7a12fc52f639b883af4ad2c1bdafc13cd0be62b86519a346ce",
-      "key_hashes": {
-        "bundle_sha256": "ea58907a2dcec31b864cb13669159718ead9f1eb78c63724ff4d2ad0aa0ea50d",
-        "big_secret_sha256": "cc84f09232018097a614b83d8455d9ef446a275c010b3d39876559f4c0fdfb01",
-        "small_secret_sha256": "9b1c1c12d331211005648775067212cd974bf81e6ce9cb79838ca46e83cd9327"
-      },
       "raw_bytes": 10176527866,
       "raw_error_fraction_halfspacing": {
         "scalar/residual/0": 0.007605874910950661,
@@ -99,11 +94,6 @@
       "index": 1,
       "result_sha256": "451480207f6d8697d17a4014f23892fc1f5c5573edeceb84e7b49aebe417e66f",
       "raw_sha256": "4989c72ff0fc378a89c566ab195cd422a94c45cd7beb26b56aae85ec8ceff79d",
-      "key_hashes": {
-        "bundle_sha256": "01de3f2eef4fe909545f342e384ba24a8b4a176782ba537eb8af93b29b2606a4",
-        "big_secret_sha256": "9904385150625b02de93f25ffe163043aef163d781054e3bf5bbd6cb996cc0a9",
-        "small_secret_sha256": "00c300b050e40bfcfc6da003244650a3bc0fe70ba0d0af640482c72948dafef2"
-      },
       "raw_bytes": 10176579350,
       "raw_error_fraction_halfspacing": {
         "scalar/residual/0": 0.007445639232173562,
@@ -149,11 +139,6 @@
       "index": 2,
       "result_sha256": "99fbdfe36d37cc12549de33806dff3a069d3ab5b9bcd5c9f807e7d96bbd6a2ff",
       "raw_sha256": "940bf49d8167f3fd5d7da9c988b58edb74399a6dab0a2ce417248dc484a61502",
-      "key_hashes": {
-        "bundle_sha256": "f6086066a653ba3bc2d45e80158b409e59b0068c169d12d73d4dae64ade8cae2",
-        "big_secret_sha256": "e7530444502c50327726059d4a45659b4c6b69e7d27cd0a496554f0ffe48f259",
-        "small_secret_sha256": "9a365c290af0023197d9416a145baece4b3f8d0b26e5758ec69073640a9525b3"
-      },
       "raw_bytes": 10175814585,
       "raw_error_fraction_halfspacing": {
         "scalar/residual/0": 0.007527158362790942,
@@ -196,27 +181,6 @@
       }
     }
   ],
-  "pins": {
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/FIRST_FAMILY_V4_COMPLETION.json": "8aa5ed02629e79103fb219abc7108442ce741d783082dfd956fb4f90cea2751e",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family0-actual-lut-v4/PLAN.json": "c90b0fc0267f3d8a4749d58bc827f5794e9fc7491d599f06e9fe343a3dd80448",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family0-actual-lut-v4/prepare.EXIT.json": "ec5f4dbd048e1bf4369ec78b27f81d30a802dfe8666da96b1d6981ef66852a66",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family0-actual-lut-v4/run.EXIT.json": "75cc5dbea1ae1d01a35c1f1b4b162089c3f0c4310d581c6e546e454452b182b5",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family0-actual-lut-v4/RESULT.json": "592d70f009a3f2105a059eac20773f6c7f9b780c209434b5b44f98ff3cd923c1",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family0-actual-lut-v4/private/manifest.json": "663380b854a86756daba4bd3a3943387fbf02bdaf1caf9e78f8b2050316b08a6",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family1-actual-lut-v4/PLAN.json": "2335f0e9190ef511fc22dff4ef29166c35f7430c551250f21e03b850744fa75d",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family1-actual-lut-v4/FRESH_FAMILY_BINDING.json": "814cba72b6633f41c469966e243338f25af8a73192350bfd9503049b03dfadd4",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family1-actual-lut-v4/prepare.EXIT.json": "c139360155341578a2ecf08a44b8d9fc70140f6f68412c2825bcef9db9f84450",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family1-actual-lut-v4/run.EXIT.json": "7a3eb9703f0683138fbe8e5292f893c1f3d1814a73c8673c594b3bab345f601a",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family1-actual-lut-v4/RESULT.json": "451480207f6d8697d17a4014f23892fc1f5c5573edeceb84e7b49aebe417e66f",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family1-actual-lut-v4/private/manifest.json": "95ad793faf05d2b060886f5b2af3971d65f10cd7c0001133cb3f93e0842f72e6",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family2-actual-lut-v4/PLAN.json": "5fdce8e46cc19d178596c149abce89805315c691fdea967716159d4d8878969c",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family2-actual-lut-v4/FRESH_FAMILY_BINDING.json": "b39a05537dedf0415133cdb3741904aaa1004d9d0f90083945299bf42ac21ca2",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family2-actual-lut-v4/prepare.EXIT.json": "42b946a692c1be24b848718e9115388a901fd1fe1b04a896e5e24d514c6b7130",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family2-actual-lut-v4/run.EXIT.json": "ab329d4b180226179047173924907e92a0686367fb9d6ac923dda0950b776ba9",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family2-actual-lut-v4/RESULT.json": "99fbdfe36d37cc12549de33806dff3a069d3ab5b9bcd5c9f807e7d96bbd6a2ff",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/speed-campaign-20260907-night/structural-routes/shared-normalizers/carry-based-v2/runs/sweep-family2-actual-lut-v4/private/manifest.json": "ab17fc81b2d5545eac60571e2baa2588e0d013e56a6599184e3f9bc0762e7fb9"
-  },
-  "helper_sha256": "3169e135b66ba30c258ca6a922675c58dd855ac46e9df94f0af678ab4ecc2e57",
   "scope": "Summary of already completed exact native/independent replay receipts. Raw10GB files were checked by each bounded original reader; this small helper does not replay or rehash them.",
   "limits": [
     "Raw score producer; the packed128-output gate and64-output timing screen are separate evidence.",

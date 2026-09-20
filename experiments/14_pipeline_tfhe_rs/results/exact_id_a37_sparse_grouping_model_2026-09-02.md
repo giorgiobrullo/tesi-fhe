@@ -1,4 +1,4 @@
-# A37: raggruppamento gerarchico dei flag signed A33 — modello statico, 2026-09-02
+# A37: raggruppamento gerarchico dei flag signed A33 - modello statico, 2026-09-02
 
 ## Esito
 
@@ -77,7 +77,7 @@ Questo blocca qualunque LUT o insieme di sample extraction che riceva soltanto q
 scalare. Blocca anche gruppi piu' grandi: restringendo quattro posizioni e fissando tutte le altre a
 zero si otterrebbe altrimenti una quadrupla separabile, che la ricerca esclude.
 
-## 4. Il codice intermedio che sblocca le triple
+## 4. Codice intermedio per gruppi di tre
 
 Per una tripla si usano i pesi balanced-ternary `(1,3,9)`. La LUT `p=16` ha i seguenti 16 valori
 indipendenti; la seconda meta' e' fissata dalla negaciclicita':
@@ -227,7 +227,7 @@ La validazione completa comprende 24 casi di flag, 584 gruppi del primo stadio, 
 del secondo, 8.190 gallerie esaustive fino a `N=12`, 4.096 gallerie pseudocasuali fino a `N=128`,
 5.456 triple di pesi e 46.376 quadruple di pesi.
 
-Prima di toccare il core servono ancora:
+Per validare un circuito integrato servono ancora:
 
 1. un micro-harness FHE isolato per il nuovo accumulatore di peso 9 e le due LUT `p=16`;
 2. casi su piu' chiavi, tutte le fasi e le code `N mod 15`;

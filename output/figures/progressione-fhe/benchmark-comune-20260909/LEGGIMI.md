@@ -94,15 +94,13 @@ I lettori indipendenti verificano piani, ordine, oracoli, input/output, chiavi, 
 
 Il primo tentativo Concrete si è interrotto durante il setup, prima di qualsiasi query. È conservato come fallimento di setup; il gate di recupero riusa soltanto quelle chiavi nuove e mai valutate. Tutte le famiglie principali generano invece nuove chiavi.
 
-## Evidenza locale
+## Riproduzione delle statistiche e del grafico
 
-- Metodo osservazionale — `tmp/progress-common-benchmark-20260909/control/FIGURE_METHOD_OBSERVATIONAL.md` (archivio locale non distribuito).
-- Prima campagna interrotta e replay — `tmp/progress-common-benchmark-20260909/late-exact/audit/main-failure-01/REPORT.json` (archivio locale non distribuito).
-- Cosa cambia nelle dieci versioni exact — `tmp/progress-common-benchmark-20260909/late-exact/audit/FIGURE_LABELS.md` (archivio locale non distribuito).
-- Ricerca dei sorgenti A23/A25 — `tmp/progress-common-benchmark-20260909/early-exact/SEARCH_A23_A25.md` (archivio locale non distribuito).
-- Analisi principale exact — `tmp/progress-common-benchmark-20260909/analysis/observational-main-01/ANALYSIS.json` (archivio locale non distribuito).
-- Verifica indipendente exact — `tmp/progress-common-benchmark-20260909/observational/audit/independent-reader/MAIN_REPORT-01.json` (archivio locale non distribuito).
-- Analisi principale prototipi — `tmp/progress-common-benchmark-20260909/analysis/prototype-main-01/ANALYSIS.json` (archivio locale non distribuito).
-- Verifica indipendente prototipi — `tmp/progress-common-benchmark-20260909/prototypes/audit/independent-reader-v2/MAIN_REPORT-01.json` (archivio locale non distribuito).
-
-I percorsi e gli hash negli EXPORT e nei dati originali identificano la provenienza locale. Per l’ambito del materiale incluso vedere [riproducibilità](../../../../docs/riproducibilita.md).
+I CSV contengono tutte le osservazioni della campagna, con la fase di
+riscaldamento distinta dalle misure. `punti.csv` e `dati.json` riportano
+mediane, quartili, conteggi di correttezza e condizioni della campagna.
+La [guida pratica](../../../../docs/riproducibilita.md) spiega come leggere
+le tabelle e rigenerare la [figura Matplotlib](../benchmark-comune-matplotlib-20260909/LEGGIMI.md).
+Le tabelle consentono il controllo delle statistiche, non la ripetizione
+delle decifrature originali. Una nuova prova FHE richiede nuove chiavi
+e una propria esecuzione delle implementazioni.

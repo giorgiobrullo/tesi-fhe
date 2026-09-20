@@ -19,15 +19,6 @@ Galleria DigiFace: 127 iscritti, embedding quantizzati a 512 dimensioni, soglia 
 Il contratto `exact-open-set-id-v2` restituisce un solo LWE cifrato:
 `0=rifiuto`, `i+1=identita' piu' vicina accettata`. Il rifiuto non contiene l'indice del vicino.
 
-```sh
-RAYON_NUM_THREADS=16 uv run python benchmark/fhe_digiface_validation.py \
-  --run \
-  --primary-suite \
-  --regression-repetitions 1 \
-  --timeout 900 \
-  --output-stem fhe_digiface_exact_primary_optimized_2026-09-02
-```
-
 La suite contiene una cifratura fresca per ciascuna delle 632 esecuzioni, sotto una singola coppia
 di chiavi temporanee fresca. Gli indici di probe distinti sono 631, perche' il probe 758 compare
 sia nella coorte di frontiera sia nel test impostori primario:
@@ -53,8 +44,7 @@ sia nella coorte di frontiera sia nel test impostori primario:
   run.
 
 La diversita' dei ciphertext esclude il riuso accidentale degli stessi byte cifrati; non dimostra
-indipendenza statistica o qualita' del generatore casuale. La chiave temporanea e' stata rimossa a
-fine esecuzione.
+indipendenza statistica o qualita' del generatore casuale. La singola chiave limita la copertura della variabilità fra chiavi.
 
 ## Risultato biometrico clear, separato dall'equivalenza FHE
 
@@ -83,8 +73,8 @@ di carico, aveva mediana server 15.882,65 ms. La revisione A25 riduce staticamen
 (`7.804 -> 5.600`) e in questi due run la mediana osservata si riduce del 52,70%, rapporto 2,114x.
 Il secondo numero non e' uno speedup controllato: i run non sono paired, la macchina non era
 riservata, il JSON non registra modello CPU, load o `RAYON_NUM_THREADS`, e le modifiche cambiano
-anche profondita' critica e parallelismo, non soltanto il numero di PBS. Il claim riproducibile
-forte e' il conteggio; i tempi sono misure end-to-end locali dichiarate.
+anche profondita' critica e parallelismo, non soltanto il numero di PBS. Il conteggio e' riproducibile
+staticamente; i tempi sono misure end-to-end locali nelle condizioni dichiarate.
 
 ## Binding e provenienza
 
@@ -107,14 +97,12 @@ La evaluation key temporanea aveva SHA-256
 `152f996c1ee04016719589a66c106974074bbb5e01cb6d1468bdbbcfeb6fd547`. Scena e holdout
 corrispondono rispettivamente a
 `ae872cdff154c6f4824d222c6c24a8527d9f33940ab2bc937b4a9719e3b2dd66` e
-`0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`. Il commit di base era
-`6611c185adc9a658a075519b4316386f0bb48656` sul branch
-`thesis-evidence-audit-2026-09`.
+`0e3811a37e5106cf1c2f0b52ed3b918dc867c1d614c85e55d0888d14119a9a07`.
 
 | artefatto | SHA-256 |
 |---|---|
 | `fhe_digiface_exact_primary_optimized_2026-09-02.csv` | `b5732c8e674d7e669eb4856fb399e1200492efe90b65c2eb6e18240be29adba2` |
-| `fhe_digiface_exact_primary_optimized_2026-09-02.json` | `a322ee946b6f5f7a031d1f59f6e9a5ae26cc42b642333295526aa7b9a6e7a009` |
+| `fhe_digiface_exact_primary_optimized_2026-09-02.json` | `1cef42ab0fa13ef8b7ef50ee80aeb6ca0d8c26a33535feefeded595a8ca2cf10` |
 
 Lo SHA-256 del CSV coincide con quello incorporato nel JSON. Il validator di questa esecuzione non
 includeva ancora `src/lib.rs` nella lista degli input sorgente: il binario eseguito resta vincolato
@@ -133,3 +121,10 @@ La formulazione difendibile e' quindi: questa revisione implementa e riproduce s
 pianificata il primo argmin, la soglia del solo vincitore e l'unico output cifrato `0`/ID. Gli
 hardening successivi dell'estrazione e della scala d'uscita richiedono artefatti separati e non
 possono ereditare il risultato 632/632.
+
+I risultati si riferiscono alla revisione e agli input identificati in questo report.
+Il clone non include il binario e tutti gli input del run storico; eseguire gli
+script sul codice corrente non replica automaticamente queste misure.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

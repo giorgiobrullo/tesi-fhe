@@ -1,11 +1,12 @@
-# 23 — Ottimizzazioni del valutatore CKKS
+# 23 - Ottimizzazioni del valutatore CKKS
 
 Il confronto diretto `combined-v3` misura una riduzione geometrica appaiata
 dell'**8,098463%**, con18 vittorie su18 coppie e tre famiglie di chiavi nuove.
 Le mediane sono3,211634 s per il riferimento e2,948412 s per la combinazione.
-Questi sono i risultati della campagna conclusa, non nuove misure della copia.
+Il confronto misura il calcolo cifrato completo, con verifiche di output
+e uguaglianza dei ciphertext separate dai timer.
 
-`runtime/` conserva identici il valutatore C++, i tre header e CMake.
+`runtime/` contiene il valutatore C++, i tre header e CMake.
 La modalità `combined-powers` condivide le riduzioni dell'input e di x²
 nei polinomi e prepara una volta la decomposizione per le rotazioni del
 punteggio. La cache dei plaintext pubblici è identica nei due bracci.
@@ -36,11 +37,10 @@ un limite formale alla probabilità di errore. CKKS produce un valore
 approssimato che il client arrotonda, diverso dalle tre cifre TFHE esatte.
 I controlli osservati impongono risultato atteso ed errori inferiori a0,5.
 
-`RESULTS.json` contiene una proiezione dei risultati originali, incluse tutte
-le18 coppie e i tempi per stadio; `PUBLIC_TIMING_PAIRS.csv` li rende comodi da
-analizzare. Gli hash delle fonti e delle copie sono in `COPY_ORIGINS.json` e
-`PACKAGE_PINS.json`. Non sono inclusi chiavi, immagini, fixture vecchie,
-ciphertext, librerie compilate o inventari di altri processi.
+[RESULTS.json](RESULTS.json) contiene tutte le 18 coppie e i tempi per stadio;
+[PUBLIC_TIMING_PAIRS.csv](PUBLIC_TIMING_PAIRS.csv) permette di analizzarli.
+Il [metodo](evidence/ORIGINAL_COMBINED_DESIGN.md) descrive il confronto e il
+[rapporto dei risultati](evidence/ORIGINAL_COMBINED_RESULTS.md) ne riassume gli effetti.
 Le colonne di carico nel CSV riportano il riepilogo della cella temporale
 che contiene la coppia, non una nuova misura del carico di quella sola query.
 
@@ -48,25 +48,24 @@ La successiva prova separata8/12/16 thread è conclusa:12 quasi alla pari
 (+0,2011% di tempo),8 più lento (+8,9820%), con16 mantenuto come riferimento.
 Quel sorgente rende coerente la definizione `PARALLEL` in tutte le unità;
 il suo confronto non misura separatamente l'effetto di tale cambiamento
-rispetto a `combined-v3`. La frase «ancora da eseguire» nel report originale
-copiato è storica ed è superata da `evidence/ORIGINAL_THREAD_RESULTS.md`.
+rispetto a `combined-v3`. Il [rapporto sui thread](evidence/ORIGINAL_THREAD_RESULTS.md)
+riporta metodo, tabella e limiti di questa prova separata.
 
-## Ricostruzione senza vecchi dati
+## Input sintetici
 
 Il generatore `generate_synthetic.py` usa solo la libreria standard Python.
-Ricostruisce dalla formula pubblica gli otto file originali necessari per
-le scene N128 e N4 e ne verifica gli hash originali. Nessun dato in `tmp`
-viene letto. Tutti i probe hanno512 coordinate uguali a1, norma quadrata512;
+Ricostruisce dalla formula pubblica gli otto input delle scene N128 e N4
+e ne verifica le impronte di riferimento. Tutti i probe hanno512 coordinate uguali a1, norma quadrata512;
 galleria e probe rispettano coordinate intere in[-3,3]. L'oracolo calcola
 prima il primo minimo e poi verifica la soglia inclusiva di quel vincitore,
 anche quando un candidato più lontano o un pari successivo accetterebbe.
 
 Una nona scena `synthetic_n64_r4096_all_tie` usa64 gallerie distinte costruite
 con100 coordinate uguali a3, ruotate; il primo ID passa alla soglia300.
-Il limite pubblico del parser produce intervallo4096. È un controllo nuovo
-validato solo in aritmetica intera: non replica la vecchia immagine DigiFace
-né eredita la sua verifica FHE. L'esatta qualificazione storica R4096 richiede
-gli asset originali, esclusi da questo pacchetto.
+Il limite pubblico del parser produce intervallo4096. Questa scena è stata
+verificata solo in aritmetica intera e non riproduce il caso DigiFace della
+qualifica FHE R4096. La correttezza in chiaro della scena generata non le
+trasferisce quella verifica FHE.
 
 Dalla cartella `experiments/23_ckks_ottimizzazioni`:
 
@@ -75,20 +74,18 @@ python3 -B generate_synthetic.py --check
 python3 -B generate_synthetic.py --output .local/fixtures
 ```
 
-Il primo comando non scrive fixture; il secondo richiede una cartella nuova.
-Il controllo in memoria è stato eseguito durante il consolidamento: tutte
-le nove scene passano e gli otto hash storici coincidono. Non sono state
-eseguite compilazioni, generazioni di chiavi o query cifrate.
+Il primo comando controlla le nove scene in memoria e le otto impronte di
+riferimento; il secondo scrive gli input in una cartella nuova. Questi
+controlli sono aritmetici e non eseguono FHE.
 
-## Compilazione ed esecuzione successive
+## Compilazione ed esecuzione
 
 Dipendenza esterna: OpenFHE1.5.1, revisione
 `1306d14f8c26bb6150d3e6ad54f28dfe1007689e`, con i submodule indicati in
 `DEPENDENCIES.json`, C++17, CMake e OpenMP. Il codice usa `getrusage` ed è
 destinato a sistemi POSIX. Installare OpenFHE in una cartella locale e
-impostare `OpenFHE_DIR` sulla sua cartella `lib/OpenFHE`; non riutilizzare
-i percorsi assoluti del vecchio Mac. Non serve openfhe-statistics per
-compilare questi cinque sorgenti.
+impostare `OpenFHE_DIR` sulla sua cartella `lib/OpenFHE`.
+Non serve openfhe-statistics per compilare questi cinque sorgenti.
 
 ```sh
 cmake -S runtime -B .local/build -DCMAKE_BUILD_TYPE=Release \
@@ -97,9 +94,9 @@ cmake --build .local/build -j 4
 ```
 
 Ogni invocazione del programma genera una famiglia di chiavi nuova in
-memoria. I comandi seguenti sono un punto di partenza riproducibile, da
-eseguire solo in una finestra libera da benchmark concorrenti. Non sono
-stati lanciati da questo consolidamento.
+memoria. I comandi seguenti mostrano prima un controllo di correttezza,
+poi un confronto dei tempi. Per misurare il runtime, evitare altri benchmark
+concorrenti e registrare il carico esterno.
 
 Primo controllo N4 con soglia inclusiva, copie complete fuori dal timer:
 
@@ -131,8 +128,15 @@ OMP_NUM_THREADS=16 OMP_MAX_ACTIVE_LEVELS=1 OPENBLAS_NUM_THREADS=1 \
   --warmups 2 --repeats 6
 ```
 
-Tre invocazioni separate danno tre famiglie; salvare separatamente stdout,
-stderr, ambiente, identità di sorgenti/librerie/binario e carico del sistema.
-Conservare fallimenti e coppie lente. Questo comando riproduce il nucleo del
-confronto, non l'intera catena di audit storica: i vecchi launcher dipendono
-dai log, monitor e file congelati e restano nei loro percorsi originali.
+Tre invocazioni separate generano tre famiglie. Registrare output, ambiente,
+versioni di sorgenti/librerie/binario e carico del sistema. Analizzare tutte
+le coppie pianificate, comprese quelle lente, e riportare separatamente i
+fallimenti. Le medie geometriche dei rapporti appaiati e le mediane dei tempi
+sono estimatori diversi.
+
+## Provenienza
+
+[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
+dai documenti storici e dalle copie redatte. I digest degli esperimenti
+identificano le esecuzioni originali; questa pubblicazione non aggiunge
+una nuova compilazione nativa o una nuova prova FHE.

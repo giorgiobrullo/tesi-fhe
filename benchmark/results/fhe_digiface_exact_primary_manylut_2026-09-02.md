@@ -33,9 +33,7 @@ A29 separata.
 - 632/632 hash SHA-256 distinti dei result ciphertext, 16.464 byte ciascuno;
 - **4.965 PBS in ogni query**;
 - contratto `exact-open-set-id-v2` in ogni risposta;
-- coppia di chiavi client/server generata apposta in directory temporanea e rimossa a fine run;
-- server terminato col SIGTERM previsto (`exit_code=-15`); PID e porta liberi sono stati verificati
-  live dall'audit, ma non sono campi persistiti nel JSON;
+- una coppia di chiavi client/server generata appositamente per il run;
 - nessuna distanza, score o conteggio restituito dal decrypt.
 
 ## Tempi osservati
@@ -61,7 +59,7 @@ benchmark paired A28/A29 sulla stessa chiave e sugli stessi byte cifrati.
 
 ## Provenienza
 
-- base Git `6611c185adc9a658a075519b4316386f0bb48656`, worktree esplicitamente sporco;
+- revisione a cui applicare la patch: `c5ab1b325c5c1a7c234d137bdedbbd7950222b16`;
 - core A29 `src/private_argmin.rs`:
   `06b62cb44f372fbf44e33b9a541a3609e49657f1201f4e319cdab3b0da1e37e4`;
 - validator:
@@ -73,7 +71,7 @@ benchmark paired A28/A29 sulla stessa chiave e sugli stessi byte cifrati.
 - CSV:
   `7337057cc97eeafe102cd330df154f31656e142a97029ac388dbd8aefd8eed5b`;
 - JSON:
-  `328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34`.
+  `152e64280efcfec925e3638c3aefedd0c8ce1166df8e631b4831ef87b5099908`.
 
 La patch contiene 19 file, si applica con `--index` al base e ricostruisce il tree
 `00c9ee5f5c8c53c77dc38fca89cdb0ba75c000d8`; dal worktree ricostruito compilano sia i binari di
@@ -91,3 +89,6 @@ Artifact grezzi:
 Il run usa una sola chiave, una galleria N=127 e la distribuzione DigiFace congelata. E' evidenza
 empirica di correttezza sul campione, non una prova della `p-fail` end-to-end ne' della biometria
 continua. Il gate E2E del demo Docker e il confronto paired restano artifact separati.
+
+Gli hash dei JSON si riferiscono agli estratti pubblicati; la
+[corrispondenza con gli originali](../../docs/provenienza-dati.json) conserva entrambe le impronte.

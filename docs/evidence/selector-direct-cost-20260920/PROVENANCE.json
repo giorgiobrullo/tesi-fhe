@@ -1,0 +1,74 @@
+{
+  "schema": "selector-direct-cost-public-provenance.v1",
+  "description": "Original SHA values identify local frozen evidence. Public SHA values verify distributed projections. This package permits statistics replay; keys, ciphertexts, process listings and the full FHE audit archive remain local. local-archive: strings are identifiers, not distributed paths.",
+  "files": [
+    {
+      "path": "PROTOCOL.json",
+      "original_sha256": "bc61748596afb1f9cf481633a0258f88408c5c61ab3db55d1e8f6a4a309498e8",
+      "public_sha256": "3213110cd6004ad0b511348da5eec1c898699373f1ed96311889a4a89e16fd95",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "GATE_AUDIT_0.json",
+      "original_sha256": "4a179f27b77a1ddd1e7990dcf18d7f70a01d4d048d168b3a010c293c1cd4eeb3",
+      "public_sha256": "42757c5ac6dd89d1187e4d4d1c2b482e0a2287f2baa130971edc1ec14f573348",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "GATE_AUDIT_1.json",
+      "original_sha256": "d09cdfc3b86851258aeaefab3e3c123aa3d20f0deaf17e270f9e1dbb5adb4af0",
+      "public_sha256": "8815df3bce89274e2547f77cf3adc08b641a3558e4a103df92de4d4568f46f22",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "GATE_AUDIT_2.json",
+      "original_sha256": "52ed507f887014923fa4792975e43a530ad4767b9ebd75b74e844534ce7e67f0",
+      "public_sha256": "c6293d515ca5b4074253b57dfad7fa71fe110c8413b7410de36c6afb2d5750cd",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "MEASURE_AUDIT_0.json",
+      "original_sha256": "532303b995ad68456562d969a1ec83496930222108c5465800907bd62a3fa682",
+      "public_sha256": "05f4af0aa9815d7f72ded8912a397de48f6c13585c3da7cf600a02444e86c5e5",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "MEASURE_AUDIT_1.json",
+      "original_sha256": "fe97b2e30c10c76fc359303d4aae6b0212e92330d55df775ad3a17b7e11a4922",
+      "public_sha256": "70d0f110ce21257e2c6f96a31f4ce59dddbe1487d606cd654b8d8bda4116dcd2",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "MEASURE_AUDIT_2.json",
+      "original_sha256": "931a31c87201f90d62cb19fe8de7a6e353ae0c797836669c707e3fd6e5577d66",
+      "public_sha256": "a0c3aa1ca4c5d1c668bc31cbb3711aeff82c8560b2b7f6f64a356d966640675a",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "SUMMARY_BINDING_AUDIT.json",
+      "original_sha256": "cfeb41c8813a1b0df561eb868c32967526e3168057f323b2b48a20a0aecc4a9c",
+      "public_sha256": "cfeb41c8813a1b0df561eb868c32967526e3168057f323b2b48a20a0aecc4a9c",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "FINAL.json",
+      "original_sha256": "346fad4ff04a657e6a726f8a9277e0cc53136407a826645278840c5c42ddff1a",
+      "public_sha256": "346fad4ff04a657e6a726f8a9277e0cc53136407a826645278840c5c42ddff1a",
+      "changes": "Absolute workspace prefix replaced with local-archive:; numerical data and original source hashes unchanged."
+    },
+    {
+      "path": "TIMING_RESULT.json",
+      "original_sha256": "35836c15f36749a5d112182ca02c9433574b608e03245236aadc7d5b01ae6c33",
+      "public_sha256": "dc791439c5c4629fedf66273970cada0513f279abd7632ed9e385048a37261f2",
+      "changes": "Per-interval process accounting omitted; all72 pairs, per-query aggregate load flags and every numerical result retained."
+    },
+    {
+      "path": "estimator.py",
+      "original_sha256": "7092da4b17f8eee1eb48980a41420079e1747bbdca6cb0324babd9af44176010",
+      "public_sha256": "7092da4b17f8eee1eb48980a41420079e1747bbdca6cb0324babd9af44176010",
+      "changes": "Unmodified frozen estimator."
+    }
+  ],
+  "local_freeze_sha256": "d8bbc4a99849ae7f3f86edb700731b59fdafa0a3c98f4d56801a19cf5e49d41b",
+  "local_final_sha256": "346fad4ff04a657e6a726f8a9277e0cc53136407a826645278840c5c42ddff1a"
+}

@@ -1,9 +1,24 @@
 # Esperimenti
 
-I numeri identificano gruppi di lavoro, non un singolo run o una progressione
-monotona di velocità. Le cartelle **14, 15 e 16 esistevano già**: vengono
-conservate e la riorganizzazione prosegue da 17. Le campagne parallele sono
-raggruppate per argomento; il numero non riscrive le date dei singoli test.
+Gli esperimenti esplorano il riconoscimento facciale con query cifrata:
+embedding, calcolo dei punteggi, selezione del minimo e controllo della
+soglia. Le cartelle sono raggruppate per domanda di ricerca.
+
+Per la baseline corrente pack4 partire dal [runtime](../runtime/README.md),
+da [compilazione e avvio](../BUILD_AND_RUN.md) e dal
+[rapporto di validazione](../PACK4_VALIDATION.md).
+La [prima correzione B](../SELECTOR_REPAIR_VALIDATION.md) conserva un rapporto
+storico separato. Pack4 mantiene refresh e finestra ampia, raggruppando fino
+a quattro cifre; il suo confronto appaiato e le sue prove sono autonomi.
+La [demo 22](22_demo_composita/README.md) conserva la versione misurata
+nelle campagne storiche; i suoi tempi e conteggi non qualificano il selettore nuovo.
+Il [percorso rimisurato](../docs/percorso-sperimentale-20260920.md) contiene
+i nuovi grafici della progressione e del confronto CKKS/TFHE.
+Per seguirne lo sviluppo, leggere i prototipi e i confronti elencati sotto.
+Ogni risultato va interpretato con i parametri e i casi del proprio test.
+La [sintesi dei risultati](../findings.md) collega le conclusioni alle schede
+complete; la [guida pratica](../docs/riproducibilita.md) raccoglie i percorsi
+di esecuzione e verifica.
 
 ## Percorso storico conservato
 
@@ -22,49 +37,52 @@ raggruppate per argomento; il numero non riscrive le date dei singoli test.
 | [15](15_ckks_confronto) | Circuito CKKS di confronto |
 | [16](16_common_mask_poc/README.md) | Primo common-mask PoC |
 
-Non è presente un esperimento 12 nell'albero esistente; la numerazione
-storica non viene corretta creando un esperimento fittizio.
-
-## Lavoro consolidato del 4–8 settembre 2026
+## Implementazioni e confronti del 4–8 settembre 2026
 
 | Esperimento | Domanda / esito | Materiale |
 |---|---|---|
-| [17 — Head/PFKS su TFHE-rs 1.7](17_head_pfks_tfhe17/README.md) | Primo core riutilizzabile, correzione media e servizio N127 | Sorgenti della baseline e controllo, risultati e provenienza |
-| [18 — Scaling e soglie miste](18_scaling_soglie_miste/README.md) | Taglie variabili, tre cifre ID, soglia del vincitore | Quattro estensioni e controlli, risultati separati |
-| [19 — Runtime CPU](19_runtime_cpu/README.md) | FFT fissa, 16 thread e CGU1; anche compiler/PGO/copie/cache negativi | Due runtime e configurazioni storiche |
-| [20 — Normalizzatori carry](20_normalizzatori_carry/README.md) | Cifre derivate dal riporto, rumore osservato, parallelismo e composizione notturna | Varianti di componente, sweep e query |
-| [21 — Costanti pubbliche e parallelismo](21_costanti_pubbliche_parallelismo/README.md) | Selettore/cifre pubbliche/G4; attraversamento PFKS negativo | Quattro prototipi e conferme distinte |
-| **[22 — Demo composita selezionata](22_demo_composita/README.md)** | Integrazione migliore misurata, senza G4; confronto del servizio | **Core Rust, servizio, client immagini e UI** |
-| [23 — Ottimizzazioni CKKS](23_ckks_ottimizzazioni/README.md) | Riduzioni condivise e preparazione rotazioni; confronto separato da TFHE | C++/OpenFHE, input sintetici e risultati |
-| [24 — Common-mask e BGV](24_frontiere_common_mask_bgv/README.md) | Joint4 corretto ma più lento di R3; grafo BGV N8 ammesso | Estratti dei sorgenti storici e risultati; dipendenze da completare per una build autonoma |
-| [25 — Tetris](25_tetris/README.md) | Consumatore corretto, produttore conversion-inclusive più lento | Runtime, primo tentativo fallito e riepilogo |
-| [26 — Torneo DAG](26_torneo_dag/README.md) | Due screening negativi; tre politiche effettivamente esercitate | Candidati/controlli, coppie di tempi e limiti |
+| [17 - Head/PFKS su TFHE-rs 1.7](17_head_pfks_tfhe17/README.md) | Primo core riutilizzabile, correzione media e servizio N127 | Sorgenti della baseline e del controllo, risultati |
+| [18 - Scaling e soglie miste](18_scaling_soglie_miste/README.md) | Taglie variabili, tre cifre ID, soglia del vincitore | Quattro estensioni e controlli, risultati separati |
+| [19 - Runtime CPU](19_runtime_cpu/README.md) | FFT fissa, 16 thread e CGU1; anche compiler/PGO/copie/cache negativi | Due runtime e configurazioni storiche |
+| [20 - Normalizzatori carry](20_normalizzatori_carry/README.md) | Cifre derivate dal riporto, rumore osservato, parallelismo e composizione notturna | Varianti di componente, sweep e query |
+| [21 - Costanti pubbliche e parallelismo](21_costanti_pubbliche_parallelismo/README.md) | Selettore/cifre pubbliche/G4; attraversamento PFKS negativo | Quattro prototipi e conferme distinte |
+| [22 - Demo composita storica](22_demo_composita/README.md) | Composizione selezionata in quel checkpoint, senza G4; confronto del servizio | Core Rust, servizio, client immagini e UI storici |
+| [23 - Ottimizzazioni CKKS](23_ckks_ottimizzazioni/README.md) | Riduzioni condivise e preparazione rotazioni; confronto separato da TFHE | C++/OpenFHE, input sintetici e risultati |
+| [24 - Common-mask e BGV](24_frontiere_common_mask_bgv/README.md) | Joint4 corretto ma più lento di R3; grafo BGV N8 ammesso | Estratti dei sorgenti storici e risultati; dipendenze da completare per una build autonoma |
+| [25 - Tetris](25_tetris/README.md) | Consumatore corretto; produttore più lento, conversioni incluse | Runtime, primo tentativo fallito e riepilogo |
+| [26 - Torneo DAG](26_torneo_dag/README.md) | Due screening negativi; tre politiche effettivamente esercitate | Candidati/controlli, coppie di tempi e limiti |
 
-L'implementazione consigliata come punto di partenza per riuso è il
-[core del pacchetto 22](22_demo_composita/runtime/core/src/lib.rs).
+Il [core del pacchetto 22](22_demo_composita/runtime/core/src/lib.rs)
+è il riferimento storico dei confronti; il [runtime mantenuto](../runtime/README.md)
+contiene pack4, con verifiche proprie.
 I sorgenti ripetuti nelle cartelle storiche sono snapshot dei confronti:
 sostituirli tutti con l'ultima libreria cambierebbe il programma misurato.
 Le utility [Python/Concrete](../core/README.md) restano al loro posto.
 
-Ogni README esplicita se la cartella è una chiusura di sorgenti con dipendenze
-risolte oppure un estratto d'archivio. Una copia verificata per hash non è una
-nuova compilazione o una nuova misura. Per i dettagli leggere `RESULTS.json`
-e il manifest di provenienza nella cartella. I grandi archivi originali
-restano locali; i percorsi di origine permettono di ritrovarli e gli hash di
-controllarne l'identità. Non è necessario portarli nella consultazione ordinaria.
+I README descrivono metodo, risultati, requisiti e comandi disponibili.
+I file `RESULTS.json` riportano i dati dei confronti; le tabelle dei tempi
+permettono di distinguere misure, riscaldamento e condizioni sperimentali.
+L'esperimento 24 comprende sorgenti parziali con dipendenze non risolte;
+la demo storica integrata è documentata nel 22; per avviare la versione
+corrente seguire [BUILD_AND_RUN.md](../BUILD_AND_RUN.md).
 
-[Fatti consolidati](../findings.md) e [domande ancora aperte](../OPEN_QUESTIONS.md)
-hanno ruoli separati. Il diario precedente e i tentativi intermedi non duplicati
-nei pacchetti restano nell'archivio locale. La [guida alla provenienza](../docs/riproducibilita.md)
-spiega quali prove sono distribuite e quali riferimenti richiedono gli originali.
-Nessun originale è stato spostato o eliminato.
+I [risultati](../findings.md) raccolgono le conclusioni dei confronti.
+Le [questioni aperte](../OPEN_QUESTIONS.md) descrivono le verifiche e le
+possibili estensioni ancora necessarie.
 
-## Campagna comune del 9 settembre
+## Confronto comune del 9 settembre
 
-Il [grafico con metodo e dati](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md)
-confronta versioni recuperate in due sezioni: primi prototipi argmin N8/D64
-e implementazioni 0/ID N127/D512/T4. Le nuove misure non sostituiscono i
-confronti originali dei pacchetti e non si confrontano attraverso lo stacco.
-Il rapporto conserva il precedente errore irrisolto di Head generale, anche
-dopo i risultati corretti della nuova campagna. La figura e le tabelle
-pubbliche non contengono l'intero archivio di cifrati, chiavi e replay.
+La [figura delle prestazioni](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md)
+confronta dodici versioni in due sezioni: primo minimo N8/D64 e 0/ID
+N127/D512/T4. Il cambio di compito impedisce confronti di velocità attraverso
+lo stacco. La croce su Head generale conserva un errore precedente riprodotto.
+La diagnosi del 19 settembre lo attribuisce, in quella istanza, all'indirizzo
+341 fuori dalla finestra 300…340 del selettore; le estrazioni Head sono corrette.
+Il replay separato della baseline del 19 settembre restituisce ID1 con
+indirizzo 318 nel nodo interessato. Il grafico resta una misura delle versioni
+storiche e non include la nuova riparazione del selettore.
+
+La progressione corretta e il confronto CKKS/TFHE sono oggetto di nuove
+campagne separate. Le figure saranno inserite dopo i rispettivi audit;
+nessun vecchio punto viene aggiornato moltiplicandolo per le percentuali
+della correzione B o di pack4.

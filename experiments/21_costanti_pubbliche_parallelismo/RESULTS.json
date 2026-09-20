@@ -44,5 +44,6 @@
     "Each candidate compared to its own declared reference",
     "Preserved high/unknown CPU load flags",
     "No service latency inference from individual core comparisons"
-  ]
+  ],
+  "provenance_manifest": "PROVENANCE.json"
 }

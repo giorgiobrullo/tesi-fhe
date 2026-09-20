@@ -67,24 +67,12 @@ The host was under high unrelated load and these are component fixtures, not a p
 benchmark. They demonstrate execution and order of magnitude only; they do not establish an
 A41/A44 speed difference.
 
-## Frozen evidence
+## Data
 
-| artifact | SHA-256 |
-|---|---|
-| A63 canonical required-full JSON | `fadc3ddd7562fc4192c89f4c759630888472a35dc1a1b441175b3bd1f6796c83` |
-| full 87-evaluation log | `921fea38c0fd6ca00af5fbe79812a04a677d5b002317ab744e3126f8de70fbec` |
-| focused 12-evaluation log | `f14d43be31590c9f912aebf0a3e12c53a58183e07cbed49634d32275d01f6d86` |
-| small 21-evaluation log | `afdfffd7ca9bd9979c20f2dc0f11eb3f7edc00921b6baccb8ba967e1ccef8be9` |
-| exact executed binary in shared target | `c22023570e098aa047164b89a46931060221d526c99b986528ae05eff9625a31` |
-| A59 independent static contract audit | `e3860051cc328aceddf849ef804a5c6ffb193bcb577883cfc685110671c1e0d4` |
-| A60 raw p-fail audit | `6465cd67a45bd465085545f03a232e5ff14b84b168efee4bc79b1ada98ab487e` |
-| A63 evidence-gate README | `5627273c3189aae1a198fbe1d87502603759f41c068e23b4aa1d641b78859a93` |
+[Machine-readable component result](exact_id_a44_component_gate_2026-09-02.json).
+The standalone prototype and full validation program are not included.
 
-The canonical machine-readable artifact is
-`exact_id_a44_component_gate_2026-09-02.json`. The raw preflight and FHE logs remain distinct so
-the validator can be rerun without executing Cargo or FHE.
-
-## What this does and does not close
+## Implementation results and remaining limits
 
 A44 closes the two concrete local defects identified for A38 at the implementation level:
 

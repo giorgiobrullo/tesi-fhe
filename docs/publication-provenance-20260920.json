@@ -1,0 +1,30 @@
+{
+  "schema": "publication-redactions.v1",
+  "meaning": "Hash references within these JSONs and related PUBLICATION receipts identify frozen local originals. Public SHA values here verify distributed projections. local-archive: and local-home: strings are archive/environment identifiers, not distributed file paths.",
+  "files": [
+    {
+      "path": "DELIVERY_PREPARATION.json",
+      "original_sha256": "1166fc3aef890e8e5f8105260f990f240ebf2f972f5be84ede7c1855d0ad54e9",
+      "public_sha256": "800f3a5a5291da9cd4486d95afe95f369441af6f99acf67a885823179a05d763",
+      "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."
+    },
+    {
+      "path": "PACK4_SERVICE_VALIDATION.json",
+      "original_sha256": "7f26e1b02ee49fc35b2c61b680e6f25952bbc1104edeea3500fe20dba2802e6f",
+      "public_sha256": "8d87fc5c69b0131a97071d24ac3e4e5c49b44a165474df4b9bd3249c5a596708",
+      "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."
+    },
+    {
+      "path": "PACK4_FINAL_AUDIT.json",
+      "original_sha256": "163da9e43e6e8009198a15137ff6cdd3eb786af322c7710ecea1834f317bf781",
+      "public_sha256": "d5cab9876a4312bdf224df48e9ee3235bf19652685a0da069c14833ec391c752",
+      "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."
+    },
+    {
+      "path": "output/figures/ckks-tfhe/selettore-corretto-20260920/SOURCE_PINS.json",
+      "original_sha256": "f6cc2e6554df0613943da84003b9137e5924e1115682de4e899bc2605cff987b",
+      "public_sha256": "e2e3e6e0578d2093498657a017c9bc2d57e3af5de48cf65daeab8376d78e9f54",
+      "changes": "Absolute workspace/home prefixes replaced with local-archive:/local-home:; numeric evidence and original hash references unchanged."
+    }
+  ]
+}

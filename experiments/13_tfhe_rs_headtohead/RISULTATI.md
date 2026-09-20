@@ -1,23 +1,28 @@
-# Head-to-head del 100×: lo stesso match 1:N in tfhe-rs vs Concrete-python
+# Confronto storico tra tfhe-rs e Concrete-python
 
-Confronto controllato, stessa macchina (Apple M4 Max), dello stesso match 1:N cifrato (prodotto
-scalare più argmin sequenziale): una volta in Concrete-python (i nostri esperimenti, findings
-F31/F32) e una in tfhe-rs (la libreria TFHE nativa in Rust, qui). Stessa config del circuito
-Concrete: DIM=64, valori in [-2,2], punteggi signed via `FheInt16` (più bit dei ~9-10 di
-Concrete, quindi semmai conservativo). Build `--release` con `target-cpu=native`, keygen 0,6 s,
-indice verificato contro il chiaro a ogni N.
+Il report confronta il prodotto scalare e l'argmin sequenziale cifrati in
+Concrete-python (`findings.md`, F31/F32) e tfhe-rs. La prova tfhe-rs usa Apple
+M4 Max, DIM=64, valori in [-2,2] e punteggi signed `FheInt16`, contro circa
+9–10 bit nel circuito Concrete. Build `--release` con `target-cpu=native`,
+keygen 0,6 s; l'indice è confrontato con il risultato in chiaro a ogni N.
+
+Il testo originale descriveva il confronto come eseguito sulla stessa macchina.
+I tempi Concrete di 78 e 180 s coincidono però con quelli arrotondati del
+[report 10](../10_argmin_struttura/RISULTATI.md), che indica un server Linux.
+Finché non è risolta questa attribuzione, i rapporti sotto vanno letti come
+confronti storici riportati, non come una misura controllata a parità di hardware.
 
 ## Misure
 
-Argmin (la riduzione non lineare, la parte che conta):
+Tempo della riduzione non lineare argmin:
 
 | N | argmin Concrete | argmin tfhe-rs | rapporto |
 |---|---|---|---|
 | 4  | 78 s  | 0,68 s | ~115× |
 | 8  | 180 s | 1,78 s | ~100× |
-| 64 | (non misurato) | 15,5 s | — |
+| 64 | (non misurato) | 15,5 s | - |
 
-Pipeline intero in tfhe-rs (prodotto scalare più argmin):
+Pipeline completa in tfhe-rs (prodotto scalare più argmin):
 
 | N | dot+argmin | di cui argmin |
 |---|---|---|
@@ -26,20 +31,20 @@ Pipeline intero in tfhe-rs (prodotto scalare più argmin):
 
 ## Lettura
 
-1. Sull'argmin il divario è ~100× a parità di macchina e schema (tfhe-rs *è* TFHE), e tutto
-   corretto. Quindi i ~180 s di Concrete a N=8 non sono colpa dell'hardware né di TFHE, ma di
-   come Concrete-python compila in automatico la riduzione.
-2. Basta l'alto livello di un'altra libreria: gli 1,78 s vengono dall'API `FheInt16`/`min`/`lt`,
-   non da primitive tarate a mano. I numeri combaciano con le stime da Chakraborty–Zuber (N=8
-   ~1,2 s, N=64 ~10,8 s, estrapolate dal loro costo per confronto, eprint 2022/622), quindi la
-   letteratura era riproducibile.
-3. Ma il pipeline intero racconta una cosa in più: in tfhe-rs ad alto livello il prodotto scalare
-   è carissimo (a N=8 il dot+argmin è 100,6 s, di cui l'argmin 1,78 s, quindi il dot product ~99
-   s), perché le somme intere propagano i riporti via bootstrap. In Concrete è l'opposto, il
-   prodotto scalare enc×plaintext è leveled e gratis (0 PBS, ~0,07 s). I due profili sono
-   specchiati, e il pipeline naïf intero in tfhe-rs è solo ~1,8× più veloce di Concrete, non
-   100×. Il sistema davvero veloce scrive a basso livello, dove sia le somme sia il confronto
-   sono economiche.
+1. I tempi riportati dell'argmin differiscono di circa 100×, con indici corretti
+   nei casi tfhe-rs provati. L'incertezza sull'hardware del riferimento Concrete
+   impedisce di attribuire tutto il rapporto alla libreria o al compilatore.
+2. Gli 1,78 s provengono dalle API `FheInt16`/`min`/`lt`. Il report li confrontava
+   con le stime estrapolate dal costo per confronto di Chakraborty–Zuber
+   (N=8 ~1,2 s, N=64 ~10,8 s, eprint 2022/622). Queste stime costituiscono un
+   riferimento di ordine di grandezza, non una riproduzione di quel lavoro.
+3. Nella pipeline tfhe-rs ad alto livello il prodotto scalare domina il tempo:
+   a N=8 il totale è 100,6 s, di cui 1,78 s per l'argmin e circa 99 s per il
+   prodotto scalare. Le somme intere propagano i riporti via bootstrap.
+   Il circuito Concrete cifrato×chiaro usa invece operazioni leveled
+   (0 PBS, circa 0,07 s). Il rapporto storico della pipeline completa è
+   circa 1,8×; vale la stessa riserva sull'hardware. Il seguito valuta
+   il prodotto scalare sulle primitive a basso livello.
 
 ## Riprodurre
 
@@ -47,9 +52,10 @@ Pipeline intero in tfhe-rs (prodotto scalare più argmin):
 cargo run --release
 ```
 
-Su macOS beta, se il linker fallisce, anteporre un wrapper di `ld` (`PATH=/tmp/ldfix:$PATH`).
+Su macOS, per l'errore del linker `library 'System' not found`, consultare le
+[istruzioni del wrapper SDK](../../tools/README.md).
 
-## Dopo l'incontro di luglio: i due binari in `src/bin/` (misurati il 30 agosto 2026, F34)
+## Prove a basso livello del 30 agosto 2026 (F34)
 
 `basso_livello.rs`: lo stesso prodotto scalare scritto sulle primitive `core_crypto` (LWE
 grezzi, combinazione lineare a coefficienti in chiaro, zero bootstrap), DIM=64, valori in [−2,2].
@@ -62,20 +68,20 @@ grezzi, combinazione lineare a coefficienti in chiaro, zero bootstrap), DIM=64, 
 | 32 | 1,1 ms | OK |
 | 64 | 2,0 ms | OK |
 
-Contro i ~99 s dell'alto livello (`FheInt16`, riporti propagati via bootstrap): la lentezza del
-prodotto scalare in F32 era dell'API radix, non di TFHE. Caveat: parametri LWE scelti a mano
-(n=1024, rumore ~2^−44) per 12 bit leveled, non un set validato a 128 bit; l'esperimento 14 rifà
-il conto coi parametri standard di tfhe-rs.
+Rispetto ai circa 99 s dell'alto livello (`FheInt16`, riporti propagati via bootstrap): la lentezza del
+prodotto scalare in F32 era dell'API radix, non di TFHE. Limite: parametri LWE scelti a mano
+(n=1024, rumore ~2^−44) per 12 bit leveled, non un set validato a 128 bit; l'esperimento 14 ripete
+la misura con i parametri standard di tfhe-rs.
 
 `correttezza.rs`: l'argmin cifrato (lt + select + min) contro il chiaro su 208 casi (N = 4, 8,
 16, 32; 15 vettori casuali su tre range, 12 bit / largo / estremi di i16, più 7 casi avversari
 per N: tutti uguali, pareggio al minimo, crescente, decrescente, minimo in coda, in testa,
-alternato): **208/208 corretti**, pareggi risolti come in chiaro (vince il primo), 462 s.
+alternato): 208/208 corretti, pareggi risolti come in chiaro (vince il primo), 462 s.
 
 ```
 cargo run --release --bin basso_livello
 cargo run --release --bin correttezza
 ```
 
-Il seguito (pipeline intero coi parametri standard, torneo, soglia leveled) è in
+Il seguito (pipeline completa con parametri standard, torneo, soglia leveled) è in
 `experiments/14_pipeline_tfhe_rs/`.

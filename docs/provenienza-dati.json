@@ -1,0 +1,209 @@
+{
+  "schema": "public-data-provenance.v1",
+  "description": "SHA-256 degli originali conservati e delle copie JSON pubblicate dopo la rimozione di metadati operativi e percorsi personali. Gli hash pubblici verificano questi file; gli hash originali identificano i file dei run storici. Le impronte di codice, binari e chiavi nei report restano storiche.",
+  "files": [
+    {
+      "path": "benchmark/results/demo_e2e_exact_id_split4_2026-09-02.json",
+      "original_sha256": "2afa580542500b6629e3996ac327f9bb3383ad7b4168c44a6129c8d7aac3bda8",
+      "public_sha256": "129e2681c4b20faea1c45f2f9fe586f405572a6ac5e06e73de81f4cad4a2ce82",
+      "original_bytes": 41536,
+      "public_bytes": 40921
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_primary_split4_2026-09-02.json",
+      "original_sha256": "683fdf98ccc5dc45222c0b51b4b3ce678e3b5bd1aa9d9fbc10ed67fcb5108465",
+      "public_sha256": "14ab4e07807744f547d4e042fc768202962e110322c4562cd21ae84d4b8b764d",
+      "original_bytes": 41041,
+      "public_bytes": 28889
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_paired_a33_a38_2026-09-02.json",
+      "original_sha256": "003ae3ec413c5788a689f63c79d97b1141f641752846f09e131a2eba1a0cb808",
+      "public_sha256": "d12ac5ecdd5a7b8887ef315a0fbdb809d6159d17e478ba2dd63c5956c39fd0f9",
+      "original_bytes": 694410,
+      "public_bytes": 687853
+    },
+    {
+      "path": "benchmark/results/demo_e2e_exact_id_noise_bounded_2026-09-02.json",
+      "original_sha256": "f7c07d8876b6f95d0d31ecbc408c6811a9880c05b0751b732be4f03ee46e46a6",
+      "public_sha256": "8a778f5c27849bab618f4485220a736b4c350ff97abcbffdba41c0c7cd5c5288",
+      "original_bytes": 9232,
+      "public_bytes": 8859
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_primary_noise_bounded_2026-09-01.json",
+      "original_sha256": "b6e54b92bef8f53c0ce057f1e68e9b473487fdd423776962579661669d4fa512",
+      "public_sha256": "4a601d84b006e6fd8b3267c51b280f65e1fed017384c861e0dea0e4885dc016d",
+      "original_bytes": 38594,
+      "public_bytes": 28043
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_primary_optimized_2026-09-02.json",
+      "original_sha256": "a322ee946b6f5f7a031d1f59f6e9a5ae26cc42b642333295526aa7b9a6e7a009",
+      "public_sha256": "1cef42ab0fa13ef8b7ef50ee80aeb6ca0d8c26a33535feefeded595a8ca2cf10",
+      "original_bytes": 39557,
+      "public_bytes": 28083
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.json",
+      "original_sha256": "328964c860919cfce2ae09ec3ac1e2ab1f3efcc7d25c1a9781ee1ee7dafa0b34",
+      "public_sha256": "152e64280efcfec925e3638c3aefedd0c8ce1166df8e631b4831ef87b5099908",
+      "original_bytes": 42255,
+      "public_bytes": 28883
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.json",
+      "original_sha256": "e3ef7b5ae74c85e883d8ed3b2670fb6efbd20291775752fefe1ec56c0f1a9467",
+      "public_sha256": "51be273a6a81274b1314f56af3a0ae62328131f035a7bff236d01b70751f9c49",
+      "original_bytes": 45917,
+      "public_bytes": 29312
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.json",
+      "original_sha256": "21b6a7db9e6eaa026cf3ea1fcc0264d942c56d6ead4d3f95a9fd4d76b9bc96e0",
+      "public_sha256": "ad44e627e0bae017643bf492bca5d055224bf07e67774b86eaf0066521d396b0",
+      "original_bytes": 48884,
+      "public_bytes": 29294
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.json",
+      "original_sha256": "590a6256bbd895780fa643a6497ca8bf8f2f710231ec2cded2cc56fb2aaf6f44",
+      "public_sha256": "80e1a9e835434f0c4e8dcc023db30713e7aafd309e253796e377deb578c2d356",
+      "original_bytes": 377745,
+      "public_bytes": 360979
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.json",
+      "original_sha256": "659a996f5094112b3ea34ee3306a65bf03c8b308cd0d212c597890fc6fd71b8d",
+      "public_sha256": "f24c767dc305419571deb740350a6cc19d995344cadabf7883bca1db8fc1e4ed",
+      "original_bytes": 690210,
+      "public_bytes": 683747
+    },
+    {
+      "path": "experiments/14_pipeline_tfhe_rs/results/exact_id_a41_component_gate_2026-09-02_gate01.json",
+      "original_sha256": "fea5cc41867744edf708145574009a13274b12d06ebdaa8bee01b5ab4abe4224",
+      "public_sha256": "e9b4f469d6070dbeb903ca2d6b34777e7016fa759c7c3c5138e6367d73f452d1",
+      "original_bytes": 16646,
+      "public_bytes": 14068
+    },
+    {
+      "path": "experiments/14_pipeline_tfhe_rs/results/exact_id_a44_component_gate_2026-09-02.json",
+      "original_sha256": "fadc3ddd7562fc4192c89f4c759630888472a35dc1a1b441175b3bd1f6796c83",
+      "public_sha256": "3867c858d46bcbc55282d220596a8114f86098101e988e8d3b66f6d59813973b",
+      "original_bytes": 4255,
+      "public_bytes": 5953
+    },
+    {
+      "path": "experiments/14_pipeline_tfhe_rs/results/exact_id_a62_component_gate_2026-09-02.json",
+      "original_sha256": "c72c22b4560093f437cce0029bef098556e27d6f1a4b520cc3180f221be5ce3a",
+      "public_sha256": "c82489b80dde17d2ea1c34484f9a03c33a9810f0ac629012a9d58e16f175938a",
+      "original_bytes": 4005,
+      "public_bytes": 4863
+    },
+    {
+      "path": "benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.json",
+      "original_sha256": "b94020132f369d10d60bf6201ef42337f29a84f525feaae94694166b97072d81",
+      "public_sha256": "782a62ac60fd70a8edd283de3cebd369c6d9df010bbf397d27e29443c8c83659",
+      "original_bytes": 60868,
+      "public_bytes": 59521
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_noise_bounded_targeted_2026-09-01.json",
+      "original_sha256": "d75c3e7cf17a9680c433408b185ae6dc5c345e6a5b70699a2f0039e4ce6fb983",
+      "public_sha256": "6956501e13387d0c5a72db7509a8d92c382068da7894eca87acbaceade9a9998",
+      "original_bytes": 38074,
+      "public_bytes": 27695
+    },
+    {
+      "path": "benchmark/results/demo_e2e_exact_id_optimized_2026-09-02.json",
+      "original_sha256": "f2a1a7b02e828cf0baf59df584070250aad731727003892eaeb7146bc219231b",
+      "public_sha256": "3f0e55c8e38c8a28bf3f25fd95cd680471c3ad0679f771dcfd7ff3413c2e0d08",
+      "original_bytes": 41530,
+      "public_bytes": 40931
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_periodic_fold_final_2026-09-01.json",
+      "original_sha256": "4d81ca7864bbae083cc2825bd04c85105fad0ea8e25f150227e9b04277e8b6ee",
+      "public_sha256": "687474237ff3eaf94e4b35d6ac49ee7eb5bfe0e6b2946206c1102281f40a17ee",
+      "original_bytes": 27673,
+      "public_bytes": 23252
+    },
+    {
+      "path": "benchmark/results/demo_e2e_periodic_fold_final_2026-09-01.json",
+      "original_sha256": "6b3de1feca4c86f18ad29cdd73dba3717667282561bb8574718e61f9fcc79cdf",
+      "public_sha256": "997140751a63d34998c924f18cc55dff6efed2a057dc94ef91cef80d9a8dbc18",
+      "original_bytes": 6476,
+      "public_bytes": 5659
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_frontier_manylut_2026-09-02.json",
+      "original_sha256": "7a41459ce8eed969996365f6c3da41e135a989a925046e501368ec18e60d800c",
+      "public_sha256": "68d88b595453314ff2681328726f4280a0f8705a5135b4bf508ddc384a5815ed",
+      "original_bytes": 41572,
+      "public_bytes": 28470
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_boolean_comparator_targeted_2026-09-01.json",
+      "original_sha256": "9ddf02bc7e902128ff43f91146e51c30f51c830362a67c2a44f7f89cf6ab2f64",
+      "public_sha256": "6aa8c9f55de4ff01b7cb234a48991b2f41a58aa98284b2380af2002801a4cec8",
+      "original_bytes": 37498,
+      "public_bytes": 27697
+    },
+    {
+      "path": "benchmark/results/demo_e2e_exact_id_2026-09-01.json",
+      "original_sha256": "feedc7a3e2974475eda12b5f6e14fc32e93ff141137a75b99f3be6b993bbaa3e",
+      "public_sha256": "1930cf7f5fbc7723f07f633903ed3d50c67d3074c1a14d0676e0b6ec6095139f",
+      "original_bytes": 8442,
+      "public_bytes": 7681
+    },
+    {
+      "path": "benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.json",
+      "original_sha256": "0cfd431534d093d1ba7aeea79a5be0e4a611d2b2380e76e8fbecc8e8237bf54f",
+      "public_sha256": "d76bd4cb9337523d0b997ad6ed942a03b4345a04a376a5378ee79792430af896",
+      "original_bytes": 139162,
+      "public_bytes": 139079
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_frontier_a33_final_2026-09-02.json",
+      "original_sha256": "d15933731a313ed82445e03ca37e999178cdf18c2f7953c86e8b38b9d7cd3e15",
+      "public_sha256": "7e528e254313c4a602968354f96d80d497034da61024b7eb94c8423393d4ca8a",
+      "original_bytes": 44594,
+      "public_bytes": 28894
+    },
+    {
+      "path": "benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.json",
+      "original_sha256": "cc2d3018ecd4a7db1b610cdcd41c5c053e6be69bc7aa35e55f818e2b4e49353d",
+      "public_sha256": "9913491acab6768b5e798b3faf8e45d2f8c76b7139ea0ee5f69b3fcde2529c7d",
+      "original_bytes": 41747,
+      "public_bytes": 40981
+    },
+    {
+      "path": "benchmark/results/fhe_digiface_exact_threshold_refresh_targeted_2026-09-01.json",
+      "original_sha256": "e604c405a3ff4349c3e806871ad919ffaca881baca263bbd59392100273f99fa",
+      "public_sha256": "f87facc140e9fc687bea205eddefda77fac6535b65c720d386717a23c0269742",
+      "original_bytes": 37089,
+      "public_bytes": 27678
+    },
+    {
+      "path": "benchmark/results/exact_id_manylut_pfail_accounting_2026-09-02.json",
+      "original_sha256": "f18da093a5b611d04bc5cdc1f3da931246ac5f7acb723780f6496c71a9e6672b",
+      "public_sha256": "a0448bcef31a911259dc048bdb9c84eeb88f120aab5d9cc056e997170fb24a4b",
+      "original_bytes": 6205,
+      "public_bytes": 6131
+    },
+    {
+      "path": "experiments/14_pipeline_tfhe_rs/results/a73_a62_a66_smoke_2026-09-02T185004.883048Z.driver.json",
+      "original_sha256": "e3858c1477a87c40b352ca200e73e32a7d1a8c30af890a4455d54c33849aa720",
+      "public_sha256": "6cb94b0645183c41dbd16e875f77910485c1891bb71bbb68f160f8d4c9cba366",
+      "original_bytes": 687,
+      "public_bytes": 679
+    },
+    {
+      "path": "experiments/14_pipeline_tfhe_rs/results/a73_a62_a66_smoke_2026-09-02T205112.791222Z.driver.json",
+      "original_sha256": "264aee3ee8fe07fe7a74946484e52bdcd066d59f0415a948625a4bae0e2f7694",
+      "public_sha256": "a27e5bbdeeecc20f7746f47755b2a7d38e8f9f9b7fa7f9d314ecaad5221be9c9",
+      "original_bytes": 610,
+      "public_bytes": 600
+    }
+  ]
+}

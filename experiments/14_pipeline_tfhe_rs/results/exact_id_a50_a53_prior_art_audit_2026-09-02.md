@@ -7,7 +7,7 @@ implemented or benchmarked under FHE. The negative statements below are delibera
 the searched corpus and to explicitly stated operation classes.
 
 Evidence convention: statements about what A50/A53 construct or enumerate are project-reported
-properties taken from the two local specifications named below; this audit did not rerun those
+properties taken from the A50 and A53 specifications; this audit did not rerun those
 models. Claims about earlier techniques are tied to primary papers, official documentation, or
 official source repositories with sections/pages or source-line locations. Every statement that an
 exact construction was not found is corpus-scoped rather than absolute.
@@ -33,11 +33,11 @@ This audit concerns four narrow project claims:
    first-position classes. The project reports exhaustive enumeration of 1,303,777 normalized
    coefficient vectors and all 32 Boolean patterns per vector.
 
-The local specifications audited were A50's
-`tmp/a50-canonical-radix15-model/README.md` and A53's
-`tmp/a53-radix15-group4-scan-model/README.md`.
+The audited specifications were the A50 canonical radix-15 model and the A53 radix-15
+group-4 scan model. Their prototype packages are not included in this distribution;
+the constructions and reported enumeration scope are summarized here.
 
-## Bottom line
+## Assessment
 
 | Claim | What is already established prior art | Residual corpus-level novelty signal | Assessment |
 |---|---|---|---|

@@ -1,7 +1,7 @@
 [project]
 name = "tesi-fhe"
 version = "0.1.0"
-description = "Riconoscimento facciale che preserva la privacy con crittografia omomorfica (Zama Concrete)"
+description = "Identificazione facciale con query cifrata: demo TFHE ed esperimenti di crittografia omomorfica"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -20,7 +20,7 @@ dependencies = [
 
 [tool.basedpyright]
 # Progetto scientifico (numpy/sklearn/Concrete non hanno stub di tipo completi):
-# usiamo il type-checking "standard" come il pyright normale — hover e errori
+# usiamo il type-checking "standard" come il pyright normale: hover e errori
 # reali sì, ma senza le pignolerie della modalità strict (es. "dict/ndarray
 # vogliono i parametri di tipo") che qui sarebbero solo rumore.
 typeCheckingMode = "standard"

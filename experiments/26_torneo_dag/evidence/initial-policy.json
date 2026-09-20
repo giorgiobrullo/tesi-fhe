@@ -2,17 +2,11 @@
   "schema": "tournament-dag-root-policy.v1",
   "created_unix_ns": 1788891789141941000,
   "build": {
-    "receipt": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/BUILD-candidate-first.json",
-    "receipt_sha256": "d7e70c3ebf5d50e0f0509e09ce9cdc14ba23932590d8c8039422ec49a20a01df",
     "source_sha256": "0b439936422f5ecbde71b0ad327ee9c77bf0e6cc64b779db2ff149138a3cf3be",
-    "binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/actions/build-candidate-first-20260908T181221Z/retained-binary/tetris_composite_20260908",
     "binary_sha256": "5202bd2503c5d3b2d8e79ae8f1d3a5a8b6a5ae1fdb5b885e73aa283b59c2d388"
   },
   "parent_build": {
-    "receipt": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/BUILD-parent-first.json",
-    "receipt_sha256": "9a22fe22c67b582b161a0f44c4efb4b5224c6a2ceb69542c6f15a9ec2a1a04c2",
     "source_sha256": "40996b5de829c01b4eedb9e57d2f07357fa113bb21555f81209d80ed111f8542",
-    "binary": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/actions/build-parent-first-20260908T181601Z/retained-binary/tetris_composite_20260908",
     "binary_sha256": "4d1b0cb92846db3a7aa89b7ae3231e8900306155ce8b419aa46151247c29b23e"
   },
   "screen_family": 0,
@@ -13840,37 +13834,11 @@
       ]
     }
   },
-  "helper_pins": {
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/absence.py": "0c2b53b18a2b44ad0edb92fb0c644ed6d48379a529cdd21693b0339022a5393e",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/analysis.py": "bf8e3dcc943ddd45e4904f463d7083177d62277236dcfc8ed5bcd86bf1e4e5f5",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/common.py": "b4c78d982b04e37985b493ab28d0c2f146f1228039866c2a84df12955426bfaa",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/independent_load.py": "4f0994a33cc33d0205d95def5c4a504851dfc941295be21a632a9471d19825e5",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/load_guard.py": "cc427faa0ff00ac640e865799094d006a55d0860c69ba8cc136b03fae043a46e",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/policy.py": "60d1592162d9503661d2d40be420a88638066069bf96d20946a5b48a350b2fd6",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/prepare.py": "aa8b18c62d2058c67224b15a3f55f715328317db19e4d6874f15b66eb8b7ca4b",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/process_helpers.py": "4b659c624e281fd12ba0fc02412fa6cf67359cd3a6392274c4bbe1d960f56400",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/public_model.py": "f117e42461e8da43fe5ebd1705b8c0542d44625a81474d7101a8c82a97f50c7f",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/run.py": "c36042e664060564c25fe67ac21b02fce8fd2d5c8a9776db6ad527ee2f80c6ad",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/saved_math.py": "7fc9213c46bbf92a41c35f6baa36a3afdbe330f26bfa8de33a1e735ac2eada11",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/saved_replay.py": "edc6aa3d398628bd3e17265f7a38fe10e855da8647ee61a1f296c6bbc0d6fe2d",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/session.py": "139adddf3389fc59b9cdb44f86c3c922c0729cbecb2766073333d8b5b9e8aa4f",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/test_contracts.py": "b85fcfd977bc185e842b3791b7954e29f3a31838e086a691598671e7b0d52cd3"
-  },
   "parent_feature": "qualified-parent",
   "candidate_features": [],
-  "tests": {
-    "path": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/actions/HARNESS_TESTS_FIRST.json",
-    "sha256": "aea53648d975181e3d75cd8fe07ba1a050e0bffcc1af34d5ac1feb41825af133"
-  },
   "no_g4": true,
   "no_confidence_interval": true,
   "all_pairs_and_load_flags_retained": true,
   "scope": "Local full encrypted query only. Natural readiness gate must observe an early parent. This does not authorize service replacement.",
-  "workload_sha256": "e9313ef6fd27616e280be59aa1224409c268120aba36df7f0f8abd1395e87de2",
-  "design_pins": {
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/audit/core-design.md": "345814d0002e898aab046f6e2c6aeb1371b6d1d8a9263afbe0eb3b48a1bbc4a4",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/audit/INDEPENDENT_DAG_DESIGN.md": "0ccc9677457298d62f754a5f8393b33136cb491248ac6dd737e3b2f0b38ad8b4",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/audit/HARNESS_DESIGN.md": "1733edf2a0c655a2a26a8087b5002ca3f3858eb3cf8f982976f408b9273d867f",
-    "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/torneo-dag-20260908/harness/STAGED.json": "51f14b8596f78cb0f9cead1b46434697910e25375dffb1b713f42839fb1987f1"
-  }
+  "workload_sha256": "e9313ef6fd27616e280be59aa1224409c268120aba36df7f0f8abd1395e87de2"
 }

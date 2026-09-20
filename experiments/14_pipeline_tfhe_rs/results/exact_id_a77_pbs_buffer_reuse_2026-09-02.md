@@ -18,11 +18,8 @@ scratch buffer per worker. A77 alone does not justify adding that adapter to A66
 
 ## Scope and protocol
 
-- Source: `tmp/a77-pbs-buffer-reuse-microbenchmark`.
-- Isolated target: `tmp/a77-pbs-buffer-reuse-microbenchmark/target-a77`.
-- Canonical binary:
-  `tmp/a77-pbs-buffer-reuse-microbenchmark/target-a77/release/a77_pbs_buffer_reuse_microbenchmark`.
-- Binary SHA-256: `e8a18aae9004442209aa6fbfc5e79edbc6d8b27cb49f747b266c20e9019e1071`.
+The dedicated A77 microbenchmark source and binary are not included in this distribution.
+
 - Build: Cargo 1.97.1, `--release --locked --offline`, TFHE-rs pinned to 0.11.3.
 - Host: Apple M4 Max, macOS 27.0; Rust 1.97.1; `RAYON_NUM_THREADS=1`.
 - Parameters: `V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64`, the A44 classic
@@ -51,15 +48,14 @@ with `-D warnings` also passed after the runs; it did not replace or alter the t
 
 ## Host-contamination handling
 
-Run 01 ended at 20:56:18 +0200. A concurrent A73 N=127 process was observed by the coordinator
-around this interval, so run 01 is preserved but excluded from performance conclusions. Its raw
-JSON/time record and a diagnostic run01+run02 aggregate remain available.
+Run 01 ended at 20:56:18 +0200. A concurrent A73 N=127 process was observed
+around this interval, so run 01 is excluded from performance conclusions.
 
-Run 02 ended at 20:56:41 +0200, after the coordinator observed A73 exit. Before run 03, the process
-check found no A73, A78, Cargo, rustc, or A77 process. The A78 worker also confirmed it stayed
-source-only during run 03. Run 03 ended at 20:59:11 +0200. Therefore the canonical aggregate uses
-only run 02 and run 03. This controls known project benchmark overlap, but it is still a host
-microbenchmark rather than a laboratory-isolated performance claim.
+Run 02 ended at 20:56:41 +0200, after A73 was observed to exit. Before run 03,
+the process check found no A73, A78, Cargo, rustc, or A77 process. A78 performed
+source inspection only during run 03, which ended at 20:59:11 +0200. The aggregate
+therefore uses only runs 02 and 03. This controls known project benchmark overlap,
+but does not establish continuous host isolation.
 
 ## Allocation result
 
@@ -86,33 +82,28 @@ Positive reduction/delta means reuse is faster; negative means the reusable path
 
 Run 02 used 14.48 s wall time and reported 191,152,128 bytes maximum RSS. Run 03 used 14.42 s
 and 190,873,600 bytes. Both operations fail the predeclared materiality gate of at least 1% gain
-in every clean run. The robust paired medians and win counts also provide no positive latency
-signal. Paired means are deliberately not used for the decision because rare host-scheduling tails
+in every clean run. The paired medians and win counts also show no latency reduction. Paired means are deliberately not used for the decision because rare host-scheduling tails
 make them unstable at this effect size.
 
 ## TFHE-rs 0.11.3 API inspection
 
-Primary local source inspected:
+TFHE-rs 0.11.3 sources inspected:
 
-- `core_crypto/algorithms/lwe_programmable_bootstrapping/fft64.rs`, SHA-256
-  `174c74c30625316491a408b34f5a7bd135ead4652df63d102b8791b13e957e52`.
+- [core_crypto/algorithms/lwe_programmable_bootstrapping/fft64.rs](https://github.com/zama-ai/tfhe-rs/blob/tfhe-rs-0.11.3/tfhe/src/core_crypto/algorithms/lwe_programmable_bootstrapping/fft64.rs).
   The convenience `blind_rotate_assign` at lines 180-219 creates a fresh
   `ComputationBuffers`, obtains `Fft::new`, resizes scratch, and delegates to the mem-optimized
   call. The complete PBS wrapper does the same at lines 945-1000. The corresponding mem-optimized
   APIs at lines 224-264 and 1006-1060 require an `FftView` and `&mut PodStack` supplied by the
   caller.
-- `core_crypto/fft_impl/fft64/math/fft/mod.rs`, SHA-256
-  `56f6338944d5c0bffc0b180167cba77ba3a415c32f2f351dc3327a9eac072c74`.
+- [core_crypto/fft_impl/fft64/math/fft/mod.rs](https://github.com/zama-ai/tfhe-rs/blob/tfhe-rs-0.11.3/tfhe/src/core_crypto/fft_impl/fft64/math/fft/mod.rs).
   `Fft` contains an `Arc` plan (lines 76-100); `Fft::new` consults the global cached plan map under
   locks and clones the cached `Arc` (lines 148-197). It normally does not rebuild the FFT plan on
   every convenience call, so the avoidable steady-state cost is mostly scratch allocation plus
   cache lookup/locking.
-- `core_crypto/commons/computation_buffers.rs`, SHA-256
-  `ee9c2ff61d7b7bf98afa2d47b5ac91592cf20b3383edac866b85201bcef48a6b`.
+- [core_crypto/commons/computation_buffers.rs](https://github.com/zama-ai/tfhe-rs/blob/tfhe-rs-0.11.3/tfhe/src/core_crypto/commons/computation_buffers.rs).
   `ComputationBuffers` owns `Vec<u8>`; `resize` grows it and `stack()` requires `&mut self`, returning
   a mutable `PodStack` over that memory.
-- `benches/core_crypto/pbs_bench.rs`, SHA-256
-  `93962c329c8f1f6ee7ae463c321141719a3721e956ca84f77b49a31996f3a80c`.
+- [benches/core_crypto/pbs_bench.rs](https://github.com/zama-ai/tfhe-rs/blob/tfhe-rs-0.11.3/tfhe/benches/core_crypto/pbs_bench.rs).
   The upstream mem-optimized PBS benchmark itself creates the `Fft` and buffer outside Criterion's
   timed loop and reuses `buffers.stack()` inside it (lines 191-220), matching A77's causal setup.
 
@@ -129,12 +120,9 @@ API constraints for any future parallel adapter:
 
 ## A66 call-site inspection
 
-The inspected A66 sources were not modified:
-
-- `tmp/a66-a62-latency-ready-prototype/src/private_argmin.rs`, SHA-256
-  `92289e44e9c26c3190ac61c16c50e0e338bc9399d19fbf9231dacd50a6c3102b`.
-- `tmp/a66-a62-latency-ready-prototype/src/a53_scan/fhe.rs`, SHA-256
-  `ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99`.
+The inspection covered A66's `src/private_argmin.rs` and `src/a53_scan/fhe.rs`.
+These prototype files are not included in this distribution; the line references
+below identify the inspected version.
 
 `private_argmin.rs` contains eight syntactic convenience-wrapper sites and no mem-optimized PBS,
 blind-rotate, `Fft::new`, or `ComputationBuffers` site:
@@ -155,34 +143,20 @@ be incorrect or would require a lock that risks erasing parallelism.
 
 Two attempted builds failed before compilation because the mechanical A76-to-A77 rename had also
 changed the character sequence `a76` inside two registry SHA checksums in `Cargo.lock` (for
-`proc-macro2` and `wasm-bindgen-shared`). Both failure logs are preserved. The two checksums were
+`proc-macro2` and `wasm-bindgen-shared`). The two checksums were
 restored to the values in the neighboring lockfile; a diff then showed only the expected root
 package-name difference. The final locked/offline build succeeded from the corrected A77 lockfile.
 
-## Evidence files
+## Numerical results
 
-Canonical:
+- [Run 02](exact_id_a77_pbs_buffer_reuse_run02_2026-09-02.json).
+- [Run 03](exact_id_a77_pbs_buffer_reuse_run03_clean_2026-09-02.json).
+- [Combined runs 02 and 03](exact_id_a77_pbs_buffer_reuse_combined_2026-09-02.json).
+- [Run 01, excluded for overlap](exact_id_a77_pbs_buffer_reuse_run01_2026-09-02.json).
+- [Runs 01 and 02, diagnostic aggregate](exact_id_a77_pbs_buffer_reuse_combined_run01_run02_host_contaminated_diagnostic_2026-09-02.json).
 
-- `exact_id_a77_pbs_buffer_reuse_build_2026-09-02.log`
-- `exact_id_a77_pbs_buffer_reuse_clippy_2026-09-02.log`
-- `exact_id_a77_pbs_buffer_reuse_run02_2026-09-02.json`
-- `exact_id_a77_pbs_buffer_reuse_run02_2026-09-02.time.txt`
-- `exact_id_a77_pbs_buffer_reuse_run03_clean_2026-09-02.json`
-- `exact_id_a77_pbs_buffer_reuse_run03_clean_2026-09-02.time.txt`
-- `exact_id_a77_pbs_buffer_reuse_combined_2026-09-02.json`
-
-Preserved diagnostics/provenance:
-
-- `exact_id_a77_pbs_buffer_reuse_run01_2026-09-02.json` and `.time.txt` (possible A73 overlap)
-- `exact_id_a77_pbs_buffer_reuse_combined_run01_run02_host_contaminated_diagnostic_2026-09-02.json`
-- `exact_id_a77_pbs_buffer_reuse_combined_run01_run02_pre_contamination_notice_2026-09-02.json`
-- `exact_id_a77_pbs_buffer_reuse_build_attempt01_checksum_failure_2026-09-02.log`
-- `exact_id_a77_pbs_buffer_reuse_build_attempt02_checksum_failure_2026-09-02.log`
-
-The earlier pre-rename pilot and its target were preserved non-destructively under
-`tmp/a77-pbs-buffer-reuse-microbenchmark/pre_rename_pilot` and
-`tmp/a77-pbs-buffer-reuse-microbenchmark/target-pre-rename-a77`. Their contents can still identify
-themselves as A76 and are not canonical A77 evidence.
+The earlier pre-rename pilot used the A76 name and is distinct from the A77
+runs tabulated here.
 
 ## Decision
 
