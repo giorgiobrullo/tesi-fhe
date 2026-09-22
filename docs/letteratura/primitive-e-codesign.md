@@ -2,9 +2,12 @@
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Rassegna al 2 settembre 2026. «Corrente», «promossa» e le prove ancora da
-svolgere si riferiscono alle revisioni A28/A29/A33 a quella data. Gli sviluppi
-successivi sono descritti nei [risultati del 9 settembre](../../findings.md).
+Fonti verificate al **19 settembre 2026**; raccordo aggiornato il 22 settembre.
+Il riferimento è il [runtime Head/PFKS mantenuto](../../runtime/README.md),
+con selettore corretto, anchor e pack4 adottato il 20 settembre. La rassegna
+non aggiunge prove crittografiche o misure; le sezioni A28/A29/A33
+ricostruiscono passaggi storici con evidenza propria. Per le alternative si veda
+anche [CKKS numerico, discreto e scheme switching](ckks-discreto.md).
 
 ## 5. Primitive e protocolli complementari
 
@@ -44,13 +47,21 @@ dichiarata 24 novembre 2022, estende il disegno a più estrazioni e combinazioni
 confronti e ricerca/autenticazione fuzzy. Interlacciamento, distanza fra estrazioni e output semanticamente diversi hanno quindi
 precedenti documentati. L'eventuale contributo di A33 riguarda la combinazione applicativa: residuo sparso,
 coppia `(r signed, flag signed)`, pesi posizionali 1/3, canonicalizzazione e continuazione verso
-tie-first e singolo codice exact open-set `0`/ID. La combinazione completa non è stata individuata nelle fonti esaminate. Questa
+tie-first e singolo codice exact open-set `0`/ID. La combinazione completa non era stata individuata nel corpus mirato della rassegna originaria. Questa
 osservazione sul corpus non stabilisce priorità, brevettabilità o freedom-to-operate.
 
-Sul piano sperimentale, al 2 settembre A33 è un candidato integrato e congelato: il full-core mirato passa sei casi/sette valutazioni fino a N=127/codice 127 e la
-frontiera DigiFace passa 80/80 query, 48/48 autorizzazioni e zero errori/discrepanze a 4.273
-PBS/query. Restano suite primaria canonica, Docker, paired A29/A33 e accounting condizionale della
-`p-fail`; A29 rimane quindi l'ultimo snapshot promosso e il fallback generale.
+La prima integrazione A33 superò sei casi/sette valutazioni e una frontiera
+DigiFace di 80 query a 4.273 PBS/query. Nella stessa giornata del 2 settembre
+seguirono la [suite primaria 632/632](../../benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.md),
+il [controllo Docker 6/6](../../benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.md)
+e il [confronto A29/A33](../../benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.md):
+120 coppie misurate su sei chiavi, riduzione geometrica del 13,734%, intervallo
+del run [11,806%, 15,595%]. A33 fu quindi selezionato per il suo percorso
+allineato, mantenendo A29 come fallback in quella revisione. Il carico elevato
+limita l'interpretazione dei tempi. La [contabilità del rumore](../../benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.md)
+fu completata come analisi condizionale, senza certificato numerico end-to-end.
+Queste evidenze appartengono ad A33 e non qualificano automaticamente il runtime
+successivo Head/PFKS.
 
 Anche i due accorgimenti implementativi più specifici hanno precedenti più ampi. La domanda di
 brevetto, poi ritirata,
@@ -70,7 +81,7 @@ quindi una nuova primitiva del presente lavoro.
 Per il priority encoder TFHE, Yu et al., WAHC 2024,
 [DOI 10.1145/3689945.3694803](https://doi.org/10.1145/3689945.3694803), valutano esplicitamente un
 priority encoder generico da 818 gate e costo stimato 32.720 nel contesto della sintesi FBS
-multi-value. Una futura fusione scan/output A34 andrebbe valutata come specializzazione exact-ID,
+multi-value. La proposta storica di fusione scan/output A34 andava valutata come specializzazione exact-ID,
 misurandone i costi end-to-end. Priority encoder e sintesi multi-value sono già presenti
 nel lavoro citato.
 
@@ -79,9 +90,10 @@ Per la selezione categorica esiste un precedente più specifico. Legiest et al.,
 3.1 e Tabella 2, impacchettano piccole differenze multivalore con una codifica lineare pesata,
 calcolano il minimo di tre valori in un solo PBS TFHE e sfruttano le entrate nulle negacicliche per
 far corrispondere 18 valori logici a una lookup da 16 valori. Dense encoding, LUT `min-of-three` e uso dei gap negaciclici hanno dunque precedenti.
-Un'eventuale costruzione A34 resta da implementare e misurare: il contributo da valutare
-riguarderebbe la codifica exact-ID, la composizione nearest-ID completa e il conteggio
-effettivo delle operazioni.
+La proposta A34 della rassegna iniziale riguardava la codifica exact-ID e la
+composizione nearest-ID completa. La sua menzione non è uno stato aggiornato
+dei lavori: le revisioni implementate e i relativi conteggi sono nella
+[ricostruzione storica](../risultati/storico.md).
 
 L'implementazione A28 usa questa combinazione: un canale modulo 16 e il canale completo
 condividono lo stesso GLWE senza sovrapposizione dei supporti; `b0..b3` vengono estratti al margine
@@ -104,14 +116,16 @@ semantici e 4.965 PBS/query. Il confronto paired successivo sulla stessa chiave/
 stessi byte cifrati ha preservato 72/72 output e misurato su 60 coppie una riduzione geometrica
 dell'8,876%, intervallo del run [8,092%, 9,728%], con 57/60 vittorie. Il carico alto ne limita la
 generalizzazione. Le 60 coppie ripetono cinque probe di frontiera fissati 12 volte ciascuno nei
-tre blocchi-chiave per stimare la latenza; non sono 60 casi biometrici indipendenti. A29 è la versione selezionata e congelata al 2 settembre; queste verifiche non
-stabiliscono garanzie per l'uso in produzione. I report sono
-`experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_replay_probe87_2026-09-02.md` e
-`benchmark/results/fhe_digiface_exact_frontier_manylut_2026-09-02.md`, con suite ed E2E in
-`benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.{csv,json}` e
-`benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.{csv,json}` e paired in
-`benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.md`. Nelle pubblicazioni
-accademiche/ePrint esaminate non è stato identificato un prototipo valutato con la stessa
+tre blocchi-chiave per stimare la latenza; non sono 60 casi biometrici indipendenti.
+A29 fu selezionato in quel passaggio, prima della successiva qualifica di A33
+nella stessa giornata. Queste verifiche non stabiliscono garanzie per l'uso in
+produzione. Le fonti sono il [replay diagnostico](../../experiments/14_pipeline_tfhe_rs/results/exact_id_manylut_replay_probe87_2026-09-02.md),
+la [frontiera](../../benchmark/results/fhe_digiface_exact_frontier_manylut_2026-09-02.md),
+la [suite primaria](../../benchmark/results/fhe_digiface_exact_primary_manylut_2026-09-02.json),
+il [controllo E2E](../../benchmark/results/demo_e2e_exact_id_manylut_2026-09-02.json)
+e il [confronto A28/A29](../../benchmark/results/fhe_digiface_exact_paired_a28_a29_2026-09-02.md).
+Nel corpus accademico/ePrint mirato della rassegna originaria non era stato
+identificato un prototipo valutato con la stessa
 microarchitettura A28 né la specifica integrazione mixed-scale A29. È una constatazione sul
 corpus, non un claim di priorità, brevettabilità o freedom-to-operate.
 
@@ -149,3 +163,130 @@ un meccanismo reale di riuso fra nodi; conversione LWE-to-RGSW, HomoTrace/PRCA
 e riuso multi-output continuano invece nella famiglia A92/A99/A102/A104 senza
 materializzare la LUT arbitraria esponenziale. Il limite riguarda questo
 mapping letterale e non esclude costruzioni specializzate su domini più piccoli.
+
+## Dal percorso storico al runtime Head/PFKS
+
+Il [core selezionato](../../runtime/README.md) usa TFHE-rs 1.7, Head con
+correzione media, PFKS direct-window, refresh del controllo e gruppi fino a
+quattro payload. Restituisce tre cifre cifrate in base 15. La [qualifica pack4](../validazione/PACK4_VALIDATION.md)
+e il [contratto geometrico](../../runtime/REPAIR.md) documentano la revisione
+adottata. Questa integrazione ha una genealogia distinta dalla sola
+estrazione multi-output di A29. Le fonti seguenti chiariscono quali idee sono riprese
+dalla letteratura e quali adattamenti richiedono evidenza locale.
+
+**Head Start.** D'Anvers, Pottier, de Ruijter e Verbauwhede,
+[Head Start: Digit Extraction in TFHE from MSB to LSB](https://eprint.iacr.org/2025/2012),
+ePrint 2025/2012, ricevuto il 28 ottobre 2025 e ancora classificato preprint
+nella pagina consultata, introduce `DirtyMSB` e compensa l'errore nelle
+estrazioni successive. È un precedente diretto per l'estrazione da MSB a LSB
+e per il riuso degli output nei consumatori. Il [codice degli autori](https://github.com/KULeuven-COSIC/Head_Start)
+è una patch per TFHE-rs **1.1.0**, commit
+`2cd16ac70af19308e7a4578083b4e2e3730964ca`: il port 1.7 e le scelte di scala
+locali richiedono quindi verifiche proprie. L'[esperimento 17](../../experiments/17_head_pfks_tfhe17/README.md)
+documenta l'integrazione iniziale. La [diagnosi del caso storico](../selector-repair-20260920.md)
+ha localizzato il guasto nel selettore: il controllo raggiungeva 341, oltre
+la finestra 300–340, mentre tutte le 127 estrazioni Head erano corrette.
+Il refresh e il successivo pack4 hanno prove proprie. Il caso non confuta
+la primitiva Head; le garanzie del paper non sostituiscono la prova del
+rumore composto del circuito locale.
+
+**Compensazione della media.** de Ruijter, D'Anvers e Verbauwhede,
+[Don't be mean: Reducing Approximation Noise in TFHE through Mean Compensation](https://doi.org/10.46586/tches.v2026.i1.82-104),
+TCHES 2026(1), pp. 82–104, affrontano componenti medie dell'errore di modulus switching
+e gadget decomposition. È il riferimento per questa tecnica, da distinguere
+dalle modifiche congiunte di split e rappresentazione nell'esperimento 17.
+L'edizione finale è stata controllata il 22 settembre; la
+[scheda di lettura](testi-integrali/tfhe.md#compensazione-della-media) distingue
+le sue tabelle da quelle del preprint ePrint 2025/809.
+Non si attribuisce al runtime un fattore
+di accelerazione del paper o una probabilità di fallimento ereditata.
+
+**Packing e conversioni.** Chen, Dai, Kim e Song,
+[Efficient Homomorphic Conversion Between (Ring) LWE Ciphertexts](https://eprint.iacr.org/2020/015),
+ACNS 2021, ePrint 2020/015, revisione 4 dicembre 2020, trattano conversioni
+LWE/RLWE, key switching e packing di più ciphertext. Lee e Yoon,
+[Homomorphic Field Trace Revisited: Breaking the Cubic Noise Barrier](https://eprint.iacr.org/2025/1088),
+TCHES 2026, ePrint 2025/1088, revisione 16 ottobre 2025, introducono
+`RevHomTrace` e `MS-PackLWEs` per ridurre l'amplificazione di fase e l'errore
+di packing. Sono riferimenti per le alternative di conversione e il lavoro
+sulla traccia; non implicano che il selettore direct-window implementi tutti
+questi algoritmi. Una bound di varianza della primitiva non è una bound di
+fallimento del torneo composto.
+
+Nel confronto tra fonti conviene scrivere **functional packing key switch
+LWE→GLWE/RLWE**, poi indicare se la funzione è pubblica o privata. La sigla
+PFKS non ha un'espansione universale: Blind Counting Sort usa *Public
+Functional Key Switch*, mentre un'API di libreria può offrire una costruzione
+privata. Una LUT cifrata non rende automaticamente privata la funzione del
+key switch. Costi di packing, finestre, payload, chiavi e conversioni vanno
+contati nel percorso che il consumatore utilizza davvero.
+
+## Common-mask e famiglie di LUT alternative
+
+**Common-mask.** Bergerat, Bonte, Curtis, Orfila, Paillier e Tap,
+[Sharing the Mask: TFHE Bootstrapping on Packed Messages](https://eprint.iacr.org/2025/2112),
+TCHES 2025(4), 925–971, formalizzano maschera condivisa, molteplici corpi e
+segreti matriciali, con LUT distinte e operazioni lineari private. Il modello
+non equivale al riuso ingenuo della stessa maschera sotto lo stesso segreto:
+in quest'ultimo caso sottrarre due corpi cancella la maschera e lascia la
+differenza dei messaggi più rumore. Le [misure di primitiva](../../experiments/16_common_mask_poc/README.md)
+e il [successivo pilot Joint4](../../experiments/24_frontiere_common_mask_bgv/README.md)
+sono evidenze diverse; nessuna autorizza a trasferire un guadagno all'intera
+demo o a N127 senza le conversioni e le prove corrispondenti.
+
+**Tetris.** Wang et al.,
+[Tetris: Versatile TFHE LUT and Its Application to FHE Instruction Set Architecture](https://eprint.iacr.org/2025/1623),
+ePrint 2025/1623, ricevuto il 9 settembre 2025 e classificato preprint,
+propongono LUT GLWE, circuit bootstrap in batch e parametri adattivi.
+L'abstract distingue LUT generali univariate a 32 bit da bivariate a 16 bit.
+Il testo completo (§6.2, tabella 6) presenta però anche **confronti specializzati
+cifrato/cifrato a 32 bit**, ottenuti potando la LUT. La limitazione del dominio
+generale non esclude questi circuiti; corregge la precedente lettura troppo
+restrittiva dell'abstract. Questo lavoro
+è distinto dall'omonimo TETRIS di Izabachène e Bossuat, PoPETs 2025(2), dedicato
+all'esplorazione funzionale privata. Nell'[esperimento 25](../../experiments/25_tetris/README.md)
+il consumatore locale supera i controlli, ma il produttore comprensivo delle
+conversioni è più lento nel pilot. Il risultato esclude quella costruzione
+dalla demo, senza chiudere ogni variante della famiglia.
+
+**Full-domain functional bootstrapping.** Kluczniak e Schild,
+[FDFB: Full Domain Functional Bootstrapping Towards Practical Fully Homomorphic Encryption](https://eprint.iacr.org/2021/1135),
+TCHES 2023, ePrint 2021/1135 rivisto il 3 gennaio 2023, trattano funzioni
+sull'intero dominio e conversioni fra rappresentazioni aritmetiche e booleane.
+Hwang, Lee, Min e Song,
+[Efficient Full Domain Functional Bootstrapping from Recursive LUT Decomposition](https://sacworkshop.org/SAC25/preproceedings/sac2025-2-paper18.pdf),
+preproceedings SAC 2025, decompongono la LUT in parti negacicliche e una parte
+full-domain ridotta, usando Extended Bootstrapping e TFHE-go. “Full-domain”,
+“precisione elevata” e “multi-output” sono proprietà distinte. Il costo di
+un FDFB non può essere contato come quello di un PBS negaciclico ordinario.
+
+**RevoLUT.** Azogagh, Birba, Killijian, Larose-Gervais e Gambs,
+[RevoLUT: Rust Efficient Versatile Oblivious Look-Up-Tables](https://eprint.iacr.org/2024/1935),
+ePrint 2024/1935, revisione 20 aprile 2025, trattano LUT cifrate come array
+per accesso, ordinamento e permutazione. Il ruolo è quello di libreria di
+strutture dati cifrate, distinto da FDFB e dalla costruzione biometrica completa.
+
+## Portata della verifica delle fonti del 19 settembre
+
+Sono ora disponibili i PDF completi di Head Start, Tetris, compensazione
+media, Sharing the Mask, Chen, RevHomTrace, FDFB e RevoLUT. La
+[lettura mirata delle otto fonti](testi-integrali/tfhe.md) documenta pagine,
+versioni e condizioni. Supera i precedenti limiti d'accesso; non certifica
+tutte le prove né replica i benchmark.
+
+Per l'integrazione locale emergono condizioni precise: Head assume
+indipendenza fra cifrati bootstrappati e ammette cifre intermedie non canoniche;
+Chen richiede un inverso modulare non disponibile nella trasposizione letterale
+a modulo 2^64; il miglioramento asintotico di RevHomTrace riguarda la varianza.
+I tempi della compensazione media e di FDFB hanno livelli di sicurezza da
+esplicitare. Common-mask include conversioni e non accelera ogni batch;
+RevoLUT richiede riallineamento per evitare che le scritture successive
+compromettano i centri delle LUT.
+Questi punti diventano obblighi dell'adattatore, senza cambiare retroattivamente
+i risultati degli esperimenti conservati.
+
+Il PDF SAC 2025 già consultato resta una versione preproceedings. Il 22 settembre
+sono stati verificati metadati e abstract dell'[edizione pubblicata](https://doi.org/10.1007/978-3-032-10536-3_25)
+(LNCS 16207, 2026, pp. 679–699); il capitolo integrale finale non è stato
+confrontato. Le verifiche storiche conservano il loro perimetro. Riferimenti
+nelle [fonti](fonti.md) e nel [file BibTeX](aggiornamento-20260919.bib).

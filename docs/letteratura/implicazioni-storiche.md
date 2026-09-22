@@ -1,68 +1,75 @@
-# Implicazioni per le revisioni A28/A29/A33
+# Implicazioni e cronologia delle revisioni
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Rassegna al 2 settembre 2026. «Corrente», «promossa» e le prove ancora da
-svolgere si riferiscono alle revisioni A28/A29/A33 a quella data. Gli sviluppi
-successivi sono descritti nei [risultati del 9 settembre](../../findings.md).
+Fonti verificate il 19 settembre 2026; cronologia aggiornata il 22 settembre.
+Le prove A33/A38 del 2 settembre sono concluse nei report conservati, superando
+il precedente stato editoriale «A29 corrente, A33 da verificare». Il runtime
+mantenuto è la successiva composizione Head/PFKS con selettore corretto,
+anchor e pack4 adottata il 20 settembre.
 
-## 6. Implicazioni
+## Precedenti e contributo
 
-1. Concrete/TFHE si inserisce in una linea di lavori TFHE sul problema
-   1:N considerato (Cong et al., Blind Counting Sort, RevoLUT, k-NN simmetrico PSD'22), e Cong/PSD'22
-   condividono query cifrata e database in chiaro. Argmin, min+label e top-k in TFHE, così come la
-   selezione per prefisso in FHE, hanno quindi precedenti. Il contributo riguarda la costruzione specifica,
-   senza rivendicare una nuova primitiva, il primo argmin TFHE o il primo exact nearest-ID cifrato. Erkin restituisce
-   `[Id]` cifrato; Sadeghi realizza la stessa funzione applicativa nel garbled circuit e consegna
-   `r` in chiaro al client. Entrambi anticipano la soglia globale
-   applicata al minimo, mentre Erkin è il precedente diretto per l'uscita cifrata `0`/ID;
-   Kolesnikov et al. anticipano il tie-break sul primo minimo e Azogagh la
-   stabilità TFHE con label. Il POC Zama e WO2025027253 documentano inoltre precedenti dell'architettura generale
-   Concrete/TFHE o single-server, pur senza i dettagli A28.
-2. Un puro bit di membership è più economico e con minore leakage, ma non soddisfa il requisito
-   di identificazione. Exact nearest-ID seguito da una soglia globale soddisfa quel requisito
-   e compare in letteratura dal 2009. Il contratto più stretto corrente fa prima l'argmin e
-   poi seleziona e applica la soglia `T[k]` del solo vincitore; SCiFI rende anche questa distinzione
-   concettualmente vicina, pur senza pubblicarne la stessa realizzazione. Il periodic-fold
-   `any_match` resta una baseline scartata.
-3. La galleria in chiaro consente prodotti enc×plaintext senza PBS e riduce il costo
-   del calcolo. Il modello assume però che il server conosca i template della galleria.
-4. CKKS offre forte scalabilità sotto modelli diversi: IDFace raggiunge 1 M template con
-   selezione split-trust e argmax in chiaro sul Key Server; Blind-Match ottiene elevato throughput
-   lasciando l'argmax al client. Nessuno dei due realizza il contratto exact-ID single-server
-   corrente.
-5. Il contributo della tesi è la progettazione, implementazione, integrazione e validazione
-   sperimentale dello specifico co-design TFHE A28/A29 e, come candidato pre-promozione, della
-   specializzazione A33. Nelle pubblicazioni accademiche/ePrint
-   esaminate fino al 2 settembre 2026 non è stato individuato un prototipo valutato che riproduca
-   congiuntamente tutti i dettagli A28: doppia vista full/modulo 16 su supporti disgiunti dello
-   stesso GLWE, dominio intero bounded a 12 bit, selezione cifrata di `T[k]` e singolo ciphertext
-   `0`/ID. È una constatazione sul corpus, non priorità, brevettabilità o freedom-to-operate; la
-   ricerca brevettuale non è completa. L'esattezza è rispetto all'oracolo clear intero sul
-   dominio quantizzato e bounded dichiarato, salvo fallimento della valutazione/decrittazione FHE;
-   il `p-fail` composto non ha ancora un bound formale.
-6. La fusione multi-output A29 non può essere presentata come nuova primitiva: Carpov et
-   al., Chillotti et al. e FRAST anticipano multi-output, blind rotation condivisa ed estrazione di
-   bit riusati per una correzione. Non è stata identificata nelle fonti esaminate la stessa
-   integrazione mixed-scale dentro il co-design precedente. A29 è ora l'ultimo snapshot promosso
-   e congelato; A33 resta un candidato nel worktree. A29 passa 198/198 boundary su tre chiavi
-   fresche e 198/198 query semantiche su
-   `N=1..8,64,127,128` con 33 coppie di chiavi fresche, osservando 4.965 PBS nel percorso uniforme
-   N=127. Passa inoltre il replay diagnostico DigiFace del probe 87 con codice 88 e zero mismatch,
-   la regressione di frontiera 80/80, la suite primaria 632/632 con zero errori/discrepanze e l'E2E
-   Docker 6/6. Il paired A28/A29 preserva 72/72 output e misura -8,876% [8,092%, 9,728%] su cinque
-   probe di frontiera fissati, ciascuno ripetuto 12 volte nei tre blocchi-chiave (60 coppie, non 60
-   casi biometrici indipendenti), con 57/60 vittorie e condizionamento al carico alto del run. Il
-   bound formale della `p-fail`
-   resta separatamente aperto.
-7. A33 non introduce una nuova primitiva multi-output: `PBSmanyLUT` e le domande Axell anticipano
-   una blind rotation con test vector interlacciato e più sample extraction, anche a posizioni
-   distanti e con output diversi. Il candidato di contributo è soltanto la specializzazione
-   end-to-end `residuo sparso -> r/flag signed -> pesi 1/3 -> canonicalizzazione -> exact-ID`.
-   Il core completo mirato e la frontiera 80/80 sono positivi, ma finché non supera suite primaria,
-   Docker, paired A29/A33 e accounting condizionale della `p-fail` va chiamato candidato integrato,
-   non revisione promossa o novità crittografica. Confronti matched con due PBS indipendenti,
-   `ManyLookupTable` stock e pesi applicati successivamente possono rafforzare l'attribuzione
-   sperimentale del co-design, non rendere nuova la primitiva.
-8. Yu et al., WAHC 2024, pubblicano già priority encoder e sintesi FBS multi-value.
-   L'eventuale contributo di A34 riguarda quindi la specifica combinazione exact-ID.
+Argmin, selezione di label, top-k e nearest-ID protetto hanno precedenti.
+Erkin e Sadeghi anticipano la famiglia minimo seguito da soglia globale;
+regola al bordo e tie-break vanno verificati nel rispettivo protocollo.
+Cong e i lavori TFHE successivi mostrano che query cifrata con database in
+chiaro non è una nuova architettura. Le [schede dei sistemi](sistemi.md)
+precisano le funzioni realmente restituite.
+
+Un solo bit di membership comunica una funzione diversa da un'identità;
+non segue automaticamente un minor costo del protocollo o una garanzia di
+minor informazione nell'intero transcript. Nel contratto locale, prima si
+sceglie il minimo e poi si verifica `T[k]`: un candidato più lontano con una
+soglia permissiva non salva il vincitore rifiutato. La
+[scheda del contratto](contratto-e-schemi.md#punteggio-soglia-ed-esattezza)
+distingue questa semantica dalla privacy contro il possessore della chiave
+e dagli attacchi a query ripetute.
+
+Il contributo sostenuto dalle prove è la costruzione e valutazione della
+pipeline su interi bounded: rappresentazione, estrazione, selezione,
+trasporto di identità/soglia, adattamento delle primitive e composizione dei
+miglioramenti. La [genealogia delle primitive](primitive-e-codesign.md)
+attribuisce multi-output, Head, correzione media, packing e Tetris ai lavori
+corrispondenti. La loro integrazione non costituisce una nuova primitiva.
+
+## Dalle revisioni iniziali al runtime mantenuto
+
+| Tappa | Stato documentato | Limite dell'affermazione |
+|---|---|---|
+| A28/A29, estrazione e multi-output | Confronti e suite storiche conservati | La specifica integrazione mixed-scale è oggetto di studio; multi-output e blind rotation condivisa hanno precedenti. |
+| A33, specializzazione residuo/flag | [Suite primaria](../../benchmark/results/fhe_digiface_exact_primary_a33_2026-09-02.md), [servizio Docker](../../benchmark/results/demo_e2e_exact_id_a33_frozen_2026-09-02.md) e [coppie A29/A33](../../benchmark/results/fhe_digiface_exact_paired_a29_a33_2026-09-02.md) completati | Il vecchio stato «in attesa dei gate» è superato. I 632 casi corretti sono della revisione e della chiave indicate. |
+| A38, ulteriore riduzione | [Suite primaria](../../benchmark/results/fhe_digiface_exact_primary_a38_2026-09-02.md) e [confronto A33/A38](../../benchmark/results/fhe_digiface_exact_paired_a33_a38_2026-09-02.md) completati | Non trasferire suite e contabilità del rumore ai circuiti successivi. |
+| Head/PFKS M e prime estensioni | [Pacchetti 17–18](../../experiments/README.md): core, servizio, scaling e soglie miste | Il primo servizio M ha due cifre; l'estensione successiva ne usa tre. Taglie e chiavi restano quelle di ogni campagna. |
+| Composizione pubblica/parallela | [Pacchetto 22](../../experiments/22_demo_composita/README.md): confronto di core e servizio | G4 è escluso dopo il confronto della composizione, pur avendo un precedente risultato favorevole di componente. |
+| Campagna comune del 9 settembre | [Dodici versioni in due contratti](../risultati/campagna-comune.md) | Non confrontare velocità attraverso il cambio N8/D64 → N127/D512. Il caso errato di Head generale resta visibile. |
+| Revisione del 18 settembre | [Verifiche di quella revisione](../runtime-verification.md) | Refactor con nuove identità; le sue prove non qualificano automaticamente le modifiche successive. |
+| Selettore corretto e pack4 del 20 settembre | [Diagnosi](../selector-repair-20260920.md), [verifica pack4](../validazione/PACK4_VALIDATION.md) e [runtime mantenuto](../../runtime/README.md) | Il refresh corregge il meccanismo del guasto storico; la qualifica empirica non è un limite formale di fallimento composto. |
+| Campagne rimisurate del 20 settembre | [Progressione e confronto CKKS/TFHE](../percorso-sperimentale-20260920.md#risultati-confrontabili), [costo diretto del fix](../selector-direct-cost-20260920.md) | Il finale del grafico, il TFHE del confronto CKKS e la demo anchor/pack4 sono circuiti distinti. Nessuna percentuale si trasferisce fra queste campagne. |
+
+L'[accounting A33](../../benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.md)
+va letto con le sue premesse condizionali. Il completamento dei gate di
+correttezza o del servizio non chiude la probabilità di fallimento del
+circuito composto. La successiva diagnosi ha localizzato il caso storico
+ID75 nel selettore, con le 127 estrazioni Head corrette: la correzione del
+meccanismo osservato non fornisce da sola una probabilità di errore su nuove chiavi.
+
+## Come confrontare le alternative
+
+Il packing CKKS può ridurre il costo degli score su grandi gallerie; il
+vantaggio di un sistema che consegna score al client o a un key server
+comprende una scelta di protocollo diversa. Il [CKKS discreto](ckks-discreto.md)
+impedisce inoltre di trattare l'approssimazione come impossibilità generale
+di ottenere decisioni discrete. Servono dominio, margine, rappresentazione
+dell'ID e regole al bordo verificati per la costruzione concreta.
+
+Gli esiti negativi di common-mask, Tetris o scheduling chiudono le costruzioni
+provate nelle rispettive condizioni. Non sono teoremi di impossibilità.
+I [risultati delle alternative](../risultati/alternative.md) conservano
+riferimenti e condizioni; le regole di una successiva conferma non riscrivono
+quelle dello screening.
+
+Il [percorso sperimentale](../percorso-sperimentale-20260920.md)
+permette di citare ogni risultato con versione, ambito e limite. La ricerca
+bibliografica è datata e documentata, non esaustiva né una verifica di
+brevettabilità o libertà di attuazione.

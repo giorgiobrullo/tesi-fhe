@@ -2,9 +2,11 @@
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Rassegna al 2 settembre 2026. «Corrente», «promossa» e le prove ancora da
-svolgere si riferiscono alle revisioni A28/A29/A33 a quella data. Gli sviluppi
-successivi sono descritti nei [risultati del 9 settembre](../../findings.md).
+Aggiornamento mirato al 19 settembre 2026. Ogni scheda distingue funzione,
+output e modello di fiducia; i tempi esterni conservano la configurazione
+del lavoro che li riporta e non sono un confronto controllato con il runtime
+locale. Per la costruzione selezionata e il significato di esattezza vedere
+[contratto e schemi](contratto-e-schemi.md).
 
 ## 4. I sistemi
 
@@ -70,7 +72,7 @@ Questa consultazione è mirata e non costituisce una ricerca brevettuale complet
 brevettabilità o un'analisi di freedom-to-operate.
 
 **IDFace**, Kim et al., ICCV 2025. <https://arxiv.org/abs/2507.12050>
-Template protection HE con architettura a due server: il Local Server detiene il database e la
+Template protection HE con architettura a due server: il Local Server detiene il database cifrato e la
 chiave pubblica e calcola gli inner-product cifrati, mentre il Key Server detiene la sola
 secret key, decifra gli score ed esegue l'argmax in chiaro. La velocità dipende da una
 trasformazione ternaria del template che rende il prodotto interno di sole addizioni, più un
@@ -87,17 +89,44 @@ ritorna un ciphertext compresso e il client esegue l'argmax. Ottiene LFW 99,63% 
 (128-dim); il throughput riportato è 0,74 s per 6.144 sample su IJB-C, con galleria e probe
 entrambe cifrate.
 
+**CipherFace**, Serengil e Ozpinar, 2025.
+[Testo primario, arXiv v1](https://arxiv.org/html/2502.18514v1).
+Negli algoritmi 2–3 il cloud calcola e restituisce distanze cifrate; il lato
+on-premise le decifra e cerca il primo elemento sotto soglia. È un precedente
+di matching con decisione delegata al client, che può osservare le distanze.
+Non realizza un argmin cifrato né una risposta limitata al solo codice 0/ID.
+
+**HEFT**, Sperling et al., IJCB 2022, e l'estensione di Akbari et al.,
+TBIOM 2025. Le [pagine degli autori su HEFT](https://www.hal.cse.msu.edu/papers/heft-encrypted-biometric-fusion/)
+e sulla [fusione e matching cifrati](https://www.hal.cse.msu.edu/papers/homomorphically-encrypted-biometric-template-fusion-matching/)
+descrivono fusione, proiezione, normalizzazione e confronto di template sotto
+cifratura. Sono pertinenti al compromesso tra rappresentazione, accuratezza
+e costo; il compito dichiarato non è il torneo exact 0/ID qui studiato.
+Il PDF HEFT, il supplemento e il PDF editoriale Akbari sono stati consultati.
+Entrambi restituiscono gli score al client. Per Akbari, il controllo delle
+tabelle conferma che 4,87 ms è il costo per singolo match, e che il tempo
+riassuntivo in conclusione non coincide con quello dell'introduzione.
+La [scheda dell'edizione pubblicata](testi-integrali/akbari-edizione-pubblicata.md)
+precisa metriche, pagine e condizioni; non trasferisce gli headline alla tesi.
+
 **Lightweight / BSGS-Diagonal**, Gabrielle De Micheli et al., arXiv 2026,
-<https://arxiv.org/abs/2604.00546>, estensione di **HyDia**, Sam Martin et al., PoPETs 2025,
+[arXiv v3, 29 maggio 2026](https://arxiv.org/html/2604.00546v3), estensione di **HyDia**, Sam Martin et al., PoPETs 2025,
 <https://www.petsymposium.org/popets/2025/popets-2025-0146.php>.
 CKKS su GPU (FIDESlib). Esegue un confronto con soglia per-entry (sign-poly Chebyshev), senza
-argmax: il server restituisce la decisione oppure il vettore degli indici che superano la soglia,
-non l'identità del vicino più prossimo. Su FRGC 2.0 (44.228 template, 50 probe) riporta
+argmax. Nella v3, §§3.5–3.6, l'algoritmo 3 restituisce un ciphertext con il
+conteggio totale dei match nello slot 0; l'algoritmo 4 restituisce i ciphertext
+di confronto dai quali individuare i match. La modalità chiamata membership
+non va quindi descritta come rilascio di un solo bit. Nessuna delle due uscite
+identifica necessariamente il vicino più prossimo. Su FRGC 2.0 (44.228 template, 50 probe) riporta
 F1=99,68% e accuracy=99,998%; BSGS-RTX resta sotto 1 s fino a 2¹⁵ template, mentre
 BSGS-CPU a 2²⁰ template richiede circa 115 s server-side.
+Il §6.2 dichiara che i trial falliti sono esclusi dall'aggregazione dei tempi.
+Questa politica delimita i numeri riportati e differisce dal mantenimento di
+tutte le osservazioni pianificate nelle campagne locali; non quantifica da sola
+quanti fallimenti si siano verificati.
 
 **HERS**, Engelsma, Jain, Boddeti, T-BIOM 2022. <https://arxiv.org/abs/2003.12197>
-Basato su BFV/FV (SEAL) anziché CKKS. Poiché max e argmax non sono supportati, il server
+Basato su BFV/FV (SEAL) anziché CKKS. L'implementazione non esegue max e argmax sotto cifratura: il server
 calcola gli score cifrati e li rimanda tutti al client, che decifra ed esegue l'argmax
 (decifrare 100 M score richiede meno di 1 s e 100 MB). Elabora 100 M template in ~500 s
 (dato dell'abstract; la misura puntuale nel corpo è 740 s per 100 M × 32-dim su 10 core), con
@@ -112,30 +141,65 @@ con la α-norma); l'indice viene ricostruito con una somma lineare di vettori-in
 FRR<5% e 14,6 s a K=16.384 su single-core. Gli autori scartano esplicitamente BFV/BGV/TFHE per
 questo task.
 
-**Mazzone et al.**, "Ranking/Order Statistics/Sorting under CKKS", USENIX Sec 2025. <https://arxiv.org/abs/2412.15126>
-Primitiva non specifica al volto. CKKS con encoding a matrice, che consente confronti a
-profondità costante (2). Calcola argmin/argmax di 128 elementi in 12,83 s (output one-hot
-cifrato, decifrato dal client). Risulta conveniente per vettori dell'ordine delle migliaia ed
-è parallelizzabile.
+**Mazzone, Everts, Hahn e Peter**, "Efficient Ranking, Order Statistics, and
+Sorting under CKKS", [USENIX Security 2025, edizione pubblicata](https://www.usenix.org/conference/usenixsecurity25/presentation/mazzone).
+Primitiva non specifica al volto. La profondità di confronto conta gli stadi
+di confronto non parallelizzabili ed è al più due; non è la profondità
+moltiplicativa CKKS. Quest'ultima dipende dai polinomi di confronto e indicatore:
+la nota 1 distingue i relativi livelli, e il §6 pone un limite di 65 nel setup
+sperimentale. La §4 tratta esplicitamente
+la stabilità nei pareggi; la correttezza ideale va distinta dagli errori della
+valutazione approssimata. La [lettura del testo e dell'artefatto](testi-integrali/ckks.md)
+precisa anche occupazione quadratica degli slot, precisione configurabile e
+condizioni delle misure. Non se ne ricava un rapporto diretto con il Mac o
+con il contratto biometrico della tesi.
 
 **Cong, Geelen, Kang e Park**, "Revisiting Oblivious Top-k Selection with Applications to Secure
 k-NN Classification", SAC 2024. <https://eprint.iacr.org/2023/852>
 È il precedente TFHE più vicino per un torneo non interattivo che trasporta insieme minimo e
 label cifrata. Il client cifra la query, il server possiede il database in chiaro, calcola le
 distanze e applica una rete Top-k di comparatori aumentati; il client riceve soltanto le `k` label
-cifrate. Con `k=1` e label univoche realizza concettualmente il nearest-ID esatto,
-anticipando la selezione cifrata dell'identità più vicina.
+cifrate e svolge il voto. Con `k=1` e label-indice si ottiene il precedente
+concettuale nearest-ID sul dominio rappresentato, sotto le condizioni di
+rumore della costruzione.
 
 La costruzione pubblicata non coincide però col contratto del varco: non applica una soglia
 open-set specifica del solo vincitore, non stabilisce invariata la regola di pareggio al primo
-indice e usa `t_sort=2^6`, con padding e segno che lasciano quattro bit utili per lo score. A N=127
-e `k=1` il torneo contiene 126 comparatori; la loro realizzazione min+label richiede 252 PBS e 504
-private functional key switching, prima di qualsiasi adattamento di soglia. Estendere direttamente
+indice e usa `t_sort=2^6`, con padding e segno che lasciano quattro bit utili per lo score.
+Nell'esperimento MNIST le distanze sono ridotte di precisione prima della rete;
+il testo riporta scostamenti dalla classificazione in chiaro. L'esattezza del
+selettore discreto non implica quindi il nearest neighbor delle distanze
+originarie. La formula del comparatore presenta inoltre rami sovrapposti in
+zero: da essa sola non si deduce una regola universale di tie-break.
+
+Applicando il conteggio della costruzione a N=127 e `k=1`, il torneo avrebbe
+126 comparatori, 252 PBS e 504 functional packing key switch LWE→RLWE,
+prima di qualsiasi adattamento di soglia. È una ricostruzione strutturale,
+non una misura temporale N127 pubblicata. Il lavoro chiama `KeySwitch` la
+conversione dell'algoritmo 5: il nome di un'API TFHE-rs con “private” non
+definisce automaticamente la primitiva bibliografica. Estendere direttamente
 la stessa LUT a dodici bit richiederebbe parametri molto più larghi non forniti o misurati dal
 lavoro. Un'alternativa proposta, non implementata nel core A28, è un confronto
 lessicografico su tre limb da quattro bit, con tie stable-left e threshold leaf; conteggi nominali
 bassi richiedono comunque misure di PFKS, materializzazione dei limb e rumore
-del payload ID.
+del payload ID. L'adattamento Head/PFKS successivamente implementato in questa
+tesi ha [risultati propri](../../experiments/17_head_pfks_tfhe17/README.md),
+distinti dalla rete e dai parametri del paper. La fonte consultata è
+l'[ePrint 2023/852](https://eprint.iacr.org/2023/852), con revisione indicata
+9 aprile 2025; per i dettagli sono state usate anche le sezioni 4.2–5.2 del
+testo conservato localmente, poiché il PDF remoto non era accessibile durante
+l'ultimo aggiornamento.
+
+**HEArgmax**, Nguyen et al., 2026.
+[Fonte editoriale](https://doi.org/10.1016/j.csi.2025.104071), PDF completo con
+appendice verificato. Propone argmax interattivo con varianti HT/LC e
+`loose`/`tight`. L'approfondimento individua problemi nella simulazione del
+mascheramento e nella garanzia di sola uscita argmax, con controesempi nel
+modello ideale del testo. Margini CKKS, pareggi e configurazione del packing
+non sono completamente qualificati. La [scheda critica](testi-integrali/heargmax-edizione-pubblicata.md)
+distingue queste conclusioni da attacchi software non eseguiti.
+È un precedente dell'approccio interattivo, non una prova trasferibile al
+server TFHE non interattivo né una baseline numerica già validata.
 
 **CryptoMask**, Bai et al., ICICS 2023. <https://arxiv.org/abs/2307.12010>
 Ibrido BFV + MPC (secret sharing e secure comparison). Ritorna un solo bit (la presenza nel DB
@@ -155,16 +219,26 @@ minuti per query (inclusa l'estrazione feature cifrata). Non costituisce quindi 
 di un argmax omomorfico con output ID/rifiuto.
 
 **Blind Counting Sort / Blind Top-k** (dal paper "A non-comparison oblivious sort and its
-application to private k-NN"), Azogagh et al., PoPETs 2025. <https://eprint.iacr.org/2024/1894>
+application to private k-NN"), Azogagh, Killijian e Larose-Gervais,
+PoPETs 2025(3), 156–169.
+[PDF primario](https://petsymposium.org/popets/2025/popets-2025-0093.pdf),
+[ePrint 2024/1894](https://eprint.iacr.org/2024/1894).
 TFHE (tfhe-rs e RevoLUT). Gli autori lo presentano come il primo sort cifrato senza confronti
 (counting sort via LUT), da cui costruiscono un top-k a torneo per il k-NN. Impiega la distanza simmetrica
-‖f‖²−2⟨f,m⟩+‖m‖². Sul k-NN MNIST ottiene ~2,4 s (k=3, d=40, 4 thread), dimostrando la
-fattibilità dell'argmin/top-k in TFHE. BCS è esplicitamente stabile: elementi con chiavi uguali
+‖f‖²−2⟨f,m⟩+‖m‖². La tabella 9 riporta 2,41 s per k-NN MNIST con k=3,
+40 elementi di galleria, 64 feature e quattro thread: `d=40` indica qui la
+cardinalità della galleria, non la dimensione del vettore. Le sezioni 6.2.1–6.2.3
+riducono le distanze da cinque a quattro bit e attribuiscono alcune differenze
+di classificazione all'overflow del rumore nelle label. Il tempo non descrive
+quindi selezione infallibile sulle distanze originarie a dodici bit.
+BCS è esplicitamente stabile: elementi con chiavi uguali
 mantengono l'ordine di input, e la variante key-value applica alle label la stessa permutazione.
 Con `k=1`, ordine originale della galleria e label-indice, inferiamo da stabilità e trasporto delle
 label che viene mantenuto il primo vicino fra score uguali nel dominio piccolo supportato dal
 counting sort. Non include il rifiuto open-set ottenuto
-selezionando la soglia per-template del solo vincitore.
+selezionando la soglia per-template del solo vincitore. Il §2.2.3 espande PFKS
+come *Public Functional Key Switch*: funzione pubblica, payload cifrato e
+denominazione dell'API sono aspetti da distinguere quando si adatta la primitiva.
 
 **k-NN simmetrico TFHE**, Ameur, Aziz, Audigier, Bouzefrane, PSD 2022.
 <https://doi.org/10.1007/978-3-031-13945-1_11> (anche HAL hal-03933277)
@@ -174,12 +248,19 @@ ciphertext"). Calcola l'ordinamento/argmin tramite una delta-matrix di confronti
 (sign-bootstrapping, tecnica ripresa da Zuber-Sirdey PoPETs'21), con costo quadratico O(d²)
 (~(d²−d)/2 sign-bootstrap sul triangolo superiore). È un precedente diretto della configurazione qui studiata.
 
-**Primitive di confronto cifrato (CKKS)**, Cheon et al., ASIACRYPT 2019 / 2020.
-<https://eprint.iacr.org/2019/417>, <https://eprint.iacr.org/2019/1234>. Realizzano
-comparison/min/max tramite polinomi (sign approssimato), senza bit-decomposition, con costo
-ammortizzato dell'ordine dei ms per confronto in batch (1,43 ms). La versione con complessità
-ottima è il sign-poly minimax composito di Lee, Lee, No, Kim <https://eprint.iacr.org/2020/834>,
-con l'errore del confronto reso arbitrariamente piccolo alzando il grado, e massimo quando i due
-valori sono quasi uguali (vicino allo zero della differenza). Costituiscono la base teorica del
-confronto/argmax approssimato in CKKS, su cui poggiano GROTE (max via α-norma) e Mazzone
-(argmin/argmax).
+**Primitive di confronto numerico CKKS.** La linea di
+[Cheon et al., ASIACRYPT 2019](https://eprint.iacr.org/2019/417) e
+[Cheon, Dongwoo Kim e Duhyeong Kim, ASIACRYPT 2020](https://eprint.iacr.org/2019/1234)
+usa approssimazioni polinomiali del segno, senza decomposizione in bit.
+Il lavoro 2020, *Efficient Homomorphic Comparison Methods with Optimal
+Complexity*, stabilisce ottimalità asintotica mediante polinomi composti,
+con un intervallo di separazione `|a-b| >= epsilon`.
+[Lee, Lee, No e Kim](https://eprint.iacr.org/2020/834), nella revisione del
+5 aprile 2021, studiano composizioni minimax ottimizzate per costo pratico e
+profondità. Sono contributi collegati, con nozioni diverse di ottimizzazione.
+I tempi ammortizzati in batch non sono la latenza di un argmin completo.
+Vicino allo zero, nei pareggi e dopo più stadi servono separazione, convenzione
+sullo zero e bound di decodifica: un piccolo errore numerico non garantisce
+da solo la decisione corretta. Questi comparatori numerici non esauriscono le
+possibilità della famiglia CKKS; le [costruzioni discrete e le conversioni](ckks-discreto.md)
+sono considerate separatamente.

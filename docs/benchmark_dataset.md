@@ -112,6 +112,9 @@ I due dataset 1:N scaricati e integrati (`core.dataset.carica_digiface` /
 `carica_vggface2_test`), in `datasets/` (gitignorato):
 
 ```bash
+# Dalla radice del repository, preparare le cartelle di destinazione.
+mkdir -p datasets/digiface datasets/vggface2
+
 # DigiFace-1M P1 (sintetico, 2000 id × 72 img, 112×112, no-gate)
 curl -L -o datasets/digiface/p1_72.zip \
   "https://facesyntheticspubwedata.z6.web.core.windows.net/wacv-2023/subjects_0-1999_72_imgs.zip"

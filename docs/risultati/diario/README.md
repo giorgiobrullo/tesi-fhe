@@ -10,6 +10,11 @@ Le note **Aggiornamento** segnalano le correzioni successive. Le espressioni
 Per le conclusioni consolidate leggere la [sintesi con le correzioni](../storico.md);
 per la versione più recente, i [risultati del progetto](../../../findings.md).
 
+Le [precisazioni del 22 settembre](../storico.md#precisazioni-del-22-settembre-2026)
+completano e, dove indicato, correggono anche le precedenti note: distinguono
+le due serie di F32 e i loro timer, e chiariscono i limiti delle proposte
+B8.1/B9 e B5.1 di F82.
+
 Il ripristino conserva il contenuto scientifico delle schede. Sono stati
 rimossi i promemoria di coordinamento e adattati i collegamenti. I percorsi
 in monospace indicano file rispetto alla radice del repository; i riferimenti
