@@ -1,0 +1,32 @@
+[Unit]
+Description=Varco demo
+After=network.target
+StartLimitIntervalSec=600
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=varco-demo
+Group=varco-demo
+WorkingDirectory=/opt/varco-demo/app
+Environment=HOME=/var/lib/varco-demo
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=/etc/varco-demo.env
+UMask=0077
+StateDirectory=varco-demo
+StateDirectoryMode=0700
+ExecStart=/opt/varco-demo/venv/bin/python -B -m demo.web.launch --binary /opt/varco-demo/bin/varco_demo_composite_v9 --keys /var/lib/varco-demo/keys-current --state-root /var/lib/varco-demo/state --port 8010 --native-port 9010
+Restart=on-failure
+RestartSec=10s
+KillMode=mixed
+TimeoutStopSec=420s
+Nice=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/varco-demo
+
+[Install]
+WantedBy=multi-user.target

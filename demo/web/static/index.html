@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>varco</title>
+  <link rel="stylesheet" href="/shared/shared.css">
+  <link rel="stylesheet" href="/static/app.css">
+  <script type="module" src="/static/app.js"></script>
+</head>
+<body class="web-app">
+  <a class="skip-link button secondary" href="#main">Vai al contenuto</a>
+  <header class="web-header">
+    <button type="button" class="brand" id="brand" aria-label="varco"><span class="brand-mark" aria-hidden="true"></span>varco</button>
+  </header>
+
+  <main id="main" class="web-main">
+    <section class="page-section" aria-labelledby="gallery-title">
+      <div class="section-heading">
+        <h1 id="gallery-title">Galleria <span class="count" id="gallery-count"></span></h1>
+        <button class="button secondary" id="add-person" type="button" disabled><span data-icon="plus"></span>Aggiungi persona</button>
+      </div>
+      <p class="section-copy">Volti d’esempio e persone aggiunte da te.</p>
+      <div class="gallery-tools" id="gallery-tools" hidden>
+        <label class="sr-only" for="gallery-search">Cerca nella galleria per nome o nota</label>
+        <input type="search" id="gallery-search" placeholder="Cerca per nome o nota" autocomplete="off" aria-controls="gallery">
+        <span class="quiet">Le prove usano tutta la galleria.</span>
+      </div>
+      <div class="people-list" id="gallery" aria-label="Persone iscritte"></div>
+      <p class="empty-copy" id="gallery-empty">Caricamento della galleria…</p>
+      <div class="gallery-navigation" id="gallery-navigation" hidden><span class="quiet" id="gallery-shown" role="status"></span><button class="button subtle" type="button" id="gallery-more" aria-controls="gallery">Mostra altre</button></div>
+      <p class="notice error" id="gallery-error" role="alert" hidden></p>
+    </section>
+
+    <section class="page-section" aria-labelledby="probe-title">
+      <div class="section-heading"><h2 id="probe-title" tabindex="-1">Prova</h2></div>
+      <p class="section-copy">Usa da una a tre foto del volto, oppure acquisisci tre scatti dalla fotocamera.</p>
+      <div class="probe-layout">
+        <div class="photo-source" id="probe-source">
+          <div class="capture-box" id="probe-box" hidden>
+            <video id="probe-camera" autoplay muted playsinline aria-label="Anteprima locale della fotocamera" hidden></video>
+            <p class="capture-message" id="probe-camera-status">Apertura della fotocamera…</p>
+            <button class="icon-button camera-close" type="button" id="probe-stop" aria-label="Chiudi fotocamera"><span data-icon="close"></span></button>
+          </div>
+          <div class="photo-strip selected-photos" id="probe-previews" hidden></div>
+          <div class="source-actions">
+            <button type="button" class="button secondary" id="probe-start"><span data-icon="camera"></span>Fotocamera</button>
+            <button type="button" class="button secondary" id="probe-choose"><span data-icon="upload"></span>Carica foto</button>
+            <button type="button" class="button subtle" id="probe-clear" hidden>Rimuovi foto</button>
+            <input type="file" id="probe-files" accept="image/jpeg,image/png,image/webp" multiple hidden aria-label="Foto per la prova">
+          </div>
+          <p class="source-hint" id="probe-hint">Nessuna foto selezionata.</p>
+          <p class="notice error" id="probe-source-error" role="alert" hidden></p>
+        </div>
+        <div class="probe-options">
+          <p class="engine-readiness" id="engine-readiness" role="status">Preparazione della verifica…</p>
+          <button type="button" class="button primary" id="submit-probe" disabled><span data-icon="arrow"></span>Verifica accesso</button>
+          <p class="work-progress" id="probe-progress" role="status" hidden><span class="spinner" aria-hidden="true"></span><span id="probe-progress-label"></span></p>
+          <p class="notice error" id="probe-error" role="alert" hidden></p>
+          <div class="probe-result" id="probe-result" role="status" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" aria-labelledby="requests-title">
+      <div class="section-heading"><h2 id="requests-title">Richieste <span class="count" id="requests-count"></span></h2><span class="quiet" id="requests-update">Aggiornamento automatico</span></div>
+      <p class="section-copy">Apri una richiesta per vedere le fasi e i tempi.</p>
+      <div class="requests-list" id="requests" aria-label="Richieste recenti"></div>
+      <p class="empty-copy" id="requests-empty">Caricamento delle richieste…</p>
+      <p class="notice error" id="requests-error" role="alert" hidden></p>
+    </section>
+    <footer class="page-footer">
+      <p>Foto e risultati sono gestiti dal server della demo.</p>
+      <p id="session-note">Sessione temporanea.</p>
+      <details class="photo-credits" id="photo-credits" hidden><summary>Foto della galleria</summary><ul id="photo-credits-list"></ul></details>
+    </footer>
+  </main>
+
+  <dialog id="person-dialog" aria-labelledby="person-title">
+    <form id="person-form">
+      <div class="dialog-header"><h2 id="person-title">Aggiungi persona</h2><button class="icon-button" id="close-person" type="button" aria-label="Chiudi"><span data-icon="close"></span></button></div>
+      <div class="dialog-body">
+        <div class="field-row">
+          <div class="field"><label for="person-name">Nome</label><input id="person-name" name="nome" type="text" required maxlength="80" autocomplete="off"></div>
+          <div class="field"><label for="person-threshold">Soglia di accettazione</label><input id="person-threshold" name="soglia" type="number" value="273" step="1" required aria-describedby="threshold-help"></div>
+        </div>
+        <p class="source-hint" id="threshold-help">Più bassa: controllo più severo, più facile rifiutare anche la persona corretta. Più alta: più tollerante, ma aumenta il rischio di accettare un’altra persona. 273 è il valore iniziale della demo, non una percentuale.</p>
+        <details class="threshold-explanation"><summary>Come viene deciso l’accesso?</summary><p>La demo sceglie il volto più vicino nella galleria, poi applica la soglia di quella persona. Consente l’accesso se il punteggio non supera la soglia; altrimenti lo rifiuta.</p><p>Nella stessa prova, un punteggio più basso indica un volto più vicino. Il punteggio non è una probabilità.</p></details>
+        <div class="photo-source" id="person-source">
+          <p class="source-label">Foto del volto</p>
+          <div class="capture-box" id="person-box" hidden>
+            <video id="person-camera" autoplay muted playsinline aria-label="Anteprima locale per l’iscrizione" hidden></video>
+            <p class="capture-message" id="person-camera-status">Apertura della fotocamera…</p>
+            <button class="icon-button camera-close" type="button" id="person-stop" aria-label="Chiudi fotocamera"><span data-icon="close"></span></button>
+          </div>
+          <div class="photo-strip selected-photos" id="person-previews" hidden></div>
+          <div class="source-actions">
+            <button type="button" class="button secondary" id="person-choose"><span data-icon="upload"></span>Carica foto</button>
+            <button type="button" class="button secondary" id="person-start"><span data-icon="camera"></span>Fotocamera</button>
+            <button type="button" class="button subtle" id="person-clear" hidden>Rimuovi foto</button>
+            <input type="file" id="person-files" accept="image/jpeg,image/png,image/webp" multiple hidden aria-label="Foto per l’iscrizione">
+          </div>
+          <p class="source-hint" id="person-hint">Da una a tre foto. JPG, PNG o WebP.</p>
+          <p class="notice error" id="person-source-error" role="alert" hidden></p>
+        </div>
+        <p class="notice error" id="person-error" role="alert" hidden></p>
+        <p class="work-progress" id="person-progress" role="status" hidden><span class="spinner" aria-hidden="true"></span><span id="person-progress-label">Preparazione della galleria…</span></p>
+      </div>
+      <div class="dialog-footer"><button type="button" class="button secondary" id="cancel-person">Annulla</button><button type="submit" class="button primary" id="save-person">Aggiungi persona</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="delete-dialog" aria-labelledby="delete-title">
+    <div class="dialog-header"><h2 id="delete-title">Rimuovi dalla galleria?</h2><button class="icon-button" id="close-delete" type="button" aria-label="Chiudi"><span data-icon="close"></span></button></div>
+    <div class="dialog-body"><p id="delete-name"></p><p class="section-copy">La persona verrà esclusa dalle prossime verifiche.</p><p class="notice error" id="delete-error" role="alert" hidden></p></div>
+    <div class="dialog-footer"><button class="button secondary" type="button" id="cancel-delete">Annulla</button><button class="button danger" type="button" id="confirm-delete">Rimuovi</button></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body>
+</html>

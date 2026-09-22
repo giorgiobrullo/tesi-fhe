@@ -21,7 +21,7 @@ che espone soltanto consentito/negato. Il registro non conosce quell'esito.
 
 ## Prerequisiti
 
-Servono Python 3.12, uv, Rust/Cargo 1.98.0 e una
+Servono Python 3.12, uv, rustup con Rust/Cargo 1.98.0 e una
 catena di compilazione C/C++ per le dipendenze native. Su macOS occorrono i
 Command Line Tools. Modelli, chiavi e file di esecuzione occupano spazio
 aggiuntivo rispetto ai sorgenti e vengono preparati nei passaggi seguenti.
@@ -43,10 +43,13 @@ da `uv.lock` e predisporre il compilatore Rust:
 ```sh
 uv sync --locked --python 3.12
 rustup toolchain install 1.98.0 --profile minimal
+rustup run 1.98.0 rustc --version
 ```
 
 Compilare `varco_demo_composite_v9` seguendo
 [le istruzioni di compilazione](../../BUILD_AND_RUN.md#compilazione).
+I comandi usano `rustup run 1.98.0` per selezionare il toolchain installato,
+senza cambiare il compilatore predefinito del computer.
 Il runtime incluso seleziona `public_parallel`, senza G4. Eseguire la
 compilazione dalla radice della consegna, come indicato nella guida. Il percorso prodotto è quello usato qui sotto.
 

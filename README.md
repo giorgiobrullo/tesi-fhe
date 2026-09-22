@@ -37,17 +37,17 @@ malevoli; questi problemi sono descritti nelle [questioni aperte](docs/limiti.md
 
 ## Demo
 
-La demo offre una pagina server per iscrivere e gestire i volti e una pagina
-client per richiedere l'accesso da foto o fotocamera. La galleria parte vuota.
+Sono disponibili due interfacce sul runtime corrente:
 
-Per preparare l'ambiente Python:
+- [Demo web](demo/web/README.md): una pagina con 120 ritratti d'esempio,
+  galleria modificabile nella propria sessione e registro delle verifiche.
+- [Demo client/server](demo/dual_view/README.md): due pagine per distinguere
+  gestione della galleria e richiesta d'accesso; la galleria parte vuota.
 
-```sh
-uv sync --locked --python 3.12
-```
-
-Seguire la [guida della demo](demo/dual_view/README.md) per i requisiti,
-la compilazione del motore Rust, i modelli, le chiavi e l'avvio.
+Le guide descrivono ambiente Python, compilazione, modelli, chiavi e avvio.
+Nella demo web ospitata, anche il client fidato gira sul server: l'operatore
+può accedere a foto, template ed esiti. La separazione fra visitatori è
+applicativa e non offre segretezza verso l'operatore.
 
 ## Implementazione selezionata
 

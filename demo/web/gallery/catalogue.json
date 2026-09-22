@@ -1,0 +1,2033 @@
+[
+  {
+    "slug": "albert-einstein",
+    "nome": "Albert Einstein",
+    "nota": "Fisica · relatività",
+    "soglia": 273,
+    "foto": "portraits/albert-einstein.jpg",
+    "sha256": "bb688551ba543a965e3aa2d85c617f25667e19a5ede7b57ec3955089a7bccae3",
+    "crediti": {
+      "titolo": "Albert Einstein 1921 by F Schmutzer (3x4 close cropped).jpg",
+      "autore": "Ferdinand Schmutzer",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Albert_Einstein_1921_by_F_Schmutzer_(3x4_close_cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Albert_Einstein_1921_by_F_Schmutzer_(3x4_close_cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1066839013"
+    }
+  },
+  {
+    "slug": "marie-curie",
+    "nome": "Marie Curie",
+    "nota": "Fisica e chimica · radioattività",
+    "soglia": 273,
+    "foto": "portraits/marie-curie.jpg",
+    "sha256": "6c150322cc1067558915d1a0d50a419aef2104b86aa66739b555baff191b341e",
+    "crediti": {
+      "titolo": "Marie Curie c1920 (cropped).jpg",
+      "autore": "Henri Manuel",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Marie_Curie_c1920_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Marie_Curie_c1920_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1177374343"
+    }
+  },
+  {
+    "slug": "alan-turing",
+    "nome": "Alan Turing",
+    "nota": "Matematica · informatica",
+    "soglia": 273,
+    "foto": "portraits/alan-turing.jpg",
+    "sha256": "c1e54d06afde2476bedd2618508bb613f024c2890458cb60b51d7f85b133e02c",
+    "crediti": {
+      "titolo": "Alan Turing Aged 16.jpg",
+      "autore": "Forse Arthur Reginald Chaffin (1893–1954)",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Alan_Turing_Aged_16.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Alan_Turing_Aged_16.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1119008388"
+    }
+  },
+  {
+    "slug": "grace-hopper",
+    "nome": "Grace Hopper",
+    "nota": "Informatica · compilatori",
+    "soglia": 273,
+    "foto": "portraits/grace-hopper.jpg",
+    "sha256": "4a54e31725a7bde53e88172e888400046e462cd2dda84f3cb4afe009e1e41f04",
+    "crediti": {
+      "titolo": "Grace Hopper.jpg",
+      "autore": "James S. Davis",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Grace_Hopper.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Grace_Hopper.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1091445258"
+    }
+  },
+  {
+    "slug": "katherine-johnson",
+    "nome": "Katherine Johnson",
+    "nota": "Matematica · missioni Apollo",
+    "soglia": 273,
+    "foto": "portraits/katherine-johnson.jpg",
+    "sha256": "1cd5db2f234a8795dafd3ca1f21a3df804d207a624d34c2feb2ebaabc19d918e",
+    "crediti": {
+      "titolo": "Katherine Johnson 1983 (cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Katherine_Johnson_1983_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Katherine_Johnson_1983_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910926507"
+    }
+  },
+  {
+    "slug": "richard-feynman",
+    "nome": "Richard Feynman",
+    "nota": "Fisica · elettrodinamica quantistica",
+    "soglia": 273,
+    "foto": "portraits/richard-feynman.jpg",
+    "sha256": "d4515de44f9f3405b12dec1abc4b923ad90e06cf08614fab72aa33736af7f02d",
+    "crediti": {
+      "titolo": "Richard Feynman Los Alamos ID badge (cropped).jpg",
+      "autore": "United States Army",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Richard_Feynman_Los_Alamos_ID_badge_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Richard_Feynman_Los_Alamos_ID_badge_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1122036272"
+    }
+  },
+  {
+    "slug": "mark-hamill",
+    "nome": "Mark Hamill",
+    "nota": "Luke Skywalker",
+    "soglia": 273,
+    "foto": "portraits/mark-hamill.jpg",
+    "sha256": "83925b17bd022a157b7a6a1e0a99f3cc18c0abc2750bb3c36ecd9602f4bdc837",
+    "crediti": {
+      "titolo": "Mark Hamill by Gage Skidmore.jpg",
+      "autore": "Gage Skidmore",
+      "licenza": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Mark_Hamill_by_Gage_Skidmore.jpg",
+      "licenza_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1243410017"
+    }
+  },
+  {
+    "slug": "carrie-fisher",
+    "nome": "Carrie Fisher",
+    "nota": "Leia Organa",
+    "soglia": 273,
+    "foto": "portraits/carrie-fisher.jpg",
+    "sha256": "303c2a7b9ea7979292b88152b088be08388d1696ef98dfeb9bde18cbb49f92fe",
+    "crediti": {
+      "titolo": "Carrie Fisher 2013.jpg",
+      "autore": "Riccardo Ghilardi photographer",
+      "licenza": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Carrie_Fisher_2013.jpg",
+      "licenza_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1005962355"
+    }
+  },
+  {
+    "slug": "harrison-ford",
+    "nome": "Harrison Ford",
+    "nota": "Han Solo",
+    "soglia": 273,
+    "foto": "portraits/harrison-ford.jpg",
+    "sha256": "b4b1e0b2a81f4b7095d48b62388041907a0169469ee416037b47940455fadc34",
+    "crediti": {
+      "titolo": "Harrison Ford by Gage Skidmore.jpg",
+      "autore": "Gage Skidmore",
+      "licenza": "CC BY-SA 3.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Harrison_Ford_by_Gage_Skidmore.jpg",
+      "licenza_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1108739866"
+    }
+  },
+  {
+    "slug": "nasa-neil-armstrong",
+    "nome": "Neil Armstrong",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-neil-armstrong.jpg",
+    "sha256": "b318af12f2cb7c705754cf030769ad6c8b055c0cc20f145e8319c636c99ea5ed",
+    "wikidata": "Q1615",
+    "crediti": {
+      "titolo": "Portrait of Neil Armstrong.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Portrait_of_Neil_Armstrong.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Portrait_of_Neil_Armstrong.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1031914744"
+    }
+  },
+  {
+    "slug": "nasa-sally-ride",
+    "nome": "Sally Ride",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-sally-ride.jpg",
+    "sha256": "9226b628f91279203c1568029535c6a84f3988b1ebc5af3606ebe001adade53d",
+    "wikidata": "Q49285",
+    "crediti": {
+      "titolo": "Sally Ride (1984).jpg",
+      "autore": "NASA; retouched by Coffeeandcrumbs",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Sally_Ride_(1984).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Sally_Ride_(1984).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1182700854"
+    }
+  },
+  {
+    "slug": "nasa-john-glenn",
+    "nome": "John Glenn",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-john-glenn.jpg",
+    "sha256": "68572174f157aae9b568322dee7e57186f2d800313bda3acce22f3e56963bfd2",
+    "wikidata": "Q182642",
+    "crediti": {
+      "titolo": "John Glenn Portrait (cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:John_Glenn_Portrait_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:John_Glenn_Portrait_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910392107"
+    }
+  },
+  {
+    "slug": "nasa-sunita-williams",
+    "nome": "Sunita Williams",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-sunita-williams.jpg",
+    "sha256": "d094dcdbd27a444f0c79e0b8f5b4df6cf65b5f2bce6ad7f0adadb5d51e958a6c",
+    "wikidata": "Q55177",
+    "crediti": {
+      "titolo": "Sunita Williams in 2018 (cropped).jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Sunita_Williams_in_2018_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Sunita_Williams_in_2018_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1087657535"
+    }
+  },
+  {
+    "slug": "nasa-peggy-whitson",
+    "nome": "Peggy Whitson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-peggy-whitson.jpg",
+    "sha256": "2d9e8e8591939f6921b8e083001d5e2897bb7123ba030feab3007d8bd966bda6",
+    "wikidata": "Q235523",
+    "crediti": {
+      "titolo": "Peggy Whitson cropped.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Peggy_Whitson_cropped.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Peggy_Whitson_cropped.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=911074969"
+    }
+  },
+  {
+    "slug": "nasa-mae-jemison",
+    "nome": "Mae Jemison",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-mae-jemison.jpg",
+    "sha256": "b333f74565911a97f3b2b405c6b6341a51a25c9046e99acafbd37bb2c81e58c0",
+    "wikidata": "Q34091",
+    "crediti": {
+      "titolo": "Mae Carol Jemison (cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Mae_Carol_Jemison_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Mae_Carol_Jemison_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=994666845"
+    }
+  },
+  {
+    "slug": "nasa-kathryn-d-sullivan",
+    "nome": "Kathryn D. Sullivan",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-kathryn-d-sullivan.jpg",
+    "sha256": "b323a7eb29389d433a00d03bea66af5d870e1d7d1d09a10fe53fb6affd17e9fb",
+    "wikidata": "Q464166",
+    "crediti": {
+      "titolo": "Kathryn D. Sullivan.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Kathryn_D._Sullivan.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Kathryn_D._Sullivan.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910742186"
+    }
+  },
+  {
+    "slug": "nasa-jessica-meir",
+    "nome": "Jessica Meir",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-jessica-meir.jpg",
+    "sha256": "e2b3768620dbb097968f4ec6679f3c7f6cc298e3e95d1597656a34c22f52020a",
+    "wikidata": "Q4795114",
+    "crediti": {
+      "titolo": "Jessica Meir (portrait crop).jpg",
+      "autore": "Bill Ingalls",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Jessica_Meir_(portrait_crop).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Jessica_Meir_(portrait_crop).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1249876526"
+    }
+  },
+  {
+    "slug": "nasa-christina-koch",
+    "nome": "Christina Koch",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-christina-koch.jpg",
+    "sha256": "433a10dfd35a85033b8ea30673042f51809f2398eeee895d734c53f88a84d9c7",
+    "wikidata": "Q13500192",
+    "crediti": {
+      "titolo": "Christina M. Hammock portrait.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Christina_M._Hammock_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Christina_M._Hammock_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1190520671"
+    }
+  },
+  {
+    "slug": "nasa-aaron-cohen",
+    "nome": "Aaron Cohen",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-aaron-cohen.jpg",
+    "sha256": "801eac3053b65020ca10514eea7225d10c3e46eaae07fa8293cfb4a8d9cb2498",
+    "wikidata": "Q4661926",
+    "crediti": {
+      "titolo": "Aaron Cohen - GPN-2002-000100.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Aaron_Cohen_-_GPN-2002-000100.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Aaron_Cohen_-_GPN-2002-000100.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=836212849"
+    }
+  },
+  {
+    "slug": "nasa-akihiko-hoshide",
+    "nome": "Akihiko Hoshide",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-akihiko-hoshide.jpg",
+    "sha256": "241f757ba8d2852f1464dff5f6d3925fa0fb2086f8b5eb93bf33e2639db5a3fe",
+    "wikidata": "Q375641",
+    "crediti": {
+      "titolo": "Akihiko Hoshide, official portrait (2020).jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Akihiko_Hoshide,_official_portrait_(2020).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Akihiko_Hoshide,_official_portrait_(2020).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1210803490"
+    }
+  },
+  {
+    "slug": "nasa-alan-g-poindexter",
+    "nome": "Alan G. Poindexter",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-alan-g-poindexter.jpg",
+    "sha256": "67b4fc02250ba83f50177bea46bfc0d069f4a640f6f326549d504e164ec35aeb",
+    "wikidata": "Q362220",
+    "crediti": {
+      "titolo": "Alan G. Poindexter.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Alan_G._Poindexter.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Alan_G._Poindexter.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1013421113"
+    }
+  },
+  {
+    "slug": "nasa-alan-shepard",
+    "nome": "Alan Shepard",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-alan-shepard.jpg",
+    "sha256": "39ae3aed1d90331ab8bb21ca0063ba2561857abaecbe43d65b68e9fccac3059c",
+    "wikidata": "Q174979",
+    "crediti": {
+      "titolo": "Alan B. Shepard 1970 cropped.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Alan_B._Shepard_1970_cropped.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Alan_B._Shepard_1970_cropped.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=907726431"
+    }
+  },
+  {
+    "slug": "nasa-aleksandr-kaleri",
+    "nome": "Aleksandr Kaleri",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-aleksandr-kaleri.jpg",
+    "sha256": "922c424b3ba3cd94f7bd0e17ab1b593500f336c9e5cf1435f845f020a1426b21",
+    "wikidata": "Q345288",
+    "crediti": {
+      "titolo": "Alexander Kaleri NASA portrait.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Alexander_Kaleri_NASA_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Alexander_Kaleri_NASA_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=788580975"
+    }
+  },
+  {
+    "slug": "nasa-alfred-j-eggers",
+    "nome": "Alfred J. Eggers",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-alfred-j-eggers.jpg",
+    "sha256": "be343e6277ca8344c7e39aed6f4bab3fe9ec1ab0adae4d5d8401907054963406",
+    "wikidata": "Q4722920",
+    "crediti": {
+      "titolo": "Alfred J. Eggers, Jr. - A-28665.jpg",
+      "autore": "NASA / Gaeton Faraone",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Alfred_J._Eggers,_Jr._-_A-28665.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Alfred_J._Eggers,_Jr._-_A-28665.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1045783253"
+    }
+  },
+  {
+    "slug": "nasa-alfred-worden",
+    "nome": "Alfred Worden",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-alfred-worden.jpg",
+    "sha256": "0080642663f37109544e7984c03d5f55d92a9fc2046f6f16fe9a6b4e577854c9",
+    "wikidata": "Q539385",
+    "crediti": {
+      "titolo": "Al Worden Apollo 15 CMP.jpg",
+      "autore": "NASA, scanned by Kipp Teague",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Al_Worden_Apollo_15_CMP.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Al_Worden_Apollo_15_CMP.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1216634638"
+    }
+  },
+  {
+    "slug": "nasa-alvin-drew",
+    "nome": "Alvin Drew",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-alvin-drew.jpg",
+    "sha256": "4d33ef4adf51cfd08c04545579aebe3da36c537618b1d548bcde5f660fd918b7",
+    "wikidata": "Q643556",
+    "crediti": {
+      "titolo": "Alvin drew-2007.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Alvin_drew-2007.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Alvin_drew-2007.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=904761694"
+    }
+  },
+  {
+    "slug": "nasa-andrew-j-feustel",
+    "nome": "Andrew J. Feustel",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-andrew-j-feustel.jpg",
+    "sha256": "dee714a4de6a72aaaaea62c940700c233c2e69250f544d736e06126e1fd5e67e",
+    "wikidata": "Q505530",
+    "crediti": {
+      "titolo": "Andrew Feustel.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Andrew_Feustel.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Andrew_Feustel.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=903400808"
+    }
+  },
+  {
+    "slug": "nasa-andrew-m-allen",
+    "nome": "Andrew M. Allen",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-andrew-m-allen.jpg",
+    "sha256": "ec31a6a80af5477d3fea46abd27772ff9e4e4f5b074bb2d04bec7277c23c528b",
+    "wikidata": "Q506349",
+    "crediti": {
+      "titolo": "Andrew allen.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Andrew_allen.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Andrew_allen.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=903512606"
+    }
+  },
+  {
+    "slug": "nasa-andrew-r-morgan",
+    "nome": "Andrew R. Morgan",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-andrew-r-morgan.jpg",
+    "sha256": "c5dcdd8d6b3d8500630a6f1eea74db83dca6f288712e8501e4594e30b5d55004",
+    "wikidata": "Q13500735",
+    "crediti": {
+      "titolo": "Andrew R. Morgan official portrait.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Andrew_R._Morgan_official_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Andrew_R._Morgan_official_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1181427170"
+    }
+  },
+  {
+    "slug": "nasa-andrew-schally",
+    "nome": "Andrew Schally",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-andrew-schally.jpg",
+    "sha256": "f0663afdb281b9fa392326a7d7061357a5d4d2db52feeb70de55937af5b4198a",
+    "wikidata": "Q141147",
+    "crediti": {
+      "titolo": "Andrew Schally portrait.jpg",
+      "autore": "US gov",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Andrew_Schally_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Andrew_Schally_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910327379"
+    }
+  },
+  {
+    "slug": "nasa-andr-kuipers",
+    "nome": "André Kuipers",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-andr-kuipers.jpg",
+    "sha256": "375c16eaeaefc674738594f38787e0b793a3a7ab9b606722b485b2fcee5e5d94",
+    "wikidata": "Q454649",
+    "crediti": {
+      "titolo": "Kuiper highres.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Kuiper_highres.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Kuiper_highres.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=563944600"
+    }
+  },
+  {
+    "slug": "nasa-anil-menon",
+    "nome": "Anil Menon",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-anil-menon.jpg",
+    "sha256": "6e8cef24456a11dc85bd4caa453fd29fa44577382c53258fd336d891fd1b6d22",
+    "wikidata": "Q109950137",
+    "crediti": {
+      "titolo": "Anil Menon portrait.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Anil_Menon_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Anil_Menon_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1211326919"
+    }
+  },
+  {
+    "slug": "nasa-anna-lee-fisher",
+    "nome": "Anna Lee Fisher",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-anna-lee-fisher.jpg",
+    "sha256": "5b8db4b39bdb9b1b610a4ff9239b9ddac10f0303bd1c3ea9e0d02a374d074b88",
+    "wikidata": "Q237470",
+    "crediti": {
+      "titolo": "Anna Fisher - 1979 (cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Anna_Fisher_-_1979_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Anna_Fisher_-_1979_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1020503827"
+    }
+  },
+  {
+    "slug": "nasa-anne-mcclain",
+    "nome": "Anne McClain",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-anne-mcclain.jpg",
+    "sha256": "7290eaa6293b5de7526f8b52f0c2d83740266b8f31bd49797d23971f1f94bb9a",
+    "wikidata": "Q13500570",
+    "crediti": {
+      "titolo": "Anne C. McClain portrait.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Anne_C._McClain_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Anne_C._McClain_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1180026837"
+    }
+  },
+  {
+    "slug": "nasa-anthony-llewellyn",
+    "nome": "Anthony Llewellyn",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-anthony-llewellyn.jpg",
+    "sha256": "8c8b2808d52f5a29e14ddcf2bf7a34af752060dbb5b510d59213d59903a6313d",
+    "wikidata": "Q986620",
+    "crediti": {
+      "titolo": "Anthony Llewellyn.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Anthony_Llewellyn.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Anthony_Llewellyn.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=953349376"
+    }
+  },
+  {
+    "slug": "nasa-anthony-w-england",
+    "nome": "Anthony W. England",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-anthony-w-england.jpg",
+    "sha256": "ece24d27d48eba1561807219f895a4083e5fbc350dd4e14cfe8c1e3085098cb3",
+    "wikidata": "Q574124",
+    "crediti": {
+      "titolo": "AnthonyWEngland.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:AnthonyWEngland.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:AnthonyWEngland.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=799007040"
+    }
+  },
+  {
+    "slug": "nasa-barbara-morgan",
+    "nome": "Barbara Morgan",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-barbara-morgan.jpg",
+    "sha256": "ec26415080bd1598da3beee9632f7cd60d3a1189d58d2235b6c717f44f40ec99",
+    "wikidata": "Q235047",
+    "crediti": {
+      "titolo": "Barbara morgan.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Barbara_morgan.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Barbara_morgan.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1013372391"
+    }
+  },
+  {
+    "slug": "nasa-barry-e-wilmore",
+    "nome": "Barry E. Wilmore",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-barry-e-wilmore.jpg",
+    "sha256": "59b52695b57b405dd47eed2b090b86ab4b4988296fcb170455182cdc031445c5",
+    "wikidata": "Q554409",
+    "crediti": {
+      "titolo": "Barry Wilmore.jpg",
+      "autore": "Bill Stafford",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Barry_Wilmore.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Barry_Wilmore.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1255110687"
+    }
+  },
+  {
+    "slug": "nasa-bill-anders",
+    "nome": "Bill Anders",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-bill-anders.jpg",
+    "sha256": "ca90edf4d97f5566966a8b6a1e04c1a4e2b71d763cd92f238b34a77be967f7ae",
+    "wikidata": "Q19242",
+    "crediti": {
+      "titolo": "William Anders 1964 (3x4 cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:William_Anders_1964_(3x4_cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:William_Anders_1964_(3x4_cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1048994749"
+    }
+  },
+  {
+    "slug": "nasa-bjarni-tryggvason",
+    "nome": "Bjarni Tryggvason",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-bjarni-tryggvason.jpg",
+    "sha256": "c5ce13c992f2915282c4dc735517001f64a953c01680a835610aec39ec59aa30",
+    "wikidata": "Q725233",
+    "crediti": {
+      "titolo": "Bjarni Tryggvason, Portrait 1997 - S97-06278 orig.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Bjarni_Tryggvason,_Portrait_1997_-_S97-06278_orig.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Bjarni_Tryggvason,_Portrait_1997_-_S97-06278_orig.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910788378"
+    }
+  },
+  {
+    "slug": "nasa-brent-w-jett",
+    "nome": "Brent W. Jett",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-brent-w-jett.jpg",
+    "sha256": "6d4fa4a943213e5cd77573e81b26058a2fed48e5245fab5bb280eead05fb7f07",
+    "wikidata": "Q725339",
+    "crediti": {
+      "titolo": "Brent W. Jett - Official Astronaut Portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Brent_W._Jett_-_Official_Astronaut_Portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Brent_W._Jett_-_Official_Astronaut_Portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910844896"
+    }
+  },
+  {
+    "slug": "nasa-brewster-h-shaw",
+    "nome": "Brewster H. Shaw",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-brewster-h-shaw.jpg",
+    "sha256": "69f15d5004b069c49a687758702321df353151cce883e07b33e3aed6916d0345",
+    "wikidata": "Q497530",
+    "crediti": {
+      "titolo": "Portrait - Astronaut Brewster Shaw.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Portrait_-_Astronaut_Brewster_Shaw.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Portrait_-_Astronaut_Brewster_Shaw.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=911301254"
+    }
+  },
+  {
+    "slug": "nasa-brian-duffy",
+    "nome": "Brian Duffy",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-brian-duffy.jpg",
+    "sha256": "74155e7d18682ab7650718507325ddb3aa503f31ef3c25d4d0f7115812e60523",
+    "wikidata": "Q912120",
+    "crediti": {
+      "titolo": "Brian Duffy (cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Brian_Duffy_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Brian_Duffy_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1038254424"
+    }
+  },
+  {
+    "slug": "nasa-brian-o-leary",
+    "nome": "Brian O'Leary",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-brian-o-leary.jpg",
+    "sha256": "ce30da3e594eeae463ddccfdee08e7eed3a940a9df59cfe094182eade47e138c",
+    "wikidata": "Q986622",
+    "crediti": {
+      "titolo": "Brian O'Leary.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Brian_O%27Leary.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Brian_O%27Leary.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=953348579"
+    }
+  },
+  {
+    "slug": "nasa-bruce-e-melnick",
+    "nome": "Bruce E. Melnick",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-bruce-e-melnick.jpg",
+    "sha256": "d5a4178f34f65c79072baed2d68073c22197fa3ab83b711b5d3286e2a1ffd0c1",
+    "wikidata": "Q540108",
+    "crediti": {
+      "titolo": "Bruce E. Melnick.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Bruce_E._Melnick.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Bruce_E._Melnick.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1219512608"
+    }
+  },
+  {
+    "slug": "nasa-bryan-d-o-connor",
+    "nome": "Bryan D. O'Connor",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-bryan-d-o-connor.jpg",
+    "sha256": "1bb6e7a2cd6013dae199f1390ed3c7d8a3255f40a7eb1893e3f1b54598a30e11",
+    "wikidata": "Q995007",
+    "crediti": {
+      "titolo": "Bryan D. O'Connor.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Bryan_D._O%27Connor.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Bryan_D._O%27Connor.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=835867257"
+    }
+  },
+  {
+    "slug": "nasa-carl-e-walz",
+    "nome": "Carl E. Walz",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-carl-e-walz.jpg",
+    "sha256": "4f151c61900c6c99de31c40821a66dd34d01c95229a56b1bee9a4ce75eed86bf",
+    "wikidata": "Q644705",
+    "crediti": {
+      "titolo": "Carl E. Walz.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Carl_E._Walz.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Carl_E._Walz.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=946254542"
+    }
+  },
+  {
+    "slug": "nasa-carson-garrett",
+    "nome": "Carson Garrett",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-carson-garrett.jpg",
+    "sha256": "dd38f4487105ba7bb9c5f1023f53074617179ef08001cddd41b3d1f819d2f1d9",
+    "wikidata": "Q117707538",
+    "crediti": {
+      "titolo": "Carson Garrett.jpg",
+      "autore": "NASA/JSC",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Carson_Garrett.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Carson_Garrett.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1016119279"
+    }
+  },
+  {
+    "slug": "nasa-catherine-coleman",
+    "nome": "Catherine Coleman",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-catherine-coleman.jpg",
+    "sha256": "766c2ce6fcdbb29dcca7be71f7cbdf219c03835dd856c7bfb56319c27bd114d6",
+    "wikidata": "Q7468",
+    "crediti": {
+      "titolo": "Catherine Coleman.jpg",
+      "autore": "NASA/Johnson Space Center",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Catherine_Coleman.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Catherine_Coleman.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1013370878"
+    }
+  },
+  {
+    "slug": "nasa-charles-bolden",
+    "nome": "Charles Bolden",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charles-bolden.jpg",
+    "sha256": "a1e579a5726b2a081c72166173a48069b72948ca945b1eff2aa2d169d7f1ece8",
+    "wikidata": "Q25011",
+    "crediti": {
+      "titolo": "CharlesBolden.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:CharlesBolden.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:CharlesBolden.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=904675369"
+    }
+  },
+  {
+    "slug": "nasa-charles-camarda",
+    "nome": "Charles Camarda",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charles-camarda.jpg",
+    "sha256": "044ef63e7f762dc71caabc408bff2ff25cebaa12135ccb6e2dd6738d81c23871",
+    "wikidata": "Q45080",
+    "crediti": {
+      "titolo": "Charles J. Camarda.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Charles_J._Camarda.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Charles_J._Camarda.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=905895542"
+    }
+  },
+  {
+    "slug": "nasa-charles-d-walker",
+    "nome": "Charles D. Walker",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charles-d-walker.jpg",
+    "sha256": "7105ec8cf750629c5609b16e553f801eacf8fb7c8c6d3a96191ceba12c6965ae",
+    "wikidata": "Q1064074",
+    "crediti": {
+      "titolo": "Charles D. Walker, Payload Specialist 1984.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Charles_D._Walker,_Payload_Specialist_1984.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Charles_D._Walker,_Payload_Specialist_1984.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=911348435"
+    }
+  },
+  {
+    "slug": "nasa-charles-j-precourt",
+    "nome": "Charles J. Precourt",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charles-j-precourt.jpg",
+    "sha256": "58ad4ccc3fd08bef98e1fe764ce667e62b3d55a795fab1f30cfb765f6db26ad9",
+    "wikidata": "Q1065133",
+    "crediti": {
+      "titolo": "Charles Precourt - Official portrait of astronaut.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Charles_Precourt_-_Official_portrait_of_astronaut.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Charles_Precourt_-_Official_portrait_of_astronaut.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910946843"
+    }
+  },
+  {
+    "slug": "nasa-charles-l-veach",
+    "nome": "Charles L. Veach",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charles-l-veach.jpg",
+    "sha256": "59e50507505492133fa3fdabba9ff51a508460265fe7d4db720f9c209871251e",
+    "wikidata": "Q573473",
+    "crediti": {
+      "titolo": "Charles Veach.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Charles_Veach.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Charles_Veach.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=856422049"
+    }
+  },
+  {
+    "slug": "nasa-charles-o-hobaugh",
+    "nome": "Charles O. Hobaugh",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charles-o-hobaugh.jpg",
+    "sha256": "7a94648daca5c21d59a773319a29f5148ac4565ecfc9bd31aa62e54713d45d90",
+    "wikidata": "Q29650",
+    "crediti": {
+      "titolo": "Charles hobaugh-2006.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Charles_hobaugh-2006.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Charles_hobaugh-2006.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910448616"
+    }
+  },
+  {
+    "slug": "nasa-charles-simonyi",
+    "nome": "Charles Simonyi",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charles-simonyi.jpg",
+    "sha256": "2a1925ec00c0ae414abea821bb9ccf01450bfa9cd7885cb006c5ed236c0481be",
+    "wikidata": "Q49819",
+    "crediti": {
+      "titolo": "Charles simonyi2.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Charles_simonyi2.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Charles_simonyi2.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=914746888"
+    }
+  },
+  {
+    "slug": "nasa-charlie-blackwell-thompson",
+    "nome": "Charlie Blackwell-Thompson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-charlie-blackwell-thompson.jpg",
+    "sha256": "35e373b2696b36c5e367b0f8cab68062f4376a1dd8d181625dec5b5827c5e3cd",
+    "wikidata": "Q106466239",
+    "crediti": {
+      "titolo": "Charlie Blackwell-Thompson NASA Portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Charlie_Blackwell-Thompson_NASA_Portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Charlie_Blackwell-Thompson_NASA_Portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910814191"
+    }
+  },
+  {
+    "slug": "nasa-christa-mcauliffe",
+    "nome": "Christa McAuliffe",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-christa-mcauliffe.jpg",
+    "sha256": "9c301bc0a44b3ec65eb653c9a1766b7861ab9307ad1e1bc2c7ff2cecf85213ad",
+    "wikidata": "Q229674",
+    "crediti": {
+      "titolo": "ChristaMcAuliffe (cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:ChristaMcAuliffe_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:ChristaMcAuliffe_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1027094707"
+    }
+  },
+  {
+    "slug": "nasa-christina-birch",
+    "nome": "Christina Birch",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-christina-birch.jpg",
+    "sha256": "6afdd817deb164fb6f8d6103ddd6c0dcda9859db510bf4a504b356bf5753bc78",
+    "wikidata": "Q62030546",
+    "crediti": {
+      "titolo": "Christina Birch portrait (cropped).jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Christina_Birch_portrait_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Christina_Birch_portrait_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1124284235"
+    }
+  },
+  {
+    "slug": "nasa-christopher-cassidy",
+    "nome": "Christopher Cassidy",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-christopher-cassidy.jpg",
+    "sha256": "638513791de2ff01ea067077488fd96f85ef051fc340676eb1e57abf529a09f2",
+    "wikidata": "Q52046",
+    "crediti": {
+      "titolo": "Christopher John Cassidy.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Christopher_John_Cassidy.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Christopher_John_Cassidy.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1231263800"
+    }
+  },
+  {
+    "slug": "nasa-christopher-ferguson",
+    "nome": "Christopher Ferguson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-christopher-ferguson.jpg",
+    "sha256": "622e75fbd3f05a16ad1db4e1820f6f5a34dd278baceaa625be9cf3ded87207e5",
+    "wikidata": "Q447057",
+    "crediti": {
+      "titolo": "Christopher Ferguson in 2018 (cropped).jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Christopher_Ferguson_in_2018_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Christopher_Ferguson_in_2018_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910290963"
+    }
+  },
+  {
+    "slug": "nasa-claude-nicollier",
+    "nome": "Claude Nicollier",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-claude-nicollier.jpg",
+    "sha256": "ebd7d388ebe40d7ce23beed6f0ba33f9d6ce771a8f1acb6747b2aac16cb3990d",
+    "wikidata": "Q116962",
+    "crediti": {
+      "titolo": "Claude Nicollier (1993, cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Claude_Nicollier_(1993,_cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Claude_Nicollier_(1993,_cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=911555673"
+    }
+  },
+  {
+    "slug": "nasa-clifton-williams",
+    "nome": "Clifton Williams",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-clifton-williams.jpg",
+    "sha256": "b740e338cb77cf49dfc6f0c0830bb4152ff0d4a24e539ef3616408b6fcb6a162",
+    "wikidata": "Q709646",
+    "crediti": {
+      "titolo": "Williams-c.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Williams-c.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Williams-c.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=990478231"
+    }
+  },
+  {
+    "slug": "nasa-curtis-brown",
+    "nome": "Curtis Brown",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-curtis-brown.jpg",
+    "sha256": "26d56e9ccbacb0430649a8499b295fd20c7221eb9d4772b8d499d2f516886be2",
+    "wikidata": "Q386148",
+    "crediti": {
+      "titolo": "Curtis L. Brown - Official portrait of 1987 astronaut candidate.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Curtis_L._Brown_-_Official_portrait_of_1987_astronaut_candidate.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Curtis_L._Brown_-_Official_portrait_of_1987_astronaut_candidate.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910978650"
+    }
+  },
+  {
+    "slug": "nasa-daisuke-enomoto",
+    "nome": "Daisuke Enomoto",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-daisuke-enomoto.jpg",
+    "sha256": "275dc644feb19c3df86f16aab9eac1435b4fcbbec59b69c4368b061d810dc6d0",
+    "wikidata": "Q1157671",
+    "crediti": {
+      "titolo": "Daisuke Enomoto.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Daisuke_Enomoto.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Daisuke_Enomoto.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=909781705"
+    }
+  },
+  {
+    "slug": "nasa-daniel-t-barry",
+    "nome": "Daniel T. Barry",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-daniel-t-barry.jpg",
+    "sha256": "18e4607f3cfd17b8468707fe4ac630f014b04ede67c6cf39054af1c0b9faaffd",
+    "wikidata": "Q1162918",
+    "crediti": {
+      "titolo": "Daniel Thomas Barry.jpg",
+      "autore": "Bill Stafford",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Daniel_Thomas_Barry.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Daniel_Thomas_Barry.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=884787465"
+    }
+  },
+  {
+    "slug": "nasa-david-a-king",
+    "nome": "David A. King",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-david-a-king.jpg",
+    "sha256": "be755b047e48490358cc1ff622030734aaefb519068fccccf1e8517282f73afd",
+    "wikidata": "Q902543",
+    "crediti": {
+      "titolo": "DavidAKing.jpg",
+      "autore": "uploaded by User:Dravecky, from NASA photo.",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:DavidAKing.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:DavidAKing.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1003367365"
+    }
+  },
+  {
+    "slug": "nasa-david-m-brown",
+    "nome": "David M. Brown",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-david-m-brown.jpg",
+    "sha256": "971499788e7e7dc794495f6340bfe62281445d2ddfd7f220048b1bc919685d86",
+    "wikidata": "Q350317",
+    "crediti": {
+      "titolo": "David M. Brown, NASA photo portrait in orange suit.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:David_M._Brown,_NASA_photo_portrait_in_orange_suit.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:David_M._Brown,_NASA_photo_portrait_in_orange_suit.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=911560490"
+    }
+  },
+  {
+    "slug": "nasa-david-m-walker",
+    "nome": "David M. Walker",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-david-m-walker.jpg",
+    "sha256": "ee3209c0a65f68000790e02e75487449df5591696d888a9b6dd1a12ccc6f9267",
+    "wikidata": "Q720351",
+    "crediti": {
+      "titolo": "Walker-dm.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Walker-dm.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Walker-dm.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1258372328"
+    }
+  },
+  {
+    "slug": "nasa-david-saint-jacques",
+    "nome": "David Saint-Jacques",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-david-saint-jacques.jpg",
+    "sha256": "c47fa9e013676854ac49eb6d29b4e4b34febef3350e1396963718951f7fa0701",
+    "wikidata": "Q448320",
+    "crediti": {
+      "titolo": "David Saint-Jacques official portrait.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:David_Saint-Jacques_official_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:David_Saint-Jacques_official_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1181428522"
+    }
+  },
+  {
+    "slug": "nasa-deke-slayton",
+    "nome": "Deke Slayton",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-deke-slayton.jpg",
+    "sha256": "170ba5f3a114397f0d0e849a1dfc311b93afff665327d0a03b2d7002c985df9b",
+    "wikidata": "Q336810",
+    "crediti": {
+      "titolo": "Deke Slayton 1962 portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Deke_Slayton_1962_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Deke_Slayton_1962_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1199584993"
+    }
+  },
+  {
+    "slug": "nasa-dick-scobee",
+    "nome": "Dick Scobee",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-dick-scobee.jpg",
+    "sha256": "a1851d2629f4f5e4935e5c2e6780ef28b721d01eeb376ad178f80e2e6d034e44",
+    "wikidata": "Q320047",
+    "crediti": {
+      "titolo": "Francis Richard Scobee.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Francis_Richard_Scobee.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Francis_Richard_Scobee.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1082129331"
+    }
+  },
+  {
+    "slug": "nasa-dominic-l-pudwill-gorie",
+    "nome": "Dominic L. Pudwill Gorie",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-dominic-l-pudwill-gorie.jpg",
+    "sha256": "dca88dcfc67174d5f4d9f472aed363755f99cf44dae7314fe170a368a29445c1",
+    "wikidata": "Q706939",
+    "crediti": {
+      "titolo": "Dominic Gorie, portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Dominic_Gorie,_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Dominic_Gorie,_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1208797436"
+    }
+  },
+  {
+    "slug": "nasa-donald-a-thomas",
+    "nome": "Donald A. Thomas",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-donald-a-thomas.jpg",
+    "sha256": "aabc374d8ee556cbb7dc5fd2ca4e9275baf6839558338f60c79083bd8aec0a22",
+    "wikidata": "Q1239684",
+    "crediti": {
+      "titolo": "Donald A. Thomas - Portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Donald_A._Thomas_-_Portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Donald_A._Thomas_-_Portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1197780736"
+    }
+  },
+  {
+    "slug": "nasa-donald-e-williams",
+    "nome": "Donald E. Williams",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-donald-e-williams.jpg",
+    "sha256": "f2bce158eac8345eee603d7a9b1f3876e1ed011f2eae40326cdae9d8645f17f1",
+    "wikidata": "Q717654",
+    "crediti": {
+      "titolo": "Portrait - Astronaut Donald E. Williams.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Portrait_-_Astronaut_Donald_E._Williams.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Portrait_-_Astronaut_Donald_E._Williams.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910745950"
+    }
+  },
+  {
+    "slug": "nasa-donald-h-peterson",
+    "nome": "Donald H. Peterson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-donald-h-peterson.jpg",
+    "sha256": "bbfcd33915c9d7664691841985b04ffd53c0612982927ced0b2277a8bfc0a47a",
+    "wikidata": "Q557058",
+    "crediti": {
+      "titolo": "Donald Peterson-NASA-file-photo.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Donald_Peterson-NASA-file-photo.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Donald_Peterson-NASA-file-photo.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1209091968"
+    }
+  },
+  {
+    "slug": "nasa-donald-pettit",
+    "nome": "Donald Pettit",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-donald-pettit.jpg",
+    "sha256": "854a92ee02924cdac909a034cb8999302efd620404cecf65bea4ba861eb92dee",
+    "wikidata": "Q363250",
+    "crediti": {
+      "titolo": "Donald R. Pettit.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Donald_R._Pettit.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Donald_R._Pettit.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1209092294"
+    }
+  },
+  {
+    "slug": "nasa-donald-r-mcmonagle",
+    "nome": "Donald R. McMonagle",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-donald-r-mcmonagle.jpg",
+    "sha256": "674553d3730f6163cf146bd558cd1c9dff52b924e07e221f68c0b93662e4d67b",
+    "wikidata": "Q1240263",
+    "crediti": {
+      "titolo": "Donald McMonagle.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Donald_McMonagle.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Donald_McMonagle.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1209090946"
+    }
+  },
+  {
+    "slug": "nasa-dorothy-m-metcalf-lindenburger",
+    "nome": "Dorothy M. Metcalf-Lindenburger",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-dorothy-m-metcalf-lindenburger.jpg",
+    "sha256": "95d5bb74335b803c19ec6e0a9ce0e7cd330e883df0546f9a8b41cb40d4d78f9d",
+    "wikidata": "Q74015",
+    "crediti": {
+      "titolo": "Dorothy M Metcalf-Lindenburger.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Dorothy_M_Metcalf-Lindenburger.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Dorothy_M_Metcalf-Lindenburger.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1231264945"
+    }
+  },
+  {
+    "slug": "nasa-douglas-g-hurley",
+    "nome": "Douglas G. Hurley",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-douglas-g-hurley.jpg",
+    "sha256": "e37eda5ced2f81b7bca61fa049e56658e67773c2a336234274d9b63b6831f4fa",
+    "wikidata": "Q120793",
+    "crediti": {
+      "titolo": "Douglas Hurley in 2018 (cropped).jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Douglas_Hurley_in_2018_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Douglas_Hurley_in_2018_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1127226710"
+    }
+  },
+  {
+    "slug": "nasa-duane-g-carey",
+    "nome": "Duane G. Carey",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-duane-g-carey.jpg",
+    "sha256": "d7751da7ad0e64be5430fd533308143f09b99894230bb75194266ac428c473e9",
+    "wikidata": "Q32266",
+    "crediti": {
+      "titolo": "Duane Carey.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Duane_Carey.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Duane_Carey.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1213874290"
+    }
+  },
+  {
+    "slug": "nasa-ed-lu",
+    "nome": "Ed Lu",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-ed-lu.jpg",
+    "sha256": "dc19c4343169735ef40930f66120eb44e47cec28ccb3eafb20f4c4e113773cf0",
+    "wikidata": "Q709931",
+    "crediti": {
+      "titolo": "Edward Tsang Lu (cropped).jpg",
+      "autore": "NASA (Johnson Space Center)",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Edward_Tsang_Lu_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Edward_Tsang_Lu_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1094838300"
+    }
+  },
+  {
+    "slug": "nasa-ed-white",
+    "nome": "Ed White",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-ed-white.jpg",
+    "sha256": "e9784634435cbc0ad49af20f5040dca90324a86887c44162962671d8c09afd50",
+    "wikidata": "Q216726",
+    "crediti": {
+      "titolo": "Edward H. White II portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Edward_H._White_II_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Edward_H._White_II_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1176761839"
+    }
+  },
+  {
+    "slug": "nasa-edgar-mitchell",
+    "nome": "Edgar Mitchell",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-edgar-mitchell.jpg",
+    "sha256": "c7453349f2b2da02f3bffd9857e029a55043e1d934db5057e29e73f3d1163846",
+    "wikidata": "Q295873",
+    "crediti": {
+      "titolo": "Edgar Mitchell (1971 portrait).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Edgar_Mitchell_(1971_portrait).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Edgar_Mitchell_(1971_portrait).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1223523127"
+    }
+  },
+  {
+    "slug": "nasa-eileen-collins",
+    "nome": "Eileen Collins",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-eileen-collins.jpg",
+    "sha256": "a37f81dee21508f548212147a172d36d2890c7f26184f2b9833496af69175f3f",
+    "wikidata": "Q229635",
+    "crediti": {
+      "titolo": "Commander Eileen Collins - GPN-2000-001177.jpg",
+      "autore": "Robert Markowitz",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Commander_Eileen_Collins_-_GPN-2000-001177.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Commander_Eileen_Collins_-_GPN-2000-001177.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=866243527"
+    }
+  },
+  {
+    "slug": "nasa-elizabeth-ruth",
+    "nome": "Elizabeth Ruth",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-elizabeth-ruth.jpg",
+    "sha256": "785a583e0c3f53a0322b961b0bf2ba4cff87a1664bbf28980a8830b562e1b89f",
+    "wikidata": "Q56744888",
+    "crediti": {
+      "titolo": "Elizabeth “Liz” Ruth, Armstrong Flight Research Center official photo.jpg",
+      "autore": "NASA/Ken Ulbrich",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Elizabeth_%E2%80%9CLiz%E2%80%9D_Ruth,_Armstrong_Flight_Research_Center_official_photo.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Elizabeth_%E2%80%9CLiz%E2%80%9D_Ruth,_Armstrong_Flight_Research_Center_official_photo.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1269798391"
+    }
+  },
+  {
+    "slug": "nasa-ellen-ochoa",
+    "nome": "Ellen Ochoa",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-ellen-ochoa.jpg",
+    "sha256": "2bfaca8ac8fd0c7b773471d244a371791470178de3d56cf93ea23217ca585a97",
+    "wikidata": "Q49269",
+    "crediti": {
+      "titolo": "Ellen Ochoa (cropped).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Ellen_Ochoa_(cropped).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Ellen_Ochoa_(cropped).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1228044172"
+    }
+  },
+  {
+    "slug": "nasa-ellen-s-baker",
+    "nome": "Ellen S. Baker",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-ellen-s-baker.jpg",
+    "sha256": "227f2f3ff64a1427a4d201c87b345dfec7171ec9cf9adaa3042483bed952105f",
+    "wikidata": "Q264460",
+    "crediti": {
+      "titolo": "Ellen Louise Shulman Baker.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Ellen_Louise_Shulman_Baker.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Ellen_Louise_Shulman_Baker.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1228042921"
+    }
+  },
+  {
+    "slug": "nasa-elliot-see",
+    "nome": "Elliot See",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-elliot-see.jpg",
+    "sha256": "462eb282f6c3bdc024d533c48cfbf9005f059e1d11b739cd4cf353506dc7cfb4",
+    "wikidata": "Q621462",
+    "crediti": {
+      "titolo": "Elliot See - S64-29933 (cropped 2).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Elliot_See_-_S64-29933_(cropped_2).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Elliot_See_-_S64-29933_(cropped_2).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1242482844"
+    }
+  },
+  {
+    "slug": "nasa-ellison-onizuka",
+    "nome": "Ellison Onizuka",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-ellison-onizuka.jpg",
+    "sha256": "a8db24f235cfbb66bad0ce6030f8855a7bcc4b41a4794c781ebbf5aff5c4260f",
+    "wikidata": "Q349365",
+    "crediti": {
+      "titolo": "Ellison Shoji Onizuka (NASA).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Ellison_Shoji_Onizuka_(NASA).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Ellison_Shoji_Onizuka_(NASA).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1228126121"
+    }
+  },
+  {
+    "slug": "nasa-f-drew-gaffney",
+    "nome": "F. Drew Gaffney",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-f-drew-gaffney.jpg",
+    "sha256": "1dfde35029c82614300fd9c3578af8a85a6783215993e9beb79c7567113d1bbb",
+    "wikidata": "Q201797",
+    "crediti": {
+      "titolo": "Drew Gaffney portrait 1984.jpg",
+      "autore": "NASA/JSC",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Drew_Gaffney_portrait_1984.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Drew_Gaffney_portrait_1984.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1213238927"
+    }
+  },
+  {
+    "slug": "nasa-forrest-s-mccartney",
+    "nome": "Forrest S. McCartney",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-forrest-s-mccartney.jpg",
+    "sha256": "e4b7d4dab62776b8b3b15783d6de9eff854c5bd1a3e5cfb8b92380fbeea32fbf",
+    "wikidata": "Q5470508",
+    "crediti": {
+      "titolo": "Forrest S. McCartney, KSC Center Director - KSC-86PC-0339.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Forrest_S._McCartney,_KSC_Center_Director_-_KSC-86PC-0339.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Forrest_S._McCartney,_KSC_Center_Director_-_KSC-86PC-0339.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=978127389"
+    }
+  },
+  {
+    "slug": "nasa-frank-borman",
+    "nome": "Frank Borman",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-frank-borman.jpg",
+    "sha256": "56f520f81cf63673008cee32ef8dd96e989b6d7da357c392869448d779c4800e",
+    "wikidata": "Q18762",
+    "crediti": {
+      "titolo": "Frank Borman NASA Portrait (S64-31455).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Frank_Borman_NASA_Portrait_(S64-31455).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Frank_Borman_NASA_Portrait_(S64-31455).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1260018561"
+    }
+  },
+  {
+    "slug": "nasa-frank-l-culbertson",
+    "nome": "Frank L. Culbertson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-frank-l-culbertson.jpg",
+    "sha256": "7e51b73b81ef0b52cc5a47fc11636807a43b5cc18044bcc9d2f8192d6cae6a69",
+    "wikidata": "Q705636",
+    "crediti": {
+      "titolo": "Frank L. Culbertson - Portrait 1984.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Frank_L._Culbertson_-_Portrait_1984.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Frank_L._Culbertson_-_Portrait_1984.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1180596124"
+    }
+  },
+  {
+    "slug": "nasa-fyodor-yurchikhin",
+    "nome": "Fyodor Yurchikhin",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-fyodor-yurchikhin.jpg",
+    "sha256": "805284fbba22e0fe2191f2250e93113e59d7255f097c41842f96b447eb8834c0",
+    "wikidata": "Q347977",
+    "crediti": {
+      "titolo": "Yurchikhin.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Yurchikhin.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Yurchikhin.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1278143559"
+    }
+  },
+  {
+    "slug": "nasa-george-t-whitesides",
+    "nome": "George T. Whitesides",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-george-t-whitesides.jpg",
+    "sha256": "79be3cba95c9e7f33c0b8e201971eba178e73030d9555259d9bf0d8ee55c38f3",
+    "wikidata": "Q3511804",
+    "crediti": {
+      "titolo": "George T. Whitesides official portrait.jpg",
+      "autore": "Bill Ingalls",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:George_T._Whitesides_official_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:George_T._Whitesides_official_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1271353880"
+    }
+  },
+  {
+    "slug": "nasa-gerald-carr",
+    "nome": "Gerald Carr",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-gerald-carr.jpg",
+    "sha256": "15911931c076cb686c8df709d7a90e0ea2b982ed36a2a978d3f170d792e2d4fc",
+    "wikidata": "Q644837",
+    "crediti": {
+      "titolo": "Gerald P. Carr 2.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Gerald_P._Carr_2.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Gerald_P._Carr_2.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1271597117"
+    }
+  },
+  {
+    "slug": "nasa-glynn-lunney",
+    "nome": "Glynn Lunney",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-glynn-lunney.jpg",
+    "sha256": "edd541c6a20f7386468be0538135272e76438394fa1dc023b4a3f62397eb75d7",
+    "wikidata": "Q3032002",
+    "crediti": {
+      "titolo": "Glynn S. Lunney.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Glynn_S._Lunney.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Glynn_S._Lunney.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1274793183"
+    }
+  },
+  {
+    "slug": "nasa-gordon-cooper",
+    "nome": "Gordon Cooper",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-gordon-cooper.jpg",
+    "sha256": "f62999fd13894a9ed5e158a4400c2fbd52801f13d4e60c2039bbde1d62034281",
+    "wikidata": "Q312833",
+    "crediti": {
+      "titolo": "Mercury Suit Gordon Cooper.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Mercury_Suit_Gordon_Cooper.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Mercury_Suit_Gordon_Cooper.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1043017588"
+    }
+  },
+  {
+    "slug": "nasa-gregory-c-johnson",
+    "nome": "Gregory C. Johnson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-gregory-c-johnson.jpg",
+    "sha256": "c5d18dcdf159950a66426ea04bb5bc6568d67f1c379d7903cb848f72a966c325",
+    "wikidata": "Q722106",
+    "crediti": {
+      "titolo": "Gregory Carl Johnson.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Gregory_Carl_Johnson.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Gregory_Carl_Johnson.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1051831274"
+    }
+  },
+  {
+    "slug": "nasa-gregory-h-johnson",
+    "nome": "Gregory H. Johnson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-gregory-h-johnson.jpg",
+    "sha256": "5dbb5971be876e63bdcb12df629a7a989c5d09215e2b686e97abd015b4985cbd",
+    "wikidata": "Q520166",
+    "crediti": {
+      "titolo": "Gregory H. Johnson.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Gregory_H._Johnson.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Gregory_H._Johnson.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1265863860"
+    }
+  },
+  {
+    "slug": "nasa-gregory-jarvis",
+    "nome": "Gregory Jarvis",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-gregory-jarvis.jpg",
+    "sha256": "9a2d9882581be7bb53232ad271ba20b2ec394201f0f517142307a680a7eacf74",
+    "wikidata": "Q382013",
+    "crediti": {
+      "titolo": "Gregory Jarvis (NASA).jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Gregory_Jarvis_(NASA).jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Gregory_Jarvis_(NASA).jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1155111308"
+    }
+  },
+  {
+    "slug": "nasa-gregory-l-robinson",
+    "nome": "Gregory L. Robinson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-gregory-l-robinson.jpg",
+    "sha256": "9216bab60b8696c4fc00a59210dab86199e8aab1980de9272a9494b8b29fe549",
+    "wikidata": "Q113022815",
+    "crediti": {
+      "titolo": "Gregory L. Robinson portrait.jpg",
+      "autore": "Joel Kowsky",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Gregory_L._Robinson_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Gregory_L._Robinson_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1211770802"
+    }
+  },
+  {
+    "slug": "nasa-guion-bluford",
+    "nome": "Guion Bluford",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-guion-bluford.jpg",
+    "sha256": "960429a0bb8b0591c5c7d5d589258c064707d625bf35076a22c0f98469465da1",
+    "wikidata": "Q528943",
+    "crediti": {
+      "titolo": "Guion Bluford.jpg",
+      "autore": "NASA; retouched by Cofeeandcrumbs",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Guion_Bluford.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Guion_Bluford.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1251864246"
+    }
+  },
+  {
+    "slug": "nasa-gus-grissom",
+    "nome": "Gus Grissom",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-gus-grissom.jpg",
+    "sha256": "77d4f5c79aa14e873cded8fce38b112cce25414f0fade46eb36307a3136de6e0",
+    "wikidata": "Q110879",
+    "crediti": {
+      "titolo": "Virgil I. (Gus) Grissom portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Virgil_I._(Gus)_Grissom_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Virgil_I._(Gus)_Grissom_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1197387098"
+    }
+  },
+  {
+    "slug": "nasa-hans-schlegel",
+    "nome": "Hans Schlegel",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-hans-schlegel.jpg",
+    "sha256": "58d3746765e9dba1fb09f933d7f39e5344033055e547c874de8fdcf8d493b25e",
+    "wikidata": "Q213605",
+    "crediti": {
+      "titolo": "Hans schlegel v2.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Hans_schlegel_v2.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Hans_schlegel_v2.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=563931546"
+    }
+  },
+  {
+    "slug": "nasa-harrison-schmitt",
+    "nome": "Harrison Schmitt",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-harrison-schmitt.jpg",
+    "sha256": "e859935ad1f3ba26c882d01cdc242a55ffd7a9c16b3211d1f290d56812044bef",
+    "wikidata": "Q108886",
+    "crediti": {
+      "titolo": "Harrison H. Schmitt.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Harrison_H._Schmitt.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Harrison_H._Schmitt.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=970364261"
+    }
+  },
+  {
+    "slug": "nasa-henry-hartsfield",
+    "nome": "Henry Hartsfield",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-henry-hartsfield.jpg",
+    "sha256": "af2fc27f3775dc6d4b7465a1a2325d2e34ea4d3fa96e5bb0aa10f9612e9a771d",
+    "wikidata": "Q460161",
+    "crediti": {
+      "titolo": "Hartsfield-hw.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Hartsfield-hw.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Hartsfield-hw.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1011730557"
+    }
+  },
+  {
+    "slug": "nasa-ilan-ramon",
+    "nome": "Ilan Ramon",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-ilan-ramon.jpg",
+    "sha256": "3b7c0b3fb47da6b832b496ae672d18039887d7d2bbf2496cf85314e3c7b44dcc",
+    "wikidata": "Q219569",
+    "crediti": {
+      "titolo": "Ilan Ramon, NASA photo portrait in orange suit.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Ilan_Ramon,_NASA_photo_portrait_in_orange_suit.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Ilan_Ramon,_NASA_photo_portrait_in_orange_suit.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1010328677"
+    }
+  },
+  {
+    "slug": "nasa-irene-d-long",
+    "nome": "Irene D. Long",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-irene-d-long.jpg",
+    "sha256": "6be96d2b26d868a5523ac7383ee09f23aa956425295c58ef9f97cc8fe3d878d7",
+    "wikidata": "Q16149421",
+    "crediti": {
+      "titolo": "Irene D. Long, Director Biomedical Office - KSC-98PC-0007.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Irene_D._Long,_Director_Biomedical_Office_-_KSC-98PC-0007.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Irene_D._Long,_Director_Biomedical_Office_-_KSC-98PC-0007.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=948858431"
+    }
+  },
+  {
+    "slug": "nasa-j-wayne-littles",
+    "nome": "J. Wayne Littles",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-j-wayne-littles.jpg",
+    "sha256": "d85686454dc057f73b8cdc88e4aa2c0ff166230f69610294e51659e176af474f",
+    "wikidata": "Q6107431",
+    "crediti": {
+      "titolo": "JWayneLittles2.jpg",
+      "autore": "NASA\n\nuploaded by User:Dravecky",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:JWayneLittles2.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:JWayneLittles2.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1064482872"
+    }
+  },
+  {
+    "slug": "nasa-james-a-pawelczyk",
+    "nome": "James A. Pawelczyk",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-a-pawelczyk.jpg",
+    "sha256": "7dd4dcb05c79f64cbaab7f63e6d0934b76203834525fb696fc961c7dab3f4a19",
+    "wikidata": "Q971200",
+    "crediti": {
+      "titolo": "James A Pawelczyk.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:James_A_Pawelczyk.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:James_A_Pawelczyk.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=968854142"
+    }
+  },
+  {
+    "slug": "nasa-james-buchli",
+    "nome": "James Buchli",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-buchli.jpg",
+    "sha256": "b42dae974f5f0fd86d1bb6e5907fd53f3fe03668cf5f5f79b4643eeb8573c74c",
+    "wikidata": "Q692263",
+    "crediti": {
+      "titolo": "Astronaut James Buchli - Portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Astronaut_James_Buchli_-_Portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Astronaut_James_Buchli_-_Portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910805247"
+    }
+  },
+  {
+    "slug": "nasa-james-c-adamson",
+    "nome": "James C. Adamson",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-c-adamson.jpg",
+    "sha256": "48b625d1cc154d0fc5441a73cf6960e9f4d66040d58fe83b66c19fe427449b18",
+    "wikidata": "Q649109",
+    "crediti": {
+      "titolo": "James Adamson.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:James_Adamson.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:James_Adamson.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=731089602"
+    }
+  },
+  {
+    "slug": "nasa-james-c-fletcher",
+    "nome": "James C. Fletcher",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-c-fletcher.jpg",
+    "sha256": "39179751a59c7dea1a19876bc290d7f53affc41f7d3253636b606f25ffcddaa1",
+    "wikidata": "Q976129",
+    "crediti": {
+      "titolo": "James Fletcher, official NASA portrait.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:James_Fletcher,_official_NASA_portrait.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:James_Fletcher,_official_NASA_portrait.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1183337931"
+    }
+  },
+  {
+    "slug": "nasa-james-d-halsell",
+    "nome": "James D. Halsell",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-d-halsell.jpg",
+    "sha256": "6703bd78da929b48cdf1ecc8959e5b59af513f4667f455ee439123bacd2e83fe",
+    "wikidata": "Q611704",
+    "crediti": {
+      "titolo": "James Halsell.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:James_Halsell.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:James_Halsell.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=910368533"
+    }
+  },
+  {
+    "slug": "nasa-james-e-webb",
+    "nome": "James E. Webb",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-e-webb.jpg",
+    "sha256": "595065f05a3cad8b13a3884f21ca79581cd1a058217335324e5586fb58002b45",
+    "wikidata": "Q537520",
+    "crediti": {
+      "titolo": "James E. Webb, official NASA photo, 1966.jpg",
+      "autore": "NASA Johnson Space Center Media Archive",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:James_E._Webb,_official_NASA_photo,_1966.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:James_E._Webb,_official_NASA_photo,_1966.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=992229027"
+    }
+  },
+  {
+    "slug": "nasa-james-mcdivitt",
+    "nome": "James McDivitt",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-mcdivitt.jpg",
+    "sha256": "e40c9cd43020c75809cd1acb837a429655e31fe1ef7883d88d418160a9f2744a",
+    "wikidata": "Q364476",
+    "crediti": {
+      "titolo": "Jim McDivitt in 1971.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:Jim_McDivitt_in_1971.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:Jim_McDivitt_in_1971.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1168510095"
+    }
+  },
+  {
+    "slug": "nasa-james-s-voss",
+    "nome": "James S. Voss",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-s-voss.jpg",
+    "sha256": "7916a9cf838480c01d156d68b7f34a98a7b51645797562fcb4a502b1db6079ba",
+    "wikidata": "Q528832",
+    "crediti": {
+      "titolo": "James S. Voss - Official portrait of 1987 astronaut candidate.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:James_S._Voss_-_Official_portrait_of_1987_astronaut_candidate.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:James_S._Voss_-_Official_portrait_of_1987_astronaut_candidate.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=911392319"
+    }
+  },
+  {
+    "slug": "nasa-james-w-kennedy",
+    "nome": "James W. Kennedy",
+    "nota": "NASA · ritratto ufficiale",
+    "soglia": 273,
+    "foto": "portraits/nasa-james-w-kennedy.jpg",
+    "sha256": "6f977a98bebfb86a46cc769d04554f6058e955cfbbdfe8de21d506ed2e08511f",
+    "wikidata": "Q120057865",
+    "crediti": {
+      "titolo": "James W. Kennedy, the director of the NASA Kennedy Space Center - KSC-03PP-3059.jpg",
+      "autore": "NASA",
+      "licenza": "Pubblico dominio",
+      "url": "https://commons.wikimedia.org/wiki/File:James_W._Kennedy,_the_director_of_the_NASA_Kennedy_Space_Center_-_KSC-03PP-3059.jpg",
+      "licenza_url": "https://commons.wikimedia.org/wiki/File:James_W._Kennedy,_the_director_of_the_NASA_Kennedy_Space_Center_-_KSC-03PP-3059.jpg#Licensing",
+      "revisione_url": "https://commons.wikimedia.org/w/index.php?oldid=1088341946"
+    }
+  }
+]

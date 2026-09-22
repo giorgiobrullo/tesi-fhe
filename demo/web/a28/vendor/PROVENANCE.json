@@ -1,0 +1,11 @@
+{
+  "schema": "a28-web-vendor.v1",
+  "revision": "A28",
+  "source": "Historical A28 core retained and remeasured in the 20 September 2026 progression, early a28 arm.",
+  "file": "private_argmin.rs",
+  "sha256": "7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596",
+  "bytes": 71076,
+  "modification": "none; byte-identical copy",
+  "tfhe_version": "0.11.3",
+  "parameter": "V0_11_PARAM_MESSAGE_2_CARRY_2_KS_PBS_TUNIFORM_2M64"
+}

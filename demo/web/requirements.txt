@@ -1,0 +1,7 @@
+# Python 3.12; versioni usate dall'anteprima locale.
+fastapi==0.141.1
+uvicorn==0.52.4
+numpy==1.26.4
+Pillow==12.2.0
+insightface==1.0.1
+onnxruntime==1.27.0

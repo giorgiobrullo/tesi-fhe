@@ -6,11 +6,12 @@ La piattaforma delle misure è macOS ARM64 su Apple M4 Max.
 
 ## Compilazione
 
-Dalla radice del repository, dopo aver preparato l'ambiente:
+Dalla radice del repository, dopo aver preparato l'ambiente e installato
+il toolchain con `rustup toolchain install 1.98.0 --profile minimal`:
 
 ```sh
 .venv/bin/python -B runtime/configure.py --check
-cargo build --release --locked \
+rustup run 1.98.0 cargo build --release --locked \
   --manifest-path runtime/Cargo.toml --bin varco_demo_composite_v9 \
   --target-dir target-selector-pack4
 ```
@@ -18,6 +19,8 @@ cargo build --release --locked \
 Il binario è `target-selector-pack4/release/varco_demo_composite_v9`.
 Il profilo release usa opt3/CGU1. Aggiungere `--offline` se tutte le dipendenze
 Rust sono già in cache.
+`rustup run` seleziona esplicitamente la versione 1.98.0 senza cambiare
+il compilatore predefinito del computer.
 
 ## Modificare il progetto
 
@@ -31,7 +34,7 @@ Dopo una modifica sotto `runtime/`, dalla radice:
 ```sh
 .venv/bin/python -B runtime/configure.py --refresh
 .venv/bin/python -B runtime/configure.py --check
-cargo build --release --locked \
+rustup run 1.98.0 cargo build --release --locked \
   --manifest-path runtime/Cargo.toml --bin varco_demo_composite_v9 \
   --target-dir target-selector-pack4
 ```
