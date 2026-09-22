@@ -9,7 +9,9 @@ storiche e si legge in [PACK4_VALIDATION.md](validazione/PACK4_VALIDATION.md).
 ## Ambiente e piattaforme
 
 Usare Python 3.12 con uv. La campagna del nuovo runtime usa Rust/Cargo 1.98.0
-su macOS ARM64; i comandi Rust sotto assumono quella versione nell'ambiente.
+su macOS ARM64; i comandi Rust sotto selezionano quella versione con
+`rustup run 1.98.0`, dopo l'installazione descritta nella
+[guida della demo](../demo/dual_view/README.md#avvio-locale).
 Le revisioni storiche conservano le proprie versioni del compilatore.
 Dalla radice, `uv sync --locked --python 3.12` crea l'ambiente `.venv`.
 Il lock include anche Concrete e TenSEAL: le wheel vincolano l'installazione
@@ -40,6 +42,12 @@ Le fotografie d'iscrizione e la galleria sono visibili al server.
 La demo richiede un terminale fidato ed è pensata per l'esecuzione sullo
 stesso computer. Il [modello di fiducia](../README.md#modello-di-fiducia)
 spiega quali informazioni sono protette e quali ipotesi sono necessarie.
+
+Per la pagina unica con galleria d'esempio e sessioni individuali, seguire
+la [guida della demo web](../demo/web/README.md). Questa usa un ambiente
+Python dedicato, senza Concrete o TenSEAL, e descrive anche l'avvio Linux ARM
+e dietro HTTPS. Nella demo web il client fidato gira sullo stesso host del
+motore: l'operatore può accedere alle foto, ai template e agli esiti.
 
 ## Studiare le implementazioni
 
@@ -129,7 +137,7 @@ quelli ordinari del core controllano domini, LUT, conteggi e pareggi. Dalla
 radice, mantenendo gli output di compilazione fuori dai sorgenti:
 
 ```sh
-cargo test --release --locked \
+rustup run 1.98.0 cargo test --release --locked \
   --manifest-path runtime/candidate/Cargo.toml --target-dir .local/target-service \
   -p composite_camera_service_20260908 -p selector_four_core_20260920 \
   -- --test-threads=1
@@ -141,7 +149,7 @@ con soglie miste. Usa 16 thread e la politica FFT del servizio. Eseguirla
 isolatamente, senza altre build o benchmark:
 
 ```sh
-cargo test --release --locked \
+rustup run 1.98.0 cargo test --release --locked \
   --manifest-path runtime/candidate/Cargo.toml --target-dir .local/target-service \
   -p selector_four_core_20260920 --lib \
   service_smoke_tests::fresh_key_public_parallel_preserves_exact_ids_without_benchmarking \
@@ -161,7 +169,57 @@ ricompilare e ripetere le verifiche pertinenti seguendo la
 Le due nuove campagne del 20 settembre, CSV e figure sono nel
 [percorso corrente](percorso-sperimentale-20260920.md). I loro audit
 completi richiedono i cifrati e le chiavi conservati localmente, esclusi
-dalla consegna. Il comando seguente rigenera soltanto la figura storica.
+dalla consegna. La rigenerazione delle figure usa invece soltanto i dati
+pubblici e non richiede quell'archivio.
+
+### Entrambe le figure del 20 settembre
+
+Dalla radice del repository, con uv installato:
+
+```sh
+uv run --script --python 3.12 benchmark/figure_current.py --output .local/grafici-20260920
+```
+
+Il [comando](../benchmark/figure_current.py) prepara un ambiente dedicato con
+Matplotlib 3.10.9 e le sue dipendenze. Non installa Concrete, TenSEAL o i
+modelli biometrici, non compila Rust e non esegue FHE. Al primo uso serve
+accesso alla rete per le dipendenze mancanti; una volta disponibili Python
+e pacchetti nella cache di uv, si può aggiungere `--offline`.
+
+La destinazione deve essere **nuova**: per ripetere il comando scegliere
+un altro nome. Le cartelle esistenti e l'area degli originali `output/figures`
+sono rifiutate. Vengono prodotti:
+
+- `progressione.{png,svg,pdf}` e `progressione-email.png`;
+- `confronto-ckks-tfhe.{png,svg,pdf}` e `confronto-ckks-tfhe-email.png`;
+- `statistiche.json`, con i valori ricalcolati;
+- `RENDER.json`, con impronte di ingressi, generatori e risultati, e versioni dell'ambiente.
+
+Prima di creare le figure vengono verificate le impronte dei sette file
+di ingresso e la concordanza fra CSV e riepiloghi pubblicati. Nella
+progressione, mediana e quartili usano solo le 300 misure; i 150 warmup
+restano esclusi. Il pannello storico dei prototipi conserva i suoi dati
+del 9 settembre e rimane separato. Per CKKS/TFHE si ricalcolano le 18 celle
+dai 216 record: mediana CKKS per blocco, media delle mediane TFHE prima/dopo,
+poi mediana e min–max dei tre blocchi. Non si usano mediane aggregate delle
+singole query come sostituto di questo stimatore.
+
+Il controllo conferma statistiche e consistenza dei record pubblici;
+non ridecifra i risultati, non ripete i gate e non certifica gli audit
+crittografici indicati nei vecchi manifest. La ricostruzione della
+progressione, il TFHE intermedio del confronto e la demo anchor/pack4
+rimangono circuiti distinti. Dati e figure originali non vengono modificati.
+Le esportazioni sono nuove: la dicitura del carico nella progressione
+precisa che l'incertezza riguarda l'attribuzione CPU, non la copertura
+temporale. Le impronte dei vecchi PDF non sono quelle delle nuove esportazioni.
+
+Se si dispone già di Python e Matplotlib 3.10.9, si può eseguire direttamente
+`python -B benchmark/figure_current.py --output CARTELLA_NUOVA`.
+I controlli del generatore, senza rendering o FHE, si eseguono con:
+
+```sh
+python -B -m unittest benchmark.test_figure_current benchmark.test_figure_current_progression benchmark.test_figure_current_ckks
+```
 
 ### Figura storica del 9 settembre
 

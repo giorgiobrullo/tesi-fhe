@@ -11,8 +11,10 @@ confronti di latenza e generatori di figure. La sintesi delle conclusioni
 |---|---|---|
 | Confrontare le tecniche biometriche | [verifica.py](verifica.py), [identificazione_1n.py](identificazione_1n.py) | Accuratezza in chiaro, con protocolli distinti |
 | Leggere le campagne exact-ID storiche | [Risultati A33](results/fhe_digiface_exact_primary_a33_2026-09-02.md), [A29/A33 appaiato](results/fhe_digiface_exact_paired_a29_a33_2026-09-02.md) | Concordanza FHE/clear e latenza nelle condizioni riportate |
-| Studiare il servizio corrente | [Esperimento 22](../experiments/22_demo_composita/README.md) | Backend e richieste complete con immagini |
-| Rigenerare il grafico comune | [Guida del grafico](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md), [generatore](figure_common_benchmark.py) | Figura dai dati inclusi, senza nuove esecuzioni FHE |
+| Studiare il servizio corrente | [Runtime mantenuto](../runtime/README.md) | Motore corretto usato dalle demo attuali |
+| Consultare il confronto storico del servizio composito | [Esperimento 22](../experiments/22_demo_composita/README.md) | Backend e richieste complete con immagini nelle campagne precedenti |
+| Rigenerare le due figure correnti del 20 settembre | [Comando unico](figure_current.py), [istruzioni](../docs/riproducibilita.md#entrambe-le-figure-del-20-settembre) | Ricalcolo dai CSV pubblici e PNG/SVG/PDF, senza archivio privato o FHE |
+| Rigenerare il grafico comune storico del 9 settembre | [Guida del grafico](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md), [generatore](figure_common_benchmark.py) | Figura storica dai dati inclusi, senza nuove esecuzioni FHE |
 
 ## Biometria in chiaro
 
@@ -46,7 +48,10 @@ I file `fhe_*.py` conservano i driver delle campagne della demo precedente
 cache biometriche, binari congelati o manifest locali non distribuiti.
 I report in [results/](results/) descrivono prerequisiti, prove e limiti di
 ciascuna campagna; il solo clone non ricrea automaticamente quelle esecuzioni.
-Per compilare e usare il servizio incluso partire dall'esperimento 22.
+Per compilare e usare il servizio corrente seguire la
+[guida di compilazione](../BUILD_AND_RUN.md) e le [guide delle demo](../demo/README.md).
+L'esperimento 22 conserva il servizio dei confronti storici, con sorgenti e
+identità del circuito diversi dal runtime mantenuto.
 
 Anche `a29_pfail_accounting.py`, `a33_pfail_accounting.py` e
 `figure_exact_id_improvements.py` conservano i controlli sugli hash originali:
