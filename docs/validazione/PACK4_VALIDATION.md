@@ -1,15 +1,65 @@
 # Baseline con selettore corretto e packing a quattro cifre
 
+Il packing raggruppa fino a quattro cifre per trasferirle insieme quando
+si seleziona il vincitore di un confronto. L'[esempio con due candidati](../come-funziona-il-confronto.md)
+segue queste cifre dal punteggio al risultato finale.
+
 20 settembre 2026. Baseline locale adottata dopo correttezza, confronto appaiato,
 regressione storica e collaudo del servizio. Il runtime selezionato è `runtime/`.
 I risultati precedenti restano conservati nei rispettivi report datati.
 
-Il refresh 4/12 e le finestre ±63/±127 della correzione B sono invariati.
+Il refresh rigenera il controllo cifrato del selettore per aumentare il
+margine disponibile. La configurazione 4/12 e le finestre ±63/±127 della
+[correzione B](../../runtime/REPAIR.md) sono invariati.
 Le cifre dello score e quelle non costanti di ID/soglia condividono gruppi
 fino a quattro. Il limite impedisce la sovrapposizione del quinto payload.
-La funzione e i byte della chiave PFKS sono identici nei due bracci confrontati.
+La PFKS (*private functional key switching*) prepara ciascuna cifra in
+un formato cifrato raggruppabile. La funzione e i byte della sua chiave
+sono identici nelle due versioni confrontate.
 Quattro termini modificano il rumore dell'accumulatore: per questo la geometria
 è stata seguita da una nuova verifica FHE, senza sostituire chiavi o casi.
+
+## Passaggio modificato
+
+Score cifrati → estrazione delle cifre → torneo (confronto →
+**selezione dei dati del vincitore**) → soglia → esito cifrato 0/ID.
+
+Il confronto ha già prodotto la decisione cifrata. Il selettore deve
+trasferire insieme score, ID e soglia del candidato scelto. Qui cambia
+il raggruppamento delle cifre da trasferire, dopo che le costanti pubbliche
+sono state riconosciute e tolte dal lavoro variabile.
+
+## Prima e dopo
+
+Il riferimento è **B, con il controllo del selettore già corretto**.
+B aveva già le cifre pubbliche e il parallelismo; il nuovo intervento
+riguarda solo il packing. Le tre cifre score, prima separate dai gruppi
+ID/soglia, possono ora condividere gruppi fino a quattro con le altre
+cifre variabili.
+
+Esempio: un ramo richiede tre cifre score e una sola cifra ID variabile;
+le altre cifre ID e la soglia sono già note. Il [pianificatore](../../runtime/core/src/public_digits.rs)
+contiene questo caso.
+
+| Operazione di quel selettore | Prima: B | Dopo: packing a quattro cifre |
+|---|---|---|
+| Preparazione PFKS | Quattro preparazioni, una per cifra. | Le stesse quattro preparazioni. |
+| Gruppi | `[score₀, score₁, score₂]` e `[ID₀]`. | `[score₀, score₁, score₂, ID₀]`. |
+| Rotazioni dei gruppi | Due. | Una. |
+| Rigenerazione del controllo | Una rotazione di refresh. | La stessa rotazione di refresh. |
+
+Per quel nodo, le rotazioni del selettore passano quindi da tre a due.
+Il conteggio esclude il confronto che precede la selezione e il resto
+della query. Con più cifre variabili cambiano il numero e la composizione
+dei gruppi; quattro è il massimo per gruppo, non un risparmio fisso per
+ogni nodo.
+
+Si raggruppano componenti dei dati, non quattro persone. La preparazione
+PFKS resta per cifra: il lavoro risparmiato è una rotazione ogni volta
+che il nuovo packing elimina un gruppo. Il refresh che corregge il
+controllo, la precisione dei punteggi e la regola del vincitore restano
+invariati. Le verifiche e i tempi sotto sono quelli della campagna TFHE-rs
+1.7; la configurazione mantenuta è nel [README del runtime](../../runtime/README.md).
 
 ## Verifica
 

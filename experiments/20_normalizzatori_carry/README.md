@@ -1,8 +1,51 @@
 # 20 - Normalizzatori derivati dal riporto e composizione classica
 
-Una rotazione che produce il riporto può fornire anche la cifra bassa tramite
-una trasformazione lineare dell'intero ciphertext. Questo esperimento valuta
-il componente, il rumore osservato e la sua integrazione nella query completa.
+Qui si riduce il lavoro per separare una cifra dal suo riporto, durante
+l'estrazione dei punteggi. L'[esempio con due candidati](../../docs/come-funziona-il-confronto.md)
+mostra come queste cifre arrivano al risultato finale.
+
+## Passaggio modificato
+
+Score cifrati → **estrazione e normalizzazione delle cifre** → torneo
+(confronto e selezione) → controllo della soglia → esito cifrato 0/ID.
+
+Interveniamo sui due normalizzatori usati da [Head](../17_head_pfks_tfhe17/README.md),
+prima che le cifre degli score entrino nei confronti. Ciascuno separa un
+intermedio in una cifra bassa e un riporto alla posizione successiva.
+La *blind rotation* citata sotto è una rotazione di tabella controllata
+dall'ingresso cifrato, senza rivelarlo.
+
+## Prima e dopo
+
+| Operazione | Prima: normalizzatori separati | Dopo: normalizzatori condivisi |
+|---|---|---|
+| Una coppia cifra/riporto | Una blind rotation per la cifra bassa e una per il riporto. | Una blind rotation per il riporto; dalla stessa tabella cifrata si ricava anche la cifra bassa con trasformazioni lineari. |
+| Le due coppie di uno score | Quattro blind rotation. | Due blind rotation più le trasformazioni lineari. |
+| Uscita verso il torneo | Cifre normalizzate dello score, ancora cifrate. | Stessi valori e stessa rappresentazione attesa dal confronto. |
+
+Il risparmio riguarda due di queste operazioni per score nella modalità `both`;
+le trasformazioni lineari aggiunte hanno un costo, incluso nelle misure.
+Il lavoro viene riutilizzato fra le due uscite dello stesso intermedio.
+
+### Esempio
+
+Il normalizzatore separa `r` fra 0 e 31 in `r % 16` e `r / 16`, con
+divisione intera. Per `r = 21`, le uscite rappresentano cifra 5 e riporto 1,
+perché `21 = 5 + 16 × 1`. Prima si valutavano due tabelle separatamente;
+dopo si usa la rotazione della tabella del riporto per ottenere entrambe
+le uscite cifrate. La trasformazione agisce su tutte le componenti
+dell'accumulatore GLWE (un polinomio cifrato), prima di estrarre le due
+uscite LWE (qui una cifra cifrata ciascuna).
+
+Le [mappe del componente](evidence/NORMALIZER_ERROR_MAPS.md) descrivono
+la trasformazione e il rumore osservato. Il confronto completo combina
+questo intervento con comparatori paralleli e soglie pubbliche: sotto
+sono separati il costo del componente e quello della composizione.
+
+I sorgenti e i risultati qui conservati usano TFHE-rs 1.7. Per il percorso
+mantenuto: [runtime](../../runtime/README.md),
+[implementazione dei normalizzatori](../../runtime/core/src/shared_normalizers.rs)
+e [punti di utilizzo in Head](../../runtime/core/src/split.rs).
 
 ## Metodo e risultati
 
