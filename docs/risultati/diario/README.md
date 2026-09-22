@@ -5,6 +5,13 @@ Le 84 schede conservano il dettaglio del diario archiviato l’8 settembre
 compresi i tentativi falliti. Sono raccolte in sei capitoli; ogni finding
 ha un collegamento diretto nell’indice qui sotto.
 
+Una sigla come F32 identifica una scheda del diario, non una versione del
+software. Per seguire la tesi per la prima volta, leggere il
+[percorso sperimentale](../../percorso-sperimentale-20260920.md); tornare qui
+per i dettagli del singolo tentativo. I sei capitoli seguono lo sviluppo:
+rappresentazione dei volti, scaling, protocollo, costo dei circuiti,
+correzioni e infine selezione esatta dell'identità.
+
 Le note **Aggiornamento** segnalano le correzioni successive. Le espressioni
 «attuale» e «corrente» nel testo storico descrivono la versione di allora.
 Per le conclusioni consolidate leggere la [sintesi con le correzioni](../storico.md);

@@ -1,19 +1,26 @@
 # Tesi-FHE: identificazione facciale con query cifrata
 
-Tesi sperimentale sul riconoscimento facciale 1:N con crittografia omomorfica.
-Il client estrae l'embedding di un volto e lo cifra; il server lo confronta
-con una galleria e restituisce un risultato cifrato. Il client scopre
-l'identità corrispondente, oppure che nessun accesso è consentito.
+Tesi sperimentale sul riconoscimento facciale 1:N: confrontare un volto con
+una galleria di N voci, che può includere più foto della stessa persona.
+La crittografia omomorfica permette di calcolare
+su dati cifrati. Il client trasforma il volto in un vettore numerico, detto
+embedding, e lo cifra; il server lo confronta con la galleria e restituisce
+un risultato cifrato. Il client legge l'identità scelta oppure un rifiuto.
 
 Il lavoro segue due filoni: la qualità del riconoscimento dopo la quantizzazione
-e il costo della ricerca sul dato cifrato. Gli esperimenti partono da PCA,
+(la conversione del vettore in interi piccoli) e il costo della ricerca sul
+dato cifrato. Gli esperimenti partono da PCA,
 descrittori locali e reti preaddestrate, poi confrontano i circuiti Concrete,
 TFHE-rs e CKKS. L'implementazione attuale usa TFHE-rs.
 
 ## Come funziona
 
+L'[esempio con due candidati](docs/come-funziona-il-confronto.md) segue il
+calcolo dai punteggi alla risposta e spiega i termini usati negli esperimenti.
+
 Per ogni template della galleria il server calcola il punteggio
-`score_i(q) = ||g_i||² − 2〈g_i,q〉`. Sceglie il primo minimo e controlla
+`score_i(q) = ||g_i||² − 2〈g_i,q〉`, dove `q` è il vettore della richiesta
+e `g_i` quello della persona iscritta. Sceglie il primo minimo e controlla
 la soglia associata a quel template:
 
 ```text
@@ -22,8 +29,9 @@ risultato = k + 1, se score_k(q) <= T_k
             0, altrimenti
 ```
 
-La risposta contiene soltanto l'ID o zero, codificato in tre cifre LWE in
-base 15. I pareggi favoriscono il primo indice; la soglia di un altro
+La risposta contiene soltanto l'ID o zero, codificato in tre cifre in
+base 15, ciascuna cifrata nel formato LWE. I pareggi favoriscono il primo
+indice; la soglia di un altro
 iscritto non può autorizzare la richiesta.
 
 ### Modello di fiducia

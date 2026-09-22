@@ -1,31 +1,62 @@
 # 22 - Demo TFHE composita
 
-Un servizio di riconoscimento facciale che riceve un probe cifrato e restituisce
-un'identità cifrata oppure un rifiuto. Il risultato è il **primo minimo esatto**:
-nei pareggi vince il primo elemento della galleria; l'accesso è consentito solo
-se quel vincitore soddisfa la propria soglia inclusiva. Un candidato più lontano
-non può sostituirlo perché ha una soglia più permissiva.
+Questo esperimento verifica il percorso completo: da una foto al risultato
+0/ID, includendo il client e il servizio di calcolo cifrato. Il client ricava
+il probe, cioè il vettore numerico che descrive il volto, e lo cifra. Il
+servizio restituisce un'identità cifrata oppure un rifiuto.
 
-Per installare le dipendenze, predisporre i modelli, generare le chiavi e usare
-fotocamera o immagini, seguire la [demo client/server](../../demo/dual_view/README.md).
-La galleria parte vuota e viene gestita dalla pagina server.
+Il risultato è il **primo minimo esatto**: nei pareggi vince il primo elemento
+della galleria; l'accesso è consentito solo se quel vincitore soddisfa la
+propria soglia inclusiva. Un candidato più lontano non può sostituirlo perché
+ha una soglia più permissiva. L'[esempio con due candidati](../../docs/come-funziona-il-confronto.md)
+spiega questa regola e i passaggi del confronto.
 
-## Metodo
+## Percorso verificato
 
-Il servizio usa TFHE-rs 1.7, ingresso Head/PFKS full51/low60 e una risposta
-di tre LWE che codificano tre cifre ID in base 15.
-La modalità `public_parallel` combina tagli delle cifre ID, normalizzatori
-condivisi, specializzazione delle costanti pubbliche e parallelismo dei
-confronti e della selezione. Il torneo conserva le barriere fra livelli.
-Il client rileva i landmark e calcola l'embedding ResNet100 sul volto allineato.
-G4 e Tetris sono esclusi dalla variante selezionata.
+Foto → descrizione numerica del volto → cifratura → **score, torneo e soglia
+nel servizio TFHE** → risposta cifrata → decifratura sul client.
 
-Il client fidato vede immagine, embedding e risultato decifrato. Il backend
-riceve il probe cifrato e la chiave di valutazione; in questo modello, galleria
-e soglie sono pubbliche. Le tre cifre decifrate ricostruiscono
-`low + 15 * middle + 225 * high`: zero significa rifiuto, gli altri codici
-identificano una delle al massimo 3374 voci ammesse.
-Il [contratto del core](runtime/core/README.md) descrive API, domini e semantica.
+Il client rileva i landmark, i punti di riferimento del volto, e calcola
+l'embedding ResNet100, il vettore numerico, sul volto allineato. Il client
+fidato vede immagine, embedding e risultato decifrato. Il backend, cioè il
+servizio di calcolo, riceve il probe cifrato e la chiave di valutazione;
+in questo modello, galleria e soglie sono pubbliche.
+
+Questa copia storica usa TFHE-rs 1.7 e il profilo di ingresso Head/PFKS
+full51/low60. La risposta contiene tre LWE, ciascuno con una cifra ID cifrata
+in base 15. Il client ricostruisce `low + 15 * middle + 225 * high`: zero
+significa rifiuto, gli altri codici identificano una delle al massimo 3374
+voci ammesse. Il [contratto del core](runtime/core/README.md) descrive API,
+domini e semantica di questa versione.
+
+## Prima e dopo
+
+La modalità `public_parallel` combina tagli delle cifre ID sicuramente nulle,
+normalizzatori condivisi, uso delle costanti pubbliche e parallelismo dei
+confronti e della selezione. Il torneo conserva le barriere fra livelli:
+un livello termina prima che inizi il successivo.
+
+Nel confronto del nucleo, il controllo `reference` aveva già normalizzatori
+condivisi, confronti paralleli, tagli ID e scorciatoie per soglie pubbliche.
+La composizione aggiunge i due interventi seguenti.
+
+| Passaggio | Controllo del nucleo | Composizione `public_parallel` |
+|---|---|---|
+| Cifre da trasferire nel torneo | Dopo i tagli già presenti, le cifre residue vengono selezionate senza propagare le costanti ramo per ramo. | Le cifre note per tutti i possibili vincitori del ramo vengono conservate direttamente. |
+| Lavoro dentro un selettore | Preparazioni e rotazioni dei gruppi in sequenza. | Le operazioni indipendenti possono usare gli stessi thread in parallelo. |
+
+Il [codice della composizione](runtime/core/src/composite.rs) fissa queste
+modalità. Le misure HTTP sotto hanno un altro riferimento, la versione
+precedente del servizio: confrontano le richieste complete e non isolano
+il contributo dei due interventi. G4 e Tetris sono esclusi dalla variante
+selezionata per gli esiti riportati nelle rispettive prove.
+
+Per installare le dipendenze, predisporre i modelli, generare le chiavi e
+usare fotocamera o immagini, seguire la [demo client/server](../../demo/dual_view/README.md).
+Nell'interfaccia client/server qui descritta, la galleria parte vuota e
+viene gestita dalla pagina server. Questa cartella conserva il servizio
+misurato nella campagna; per le successive modifiche adottate consultare
+il [runtime mantenuto](../../runtime/README.md).
 
 ## Risultati
 

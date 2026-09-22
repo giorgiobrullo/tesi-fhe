@@ -5,6 +5,12 @@ confronti di latenza e generatori di figure. La sintesi delle conclusioni
 è in [findings.md](../findings.md); le istruzioni comuni sono nella
 [guida alla riproducibilità](../docs/riproducibilita.md).
 
+Ci sono tre domande distinte: il modello riconosce la persona giusta?
+Il circuito cifrato restituisce lo stesso esito del calcolo in chiaro?
+Quanto tempo impiega? Le misure biometriche, i controlli di correttezza
+e i tempi rispondono rispettivamente a queste domande. Rigenerare una
+figura dai CSV ripresenta le misure salvate, senza ripetere il benchmark.
+
 ## Scegliere il percorso
 
 | Obiettivo | Punto di ingresso | Cosa misura |
@@ -20,13 +26,21 @@ confronti di latenza e generatori di figure. La sintesi delle conclusioni
 
 `verifica.py` confronta PCA, LBP, HOG e CNN sui file InsightFace `.bin` in
 `datasets/bench/`: LFW, CPLFW, CFP-FP, AgeDB-30 e CALFW. Salta i set assenti.
-Il protocollo è verifica **1:1**, con soglia selezionata sui fold di training
-e accuratezza sui fold di test. I dati sono esterni; le indicazioni per
+Il protocollo è verifica **1:1**: decidere se due foto mostrano la stessa
+persona. La soglia viene scelta sui gruppi di training (*fold*) e
+l'accuratezza misurata su quelli di test. I dati sono esterni; le indicazioni per
 procurarli e per i dataset 1:N sono nella [guida ai dataset](../docs/benchmark_dataset.md).
 
-`identificazione_1n.py` usa DigiFace e VGGFace2 con uno split open-set:
-galleria, probe noti e probe ignoti. Riporta Rank-1 e DIR alle soglie FPIR
-considerate. Il risultato riguarda lo split e la calibrazione usati nello
+`identificazione_1n.py` confronta una richiesta con tutta la galleria (**1:N**).
+Usa DigiFace e VGGFace2 con una suddivisione *open-set*: oltre agli iscritti,
+include persone assenti dalla galleria, che il sistema dovrebbe rifiutare.
+Un *probe* è la foto o il vettore usato come richiesta. Riporta Rank-1,
+cioè la quota di probe noti con la persona giusta prima in graduatoria,
+senza applicare la soglia, e DIR, cioè la quota di probe noti identificati
+e accettati correttamente. Le soglie sono calibrate sugli ignoti del campione
+per i punti FPIR considerati: il tasso di richieste di sconosciuti accettate
+per errore. Questa calibrazione non garantisce lo stesso tasso su nuovi dati.
+Il risultato riguarda lo split e la calibrazione usati nello
 script; non è una misura della demo live né una verifica crittografica.
 
 Dalla radice, dopo la [preparazione Python](../demo/dual_view/README.md#prerequisiti)

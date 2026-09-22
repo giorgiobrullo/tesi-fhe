@@ -1,5 +1,37 @@
 # 23 - Ottimizzazioni del valutatore CKKS
 
+Il valutatore riceve una query cifrata, il vettore numerico del volto, e la
+confronta con una galleria pubblica. Usa CKKS, uno schema di calcolo cifrato
+approssimato: l'uscita è un numero vicino a 0 oppure all'ID, che il client
+decifra e arrotonda. La regola cercata resta primo minimo, pareggio al primo
+ID e soglia inclusiva del vincitore; la rappresentazione e le verifiche
+numeriche sono diverse da quelle del circuito TFHE a tre cifre.
+
+## Passaggi modificati
+
+Query cifrata → **calcolo degli score** → disposizione delle differenze
+fra candidati e delle soglie → **confronti tramite polinomi** → combinazione
+degli indicatori → valore cifrato da arrotondare a 0/ID.
+
+I polinomi approssimano il confronto producendo valori vicini a zero o uno.
+Questa prova mantiene i polinomi e cambia il lavoro necessario per valutarli;
+interviene anche sulle rotazioni usate per costruire gli score. Una rotazione
+CKKS sposta le posizioni contenute in un ciphertext, cioè un oggetto cifrato.
+
+## Prima e dopo
+
+| Operazione | Prima: `baseline` | Dopo: `combined-powers` |
+|---|---|---|
+| Preparazione degli operandi dei polinomi | Le moltiplicazioni ripetono le riduzioni necessarie per usare l'input e x² ai livelli richiesti. | La riduzione dell'input e quella di x² si preparano una volta e si riusano nella stessa valutazione polinomiale. |
+| Rotazioni per il punteggio | Ogni rotazione prepara la decomposizione del ciphertext di ingresso. | Le rotazioni dello stesso input invariato condividono una preparazione. |
+| Costanti pubbliche | Una cache conserva le costanti già codificate. | La stessa cache: non è una nuova ottimizzazione di questo confronto. |
+
+La riduzione, o *rescaling*, adegua scala e livello del cifrato prima delle
+operazioni successive. La [valutazione condivisa](runtime/balanced_shared_powers.h)
+e il [valutatore completo](runtime/ckks_identify.cpp) mantengono coefficienti,
+ordine aritmetico, parametri, dati e regole di selezione del riferimento.
+Le preparazioni che dipendono dalla query restano nel tempo misurato.
+
 Il confronto diretto `combined-v3` misura una riduzione geometrica appaiata
 dell'**8,098463%**, con18 vittorie su18 coppie e tre famiglie di chiavi nuove.
 Le mediane sono3,211634 s per il riferimento e2,948412 s per la combinazione.
@@ -7,13 +39,11 @@ Il confronto misura il calcolo cifrato completo, con verifiche di output
 e uguaglianza dei ciphertext separate dai timer.
 
 `runtime/` contiene il valutatore C++, i tre header e CMake.
-La modalità `combined-powers` condivide le riduzioni dell'input e di x²
-nei polinomi e prepara una volta la decomposizione per le rotazioni del
-punteggio. La cache dei plaintext pubblici è identica nei due bracci.
-Quindi l'8,10% si aggiunge operativamente a una cache già presente nel
-riferimento, ma non va sommato o moltiplicato con percentuali di altre prove.
+L'8,10% si aggiunge operativamente a una cache già presente nel riferimento,
+ma non va sommato o moltiplicato con percentuali di altre prove.
 Il nome storico `combined` indica la versione precedente; usare
-`combined-powers` per questa combinazione.
+`combined-powers` per questa combinazione. Questa è la variante selezionata
+nel confronto CKKS qui documentato, non una sostituzione del runtime TFHE.
 
 ## Evidenza e limiti
 

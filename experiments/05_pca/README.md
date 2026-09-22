@@ -1,8 +1,29 @@
 # Gradino 05 - PCA (eigenfaces)
 
-Prototipo di riconoscimento con embedding PCA in chiaro sul client e calcolo
-cifrato della distanza in forma espansa sul server. L'esperimento misura
-accuratezza del riconoscimento e costo FHE sullo stesso protocollo.
+Questo gradino costruisce la catena **foto → vettore → punteggi cifrati →
+identità scelta dal client**. La PCA, analisi delle componenti principali,
+riassume i pixel del volto usando una base ricavata dalle immagini della
+galleria. Le direzioni di questa base sono dette *eigenfaces*; i coefficienti
+della proiezione formano l'**embedding**, cioè il vettore numerico del volto.
+La quantizzazione converte poi i coefficienti in interi per il circuito.
+
+Prima si confrontano i vettori in chiaro; il prototipo mantiene lo stesso
+criterio e sposta il calcolo dei punteggi sotto FHE, cioè sui dati cifrati.
+Il server riceve il vettore cifrato della foto da verificare, detto **probe**,
+e restituisce un punteggio cifrato per ogni voce della galleria in chiaro.
+Il client decifra questi valori e sceglie il minimo: la scelta dell'identità
+non è ancora parte del circuito cifrato.
+
+Il punteggio `‖b‖² − 2·a·b` non è da solo la distanza quadratica: manca
+`‖a‖²`. Per una stessa query questo termine è comune a tutti i candidati,
+quindi la sua omissione conserva il vicino più prossimo. L'esperimento
+confronta le predizioni con vettori originali, quantizzati e cifrati, per
+distinguere l'effetto della quantizzazione da quello del calcolo FHE.
+
+È un prototipo storico basato su Concrete. La
+[guida al confronto](../../docs/come-funziona-il-confronto.md) mostra il
+percorso successivo, in cui anche minimo e rifiuto restano cifrati; il
+[runtime mantenuto](../../runtime/README.md) usa un altro contratto di risposta.
 
 ## Architettura
 

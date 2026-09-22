@@ -4,21 +4,32 @@ Gli esperimenti esplorano il riconoscimento facciale con query cifrata:
 embedding, calcolo dei punteggi, selezione del minimo e controllo della
 soglia. Le cartelle sono raggruppate per domanda di ricerca.
 
-Per la baseline corrente pack4 partire dal [runtime](../runtime/README.md),
-da [compilazione e avvio](../BUILD_AND_RUN.md) e dal
-[rapporto di validazione](../docs/validazione/PACK4_VALIDATION.md).
-La [prima correzione B](../docs/validazione/SELECTOR_REPAIR_VALIDATION.md) conserva un rapporto
-storico separato. Pack4 mantiene refresh e finestra ampia, raggruppando fino
-a quattro cifre; il suo confronto appaiato e le sue prove sono autonomi.
-La [demo 22](22_demo_composita/README.md) conserva la versione misurata
-nelle campagne storiche; i suoi tempi e conteggi non qualificano il selettore nuovo.
-Il [percorso rimisurato](../docs/percorso-sperimentale-20260920.md) contiene
-i nuovi grafici della progressione e del confronto CKKS/TFHE.
-Per seguirne lo sviluppo, leggere i prototipi e i confronti elencati sotto.
-Ogni risultato va interpretato con i parametri e i casi del proprio test.
+Per una prima lettura, partire dall'[esempio con due candidati](../docs/come-funziona-il-confronto.md),
+poi dal [percorso sperimentale](../docs/percorso-sperimentale-20260920.md):
+il primo spiega il calcolo, il secondo collega le scelte ai risultati.
+Le cartelle sotto permettono di approfondire ogni passaggio.
+
+| Parte del problema | Dove si interviene | Esperimenti |
+|---|---|---|
+| Rappresentare il volto | Foto → vettore numerico → interi da cifrare | 05, 07, 08 |
+| Decidere l'identità | Punteggi → minimo → soglia → risposta | 06, 13–18 |
+| Ridurre il costo del circuito TFHE | Estrazione delle cifre, confronto e selezione dei dati | 17, 19–21 |
+| Integrare il servizio | Foto, chiavi, richieste e risultato nell'applicazione | 22 |
+| Valutare altre costruzioni | Confronti CKKS, dati con maschera comune, Tetris e pianificazione del torneo | 15–16, 23–26 |
+
+Per eseguire la versione mantenuta seguire [compilazione e avvio](../BUILD_AND_RUN.md)
+e il [runtime](../runtime/README.md). Il packing a quattro cifre raggruppa
+i dati del vincitore; il refresh rigenera il controllo del selettore.
+Il [rapporto pack4](../docs/validazione/PACK4_VALIDATION.md) e la
+[prima correzione B](../docs/validazione/SELECTOR_REPAIR_VALIDATION.md)
+documentano due passaggi distinti, con verifiche e misure proprie.
+
+La [demo 22](22_demo_composita/README.md) conserva la versione delle campagne
+storiche: i suoi tempi e conteggi non qualificano il selettore nuovo.
+Ogni risultato va letto con il proprio programma, parametri e casi.
 La [sintesi dei risultati](../findings.md) collega le conclusioni alle schede
-complete; la [guida pratica](../docs/riproducibilita.md) raccoglie i percorsi
-di esecuzione e verifica.
+complete; la [guida pratica](../docs/riproducibilita.md) raccoglie esecuzione
+e verifica. I grafici rimisurati sono nel percorso sperimentale indicato sopra.
 
 ## Percorso storico conservato
 
@@ -57,6 +68,9 @@ Il [core del pacchetto 22](22_demo_composita/runtime/core/src/lib.rs)
 contiene pack4, con verifiche proprie.
 I sorgenti ripetuti nelle cartelle storiche sono snapshot dei confronti:
 sostituirli tutti con l'ultima libreria cambierebbe il programma misurato.
+I README annidati in `source/` e nei runtime storici descrivono API,
+formati e comandi di quelle copie: leggerli dopo il README dell'esperimento.
+I loro nomi e conteggi restano quelli della versione conservata.
 Le utility [Python/Concrete](../core/README.md) restano al loro posto.
 
 I README descrivono metodo, risultati, requisiti e comandi disponibili.

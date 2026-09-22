@@ -1,5 +1,11 @@
 # Rapporti sperimentali
 
+Questi rapporti controllano il circuito che sceglie un'identità dai punteggi
+cifrati. Per capire il calcolo, partire dall'[esempio con due candidati](../come-funziona-il-confronto.md).
+Per leggere una misura, controllare quale versione viene confrontata, quali
+casi sono inclusi e dove inizia e finisce il timer. I test verificano i casi
+eseguiti; la probabilità formale di errore richiede un'analisi distinta.
+
 Il runtime corrente è la [baseline anchor/pack4](PACK4_VALIDATION.md), con
 selettore corretto e gruppi fino a quattro cifre. La prima correzione B usava
 gruppi fino a tre; il suo rapporto e quello della baseline precedente
@@ -19,3 +25,5 @@ il rapporto pack4.
 
 I rapporti conservano le versioni e le condizioni delle singole prove.
 Il [percorso sperimentale](../percorso-sperimentale-20260920.md) le mette in relazione.
+Le colonne «Dati» portano ai risultati numerici e alle ricevute di controllo;
+i rapporti «Metodo e risultati» spiegano come interpretarli prima del ricalcolo.

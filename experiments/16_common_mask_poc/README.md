@@ -1,5 +1,27 @@
 # Esperimento 16 - common-mask TFHE: primitive e piano del prototipo
 
+La domanda qui riguarda il costo di un'operazione elementare del calcolo
+cifrato: **si possono elaborare più valori condividendo parte della loro
+rappresentazione?** Un ciphertext LWE ordinario rappresenta un valore
+mediante una *maschera*, un vettore di coefficienti, e un *body*, un'altra
+componente cifrata. Nel formato **common-mask** più body condividono una
+maschera. Un body non è un valore lasciato in chiaro.
+
+Il riferimento elabora ciphertext LWE ordinari separati, anche in parallelo.
+La variante li raggruppa e misura operazioni sul formato comune. Il
+**packing** converte gli ingressi nel gruppo; il **key switch** cambia la
+chiave a cui sono riferiti senza decifrarli; il **PBS** applica una funzione
+tabulata ai valori cifrati. La tabella, detta **LUT**, qui è l'identità:
+l'uscita attesa rappresenta lo stesso valore dell'ingresso.
+
+L'ingresso è quindi un insieme di valori sintetici cifrati, non una foto;
+l'uscita delle primitive è ancora cifrata, non un'identità riconosciuta.
+Si vuole capire se valga la pena costruire un **POC**, cioè un prototipo
+che dimostri la fattibilità del passaggio successivo. I tempi da soli non
+dimostrano che le uscite siano corrette: il programma non le decifra.
+Questo packing common-mask è distinto dal raggruppamento delle cifre nel
+selettore della [guida al confronto](../../docs/come-funziona-il-confronto.md).
+
 Questa directory conserva il microbenchmark usato il 2 settembre 2026 per valutare le
 primitive common-mask LWE sperimentali di `tfhe-rs 1.7.0`. La dipendenza è bloccata
 esattamente a `=1.7.0`; i due `Cargo.lock` conservano anche la risoluzione transitiva usata.
@@ -8,6 +30,9 @@ Il risultato riguarda queste condizioni: su questa macchina, con precisione p=2 
 body per maschera, uno stage di 128 PBS logiche ha margine sufficiente per giustificare un
 POC. Non è ancora un argmin common-mask, non misura la pipeline completa e non dimostra
 la correttezza dell'identificazione.
+
+Questa è una linea sperimentale storica; per la configurazione effettivamente
+mantenuta partire dal [README del runtime](../../runtime/README.md).
 
 ## Contenuto
 

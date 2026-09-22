@@ -6,11 +6,32 @@ fra scienza, cinema ed esplorazione spaziale, e può essere modificata nella
 propria sessione. Restano otto posti per aggiungere persone.
 Le verifiche usano il runtime attuale corretto.
 
+## Come usarla
+
+1. Aprire la pagina e attendere che il servizio sia pronto.
+2. Scegliere un ritratto e «Usa per una prova» per seguire una verifica già
+   pronta, oppure iscrivere un volto nella propria galleria e inviare una foto
+   per il confronto.
+3. Leggere l'esito e aprire la richiesta nel registro per vedere le fasi e i tempi.
+
+L'iscrizione prepara il **template**, cioè il vettore numerico che rappresenta
+un volto nella galleria. Una verifica prepara e cifra il vettore della foto
+da provare; il motore FHE lo confronta con gli iscritti e produce un risultato
+cifrato, che il componente client decifra. La
+[guida illustrata](../../docs/come-funziona-il-confronto.md) spiega con un
+esempio la scelta del vincitore e il significato della soglia.
+Nella versione ospitata anche il client gira sul server: i dettagli sui dati
+visibili all'operatore sono nella sezione [Sessioni e verifiche](#sessioni-e-verifiche).
+
 ## Avvio locale
 
 Servono uv, Python 3.12, Rust e una catena C/C++ per le dipendenze native.
-Su macOS occorrono i Command Line Tools. Dalla radice del repository, creare
-un ambiente dedicato in una directory nuova:
+Su macOS occorrono i Command Line Tools. Eseguire i passaggi dalla radice
+del repository, nell'ordine seguente.
+
+### 1. Preparare l'ambiente Python
+
+Creare un ambiente dedicato in una directory nuova:
 
 ```sh
 uv venv --python 3.12 .local/venv-web
@@ -22,6 +43,8 @@ non ricrearla: eseguire soltanto l'installazione dei requisiti se serve un
 aggiornamento. Questa procedura usa le dipendenze della sola demo web;
 non installa Concrete o TenSEAL e può essere usata anche su Linux ARM.
 Il bootstrap completo `uv sync` della demo storica non copre quella piattaforma.
+
+### 2. Preparare i modelli per le foto
 
 Preparare i tre modelli esterni nella cache `~/.insightface/models/` usando
 lo stesso interprete che avvierà la demo:
@@ -45,6 +68,8 @@ Se una cache `antelopev2` preesistente contiene altri file ONNX ma manca
 e la preparazione può fallire. Completare il pacchetto `antelopev2` nella
 cache con il modello di riconoscimento richiesto, poi ripetere la preparazione.
 
+### 3. Compilare il motore FHE
+
 Compilare il [runtime attuale](../../BUILD_AND_RUN.md) con la versione
 del compilatore indicata per il progetto:
 
@@ -55,6 +80,8 @@ rustup run 1.98.0 cargo build --release --locked \
   --manifest-path runtime/Cargo.toml --bin varco_demo_composite_v9 \
   --target-dir target-selector-pack4
 ```
+
+### 4. Preparare le chiavi e avviare la pagina
 
 Generare le chiavi in una directory nuova. Se una coppia compatibile è già
 pronta, saltare `keygen` e indicare quella directory al launcher:
@@ -73,6 +100,8 @@ arresta anche il motore avviato dalla demo. Non sostituisce servizi già
 presenti. Le porte si possono scegliere con `--port` e `--native-port`.
 
 ## Sessioni e verifiche
+
+### Capacità, coda e durata delle sessioni
 
 Il server legge al massimo otto corpi JSON contemporaneamente, condivisi fra
 iscrizioni, verifiche e modifiche. Gli invii oltre questo limite ricevono 429;
@@ -100,19 +129,25 @@ attiva ai fini di questo recupero. Se non ci sono posti recuperabili, un nuovo
 ingresso deve attendere. I ritratti iniziali condividono i dati immutabili;
 le modifiche di un visitatore restano nella sua sessione.
 
-Un solo lavoro alla volta esegue embedding e verifica, con al massimo otto
-lavori in attesa. Ogni richiesta conserva l'ordine
-degli iscritti e le soglie presenti al momento dell'invio. La pagina ammette
+### Galleria e decisione
+
+Un solo lavoro alla volta esegue embedding (l'estrazione del vettore dalla
+foto) e verifica, con al massimo otto lavori in attesa. Ogni richiesta conserva
+l'ordine degli iscritti e le soglie presenti al momento dell'invio. La pagina ammette
 fino a 128 iscritti. La soglia iniziale 273 è quella della demo e resta
 modificabile: abbassarla rende il controllo più severo, alzarla più tollerante.
 Non è una percentuale o una garanzia di accuratezza biometrica. La demo sceglie
 il primo volto con punteggio minimo e applica la soglia di quella persona;
 se la supera, rifiuta l'accesso senza passare al secondo classificato.
 
+### Dati visibili e isolamento
+
 Questa versione riunisce sullo stesso host il client fidato e il servizio FHE.
 L'operatore può quindi accedere alle foto, ai template e agli esiti. La
 separazione fra visitatori è applicativa: il motore usa una coppia interna
 di chiavi. Non viene promessa segretezza verso l'operatore.
+
+### Leggere il registro e i tempi
 
 Ricerca e «Mostra altre» cambiano soltanto le schede visibili: ogni verifica
 usa l'intera galleria della sessione. Il registro riporta il numero di persone
@@ -121,7 +156,7 @@ Aprendo una richiesta, la cascata colloca le fasi sui loro intervalli reali,
 con un asse comune e le sottofasi all'interno del motore. Le barre
 aperte avanzano durante il lavoro; i dettagli interni appaiono alla risposta
 del motore. La POST restituisce subito 202: la cascata segue il lavoro sul
-server, non la durata della connessione HTTP. Per il runtime attuale lo span
+server, non la durata della connessione HTTP. Per il runtime attuale l'intervallo
 del servizio FHE comprende il trasporto locale; il solo calcolo resta indicato
 separatamente. Gli intervalli usano lo stesso orologio monotono nei processi.
 Il runtime usa il suo client a comandi per cifratura e decifratura. Il totale
@@ -130,25 +165,33 @@ sostituiscono le misure pubblicate, le cui gallerie e soglie sono documentate
 nelle rispettive campagne.
 
 La pagina riceve stato, galleria e risultati dal server mediante una
-connessione SSE. L'esito viene inviato appena disponibile, senza attendere
+connessione SSE (*Server-Sent Events*, aggiornamenti inviati dal server).
+L'esito viene inviato appena disponibile, senza attendere
 un controllo periodico del browser. Durante il lavoro il server aggiorna
 anche gli intervalli aperti della cascata. Se la connessione si interrompe,
 la pagina si ricollega e riceve lo stato corrente della propria sessione.
+
+### Motore e confronto sperimentale
 
 «Attuale» indica la demo composita corretta con anchor e pack4. Il finale
 senza anchor del grafico sperimentale è una variante distinta. Le uscite
 native sono controllate rispetto alla stessa regola in chiaro, senza
 sostituire un risultato cifrato errato con quello atteso. Questo controllo
 di servizio non costituisce una prova formale del circuito.
+Il [worker A28](a28/README.md) conserva invece il motore storico usato nel
+confronto, con dipendenze e chiavi proprie.
 
 ## Avvio dietro HTTPS
 
 Aggiungere `--public-origin https://demo.example.org` al comando di avvio,
 oppure impostare `VARCO_WEB_PUBLIC_ORIGIN`. Usare l'indirizzo effettivo della
-demo, senza sottopercorsi. Il servizio accetta soltanto l'host configurato e
-le API richiedono la propria origine. L'apertura della pagina da un link su
-un altro sito è consentita; questo non autorizza richieste API da quell'altro
-sito. Il cookie di sessione richiede HTTPS.
+demo, senza sottopercorsi. Il servizio accetta soltanto gli host configurati e
+le API richiedono la propria origine. Per aggiungere altri indirizzi HTTPS,
+seguire la [configurazione del servizio](deploy/README.md), che descrive
+`VARCO_WEB_ADDITIONAL_ORIGINS`. Ogni richiesta che modifica dati deve avere
+un `Origin` corrispondente al proprio `Host`, anche quando sono ammessi più host.
+L'apertura della pagina da un link su un altro sito è consentita; questo non
+autorizza richieste API da quell'altro sito. Il cookie di sessione richiede HTTPS.
 
 Il proxy deve conservare gli header `Host` e `Origin` e inoltrare alla porta
 web su `127.0.0.1`. Il launcher rimane su loopback, con un solo worker;

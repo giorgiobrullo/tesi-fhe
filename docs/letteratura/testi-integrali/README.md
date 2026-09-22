@@ -2,6 +2,13 @@
 
 [Indice della rassegna](../../../letteratura.md) · [Metodo](../metodo-ricerca.md) · [Bibliografia](../aggiornamento-20260919.bib)
 
+Queste schede collegano gli articoli alle scelte del progetto: come
+estrarre e confrontare numeri cifrati, quale risultato restituire al client
+e quali costi includere nel confronto. Per orientarsi nelle operazioni del
+nostro circuito c'è l'[esempio con due candidati](../../come-funziona-il-confronto.md).
+La tabella seguente divide le letture per domanda; ogni scheda riporta
+ipotesi, risultati e limiti di applicabilità al nostro caso.
+
 **19 settembre 2026.** Questo passaggio approfondisce 23 articoli, ora tutti
 disponibili in PDF, incluse le edizioni pubblicate HEArgmax con appendice
 e Akbari. Sono state lette le sezioni pertinenti ad algoritmi, ipotesi,
@@ -19,10 +26,10 @@ la lettura tecnica rimane sul preproceedings. Il numero di articoli resta 23.
 
 | Scheda | Articoli | Accesso e profondità |
 |---|---:|---|
-| [Primitive TFHE](tfhe.md) | 8 | PDF Head, Tetris, mean compensation, Sharing the Mask, Chen, RevHomTrace, FDFB e RevoLUT; costruzioni, rumore e misure |
-| [CKKS e confronti](ckks.md) | 7 | Cinque PDF sul CKKS discreto, Lee minimax e Mazzone USENIX con appendice; rappresentazioni, margini e costi |
-| [Privacy e indicizzazione](privacy-e-indicizzazione.md) | 4 | PDF Kluczniak, Ducas corretto, Rahimi e Drozdowski; modelli, ipotesi e risultati |
-| [Sistemi biometrici](sistemi.md) | 4 | PDF HEFT, SCiFI, Akbari editoriale e HEArgmax completo di appendice |
+| [Primitive TFHE](tfhe.md): come eseguire le operazioni cifrate | 8 | PDF Head, Tetris, mean compensation, Sharing the Mask, Chen, RevHomTrace, FDFB e RevoLUT; costruzioni, rumore e misure |
+| [CKKS e confronti](ckks.md): come ottenere decisioni da calcoli approssimati | 7 | Cinque PDF sul CKKS discreto, Lee minimax e Mazzone USENIX con appendice; rappresentazioni, margini e costi |
+| [Privacy e indicizzazione](privacy-e-indicizzazione.md): cosa si rivela e come si restringe la ricerca | 4 | PDF Kluczniak, Ducas corretto, Rahimi e Drozdowski; modelli, ipotesi e risultati |
+| [Sistemi biometrici](sistemi.md): cosa fanno e misurano i sistemi completi | 4 | PDF HEFT, SCiFI, Akbari editoriale e HEArgmax completo di appendice |
 
 Versioni multiple e supplementi non sono conteggiati come articoli diversi.
 Le schede indicano pagine e fonti; gli hash e i tentativi d'accesso sono

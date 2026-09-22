@@ -1,6 +1,23 @@
 # Worker A28 per il confronto della demo
 
-Adattatore persistente del core A28 autentico, separato dal runtime corrente.
+Questo componente permette alla [demo web](../README.md) di usare il motore
+storico A28 per il confronto con quello attuale. È un **worker persistente**:
+un processo che riceve richieste, mantiene le chiavi in memoria e risponde
+senza essere riavviato per ogni verifica. Non ha una propria pagina web.
+La pagina pubblica propone soltanto il motore corrente; A28 rimane un
+componente del confronto sperimentale.
+
+Riceve il vettore della foto da provare, i vettori della galleria e le loro
+soglie; restituisce l'indice accettato oppure `0`, insieme ai tempi. Qui i
+vettori sono già preparati: l'estrazione dalla foto avviene nella demo web.
+La [guida illustrata](../../../docs/come-funziona-il-confronto.md) spiega la
+regola comune ai due motori: primo punteggio minimo, poi soglia del vincitore.
+Le ottimizzazioni del motore attuale descritte nella guida non vanno
+attribuite ad A28.
+
+## Quale versione viene eseguita
+
+L'adattatore mantiene il core A28 autentico, separato dal runtime corrente.
 `vendor/private_argmin.rs` è una copia byte-identica della versione rimisurata
 nella progressione del 20 settembre 2026; il suo SHA-256 è
 `7ad812724bf43742d9d03ec9db204e93d6a2c0db3e6ea9dbc650054633fa3596`.
@@ -8,14 +25,21 @@ La [provenienza](vendor/PROVENANCE.json) vincola la copia. Il sorgente oggi
 presente nell’esperimento 14 è A38 e non viene usato da questo adattatore.
 
 Il core usa TFHE-rs 0.11.3, parametri classici M2C2 TUniform e il profilo
-storico opt3/CGU16 senza LTO. Il file Cargo.lock proviene dal worker della
-campagna rimisurata: cambiano il nome del package e il riferimento diretto a
+storico opt3/CGU16 senza LTO: livello di ottimizzazione 3, 16 unità di
+compilazione e nessuna ottimizzazione in fase di collegamento. CGU16 non
+indica il numero di thread usati durante una verifica.
+Il file Cargo.lock proviene dal worker della campagna rimisurata:
+cambiano il nome del package e il riferimento diretto a
 `libc`, già presente nello stesso lockfile, per misurare gli intervalli della
-demo. Versioni delle dipendenze e core sono invariati. Le misure storiche restano associate
-alle rispettive condizioni; questo adattatore richiede la propria verifica
+demo. Versioni delle dipendenze e core sono invariati. Le misure storiche
+restano associate alle rispettive condizioni; questo adattatore richiede la propria verifica
 nativa prima dell’uso.
 
 ## Compilazione e avvio
+
+Compilare e avviare il worker, attendere la risposta di stato descritta sotto,
+poi inviare le verifiche secondo il protocollo. Per leggere correttamente
+i risultati, consultare il [significato delle misure](#significato-delle-misure).
 
 Dalla radice del repository, con Rust/Cargo 1.98.0:
 
@@ -34,8 +58,9 @@ L’opzione thread ammette 1..64, con default 16. Le misure storiche usavano 16;
 cambiare questo valore cambia le condizioni del confronto.
 
 Il processo genera le chiavi soltanto se la directory indicata è nuova o
-vuota. Carica una capsula completa negli avvii successivi. La directory deve
-essere assoluta, reale e privata (0700); `client.key`, `server.key` e
+vuota. Negli avvii successivi carica la **capsula**, cioè la directory che
+contiene la coppia di chiavi e il suo manifesto. La capsula deve essere completa.
+La directory deve essere assoluta, reale e privata (0700); `client.key`, `server.key` e
 `manifest.json` devono essere file regolari 0600. Il manifesto vincola core,
 parametri, codifiche e hash della coppia. Capsule parziali, alterate o di un
 altro motore vengono rifiutate, senza sovrascriverle o tentare migrazioni.
@@ -64,7 +89,8 @@ usare un timeout di avvio distinto dal timeout delle query.
 
 Una valutazione contiene esattamente `id`, `query`, `gallery` e `thresholds`.
 `id` è una stringa di 1..128 byte senza caratteri di controllo. Gli altri
-campi sono un vettore di interi, una lista di vettori e una lista di soglie.
+campi sono, nell'ordine, il vettore di interi da confrontare, la lista dei
+vettori degli iscritti (**template**) e la lista delle loro soglie.
 Il limite è 1 MiB per riga, terminatore incluso; una riga più grande viene
 scartata fino al terminatore, senza assorbire la richiesta successiva.
 

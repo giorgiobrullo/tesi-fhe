@@ -1,10 +1,32 @@
 # 18 - Scaling, tre cifre ID e soglie miste
 
-Questo esperimento estende Head/PFKS a taglie diverse, tre cifre ID e soglie
-associate ai singoli template. Il contratto sceglie prima il primo minimo,
+Il riferimento precedente applicava Head/PFKS a una taglia fissa di
+galleria e a una soglia comune con un particolare allineamento del dominio
+dei punteggi. **Head** estrae le cifre dello score; **PFKS** prepara i dati
+cifrati usati dal selettore per portare avanti il vincitore. Questo
+esperimento estende le condizioni in cui si può usare quella pipeline,
+senza cambiare il significato di «vince il punteggio minimo».
+
+Le modifiche sono distinte: variare **N**, il numero di voci della galleria;
+gestire soglie comuni che non rispettano il precedente allineamento;
+aggiungere una cifra all'ID; infine associare soglie diverse alle singole
+voci. L'input rimane un vettore query cifrato e una galleria di template
+pubblici, cioè i vettori registrati. L'output è il solo esito cifrato 0/ID.
+La [guida al confronto](../../docs/come-funziona-il-confronto.md) illustra
+questi passaggi con due candidati.
+
+Il contratto sceglie prima il primo minimo,
 poi verifica soltanto la sua soglia inclusiva: se non passa restituisce 0.
 Un candidato più lontano o un pari successivo non lo sostituisce perché
 ha una soglia più permissiva.
+
+Nel caso a soglia comune basta conservare score e ID durante il torneo.
+Con soglie diverse si deve conservare anche la soglia associata al candidato
+scelto. Per esempio, se il più vicino fallisce la propria soglia, l'esito
+resta zero anche quando un altro candidato passerebbe la sua.
+La terza cifra amplia invece il numero di ID rappresentabili: non aumenta
+la precisione dello score e non prova, da sola, la correttezza di alberi
+più profondi.
 
 ## Varianti
 
@@ -19,6 +41,14 @@ Il [controllo A126 a tre cifre](source/fast-core-wide-id-20260906/older-control/
 è un adattamento esplicito, distinto dall'A126 invariato fino a N128.
 Le varianti M usano input nativi full51/low60; A126 e R3 usano full52/low60.
 Le risposte a tre cifre si ricostruiscono come `low + 15*middle + 225*high`.
+
+Per leggere le estensioni nell'ordine, seguire le quattro righe della
+tabella. I README annidati descrivono API, formati e conteggi delle copie
+storiche TFHE-rs 1.7.0 e sono conservati con i relativi sorgenti. Non sono
+istruzioni per il servizio attuale, descritto nel
+[README del runtime](../../runtime/README.md). Nei risultati, **M** indica
+la linea Head/PFKS, **M3** la variante con tre cifre ID; **A126** è il
+riferimento precedente e **A126_3** il suo adattamento esplicito a tre cifre.
 
 ## Risultati e limiti
 

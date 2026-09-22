@@ -1,10 +1,42 @@
 # 26 - Torneo senza barriera globale
 
-L'ipotesi è avviare un nodo appena sono pronti i suoi figli, mantenendo
-l'albero adiacente e la stessa aritmetica cifrata. Due campagne confrontano
-questa politica e due varianti con il core selezionato P e un controllo
-con barriera B. Entrambe hanno esito negativo secondo la regola di selezione
-fissata prima delle misure.
+Il torneo confronta coppie di candidati, poi confronta i vincitori fino a
+ottenerne uno solo. Nel core selezionato, ogni livello aspetta che siano
+finiti tutti i confronti del livello precedente. Questo esperimento prova
+ad avviare un confronto appena sono pronti i suoi due ingressi, senza
+aspettare i rami da cui non dipende.
+
+## Passaggio modificato
+
+Score cifrati → estrazione delle cifre → **ordine di esecuzione dei nodi
+del torneo** → soglia del vincitore → esito cifrato 0/ID.
+
+Un *nodo* confronta due candidati e seleziona i dati del vincitore; i suoi
+*figli* sono i due nodi che gli forniscono gli ingressi. Un DAG è un grafo
+di dipendenze senza cicli. Qui il grafo resta l'albero adiacente del torneo:
+cambia quando i nodi partono, non quali candidati si confrontano né
+l'aritmetica cifrata. Il risultato atteso resta quello della
+[regola primo minimo e soglia](../../docs/come-funziona-il-confronto.md).
+
+## Prima e dopo
+
+| Passaggio | Prima: barriera fra livelli | Proposta senza barriera globale |
+|---|---|---|
+| Avvio di un nodo | Attende il completamento dell'intero livello precedente. | Attende soltanto i propri due figli. |
+| Rami più veloci | Aspettano anche i rami indipendenti ancora in corso. | Possono proseguire al confronto successivo. |
+| Operazioni sui dati | Confronto, selezione e precedenza del primo candidato nei pareggi. | Stesse operazioni e stesso albero; cambia la politica che distribuisce il lavoro ai thread. |
+
+Per esempio, i vincitori delle coppie (1,2) e (3,4) potrebbero confrontarsi
+mentre (5,6) e (7,8) stanno ancora lavorando. Questo anticipo non garantisce
+che l'intera richiesta termini prima: è proprio ciò che misurano le prove.
+
+Le sigle delle tabelle distinguono il core selezionato **P**, un secondo
+controllo ancora dotato di barriera **B** e la coda dei nodi pronti **D**.
+La diagnosi aggiunge **I**, che prosegue direttamente nel padre pronto,
+e **W**, che limita il parallelismo interno mentre resta lavoro nei livelli
+più larghi. Due campagne confrontano queste politiche: entrambe hanno esito
+negativo secondo la regola di selezione fissata prima delle misure.
+La versione con barriera viene quindi mantenuta.
 
 ## Confronti
 

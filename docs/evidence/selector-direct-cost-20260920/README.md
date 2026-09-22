@@ -3,6 +3,16 @@
 Confronto del 20 settembre 2026 fra originale pre-fix e baseline corretta pack4.
 [Rapporto e limiti](../../selector-direct-cost-20260920.md).
 
+La domanda è quanto costa la versione corretta rispetto all'originale,
+misurando direttamente entrambe. Una coppia contiene le due esecuzioni sullo
+stesso caso e nella stessa famiglia di chiavi; il rapporto dei tempi misura
+il costo relativo. Il packing raggruppa fino a quattro cifre del vincitore,
+come nell'[esempio del selettore](../../come-funziona-il-confronto.md).
+
+Per leggere il risultato partire dal rapporto, poi da `TIMING_RESULT.json`.
+Per ricalcolarlo usare il comando sotto; gli altri file documentano il
+calendario e i controlli sui dati.
+
 - [TIMING_RESULT.json](TIMING_RESULT.json): tutte le 72 coppie misurate, 60 primarie
   e 12 secondarie, statistiche e indicatori aggregati del carico per query.
 - [PROTOCOL.json](PROTOCOL.json): calendario, vincoli e impronte delle tre famiglie riusate.
