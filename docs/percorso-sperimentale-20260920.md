@@ -6,6 +6,9 @@ calcola l'embedding, lo quantizza e lo cifra. La ricerca studia sia quanto
 riconoscimento si perde con questa trasformazione, sia quanto costa cercare
 un'identità sul dato cifrato.
 
+I [primi programmi 00–04](../experiments/README-00-04.md) isolano operazioni,
+formula dello score e scambio fra client e server, prima di usare foto reali.
+
 ## 1. Ottenere un vettore che riconosca davvero le persone
 
 Il confronto non parte dalla foto così com'è. Il client la trasforma in un
@@ -22,6 +25,10 @@ calcolare esattamente sui numeri cifrati e comunque scegliere la persona
 sbagliata se il vettore non distingue bene le foto. Le [schede storiche](risultati/storico.md)
 documentano dataset e limiti di questi passaggi.
 
+Era prevista anche una prova su gallerie MegaFace molto più grandi, ma
+[lo schema 11](../experiments/11_megaface/README.md) è rimasto senza loader
+dei dati: non esiste una curva MegaFace misurata in questo percorso.
+
 ## 2. Spostare la decisione sul dato cifrato
 
 Nei primi prototipi il server calcolava **uno score cifrato per ogni voce**;
@@ -34,26 +41,27 @@ poteva conoscere l'indice. La successiva regola **0/ID** restituisce solo
 zero oppure l'ID accettato.
 
 Confrontare due score cifrati costa più che calcolarli, e il tempo cresceva
-molto con i bit degli score. Il [torneo](../experiments/10_argmin_struttura/RISULTATI.md)
+molto con i bit degli score. La
+[prova GPU](../experiments/09_gpu/README.md) non ha risolto la latenza
+del circuito e del carico testati. Il [torneo](../experiments/10_argmin_struttura/README.md)
 confronta le coppie in parallelo: fra quattro candidati confronta (1,2) e
 (3,4), poi i due vincitori. Nelle prove Concrete era più veloce della
 catena sequenziale, ma il tempo restava nell'ordine delle decine di secondi.
-La [prova GPU](../experiments/09_gpu/RISULTATI.md) non ha risolto la latenza
-del circuito e del carico testati.
 
 ## 3. Capire quale operazione rallenta tutto
 
-Un [primo confronto Concrete/TFHE-rs](../experiments/13_tfhe_rs_headtohead/RISULTATI.md)
+Un [primo confronto Concrete/TFHE-rs](../experiments/13_tfhe_rs_headtohead/README.md)
 mostrava un argmin TFHE-rs rapido, ma non misurava la stessa pipeline nelle
 stesse condizioni: i rapporti intorno a 100× restano storici, non la velocità
 guadagnata dall'applicazione completa. Nel medesimo prototipo TFHE-rs,
 calcolare *tutti gli score* con l'API intera ad alto livello costava molto
 più dell'argmin. Usando le primitive a basso livello, la parte lineare del
 punteggio poteva evitare i bootstrapping che propagavano i riporti.
-Questa scelta è stata sviluppata nei [circuiti successivi](../experiments/14_pipeline_tfhe_rs/RISULTATI.md).
+Questa scelta è stata sviluppata nei [circuiti successivi](../experiments/14_pipeline_tfhe_rs/README.md).
 
-Abbiamo esaminato anche [CKKS](../experiments/15_ckks_confronto/RISULTATI.md),
-che esegue calcoli approssimati, e il [common-mask](../experiments/16_common_mask_poc/README.md),
+Il [primo esperimento CKKS](../experiments/15_ckks_confronto/README.md)
+calcolava score e soglie per candidato, non ancora l'uscita 0/ID completa.
+Abbiamo esaminato anche il [common-mask](../experiments/16_common_mask_poc/README.md),
 che prova a condividere lavoro fra cifrati. Sono percorsi con uscite,
 parametri o prove proprie; il microbenchmark common-mask non è una demo di
 identificazione completa.

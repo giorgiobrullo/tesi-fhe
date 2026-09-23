@@ -41,17 +41,17 @@ questo passaggio. Qui si può aprire la prova che risponde alla singola domanda.
 
 | Passo | Cosa si è fatto | Perché si è proseguito |
 |---|---|---|
-| [00](00_hello_concrete.py)–[04](04_client_server.py) | Prime operazioni cifrate, calcolo dei punteggi e scambio client/server con Concrete. | Serviva distinguere la foto in chiaro sul client dai calcoli sulla richiesta cifrata. |
+| [00–04](README-00-04.md) | Dalle prime operazioni cifrate alla formula economica dello score e allo scambio client/server. Sono programmi didattici senza foto. | Si passa ai vettori di volti veri nel prototipo 05. |
 | [05](05_pca/README.md) | Un volto diventa un vettore PCA; il server calcola uno score cifrato per iscritto. | Il client vede tutti gli score; inoltre la PCA riconosce male i volti reali provati. |
 | [06](06_argmin_soglia/README.md) | Il server calcola anche minimo e rifiuto sotto FHE. | L'uscita è ancora indice più sì/no; i confronti cifrati con Concrete costano molto. |
 | [07](07_descrittori_locali/README.md) | Vettori LBP/HOG al posto della PCA, senza cambiare il calcolo base degli score. | Migliorano LFW, ma i benchmark più difficili chiedono un modello di volto migliore. |
 | [08](08_cnn/README.md) | Una rete già addestrata produce il vettore sul client. | La qualità cresce; resta da rendere veloce la decisione cifrata sul server. |
-| [09](09_gpu) | Prova GPU del circuito Concrete a riduzione sequenziale. | Sulla T4 e con questo carico la latenza resta elevata: si prova a cambiare struttura. |
-| [10](10_argmin_struttura) | Torneo di confronti invece della catena sequenziale. | Le prove migliorano, ma restano nell'ordine delle decine di secondi. |
-| [11](11_megaface) | Valutazione della ricerca con gallerie molto più grandi. | La qualità biometrica va misurata anche quando cresce il numero di iscritti. |
-| [13](13_tfhe_rs_headtohead) | Primo confronto Concrete/TFHE-rs e scomposizione del tempo. | L'argmin Rust appariva rapido; gli score con l'API intera erano ancora costosi. I rapporti storici non isolano un guadagno appaiato della pipeline. |
-| [14](14_pipeline_tfhe_rs) | Punteggi con primitive TFHE a basso livello e sviluppo del torneo exact 0/ID. | Da questa linea nascono le revisioni Axx e la funzione poi portata nel core Head/PFKS. |
-| [15](15_ckks_confronto) | Alternativa CKKS per la decisione cifrata. | L'uscita approssimata e i parametri richiedono un confronto separato con TFHE. |
+| [09](09_gpu/README.md) | Prova GPU del circuito Concrete a riduzione sequenziale. | Sulla T4 e con questo carico la latenza resta elevata: si prova a cambiare struttura. |
+| [10](10_argmin_struttura/README.md) | Torneo di confronti invece della catena sequenziale. | Le prove migliorano, ma restano nell'ordine delle decine di secondi. |
+| [11](11_megaface/README.md) | Schema per una galleria MegaFace più grande: loader incompleto, nessuna campagna eseguita. | È una domanda biometrica aperta, non un risultato del grafico né una misura FHE. |
+| [13](13_tfhe_rs_headtohead/README.md) | Primo confronto Concrete/TFHE-rs e scomposizione del tempo. | L'argmin Rust appariva rapido; gli score con l'API intera erano ancora costosi. I rapporti storici non isolano un guadagno appaiato della pipeline. |
+| [14](14_pipeline_tfhe_rs/README.md) | Punteggi con primitive TFHE a basso livello e sviluppo del torneo esatto 0/ID. | Da questa linea nascono le revisioni Axx e la funzione poi portata nel core Head/PFKS. |
+| [15](15_ckks_confronto/README.md) | CKKS applicato agli score e alla soglia **per candidato**, ancora senza primo minimo e uscita 0/ID. | La pipeline CKKS completa viene studiata più avanti, con un contratto distinto da TFHE. |
 | [16](16_common_mask_poc/README.md) | Microbenchmark che condivide lavoro fra cifrati. | Misura primitive, non una pipeline di identificazione completa. |
 
 Le [schede F0–F83](../docs/risultati/diario/README.md) conservano anche i
