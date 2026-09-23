@@ -9,10 +9,19 @@ verificare **per ogni candidato** se `score_i ≤ soglia`.
 Il programma [`ckks_varco.py`](ckks_varco.py) riceve una query cifrata e una
 galleria pubblica di vettori da 512 dimensioni. Dispone più candidati negli
 slot CKKS, calcola gli score e usa un polinomio per approssimare il segno
-del confronto con la soglia. A N=128, le quattro configurazioni del
-[report F39](RISULTATI.md) richiedono circa **1,01–4,44 s**, a seconda del
-polinomio. In 4096 confronti per candidato sulle scene provate non furono
-osservate discrepanze e l'errore numerico degli score fu ≤0,03.
+del confronto con la soglia. Il [primo report F39](RISULTATI.md) conserva
+quattro configurazioni e i loro tempi storici, ma **non è la baseline
+corretta**: l'intervallo degli score usato per costruire il confronto era
+ricavato dalle stesse query poi valutate. Così la zona vicina alla soglia
+appariva più stretta di quanto consentisse il dominio dichiarato.
+
+Il [rerun corretto](results/ckks_rerun_2026-09-01.md) usa un limite ricavato
+da galleria e coordinate ammesse della query. Nella configurazione minima,
+a N=128 misura **0,9969 s per gli score + 0,048 s per la soglia** su quattro
+query. I 512 confronti verificati concordano con il calcolo in chiaro, ma
+la fascia in cui il polinomio non distingue affidabilmente i lati della
+soglia si allarga a **[−1381, 1382]** unità. Quattro query non stimano la
+qualità biometrica del rifiuto.
 
 Questo **non è** un confronto dell'identificazione 0/ID completa. L'uscita
 del programma è un insieme di decisioni di soglia, una per iscritto; manca
@@ -25,4 +34,5 @@ la pipeline 0/ID approssimata; il
 
 Il [report originale](RISULTATI.md), lo [script](ckks_varco.py) e la
 [variante di packing](ckks_packing_forte.py) conservano i dettagli di questa
-prova storica. I tempi non includono la demo foto → risposta.
+prova storica. La variante di packing misura **solo gli score**. I tempi
+non includono la demo foto → risposta.
