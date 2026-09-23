@@ -1,41 +1,49 @@
-# 18 - Scaling, tre cifre ID e soglie miste
+# 18 - Gallerie più grandi e soglie diverse
 
-Il riferimento precedente applicava Head/PFKS a una taglia fissa di
-galleria e a una soglia comune con un particolare allineamento del dominio
-dei punteggi. **Head** estrae le cifre dello score; **PFKS** prepara i dati
-cifrati usati dal selettore per portare avanti il vincitore. Questo
-esperimento estende le condizioni in cui si può usare quella pipeline,
-senza cambiare il significato di «vince il punteggio minimo».
+L'[esperimento 17](../17_head_pfks_tfhe17/README.md) aveva un servizio che
+sceglieva fra **127 candidati** e usava **la stessa soglia per tutti**.
+Ogni candidato aveva uno score cifrato: più basso significa più vicino.
+Il server restituiva l'ID del migliore se il suo score non superava la soglia;
+altrimenti restituiva zero. Qui non cambiamo questa regola. Verifichiamo
+quali modifiche servono per usarla con altre gallerie e altre soglie.
 
-Le modifiche sono distinte: variare **N**, il numero di voci della galleria;
-gestire soglie comuni che non rispettano il precedente allineamento;
-aggiungere una cifra all'ID; infine associare soglie diverse alle singole
-voci. L'input rimane un vettore query cifrato e una galleria di template
-pubblici, cioè i vettori registrati. L'output è il solo esito cifrato 0/ID.
-La [guida al confronto](../../docs/come-funziona-il-confronto.md) illustra
-questi passaggi con due candidati.
+| Domanda | Cosa cambia |
+|---|---|
+| E se la galleria ha 200 voci? | Il servizio accetta un numero variabile di candidati. Due cifre in base 15 bastano ancora per l'ID: codificano fino a 224, oltre allo zero di rifiuto. |
+| E se le voci diventano 225 o più? | Serve una **terza cifra dell'ID**. Per esempio, 225 si scrive `[0, 0, 1]` in base 15. Questo allarga gli ID rappresentabili fino a 3374; non aggiunge precisione agli score. |
+| E se la soglia comune è diversa da quelle gestite dalla prima versione? | Il servizio ricava dalla galleria l'intervallo ammesso per gli score e sceglie come applicare quella soglia. Le condizioni numeriche sugli ingressi restano controllate. |
+| E se ogni iscritto ha una soglia propria? | Il torneo deve portare avanti **score, ID e soglia dello stesso candidato**. Solo dopo aver scelto lo score minimo controlla la soglia che lo accompagna. |
 
-Il contratto sceglie prima il primo minimo,
-poi verifica soltanto la sua soglia inclusiva: se non passa restituisce 0.
-Un candidato più lontano o un pari successivo non lo sostituisce perché
-ha una soglia più permissiva.
+L'ultima riga è la più facile da sbagliare. In questo esempio illustrativo,
+ID 1 ha score **21** e soglia **20**; ID 2 ha score **26** e soglia **30**.
+Vince ID 1 perché `21 < 26`, ma `21 > 20`, quindi la risposta è **0**.
+ID 2 passerebbe la propria soglia, ma non diventa il vincitore. A parità
+di score resta il primo candidato nell'ordine della galleria. La soglia
+è inclusiva: uno score uguale alla propria soglia passa.
 
-Nel caso a soglia comune basta conservare score e ID durante il torneo.
-Con soglie diverse si deve conservare anche la soglia associata al candidato
-scelto. Per esempio, se il più vicino fallisce la propria soglia, l'esito
-resta zero anche quando un altro candidato passerebbe la sua.
-La terza cifra amplia invece il numero di ID rappresentabili: non aumenta
-la precisione dello score e non prova, da sola, la correttezza di alberi
-più profondi.
+L'«intervallo degli score» della tabella non è una misura delle foto:
+è il limite numerico che il servizio deduce dai template pubblici della
+galleria e dai vincoli sugli ingressi. La prima versione collocava gli
+score in una finestra legata alla soglia comune per sfruttare un controllo
+finale più semplice. La nuova variante gestisce anche una soglia comune
+fuori da quella disposizione. È un'estensione degli input ammessi,
+non una modifica della regola di riconoscimento.
+
+Il motore riceve il vettore della foto cifrato e i vettori iscritti
+pubblici; restituisce soltanto `0/ID` cifrato. **Head** estrae le cifre
+degli score; **PFKS** prepara le cifre che il selettore trasferisce nel
+torneo. La [guida con due candidati](../../docs/come-funziona-il-confronto.md)
+mostra il calcolo completo. Le cifre dello score sono in base 16; le cifre
+dell'ID sono in base 15: sono due rappresentazioni distinte.
 
 ## Varianti
 
-| Variante | Dominio e API |
+| Variante | Quale limite rimuove |
 |---|---|
-| [Scaling](source/fast-core-scaling-20260906/core/README.md) | N1..224, due cifre ID, soglia uniforme con dominio allineato |
-| [Soglie uniformi generali](source/fast-core-uniform-20260906/core/README.md) | N1..224, soglia uniforme e rami pubblici di accettazione/rifiuto |
-| [Tre cifre ID](source/fast-core-wide-id-20260906/core/README.md) | Capacità rappresentativa N1..3374, soglie uniformi |
-| [Soglie miste](source/fast-core-mixed-20260906/core/README.md) | Tre cifre ID e soglia del solo vincitore |
+| [Galleria variabile](source/fast-core-scaling-20260906/core/README.md) | Da 1 a 224 voci, due cifre ID; mantiene la disposizione originaria degli score e una soglia per tutti. |
+| [Soglia comune generale](source/fast-core-uniform-20260906/core/README.md) | Da 1 a 224 voci; ammette anche altre posizioni della soglia rispetto all'intervallo degli score. |
+| [Terza cifra ID](source/fast-core-wide-id-20260906/core/README.md) | Fino a 3374 ID rappresentabili, sempre con una soglia comune. |
+| [Soglie individuali](source/fast-core-mixed-20260906/core/README.md) | Tre cifre ID e soglia conservata insieme allo score del vincitore. |
 
 Il [controllo A126 a tre cifre](source/fast-core-wide-id-20260906/older-control/README.md)
 è un adattamento esplicito, distinto dall'A126 invariato fino a N128.

@@ -6,43 +6,92 @@ calcola l'embedding, lo quantizza e lo cifra. La ricerca studia sia quanto
 riconoscimento si perde con questa trasformazione, sia quanto costa cercare
 un'identità sul dato cifrato.
 
-## Dai modelli di riconoscimento ai circuiti cifrati
+## 1. Ottenere un vettore che riconosca davvero le persone
 
-I primi esperimenti confrontano PCA, descrittori locali e reti preaddestrate,
-poi introducono cifratura e quantizzazione. I prototipi Concrete permettono
-di eseguire il confronto completo e di individuarne il costo dominante:
-selezionare il minimo e verificare la soglia. Il prodotto scalare con i
-template in chiaro richiede operazioni lineari; confrontare valori cifrati
-richiede invece circuiti più costosi.
+Il confronto non parte dalla foto così com'è. Il client la trasforma in un
+vettore di numeri, detto *embedding*, e lo converte in interi prima di
+cifrarlo. All'inizio abbiamo usato la [PCA](../experiments/05_pca/README.md):
+il prototipo funzionava, ma sui volti reali riconosceva male. I
+[descrittori locali](../experiments/07_descrittori_locali/README.md) andavano
+meglio su LFW, senza reggere i benchmark più difficili. Con una
+[rete per i volti già addestrata](../experiments/08_cnn/README.md) la qualità
+è salita nettamente nel protocollo 1:N con persone sconosciute da rifiutare.
 
-Le misure biometriche e quelle del circuito rispondono a domande diverse.
-Un risultato intero corretto può comunque derivare da un embedding che
-riconosce male il volto. Le [prime schede](risultati/storico.md) raccolgono
-questa parte del lavoro e le correzioni emerse durante lo sviluppo.
+Questo decide *quanto è buona la descrizione del volto*. Il circuito può
+calcolare esattamente sui numeri cifrati e comunque scegliere la persona
+sbagliata se il vettore non distingue bene le foto. Le [schede storiche](risultati/storico.md)
+documentano dataset e limiti di questi passaggi.
 
-## Definire il risultato e costruire il torneo
+## 2. Spostare la decisione sul dato cifrato
 
-Il contratto finale restituisce il primo minimo solo se supera il controllo
-della propria soglia, altrimenti zero. Un'altra identità con una soglia più
-permissiva non può autorizzare l'accesso. I pareggi favoriscono il primo indice.
-La risposta contiene tre cifre cifrate che codificano l'ID, senza gli score.
+Nei primi prototipi il server calcolava **uno score cifrato per ogni voce**;
+più basso era, migliore era il candidato. Il client li decifrava tutti e
+sceglieva il minimo. Funzionava, ma rivelava al client i punteggi verso
+l'intera galleria. Nell'[esperimento 06](../experiments/06_argmin_soglia/README.md)
+abbiamo spostato sul server anche la scelta e il rifiuto. Quella versione
+restituiva ancora **indice del più vicino + sì/no**: in un rifiuto il client
+poteva conoscere l'indice. La successiva regola **0/ID** restituisce solo
+zero oppure l'ID accettato.
 
-La successione A28–R3 sviluppa il torneo e la selezione dell'uscita. Head/PFKS
-estrae e trasferisce le cifre necessarie ai confronti; le versioni successive
-estendono il supporto a soglie generali e diverse per iscritto.
+Confrontare due score cifrati costa più che calcolarli, e il tempo cresceva
+molto con i bit degli score. Il [torneo](../experiments/10_argmin_struttura/RISULTATI.md)
+confronta le coppie in parallelo: fra quattro candidati confronta (1,2) e
+(3,4), poi i due vincitori. Nelle prove Concrete era più veloce della
+catena sequenziale, ma il tempo restava nell'ordine delle decine di secondi.
+La [prova GPU](../experiments/09_gpu/RISULTATI.md) non ha risolto la latenza
+del circuito e del carico testati.
+
+## 3. Capire quale operazione rallenta tutto
+
+Un [primo confronto Concrete/TFHE-rs](../experiments/13_tfhe_rs_headtohead/RISULTATI.md)
+mostrava un argmin TFHE-rs rapido, ma non misurava la stessa pipeline nelle
+stesse condizioni: i rapporti intorno a 100× restano storici, non la velocità
+guadagnata dall'applicazione completa. Nel medesimo prototipo TFHE-rs,
+calcolare *tutti gli score* con l'API intera ad alto livello costava molto
+più dell'argmin. Usando le primitive a basso livello, la parte lineare del
+punteggio poteva evitare i bootstrapping che propagavano i riporti.
+Questa scelta è stata sviluppata nei [circuiti successivi](../experiments/14_pipeline_tfhe_rs/RISULTATI.md).
+
+Abbiamo esaminato anche [CKKS](../experiments/15_ckks_confronto/RISULTATI.md),
+che esegue calcoli approssimati, e il [common-mask](../experiments/16_common_mask_poc/README.md),
+che prova a condividere lavoro fra cifrati. Sono percorsi con uscite,
+parametri o prove proprie; il microbenchmark common-mask non è una demo di
+identificazione completa.
+
+## 4. Restituire soltanto zero o l'identità
+
+Le versioni A28–R3 hanno costruito il torneo e la selezione finale: scegliere
+**prima** lo score minimo, mantenere il primo candidato nei pareggi e
+controllare **poi** la soglia di quel vincitore. Se fallisce, si restituisce
+zero; un altro candidato con soglia più permissiva non prende il suo posto.
+L'[esempio con due candidati](come-funziona-il-confronto.md) segue i passaggi.
+
+L'[esperimento 17](../experiments/17_head_pfks_tfhe17/README.md) ha aggiunto
+Head per estrarre le cifre degli score e PFKS per portare avanti i dati
+del vincitore nel torneo. All'inizio il servizio era provato su una galleria
+di 127 voci con una soglia comune. L'[esperimento 18](../experiments/18_scaling_soglie_miste/README.md)
+ha separato tre esigenze: accettare gallerie di altre dimensioni,
+rappresentare ID più grandi e trasportare soglie diverse insieme ai
+rispettivi candidati. Il formato a tre cifre *può rappresentare* 3374 ID;
+le prove FHE rumorose hanno taglie più piccole e documentate.
 [Core e scaling](risultati/core-e-scaling.md).
 
-## Ridurre il costo e integrare la demo
+## 5. Ridurre il costo e integrare il servizio
 
-La configurazione CPU, la FFT fissa, i normalizzatori condivisi, le costanti
-pubbliche e il parallelismo riducono il lavoro del circuito. La composizione
-integra questi interventi nel servizio usato dalla demo.
-[Componenti e servizio](risultati/normalizzatore-e-demo.md).
+Con la funzione fissata, gli esperimenti successivi hanno lavorato sui
+passaggi costosi: [configurazione CPU](../experiments/19_runtime_cpu/README.md),
+[estrazione delle cifre](../experiments/20_normalizzatori_carry/README.md),
+[selezione dei dati noti e parallelismo](../experiments/21_costanti_pubbliche_parallelismo/README.md).
+La [demo composita](../experiments/22_demo_composita/README.md) misura la loro
+integrazione con client e servizio. Ogni percentuale confronta due versioni
+particolari: non si ottiene il guadagno finale sommando i miglioramenti
+intermedi. [Componenti e servizio](risultati/normalizzatore-e-demo.md).
 
-Non tutti i tentativi migliorano il riferimento: PGO, alcune combinazioni
-G4, Tetris con le conversioni provate e le politiche DAG restano documentati
-nelle [alternative](risultati/alternative.md). Questi esiti spiegano le scelte
-dell'implementazione, senza escludere altre costruzioni delle stesse famiglie.
+Sono conservati anche i tentativi che non hanno vinto nei propri confronti:
+PGO, alcune combinazioni G4, Tetris con le conversioni provate e le politiche
+DAG. Le [alternative](risultati/alternative.md) spiegano cosa è stato
+misurato e perché non è stato selezionato. Un esito negativo di quel
+prototipo non è una confutazione della tecnica in generale.
 
 ## Correttezza del selettore e costo della correzione
 

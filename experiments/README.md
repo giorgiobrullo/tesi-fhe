@@ -33,20 +33,31 @@ e verifica. I grafici rimisurati sono nel percorso sperimentale indicato sopra.
 
 ## Percorso storico conservato
 
-| Esperimento | Contenuto |
-|---|---|
-| [00](00_hello_concrete.py)–[04](04_client_server.py) | Concrete, operazioni FHE, distanze, galleria e client/server |
-| [05](05_pca/README.md) | PCA |
-| [06](06_argmin_soglia/README.md) | Argmin e soglia |
-| [07](07_descrittori_locali/README.md) | Descrittori locali |
-| [08](08_cnn/README.md) | Embedding CNN e quantizzazione |
-| [09](09_gpu) | Prime prove GPU |
-| [10](10_argmin_struttura) | Struttura dell'argmin |
-| [11](11_megaface) | Valutazione MegaFace |
-| [13](13_tfhe_rs_headtohead) | Confronto TFHE-rs |
-| [14](14_pipeline_tfhe_rs) | Pipeline exact-ID e ottimizzazioni storiche Axx |
-| [15](15_ckks_confronto) | Circuito CKKS di confronto |
-| [16](16_common_mask_poc/README.md) | Primo common-mask PoC |
+I numeri sono l'ordine delle prove, non versioni equivalenti dello stesso
+programma. All'inizio il server restituiva **tutti gli score cifrati** e il
+client sceglieva la persona; in seguito la scelta è entrata nel circuito.
+La [narrazione continua](../docs/percorso-sperimentale-20260920.md) spiega
+questo passaggio. Qui si può aprire la prova che risponde alla singola domanda.
+
+| Passo | Cosa si è fatto | Perché si è proseguito |
+|---|---|---|
+| [00](00_hello_concrete.py)–[04](04_client_server.py) | Prime operazioni cifrate, calcolo dei punteggi e scambio client/server con Concrete. | Serviva distinguere la foto in chiaro sul client dai calcoli sulla richiesta cifrata. |
+| [05](05_pca/README.md) | Un volto diventa un vettore PCA; il server calcola uno score cifrato per iscritto. | Il client vede tutti gli score; inoltre la PCA riconosce male i volti reali provati. |
+| [06](06_argmin_soglia/README.md) | Il server calcola anche minimo e rifiuto sotto FHE. | L'uscita è ancora indice più sì/no; i confronti cifrati con Concrete costano molto. |
+| [07](07_descrittori_locali/README.md) | Vettori LBP/HOG al posto della PCA, senza cambiare il calcolo base degli score. | Migliorano LFW, ma i benchmark più difficili chiedono un modello di volto migliore. |
+| [08](08_cnn/README.md) | Una rete già addestrata produce il vettore sul client. | La qualità cresce; resta da rendere veloce la decisione cifrata sul server. |
+| [09](09_gpu) | Prova GPU del circuito Concrete a riduzione sequenziale. | Sulla T4 e con questo carico la latenza resta elevata: si prova a cambiare struttura. |
+| [10](10_argmin_struttura) | Torneo di confronti invece della catena sequenziale. | Le prove migliorano, ma restano nell'ordine delle decine di secondi. |
+| [11](11_megaface) | Valutazione della ricerca con gallerie molto più grandi. | La qualità biometrica va misurata anche quando cresce il numero di iscritti. |
+| [13](13_tfhe_rs_headtohead) | Primo confronto Concrete/TFHE-rs e scomposizione del tempo. | L'argmin Rust appariva rapido; gli score con l'API intera erano ancora costosi. I rapporti storici non isolano un guadagno appaiato della pipeline. |
+| [14](14_pipeline_tfhe_rs) | Punteggi con primitive TFHE a basso livello e sviluppo del torneo exact 0/ID. | Da questa linea nascono le revisioni Axx e la funzione poi portata nel core Head/PFKS. |
+| [15](15_ckks_confronto) | Alternativa CKKS per la decisione cifrata. | L'uscita approssimata e i parametri richiedono un confronto separato con TFHE. |
+| [16](16_common_mask_poc/README.md) | Microbenchmark che condivide lavoro fra cifrati. | Misura primitive, non una pipeline di identificazione completa. |
+
+Le [schede F0–F83](../docs/risultati/diario/README.md) conservano anche i
+tentativi senza miglioramento e le correzioni successive. Una scheda F è
+un'annotazione del diario: non coincide sempre con un singolo esperimento
+numerato in questa tabella.
 
 ## Implementazioni e confronti del 4–8 settembre 2026
 

@@ -7,6 +7,16 @@ Risultati storici al 9 settembre 2026, con precisazioni editoriali del
 confronti e non si sommano. Le prove empiriche non stabiliscono un limite
 alla probabilità di fallimento del circuito.
 
+Per seguire il filo della tesi, il [percorso sperimentale](../percorso-sperimentale-20260920.md)
+racconta le scelte in ordine. Qui le schede F sono raggruppate per periodo:
+F0–F19 chiedono se la foto possa diventare un vettore utile anche dopo la
+quantizzazione; F20–F39 misurano quanto costa scegliere sul cifrato;
+F40–F70 precisano protocollo, rumore e limiti di alcuni tentativi;
+F71–F83 costruiscono la risposta esatta `0/ID` e ne riducono il costo.
+Ogni riga sotto riporta quello che resta valido **dopo** le correzioni,
+mentre il [diario completo](diario/README.md) conserva anche le ipotesi
+di allora e i tentativi abbandonati.
+
 ## F0–F83 - Risultati storici e correzioni consolidate
 
 Le [84 schede complete](diario/README.md) conservano tabelle, ragionamenti
