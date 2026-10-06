@@ -1,6 +1,6 @@
 {
   "schema": "public-data-provenance.v1",
-  "description": "SHA-256 degli originali conservati e delle copie JSON pubblicate dopo la rimozione di metadati operativi e percorsi personali. Gli hash pubblici verificano questi file; gli hash originali identificano i file dei run storici. Le impronte di codice, binari e chiavi nei report restano storiche.",
+  "description": "SHA-256 degli originali conservati e delle copie JSON pubblicate dopo la rimozione di metadati operativi e percorsi personali. Gli hash pubblici verificano questi file; gli hash originali identificano i file dei run storici. Le impronte di codice, binari e chiavi nei report restano storiche. Per le normalizzazioni dei percorsi, original_kind distingue la precedente copia pubblicata dai file originali dei run; i digest interni delle esecuzioni non vengono riscritti.",
   "files": [
     {
       "path": "benchmark/results/demo_e2e_exact_id_split4_2026-09-02.json",
@@ -204,6 +204,36 @@
       "public_sha256": "a27e5bbdeeecc20f7746f47755b2a7d38e8f9f9b7fa7f9d314ecaad5221be9c9",
       "original_bytes": 610,
       "public_bytes": 600
+    },
+    {
+      "path": "experiments/10_argmin_struttura/bench_struttura.py",
+      "original_sha256": "8ffcde4e68e12986ac73da0323259fd43fa8f89a13a7ed2fabb41cb81af3620b",
+      "public_sha256": "1bddff5b473f511c162ca8a5c66e30b0321b89e698071d090031d7935a7da3c2",
+      "original_bytes": 3634,
+      "public_bytes": 3641,
+      "original_kind": "previous_publication_copy",
+      "transformation": "normalize_personal_paths_and_matching_executable_dependency_pins",
+      "dependency_pin_targets": []
+    },
+    {
+      "path": "experiments/10_argmin_struttura/bench_varco.py",
+      "original_sha256": "8ab64ae6a8da80d12a143e5aa530237aa563ca7ed3c5259c27ddac15408c57e1",
+      "public_sha256": "9d965515987f8fe9e110d0d57efdd331cff820e8355a630bb04546aab57e7a23",
+      "original_bytes": 2624,
+      "public_bytes": 2624,
+      "original_kind": "previous_publication_copy",
+      "transformation": "normalize_personal_paths_and_matching_executable_dependency_pins",
+      "dependency_pin_targets": []
+    },
+    {
+      "path": "experiments/24_frontiere_common_mask_bgv/sources/bgv/src/plan_literal.hpp",
+      "original_sha256": "d212b22730ad47447a5ccf064d9bd02da68a6952992055caa3252e13886188f8",
+      "public_sha256": "03f244d5de6cacfd7e514b8bef922a38e9b5c09d58736b31cc3f96175775da3a",
+      "original_bytes": 20681,
+      "public_bytes": 20661,
+      "original_kind": "previous_publication_copy",
+      "transformation": "normalize_personal_paths_and_matching_executable_dependency_pins",
+      "dependency_pin_targets": []
     }
   ]
 }

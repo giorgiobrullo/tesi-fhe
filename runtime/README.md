@@ -1,5 +1,9 @@
 # Motore TFHE della demo
 
+Il runtime usa TFHE-rs 1.8.1, con una nuova identità di circuito che richiede
+chiavi dedicate. Le misure storiche sulla versione 1.7 restano attribuite
+a quella versione; non misurano le prestazioni della 1.8.1.
+
 Il servizio cerca il primo minimo fra gli score cifrati e applica la soglia
 del vincitore. Restituisce zero oppure l'ID, codificato in tre LWE in base 15.
 I pareggi favoriscono il primo indice della galleria.

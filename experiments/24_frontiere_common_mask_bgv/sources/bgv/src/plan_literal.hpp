@@ -8,7 +8,7 @@ constexpr const char* BGV_PLAN_JSON=R"BGVPLAN({
     "coefficient_count": 8191,
     "coefficient_sha256_u16be": "020c9786b3a3bcb000ccd5c88c54e6d55adbd1f6de621faa998d37a5219bd4a8",
     "coefficient_vector_key": "full_polynomial.coefficient_vector",
-    "coefficient_vector_source": "/Users/giorgiobrullo/Documents/Tesi-FHE/tmp/bgv-direct-polynomial-fullgraph-20260906/PLAN.json",
+    "coefficient_vector_source": "/workspace/research/tmp/bgv-direct-polynomial-fullgraph-20260906/PLAN.json",
     "constant_coefficient": 0,
     "degree": 8190,
     "evaluator": "helib::polyEval direct public polynomial overload",

@@ -11,6 +11,10 @@ Quanto tempo impiega? Le misure biometriche, i controlli di correttezza
 e i tempi rispondono rispettivamente a queste domande. Rigenerare una
 figura dai CSV ripresenta le misure salvate, senza ripetere il benchmark.
 
+I percorsi personali nei materiali archiviati sono sostituiti con
+[segnaposto documentati](../docs/riproducibilita.md#provenienza-dei-dati-inclusi).
+Le mappe verificano le copie pubblicate; le ricevute dei run conservano gli hash originali.
+
 ## Scegliere il percorso
 
 | Obiettivo | Punto di ingresso | Cosa misura |

@@ -19,17 +19,17 @@ pub const LOW_MOD16_POLYNOMIAL_OFFSET: usize = 1024;
 /// Identita' protocollare del solo preset A44. Non e' un identificatore di compatibilita' con
 /// A41: chiavi, probe e risposte devono essere rigenerati anche quando la geometria large-LWE
 /// coincide.
-pub const A44_PARAMS_ID: &str = "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64";
+pub const A44_PARAMS_ID: &str = "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64";
 
 /// Serializzazione canonica congelata dei campi del preset ufficiale usato da A44.
 ///
 /// Il fingerprint include anche distribuzioni e `log2_p_fail`, che non sono ricostruibili da un
 /// [`crate::compat::ServerKey`] gia' generato. In un protocollo serializzato questa stringa deve quindi stare in
 /// un envelope autenticato assieme agli artifact; il solo controllo delle dimensioni non basta.
-pub const A44_PARAMETER_CANONICAL: &str = "tfhe-rs=1.7.0;symbol=V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64;bootstrap=classic_ks_pbs;modulus_switch=standard;lwe_dimension=859;glwe_dimension=1;polynomial_size=2048;lwe_noise=gaussian_stddev_2.3088161607134664e-6;glwe_noise=gaussian_stddev_2.845267479601915e-15;pbs_base_log=23;pbs_level=1;ks_base_log=3;ks_level=5;message_modulus=2;carry_modulus=8;max_noise_level=15;log2_p_fail=-64.088;ciphertext_modulus=native;encryption_key_choice=Big";
+pub const A44_PARAMETER_CANONICAL: &str = "tfhe-rs=1.8.1;symbol=V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64;bootstrap=classic_ks_pbs;modulus_switch=standard;lwe_dimension=859;glwe_dimension=1;polynomial_size=2048;lwe_noise=gaussian_stddev_2.3088161607134664e-6;glwe_noise=gaussian_stddev_2.845267479601915e-15;pbs_base_log=23;pbs_level=1;ks_base_log=3;ks_level=5;message_modulus=2;carry_modulus=8;max_noise_level=15;log2_p_fail=-64.088;ciphertext_modulus=native;encryption_key_choice=Big";
 
 pub const A44_PARAMETER_FINGERPRINT_SHA256: &str =
-    "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61";
+    "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct A44ParameterBinding<'a> {

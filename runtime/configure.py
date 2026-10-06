@@ -60,11 +60,11 @@ def build_files(mode: str, root: Path = ROOT) -> dict[str, bytes]:
     })
     source_leaves = {name: sha(data) for name, data in sources.items()}
     source_digest = digest_leaves(source_leaves)
-    variant = f"head-selector-refresh4-12-w127-pack4-b22-mean2-tfhe17-base15-p16-{mode}-v9"
+    variant = f"head-selector-refresh4-12-w127-pack4-b22-mean2-tfhe181-base15-p16-{mode}-v9"
     circuit = json.loads(sources["circuit.template.json"])
     circuit.update(
         schema="maintained-composite-service-circuit.v1",
-        http_contract="exact-open-set-id-v9-composite-tfhe17-base15-three-lwe",
+        http_contract="exact-open-set-id-v9-composite-tfhe181-base15-three-lwe",
         variant_id=variant, wire_version=9, core_source_sha256=core_digest,
         service_source_sha256=source_digest, runtime_mode=mode,
         g4_required=mode == "public_parallel_g4",

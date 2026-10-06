@@ -1,11 +1,11 @@
 {
   "baseline_core_source_sha256": "c0d6b2302d6a25d3cc51dba712bbb42bf13327eb472ba447184e1d5f8f132b91",
   "current_core_leaves": {
-    "core/Cargo.toml": "a829daad520dd34c31a361da6bbbd79f9ed036d25bb9412d50db8e5dcd39320d",
+    "core/Cargo.toml": "66b0ca21898de8f0a0cf8529fdf5fa2a111ee0aa5cab34a06acce7e657cebb9f",
     "core/README.md": "0e22584d4eeb2194df660e03e2789dcb1b1a6008e284d0d06b929173ec00449a",
     "core/artifacts/fused_candidate_zero_body.u64le": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
     "core/src/a112.rs": "4f9ee8169c737597bbdb6120d59f4effb0a9d9702b73d35739f884bba9da1e9d",
-    "core/src/a53_scan.rs": "24afeac53d99abeaba9ef3ff245d6f97f74114e76a35f3a438ced8960a2fbf3d",
+    "core/src/a53_scan.rs": "d0be0765fd52f27046e77b2921f83da50cb1d7df7d080d788656aaa5595f8425",
     "core/src/a53_scan/fhe.rs": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99",
     "core/src/a98.rs": "a750dc4eebef73238ae80fcfde90c8b0fa6995d150c5b9120a1adbb37f9dfce4",
     "core/src/centering_counts.rs": "a31d3df780f05e7b81d06823c3cd40a31ad411ae435f1195327f97d83ab3098f",
@@ -34,7 +34,7 @@
     "core/src/multibit.rs": "e254cb68f1c689072aa5d0c6a3c0b6925b3d0fbb1e2fae265cd6004dc843ff70",
     "core/src/observer.rs": "ef2a5444ed630211797728194ec9d2a2914082d01cef78d2096e77fdefeefdd1",
     "core/src/private_argmin.rs": "bffa8e581fcd143347e105b73d6424756bff7fa8908fa0cfffe576b8d5a12af6",
-    "core/src/private_argmin/contracts.rs": "14fcd2afe316f837418ed10c6b8048f00f3b25cfda626d00d317c826d5f13df9",
+    "core/src/private_argmin/contracts.rs": "402c65f3caa06019b68c02999a054bc8d0295ca17de635398308e2d2429bffd2",
     "core/src/private_argmin/domain.rs": "b2e62d5e791c1c6e9c74989be6e865edabf3f0b3cafec9e3a7cfa3f4bb2e555a",
     "core/src/private_argmin/input.rs": "41f0b041b15aa5702ef75601860f8783285f634908aed4e5379e12571a4b0f26",
     "core/src/private_argmin/legacy/aligned.rs": "1e152c0941e85d4602852c5cc003631b066b228e0d65aa2c0c5d356cb6dd1c61",
@@ -77,6 +77,6 @@
     "core/src/wide_id.rs": "0e9639bddd7e268a91234fbb2d16614b39b2b36094003e50d86c4c8cc6ecf35d",
     "core/src/wide_id_tests.rs": "c7b9a2c89e02213f60adb3ce6386229d903eb8a0049b3d0f390a6e77831ad51b"
   },
-  "runtime_source_sha256": "b089a235004e6b607fd1f3d4b1884d3b685a01efaac6d1d7dc212ff0afd8fe38",
+  "runtime_source_sha256": "1108779f0d70674561ff8ed08d5f8c8c8b8d3361a2a297d11184b02c1074c3b7",
   "schema": "maintained-core-origins.v1"
 }

@@ -7,7 +7,7 @@ from concrete import fhe
 
 DIM = 64           # come F28, per confronto diretto con l'argmin (bit ~10)
 Q = 2
-CSV = "/home/cursedadmin/fhe-bench/risultati_varco.csv"
+CSV = "/workspace/legacy-benchmark/risultati_varco.csv"
 
 def gallery(N):
     rng = np.random.RandomState(0)

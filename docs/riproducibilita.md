@@ -75,6 +75,20 @@ sono elencate nel suo README. Per provare un servizio completo usare il runtime 
 
 ## Provenienza dei dati inclusi
 
+Le copie pubblicate normalizzano i percorsi personali: `/workspace/research`
+indica l'archivio di ricerca, `/workspace/maintained` il checkout mantenuto,
+`/opt/cargo` e `/opt/models` le cache di librerie e modelli.
+`/opt/tool-cache`, `/workspace/legacy-benchmark` e `/workspace/redacted-home`
+sono gli altri segnaposto locali. Questi percorsi non sono installazioni fornite
+dalla repository: vanno adattati prima di eseguire i driver archiviati.
+Il [registro delle impronte](provenienza-dati.json) documenta le sostituzioni
+e distingue i byte precedenti da quelli distribuiti. Risultati numerici,
+verdetti e hash delle esecuzioni originali restano invariati; le copie ripulite
+non costituiscono nuove esecuzioni né sorgenti byte-identici agli originali.
+I controlli dei driver sulle dipendenze distribuite usano le nuove impronte;
+il registro elenca i riferimenti aggiornati. Gli hash nelle ricevute storiche
+continuano a identificare i byte usati nelle esecuzioni documentate.
+
 Le misure FHE si riferiscono alle revisioni identificate nei rapporti.
 L’aggiornamento che elimina la dipendenza dalle note locali cambia il client
 Python e le impronte del pacchetto, mantenendo invariati tutti i sorgenti Rust,
