@@ -1,0 +1,32 @@
+{
+  "observed_utc": "2026-10-04T17:02:21.277083+00:00",
+  "counts": {
+    "W_runtime": 134,
+    "binary-pipeline": 144,
+    "binary-stage": 144,
+    "base64-producer": 141,
+    "protected": 4,
+    "binaries": 9,
+    "fft-backend": 7,
+    "pointwise-contract": 8,
+    "normalizer-feasibility": 14
+  },
+  "primary": {
+    "tfhe_loop": {
+      "path": "/opt/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.8.1/src/core_crypto/fft_impl/fft64/crypto/ggsw.rs",
+      "sha256": "d2cf985c055b55627ce1e9714e404862a71e6aec7c8b459293c9bcbb67a1d956"
+    },
+    "pulp_lib": {
+      "path": "/opt/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pulp-0.22.3/src/lib.rs",
+      "sha256": "847f58ab06d89dc93684116b67c19c1f486acab56726ef5a3566bae01bfb0145"
+    },
+    "pulp_arm": {
+      "path": "/opt/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pulp-0.22.3/src/aarch64.rs",
+      "sha256": "428f60728d89512826a40714a4d63bf299d848430e5e1579a49d69f0fb505f29"
+    }
+  },
+  "recognized_competing_live": [],
+  "liveness_scope": "all ps identities inspected for cargo/rustc, project tmp native paths, Python A124/benchmark/current drivers; not global idle",
+  "process_control": false,
+  "A124_historical_terminal": "docs/research-state/2026-09-05/research-state-before-consolidation-10.md:44; actual liveness observed separately; consent remains absent"
+}

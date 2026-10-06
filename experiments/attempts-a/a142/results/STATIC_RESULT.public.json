@@ -1,0 +1,150 @@
+{
+  "status": "STATIC_SYNTHETIC_REPLAY_ONLY",
+  "tests": 13,
+  "source_pin_count": 7,
+  "safe_complete_synthetic": {
+    "status": "SYNTHETIC_REPLAY",
+    "trace_integrity_pass": true,
+    "a138_functional_gate_pass": true,
+    "positive_arm_failures": [
+      0,
+      0
+    ],
+    "wrong_scale_negatives_detected_by_key": [
+      4
+    ],
+    "conditional_joint_safe_region_pass": true,
+    "native_msb_outputs_pass": true,
+    "joint_witness_pass": true,
+    "cases_checked": 24,
+    "events_checked": 1384,
+    "independent_ciphertext_or_execution_attestation": false,
+    "ms_address_recomputed_from_coefficients": false,
+    "formal_failure_bound": false,
+    "service_validated": false
+  },
+  "examples": [
+    {
+      "name": "shared_joint_error",
+      "native_decode_pass": false,
+      "native_msb_outputs_pass": true,
+      "composed_a34_a135_pass": false,
+      "conditional_joint_safe_region_pass": false,
+      "flags": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "region_failures": [
+        "ingress/1/low.low3",
+        "low_round.mask/1",
+        "low_round.minimum/52/0",
+        "low_round.minimum/53/0",
+        "low_round.update/0",
+        "low_round.update/1"
+      ]
+    },
+    {
+      "name": "separate_joint_error_control",
+      "native_decode_pass": true,
+      "native_msb_outputs_pass": true,
+      "composed_a34_a135_pass": true,
+      "conditional_joint_safe_region_pass": true,
+      "flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "region_failures": []
+    },
+    {
+      "name": "active_native_pass_consumer_fail",
+      "native_decode_pass": true,
+      "native_msb_outputs_pass": true,
+      "composed_a34_a135_pass": false,
+      "conditional_joint_safe_region_pass": false,
+      "flags": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "region_failures": [
+        "middle_round.mask/1",
+        "middle_round.minimum/52/0",
+        "middle_round.update/1",
+        "low_round.mask/1",
+        "low_round.minimum/52/0",
+        "low_round.minimum/53/0",
+        "low_round.update/0",
+        "low_round.update/1"
+      ]
+    },
+    {
+      "name": "zero_alias_wrong_fold",
+      "native_decode_pass": true,
+      "native_msb_outputs_pass": false,
+      "composed_a34_a135_pass": true,
+      "conditional_joint_safe_region_pass": true,
+      "flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "region_failures": []
+    },
+    {
+      "name": "zero_phase_ms_displacement",
+      "native_decode_pass": true,
+      "native_msb_outputs_pass": true,
+      "composed_a34_a135_pass": true,
+      "conditional_joint_safe_region_pass": false,
+      "flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "region_failures": [
+        "middle_round.mask/1"
+      ]
+    }
+  ],
+  "loop_scope": "No exhaustive FHE/noise enumeration; exact interval endpoints, thirteen tests, one eight-fixture/three-arm synthetic A138 stream.",
+  "mutation_scope": "Nine single-event field corruptions, a missing event, missing summary, wrong binary hash and forged native-only completion.",
+  "ms_scope": "Uses recorded actual MS address; no ciphertext coefficients or secret key available for independent recomputation.",
+  "no_noise_probability_reachability_or_independence_claim": true
+}

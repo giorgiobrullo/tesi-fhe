@@ -1,0 +1,64 @@
+{
+  "schema": "a98.head-start-exact-adapter-port.frozen-summary.v1",
+  "status": "STATIC_PORT_READY_COMPILE_DEFERRED_FOR_A97_TIMING_ISOLATION",
+  "adapter": {
+    "small_word_cases": 494592,
+    "small_word_mismatches": 0,
+    "a44_vectors": 64,
+    "a44_mismatches": 0,
+    "a44_reachable_tie_aggregates": 1719,
+    "a44_tie_aggregate_mismatches": 0,
+    "tie_zero_vectors": 50,
+    "tie_one_vectors": 14,
+    "boundary_degrees": {
+      "head_start": 64,
+      "centered_direct": 63,
+      "a98_adapter": 64
+    },
+    "integer_geometry_verdict": "GO_EXACT"
+  },
+  "decomposer": {
+    "states": 32768,
+    "local_patch_mismatches": 0,
+    "recomposition_mismatches": 0,
+    "public_patch_mismatches": 1820,
+    "public_patch_first_mismatch": 16385,
+    "public_patch_last_mismatch": 18204,
+    "patch_minus_public_digit_shape": [
+      0,
+      0,
+      0,
+      0,
+      8
+    ],
+    "absolute_digit_vector_mismatches": 0,
+    "rounding_cases": 81920,
+    "rounding_mismatches": 0,
+    "floor_half_cases": 8184,
+    "floor_half_mismatches": 0,
+    "integer_digit_stream_verdict": "GO_BITWISE_EXACT"
+  },
+  "provenance": {
+    "repository_source_pins": 16,
+    "tfhe_1_7_source_pins": 9,
+    "protected_read_only_pins": 3,
+    "tfhe_1_7_crate_archive_sha256": "f341a7a6fe90bf813ecb2b098f04c0e5bca82436ddd1b256e6f1ec68be58da52"
+  },
+  "checks": {
+    "python_unit_tests_passed": 17,
+    "ruff_passed": true,
+    "rustfmt_parse_and_format_passed": true
+  },
+  "not_run": [
+    "cargo",
+    "rustc",
+    "rust_typecheck",
+    "rust_unit_tests",
+    "key_generation",
+    "fhe",
+    "noise_measurement",
+    "runtime_benchmark",
+    "composed_pfail",
+    "exact_id_integration"
+  ]
+}

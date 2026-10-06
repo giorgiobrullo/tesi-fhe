@@ -1,0 +1,185 @@
+{
+  "native_exit_code": 0,
+  "log_rows": 29,
+  "stage_rows": {
+    "public_plan": 2,
+    "fresh_key_generation": 1,
+    "correctness": 6,
+    "correctness_complete": 1,
+    "paired_cost": 18,
+    "complete": 1
+  },
+  "correctness_cases": {
+    "einstein": 1,
+    "curie": 2,
+    "turing": 3,
+    "right83": 83,
+    "zero-reject": 0,
+    "crossroot-tie": 1
+  },
+  "declared_validated_id_outputs": 54,
+  "individually_logged_gate_and_timed_ids": 48,
+  "warmup_ids": "6 checked inside source driver; not individually logged",
+  "paired_orders_balanced": true,
+  "all_public_counts_and_routes_verified": true,
+  "whole_counts_by_arm": [
+    {
+      "br": 1111,
+      "ks": 1080,
+      "pfks": 509,
+      "marginals": 1709,
+      "initial_samples": 120
+    },
+    {
+      "br": 1113,
+      "ks": 1083,
+      "pfks": 507,
+      "marginals": 1710,
+      "initial_samples": 120
+    }
+  ],
+  "terminal_work_by_arm": [
+    {
+      "br": 11,
+      "ks": 10,
+      "pfks": 7,
+      "marginals": 15,
+      "gadget_levels": 11,
+      "pfks_monomial_rotations": 7,
+      "polynomial_permutations": 14,
+      "glwe_additions": 4,
+      "lwe_subtractions": 7,
+      "lwe_addbacks": 7,
+      "public_centering_calls": 4,
+      "public_centering_mask_terms": 3436,
+      "public_centering_body_additions": 4,
+      "initial_score_samples": 0,
+      "prototype_full51_to_full52_scales": 0
+    },
+    {
+      "br": 13,
+      "ks": 13,
+      "pfks": 5,
+      "marginals": 16,
+      "gadget_levels": 13,
+      "pfks_monomial_rotations": 5,
+      "polynomial_permutations": 10,
+      "glwe_additions": 3,
+      "lwe_subtractions": 5,
+      "lwe_addbacks": 5,
+      "public_centering_calls": 4,
+      "public_centering_mask_terms": 3436,
+      "public_centering_body_additions": 4,
+      "initial_score_samples": 0,
+      "prototype_full51_to_full52_scales": 0
+    }
+  ],
+  "terminal_routes_by_arm": [
+    {
+      "batch3_merges": 0,
+      "comparator_callbacks": 6,
+      "group_br_tasks": 3,
+      "parallel3_merges": 2,
+      "pfks_tasks": 7,
+      "selectors": 2,
+      "selectors_by_ready_1_to_4": [
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "batch3_merges": 0,
+      "comparator_callbacks": 9,
+      "group_br_tasks": 2,
+      "parallel3_merges": 3,
+      "pfks_tasks": 5,
+      "selectors": 2,
+      "selectors_by_ready_1_to_4": [
+        2,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "cases": {
+    "einstein": {
+      "whole": {
+        "baseline_median_ms": 1666.3882085,
+        "raw9_median_ms": 1649.705729,
+        "median_paired_change_percent": -0.8135145200417138,
+        "paired_change_range_percent": [
+          -3.7516727916608206,
+          0.055701432391108696
+        ],
+        "raw9_faster_pairs": 5,
+        "pairs": 6
+      },
+      "terminal": {
+        "baseline_median_ms": 84.083146,
+        "raw9_median_ms": 71.412604,
+        "median_paired_change_percent": -14.903675457717092,
+        "paired_change_range_percent": [
+          -16.00245020419623,
+          -14.05750911904109
+        ],
+        "raw9_faster_pairs": 6,
+        "pairs": 6
+      }
+    },
+    "curie": {
+      "whole": {
+        "baseline_median_ms": 1658.777188,
+        "raw9_median_ms": 1652.4876045,
+        "median_paired_change_percent": -0.2297094761835261,
+        "paired_change_range_percent": [
+          -0.526311605835672,
+          1.8456792865664928
+        ],
+        "raw9_faster_pairs": 4,
+        "pairs": 6
+      },
+      "terminal": {
+        "baseline_median_ms": 85.7102705,
+        "raw9_median_ms": 72.569646,
+        "median_paired_change_percent": -15.793320328373795,
+        "paired_change_range_percent": [
+          -16.525893508388034,
+          -14.43132759049105
+        ],
+        "raw9_faster_pairs": 6,
+        "pairs": 6
+      }
+    },
+    "turing": {
+      "whole": {
+        "baseline_median_ms": 1663.5514375,
+        "raw9_median_ms": 1653.856271,
+        "median_paired_change_percent": -0.006888476661737197,
+        "paired_change_range_percent": [
+          -3.120203468719862,
+          1.4130946791881316
+        ],
+        "raw9_faster_pairs": 3,
+        "pairs": 6
+      },
+      "terminal": {
+        "baseline_median_ms": 85.878667,
+        "raw9_median_ms": 72.0537295,
+        "median_paired_change_percent": -15.915821173924211,
+        "paired_change_range_percent": [
+          -16.67836082660006,
+          -14.583102274328342
+        ],
+        "raw9_faster_pairs": 6,
+        "pairs": 6
+      }
+    }
+  },
+  "scope": "one fresh family/three fixed same-source accept workloads; additional right/reject/tie correctness; no rare-failure/security/biometric/adoption guarantee",
+  "timing_boundary": "isolated fullquery diagnostic evaluation incl validation/work/report checks; terminal from last-root precomparison through threshold/report checks; excludes factory reset/keygen/encryption/decode/stdout; no HTTP/e2e",
+  "no_e2e_projection_or_baseline_adoption": true,
+  "stdout_sha256": "f016563fee1509b15bf2fc7a8fb4006859d1f3e87a2c9632b0617c6a587be479"
+}

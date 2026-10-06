@@ -1,0 +1,196 @@
+{
+  "actual_a44_p_fail": null,
+  "actual_input_provenance_attested": false,
+  "actual_p_fail": null,
+  "actual_sampler_validated": false,
+  "adapter_manifest_sha256": "9412c7b57a878e805c3f164cc0c1f01ba81c1f42493ee1a7ce983f8bb384bd98",
+  "adapter_schema": "a163.conditional-p0-evaluation.v1",
+  "combined_dyadic_upper": {
+    "exponent2": -3025,
+    "mantissa_hex": "0xe21d9835688fcc68d974dbc13c820370af9e2e474903d6cf",
+    "precision_bits": 192
+  },
+  "combined_power2_upper_exponent": -2833,
+  "conditional_failure_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+  "conditional_independence_is_an_input_premise": true,
+  "context": {
+    "all_digits_zero": false,
+    "degrees": 4096,
+    "digit_l1": 20105,
+    "digit_square_sum": 54955,
+    "gaussian_variance_words2": "<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+    "large_dimension": 2048,
+    "quantum": 4503599627370496,
+    "remainder_sum": -1642951524429920,
+    "safe_lifts": [
+      -1024,
+      1023
+    ],
+    "small_dimension": 859,
+    "subgroup_g": 1
+  },
+  "evidence_kind": "ACTUAL_PUBLIC_TUPLE_CONDITIONAL_MODEL",
+  "finite_sampler_bound": false,
+  "fixed_key_bound": false,
+  "full_pipeline_bound": false,
+  "inputs_sha256": "b58c483fb13da6c336857070af7d15ee298f85835c58e8f7a333215bef3cdf0d",
+  "interpretation": "Counterfactual ideal-model bound at the observed public coefficients: leaving the registered first-LUT safe lifted interval under A156 premises, conditional only on the fixed pre-feedback input mask/template.",
+  "missing_runtime_premises": [
+    "Both independent fair binary secrets remain independent of the fixed pre-feedback input mask.",
+    "Input GLWE and KSK row noises are mutually independent exact centered real Gaussians with the pinned binary64 sigma values, nearest-rounded to integer lifts, independent of secrets and masks.",
+    "All KSK row mask coordinates are iid uniform native words conditional on that input mask, both secrets, and every noise value.",
+    "Transfer to the finite implementation requires a justified comparison/domination or replacement model, with computational, rejection/abort and compiled rounding terms. A finite sampler cannot literally equal this unbounded Gaussian iid law; no transfer result is present."
+  ],
+  "native_decode_failure_bound": false,
+  "provenance": {
+    "binary_sha256": "bd1b42464ef89d4c62bf5c8d392f5be63d0111213ee333c699a849901010ed81",
+    "independent_phase_replay_performed": false,
+    "observed_prefix_pass_not_model_premise": true,
+    "operating_system_execution_attested": false,
+    "producer": "A164",
+    "public_export_sha256": "7cf1937d7c0f8375158a1b54f762fbdaeea91d82e96cfb226616d0eee218c74c",
+    "raw_files_sha256": {
+      "before-ks.json": "d2ed822a1a7af5fab42fc1b601ed1198781fc3fc2d3fed07d8e0e90d72e3da88",
+      "child.json": "e8e11c14edfec919ffb6291a6312fd7aecf487c12952617ec29df16f56c223af",
+      "completed.json": "454f92ef4533302f8f13458203fc74b1cc36e666842a23dd93d5b02bc9cea34d",
+      "exit.json": "edae330bb55fd039590182f6de288ffa0aa3cd10421fef3c08b62fe027a8b80c",
+      "key-binding.json": "bbd3327ffb3399eb0ec06d3f4840e7fdee9d5a5772cb45db556d4ea3073290a8",
+      "prepared.json": "eb8a15aa68a7486af16315419813ae323ac0e5aed56bc0b42dbe1478c9a814be",
+      "started.json": "ee6adcf590bdc6260606c9b835592132aa431984a7432f165bfd83f882860d28",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "trace.json": "374a0e2e2754ba33c1cd7ad03a959343a6382c8d083f47cd07679ba2b249d460"
+    },
+    "run_id": "first-prefix-key1",
+    "saved_replay_record_consistency_only": true,
+    "saved_replay_sha256": "842aa60651188dbf1da2141b14f6d0f2d07f45d07f8ddbf14873f6987666da66",
+    "source_sha256": "108ead1d901ff39fa31342c6a34abb7f6c9ee19c4102151d2d48aa450fd457f2",
+    "supplied_record_binding_pass": true
+  },
+  "requires_exact_gaussian_to_integer_rounding": true,
+  "reused_key_or_pipeline_bound": false,
+  "selected_observed_success_is_not_a_conditioning_event": true,
+  "status": "CONDITIONAL_IDEAL_INITIAL_KS_JOINT_MGF_BOUND",
+  "tails": [
+    {
+      "attempts": [
+        {
+          "dyadic_upper": {
+            "exponent2": -559,
+            "mantissa_hex": "0xab677dbb156021c708a627bebea00f0ce740cb4c4cef0b6b",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "1/4",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": -1
+        },
+        {
+          "dyadic_upper": {
+            "exponent2": -923,
+            "mantissa_hex": "0xbee076c994341c78812d196823cc7a907a001cee3dec66ef",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "1/2",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": -1
+        },
+        {
+          "dyadic_upper": {
+            "exponent2": -1639,
+            "mantissa_hex": "0x8b69af69cc07fd12a18f0f63537557f6dba039ae9839e3d8",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "1",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": -1
+        },
+        {
+          "dyadic_upper": {
+            "exponent2": -3027,
+            "mantissa_hex": "0xc6402b1643561e50223f47741495d87f7b6818148276dd48",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "2",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": -1
+        }
+      ],
+      "chosen": {
+        "dyadic_upper": {
+          "exponent2": -3027,
+          "mantissa_hex": "0xc6402b1643561e50223f47741495d87f7b6818148276dd48",
+          "precision_bits": 192
+        },
+        "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+        "lambda_per_degree": "2",
+        "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+        "sign": -1
+      },
+      "sign": -1
+    },
+    {
+      "attempts": [
+        {
+          "dyadic_upper": {
+            "exponent2": -559,
+            "mantissa_hex": "0xc8e73217aba92c65037a8a754ecdca1b2a53a32189ad7969",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "1/4",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": 1
+        },
+        {
+          "dyadic_upper": {
+            "exponent2": -922,
+            "mantissa_hex": "0x831d81f91c40a785d91d0911cad4292086fa642339ca2b9b",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "1/2",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": 1
+        },
+        {
+          "dyadic_upper": {
+            "exponent2": -1638,
+            "mantissa_hex": "0x83900fbcb0ec014de596fb58d830a480f5f91b9e83bc6c19",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "1",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": 1
+        },
+        {
+          "dyadic_upper": {
+            "exponent2": -3025,
+            "mantissa_hex": "0xb08d8d6fd7ba44d4d0e509e4375c8d50d0c4284228661f7d",
+            "precision_bits": 192
+          },
+          "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+          "lambda_per_degree": "2",
+          "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+          "sign": 1
+        }
+      ],
+      "chosen": {
+        "dyadic_upper": {
+          "exponent2": -3025,
+          "mantissa_hex": "0xb08d8d6fd7ba44d4d0e509e4375c8d50d0c4284228661f7d",
+          "precision_bits": 192
+        },
+        "exponential_argument": "-<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+        "lambda_per_degree": "2",
+        "probability_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+        "sign": 1
+      },
+      "sign": 1
+    }
+  ]
+}

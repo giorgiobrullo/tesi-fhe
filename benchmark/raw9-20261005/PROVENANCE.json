@@ -1,0 +1,1159 @@
+{
+  "schema": "research-package.v2",
+  "path_base": "files paths are relative to this package; source_layout and shared_files canonical paths are relative to repository root",
+  "source_layout": {
+    "schema": "research-source-map.v1",
+    "archive_root": "local research archive",
+    "source_workspace": "tmp/current-final-threshold-fullquery-probe-20261005/workspace",
+    "files": [
+      {
+        "workspace_path": "Cargo.lock",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/Cargo.lock",
+        "bytes": 20444,
+        "sha256": "4315b074578dd9b8f441fa44d562a7c5005c8ff451ec023fe8b8ec0a1cc090e4",
+        "canonical": "benchmark/raw9-20261005/source/Cargo.lock",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "Cargo.toml",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/Cargo.toml",
+        "bytes": 136,
+        "sha256": "951209f7c723ce1269bd2a00143d01dca0ba4a6e4822e9c0a71f20bfc91495ac",
+        "canonical": "benchmark/raw9-20261005/source/Cargo.toml",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "SOURCE_DIGEST.txt",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/SOURCE_DIGEST.txt",
+        "bytes": 101,
+        "sha256": "9b4c6e43ce949059dfbc44d1bf56ad8a0abd83851152c893b9104caa33a9c26d",
+        "canonical": "benchmark/raw9-20261005/source/SOURCE_DIGEST.txt",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/Cargo.toml",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/Cargo.toml",
+        "bytes": 397,
+        "sha256": "66b0ca21898de8f0a0cf8529fdf5fa2a111ee0aa5cab34a06acce7e657cebb9f",
+        "canonical": "runtime/core/Cargo.toml",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/a112.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/a112.rs",
+        "bytes": 13925,
+        "sha256": "4f9ee8169c737597bbdb6120d59f4effb0a9d9702b73d35739f884bba9da1e9d",
+        "canonical": "runtime/core/src/a112.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/a53_scan/fhe.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/a53_scan/fhe.rs",
+        "bytes": 19307,
+        "sha256": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99",
+        "canonical": "runtime/core/src/a53_scan/fhe.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/a53_scan.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/a53_scan.rs",
+        "bytes": 24531,
+        "sha256": "d0be0765fd52f27046e77b2921f83da50cb1d7df7d080d788656aaa5595f8425",
+        "canonical": "runtime/core/src/a53_scan.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/a98.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/a98.rs",
+        "bytes": 13473,
+        "sha256": "a750dc4eebef73238ae80fcfde90c8b0fa6995d150c5b9120a1adbb37f9dfce4",
+        "canonical": "runtime/core/src/a98.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/bin/raw_threshold_fullquery.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/bin/raw_threshold_fullquery.rs",
+        "bytes": 15083,
+        "sha256": "21e9320b7acb97f51c9d1c57e85ec79a8e581374f9617bc329eb25e32a4df84d",
+        "canonical": "benchmark/raw9-20261005/source/core/src/bin/raw_threshold_fullquery.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/bin/raw_threshold_parallel_stage.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/bin/raw_threshold_parallel_stage.rs",
+        "bytes": 9842,
+        "sha256": "a7eb5fb4021620947f40d745017761122ee0396a585be6d95ea304f97c4876e2",
+        "canonical": "benchmark/raw9-20261005/source/core/src/bin/raw_threshold_parallel_stage.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/bin/raw_threshold_stage.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/bin/raw_threshold_stage.rs",
+        "bytes": 6543,
+        "sha256": "bf715b72a908e3ece16074d30690c05843fd0355c91b29434fab970500bf4275",
+        "canonical": "benchmark/raw9-20261005/source/core/src/bin/raw_threshold_stage.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/centering_counts.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/centering_counts.rs",
+        "bytes": 1691,
+        "sha256": "a31d3df780f05e7b81d06823c3cd40a31ad411ae435f1195327f97d83ab3098f",
+        "canonical": "runtime/core/src/centering_counts.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/classic_batch.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/classic_batch.rs",
+        "bytes": 5162,
+        "sha256": "c496e843f2909c616cae76e9f549846d496fa55e191cfd5d34930a9babfc886f",
+        "canonical": "runtime/core/src/classic_batch.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/comparator.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/comparator.rs",
+        "bytes": 12538,
+        "sha256": "d22b803ac46c5ae100eab337971e5dd14602ab986e5a57c65e65660d7a753815",
+        "canonical": "runtime/core/src/comparator.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/compat.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/compat.rs",
+        "bytes": 3971,
+        "sha256": "d6565c7b69a9774a92505ffe6c2303b284e8ba810b91fb6cf6a7d84690fbb633",
+        "canonical": "runtime/core/src/compat.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/composite.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/composite.rs",
+        "bytes": 2581,
+        "sha256": "1058cc3493d17848afae7b6f2649b23c1eed112d2bb5ec0add4a1e2b08bc8d97",
+        "canonical": "runtime/core/src/composite.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/d1.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/d1.rs",
+        "bytes": 9241,
+        "sha256": "77f23c0ac4da62be19078e01f99fdeca5f83def76a82393db5a4d74ebfe0077f",
+        "canonical": "runtime/core/src/d1.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/g4_dynamic.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/g4_dynamic.rs",
+        "bytes": 22954,
+        "sha256": "025980717f2a7c743a45dc761e0414815e2c59a61e767d762915cb101ad56934",
+        "canonical": "runtime/core/src/g4_dynamic.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/g4_query.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/g4_query.rs",
+        "bytes": 13510,
+        "sha256": "6311dbb40e266b31164d341e14613b34d0eb044f9d9861fa778c3ca9c3986c8e",
+        "canonical": "runtime/core/src/g4_query.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/general.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/general.rs",
+        "bytes": 2920,
+        "sha256": "af61741b78548836b7939f51096470816dd6fe190e4bbce016d6d7644ddb58d3",
+        "canonical": "runtime/core/src/general.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/h_untraced.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/h_untraced.rs",
+        "bytes": 12319,
+        "sha256": "7c59035d2839a3cfb6161f1563ecc1bd8b5596873dd3179093632a43736b4859",
+        "canonical": "runtime/core/src/h_untraced.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/hd1.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/hd1.rs",
+        "bytes": 7416,
+        "sha256": "186da530940051717ade57b2f56a62c74788f47681fc4a06cb67fc946947807d",
+        "canonical": "runtime/core/src/hd1.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/head_key.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/head_key.rs",
+        "bytes": 972,
+        "sha256": "7ae5a60cf6f7acd82614b9db21b2be1184b025f2ddf9e0b8eb3102da5bab10c7",
+        "canonical": "runtime/core/src/head_key.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/head_witness.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/head_witness.rs",
+        "bytes": 8178,
+        "sha256": "a085f8998677f4d221333996c2071469b78a62e746b2fad53929a4d177e0ac65",
+        "canonical": "runtime/core/src/head_witness.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/helpers.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/helpers.rs",
+        "bytes": 2643,
+        "sha256": "8baeb4147d290a1ec0ed461f666b7554653350407dea78563b32f14129a2bdc3",
+        "canonical": "runtime/core/src/helpers.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/hybrid.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/hybrid.rs",
+        "bytes": 1934,
+        "sha256": "e2bda4df162b480dd8f6d681a07b21e568fd776a9d81e1c066e3cf0dce14028a",
+        "canonical": "runtime/core/src/hybrid.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/key_envelope.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/key_envelope.rs",
+        "bytes": 8971,
+        "sha256": "3d5332e066758ba8fd61b581c62a9b139cb01b4645b1d66aefff31280d7e2106",
+        "canonical": "runtime/core/src/key_envelope.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/key_envelope_core.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/key_envelope_core.rs",
+        "bytes": 3419,
+        "sha256": "65cb595267777789972c9b8bba3a844842161a7f6ec592b66b8a2db04c05bbf4",
+        "canonical": "runtime/core/src/key_envelope_core.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/lib.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/lib.rs",
+        "bytes": 4280,
+        "sha256": "bfb361281bdd53ddf849dd499b99ba3b01c179feb92e9178e47562b4207cf627",
+        "canonical": "benchmark/raw9-20261005/source/core/src/lib.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/m_untraced.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/m_untraced.rs",
+        "bytes": 10127,
+        "sha256": "67f73be26e3a9e8ac76b34bc12f6006b3d930aecff6668b85dd186959a769c30",
+        "canonical": "runtime/core/src/m_untraced.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/mean_center.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/mean_center.rs",
+        "bytes": 5203,
+        "sha256": "3f7f0205cc04c0aff6083d1040d8bc9e368e8ca07087507165a5f7b448a23de2",
+        "canonical": "runtime/core/src/mean_center.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/mixed.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/mixed.rs",
+        "bytes": 21808,
+        "sha256": "467492d764ae8b51c78b1bba531082cd401ce1b6d27e84d7e03cd61751916ec2",
+        "canonical": "runtime/core/src/mixed.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/mixed_plan.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/mixed_plan.rs",
+        "bytes": 2583,
+        "sha256": "18e2f9267d798cbcdf3338ea36985fbcd7acd302c1f47fa2516e00ae63d94ffd",
+        "canonical": "runtime/core/src/mixed_plan.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/mixed_tests.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/mixed_tests.rs",
+        "bytes": 15169,
+        "sha256": "8b9784ff08160652230b71edd0385de59a7d303247a3f619db3f5ef1f2d87fa7",
+        "canonical": "runtime/core/src/mixed_tests.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/multibit.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/multibit.rs",
+        "bytes": 23085,
+        "sha256": "e254cb68f1c689072aa5d0c6a3c0b6925b3d0fbb1e2fae265cd6004dc843ff70",
+        "canonical": "runtime/core/src/multibit.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/observer.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/observer.rs",
+        "bytes": 381,
+        "sha256": "ef2a5444ed630211797728194ec9d2a2914082d01cef78d2096e77fdefeefdd1",
+        "canonical": "runtime/core/src/observer.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/contracts.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/contracts.rs",
+        "bytes": 17509,
+        "sha256": "402c65f3caa06019b68c02999a054bc8d0295ca17de635398308e2d2429bffd2",
+        "canonical": "runtime/core/src/private_argmin/contracts.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/domain.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/domain.rs",
+        "bytes": 7391,
+        "sha256": "b2e62d5e791c1c6e9c74989be6e865edabf3f0b3cafec9e3a7cfa3f4bb2e555a",
+        "canonical": "runtime/core/src/private_argmin/domain.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/input.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/input.rs",
+        "bytes": 2328,
+        "sha256": "41f0b041b15aa5702ef75601860f8783285f634908aed4e5379e12571a4b0f26",
+        "canonical": "runtime/core/src/private_argmin/input.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/aligned.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/aligned.rs",
+        "bytes": 37390,
+        "sha256": "1e152c0941e85d4602852c5cc003631b066b228e0d65aa2c0c5d356cb6dd1c61",
+        "canonical": "runtime/core/src/private_argmin/legacy/aligned.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/api.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/api.rs",
+        "bytes": 11140,
+        "sha256": "de8bf6afb2ae4abc07a9cda7322d3885c783f7df4b3680472ed42157f4bbf0c6",
+        "canonical": "runtime/core/src/private_argmin/legacy/api.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/bridge.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/bridge.rs",
+        "bytes": 9556,
+        "sha256": "3b8d31ca33b902fb98fb67504b98c7482d675929d85b06d6b516a497eeae9b8e",
+        "canonical": "runtime/core/src/private_argmin/legacy/bridge.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/counts.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/counts.rs",
+        "bytes": 10733,
+        "sha256": "8f5d2080f85c4872a597d5cdc2074e308ab3ab7f2ef9cd620a5729aec3d02215",
+        "canonical": "runtime/core/src/private_argmin/legacy/counts.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/extraction.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/extraction.rs",
+        "bytes": 7331,
+        "sha256": "649e3e4464d50fd6c6f32087c44c794a15d0662472e928aa09ac4638c2a5a8a4",
+        "canonical": "runtime/core/src/private_argmin/legacy/extraction.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/general.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/general.rs",
+        "bytes": 31806,
+        "sha256": "4abbc7a8a72bdd02c33ac03ef4e610eac06aa402ff46bb06380c3f56364b8385",
+        "canonical": "runtime/core/src/private_argmin/legacy/general.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/luts.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/luts.rs",
+        "bytes": 6725,
+        "sha256": "292f4c3ea6616c232ce3caf770ae863f3d0887fb216aa7a86768ad4f95a50681",
+        "canonical": "runtime/core/src/private_argmin/legacy/luts.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/mod.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/mod.rs",
+        "bytes": 3558,
+        "sha256": "73601ead80974574bf3e64e83b4bed219cceb8b81a9a04a96467a10f0695511f",
+        "canonical": "runtime/core/src/private_argmin/legacy/mod.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/reductions.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/reductions.rs",
+        "bytes": 4002,
+        "sha256": "ab7fa5bde144ab09fd623fec3f38a73fd7e3a0ca9c441902c781666ab281f878",
+        "canonical": "runtime/core/src/private_argmin/legacy/reductions.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/scan.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/scan.rs",
+        "bytes": 6939,
+        "sha256": "5f8fc28c0a94c3b8b969d080f96c0939966a3229b4cd157b4175776eaceaa25a",
+        "canonical": "runtime/core/src/private_argmin/legacy/scan.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/tests/counts.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/tests/counts.rs",
+        "bytes": 4095,
+        "sha256": "6745e8fd635ee6c7cc6427d286b22b41b930d6bfa79949d83a580f89623dc03e",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/counts.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/tests/extraction.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/tests/extraction.rs",
+        "bytes": 3709,
+        "sha256": "02785a9ddf708e1d007c5c1f322dd10f32ce15258fc83b77c063d23d47b810c5",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/extraction.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/tests/fhe.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/tests/fhe.rs",
+        "bytes": 15169,
+        "sha256": "7119cd1ee8c688609a0a6e14ce865dfb0dba8c81351dcdc8104737a164381c12",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/fhe.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/tests/luts.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/tests/luts.rs",
+        "bytes": 15767,
+        "sha256": "8c1c0d58a16082bcbd7a435be2f4acba5a156c06fbaee6249f2e30e35abc3723",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/luts.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/legacy/tests/mod.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/legacy/tests/mod.rs",
+        "bytes": 217,
+        "sha256": "75ca7f33ec649dbed1e206e52ba2b845199d49a129a4b5b8f64daea4a032bf36",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/mod.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/parameters.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/parameters.rs",
+        "bytes": 4287,
+        "sha256": "7d0ae38f4685efa3dc32d324e5b7d19b1433e5d8012f7b0467c78ceae8494ec8",
+        "canonical": "runtime/core/src/private_argmin/parameters.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/score.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/score.rs",
+        "bytes": 3296,
+        "sha256": "56fdabb4e36c088b223e0881f1faff0d10c0d5d353c5256896b61f5a531e28d3",
+        "canonical": "runtime/core/src/private_argmin/score.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/test_support.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/test_support.rs",
+        "bytes": 605,
+        "sha256": "9939d9f8a7d0af921ef773c57517f93de48ee5fe362ab43708eab02f98791b53",
+        "canonical": "runtime/core/src/private_argmin/test_support.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/tests/domain.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/tests/domain.rs",
+        "bytes": 7126,
+        "sha256": "6ca42b1ca07e85a4b3fc017e13c047648372a19690063eff974997140fee2c80",
+        "canonical": "runtime/core/src/private_argmin/tests/domain.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin/tests/parameters.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin/tests/parameters.rs",
+        "bytes": 809,
+        "sha256": "0c2fdda7047da7535930684f4be80c5ce35b98ac65b8415fa89aa10056eae1e4",
+        "canonical": "runtime/core/src/private_argmin/tests/parameters.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/private_argmin.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/private_argmin.rs",
+        "bytes": 925,
+        "sha256": "bffa8e581fcd143347e105b73d6424756bff7fa8908fa0cfffe576b8d5a12af6",
+        "canonical": "runtime/core/src/private_argmin.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/public_digits.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/public_digits.rs",
+        "bytes": 10712,
+        "sha256": "5c402b3296a599640f8b91543ace8149707488e0114f518276e6dd1d7c508439",
+        "canonical": "runtime/core/src/public_digits.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/public_thresholds.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/public_thresholds.rs",
+        "bytes": 6671,
+        "sha256": "183c501162564b0e5d8af250b853ff1d8e6ba70a5147de64f0ddbe98c4b92103",
+        "canonical": "runtime/core/src/public_thresholds.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/raw_threshold_cases.json",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/raw_threshold_cases.json",
+        "bytes": 2615,
+        "sha256": "5f19ed44b2364a9d0b5216f4ba77be77d3b9968ec46332d892602761a14b8c89",
+        "canonical": "benchmark/raw9-20261005/source/core/src/raw_threshold_cases.json",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/raw_threshold_probe.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/raw_threshold_probe.rs",
+        "bytes": 19709,
+        "sha256": "f35c8dab9bcc3442a7a1ff1c1e13a78b20e5749028a653895aaa1411bf51d6fc",
+        "canonical": "benchmark/raw9-20261005/source/core/src/raw_threshold_probe.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/request_guard.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/request_guard.rs",
+        "bytes": 667,
+        "sha256": "729ca33e9411fa31ba97c7e35fb537e3dfb72cf2c62e98a7a6b01ac15bb708df",
+        "canonical": "runtime/core/src/request_guard.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/scaling_tests.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/scaling_tests.rs",
+        "bytes": 8016,
+        "sha256": "3796a16c3088986d44655ec1417644eb6bbdde0e3e6936319e97ab1d796d51f5",
+        "canonical": "runtime/core/src/scaling_tests.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/score_anchor.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/score_anchor.rs",
+        "bytes": 5000,
+        "sha256": "4d3907c5f82591794749a2b4d865ef2761888fee988090c54a5fde1fe9498c31",
+        "canonical": "runtime/core/src/score_anchor.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/selector_parallel.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/selector_parallel.rs",
+        "bytes": 10250,
+        "sha256": "4e54015fc8ad82a7deb2d842c607bbd58a0dd8409113038e3d49f8a83f8078f4",
+        "canonical": "runtime/core/src/selector_parallel.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/selector_refresh.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/selector_refresh.rs",
+        "bytes": 2420,
+        "sha256": "2def89a65e9da264e26e86d6e58946213bb71eaaf5249478b55cf0043dd2905b",
+        "canonical": "runtime/core/src/selector_refresh.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/service.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/service.rs",
+        "bytes": 21919,
+        "sha256": "3eac2b32d9c149472a52ef16761fcfba17c7d41cf5e9c570294a699970286c1a",
+        "canonical": "benchmark/raw9-20261005/source/core/src/service.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/service_selected.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/service_selected.rs",
+        "bytes": 4858,
+        "sha256": "9fa252427788c45cd3a3b052ec712ba389770262bcc093861bc7c20cc413009e",
+        "canonical": "benchmark/raw9-20261005/source/core/src/service_selected.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/service_smoke_tests.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/service_smoke_tests.rs",
+        "bytes": 4079,
+        "sha256": "aa61c53bebcb8822a5808b2ea06712372bede83bf73976677bd654bfe8d43ef6",
+        "canonical": "runtime/core/src/service_smoke_tests.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/shared_normalizers.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/shared_normalizers.rs",
+        "bytes": 10299,
+        "sha256": "9aad98bdf1d4b2954ca0c3ab3adb9ae7282158d275087c70ea0b2dbfd18672cc",
+        "canonical": "runtime/core/src/shared_normalizers.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/smallcuts.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/smallcuts.rs",
+        "bytes": 16892,
+        "sha256": "aa25d4b8dd1df2c2b89d7b6b2242f381066d5127ebe629ff2cadc25e144aac3a",
+        "canonical": "runtime/core/src/smallcuts.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/split.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/split.rs",
+        "bytes": 10060,
+        "sha256": "c145a703897dedd7be700d5e08c57d222bb8ddd45707612e9ac850f6963793d6",
+        "canonical": "runtime/core/src/split.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/split32_observer.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/split32_observer.rs",
+        "bytes": 15826,
+        "sha256": "95cd3d48b20cf4994e5db924cff56e7a60f2fafac6ef4f75d7951d2dc45d4882",
+        "canonical": "runtime/core/src/split32_observer.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/template_permutation.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/template_permutation.rs",
+        "bytes": 356,
+        "sha256": "d64de4ce0c485b32aa959954cfb0266c12bf88e4d8e560633c89b994a9637c62",
+        "canonical": "runtime/core/src/template_permutation.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/uniform_tests.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/uniform_tests.rs",
+        "bytes": 10646,
+        "sha256": "da2ed6c85d3fae2e83c14c299077d54b575e9c0bbdeb6a07a3f6c879bd8251fb",
+        "canonical": "runtime/core/src/uniform_tests.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/wide.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/wide.rs",
+        "bytes": 8146,
+        "sha256": "d03e108e0b32a23fc04e035a8a6f749b87b38ee463ee357225598e857d262b70",
+        "canonical": "runtime/core/src/wide.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/src/wide_id.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/wide_id.rs",
+        "bytes": 24427,
+        "sha256": "3946ec237694591eacd97757649996f33259b12c74366d57d49da7af47eb0f39",
+        "canonical": "benchmark/raw9-20261005/source/core/src/wide_id.rs",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "core/src/wide_id_tests.rs",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/wide_id_tests.rs",
+        "bytes": 16111,
+        "sha256": "c7b9a2c89e02213f60adb3ce6386229d903eb8a0049b3d0f390a6e77831ad51b",
+        "canonical": "runtime/core/src/wide_id_tests.rs",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "core/artifacts/fused_candidate_zero_body.u64le",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/artifacts/fused_candidate_zero_body.u64le",
+        "canonical": "runtime/core/artifacts/fused_candidate_zero_body.u64le",
+        "bytes": 16384,
+        "sha256": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+        "mapping": "existing_public_LUT"
+      }
+    ],
+    "excluded_inputs": [
+      {
+        "workspace_path": "core/fixtures/curie.json",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/curie.json",
+        "bytes": 2100,
+        "sha256": "a69a253fd5d8f998b9e017335123d41add577f1872cabdff0c349971fc2cf616",
+        "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+      },
+      {
+        "workspace_path": "core/fixtures/einstein.json",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/einstein.json",
+        "bytes": 2092,
+        "sha256": "2f4c48262685673af1de0ab97c77b0e3a9f60aca876a2fcea4c7d2ab7ca7ad6a",
+        "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+      },
+      {
+        "workspace_path": "core/fixtures/gallery.json",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/gallery.json",
+        "bytes": 154052,
+        "sha256": "6ad678a67bc755c30b1e25afc336079d31a9ee410a8a16b73043a6e1c98a86fe",
+        "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+      },
+      {
+        "workspace_path": "core/fixtures/turing.json",
+        "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/turing.json",
+        "bytes": 2116,
+        "sha256": "19ecbebc1afcd692baf66efb0950a8387687372e4ca7c56b86ecca5b3226bc5e",
+        "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+      }
+    ],
+    "path_semantics": {
+      "workspace_path": "path in reconstructed workspace",
+      "canonical": "path relative to repository root",
+      "archive_relative": "original path relative to local research archive"
+    },
+    "scientific_execution_in_this_recovery": false
+  },
+  "files": [
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 5135,
+      "sha256": "6cdb9bc0f9bea111850626a93a7fe962e47804bb12206b23c486489262a849c0",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/PROTOCOL.md",
+          "destination": "benchmark/raw9-20261005/PROTOCOL.md",
+          "original_sha256": "6cdb9bc0f9bea111850626a93a7fe962e47804bb12206b23c486489262a849c0",
+          "copy_sha256": "6cdb9bc0f9bea111850626a93a7fe962e47804bb12206b23c486489262a849c0",
+          "bytes": 5135,
+          "role": "frozen_protocol"
+        }
+      ]
+    },
+    {
+      "path": "README.md",
+      "bytes": 2484,
+      "sha256": "7f5ebb78c259f02c36eb60f9d415b21bbb2b46978b68318683f7407feb31e450"
+    },
+    {
+      "path": "analysis/ANALYZE.original.py",
+      "bytes": 6032,
+      "sha256": "9c177c31af6ec14370787d9d9994eb43a7ec68c6bd925c6390b40b095ea718af",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/ANALYZE.py",
+          "destination": "benchmark/raw9-20261005/analysis/ANALYZE.original.py",
+          "original_sha256": "9c177c31af6ec14370787d9d9994eb43a7ec68c6bd925c6390b40b095ea718af",
+          "copy_sha256": "9c177c31af6ec14370787d9d9994eb43a7ec68c6bd925c6390b40b095ea718af",
+          "bytes": 6032,
+          "role": "frozen_analysis_source"
+        }
+      ]
+    },
+    {
+      "path": "inputs/DERIVED_CASES.json",
+      "bytes": 1756,
+      "sha256": "e344cdd5a9ada01e87eea3c917fe36bb4cc11685136033e1dca3682ddbe647c1",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/DERIVED_GATE_BINDING.json",
+          "destination": "benchmark/raw9-20261005/inputs/DERIVED_CASES.json",
+          "original_sha256": "9e8eaa0f13daf6adde02778fa2478267c09dce2c6b0dec1643e3f4b7cbe0f375",
+          "copy_sha256": "e344cdd5a9ada01e87eea3c917fe36bb4cc11685136033e1dca3682ddbe647c1",
+          "bytes": 1756,
+          "role": "public_scalar_input_recipe",
+          "privacy_redaction": {
+            "before_public_sha256": "9e8eaa0f13daf6adde02778fa2478267c09dce2c6b0dec1643e3f4b7cbe0f375",
+            "before_public_bytes": 1796,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "9e8eaa0f13daf6adde02778fa2478267c09dce2c6b0dec1643e3f4b7cbe0f375",
+        "before_public_bytes": 1796,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "inputs/INPUT_PINS.json",
+      "bytes": 1867,
+      "sha256": "57160ccadd9de2c8cf579bcc6d2571585f76f4512aca7c83493f5c4381951147"
+    },
+    {
+      "path": "inputs/README.md",
+      "bytes": 2074,
+      "sha256": "e08060744ae7b37ff5463f4c9686ca19c1733b08c0719faeed998de49af84f5b"
+    },
+    {
+      "path": "provenance/BINARY_BINDING.json",
+      "bytes": 1345,
+      "sha256": "16b2bcd228023e7b3a7be278a486ed3a450c10a359bb0228bb73e0349ae03544",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/BINARY_BINDING.json",
+          "destination": "benchmark/raw9-20261005/provenance/BINARY_BINDING.json",
+          "original_sha256": "aa4c4e3ba6b52cf0ab294738631d4c91d1499cc90de2ae3653bf777c556efa8a",
+          "copy_sha256": "16b2bcd228023e7b3a7be278a486ed3a450c10a359bb0228bb73e0349ae03544",
+          "bytes": 1345,
+          "role": "binary_metadata_only",
+          "privacy_redaction": {
+            "before_public_sha256": "aa4c4e3ba6b52cf0ab294738631d4c91d1499cc90de2ae3653bf777c556efa8a",
+            "before_public_bytes": 1385,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "aa4c4e3ba6b52cf0ab294738631d4c91d1499cc90de2ae3653bf777c556efa8a",
+        "before_public_bytes": 1385,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "provenance/BUILD_CAPTURE.json",
+      "bytes": 1118,
+      "sha256": "79ef2aa2ec021391a5645a4c4a31934c613af056cfa9b4108dd0b2f7299523d8",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/BUILD_CAPTURE.json",
+          "destination": "benchmark/raw9-20261005/provenance/BUILD_CAPTURE.json",
+          "original_sha256": "53a19842e109c1a1a315d9bbaa8dda5e8c117ca1e443f742f60ce75c4e288a7d",
+          "copy_sha256": "79ef2aa2ec021391a5645a4c4a31934c613af056cfa9b4108dd0b2f7299523d8",
+          "bytes": 1118,
+          "role": "build_receipt",
+          "privacy_redaction": {
+            "before_public_sha256": "53a19842e109c1a1a315d9bbaa8dda5e8c117ca1e443f742f60ce75c4e288a7d",
+            "before_public_bytes": 1198,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "53a19842e109c1a1a315d9bbaa8dda5e8c117ca1e443f742f60ce75c4e288a7d",
+        "before_public_bytes": 1198,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "provenance/NATIVE_CAPTURE.json",
+      "bytes": 1055,
+      "sha256": "fd587d3357542be33b22b13cd006c614b4b43c8d1faf4d1a8ae295202df60d2f",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/NATIVE_CAPTURE.json",
+          "destination": "benchmark/raw9-20261005/provenance/NATIVE_CAPTURE.json",
+          "original_sha256": "cf2389ad95a8e3a62b3a9159b053c5f1206c821e9cb4acffb17a8324757df4b0",
+          "copy_sha256": "fd587d3357542be33b22b13cd006c614b4b43c8d1faf4d1a8ae295202df60d2f",
+          "bytes": 1055,
+          "role": "native_receipt",
+          "privacy_redaction": {
+            "before_public_sha256": "cf2389ad95a8e3a62b3a9159b053c5f1206c821e9cb4acffb17a8324757df4b0",
+            "before_public_bytes": 1155,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "cf2389ad95a8e3a62b3a9159b053c5f1206c821e9cb4acffb17a8324757df4b0",
+        "before_public_bytes": 1155,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "results/RESULT.md",
+      "bytes": 3395,
+      "sha256": "e69b0548878239529824d0a54b20cb8cc79ed8eb36da9783f98c7b09bd6de5ef",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/RESULT.md",
+          "destination": "benchmark/raw9-20261005/results/RESULT.md",
+          "original_sha256": "e69b0548878239529824d0a54b20cb8cc79ed8eb36da9783f98c7b09bd6de5ef",
+          "copy_sha256": "e69b0548878239529824d0a54b20cb8cc79ed8eb36da9783f98c7b09bd6de5ef",
+          "bytes": 3395,
+          "role": "frozen_result"
+        }
+      ]
+    },
+    {
+      "path": "results/RESULT_REVIEW.md",
+      "bytes": 4459,
+      "sha256": "da9fa8606fd142d87552374b128120c72c6b6f707eb65e4907840727aa9bd653",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/source/RESULT_REVIEW.md",
+          "destination": "benchmark/raw9-20261005/results/RESULT_REVIEW.md",
+          "original_sha256": "22491d961a916dc31aa8bc7150842b85be0242ea8c63b60499440fe815fed092",
+          "copy_sha256": "da9fa8606fd142d87552374b128120c72c6b6f707eb65e4907840727aa9bd653",
+          "bytes": 4459,
+          "role": "frozen_review",
+          "privacy_redaction": {
+            "before_public_sha256": "22491d961a916dc31aa8bc7150842b85be0242ea8c63b60499440fe815fed092",
+            "before_public_bytes": 4479,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "22491d961a916dc31aa8bc7150842b85be0242ea8c63b60499440fe815fed092",
+        "before_public_bytes": 4479,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "results/SUMMARY.json",
+      "bytes": 5028,
+      "sha256": "e57eec5bb2da413bd6702580fe434c255c6785156895126fd1466371a6b15f07",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/RESULT_SUMMARY.json",
+          "destination": "benchmark/raw9-20261005/results/SUMMARY.json",
+          "original_sha256": "e57eec5bb2da413bd6702580fe434c255c6785156895126fd1466371a6b15f07",
+          "copy_sha256": "e57eec5bb2da413bd6702580fe434c255c6785156895126fd1466371a6b15f07",
+          "bytes": 5028,
+          "role": "saved_summary"
+        }
+      ]
+    },
+    {
+      "path": "results/rows.jsonl",
+      "bytes": 36415,
+      "sha256": "f016563fee1509b15bf2fc7a8fb4006859d1f3e87a2c9632b0617c6a587be479",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/NATIVE.stdout.log",
+          "destination": "benchmark/raw9-20261005/results/rows.jsonl",
+          "original_sha256": "f016563fee1509b15bf2fc7a8fb4006859d1f3e87a2c9632b0617c6a587be479",
+          "copy_sha256": "f016563fee1509b15bf2fc7a8fb4006859d1f3e87a2c9632b0617c6a587be479",
+          "bytes": 36415,
+          "role": "public_samples"
+        }
+      ]
+    },
+    {
+      "path": "review/SOURCE_REVIEW.md",
+      "bytes": 7054,
+      "sha256": "a25c365a5d53b92c71aa1c3f68117f10ceb50acd5bcaa9a954a404562395894c",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/source/IMPLEMENTATION_REVIEW.md",
+          "destination": "benchmark/raw9-20261005/review/SOURCE_REVIEW.md",
+          "original_sha256": "00e87f9f3b4e4ab97a23d42d74c0091dc057e72e19cebfc236c98d34c7d751b6",
+          "copy_sha256": "a25c365a5d53b92c71aa1c3f68117f10ceb50acd5bcaa9a954a404562395894c",
+          "bytes": 7054,
+          "role": "frozen_review",
+          "privacy_redaction": {
+            "before_public_sha256": "00e87f9f3b4e4ab97a23d42d74c0091dc057e72e19cebfc236c98d34c7d751b6",
+            "before_public_bytes": 7074,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "00e87f9f3b4e4ab97a23d42d74c0091dc057e72e19cebfc236c98d34c7d751b6",
+        "before_public_bytes": 7074,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "source/Cargo.lock",
+      "bytes": 20444,
+      "sha256": "4315b074578dd9b8f441fa44d562a7c5005c8ff451ec023fe8b8ec0a1cc090e4",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/Cargo.lock",
+          "destination": "benchmark/raw9-20261005/source/Cargo.lock",
+          "original_sha256": "4315b074578dd9b8f441fa44d562a7c5005c8ff451ec023fe8b8ec0a1cc090e4",
+          "copy_sha256": "4315b074578dd9b8f441fa44d562a7c5005c8ff451ec023fe8b8ec0a1cc090e4",
+          "bytes": 20444,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/Cargo.toml",
+      "bytes": 136,
+      "sha256": "951209f7c723ce1269bd2a00143d01dca0ba4a6e4822e9c0a71f20bfc91495ac",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/Cargo.toml",
+          "destination": "benchmark/raw9-20261005/source/Cargo.toml",
+          "original_sha256": "951209f7c723ce1269bd2a00143d01dca0ba4a6e4822e9c0a71f20bfc91495ac",
+          "copy_sha256": "951209f7c723ce1269bd2a00143d01dca0ba4a6e4822e9c0a71f20bfc91495ac",
+          "bytes": 136,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/SOURCE_DIGEST.txt",
+      "bytes": 101,
+      "sha256": "9b4c6e43ce949059dfbc44d1bf56ad8a0abd83851152c893b9104caa33a9c26d",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/SOURCE_DIGEST.txt",
+          "destination": "benchmark/raw9-20261005/source/SOURCE_DIGEST.txt",
+          "original_sha256": "9b4c6e43ce949059dfbc44d1bf56ad8a0abd83851152c893b9104caa33a9c26d",
+          "copy_sha256": "9b4c6e43ce949059dfbc44d1bf56ad8a0abd83851152c893b9104caa33a9c26d",
+          "bytes": 101,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/bin/raw_threshold_fullquery.rs",
+      "bytes": 15083,
+      "sha256": "21e9320b7acb97f51c9d1c57e85ec79a8e581374f9617bc329eb25e32a4df84d",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/bin/raw_threshold_fullquery.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/bin/raw_threshold_fullquery.rs",
+          "original_sha256": "21e9320b7acb97f51c9d1c57e85ec79a8e581374f9617bc329eb25e32a4df84d",
+          "copy_sha256": "21e9320b7acb97f51c9d1c57e85ec79a8e581374f9617bc329eb25e32a4df84d",
+          "bytes": 15083,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/bin/raw_threshold_parallel_stage.rs",
+      "bytes": 9842,
+      "sha256": "a7eb5fb4021620947f40d745017761122ee0396a585be6d95ea304f97c4876e2",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/bin/raw_threshold_parallel_stage.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/bin/raw_threshold_parallel_stage.rs",
+          "original_sha256": "a7eb5fb4021620947f40d745017761122ee0396a585be6d95ea304f97c4876e2",
+          "copy_sha256": "a7eb5fb4021620947f40d745017761122ee0396a585be6d95ea304f97c4876e2",
+          "bytes": 9842,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/bin/raw_threshold_stage.rs",
+      "bytes": 6543,
+      "sha256": "bf715b72a908e3ece16074d30690c05843fd0355c91b29434fab970500bf4275",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/bin/raw_threshold_stage.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/bin/raw_threshold_stage.rs",
+          "original_sha256": "bf715b72a908e3ece16074d30690c05843fd0355c91b29434fab970500bf4275",
+          "copy_sha256": "bf715b72a908e3ece16074d30690c05843fd0355c91b29434fab970500bf4275",
+          "bytes": 6543,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/lib.rs",
+      "bytes": 4280,
+      "sha256": "bfb361281bdd53ddf849dd499b99ba3b01c179feb92e9178e47562b4207cf627",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/lib.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/lib.rs",
+          "original_sha256": "bfb361281bdd53ddf849dd499b99ba3b01c179feb92e9178e47562b4207cf627",
+          "copy_sha256": "bfb361281bdd53ddf849dd499b99ba3b01c179feb92e9178e47562b4207cf627",
+          "bytes": 4280,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/raw_threshold_cases.json",
+      "bytes": 2615,
+      "sha256": "5f19ed44b2364a9d0b5216f4ba77be77d3b9968ec46332d892602761a14b8c89",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/raw_threshold_cases.json",
+          "destination": "benchmark/raw9-20261005/source/core/src/raw_threshold_cases.json",
+          "original_sha256": "5f19ed44b2364a9d0b5216f4ba77be77d3b9968ec46332d892602761a14b8c89",
+          "copy_sha256": "5f19ed44b2364a9d0b5216f4ba77be77d3b9968ec46332d892602761a14b8c89",
+          "bytes": 2615,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/raw_threshold_probe.rs",
+      "bytes": 19709,
+      "sha256": "f35c8dab9bcc3442a7a1ff1c1e13a78b20e5749028a653895aaa1411bf51d6fc",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/raw_threshold_probe.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/raw_threshold_probe.rs",
+          "original_sha256": "f35c8dab9bcc3442a7a1ff1c1e13a78b20e5749028a653895aaa1411bf51d6fc",
+          "copy_sha256": "f35c8dab9bcc3442a7a1ff1c1e13a78b20e5749028a653895aaa1411bf51d6fc",
+          "bytes": 19709,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/service.rs",
+      "bytes": 21919,
+      "sha256": "3eac2b32d9c149472a52ef16761fcfba17c7d41cf5e9c570294a699970286c1a",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/service.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/service.rs",
+          "original_sha256": "3eac2b32d9c149472a52ef16761fcfba17c7d41cf5e9c570294a699970286c1a",
+          "copy_sha256": "3eac2b32d9c149472a52ef16761fcfba17c7d41cf5e9c570294a699970286c1a",
+          "bytes": 21919,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/service_selected.rs",
+      "bytes": 4858,
+      "sha256": "9fa252427788c45cd3a3b052ec712ba389770262bcc093861bc7c20cc413009e",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/service_selected.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/service_selected.rs",
+          "original_sha256": "9fa252427788c45cd3a3b052ec712ba389770262bcc093861bc7c20cc413009e",
+          "copy_sha256": "9fa252427788c45cd3a3b052ec712ba389770262bcc093861bc7c20cc413009e",
+          "bytes": 4858,
+          "role": "frozen_source"
+        }
+      ]
+    },
+    {
+      "path": "source/core/src/wide_id.rs",
+      "bytes": 24427,
+      "sha256": "3946ec237694591eacd97757649996f33259b12c74366d57d49da7af47eb0f39",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/src/wide_id.rs",
+          "destination": "benchmark/raw9-20261005/source/core/src/wide_id.rs",
+          "original_sha256": "3946ec237694591eacd97757649996f33259b12c74366d57d49da7af47eb0f39",
+          "copy_sha256": "3946ec237694591eacd97757649996f33259b12c74366d57d49da7af47eb0f39",
+          "bytes": 24427,
+          "role": "frozen_source"
+        }
+      ]
+    }
+  ],
+  "shared_files": [],
+  "evidence_metadata": {
+    "schema": "research-evidence-copy.v1",
+    "copy_policy": "Byte-identical source, protocol, public JSON rows and saved aggregate results only. Shared source identities are in source_layout. No keys, ciphertexts, embedding fixtures, datasets, images, binaries or browser profiles copied.",
+    "new_scientific_executions": 0
+  },
+  "inventory_metadata": {
+    "schema": "research-package-inventory.v1",
+    "new_scientific_executions": 0
+  },
+  "administrative_consolidation": {
+    "previous_manifests": {
+      "PACKAGE_MANIFEST.json": {
+        "sha256": "2750e21ad6c4f0ef7e703bfd679d20970c48772a6c983503ef8b2cf0124302c5",
+        "bytes": 4758
+      },
+      "PROVENANCE.json": {
+        "sha256": "9b4966c934c8f834efbe17ba2be34f631e67ab249980937f65d5de17a7dd7f4a",
+        "bytes": 10376
+      },
+      "SOURCE_MAP.json": {
+        "sha256": "1b5e308aa44ecde101d5a2ae8b54414d9ef1421bb5d84c09a832b538303c7185",
+        "bytes": 35104
+      }
+    },
+    "field_relocations": [
+      {
+        "field": "evidence_metadata.copy_policy",
+        "previous": "Byte-identical source, protocol, public JSON rows and saved aggregate results only. Shared source identities are in SOURCE_MAP.json. No keys, ciphertexts, embedding fixtures, datasets, images, binaries or browser profiles copied.",
+        "current": "Byte-identical source, protocol, public JSON rows and saved aggregate results only. Shared source identities are in source_layout. No keys, ciphertexts, embedding fixtures, datasets, images, binaries or browser profiles copied."
+      }
+    ],
+    "scientific_files_changed": false
+  }
+}

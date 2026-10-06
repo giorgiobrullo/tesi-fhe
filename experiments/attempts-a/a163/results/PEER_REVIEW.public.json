@@ -1,0 +1,6 @@
+{
+  "actual_probability_claim": false,
+  "findings_review": "No material schema/algebra/binding issue found in public_context/calculate/expected_validation/runtime_input. Rules/pin files not covered by this reviewer.",
+  "root_review": "Coefficient/schema and fixed-grid scope sound. Wording corrected before freeze: finite law needs comparison/domination or replacement with computational/abort/rounding terms; cannot equal ideal unbounded Gaussian iid law.",
+  "scope": "read-only source; no actual records or agent execution"
+}

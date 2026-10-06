@@ -1,0 +1,35 @@
+{
+  "artifact": "A151",
+  "tfhe": "0.11.3",
+  "base_symbol": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+  "large_dimension": 2048,
+  "small_dimension": 859,
+  "glwe_size": 2,
+  "polynomial_size": 2048,
+  "glwe_gaussian_sigma": 2.845267479601915e-15,
+  "modulus": "native_u64",
+  "pfks_base_log": 24,
+  "pfks_levels": 1,
+  "row_levels": 2049,
+  "target_coefficients": [
+    0
+  ],
+  "scalar_function": "identity",
+  "functional_polynomial": "signed_W0_radius63",
+  "fixture_index": 2,
+  "fixture_name": "accept_threshold_left",
+  "payload_side": "left",
+  "payload_lane": 0,
+  "payload_message": 3,
+  "payload_delta_log": 59,
+  "server_calls": {
+    "pfks": 1,
+    "ks": 0,
+    "br": 0,
+    "extract": 0
+  },
+  "comparison": "independent key-row contraction vs actual one-payload coefficient0 PFKS aggregate",
+  "negative": "copy output, add1 to body coefficient0; prediction unchanged, observed aggregate changes by1",
+  "support_gate": "NOT_APPLICABLE_no_BR_or_selector",
+  "tails": "OPEN"
+}

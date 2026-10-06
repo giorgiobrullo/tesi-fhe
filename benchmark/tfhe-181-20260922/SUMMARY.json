@@ -1,0 +1,219 @@
+{
+  "schema": "tfhe-version-pilot-20260922.v1",
+  "status": "passed",
+  "baseline_source_commit": "53579721e13da416334bb0bba48fd03307c95f81",
+  "host": "Apple M4 Max, macOS ARM64",
+  "compiler": "rustc1.98.0 (88d9e12ae2026-08-18), Homebrew",
+  "release_profile": {
+    "opt_level": 3,
+    "codegen_units": 1,
+    "lto": false,
+    "pgo": false
+  },
+  "threads": 16,
+  "fft": "Dif4/base1024, tfhe-fft0.10.1",
+  "g4": false,
+  "n": 120,
+  "dimension": 512,
+  "summary": {
+    "scenes": {
+      "einstein": {
+        "arms": {
+          "tfhe-1.7.0": {
+            "block_ms": [
+              1684.4,
+              1832.2
+            ],
+            "median_ms": 1758.3000000000002,
+            "minimum_ms": 1684.4,
+            "maximum_ms": 1832.2
+          },
+          "tfhe-1.8.1": {
+            "block_ms": [
+              1730.0,
+              1898.3
+            ],
+            "median_ms": 1814.15,
+            "minimum_ms": 1730.0,
+            "maximum_ms": 1898.3
+          }
+        },
+        "candidate_over_baseline_block_ratios": [
+          1.0270719544051294,
+          1.0360768475057307
+        ],
+        "median_block_ratio": 1.0315744009554302
+      },
+      "curie": {
+        "arms": {
+          "tfhe-1.7.0": {
+            "block_ms": [
+              1716.0,
+              1797.5
+            ],
+            "median_ms": 1756.75,
+            "minimum_ms": 1716.0,
+            "maximum_ms": 1797.5
+          },
+          "tfhe-1.8.1": {
+            "block_ms": [
+              1785.4,
+              1939.3
+            ],
+            "median_ms": 1862.35,
+            "minimum_ms": 1785.4,
+            "maximum_ms": 1939.3
+          }
+        },
+        "candidate_over_baseline_block_ratios": [
+          1.0404428904428904,
+          1.0788873435326842
+        ],
+        "median_block_ratio": 1.0596651169877873
+      },
+      "turing": {
+        "arms": {
+          "tfhe-1.7.0": {
+            "block_ms": [
+              1764.4,
+              1828.0
+            ],
+            "median_ms": 1796.2,
+            "minimum_ms": 1764.4,
+            "maximum_ms": 1828.0
+          },
+          "tfhe-1.8.1": {
+            "block_ms": [
+              1726.0,
+              2044.0
+            ],
+            "median_ms": 1885.0,
+            "minimum_ms": 1726.0,
+            "maximum_ms": 2044.0
+          }
+        },
+        "candidate_over_baseline_block_ratios": [
+          0.9782362276127862,
+          1.1181619256017505
+        ],
+        "median_block_ratio": 1.0481990766072684
+      }
+    },
+    "measured_calls": 12,
+    "warmup_calls": 12,
+    "blocks": 2,
+    "key_families": 2,
+    "same_ciphertext_reused_within_arm": true,
+    "estimand": "Per scene: median of two measured block times; candidate/baseline ratio within block, then median of two ratios.",
+    "limits": "Exploratory AB/BA pilot on one host, one distinct key family per version and three same-enrollment-photo queries. Repetitions and scenes do not constitute independent key families; no confidence interval, failure bound, biometric accuracy or general speedup claim.",
+    "extra_correctness_only_candidate_calls": 4,
+    "edges": [
+      {
+        "scene": "n127_uniform_general_last_id",
+        "selected_id": 127,
+        "expected_id": 127,
+        "digits": [
+          7,
+          8,
+          0
+        ],
+        "correct": true
+      },
+      {
+        "scene": "n128_uniform_aligned_last_id",
+        "selected_id": 128,
+        "expected_id": 128,
+        "digits": [
+          8,
+          8,
+          0
+        ],
+        "correct": true
+      },
+      {
+        "scene": "n225_uniform_general_third_digit",
+        "selected_id": 225,
+        "expected_id": 225,
+        "digits": [
+          0,
+          0,
+          1
+        ],
+        "correct": true
+      },
+      {
+        "scene": "n226_tie_id225_winner_rejects",
+        "selected_id": 0,
+        "expected_id": 0,
+        "digits": [
+          0,
+          0,
+          0
+        ],
+        "correct": true
+      }
+    ],
+    "distinct_scene_vectors": 3
+  },
+  "tests": {
+    "rust_ordinary": 119,
+    "python_runtime": 32,
+    "fresh_noisy_n2_queries": 3,
+    "http_edge_queries": 4,
+    "http_pilot_queries": 24,
+    "python_demo": 107,
+    "actual_current_engine_key_load_and_status": true
+  },
+  "key_generation": "one fresh independent family per arm plus one fresh in-memory candidate family for N2; no cross-version key import",
+  "operation_counts": {
+    "br": 1111,
+    "initial_samples": 120,
+    "ks": 1080,
+    "marginals": 1709,
+    "pfks": 509
+  },
+  "inputs_note": "three fixed quantized queries from same enrollment photos, not held-out biometric evaluation",
+  "csv_sha256": "f8b2ca78fe984b0a5f2ffed2cfdf5b92f890ac2288c3da85bd0e963d0d707b8c",
+  "local_complete_receipt_sha256": "24c5f6cf5baa34f53aa88e7c89858d2e227833f775bc822a8b3689d825dea65c",
+  "measurement_driver_sha256": "d2b3e1cb4625fd991439710aebc4b4a889a5fc75dcfccf2620e68abd74cb8744",
+  "versions": {
+    "baseline": {
+      "tfhe_rs": "1.7.0",
+      "cargo_lock_sha256": "f015377d1fbe18bde278a3d3719deb61bf0490f75a961c6afc8db3259505c4ea",
+      "source_pins_sha256": "14c0c2e0b7f201955f7b5420bdf86f746079cb05b197673667e1ec2c2800a721",
+      "binary_sha256": "746f4d67863f5636cd677ef7c5c8e98e82a786b6524e2e708c36681c90a20d95",
+      "circuit_sha256": "4443f1c8c0a53b7d7f8005f1b6b6dcca5c4ce4f3e813e35a44aef7fbcf5426ff",
+      "params_fingerprint_sha256": "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61",
+      "keygen_bundle_validation_pass": true
+    },
+    "candidate": {
+      "tfhe_rs": "1.8.1",
+      "cargo_lock_sha256": "34579017e5e1b1871532156e1596ebc2924f5a807bbf691c8410e3aade0152d7",
+      "source_pins_sha256": "b053f6854ee4c7f65c3836cdd63dfde83e1e4e62315b609b7e6be7c5d3e4fa01",
+      "binary_sha256": "d979936ff8e41fda7334e16cbf5e3e0bcefa41e05c9f97cd24dbc24140423a0b",
+      "circuit_sha256": "96269130d3ed5fca499bf5ea04d901760400e2007992dc6feffbd832f739e367",
+      "params_fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+      "keygen_bundle_validation_pass": true
+    }
+  },
+  "load_observation": {
+    "ps_snapshots": 31,
+    "sampling_interval_s": [
+      2.06,
+      2.144
+    ],
+    "partial_non_evaluator_cpu_core_equivalents_range": [
+      1.341,
+      3.488
+    ],
+    "block_1_candidate_overlapping_intervals": [
+      2.696,
+      3.488
+    ],
+    "block_1_baseline_overlapping_intervals": [
+      2.1,
+      2.533
+    ],
+    "limitations": "Partial cumulative-TIME accounting includes harness/sampler and excludes vanished/new processes; no causal attribution, full load bound, adjusted timings or discarded observations."
+  }
+}

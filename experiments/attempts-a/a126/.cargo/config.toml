@@ -1,0 +1,3 @@
+[build]
+target-dir = "target-a126-only"
+rustflags = ["-C", "target-cpu=native"]

@@ -1,0 +1,32 @@
+{
+  "status": "COMPLETE_FIRST_N4_RECORD_REPLAY",
+  "input_origin": "36_SHARED_PREPARATION_PBS_NOT_U8_EXTRACTION_CORRECTIONS",
+  "records": 8,
+  "native_gate_pass": true,
+  "semantic_checks": 1820,
+  "semantic_failures": 0,
+  "support_checks": 336,
+  "support_departures": 0,
+  "gate_pass": true,
+  "actual_execution_or_membership_attested": false,
+  "stock_variance_justified": false,
+  "timing_claim": false,
+  "full_id_claim": false,
+  "actual_p_fail": null,
+  "binding": {
+    "source": "ffe35044d960dfc0a91a170180873be709f5743c2fcf37a054414f9ca81c56a8",
+    "binary": "1318cca0eb1656c01b94f6a6a1ddacc64292c3b42bbf7aec2058072aafeecb8c",
+    "child_pid": 33157,
+    "exit_code": 0,
+    "file_sha256": {
+      "prepared.json": "33f122d796c3149c0eee710fb5999d03f6a750b457bf4d432976bdaf8a7b93ad",
+      "child.json": "ae4bf9c210359b617cff32c84c619bef57c40aeba6d82be21774e28b87c05edf",
+      "wait-complete.json": "9e036ef3ee245323b83f6d2d768059047a817e942877a41a594f87e26ade282e",
+      "exit.json": "3c1580d3181fc77f2864509cc15726fbd2814576bdf791002d1b208d40a32785",
+      "stdout.jsonl": "6a28f16575a3801293c3af73540a6f7ecb6ea35016d616094bf907ae63d80675",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "clearance.json": "7395f1a9bc75e7e2b84ac9eb45bb2893c9f21d786940dc6d40415a66ad793bca"
+    }
+  },
+  "os_membership_attested": false
+}

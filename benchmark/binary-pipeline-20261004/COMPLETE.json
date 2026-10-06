@@ -1,0 +1,12 @@
+{
+  "completed_queries": 5,
+  "key_families": 1,
+  "max_queries": 6,
+  "passed": false,
+  "record": "complete",
+  "schema": "binary-pipeline-n2-probe.v1",
+  "status": "CANDIDATE_REJECTED",
+  "stop_first_id_divergence": true,
+  "timing": false,
+  "unexecuted_queries": 1
+}

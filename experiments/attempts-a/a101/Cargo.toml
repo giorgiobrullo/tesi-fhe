@@ -1,0 +1,11 @@
+[package]
+name = "a101_pseudo_ggsw_evalauto_preflight"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+aligned-vec = "=0.6.4"
+tfhe = { version = "=0.11.3", features = ["integer", "experimental"] }
+
+[profile.release]
+opt-level = 3

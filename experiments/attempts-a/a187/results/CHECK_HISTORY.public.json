@@ -1,0 +1,62 @@
+{
+  "schema": "a187.static_history.v1",
+  "native_builds": 0,
+  "fhe_runs": 0,
+  "cargo_calls": 0,
+  "process_probes": 0,
+  "network_calls": 0,
+  "checks": [
+    {
+      "suite": "test_replay.py",
+      "count": 8,
+      "passed": 8,
+      "seconds": 3.956
+    },
+    {
+      "suite": "test_replay.py test_source.py test_envelope.py",
+      "count": 14,
+      "passed": 12,
+      "failed": 1,
+      "errors": 1,
+      "seconds": 4.532,
+      "scope": "pre-freeze setup failures, preserved",
+      "causes": [
+        "source prefix separator expected one extra blank line after preserved prefix",
+        "test temp path used /var symlink alias, correctly refused by privacy check"
+      ],
+      "repairs": [
+        "matched rustfmt module-boundary separator without changing original prefix",
+        "resolved synthetic temp path before constructing private records"
+      ]
+    },
+    {
+      "suite": "test_replay.py test_source.py test_envelope.py",
+      "count": 14,
+      "passed": 14,
+      "seconds": 4.55
+    },
+    {
+      "suite": "test_replay.py test_source.py test_envelope.py",
+      "count": 16,
+      "passed": 16,
+      "seconds": 4.726,
+      "new_cases": "driver identity/immutable binding and CLI0/1/2 outcomes"
+    }
+  ],
+  "api_pin_discovery": "initial missing monolithic PBS filename corrected to actual cached lwe_programmable_bootstrapping/fft64.rs; no native call",
+  "formatting": {
+    "rustfmt": "PASS",
+    "ruff": "PASS"
+  },
+  "plans": {
+    "run_gate.py": "PLAN_ONLY_NO_CHILD",
+    "verify.py": "PLAN_ONLY_NO_RAW_READ"
+  },
+  "source_audit": {
+    "origin_files": 10,
+    "primary_pins": 9,
+    "original_evaluator_prefix_byte_identical": true,
+    "input_construction_identical_except_indentation": true,
+    "copied_precision_model_byte_identical": true
+  }
+}

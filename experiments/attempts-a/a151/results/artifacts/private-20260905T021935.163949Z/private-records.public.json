@@ -1,0 +1,20 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 6,
+      "data": {
+        "changed_output_control_pass": true,
+        "covariance": "OPEN",
+        "function_label_authentication": "source-bound, not proved by closure",
+        "pfks_calls": 1,
+        "record": "summary",
+        "row_levels": 2049,
+        "status": "PASS_ONE_PAYLOAD_ROW_IDENTITY",
+        "support_and_final_correctness": "NOT_TESTED_no_BR_selector_or_scan",
+        "tails": "OPEN",
+        "targets": 1
+      }
+    }
+  ]
+}

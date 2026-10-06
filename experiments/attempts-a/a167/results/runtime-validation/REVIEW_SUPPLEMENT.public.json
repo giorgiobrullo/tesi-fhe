@@ -1,0 +1,22 @@
+{
+  "schema": "a167.supplemental-peer-review.v1",
+  "recorded_utc": "2026-09-05T05:00:30.422159+00:00",
+  "supersedes_only": "STATIC.json pending-review field; no frozen file is changed",
+  "frozen_manifest_sha256": "dc243be83c8e9bc25f4c0bed77825c4d480a305a7e3109f268e85bd29aba4d6a",
+  "frozen_verifier_sha256": "38bac960a9dedf44ab671d963c8b9afdc4703a1713441ab499f71f1553b01611",
+  "reviews": [
+    {
+      "reviewer": "root",
+      "kind": "read-only source review",
+      "outcome": "No material issue found; root confirmed completion after compaction."
+    },
+    {
+      "reviewer": "audit_frontier",
+      "kind": "bounded read-only source/envelope review",
+      "outcome": "No material issue found: ingress/control/lane/scalar prerequisites, separate convolution result, exact250/251 schedule, W0/F hashes, mixed scales, support orientation and final gate/exit agree; private source/binary/PID/UTC/log envelope and attestation limitations explicit.",
+      "reviewer_tests_builds_actual_logs_process_calls": false
+    }
+  ],
+  "new_experiments_or_tests": false,
+  "actual_p_fail": null
+}

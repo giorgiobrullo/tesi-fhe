@@ -1,0 +1,50 @@
+{
+  "schema": "a178.order21-ordering-diagnosis.v1",
+  "evidence": "ACTUAL_SAVED_FAILED_ORDER21",
+  "source_id": "cb6751653f95f006d50eacbd3a31add0b54fb36e5673348b3771b81cbbae78ee",
+  "audit_sha256": "f4a93bdf4bb7602ce53201c90504b1bfe764a4d3b2bda5d8a304a8674f61a2ef",
+  "native_parent_exit_code": 0,
+  "frozen_gate": "FAILED_PRESERVED",
+  "frozen_replay_error": "ValueError: whole terminal acquisition after WNOWAIT and before child reap",
+  "lifecycle_records": 16,
+  "raw_records": 14,
+  "thread_stage_order": [
+    0,
+    2,
+    0,
+    1
+  ],
+  "native_fixture_pass": true,
+  "terminal_seq": 4,
+  "first_terminal_bracket_wholly_before_wnowait": false,
+  "first_terminal_begin_minus_wnowait_end_ns": [
+    -84719125,
+    3
+  ],
+  "first_terminal_end_minus_wnowait_begin_ns": [
+    5409625,
+    3
+  ],
+  "wnowait_acquisition_width_ns": [
+    90065375,
+    3
+  ],
+  "terminal_acquisition_width_ns": [
+    21125,
+    1
+  ],
+  "terminal_pair_equal": true,
+  "parent_pair_equal": true,
+  "terminal_equals_parent": true,
+  "terminal_bsd_bytes": 0,
+  "terminal_bsd_errno": 3,
+  "terminal_before_child_reap": true,
+  "all_raw_snapshots_pass": true,
+  "sampling_complete": true,
+  "final_counter_observed": true,
+  "collector_qualified": false,
+  "cpu_units_justified": false,
+  "settled_accounting_proven": false,
+  "nonbenchmark_occupancy": null,
+  "speedup_promotion_allowed": false
+}

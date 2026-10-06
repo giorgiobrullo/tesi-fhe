@@ -1,0 +1,1 @@
+{"schema":1,"scope":"capabilities_only","arch":"aarch64","pulp_version":"0.22.3","rust_neon":true,"rust_fcma":true,"pulp_neon_checked":true,"pulp_neon_fcma_checked":true,"output_complex":2048,"lhs_complex":2048,"rhs_complex":1024,"arithmetic_called":false,"timing_performed":false}

@@ -1,0 +1,57 @@
+--- frozen-a184/candidate/src/diagnostic.rs
++++ a185/candidate/src/diagnostic.rs
+@@ -13,7 +13,7 @@
+ 
+ const A169_SCHEMA: &str = "a169.low_b0_b1_direct_scale.v1";
+ const A169_SOURCE: &str = include_str!("../SOURCE_DIGEST.txt");
+-const A169_ACK: &str = "A184_ACTUAL_CONSUMER_AUTHORIZED";
++const A169_ACK: &str = "A185_ACTUAL_CONSUMER_AUTHORIZED";
+ 
+ const FULL_DELTA_LOG: u32 = 52;
+ const LOW_DELTA_LOG: u32 = 60;
+@@ -642,8 +642,8 @@
+     if !execute {
+         return Ok(());
+     }
+-    if std::env::var("A184_RUN_ACK").as_deref() != Ok(A169_ACK)
+-        || std::env::var("A184_SOURCE_SHA256").as_deref() != Ok(A169_SOURCE.trim())
++    if std::env::var("A185_RUN_ACK").as_deref() != Ok(A169_ACK)
++        || std::env::var("A185_SOURCE_SHA256").as_deref() != Ok(A169_SOURCE.trim())
+         || std::env::var("RAYON_NUM_THREADS").as_deref() != Ok("1")
+     {
+         return Err(
+@@ -653,9 +653,9 @@
+     let binary = std::env::current_exe().map_err(|e| e.to_string())?;
+     if !binary
+         .components()
+-        .any(|component| component.as_os_str() == "target-a184-json-recursion-only")
++        .any(|component| component.as_os_str() == "target-a185-private-helper-only")
+     {
+-        return Err("execution requires isolated target-a184-json-recursion-only".into());
++        return Err("execution requires isolated target-a185-private-helper-only".into());
+     }
+     let binary_bytes = std::fs::read(&binary).map_err(|e| e.to_string())?;
+     let binary_sha256 = format!("{:x}", Sha256::digest(binary_bytes));
+--- frozen-a184/candidate/.cargo/config.toml
++++ a185/candidate/.cargo/config.toml
+@@ -1,5 +1,5 @@
+ [build]
+-target-dir = "target-a184-json-recursion-only"
++target-dir = "target-a185-private-helper-only"
+ 
+ [net]
+ offline = true
+--- frozen-a184/candidate/src/retained_br.rs
++++ a185/candidate/src/retained_br.rs
+@@ -4,9 +4,8 @@
+ // and Fourier external-product calls are retained. Owned scratch GLWEs replace
+ // temporary stack views. The returned receipt contains the degrees actually used.
+ // An unchanged stock BR on the same input/LUT/key is a mandatory byte control.
+-use tfhe::core_crypto::algorithms::polynomial_algorithms::{
+-    polynomial_wrapping_monic_monomial_div, polynomial_wrapping_monic_monomial_mul_and_subtract,
+-};
++use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_monic_monomial_div;
++include!("private_polynomial_helper.rs");
+ use tfhe::core_crypto::fft_impl::common::pbs_modulus_switch;
+ use tfhe::core_crypto::fft_impl::fft64::crypto::ggsw::{
+     add_external_product_assign, add_external_product_assign_scratch,

@@ -1,0 +1,6 @@
+[build]
+target-dir = "target-a150-only"
+jobs = 1
+
+[net]
+offline = true

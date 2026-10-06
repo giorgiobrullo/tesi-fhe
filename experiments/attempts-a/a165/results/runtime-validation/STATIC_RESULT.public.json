@@ -1,0 +1,14 @@
+{
+  "schema": "a165-independent-validator-static-v1",
+  "status": "PASS",
+  "tests": 23,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 6.367509375,
+  "completed_at_utc": "2026-09-05T04:47:12.761609+00:00",
+  "synthetic_only": true,
+  "actual_a165_logs_inspected": false,
+  "actual_fhe_executed": false,
+  "source_freeze_before_actual_a165_run": true,
+  "test_output": "test_17_private_complete_envelope_and_canonical_alias (test_validate.EnvelopeTests) ... ok\ntest_18_all_record_continuity_bindings (test_validate.EnvelopeTests) ... ok\ntest_19_child_pid_exit_chronology (test_validate.EnvelopeTests) ... ok\ntest_20_logs_binary_markers_and_permissions (test_validate.EnvelopeTests) ... ok\ntest_21_symbolic_paths_rejected (test_validate.EnvelopeTests) ... ok\ntest_22_failed_repair_exit_is_complete_evidence (test_validate.EnvelopeTests) ... ok\ntest_01_pins_and_exact_arithmetic_reuse (test_validate.RawTests) ... ok\ntest_02_fixed_order_counts_and_ideal_completion (test_validate.RawTests) ... ok\ntest_03_old_aggressive_fail_repair_pass (test_validate.RawTests) ... ok\ntest_04_bad_direct_native_pass_consumer_fail (test_validate.RawTests) ... ok\ntest_05_unrepaired_b0_error_not_forgiven (test_validate.RawTests) ... ok\ntest_06_pair_failure_distinct_from_decode (test_validate.RawTests) ... ok\ntest_07_explicit_schema_and_fixed_plan (test_validate.RawTests) ... ok\ntest_08_order_truncation_duplicates (test_validate.RawTests) ... ok\ntest_09_phase_scale_error_domain_and_direct_alpha (test_validate.RawTests) ... ok\ntest_10_retained_actual_hashes_and_pair_booleans (test_validate.RawTests) ... ok\ntest_11_changed_old_prefix_and_other_weighted_hash (test_validate.RawTests) ... ok\ntest_12_shared_input_and_original_low_provenance (test_validate.RawTests) ... ok\ntest_13_scalar_margin_native_and_scope_mutations (test_validate.RawTests) ... ok\ntest_14_original_negatives_and_summary_not_relabelled (test_validate.RawTests) ... ok\ntest_15_binary_and_source_provenance (test_validate.RawTests) ... ok\ntest_16_strict_json_and_private_output_preservation (test_validate.RawTests) ... ok\ntest_23_exit_code_bound_to_repair_not_original_aggressive (test_validate.RawTests) ... ok\n\n----------------------------------------------------------------------\nRan 23 tests in 6.367s\n\nOK\n"
+}

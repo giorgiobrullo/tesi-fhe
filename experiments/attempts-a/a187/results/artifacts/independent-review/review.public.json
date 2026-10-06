@@ -1,0 +1,170 @@
+{
+  "schema": "a187-independent-terminal-first-review-v1",
+  "status": "INDEPENDENT_VALID_A187_FIRST_PASS",
+  "gate_pass": true,
+  "frozen_artifact_leaves_verified": 33,
+  "source_manifest_sha256": "24aa2671670b7f7f2896ae4f062be0dded177b002f8c9cf2507be59281c67f3b",
+  "artifact_manifest_sha256": "2552f2512a26df7ae704f1a5667cf57ed4576bf07185bbb864d81ace2b9fe42f",
+  "binary_sha256": "2ce1593394263bf4ae1e612c610a1bef8391a0f79c7bca0b550ad9ada1ade7ac",
+  "raw_sha256": "a0e1ce76b2c7e038bb00111fde909da8ad3645db1ede5590d74645da1c7db432",
+  "root_saved_validation_sha256": "0ab5a372db160fdd23d472676c9918e94aac16c23b2cdaede5f1d2c4b9a93966",
+  "fresh_validation_sha256": "0ab5a372db160fdd23d472676c9918e94aac16c23b2cdaede5f1d2c4b9a93966",
+  "exact_saved_report_matches": true,
+  "direct_child": {
+    "files_sha256": {
+      "preflight.json": "ac0d2a89c3d144229414354175b6159d0c5e4533f9d9f0995fd043cc86f8b56d",
+      "prepared.json": "2194e2c49ef40875145ffbb6e859784b026c62af84c440a240f772576b49f9bf",
+      "child.json": "91a696df4aef93dad0498f32ae1161aa9cc1da237457bfa9caa973e5523a543a",
+      "wait-complete.json": "9ef04ae20bc217553e2eb2b0689e1427eae16e95c8af5b65ad02b34c2b1aaa13",
+      "exit.json": "bc1061d7f82e469b75d31c6d908f72011f19dc04ad67523bd68aaf82dead6b04",
+      "stdout.jsonl": "a0e1ce76b2c7e038bb00111fde909da8ad3645db1ede5590d74645da1c7db432",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "child_pid": 14819,
+    "driver_pid": 14818,
+    "binary_sha256": "2ce1593394263bf4ae1e612c610a1bef8391a0f79c7bca0b550ad9ada1ade7ac",
+    "exit_code": 0,
+    "source_id": "24aa2671670b7f7f2896ae4f062be0dded177b002f8c9cf2507be59281c67f3b",
+    "artifact_sha256": "2552f2512a26df7ae704f1a5667cf57ed4576bf07185bbb864d81ace2b9fe42f",
+    "started_at_utc": "2026-09-05T09:00:30.580604+00:00",
+    "exited_at_utc": "2026-09-05T09:00:34.243148+00:00"
+  },
+  "fixture_index": 2,
+  "keysets": 1,
+  "records": 211,
+  "events": 205,
+  "reports": [
+    {
+      "arm": "old_padding_separate",
+      "old_a149_functional_pass": false,
+      "new_or_control_joint_pass": false,
+      "wrong_scale_detected": null,
+      "coefficient_closure_pass": true,
+      "all_preimages_pass": false,
+      "low_native_pass": false,
+      "middle_native_pass": false,
+      "top_native_pass": true,
+      "old_sidecar_native_diagnostic": false,
+      "final_native_pass": true,
+      "final_flags_pass": true,
+      "flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected_flags": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "arm": "direct54_sidecar51",
+      "old_a149_functional_pass": null,
+      "new_or_control_joint_pass": true,
+      "wrong_scale_detected": null,
+      "coefficient_closure_pass": true,
+      "all_preimages_pass": true,
+      "low_native_pass": true,
+      "middle_native_pass": true,
+      "top_native_pass": true,
+      "old_sidecar_native_diagnostic": true,
+      "final_native_pass": true,
+      "final_flags_pass": true,
+      "flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected_flags": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "arm": "negative_consumer_x2",
+      "old_a149_functional_pass": null,
+      "new_or_control_joint_pass": false,
+      "wrong_scale_detected": true,
+      "coefficient_closure_pass": true,
+      "all_preimages_pass": true,
+      "low_native_pass": true,
+      "middle_native_pass": true,
+      "top_native_pass": true,
+      "old_sidecar_native_diagnostic": true,
+      "final_native_pass": false,
+      "final_flags_pass": false,
+      "flags": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "expected_flags": [
+        0,
+        0,
+        1,
+        0
+      ]
+    }
+  ],
+  "event_details": [
+    {
+      "arm": "old_padding_separate",
+      "events": 63,
+      "preimage_failures": 1,
+      "stock_degree_formula_failures": 0,
+      "coefficient_closure_failures": 0
+    },
+    {
+      "arm": "direct54_sidecar51",
+      "events": 71,
+      "preimage_failures": 0,
+      "first_failed_preimage": null,
+      "stock_degree_formula_failures": 0,
+      "coefficient_closure_failures": 0
+    },
+    {
+      "arm": "negative_consumer_x2",
+      "events": 71,
+      "preimage_failures": 0,
+      "first_failed_preimage": null,
+      "stock_degree_formula_failures": 0,
+      "coefficient_closure_failures": 0
+    }
+  ],
+  "ledger": {
+    "BR": 205,
+    "KS": 205,
+    "sample_extractions": 213,
+    "input_glwe_encryptions": 1,
+    "public_glwe_products": 4,
+    "input_samples": 8,
+    "pbs_output_samples": 205,
+    "arm_BR_KS_counts": [
+      63,
+      71,
+      71
+    ],
+    "refreshes": 0,
+    "extra_crypto_MS": 0
+  },
+  "all_server_arms_before_observations_is_source_bound": true,
+  "independent_actual_internal_BR_degree_receipt": false,
+  "degree_evidence": "Recomputed from actual retained post-KS words and client aggregates, checked against stock formula; source binds that ciphertext to BR.",
+  "independent_secret_membership_attestation": false,
+  "root_source_to_binary_build_attestation_required": true,
+  "old_diagnostic_allowed_to_fail": true,
+  "wrong_scale_preimages_are_relative_to_its_changed_nominal_graph": true,
+  "one_fixture_does_not_validate_n127_refresh": true,
+  "head_start_6_to_4_globally_validated": false,
+  "full_exact_id": false,
+  "actual_p_fail": null,
+  "timing_claim": false,
+  "automatic_retry_or_expansion_authorized": false
+}

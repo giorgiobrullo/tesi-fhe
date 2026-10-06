@@ -1,0 +1,30 @@
+{
+  "started_utc": "2026-10-04T17:11:32.707204+00:00",
+  "pid": 24694,
+  "parent_pid": 24693,
+  "command": [
+    "/workspace/research/tmp/current-fcma-codegen-20261004/bin/codegen-probe",
+    "--capabilities"
+  ],
+  "binary_sha256": "a7276e4bccee81362779aaee551b2a559733cece450494b2e60f545d93dfc668",
+  "status": "terminal",
+  "arithmetic_wrappers_invoked": false,
+  "timing_performed": false,
+  "returncode": 0,
+  "ended_utc": "2026-10-04T17:11:33.013031+00:00",
+  "metadata": {
+    "schema": 1,
+    "scope": "capabilities_only",
+    "arch": "aarch64",
+    "pulp_version": "0.22.3",
+    "rust_neon": true,
+    "rust_fcma": true,
+    "pulp_neon_checked": true,
+    "pulp_neon_fcma_checked": true,
+    "output_complex": 2048,
+    "lhs_complex": 2048,
+    "rhs_complex": 1024,
+    "arithmetic_called": false,
+    "timing_performed": false
+  }
+}

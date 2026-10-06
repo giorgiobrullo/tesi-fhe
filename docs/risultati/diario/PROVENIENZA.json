@@ -120,8 +120,13 @@
         480
       ],
       "source_fragment_sha256": "c89a0a892c7b32f6f5781519bbee2790a56ee863fb8dd930a809befd59484da0",
-      "public_sha256": "d68886342010930fed5d0237dc9aa59c13a917cd22a32c254223165d49afe34f",
-      "public_bytes": 26965
+      "public_sha256": "6c92da50304a37d7d10faf52174ae0d5694be66f5050bc9b9203a96d8fc5f6fa",
+      "public_bytes": 26980,
+      "publication_pin_correction": {
+        "previous_declared_public_sha256": "d68886342010930fed5d0237dc9aa59c13a917cd22a32c254223165d49afe34f",
+        "previous_declared_public_bytes": 26965,
+        "reason": "Refresh stale publication-copy pins; chapter bytes and historical source identities are unchanged."
+      }
     },
     "f15-f28.md": {
       "finding_ids": [
@@ -145,8 +150,13 @@
         1066
       ],
       "source_fragment_sha256": "afecdf5e23514fce93fd72dd8d5270fc65276763e0476b6836f51e1244934709",
-      "public_sha256": "e56fac0233634d83bbd792089a72bcd2e66b8e342540bf718646300de7b5bcc2",
-      "public_bytes": 42463
+      "public_sha256": "b567bc8bc15c1c93e66c2f68cde869ff44156ba84a35700c67787da8274adb39",
+      "public_bytes": 42478,
+      "publication_pin_correction": {
+        "previous_declared_public_sha256": "e56fac0233634d83bbd792089a72bcd2e66b8e342540bf718646300de7b5bcc2",
+        "previous_declared_public_bytes": 42463,
+        "reason": "Refresh stale publication-copy pins; chapter bytes and historical source identities are unchanged."
+      }
     },
     "f29-f42.md": {
       "finding_ids": [
@@ -170,8 +180,13 @@
         1756
       ],
       "source_fragment_sha256": "c50c2f2cc1dc3c16c657b480fc62b0e232da64a983e44f4dcf0a7845e5d74395",
-      "public_sha256": "82e42b090c248c8d943980d9fc13e95a233136a4ca96085c605a6c642b5b2736",
-      "public_bytes": 54290
+      "public_sha256": "207843ee9bad3400ce58e163dce0cd7c720c837a7fae772719a3d13f52b5fb38",
+      "public_bytes": 54335,
+      "publication_pin_correction": {
+        "previous_declared_public_sha256": "82e42b090c248c8d943980d9fc13e95a233136a4ca96085c605a6c642b5b2736",
+        "previous_declared_public_bytes": 54290,
+        "reason": "Refresh stale publication-copy pins; chapter bytes and historical source identities are unchanged."
+      }
     },
     "f43-f56.md": {
       "finding_ids": [
@@ -195,8 +210,13 @@
         2440
       ],
       "source_fragment_sha256": "ef3f868c3e65e7628e3ed7d24cd01e1e7309dbbb1d89cbcba8e080afe0203fbb",
-      "public_sha256": "83e28d8645cf99f59a980009a810eb81ffa2772b591ff3348d998f420b4b55d7",
-      "public_bytes": 49703
+      "public_sha256": "ef7c93f99ad621277a8db3b4eeac2976af6fc07ed3aedaae54127b308c23159a",
+      "public_bytes": 49718,
+      "publication_pin_correction": {
+        "previous_declared_public_sha256": "83e28d8645cf99f59a980009a810eb81ffa2772b591ff3348d998f420b4b55d7",
+        "previous_declared_public_bytes": 49703,
+        "reason": "Refresh stale publication-copy pins; chapter bytes and historical source identities are unchanged."
+      }
     },
     "f57-f70.md": {
       "finding_ids": [
@@ -220,8 +240,13 @@
         3157
       ],
       "source_fragment_sha256": "90de227132b42927e698317e3da8aa5899b98657c32dfca25cd8cdfbc475d41f",
-      "public_sha256": "e94ee5af3919948b90b20bde7534052038a36f2c13631312f09b87e1e7b4316b",
-      "public_bytes": 47622
+      "public_sha256": "5b8254fdb753181e1d5263f8086655434487d091f68d4b11a1f4dd48469d91bf",
+      "public_bytes": 47652,
+      "publication_pin_correction": {
+        "previous_declared_public_sha256": "e94ee5af3919948b90b20bde7534052038a36f2c13631312f09b87e1e7b4316b",
+        "previous_declared_public_bytes": 47622,
+        "reason": "Refresh stale publication-copy pins; chapter bytes and historical source identities are unchanged."
+      }
     },
     "f71-f83.md": {
       "finding_ids": [
@@ -244,8 +269,13 @@
         4324
       ],
       "source_fragment_sha256": "1789e603515200425dffd2a3537db09a1aac84b0ac21e7c19cf15dab989ede93",
-      "public_sha256": "cf24c55583e41ea476fb106ab26a62a7a504fb906b182be940f4f95f8ae588b1",
-      "public_bytes": 93867
+      "public_sha256": "c2940c033b5139b69e005f85b2ece04f258d4b79e0e49f11dd273fea0de9ec6b",
+      "public_bytes": 93912,
+      "publication_pin_correction": {
+        "previous_declared_public_sha256": "cf24c55583e41ea476fb106ab26a62a7a504fb906b182be940f4f95f8ae588b1",
+        "previous_declared_public_bytes": 93867,
+        "reason": "Refresh stale publication-copy pins; chapter bytes and historical source identities are unchanged."
+      }
     }
   }
 }

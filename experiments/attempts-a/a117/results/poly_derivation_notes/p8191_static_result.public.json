@@ -1,0 +1,72 @@
+{
+  "all_spots_equal_upstream_formula": true,
+  "artifact": "A117 exact public coefficient derivation",
+  "coefficient_count": 4095,
+  "coefficient_sha256_u16be": "b34b28d1eeee8f2d5b2299f311c69ed81e7c36865a913428274086a65ddac456",
+  "coefficient_spots": {
+    "0": 6931,
+    "1": 4955,
+    "1023": 5658,
+    "127": 3183,
+    "2": 4275,
+    "2047": 55,
+    "255": 0,
+    "3": 2441,
+    "3071": 3376,
+    "31": 1241,
+    "4093": 128,
+    "4094": 7167,
+    "511": 6805,
+    "63": 2532,
+    "7": 4033
+  },
+  "h": 4095,
+  "invariants": {
+    "expected_last": 7167,
+    "expected_sum": 4095,
+    "sum_coefficients_mod_p": 4095
+  },
+  "ntt_root": 289,
+  "operation_shape": {
+    "note": "Counts are static loop shapes, not comparable wall-clock timings.",
+    "reference_ntt_kernel_multiply_accumulates": 126945,
+    "reference_ntt_table_entry_modular_power_calls": 6280,
+    "reference_ntt_twiddle_slots": 20475,
+    "upstream_modular_power_calls": 16764930,
+    "weight_recurrence_multiplications": 8188
+  },
+  "p": 8191,
+  "primitive_root": 17,
+  "primitive_root_witnesses": {
+    "13": 8,
+    "2": 8190,
+    "3": 8100,
+    "5": 3002,
+    "7": 3085
+  },
+  "radices": [
+    3,
+    3,
+    5,
+    7,
+    13
+  ],
+  "scope": "d=l=1 univariate centered strict-LT; no FHE execution",
+  "semantic_spots": {
+    "0": 0,
+    "1": 0,
+    "1023": 0,
+    "17": 0,
+    "2": 0,
+    "2048": 0,
+    "4094": 0,
+    "4095": 0,
+    "4096": 1,
+    "4097": 1,
+    "6143": 1,
+    "7168": 1,
+    "8174": 1,
+    "8189": 1,
+    "8190": 1
+  }
+}

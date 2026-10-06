@@ -1,0 +1,18 @@
+{
+  "status": "PASS_BOUNDED_CLEAR_FEEDBACK_DESIGN",
+  "tests": 13,
+  "elapsed_seconds": 1.1313235409907065,
+  "failures": 0,
+  "errors": 0,
+  "all_two_byte_pairs": 65536,
+  "all_n4_single_round_boolean_layout_cases": 2048,
+  "actual_fhe": false,
+  "compiled": false,
+  "persistent_ciphertext_feedback_validated": false,
+  "peer_review": {
+    "reviewer": "audit_noise_runtime",
+    "arithmetic_and_interfaces": "clear",
+    "preparation_count_correction": "applied: 9N requires a new split helper; unchanged prepare_inputs eight times costs16N",
+    "native_or_test_execution_by_reviewer": false
+  }
+}

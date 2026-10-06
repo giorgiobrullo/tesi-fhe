@@ -1,0 +1,139 @@
+{
+  "status": "ALL_FULL_WITNESS_GATES_PASS",
+  "run_id": "full-key1-threads8",
+  "keysets": 1,
+  "record_counts": {
+    "case_start": 9,
+    "run_start": 1,
+    "case_result": 9,
+    "fusion_witness": 350,
+    "summary": 1,
+    "key_block": 1,
+    "plan": 1
+  },
+  "expected_record_counts": {
+    "plan": 1,
+    "run_start": 1,
+    "key_block": 1,
+    "case_start": 9,
+    "fusion_witness": 350,
+    "case_result": 9,
+    "summary": 1
+  },
+  "gates": {
+    "correctness": true,
+    "input_prerequisites": true,
+    "identities": true,
+    "actual_joint_lut": true,
+    "connected_margins": true,
+    "raw_nearest_cells": true,
+    "raw_expected_decodes": true,
+    "ledger": true,
+    "record_counts": true,
+    "source_and_binary": true,
+    "process_exit": true
+  },
+  "summary": {
+    "cases": 9,
+    "contains_secret_derived_observations": true,
+    "correctness_or_count_failures": 0,
+    "fusion_witnesses": 350,
+    "joint_connected_margin_escapes": 0,
+    "key_blocks": 1,
+    "noise_tail_status": "OPEN",
+    "observer_identity_failures": 0,
+    "raw_nearest_cell_escapes": 0,
+    "record": "summary",
+    "runtime_execution_attested": false,
+    "scope": "fused event and immediate update; no full-trace or service promotion",
+    "secret_key_bytes_persisted": false,
+    "status": "DIAGNOSTIC_COMPLETE",
+    "timed": false
+  },
+  "observed_counts": [
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 1,
+      "observed_baseline_br": 25,
+      "observed_candidate_br": 24,
+      "structural_candidate_ks": 21,
+      "structural_candidate_output_marginals": 30
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 64,
+      "observed_baseline_br": 1713,
+      "observed_candidate_br": 1649,
+      "structural_candidate_ks": 1457,
+      "structural_candidate_output_marginals": 1985
+    },
+    {
+      "n": 127,
+      "observed_baseline_br": 3390,
+      "observed_candidate_br": 3263,
+      "structural_candidate_ks": 2882,
+      "structural_candidate_output_marginals": 3930
+    },
+    {
+      "n": 128,
+      "observed_baseline_br": 3415,
+      "observed_candidate_br": 3287,
+      "structural_candidate_ks": 2903,
+      "structural_candidate_output_marginals": 3959
+    }
+  ],
+  "expected_codes": [
+    11,
+    2,
+    1,
+    1,
+    0,
+    1,
+    64,
+    127,
+    128
+  ],
+  "validation_sha256": "b50e5d984082cdba95127ad55a6d1d40ebfc5ece4ddbd9dd66bb9baa2b76fe94",
+  "envelope_sha256": {
+    "prepared.json": "85e948cb0ee55fdff5e2c9e246958e1154cbdfb32c3fdd42420efffc99c7402e",
+    "child.json": "6bbfb0e6bf1e445df3475385a3f53438cce073714e5218068c62f6f313512f9f",
+    "exit.json": "7aa6dfe0f843f1a6ac049ed7722f13b14df6fefd7370b0fd97eb1dc0153c04f2",
+    "preflight.json": "007831e9517b1c6eef7f2c8274b54f62f61f6593cadb802547847691f8b9e619"
+  },
+  "actual_downstream_full_trace_validated": false,
+  "formal_p_fail": null,
+  "paired_runtime": false
+}

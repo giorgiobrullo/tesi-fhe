@@ -1,0 +1,199 @@
+{
+  "artifact": "A108",
+  "claim_boundary": {
+    "comparator_present": false,
+    "component_only": true,
+    "composed_p_fail_proven": false,
+    "exact_id_pipeline_present": false,
+    "latency_frontier_promotion_allowed_from_this_gate": false,
+    "selector_receives_precomputed_encrypted_control": true
+  },
+  "correctness_gate": {
+    "all_four_output_ciphertexts_nontrivial": true,
+    "all_ingress_decodes_match": true,
+    "all_output_decodes_match": true,
+    "all_packed_output_decodes_equal_scalar_d2_decodes": true,
+    "ciphertext_bitwise_equality_packed_vs_scalar": "diagnostic_only_not_a_gate_because_accumulator_linear_maps_differ",
+    "each_absolute_centered_phase_error_strictly_below_half_its_lane_delta": true,
+    "exact_per_case_counters": {
+      "blind_rotations": 1,
+      "control_key_switches": 1,
+      "glwe_additions": 7,
+      "logical_glwe_public_mask_spreads": 8,
+      "payload_pfks": 8,
+      "public_polynomial_multiplications": 8,
+      "sample_extractions": 4,
+      "scalar_polynomial_fft_multiplications": 16
+    },
+    "minimum_fresh_processes_per_parameter_for_a_component_correctness_statement": 3,
+    "post_key_switch_small_control_decode_matches": true,
+    "post_key_switch_small_control_degree_error_inclusive": [
+      -63,
+      63
+    ],
+    "post_key_switch_small_control_is_bitwise_equal_across_packed_and_scalar_calls": true,
+    "p_fail_inference_from_correlated_outputs_forbidden": true
+  },
+  "fixed_fixture_order": [
+    "left_zero_vs_clipped_max",
+    "right_zero_vs_clipped_max",
+    "accept_threshold_left",
+    "accept_threshold_right",
+    "reject_sentinel_tie_left",
+    "reject_clipped_left",
+    "score_tie_left",
+    "right_low_nibble_boundary"
+  ],
+  "fixed_within_fixture_arm_order": [
+    "packed_then_scalar",
+    "scalar_then_packed",
+    "packed_then_scalar",
+    "scalar_then_packed",
+    "packed_then_scalar",
+    "scalar_then_packed",
+    "packed_then_scalar",
+    "scalar_then_packed"
+  ],
+  "requested_control_degree_error_by_fixture": {
+    "accept_threshold_left": 63,
+    "accept_threshold_right": -63,
+    "left_zero_vs_clipped_max": -63,
+    "reject_clipped_left": -63,
+    "reject_sentinel_tie_left": 0,
+    "right_low_nibble_boundary": 0,
+    "right_zero_vs_clipped_max": 63,
+    "score_tie_left": 63
+  },
+  "host_gate": {
+    "compile_and_runtime_must_be_separate": true,
+    "do_not_overlap_other_fhe_or_keygen": true,
+    "load_policy_inherited_from_root_experiment_controller": true,
+    "thread_policy_must_be_recorded": true
+  },
+  "parameter_sweep": [
+    {
+      "base_log": 23,
+      "label": "23x1",
+      "level_count": 1,
+      "role": "first_compile_and_correctness_anchor"
+    },
+    {
+      "base_log": 24,
+      "label": "24x1",
+      "level_count": 1,
+      "role": "mandatory_same_size_one_level_comparator"
+    },
+    {
+      "base_log": 16,
+      "label": "16x2",
+      "level_count": 2,
+      "role": "conditional_if_one_level_margin_is_insufficient"
+    },
+    {
+      "base_log": 12,
+      "label": "12x3",
+      "level_count": 3,
+      "role": "conditional_after_16x2"
+    },
+    {
+      "base_log": 10,
+      "label": "10x4",
+      "level_count": 4,
+      "role": "conditional_after_12x3"
+    }
+  ],
+  "payload": {
+    "id_delta_log": 56,
+    "id_range": [
+      0,
+      127
+    ],
+    "lane_order": [
+      "score_top",
+      "score_middle",
+      "score_low",
+      "id"
+    ],
+    "score_delta_log": 59,
+    "score_limb_ranges": [
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        15
+      ],
+      [
+        0,
+        15
+      ]
+    ]
+  },
+  "scalar_d2_reference": {
+    "derived_from": "source-pinned A30 selector_masks/spread_glwe/d2_select",
+    "per_case_counts": {
+      "blind_rotations": 4,
+      "control_key_switches": 4,
+      "glwe_additions": 4,
+      "logical_glwe_public_mask_spreads": 8,
+      "payload_pfks": 8,
+      "public_polynomial_multiplications": 8,
+      "sample_extractions": 4,
+      "scalar_polynomial_fft_multiplications": 16
+    },
+    "timed_separately_from_packed_arm": true
+  },
+  "runtime_schedule": {
+    "first_two_parameters_are_mandatory_before_any_deeper_point": [
+      "23x1",
+      "24x1"
+    ],
+    "one_parameter_and_one_fresh_keyset_per_process": true,
+    "parameter_process_order": [
+      "23x1",
+      "24x1",
+      "24x1",
+      "23x1",
+      "23x1",
+      "24x1"
+    ],
+    "runtime_invocations_in_this_artifact_creation": 0,
+    "timing_interpretation_requires_all_correctness_gates": true
+  },
+  "schema": "a108.packed-pfks-d2-k4-preregistration.v1",
+  "selector_geometry": {
+    "control_centers": {
+      "left": 4,
+      "right": 12
+    },
+    "error_support_inclusive": [
+      -63,
+      63
+    ],
+    "outputs": 4,
+    "polynomial_size": 2048,
+    "sample_degrees": [
+      0,
+      128,
+      256,
+      384
+    ],
+    "selector_modulus": 16,
+    "signed_cell_width": 127
+  },
+  "status": "PREREGISTERED_SOURCE_ONLY_NO_CARGO_NO_FHE_NO_TIMING",
+  "stop_rules": {
+    "counter_mismatch": "preserve log and stop performance interpretation",
+    "decode_or_phase_failure": "preserve log and continue only with the next preregistered decomposition as a correctness diagnostic",
+    "runtime_crash": "preserve log; do not silently retry with source or parameter changes",
+    "source_or_binary_hash_drift": "do not run"
+  },
+  "telemetry": {
+    "client_decryption_and_phase_audit_excluded_from_selector_timing": true,
+    "keygen_public_setup_and_input_encryption_excluded_from_selector_timing": true,
+    "per_case_stage_nanoseconds": true,
+    "per_lane_exact_signed_torus_error": true,
+    "runtime_key_and_ciphertext_container_counts": true
+  }
+}

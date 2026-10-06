@@ -2,7 +2,7 @@
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Fonti verificate il 19 settembre 2026; cronologia aggiornata il 22 settembre.
+Le versioni consultate e i controlli di lettura sono nel [registro delle verifiche](versioni-e-verifiche.md).
 Le prove A33/A38 del 2 settembre sono concluse nei report conservati, superando
 il precedente stato editoriale «A29 corrente, A33 da verificare». Il runtime
 mantenuto è la successiva composizione Head/PFKS con selettore corretto,
@@ -45,7 +45,7 @@ corrispondenti. La loro integrazione non costituisce una nuova primitiva.
 | Campagna comune del 9 settembre | [Dodici versioni in due contratti](../risultati/campagna-comune.md) | Non confrontare velocità attraverso il cambio N8/D64 → N127/D512. Il caso errato di Head generale resta visibile. |
 | Revisione del 18 settembre | [Verifiche di quella revisione](../runtime-verification.md) | Refactor con nuove identità; le sue prove non qualificano automaticamente le modifiche successive. |
 | Selettore corretto e pack4 del 20 settembre | [Diagnosi](../selector-repair-20260920.md), [verifica pack4](../validazione/PACK4_VALIDATION.md) e [runtime mantenuto](../../runtime/README.md) | Il refresh corregge il meccanismo del guasto storico; la qualifica empirica non è un limite formale di fallimento composto. |
-| Campagne rimisurate del 20 settembre | [Progressione e confronto CKKS/TFHE](../percorso-sperimentale-20260920.md#risultati-confrontabili), [costo diretto del fix](../selector-direct-cost-20260920.md) | Il finale del grafico, il TFHE del confronto CKKS e la demo anchor/pack4 sono circuiti distinti. Nessuna percentuale si trasferisce fra queste campagne. |
+| Campagne rimisurate del 20 settembre | [Progressione e confronto CKKS/TFHE](../percorso-sperimentale.md#risultati-confrontabili), [costo diretto del fix](../selector-direct-cost-20260920.md) | Il finale del grafico, il TFHE del confronto CKKS e la demo anchor/pack4 sono circuiti distinti. Nessuna percentuale si trasferisce fra queste campagne. |
 
 L'[accounting A33](../../benchmark/results/exact_id_a33_pfail_accounting_2026-09-02.md)
 va letto con le sue premesse condizionali. Il completamento dei gate di
@@ -69,7 +69,7 @@ I [risultati delle alternative](../risultati/alternative.md) conservano
 riferimenti e condizioni; le regole di una successiva conferma non riscrivono
 quelle dello screening.
 
-Il [percorso sperimentale](../percorso-sperimentale-20260920.md)
+Il [percorso sperimentale](../percorso-sperimentale.md)
 permette di citare ogni risultato con versione, ambito e limite. La ricerca
 bibliografica è datata e documentata, non esaustiva né una verifica di
 brevettabilità o libertà di attuazione.

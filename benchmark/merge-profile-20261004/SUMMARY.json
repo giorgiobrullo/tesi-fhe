@@ -1,0 +1,148 @@
+{
+  "schema": "current-merge-profile-public.v1",
+  "date": "2026-10-04",
+  "passed": true,
+  "correct_queries": 4,
+  "warmup_queries": 1,
+  "measured_queries": 3,
+  "key_families": 1,
+  "owned_processes": 1,
+  "tfhe_rs": "1.8.1",
+  "cpu": "Apple M4 Max",
+  "threads": 16,
+  "N": 120,
+  "D": 512,
+  "threshold": 273,
+  "scope": {
+    "level_index": 0,
+    "merge_index": 0,
+    "candidates": 120,
+    "ready_merges": 60,
+    "payloads": 4,
+    "groups": 1,
+    "internal_parallel": false
+  },
+  "complete_summary": {
+    "warmup_calls": 1,
+    "measured_calls": 3,
+    "owned_service_processes": 1,
+    "key_families": 1,
+    "fixed_scene_vectors": 3,
+    "measured": [
+      {
+        "scene": "einstein",
+        "server_ms": 1617.0,
+        "http_ms": 1617.52175,
+        "designated_merge": {
+          "candidates": 120,
+          "comparison_wall_ns": 42851125,
+          "completed": true,
+          "duration_semantics": "one worker wall time; disjoint phases; group intervals sum sequentially on that worker, not across workers; setup/restore/gaps remain in node; node is included in first level",
+          "extraction_addback_wall_ns": 8666,
+          "group_count": 1,
+          "index": 0,
+          "internal_parallel": false,
+          "level_index": 0,
+          "node_wall_ns": 76754958,
+          "packing_rotation_wall_ns": 12991625,
+          "payloads": 4,
+          "pfks_wall_ns": 4329167,
+          "prepare_control_wall_ns": 16565042,
+          "ready_merges": 60,
+          "schema": "smallcuts-designated-merge.v1",
+          "unassigned_wall_ns": 9333
+        }
+      },
+      {
+        "scene": "curie",
+        "server_ms": 1645.9,
+        "http_ms": 1646.435042,
+        "designated_merge": {
+          "candidates": 120,
+          "comparison_wall_ns": 51488792,
+          "completed": true,
+          "duration_semantics": "one worker wall time; disjoint phases; group intervals sum sequentially on that worker, not across workers; setup/restore/gaps remain in node; node is included in first level",
+          "extraction_addback_wall_ns": 9958,
+          "group_count": 1,
+          "index": 0,
+          "internal_parallel": false,
+          "level_index": 0,
+          "node_wall_ns": 101193209,
+          "packing_rotation_wall_ns": 27186666,
+          "payloads": 4,
+          "pfks_wall_ns": 5783416,
+          "prepare_control_wall_ns": 16715584,
+          "ready_merges": 60,
+          "schema": "smallcuts-designated-merge.v1",
+          "unassigned_wall_ns": 8793
+        }
+      },
+      {
+        "scene": "turing",
+        "server_ms": 1700.1,
+        "http_ms": 1700.713583,
+        "designated_merge": {
+          "candidates": 120,
+          "comparison_wall_ns": 43161416,
+          "completed": true,
+          "duration_semantics": "one worker wall time; disjoint phases; group intervals sum sequentially on that worker, not across workers; setup/restore/gaps remain in node; node is included in first level",
+          "extraction_addback_wall_ns": 9000,
+          "group_count": 1,
+          "index": 0,
+          "internal_parallel": false,
+          "level_index": 0,
+          "node_wall_ns": 96624875,
+          "packing_rotation_wall_ns": 18508709,
+          "payloads": 4,
+          "pfks_wall_ns": 4650666,
+          "prepare_control_wall_ns": 30285875,
+          "ready_merges": 60,
+          "schema": "smallcuts-designated-merge.v1",
+          "unassigned_wall_ns": 9209
+        }
+      }
+    ],
+    "limits": "One observed node in each of three measured queries, one key family and host. Worker wall time includes scheduling delays; first level contains 60 parallel merges. Do not scale the node by 60, sum workers, or infer tournament share, speedup, confidence bounds or rare-error probability."
+  },
+  "observed_range_per_query_node_percent": {
+    "comparison_wall_ns": [
+      44.6690523532372,
+      55.8284782072319
+    ],
+    "prepare_control_wall_ns": [
+      16.518483962693583,
+      31.343766292065062
+    ],
+    "pfks_wall_ns": [
+      4.8131146353358805,
+      5.715221463131978
+    ],
+    "packing_rotation_wall_ns": [
+      16.926105281693985,
+      26.866097308960722
+    ],
+    "extraction_addback_wall_ns": [
+      0.009314371687414861,
+      0.011290475854341554
+    ]
+  },
+  "samples_sha256": "5b690c38ecaaeeb93f0a6c26bbe378798b91960ecef7bcc2a5e9df47a9c38746",
+  "source_hashes": {
+    "results/samples.jsonl": "271ecc35bd5b984d432bf11467525bb14d707070036054c88bde2f1470f8bf95",
+    "results/COMPLETE.json": "6db90f6415d16512fb221f01270e87ee0dca0481956b26d365c2bc1a65efe363",
+    "root/merge_http.py": "9f5ccfe041de280ea134c647fe999d03c4324dc174c3404ac08e84aad27cbd2b",
+    "root/spec.json": "2eb34ce9aa4dbbaddfd9b58906d212fd22f22a7b2002f1d1614f2b3a02432af5",
+    "root/SOURCE_REVIEW.md": "76f94cff318ed68966576dff8511ab013f820e0b0d744dc673cbf0c890d128db",
+    "logs/build.json": "9be28c0bfdbc625a22da1907dc0b8e0b55b2190b16e008f27cab6fee37be3206",
+    "logs/keygen.json": "494cdeb14027b658a9407e08dd9e5a77794e3e2bca5fe44be1afacd9d26cc22b",
+    "logs/offline-tests.json": "ba91c36f545fe4a139ab6aa263cd319724cf546b90ce0cbe2fb4a0a1f0970220",
+    "PRELAUNCH.json": "3dd1d2ecbb9f635aacd5d22d29122e9d7592eb258010ccf625795be1b7a4320e"
+  },
+  "identity": {
+    "binary_sha256": "0a459f31407740808d8d6bfc59e6b6412deacd3bd66833a960359e02c6721698",
+    "circuit_sha256": "27872011a69f4621e0c28c8243e6c6e4eabe576791918d591ad908f91326e9cf",
+    "server_key_sha256": "ff3d0fb30b1604cc58897d7d7f585e7ff62cccbd2b043b5ef8271ebb8bcee6d3"
+  },
+  "interpretation": "Disjoint wall intervals on one observed worker node. Scheduling delays included. Node already included in first level/tournament. No scaling by number of nodes, no summed workers, no speedup or confidence/failure bound. Overall request times are not paired with the previous campaign.",
+  "independent_review_sha256": "20357bcef629160d515178a1321638d078d5b7adcc09ea381b6d3ba8319ee88f"
+}

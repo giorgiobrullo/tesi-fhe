@@ -1,0 +1,745 @@
+{
+  "status": "PASS_BOUND_WORKER_CLOCK_PROTOCOL",
+  "gate_pass": true,
+  "records": 42,
+  "case": "order-12",
+  "worker_pid": 24580,
+  "birth_abs": 12619837975844,
+  "counts": {
+    "worker_process_clock_reads": 18,
+    "worker_thread_clock_reads": 6,
+    "worker_clock_getres_calls": 2,
+    "thread_id_calls": 3,
+    "worker_identity_v0_reads": 1,
+    "parent_live_v0_reads": 10,
+    "parent_terminal_v0_reads": 2,
+    "waitid_calls": 2,
+    "wait4_calls": 1,
+    "records": 42
+  },
+  "live_comparisons": [
+    {
+      "represented_worker_reference_interval_ns": [
+        236000,
+        244000
+      ],
+      "read_observations": [
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                5821,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -238179,
+                  1
+                ],
+                [
+                  -230179,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                230179,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                727625,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -4375,
+                  3
+                ],
+                [
+                  19625,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        },
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                5821,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -238179,
+                  1
+                ],
+                [
+                  -230179,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                230179,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                727625,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -4375,
+                  3
+                ],
+                [
+                  19625,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        }
+      ],
+      "interpretation": "CONDITIONAL_HYPOTHESES_NOT_UNIT_ACCEPTANCE",
+      "native_binding_attested_by_this_function": false,
+      "reference_error_bound_ns": null,
+      "counter_error_bound_ns": null,
+      "selected_scale": null,
+      "normalized_occupancy": null,
+      "collector_qualified": false
+    },
+    {
+      "represented_worker_reference_interval_ns": [
+        290000,
+        299000
+      ],
+      "read_observations": [
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                7095,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -291905,
+                  1
+                ],
+                [
+                  -282905,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                282905,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                295625,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -3375,
+                  1
+                ],
+                [
+                  5625,
+                  1
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        },
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                7095,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -291905,
+                  1
+                ],
+                [
+                  -282905,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                282905,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                295625,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -3375,
+                  1
+                ],
+                [
+                  5625,
+                  1
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        }
+      ],
+      "interpretation": "CONDITIONAL_HYPOTHESES_NOT_UNIT_ACCEPTANCE",
+      "native_binding_attested_by_this_function": false,
+      "reference_error_bound_ns": null,
+      "counter_error_bound_ns": null,
+      "selected_scale": null,
+      "normalized_occupancy": null,
+      "collector_qualified": false
+    },
+    {
+      "represented_worker_reference_interval_ns": [
+        1990955000,
+        1990967000
+      ],
+      "read_observations": [
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                47783095,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -1943183905,
+                  1
+                ],
+                [
+                  -1943171905,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                1943171905,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                5972886875,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -14125,
+                  3
+                ],
+                [
+                  21875,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        },
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                47783095,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -1943183905,
+                  1
+                ],
+                [
+                  -1943171905,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                1943171905,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                5972886875,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -14125,
+                  3
+                ],
+                [
+                  21875,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        }
+      ],
+      "interpretation": "CONDITIONAL_HYPOTHESES_NOT_UNIT_ACCEPTANCE",
+      "native_binding_attested_by_this_function": false,
+      "reference_error_bound_ns": null,
+      "counter_error_bound_ns": null,
+      "selected_scale": null,
+      "normalized_occupancy": null,
+      "collector_qualified": false
+    },
+    {
+      "represented_worker_reference_interval_ns": [
+        1990999000,
+        1991010000
+      ],
+      "read_observations": [
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                47784112,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -1943225888,
+                  1
+                ],
+                [
+                  -1943214888,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                1943214888,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                5973014000,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -16000,
+                  3
+                ],
+                [
+                  17000,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        },
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                47784112,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -1943225888,
+                  1
+                ],
+                [
+                  -1943214888,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                1943214888,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                5973014000,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -16000,
+                  3
+                ],
+                [
+                  17000,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        }
+      ],
+      "interpretation": "CONDITIONAL_HYPOTHESES_NOT_UNIT_ACCEPTANCE",
+      "native_binding_attested_by_this_function": false,
+      "reference_error_bound_ns": null,
+      "counter_error_bound_ns": null,
+      "selected_scale": null,
+      "normalized_occupancy": null,
+      "collector_qualified": false
+    },
+    {
+      "represented_worker_reference_interval_ns": [
+        5900559000,
+        5900568000
+      ],
+      "read_observations": [
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                141613561,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -5758954439,
+                  1
+                ],
+                [
+                  -5758945439,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                5758945439,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                17701695125,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -8875,
+                  3
+                ],
+                [
+                  18125,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        },
+        {
+          "hypotheses": {
+            "raw_nanoseconds": {
+              "ns_per_raw_unit": [
+                1,
+                1
+              ],
+              "converted_total_ns": [
+                141613561,
+                1
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -5758954439,
+                  1
+                ],
+                [
+                  -5758945439,
+                  1
+                ]
+              ],
+              "zero_error_compatible": false,
+              "minimum_additive_accounting_error_needed_ns": [
+                5758945439,
+                1
+              ],
+              "unit_qualified": false
+            },
+            "raw_mach_ticks": {
+              "ns_per_raw_unit": [
+                125,
+                3
+              ],
+              "converted_total_ns": [
+                17701695125,
+                3
+              ],
+              "signed_zero_error_interval_residual_ns": [
+                [
+                  -8875,
+                  3
+                ],
+                [
+                  18125,
+                  3
+                ]
+              ],
+              "zero_error_compatible": true,
+              "minimum_additive_accounting_error_needed_ns": [
+                0,
+                1
+              ],
+              "unit_qualified": false
+            }
+          }
+        }
+      ],
+      "interpretation": "CONDITIONAL_HYPOTHESES_NOT_UNIT_ACCEPTANCE",
+      "native_binding_attested_by_this_function": false,
+      "reference_error_bound_ns": null,
+      "counter_error_bound_ns": null,
+      "selected_scale": null,
+      "normalized_occupancy": null,
+      "collector_qualified": false
+    }
+  ],
+  "stage_observations": [
+    {
+      "represented_worker_process_cpu_ns": 24000,
+      "calling_process_only": true,
+      "clock_call_overhead_bound_ns": null,
+      "measurement_error_bound_ns": null,
+      "exclusive_work_function_cpu_proven": false,
+      "normalized_occupancy": null
+    },
+    {
+      "represented_worker_process_cpu_ns": 1990631000,
+      "calling_process_only": true,
+      "clock_call_overhead_bound_ns": null,
+      "measurement_error_bound_ns": null,
+      "exclusive_work_function_cpu_proven": false,
+      "normalized_occupancy": null
+    },
+    {
+      "represented_worker_process_cpu_ns": 9000,
+      "calling_process_only": true,
+      "clock_call_overhead_bound_ns": null,
+      "measurement_error_bound_ns": null,
+      "exclusive_work_function_cpu_proven": false,
+      "normalized_occupancy": null
+    },
+    {
+      "represented_worker_process_cpu_ns": 3909524000,
+      "calling_process_only": true,
+      "clock_call_overhead_bound_ns": null,
+      "measurement_error_bound_ns": null,
+      "exclusive_work_function_cpu_proven": false,
+      "normalized_occupancy": null
+    }
+  ],
+  "terminal_raw_counter_pairs": [
+    [
+      140176598,
+      1437280
+    ],
+    [
+      140176598,
+      1437280
+    ]
+  ],
+  "terminal_counters_settled": false,
+  "selected_scale": null,
+  "normalized_occupancy": null,
+  "collector_qualified": false,
+  "accounting_equivalence_proven": false,
+  "reference_measurement_error_bound_ns": null,
+  "timebase_ns_per_tick": [
+    125,
+    3
+  ],
+  "source_id": "1bc24c801e63c78d04228b6e77d0d15b3a09926581914e765f0e1f127812e3c8",
+  "binary_sha256": "43eef657b06284ed0e53a7e1df5dacfb4647969c1e900da006a54703093be17d",
+  "raw_sha256": "a7175e8d2e2af1ed75a0f3f425e73c3dd7930c771fff8b28920b71e6f0549fa4",
+  "raw_bytes": 27199,
+  "raw_path": "archive:/tmp/a193-live-worker-clock-complete/runs/order-12/raw.jsonl",
+  "launch_binding": {
+    "action": "archive:/docs/research-state/2026-09-05/remaining-code-baseline/actions/a193-order-12",
+    "driver_pid": 24576,
+    "child_pid": 24579,
+    "command": [
+      "env",
+      "A193_NATIVE_ACK=A193_WORKER_CPU_ROOT_ONLY",
+      "A193_SOURCE_SHA256=1bc24c801e63c78d04228b6e77d0d15b3a09926581914e765f0e1f127812e3c8",
+      "/tmp/a193-complete-target-r1/worker-clock",
+      "--run",
+      "order-12",
+      "archive:/tmp/a193-live-worker-clock-complete/runs/order-12"
+    ],
+    "cwd": "archive:/tmp/a193-live-worker-clock-complete",
+    "started_at_utc": "2026-09-05T13:49:17.579617+00:00",
+    "ended_at_utc": "2026-09-05T13:49:25.643108+00:00",
+    "postflight_matching_workloads": [],
+    "files_sha256": {
+      "prepared.json": "9a58fe7462777dd0d6a62992498687c51afe2c5ce53656fc096c9086205f5318",
+      "child.json": "9d0d607880ef1491905563ef7c1558c0f3704b314e96700c67835b7039585d93",
+      "wait-complete.json": "27aa6896e54376194b53eb2c324aaa6c37a1c9a6fa7f725b3d9932f786843e04",
+      "preflight.json": "f4e1e10b30a78e4b2d93fd6e79f5fef23d473438d0bcd940d1396845b3dc8eb8",
+      "postflight.json": "a4eacbf6158ea4f4d98a3db8f7843187f2142048036d6d93980f67b125d48af0",
+      "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "scope": "root direct-child records and captured-byte source replay; no OS membership or unit theorem"
+  },
+  "predecessor": null
+}

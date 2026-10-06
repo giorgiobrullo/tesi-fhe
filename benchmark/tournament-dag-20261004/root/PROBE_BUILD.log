@@ -1,0 +1,2561 @@
+   Compiling selector_four_core_20260920 v0.1.0 (/workspace/research/tmp/current-tournament-dag-20261004/runtime/core)
+warning: unused import: `api::*`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:37:9
+   |
+37 | pub use api::*;
+   |         ^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `PfksBridgeOutput` and `pfks_score_bridge`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:38:18
+   |
+38 | pub use bridge::{pfks_score_bridge, PfksBridgeOutput};
+   |                  ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
+
+warning: unused imports: `a34_aligned_operation_counts`, `a38_aligned_operation_counts`, `a41_aligned_operation_counts`, `a44_aligned_operation_counts`, `expected_pbs_count_for_thresholds`, and `expected_pbs_count`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:41:36
+   |
+41 |     a126_aligned_operation_counts, a34_aligned_operation_counts, a38_aligned_operation_counts,
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+42 |     a41_aligned_operation_counts, a44_aligned_operation_counts, a62_aligned_operation_counts,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+43 |     expected_pbs_count, expected_pbs_count_for_thresholds,
+   |     ^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `cauchy_score_domain`, `clear_private_argmin`, and `plan_private_argmin_execution`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin.rs:14:18
+   |
+14 | pub use domain::{cauchy_score_domain, clear_private_argmin, plan_private_argmin_execution};
+   |                  ^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `cauchy_score_domain_with_limit`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin.rs:15:25
+   |
+15 | pub(crate) use domain::{cauchy_score_domain_with_limit, plan_private_argmin_execution_with_limit};
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `legacy::*`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin.rs:16:9
+   |
+16 | pub use legacy::*;
+   |         ^^^^^^^^^
+
+warning: unused imports: `a44_parameter_fingerprint_sha256` and `validate_a44_parameter_binding_text`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin.rs:18:5
+   |
+18 |     a44_parameter_fingerprint_sha256, validate_a44_parameter_binding,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+19 |     validate_a44_parameter_binding_text,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `ClientKey`
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:30:46
+   |
+30 |     blind_rotate_assign, pbs_modulus_switch, ClientKey, ServerKey, ShortintBootstrappingKey,
+   |                                              ^^^^^^^^^
+
+warning: unused import: `tfhe::core_crypto::prelude`
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/public_digits.rs:6:5
+  |
+6 | use tfhe::core_crypto::prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unreachable pattern
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:8:9
+  |
+7 |         ShortintBootstrappingKey::Classic(key) => key,
+  |         -------------------------------------- matches all the relevant values
+8 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+  |         ^ no value can reach this
+  |
+  = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable pattern
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:111:9
+    |
+110 |         ShortintBootstrappingKey::Classic(key) => key,
+    |         -------------------------------------- matches all the relevant values
+111 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+    |         ^ no value can reach this
+
+warning: unreachable pattern
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:7:9
+  |
+6 |         ShortintBootstrappingKey::Classic(key) => key,
+  |         -------------------------------------- matches all the relevant values
+7 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+  |         ^ no value can reach this
+
+warning: unreachable pattern
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:9:9
+  |
+8 |         ShortintBootstrappingKey::Classic(key) => key,
+  |         -------------------------------------- matches all the relevant values
+9 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+  |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/input.rs:46:9
+   |
+45 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+46 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/aligned.rs:41:9
+   |
+40 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+41 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/bridge.rs:54:9
+   |
+53 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+54 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/general.rs:39:9
+   |
+38 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+39 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:18:13
+   |
+17 |             ShortintBootstrappingKey::Classic(key) => key.polynomial_size().0,
+   |             -------------------------------------- matches all the relevant values
+18 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |             ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:71:13
+   |
+70 |             ShortintBootstrappingKey::Classic(key) => key,
+   |             -------------------------------------- matches all the relevant values
+71 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |             ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:87:13
+   |
+86 |             ShortintBootstrappingKey::Classic(key) => key,
+   |             -------------------------------------- matches all the relevant values
+87 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |             ^ no value can reach this
+
+warning: unreachable pattern
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:106:13
+    |
+105 |             ShortintBootstrappingKey::Classic(key) => key,
+    |             -------------------------------------- matches all the relevant values
+106 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+    |             ^ no value can reach this
+
+warning: unreachable pattern
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/parameters.rs:73:9
+   |
+72 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+73 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: constant `BOX_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:45:7
+   |
+45 | const BOX_SIZE: usize = 128;
+   |       ^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: constant `STRICT_RADIUS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:46:7
+   |
+46 | const STRICT_RADIUS: isize = 63;
+   |       ^^^^^^^^^^^^^
+
+warning: constant `OUTPUTS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:47:7
+   |
+47 | const OUTPUTS: usize = 5;
+   |       ^^^^^^^
+
+warning: constant `LEFT_CONTROL` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:48:7
+   |
+48 | const LEFT_CONTROL: u64 = 4;
+   |       ^^^^^^^^^^^^
+
+warning: constant `RIGHT_CONTROL` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:49:7
+   |
+49 | const RIGHT_CONTROL: u64 = 12;
+   |       ^^^^^^^^^^^^^
+
+warning: constant `TORUS_PER_BLIND_ROTATION_DEGREE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:51:7
+   |
+51 | const TORUS_PER_BLIND_ROTATION_DEGREE: u64 = 1 << 52;
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `PAYLOAD_DELTAS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:52:7
+   |
+52 | const PAYLOAD_DELTAS: [u64; OUTPUTS] = [SCORE_DELTA; OUTPUTS];
+   |       ^^^^^^^^^^^^^^
+
+warning: constant `SOURCE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:53:7
+   |
+53 | const SOURCE: &str = include_str!("../../SOURCE_DIGEST.txt");
+   |       ^^^^^^
+
+warning: constant `SCHEMA` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:54:7
+   |
+54 | const SCHEMA: &str = "head-pfks-split32-b22-mean-center.v1";
+   |       ^^^^^^
+
+warning: constant `GROUPS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:55:7
+   |
+55 | const GROUPS: [&[usize];2]=[&[0,1,2],&[3,4]];
+   |       ^^^^^^
+
+warning: constant `OFFSETS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:56:7
+   |
+56 | const OFFSETS: [&[usize];2]=[&[0,41,82],&[0,41]];
+   |       ^^^^^^^
+
+warning: struct `PfksParameters` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:62:8
+   |
+62 | struct PfksParameters {
+   |        ^^^^^^^^^^^^^^
+
+warning: enum `Origin` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:68:6
+   |
+68 | enum Origin { Leaf(usize), Merge(usize), Sentinel }
+   |      ^^^^^^
+
+warning: methods `nontrivial` and `json` are never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:71:8
+   |
+70 | impl Origin {
+   | ----------- methods in this implementation
+71 |     fn nontrivial(self) -> [bool;5] {
+   |        ^^^^^^^^^^
+...
+78 |     fn json(self) -> serde_json::Value {
+   |        ^^^^
+
+warning: struct `Fixture` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:87:8
+   |
+87 | struct Fixture {
+   |        ^^^^^^^
+
+warning: associated function `new` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/lib.rs:102:8
+    |
+101 | impl Fixture {
+    | ------------ associated function in this implementation
+102 |     fn new(index:usize,name:String,left:[u64;5],right:[u64;5],origins:[Origin;2]) -> Self {
+    |        ^^^
+
+warning: constant `MAX_GALLERY_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:12:11
+   |
+12 | pub const MAX_GALLERY_SIZE: usize = 128;
+   |           ^^^^^^^^^^^^^^^^
+
+warning: constant `GROUP_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:13:11
+   |
+13 | pub const GROUP_SIZE: usize = 4;
+   |           ^^^^^^^^^^
+
+warning: constant `REDUCTION_RADIX` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:14:11
+   |
+14 | pub const REDUCTION_RADIX: usize = 15;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `OUTPUT_BASE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:15:11
+   |
+15 | pub const OUTPUT_BASE: u16 = 15;
+   |           ^^^^^^^^^^^
+
+warning: constant `P16` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:16:11
+   |
+16 | pub const P16: usize = 16;
+   |           ^^^
+
+warning: constant `SIGNED_INPUT_PERIOD` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:17:11
+   |
+17 | pub const SIGNED_INPUT_PERIOD: i32 = 32;
+   |           ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `POLYNOMIAL_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:18:11
+   |
+18 | pub const POLYNOMIAL_SIZE: usize = 2_048;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `BOX_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:19:11
+   |
+19 | pub const BOX_SIZE: usize = POLYNOMIAL_SIZE / P16;
+   |           ^^^^^^^^
+
+warning: constant `STRICT_MARGIN_RADIUS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:20:11
+   |
+20 | pub const STRICT_MARGIN_RADIUS: i32 = (BOX_SIZE / 2 - 1) as i32;
+   |           ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `BOOL_OUTPUT_PERIOD` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:21:11
+   |
+21 | pub const BOOL_OUTPUT_PERIOD: u16 = 32;
+   |           ^^^^^^^^^^^^^^^^^^
+
+warning: constant `CODE_OUTPUT_PERIOD` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:22:11
+   |
+22 | pub const CODE_OUTPUT_PERIOD: u16 = 256;
+   |           ^^^^^^^^^^^^^^^^^^
+
+warning: constant `BOOL_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:23:11
+   |
+23 | pub const BOOL_DELTA_LOG: u32 = 59;
+   |           ^^^^^^^^^^^^^^
+
+warning: constant `CODE_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:24:11
+   |
+24 | pub const CODE_DELTA_LOG: u32 = 56;
+   |           ^^^^^^^^^^^^^^
+
+warning: constant `A62_WIRE_OUTPUT_LWES` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:25:11
+   |
+25 | pub const A62_WIRE_OUTPUT_LWES: usize = 2;
+   |           ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A62_ROOT_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:26:11
+   |
+26 | pub const A62_ROOT_DELTA_LOG: u32 = BOOL_DELTA_LOG;
+   |           ^^^^^^^^^^^^^^^^^^
+
+warning: constant `CURRENT_TUNIFORM_MAX_NOISE_LEVEL` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:27:11
+   |
+27 | pub const CURRENT_TUNIFORM_MAX_NOISE_LEVEL: usize = 5;
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A44_MAX_NOISE_LEVEL` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:28:11
+   |
+28 | pub const A44_MAX_NOISE_LEVEL: usize = 15;
+   |           ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `SELECTOR_SECOND_SAMPLE_DEGREE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:29:11
+   |
+29 | pub const SELECTOR_SECOND_SAMPLE_DEGREE: usize = POLYNOMIAL_SIZE / 2;
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A53_CONTRACT_ID` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:31:11
+   |
+31 | pub const A53_CONTRACT_ID: &str = "a62-exact-open-set-id-base15-two-p16-roots-v1";
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `A53_CONTRACT_DESCRIPTION` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:32:11
+   |
+32 | pub const A53_CONTRACT_DESCRIPTION: &str =
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A44_PARAMS_ID` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:35:11
+   |
+35 | pub const A44_PARAMS_ID: &str = "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64";
+   |           ^^^^^^^^^^^^^
+
+warning: constant `A44_PARAMETER_FINGERPRINT_SHA256` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:36:11
+   |
+36 | pub const A44_PARAMETER_FINGERPRINT_SHA256: &str =
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A44_PARAMETER_CANONICAL` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:38:11
+   |
+38 | pub const A44_PARAMETER_CANONICAL: &str = "tfhe-rs=1.8.1;symbol=V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64;bootstrap=classic...
+   |           ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `SOURCE_GUARDS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:47:11
+   |
+47 | pub const SOURCE_GUARDS: &[SourceGuard] = &[
+   |           ^^^^^^^^^^^^^
+
+warning: constant `GROUP_OR_SLOT_LUT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:87:11
+   |
+87 | pub const GROUP_OR_SLOT_LUT: [u16; P16] = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+   |           ^^^^^^^^^^^^^^^^^
+
+warning: constant `LOCAL_FIRST_SLOT_LUT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:88:11
+   |
+88 | pub const LOCAL_FIRST_SLOT_LUT: [u16; P16] = [0, 4, 3, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0];
+   |           ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DIGIT_IDENTITY_SLOT_LUT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:89:11
+   |
+89 | pub const DIGIT_IDENTITY_SLOT_LUT: [u16; P16] =
+   |           ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `LOW_CODE_SLOT_LUT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:91:11
+   |
+91 | pub const LOW_CODE_SLOT_LUT: [u16; P16] = DIGIT_IDENTITY_SLOT_LUT;
+   |           ^^^^^^^^^^^^^^^^^
+
+warning: constant `HIGH_CODE_SLOT_LUT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:92:11
+   |
+92 | pub const HIGH_CODE_SLOT_LUT: [u16; P16] = [
+   |           ^^^^^^^^^^^^^^^^^^
+
+warning: struct `SelectorOffsets` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:97:12
+   |
+97 | pub struct SelectorOffsets {
+   |            ^^^^^^^^^^^^^^^
+
+warning: associated function `new` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:103:18
+    |
+102 | impl SelectorOffsets {
+    | -------------------- associated function in this implementation
+103 |     pub const fn new(low: u16, high: u16) -> Self {
+    |                  ^^^
+
+warning: constant `FULL_GROUP_SELECTOR_OFFSETS` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:110:11
+    |
+110 | pub const FULL_GROUP_SELECTOR_OFFSETS: [SelectorOffsets; 32] = [
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `DIRECT_SELECTOR_OFFSETS_BY_LENGTH` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:146:11
+    |
+146 | pub const DIRECT_SELECTOR_OFFSETS_BY_LENGTH: [SelectorOffsets; GROUP_SIZE] = [
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: enum `OutputScale` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:154:10
+    |
+154 | pub enum OutputScale {
+    |          ^^^^^^^^^^^
+
+warning: methods `period` and `delta_log` are never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:160:18
+    |
+159 | impl OutputScale {
+    | ---------------- methods in this implementation
+160 |     pub const fn period(self) -> u16 {
+    |                  ^^^^^^
+...
+167 |     pub const fn delta_log(self) -> u32 {
+    |                  ^^^^^^^^^
+
+warning: enum `A53StaticError` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:176:10
+    |
+176 | pub enum A53StaticError {
+    |          ^^^^^^^^^^^^^^
+
+warning: struct `SelectorLayout` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:187:12
+    |
+187 | pub struct SelectorLayout {
+    |            ^^^^^^^^^^^^^^
+
+warning: struct `PrimitiveCounts` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:198:12
+    |
+198 | pub struct PrimitiveCounts {
+    |            ^^^^^^^^^^^^^^^
+
+warning: struct `ScanCounts` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:205:12
+    |
+205 | pub struct ScanCounts {
+    |            ^^^^^^^^^^
+
+warning: constant `A53_N127_SCAN_COUNTS` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:218:11
+    |
+218 | pub const A53_N127_SCAN_COUNTS: PrimitiveCounts = PrimitiveCounts {
+    |           ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A53_N127_FULL_COUNTS` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:223:11
+    |
+223 | pub const A53_N127_FULL_COUNTS: PrimitiveCounts = PrimitiveCounts {
+    |           ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `residue_neg` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:229:4
+    |
+229 | fn residue_neg(value: u16, period: u16) -> u16 {
+    |    ^^^^^^^^^^^
+
+warning: function `assign_slot` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:233:4
+    |
+233 | fn assign_slot(
+    |    ^^^^^^^^^^^
+
+warning: function `virtual_requirement` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:249:4
+    |
+249 | fn virtual_requirement(phase: i32, raw_output: u16, period: u16) -> (usize, u16) {
+    |    ^^^^^^^^^^^^^^^^^^^
+
+warning: function `slot_lut_residue_body` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:260:8
+    |
+260 | pub fn slot_lut_residue_body(slots: &[u16; P16], period: u16) -> Result<Vec<u16>, A53StaticError> {
+    |        ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `robust_residue_body` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:265:4
+    |
+265 | fn robust_residue_body(
+    |    ^^^^^^^^^^^^^^^^^^^
+
+warning: function `sample_residue` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:297:8
+    |
+297 | pub fn sample_residue(
+    |        ^^^^^^^^^^^^^^
+
+warning: function `group_local_phase` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:318:8
+    |
+318 | pub fn group_local_phase(group: &[bool]) -> Result<u16, A53StaticError> {
+    |        ^^^^^^^^^^^^^^^^^
+
+warning: function `local_first` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:329:8
+    |
+329 | pub fn local_first(group: &[bool]) -> Result<u16, A53StaticError> {
+    |        ^^^^^^^^^^^
+
+warning: function `selector_offsets` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:339:8
+    |
+339 | pub fn selector_offsets(
+    |        ^^^^^^^^^^^^^^^^
+
+warning: function `selector_requirements` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:363:8
+    |
+363 | pub fn selector_requirements(
+    |        ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `selector_layout` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:396:8
+    |
+396 | pub fn selector_layout(
+    |        ^^^^^^^^^^^^^^^
+
+warning: function `validate_selector_layout` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:437:8
+    |
+437 | pub fn validate_selector_layout(layout: &SelectorLayout) -> Result<(), A53StaticError> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `clear_exclusive_prefix` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:473:8
+    |
+473 | pub fn clear_exclusive_prefix(flags: &[bool]) -> Result<Vec<bool>, A53StaticError> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `clear_scan` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:488:8
+    |
+488 | pub fn clear_scan(candidates: &[bool]) -> Result<u16, A53StaticError> {
+    |        ^^^^^^^^^^
+
+warning: function `reduction_nodes` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:525:8
+    |
+525 | pub fn reduction_nodes(mut items: usize, radix: usize) -> Result<u64, A53StaticError> {
+    |        ^^^^^^^^^^^^^^^
+
+warning: function `exclusive_prefix_nodes` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:539:8
+    |
+539 | pub fn exclusive_prefix_nodes(items: usize, radix: usize) -> Result<u64, A53StaticError> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `scan_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:562:8
+    |
+562 | pub fn scan_counts(gallery_size: usize) -> Result<ScanCounts, A53StaticError> {
+    |        ^^^^^^^^^^^
+
+warning: function `raw_l1_ledger` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:596:14
+    |
+596 | pub const fn raw_l1_ledger() -> [(&'static str, usize); 7] {
+    |              ^^^^^^^^^^^^^
+
+warning: function `maximum_raw_l1` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:608:8
+    |
+608 | pub fn maximum_raw_l1() -> usize {
+    |        ^^^^^^^^^^^^^^
+
+warning: function `residue_body_to_torus` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan.rs:616:8
+    |
+616 | pub fn residue_body_to_torus(body: &[u16], scale: OutputScale) -> Vec<u64> {
+    |        ^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A66_EXPERIMENT_ACK` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:18:11
+   |
+18 | pub const A66_EXPERIMENT_ACK: &str =
+   |           ^^^^^^^^^^^^^^^^^^
+
+warning: constant `A66_PFAIL_ACK` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:20:11
+   |
+20 | pub const A66_PFAIL_ACK: &str =
+   |           ^^^^^^^^^^^^^
+
+warning: struct `BackendParameterContract` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:24:12
+   |
+24 | pub struct BackendParameterContract<'a> {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ObservedSourceGuard` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:34:12
+   |
+34 | pub struct ObservedSourceGuard<'a> {
+   |            ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A66_OBSERVED_SOURCE_GUARDS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:41:11
+   |
+41 | pub const A66_OBSERVED_SOURCE_GUARDS: &[ObservedSourceGuard<'static>] = &[
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `FutureFheGate` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:81:12
+   |
+81 | pub struct FutureFheGate<'a> {
+   |            ^^^^^^^^^^^^^
+
+warning: enum `FutureFheGateError` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:89:10
+   |
+89 | pub enum FutureFheGateError {
+   |          ^^^^^^^^^^^^^^^^^^
+
+warning: function `validate_future_fhe_gate` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:99:8
+   |
+99 | pub fn validate_future_fhe_gate(gate: &FutureFheGate<'_>) -> Result<(), FutureFheGateError> {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: trait `A53FheBackend` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:146:11
+    |
+146 | pub trait A53FheBackend: Sync {
+    |           ^^^^^^^^^^^^^
+
+warning: enum `FutureFheError` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:173:10
+    |
+173 | pub enum FutureFheError<E> {
+    |          ^^^^^^^^^^^^^^
+
+warning: struct `A53FheOutput` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:185:12
+    |
+185 | pub struct A53FheOutput<Lwe> {
+    |            ^^^^^^^^^^^^
+
+warning: function `subtract_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:194:4
+    |
+194 | fn subtract_counts(after: PrimitiveCounts, before: PrimitiveCounts) -> Option<PrimitiveCounts> {
+    |    ^^^^^^^^^^^^^^^
+
+warning: function `torus_plaintext` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:204:4
+    |
+204 | fn torus_plaintext(residue: u16, scale: OutputScale) -> u64 {
+    |    ^^^^^^^^^^^^^^^
+
+warning: function `torus_body` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:208:4
+    |
+208 | fn torus_body(residues: &[u16], scale: OutputScale) -> Vec<u64> {
+    |    ^^^^^^^^^^
+
+warning: function `collect_ordered_results` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:217:4
+    |
+217 | fn collect_ordered_results<T, E>(results: Vec<Result<T, E>>) -> Result<Vec<T>, E> {
+    |    ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `sum_lwes` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:221:4
+    |
+221 | fn sum_lwes<B: A53FheBackend>(backend: &B, inputs: &[B::Lwe]) -> B::Lwe {
+    |    ^^^^^^^^
+
+warning: function `add_scaled` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:229:4
+    |
+229 | fn add_scaled<B: A53FheBackend>(
+    |    ^^^^^^^^^^
+
+warning: function `or_gate` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:246:4
+    |
+246 | fn or_gate<B: A53FheBackend>(
+    |    ^^^^^^^
+
+warning: function `encrypted_exclusive_prefix` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:265:4
+    |
+265 | fn encrypted_exclusive_prefix<B: A53FheBackend>(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reduce_digit` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:309:4
+    |
+309 | fn reduce_digit<B: A53FheBackend>(
+    |    ^^^^^^^^^^^^
+
+warning: function `materialize_a53_scan` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a53_scan/fhe.rs:333:8
+    |
+333 | pub fn materialize_a53_scan<B: A53FheBackend>(
+    |        ^^^^^^^^^^^^^^^^^^^^
+
+warning: variants `EmptyDecomposition`, `BaseLogOutOfRange`, `DecompositionPrecisionOverflow`, `DecompositionPrecisionOutOfRange`, `TruncatedStateOutOfRange`, and `RoundedValueNotRepresentable` are never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:24:5
+   |
+20 | pub enum HeadStartPortError {
+   |          ------------------ variants in this enum
+...
+24 |     EmptyDecomposition,
+   |     ^^^^^^^^^^^^^^^^^^
+25 |     BaseLogOutOfRange { base_log: usize },
+   |     ^^^^^^^^^^^^^^^^^
+26 |     DecompositionPrecisionOverflow,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+27 |     DecompositionPrecisionOutOfRange { precision: usize },
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28 |     TruncatedStateOutOfRange { state: u64, precision: usize },
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+29 |     RoundedValueNotRepresentable { rounded: u64, precision: usize },
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `HeadStartPortError` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: function `validate_decomposition` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:120:4
+    |
+120 | fn validate_decomposition(
+    |    ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `RoundedMaskCoefficient` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:143:12
+    |
+143 | pub struct RoundedMaskCoefficient {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `round_mask_coefficient` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:149:8
+    |
+149 | pub fn round_mask_coefficient(
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `halve_wrapped_rounding_correction` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:167:8
+    |
+167 | pub fn halve_wrapped_rounding_correction(correction: u64) -> u64 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `HeadStartDecompositionTerm` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:174:12
+    |
+174 | pub struct HeadStartDecompositionTerm {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: methods `level`, `value`, `signed_value`, and `to_recomposition_summand` are never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:182:12
+    |
+180 | impl HeadStartDecompositionTerm {
+    | ------------------------------- methods in this implementation
+181 |     #[must_use]
+182 |     pub fn level(&self) -> usize {
+    |            ^^^^^
+...
+188 |     pub fn value(&self) -> u64 {
+    |            ^^^^^
+...
+193 |     pub fn signed_value(&self) -> i64 {
+    |            ^^^^^^^^^^^^
+...
+198 |     pub fn to_recomposition_summand(&self) -> u64 {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `HeadStartDecompositionIter` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:205:12
+    |
+205 | pub struct HeadStartDecompositionIter {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated items `from_truncated_state`, `from_rounded_torus`, `base_log`, and `level_count` are never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a98.rs:215:12
+    |
+213 | impl HeadStartDecompositionIter {
+    | ------------------------------- associated items in this implementation
+214 |     /// Construct from the patch's `rounded >> (64 - precision)` state.
+215 |     pub fn from_truncated_state(
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+234 |     pub fn from_rounded_torus(
+    |            ^^^^^^^^^^^^^^^^^^
+...
+248 |     pub fn base_log(&self) -> DecompositionBaseLog {
+    |            ^^^^^^^^
+...
+253 |     pub fn level_count(&self) -> DecompositionLevelCount {
+    |            ^^^^^^^^^^^
+
+warning: constant `GLWE_DIMENSION` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:20:11
+   |
+20 | pub const GLWE_DIMENSION: usize = 1;
+   |           ^^^^^^^^^^^^^^
+
+warning: constant `POLYNOMIAL_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:21:11
+   |
+21 | pub const POLYNOMIAL_SIZE: usize = 2048;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `PBS_BASE_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:24:11
+   |
+24 | pub const PBS_BASE_LOG: usize = 23;
+   |           ^^^^^^^^^^^^
+
+warning: constant `PBS_LEVEL_COUNT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:25:11
+   |
+25 | pub const PBS_LEVEL_COUNT: usize = 1;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `PBS_LOG_MODULUS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:26:11
+   |
+26 | pub const PBS_LOG_MODULUS: usize = 12;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `TORUS_BITS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:28:7
+   |
+28 | const TORUS_BITS: usize = u64::BITS as usize;
+   |       ^^^^^^^^^^
+
+warning: variants `InvalidReferenceState`, `InvalidSecretLength`, `NonBinarySecret`, and `InvalidMaskLength` are never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:39:5
+   |
+31 | pub enum A112Error {
+   |          --------- variants in this enum
+...
+39 |     InvalidReferenceState { state: u64 },
+   |     ^^^^^^^^^^^^^^^^^^^^^
+40 |     InvalidSecretLength { actual: usize },
+   |     ^^^^^^^^^^^^^^^^^^^
+41 |     NonBinarySecret { index: usize, value: u64 },
+   |     ^^^^^^^^^^^^^^^
+42 |     InvalidMaskLength { actual: usize },
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = note: `A112Error` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: struct `ReferencePatchTerm` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:47:12
+   |
+47 | pub struct ReferencePatchTerm {
+   |            ^^^^^^^^^^^^^^^^^^
+
+warning: method `value` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:53:12
+   |
+51 | impl ReferencePatchTerm {
+   | ----------------------- method in this implementation
+52 |     #[must_use]
+53 |     pub fn value(&self) -> u64 {
+   |            ^^^^^
+
+warning: struct `ReferencePatchIter` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:60:12
+   |
+60 | pub struct ReferencePatchIter {
+   |            ^^^^^^^^^^^^^^^^^^
+
+warning: associated function `new` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:67:12
+   |
+66 | impl ReferencePatchIter {
+   | ----------------------- associated function in this implementation
+67 |     pub fn new(state: u64) -> Result<Self, A112Error> {
+   |            ^^^
+
+warning: function `reference_patch_corrected_keyswitch` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:153:8
+    |
+153 | pub fn reference_patch_corrected_keyswitch(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reference_lifted_round` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:224:4
+    |
+224 | fn reference_lifted_round(value: u64) -> u64 {
+    |    ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reference_head_start_correction` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:229:4
+    |
+229 | fn reference_head_start_correction(mask: &[u64]) -> u64 {
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reference_head_start_modulus_switch` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:244:8
+    |
+244 | pub fn reference_head_start_modulus_switch(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ComposedOutput` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:264:12
+    |
+264 | pub struct ComposedOutput {
+    |            ^^^^^^^^^^^^^^
+
+warning: function `validate_pbs_geometry` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:269:4
+    |
+269 | fn validate_pbs_geometry(
+    |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `run_reference_composed` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:302:8
+    |
+302 | pub fn run_reference_composed(
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `run_a112_composed` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:325:8
+    |
+325 | pub fn run_a112_composed(
+    |        ^^^^^^^^^^^^^^^^^
+
+warning: function `assemble_key_consistent_large_lwe` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/a112.rs:351:8
+    |
+351 | pub fn assemble_key_consistent_large_lwe(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: type alias `Lwe` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:3:10
+  |
+3 | pub type Lwe = LweCiphertextOwned<u64>;
+  |          ^^^
+
+warning: type alias `Glwe` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:4:6
+  |
+4 | type Glwe = GlweCiphertextOwned<u64>;
+  |      ^^^^
+
+warning: constant `N` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:5:7
+  |
+5 | const N: usize = 2048;
+  |       ^
+
+warning: constant `DELTA` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:6:7
+  |
+6 | const DELTA: u64 = 1 << 58;
+  |       ^^^^^
+
+warning: struct `Counts` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:14:12
+   |
+14 | pub struct Counts {
+   |            ^^^^^^
+
+warning: struct `Step` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:21:12
+   |
+21 | pub struct Step {
+   |            ^^^^
+
+warning: function `scalar` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:35:8
+   |
+35 | pub fn scalar(input: &Lwe, scalar: u64) -> Lwe {
+   |        ^^^^^^
+
+warning: function `add` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:43:8
+   |
+43 | pub fn add(a: &Lwe, b: &Lwe) -> Lwe {
+   |        ^^^
+
+warning: function `dirty_accumulator` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:49:4
+   |
+49 | fn dirty_accumulator(t: usize) -> (Glwe, u64) {
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: struct `Switch` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:73:8
+   |
+73 | struct Switch {
+   |        ^^^^^^
+
+warning: function `bootstrap` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:92:4
+   |
+92 | fn bootstrap(
+   |    ^^^^^^^^^
+
+warning: function `split_normalizer_pair` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:147:4
+    |
+147 | fn split_normalizer_pair(
+    |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `Result` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:189:12
+    |
+189 | pub struct Result {
+    |            ^^^^^^
+
+warning: function `ingress` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide.rs:196:8
+    |
+196 | pub fn ingress(input51: &Lwe, head_keys: &Keys<'_>, norm_keys: &Keys<'_>) -> Result {
+    |        ^^^^^^^
+
+warning: constant `N` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:6:7
+  |
+6 | const N: usize = 2048;
+  |       ^
+
+warning: function `wh` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:8:4
+  |
+8 | fn wh(words: &[u64]) -> String {
+  |    ^^
+
+warning: function `phase` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:15:4
+   |
+15 | fn phase(ct: &Lwe, secret: &[u64]) -> u64 {
+   |    ^^^^^
+
+warning: function `decode` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:24:4
+   |
+24 | fn decode(value: u64, log: u32) -> u64 {
+   |    ^^^^^^
+
+warning: function `close` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:27:4
+   |
+27 | fn close(value: u64, target: u64, log: u32) -> bool {
+   |    ^^^^^
+
+warning: function `at` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:30:4
+   |
+30 | fn at(body: &[u64], degree: usize) -> u64 {
+   |    ^^
+
+warning: function `node` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:38:4
+   |
+38 | fn node(ct: &Lwe, secret: &[u64]) -> Value {
+   |    ^^^^
+
+warning: function `witness` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:50:4
+   |
+50 | fn witness(step: &wide::Step, logs: &[u32], big: &[u64], small: &[u64]) -> Value {
+   |    ^^^^^^^
+
+warning: function `observe` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/head_witness.rs:103:8
+    |
+103 | pub fn observe(
+    |        ^^^^^^^
+
+warning: struct `Bridge` is never constructed
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hybrid.rs:5:19
+  |
+5 | pub(super) struct Bridge {
+  |                   ^^^^^^
+
+warning: function `bridge` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hybrid.rs:15:15
+   |
+15 | pub(super) fn bridge(
+   |               ^^^^^^
+
+warning: struct `Stage` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:44:19
+   |
+44 | pub(super) struct Stage {
+   |                   ^^^^^
+
+warning: function `pbs` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:108:4
+    |
+108 | fn pbs(name: &'static str, input: Lwe, final_control: bool, sk: &ServerKey) -> Stage {
+    |    ^^^
+
+warning: function `evaluate` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:158:15
+    |
+158 | pub(super) fn evaluate(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> Vec<Stage> {
+    |               ^^^^^^^^
+
+warning: function `lwe` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:184:15
+    |
+184 | pub(super) fn lwe(ct: &Lwe, secret: &LweSecretKeyView<'_, u64>) -> serde_json::Value {
+    |               ^^^
+
+warning: function `switched` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:198:15
+    |
+198 | pub(super) fn switched(
+    |               ^^^^^^^^
+
+warning: function `observe` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:269:15
+    |
+269 | pub(super) fn observe(
+    |               ^^^^^^^
+
+warning: function `prefix` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/comparator.rs:314:15
+    |
+314 | pub(super) fn prefix(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> (Vec<Stage>, Lwe) {
+    |               ^^^^^^
+
+warning: constant `POLICY` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/mean_center.rs:4:18
+  |
+4 | pub(super) const POLICY: &str = "MEAN_ONLY_INTEGER_CENTER";
+  |                  ^^^^^^
+
+warning: fields `original`, `stock_correction`, and `mean_correction` are never read
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/mean_center.rs:9:9
+   |
+ 8 | pub(super) struct Centered {
+   |                   -------- fields in this struct
+ 9 |     pub original: Lwe,
+   |         ^^^^^^^^
+10 |     pub corrected: Lwe,
+11 |     pub stock_correction: u64,
+   |         ^^^^^^^^^^^^^^^^
+12 |     pub mean_correction: u64,
+   |         ^^^^^^^^^^^^^^^
+
+warning: function `observe` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/mean_center.rs:29:15
+   |
+29 | pub(super) fn observe(
+   |               ^^^^^^^
+
+warning: struct `ClientKey` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/compat.rs:12:12
+   |
+12 | pub struct ClientKey(tfhe::shortint::ClientKey);
+   |            ^^^^^^^^^
+
+warning: associated items `new` and `into_raw_parts` are never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/compat.rs:15:12
+   |
+14 | impl ClientKey {
+   | -------------- associated items in this implementation
+15 |     pub fn new(parameters: ClassicPBSParameters) -> Self {
+   |            ^^^
+...
+19 |     pub fn into_raw_parts(self) -> (GlweSecretKeyOwned<u64>, LweSecretKeyOwned<u64>, PBSParameters) {
+   |            ^^^^^^^^^^^^^^
+
+warning: associated function `new` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/compat.rs:48:12
+   |
+47 | impl ServerKey {
+   | -------------- associated function in this implementation
+48 |     pub fn new(client: &ClientKey) -> Self {
+   |            ^^^
+
+warning: function `at` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:5:4
+  |
+5 | fn at(poly: &[u64], degree: isize) -> u64 {
+  |    ^^
+
+warning: function `glwe_phase` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:15:4
+   |
+15 | fn glwe_phase(secret: &GlweSecretKeyOwned<u64>, ct: &Glwe) -> Vec<u64> {
+   |    ^^^^^^^^^^
+
+warning: struct `InputObservation` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:21:8
+   |
+21 | struct InputObservation {
+   |        ^^^^^^^^^^^^^^^^
+
+warning: function `input_observation` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:31:4
+   |
+31 | fn input_observation(
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: function `input_json` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:89:4
+   |
+89 | fn input_json(ct: &Lwe, message: u64, input: &InputObservation) -> serde_json::Value {
+   |    ^^^^^^^^^^
+
+warning: struct `Metrics` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:97:19
+   |
+97 | pub(super) struct Metrics {
+   |                   ^^^^^^^
+
+warning: methods `pass` and `json` are never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:114:12
+    |
+113 | impl Metrics {
+    | ------------ methods in this implementation
+114 |     pub fn pass(&self) -> bool {
+    |            ^^^^
+...
+120 |     pub fn json(&self) -> serde_json::Value {
+    |            ^^^^
+
+warning: struct `Trace` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:131:19
+    |
+131 | pub(super) struct Trace {
+    |                   ^^^^^
+
+warning: struct `Selection` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:144:19
+    |
+144 | pub(super) struct Selection {
+    |                   ^^^^^^^^^
+
+warning: function `window` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:151:15
+    |
+151 | pub(super) fn window() -> Poly {
+    |               ^^^^^^
+
+warning: function `select` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/d1.rs:161:15
+    |
+161 | pub(super) fn select(
+    |               ^^^^^^
+
+warning: function `full_input_json` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/split32_observer.rs:1:4
+  |
+1 | fn full_input_json(ct: &Lwe,message: u64,input: &InputObservation,big: &LweSecretKeyView<'_,u64>) -> serde_json::Value {
+  |    ^^^^^^^^^^^^^^^
+
+warning: function `glwe_json` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/split32_observer.rs:11:4
+   |
+11 | fn glwe_json(ct: &Glwe,phase: &[u64]) -> serde_json::Value {
+   |    ^^^^^^^^^
+
+warning: struct `Observation` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/split32_observer.rs:18:19
+   |
+18 | pub(super) struct Observation {
+   |                   ^^^^^^^^^^^
+
+warning: function `observe` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/split32_observer.rs:30:15
+   |
+30 | pub(super) fn observe(
+   |               ^^^^^^^
+
+warning: function `signed_cell_mask` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/helpers.rs:4:15
+  |
+4 | pub(super) fn signed_cell_mask(polynomial_size: PolynomialSize, virtual_center: usize) -> Poly {
+  |               ^^^^^^^^^^^^^^^^
+
+warning: function `hash_lwe` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/helpers.rs:27:15
+   |
+27 | pub(super) fn hash_lwe(ciphertext: &Lwe) -> String {
+   |               ^^^^^^^^
+
+warning: function `modulus_switch_degree` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/helpers.rs:35:15
+   |
+35 | pub(super) fn modulus_switch_degree(phase: u64) -> usize {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `centered_degree_error` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/helpers.rs:40:15
+   |
+40 | pub(super) fn centered_degree_error(observed: usize, expected: usize) -> isize {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `effective_rotation_degree` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/helpers.rs:50:15
+   |
+50 | pub(super) fn effective_rotation_degree(control: &Lwe, secret: &LweSecretKeyView<'_, u64>) -> usize {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `emit` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/helpers.rs:69:15
+   |
+69 | pub(super) fn emit(value: serde_json::Value) {
+   |               ^^^^
+
+warning: function `nontrivial` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/helpers.rs:74:15
+   |
+74 | pub(super) fn nontrivial(ciphertext: &Lwe) -> bool {
+   |               ^^^^^^^^^^
+
+warning: function `pbs` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:4:4
+  |
+4 | fn pbs(input: Lwe, final_control: bool, sk: &ServerKey) -> Lwe {
+  |    ^^^
+
+warning: function `compare` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:40:4
+   |
+40 | fn compare(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> Lwe {
+   |    ^^^^^^^
+
+warning: function `select` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:62:4
+   |
+62 | fn select(
+   |    ^^^^^^
+
+warning: methods `json`, `merge`, and `check` are never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:151:12
+    |
+150 | impl Counts {
+    | ----------- methods in this implementation
+151 |     pub fn json(&self) -> serde_json::Value {
+    |            ^^^^
+...
+160 |     fn merge(&mut self, m: &hd1::Metrics) {
+    |        ^^^^^
+...
+169 |     pub fn check(&self) {
+    |            ^^^^^
+
+warning: struct `Output` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:177:19
+    |
+177 | pub(super) struct Output { pub digits: [Lwe;2], pub counts: Counts }
+    |                   ^^^^^^
+
+warning: struct `Bridge` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:178:19
+    |
+178 | pub(super) struct Bridge { pub tuples: Vec<[Lwe;OUTPUTS]>, pub counts: Counts }
+    |                   ^^^^^^
+
+warning: struct `TupleOutput` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:179:19
+    |
+179 | pub(super) struct TupleOutput { pub tuple: [Lwe;OUTPUTS], pub counts: Counts }
+    |                   ^^^^^^^^^^^
+
+warning: struct `Diagnostic` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:180:19
+    |
+180 | pub(super) struct Diagnostic { pub leaves: Vec<[Lwe;OUTPUTS]>, pub selected: TupleOutput }
+    |                   ^^^^^^^^^^
+
+warning: function `checked_domain` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:182:4
+    |
+182 | fn checked_domain(templates: &[private_argmin::TemplateView<'_>]) -> private_argmin::ScoreDomain {
+    |    ^^^^^^^^^^^^^^
+
+warning: function `hybrid_bridge` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:188:15
+    |
+188 | pub(super) fn hybrid_bridge(
+    |               ^^^^^^^^^^^^^
+
+warning: function `tree` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:207:4
+    |
+207 | fn tree<F>(mut bridge: Bridge, bsk: &FourierLweBootstrapKeyOwned, modulus: CiphertextModulus<u64>, parallel: bool, merge: F) -> Tup...
+    |    ^^^^
+
+warning: function `reduce` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:223:15
+    |
+223 | pub(super) fn reduce(
+    |               ^^^^^^
+
+warning: function `reduce_traced` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:236:15
+    |
+236 | pub(super) fn reduce_traced(
+    |               ^^^^^^^^^^^^^
+
+warning: function `wire` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:248:15
+    |
+248 | pub(super) fn wire(selected: TupleOutput) -> Output {
+    |               ^^^^
+
+warning: function `hybrid_endpoint` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:256:15
+    |
+256 | pub(super) fn hybrid_endpoint(
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `diagnostic` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/h_untraced.rs:265:15
+    |
+265 | pub(super) fn diagnostic(
+    |               ^^^^^^^^^^
+
+warning: function `pbs` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:6:4
+  |
+6 | fn pbs(input: Lwe, final_control: bool, sk: &ServerKey) -> Lwe {
+  |    ^^^
+
+warning: function `compare` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:42:4
+   |
+42 | fn compare(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> Lwe {
+   |    ^^^^^^^
+
+warning: function `select` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:64:15
+   |
+64 | pub(super) fn select(
+   |               ^^^^^^
+
+warning: function `add_merge` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:120:4
+    |
+120 | fn add_merge(counts:&mut Counts,metrics:&d1::Metrics) {
+    |    ^^^^^^^^^
+
+warning: function `check` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:133:15
+    |
+133 | pub(super) fn check(counts: &Counts, n: usize, mode: ThresholdMode) {
+    |               ^^^^^
+
+warning: function `reached` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:146:15
+    |
+146 | pub(super) fn reached(n: usize, merges: usize) -> Counts {
+    |               ^^^^^^^
+
+warning: function `reduce` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:161:4
+    |
+161 | fn reduce(server:&ServerKey,window:&LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>,mut bridge:Bridge,parallel:bool,mode:Threshol...
+    |    ^^^^^^
+
+warning: function `diagnostic` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:190:15
+    |
+190 | pub(super) fn diagnostic(server:&ServerKey,window:&LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>,bridge:Bridge,parallel:bool,mo...
+    |               ^^^^^^^^^^
+
+warning: function `public_rejection` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:196:15
+    |
+196 | pub(super) fn public_rejection(modulus: CiphertextModulus<u64>) -> Output {
+    |               ^^^^^^^^^^^^^^^^
+
+warning: function `endpoint` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/m_untraced.rs:202:15
+    |
+202 | pub(super) fn endpoint(server:&ServerKey,window:&LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>,packed:&Glwe,
+    |               ^^^^^^^^
+
+warning: struct `Diagnostic` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide_id.rs:25:19
+   |
+25 | pub(super) struct Diagnostic {
+   |                   ^^^^^^^^^^
+
+warning: function `diagnostic` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/wide_id.rs:362:15
+    |
+362 | pub(super) fn diagnostic(
+    |               ^^^^^^^^^^
+
+warning: constant `PAYLOAD_DELTAS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/mixed.rs:10:7
+   |
+10 | const PAYLOAD_DELTAS: [u64; OUTPUTS] = [SCORE_DELTA; OUTPUTS];
+   |       ^^^^^^^^^^^^^^
+
+warning: function `evaluate` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/mixed.rs:529:8
+    |
+529 | pub fn evaluate(
+    |        ^^^^^^^^
+
+warning: function `at` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:5:4
+  |
+5 | fn at(poly: &[u64], degree: isize) -> u64 {
+  |    ^^
+
+warning: function `glwe_phase` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:15:4
+   |
+15 | fn glwe_phase(secret: &GlweSecretKeyOwned<u64>, ct: &Glwe) -> Vec<u64> {
+   |    ^^^^^^^^^^
+
+warning: struct `InputObservation` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:21:8
+   |
+21 | struct InputObservation {
+   |        ^^^^^^^^^^^^^^^^
+
+warning: function `input_observation` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:31:4
+   |
+31 | fn input_observation(
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: struct `Metrics` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:91:19
+   |
+91 | pub(super) struct Metrics {
+   |                   ^^^^^^^
+
+warning: methods `pass` and `json` are never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:104:12
+    |
+103 | impl Metrics {
+    | ------------ methods in this implementation
+104 |     pub fn pass(&self) -> bool {
+    |            ^^^^
+...
+115 |     pub fn json(&self) -> serde_json::Value {
+    |            ^^^^
+
+warning: struct `Trace` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:124:19
+    |
+124 | pub(super) struct Trace {
+    |                   ^^^^^
+
+warning: function `select` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/hd1.rs:131:15
+    |
+131 | pub(super) fn select(
+    |               ^^^^^^
+
+warning: function `trace_ingress` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/split.rs:154:15
+    |
+154 | pub(super) fn trace_ingress(
+    |               ^^^^^^^^^^^^^
+
+warning: constant `ROWS` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:7:7
+  |
+7 | const ROWS: usize = 2049;
+  |       ^^^^
+
+warning: constant `N` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:8:7
+  |
+8 | const N: usize = 2048;
+  |       ^
+
+warning: constant `ATOMS` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:9:7
+  |
+9 | const ATOMS: usize = ROWS * N;
+  |       ^^^^^
+
+warning: constant `KEY_BYTES` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:10:7
+   |
+10 | const KEY_BYTES: usize = 67_141_632;
+   |       ^^^^^^^^^
+
+warning: enum `Reason` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:13:6
+   |
+13 | enum Reason { Geometry, BinarySecret, KeyHash, Coverage, Decryption, Internal }
+   |      ^^^^^^
+
+warning: method `public` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:16:8
+   |
+15 | impl Reason {
+   | ----------- method in this implementation
+16 |     fn public(self) -> &'static str {
+   |        ^^^^^^
+
+warning: struct `Progress` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:29:8
+   |
+29 | struct Progress {
+   |        ^^^^^^^^
+
+warning: function `scan` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:39:4
+   |
+39 | fn scan(
+   |    ^^^^
+
+warning: function `observe` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope.rs:87:15
+   |
+87 | pub(super) fn observe(
+   |               ^^^^^^^
+
+warning: static `HOOK_LOCK` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope_core.rs:5:8
+  |
+5 | static HOOK_LOCK: Mutex<()> = Mutex::new(());
+  |        ^^^^^^^^^
+
+warning: function `silent_boundary` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope_core.rs:9:15
+  |
+9 | pub(super) fn silent_boundary<T>(work: impl FnOnce() -> T) -> Result<T, ()> {
+  |               ^^^^^^^^^^^^^^^
+
+warning: struct `Maximum` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope_core.rs:23:19
+   |
+23 | pub(super) struct Maximum {
+   |                   ^^^^^^^
+
+warning: methods `inspect` and `complete_value` are never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/key_envelope_core.rs:29:12
+   |
+28 | impl Maximum {
+   | ------------ methods in this implementation
+29 |     pub fn inspect(&mut self, phase: u64, row_multiplier: u64, window: u64) {
+   |            ^^^^^^^
+...
+37 |     pub fn complete_value(&self, expected_coefficients: usize) -> Option<u64> {
+   |            ^^^^^^^^^^^^^^
+
+warning: function `diversify_template` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/template_permutation.rs:3:8
+  |
+3 | pub fn diversify_template(template: &mut [i64], identity: usize) {
+  |        ^^^^^^^^^^^^^^^^^^
+
+warning: function `hash_bytes` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/observer.rs:4:15
+  |
+4 | pub(super) fn hash_bytes(bytes: &[u8]) -> String {
+  |               ^^^^^^^^^^
+
+warning: constant `MAX_GALLERY_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:11:11
+   |
+11 | pub const MAX_GALLERY_SIZE: usize = 128;
+   |           ^^^^^^^^^^^^^^^^
+
+warning: constant `FULL_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:13:11
+   |
+13 | pub const FULL_DELTA_LOG: u32 = 52;
+   |           ^^^^^^^^^^^^^^
+
+warning: constant `LOW_MOD16_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:14:11
+   |
+14 | pub const LOW_MOD16_DELTA_LOG: u32 = 60;
+   |           ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `BOOL_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:15:11
+   |
+15 | pub const BOOL_DELTA_LOG: u32 = 59;
+   |           ^^^^^^^^^^^^^^
+
+warning: constant `CODE_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:16:11
+   |
+16 | pub const CODE_DELTA_LOG: u32 = 56;
+   |           ^^^^^^^^^^^^^^
+
+warning: struct `StageMetrics` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:83:12
+   |
+83 | pub struct StageMetrics {
+   |            ^^^^^^^^^^^^
+
+warning: struct `PrivateArgminMetrics` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:89:12
+   |
+89 | pub struct PrivateArgminMetrics {
+   |            ^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `A34OperationCounts` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:104:12
+    |
+104 | pub struct A34OperationCounts {
+    |            ^^^^^^^^^^^^^^^^^^
+
+warning: struct `A38OperationCounts` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:116:12
+    |
+116 | pub struct A38OperationCounts {
+    |            ^^^^^^^^^^^^^^^^^^
+
+warning: type alias `A41OperationCounts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:123:10
+    |
+123 | pub type A41OperationCounts = A38OperationCounts;
+    |          ^^^^^^^^^^^^^^^^^^
+
+warning: type alias `A44OperationCounts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:126:10
+    |
+126 | pub type A44OperationCounts = A41OperationCounts;
+    |          ^^^^^^^^^^^^^^^^^^
+
+warning: type alias `A62OperationCounts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:129:10
+    |
+129 | pub type A62OperationCounts = A38OperationCounts;
+    |          ^^^^^^^^^^^^^^^^^^
+
+warning: struct `PrivateArgminOutput` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:132:12
+    |
+132 | pub struct PrivateArgminOutput {
+    |            ^^^^^^^^^^^^^^^^^^^
+
+warning: struct `PrivateArgminTwoLweOutput` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:142:12
+    |
+142 | pub struct PrivateArgminTwoLweOutput {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `A44PrivateArgminTwoLweOutput` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:152:12
+    |
+152 | pub struct A44PrivateArgminTwoLweOutput {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `A62PrivateArgminOutput` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:162:12
+    |
+162 | pub struct A62PrivateArgminOutput {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `PrivateArgminTrace` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:177:12
+    |
+177 | pub struct PrivateArgminTrace {
+    |            ^^^^^^^^^^^^^^^^^^
+
+warning: struct `ClearPrivateArgminResult` is never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:244:12
+    |
+244 | pub struct ClearPrivateArgminResult {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: multiple variants are never constructed
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/contracts.rs:257:5
+    |
+251 | pub enum PrivateArgminError {
+    |          ------------------ variants in this enum
+...
+257 |     ScoreLengthMismatch {
+    |     ^^^^^^^^^^^^^^^^^^^
+...
+294 |     TwoLweRequiresAlignedUniformFastPath,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+295 |     A62RequiresAlignedUniformFastPath,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+296 |     A62A53GateRejected,
+    |     ^^^^^^^^^^^^^^^^^^
+297 |     A62A53StaticContractRejected,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+298 |     A62A53CounterUnderflow,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+299 |     A62A53CounterMismatch {
+    |     ^^^^^^^^^^^^^^^^^^^^^
+...
+307 |     A62A53AccumulatorLengthMismatch {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+311 |     A62A53SampleDegreeOutOfRange {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `PrivateArgminError` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: function `cauchy_score_domain` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/domain.rs:32:8
+   |
+32 | pub fn cauchy_score_domain(
+   |        ^^^^^^^^^^^^^^^^^^^
+
+warning: function `plan_private_argmin_execution` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/domain.rs:65:8
+   |
+65 | pub fn plan_private_argmin_execution(
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `clear_private_argmin` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/domain.rs:108:8
+    |
+108 | pub fn clear_private_argmin(
+    |        ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `aligned_uniform_fast_path_for_thresholds` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/domain.rs:136:15
+    |
+136 | pub(super) fn aligned_uniform_fast_path_for_thresholds(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `validate_gallery_size` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/domain.rs:147:15
+    |
+147 | pub(super) fn validate_gallery_size(size: usize) -> Result<(), PrivateArgminError> {
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `validate_inputs` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/input.rs:8:15
+  |
+8 | pub(super) fn validate_inputs(
+  |               ^^^^^^^^^^^^^^^
+
+warning: constant `HIGH_SCORE_BIT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:51:7
+   |
+51 | const HIGH_SCORE_BIT: u32 = 11;
+   |       ^^^^^^^^^^^^^^
+
+warning: constant `SCORE_BITS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:52:7
+   |
+52 | const SCORE_BITS: u32 = HIGH_SCORE_BIT + 1;
+   |       ^^^^^^^^^^
+
+warning: constant `SPLIT_LOW_BITS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:53:7
+   |
+53 | const SPLIT_LOW_BITS: u32 = 3;
+   |       ^^^^^^^^^^^^^^
+
+warning: constant `LOW_EXTRACTED_BITS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:54:7
+   |
+54 | const LOW_EXTRACTED_BITS: u32 = 4;
+   |       ^^^^^^^^^^^^^^^^^^
+
+warning: constant `HIGH_EXTRACTED_BITS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:55:7
+   |
+55 | const HIGH_EXTRACTED_BITS: u32 = SCORE_BITS - LOW_EXTRACTED_BITS;
+   |       ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `HIGH_DELTA_LOG` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:56:7
+   |
+56 | const HIGH_DELTA_LOG: u32 = FULL_DELTA_LOG + LOW_EXTRACTED_BITS;
+   |       ^^^^^^^^^^^^^^
+
+warning: constant `PBS_MESSAGE_MODULUS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:57:7
+   |
+57 | const PBS_MESSAGE_MODULUS: usize = 16;
+   |       ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `ALIGNED_SELECTION_HIGH_BIT` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:58:7
+   |
+58 | const ALIGNED_SELECTION_HIGH_BIT: u32 = 7;
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A34_HIGH_CORRECTION_BITS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:59:7
+   |
+59 | const A34_HIGH_CORRECTION_BITS: u32 = 4;
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A34_TOP_CLASSIFIER_MODULUS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:60:7
+   |
+60 | const A34_TOP_CLASSIFIER_MODULUS: usize = 16;
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A34_TOP_CLASSIFIER_CODES` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:61:7
+   |
+61 | const A34_TOP_CLASSIFIER_CODES: [u64; 16] = [30, 28, 3, 31, 0, 0, 0, 0, 2, 4, 29, 1, 0, 0, 0, 0];
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A38_REDUCTION_RADIX` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:62:7
+   |
+62 | const A38_REDUCTION_RADIX: usize = 5;
+   |       ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A38_SCAN_GROUP_SIZE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:63:7
+   |
+63 | const A38_SCAN_GROUP_SIZE: usize = 3;
+   |       ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A50_REDUCTION_RADIX` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:64:7
+   |
+64 | const A50_REDUCTION_RADIX: usize = 15;
+   |       ^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A50_SOURCE_MULTIPLIERS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:65:7
+   |
+65 | const A50_SOURCE_MULTIPLIERS: [i64; 8] = [-1, -1, -1, -1, -1, 1, -1, -1];
+   |       ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A38_NIBBLE_RADIX` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:66:7
+   |
+66 | const A38_NIBBLE_RADIX: u64 = 16;
+   |       ^^^^^^^^^^^^^^^^
+
+warning: constant `A38_EXPECTED_SOURCE_WEIGHTS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:67:7
+   |
+67 | const A38_EXPECTED_SOURCE_WEIGHTS: [u64; 8] = [1, 1, 1, 1, 1, 8, 4, 2];
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A38_SOURCE_MULTIPLIERS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:68:7
+   |
+68 | const A38_SOURCE_MULTIPLIERS: [i64; 8] = [-2, -2, -2, -2, -2, 1, -1, -1];
+   |       ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A38_CHUNK_END_LEVELS` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:69:7
+   |
+69 | const A38_CHUNK_END_LEVELS: [usize; 2] = [3, 7];
+   |       ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `OR_BLOCK` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:73:7
+   |
+73 | const OR_BLOCK: usize = 4;
+   |       ^^^^^^^^
+
+warning: constant `FIRST_ONE_GROUP` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:74:7
+   |
+74 | const FIRST_ONE_GROUP: usize = 3;
+   |       ^^^^^^^^^^^^^^^
+
+warning: enum `AlignedWireFormat` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:77:6
+   |
+77 | enum AlignedWireFormat {
+   |      ^^^^^^^^^^^^^^^^^
+
+warning: struct `AlignedPrivateArgminOutput` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:83:8
+   |
+83 | struct AlignedPrivateArgminOutput {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `stage_metrics` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/mod.rs:90:4
+   |
+90 | fn stage_metrics(started: Instant, pbs_before: u64, pbs_count: &AtomicU64) -> StageMetrics {
+   |    ^^^^^^^^^^^^^
+
+warning: function `private_argmin_aligned_a38_impl` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/aligned.rs:14:15
+   |
+14 | pub(super) fn private_argmin_aligned_a38_impl(
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:14:8
+   |
+14 | pub fn private_argmin(
+   |        ^^^^^^^^^^^^^^
+
+warning: function `private_argmin_two_lwe` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:28:8
+   |
+28 | pub fn private_argmin_two_lwe(
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_two_lwe_a44` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:40:8
+   |
+40 | pub fn private_argmin_two_lwe_a44(
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a62` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:60:8
+   |
+60 | pub fn private_argmin_a62(
+   |        ^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a126` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:175:8
+    |
+175 | pub fn private_argmin_a126(
+    |        ^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a126_impl` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:221:4
+    |
+221 | fn private_argmin_a126_impl(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_two_lwe_impl` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:250:4
+    |
+250 | fn private_argmin_two_lwe_impl(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a62_impl` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/api.rs:279:4
+    |
+279 | fn private_argmin_a62_impl(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `PfksBridgeOutput` is never constructed
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/bridge.rs:5:12
+  |
+5 | pub struct PfksBridgeOutput {
+  |            ^^^^^^^^^^^^^^^^
+
+warning: function `pfks_top_lut` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/bridge.rs:13:4
+   |
+13 | fn pfks_top_lut(code: u64) -> u64 {
+   |    ^^^^^^^^^^^^
+
+warning: function `pfks_score_bridge` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/bridge.rs:39:8
+   |
+39 | pub fn pfks_score_bridge(
+   |        ^^^^^^^^^^^^^^^^^
+
+warning: function `or_reduction_pbs` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:4:15
+  |
+4 | pub(super) fn or_reduction_pbs(mut items: usize) -> u64 {
+  |               ^^^^^^^^^^^^^^^^
+
+warning: function `radix4_exclusive_prefix_pbs` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:13:15
+   |
+13 | pub(super) fn radix4_exclusive_prefix_pbs(items: usize) -> u64 {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `first_one_scan_pbs` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:36:15
+   |
+36 | pub(super) fn first_one_scan_pbs(items: usize) -> u64 {
+   |               ^^^^^^^^^^^^^^^^^^
+
+warning: function `output_bit_positions` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:45:15
+   |
+45 | pub(super) fn output_bit_positions(gallery_size: usize) -> Vec<u32> {
+   |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `output_code_has_bit` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:53:15
+   |
+53 | pub(super) fn output_code_has_bit(index: usize, bit_position: u32) -> bool {
+   |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `output_code_pbs` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:57:15
+   |
+57 | pub(super) fn output_code_pbs(gallery_size: usize) -> u64 {
+   |               ^^^^^^^^^^^^^^^
+
+warning: function `aligned_a34_top_pbs_count` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:73:15
+   |
+73 | pub(super) fn aligned_a34_top_pbs_count(gallery_size: usize) -> Option<u64> {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a34_aligned_operation_counts` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:87:8
+   |
+87 | pub fn a34_aligned_operation_counts(gallery_size: usize) -> Option<A34OperationCounts> {
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reduction_pbs_with_radix` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:97:15
+   |
+97 | pub(super) fn reduction_pbs_with_radix(mut items: usize, radix: usize) -> u64 {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reduction_pbs_forwarding_singletons` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:107:15
+    |
+107 | pub(super) fn reduction_pbs_forwarding_singletons(mut items: usize, radix: usize) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `exclusive_prefix_pbs_with_radix` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:119:15
+    |
+119 | pub(super) fn exclusive_prefix_pbs_with_radix(items: usize, radix: usize) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a38_low_selection_pbs` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:144:15
+    |
+144 | pub(super) fn a38_low_selection_pbs(gallery_size: usize) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a38_scan_output_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:148:15
+    |
+148 | pub(super) fn a38_scan_output_counts(gallery_size: usize) -> A38OperationCounts {
+    |               ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `aligned_a38_pbs_count` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:164:15
+    |
+164 | pub(super) fn aligned_a38_pbs_count(gallery_size: usize) -> Option<u64> {
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a38_aligned_operation_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:176:8
+    |
+176 | pub fn a38_aligned_operation_counts(gallery_size: usize) -> Option<A38OperationCounts> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a41_aligned_operation_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:189:8
+    |
+189 | pub fn a41_aligned_operation_counts(gallery_size: usize) -> Option<A41OperationCounts> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a44_aligned_operation_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:193:8
+    |
+193 | pub fn a44_aligned_operation_counts(gallery_size: usize) -> Option<A44OperationCounts> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a50_aligned_operation_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:197:15
+    |
+197 | pub(super) fn a50_aligned_operation_counts(gallery_size: usize) -> Option<A62OperationCounts> {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a62_aligned_operation_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:210:8
+    |
+210 | pub fn a62_aligned_operation_counts(gallery_size: usize) -> Option<A62OperationCounts> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a126_aligned_operation_counts` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:231:8
+    |
+231 | pub fn a126_aligned_operation_counts(gallery_size: usize) -> Option<A62OperationCounts> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `expected_pbs_count` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:238:8
+    |
+238 | pub fn expected_pbs_count(gallery_size: usize) -> Option<u64> {
+    |        ^^^^^^^^^^^^^^^^^^
+
+warning: function `winner_mask_pbs` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:252:15
+    |
+252 | pub(super) fn winner_mask_pbs(mask: &[bool]) -> u64 {
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `expected_pbs_count_for_thresholds` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/counts.rs:267:8
+    |
+267 | pub fn expected_pbs_count_for_thresholds(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `CapturedExtractedBits` is never constructed
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:5:19
+  |
+5 | pub(super) struct CapturedExtractedBits {
+  |                   ^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `WeightedBit` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:12:19
+   |
+12 | pub(super) struct WeightedBit {
+   |                   ^^^^^^^^^^^
+
+warning: enum `CorrectionAccumulator` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:17:17
+   |
+17 | pub(super) enum CorrectionAccumulator {
+   |                 ^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ExtractedCorrection` is never constructed
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:22:19
+   |
+22 | pub(super) struct ExtractedCorrection {
+   |                   ^^^^^^^^^^^^^^^^^^^
+
+warning: function `fused_correction_accumulator_body` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:27:15
+   |
+27 | pub(super) fn fused_correction_accumulator_body(
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `correction_from_small_bit` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:38:15
+   |
+38 | pub(super) fn correction_from_small_bit(
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `extract_bits_with_corrections` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:94:15
+   |
+94 | pub(super) fn extract_bits_with_corrections(
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `extract_bits_with_all_corrections` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/extraction.rs:149:15
+    |
+149 | pub(super) fn extract_bits_with_all_corrections(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_impl` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/general.rs:4:15
+  |
+4 | pub(super) fn private_argmin_impl(
+  |               ^^^^^^^^^^^^^^^^^^^
+
+warning: function `zero_candidate_lut` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:4:15
+  |
+4 | pub(super) fn zero_candidate_lut(code: u64, candidate_weight: u64, bit_weight: u64) -> u64 {
+  |               ^^^^^^^^^^^^^^^^^^
+
+warning: function `update_candidate_from_zero_lut` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:18:15
+   |
+18 | pub(super) fn update_candidate_from_zero_lut(code: u64) -> u64 {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `encoded_zero_candidate_lut` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:24:15
+   |
+24 | pub(super) fn encoded_zero_candidate_lut(code: u64) -> u64 {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `weighted_or_lut` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:36:15
+   |
+36 | pub(super) fn weighted_or_lut(code: u64, weight: u64) -> u64 {
+   |               ^^^^^^^^^^^^^^^
+
+warning: function `output_group_lut` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:44:15
+   |
+44 | pub(super) fn output_group_lut(code: u64, bit_offset: u32, group_len: usize) -> u64 {
+   |               ^^^^^^^^^^^^^^^^
+
+warning: function `a34_top_classifier_slot_lut` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:93:15
+   |
+93 | pub(super) fn a34_top_classifier_slot_lut(slot: u64) -> u64 {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a34_canonical_category_lut` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:102:15
+    |
+102 | pub(super) fn a34_canonical_category_lut(input_phase: u64) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a34_pair_category_lut` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:111:15
+    |
+111 | pub(super) fn a34_pair_category_lut(input_phase: u64) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `a34_top_candidate_lut` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:121:15
+    |
+121 | pub(super) fn a34_top_candidate_lut(input_phase: u64) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `boolean_and_lut` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:125:15
+    |
+125 | pub(super) fn boolean_and_lut(code: u64) -> u64 {
+    |               ^^^^^^^^^^^^^^^
+
+warning: constant `COMPARISON_LESS` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:129:18
+    |
+129 | pub(super) const COMPARISON_LESS: u64 = 0;
+    |                  ^^^^^^^^^^^^^^^
+
+warning: constant `COMPARISON_EQUAL` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:130:18
+    |
+130 | pub(super) const COMPARISON_EQUAL: u64 = 2;
+    |                  ^^^^^^^^^^^^^^^^
+
+warning: constant `COMPARISON_GREATER` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:131:18
+    |
+131 | pub(super) const COMPARISON_GREATER: u64 = 4;
+    |                  ^^^^^^^^^^^^^^^^^^
+
+warning: function `comparison_state_lut` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:133:15
+    |
+133 | pub(super) fn comparison_state_lut(code: u64) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `comparison_accept_tag_lut` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:162:15
+    |
+162 | pub(super) fn comparison_accept_tag_lut(code: u64) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `bit_source_delta` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:176:15
+    |
+176 | pub(super) fn bit_source_delta(bit_index: u32) -> u32 {
+    |               ^^^^^^^^^^^^^^^^
+
+warning: function `is_canonical_boolean_bit` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:184:15
+    |
+184 | pub(super) fn is_canonical_boolean_bit(bit_index: u32) -> bool {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `recodes_bit` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:188:15
+    |
+188 | pub(super) fn recodes_bit(bit_index: u32) -> bool {
+    |               ^^^^^^^^^^^
+
+warning: function `extracted_bit_weight` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:195:15
+    |
+195 | pub(super) fn extracted_bit_weight(bit_index: u32) -> u64 {
+    |               ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `zero_layout` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/luts.rs:207:15
+    |
+207 | pub(super) fn zero_layout(bit_weight: u64) -> (u64, u64) {
+    |               ^^^^^^^^^^^
+
+warning: function `compact_or` is never used
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/reductions.rs:4:15
+  |
+4 | pub(super) fn compact_or<F>(mut bits: Vec<Lwe>, or_gate: &F) -> Lwe
+  |               ^^^^^^^^^^
+
+warning: function `sum_lwes` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/reductions.rs:14:15
+   |
+14 | pub(super) fn sum_lwes(values: &[Lwe], zero: &Lwe) -> Lwe {
+   |               ^^^^^^^^
+
+warning: function `scale_lwe_signed` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/reductions.rs:22:15
+   |
+22 | pub(super) fn scale_lwe_signed(input: &Lwe, multiplier: i64) -> Lwe {
+   |               ^^^^^^^^^^^^^^^^
+
+warning: function `radix5_exclusive_prefix_or` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/reductions.rs:35:15
+   |
+35 | pub(super) fn radix5_exclusive_prefix_or<F>(flags: &[Lwe], zero: &Lwe, or_gate: &F) -> Vec<Lwe>
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `radix4_exclusive_prefix_or` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/reductions.rs:83:15
+   |
+83 | pub(super) fn radix4_exclusive_prefix_or<F>(flags: &[Lwe], zero: &Lwe, or_gate: &F) -> Vec<Lwe>
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `A66A53CoreBackend` is never constructed
+ --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:4:19
+  |
+4 | pub(super) struct A66A53CoreBackend<'a> {
+  |                   ^^^^^^^^^^^^^^^^^
+
+warning: methods `validate_body` and `record_pbs` are never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:15:8
+   |
+14 | impl A66A53CoreBackend<'_> {
+   | -------------------------- methods in this implementation
+15 |     fn validate_body(&self, torus_body: &[u64]) -> Result<(), PrivateArgminError> {
+   |        ^^^^^^^^^^^^^
+...
+29 |     fn record_pbs(&self, output_marginals: u64) {
+   |        ^^^^^^^^^^
+
+warning: function `a66_a53_gate` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:147:15
+    |
+147 | pub(super) fn a66_a53_gate() -> FutureFheGate<'static> {
+    |               ^^^^^^^^^^^^
+
+warning: function `map_a53_error` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/legacy/scan.rs:163:15
+    |
+163 | pub(super) fn map_a53_error(error: FutureFheError<PrivateArgminError>) -> PrivateArgminError {
+    |               ^^^^^^^^^^^^^
+
+warning: function `head_pfks_score_prefix` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/private_argmin/score.rs:11:8
+   |
+11 | pub fn head_pfks_score_prefix(
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `configure_level` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/multibit.rs:178:15
+    |
+178 | pub(super) fn configure_level(ready_merges: usize, parallel: bool) {
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `maybe_pbs` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/multibit.rs:193:15
+    |
+193 | pub(super) fn maybe_pbs(input: &Lwe, final_control: bool) -> Option<Lwe> {
+    |               ^^^^^^^^^
+
+warning: function `record_consumer` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/multibit.rs:248:15
+    |
+248 | pub(super) fn record_consumer(
+    |               ^^^^^^^^^^^^^^^
+
+warning: constant `TWO` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:19:7
+   |
+19 | const TWO: [&[usize]; 2] = [&[0, 1, 2], &[3, 4]];
+   |       ^^^
+
+warning: constant `THREE` is never used
+  --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:20:7
+   |
+20 | const THREE: [&[usize]; 3] = [&[0, 1, 2], &[3, 4], &[6, 7, 8]];
+   |       ^^^^^
+
+warning: function `glwe_observation` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:115:4
+    |
+115 | fn glwe_observation(ciphertext: &Glwe, secret: &GlweSecretKeyOwned<u64>) -> Value {
+    |    ^^^^^^^^^^^^^^^^
+
+warning: function `standard_address` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:122:4
+    |
+122 | fn standard_address(input: &Lwe, secret: &LweSecretKeyOwned<u64>) -> usize {
+    |    ^^^^^^^^^^^^^^^^
+
+warning: function `pack_pfks` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:167:4
+    |
+167 | fn pack_pfks(left: &[Lwe; 9], right: &[Lwe; 9], groups: &[&[usize]], window: &LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>) ->...
+    |    ^^^^^^^^^
+
+warning: function `extract_add_back` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:186:4
+    |
+186 | fn extract_add_back(accumulators: &[Glwe], left: &[Lwe; 9], groups: &[&[usize]]) -> [Lwe; 9] {
+    |    ^^^^^^^^^^^^^^^^
+
+warning: function `window_at` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:197:4
+    |
+197 | fn window_at(window: &[u64], degree: isize) -> u64 {
+    |    ^^^^^^^^^
+
+warning: function `run` is never used
+   --> /workspace/research/tmp/current-tournament-dag-20261004/runtime/core/src/g4_dynamic.rs:202:15
+    |
+202 | pub(crate) fn run(
+    |               ^^^
+
+warning: `selector_four_core_20260920` (lib) generated 397 warnings (run `cargo fix --lib -p selector_four_core_20260920` to apply 8 suggestions)
+   Compiling current_tournament_dag_probe_20261004 v0.1.0 (/workspace/research/tmp/current-tournament-dag-20261004/probe)
+    Finished `release` profile [optimized] target(s) in 11.24s

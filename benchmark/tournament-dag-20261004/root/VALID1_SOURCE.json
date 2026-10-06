@@ -1,0 +1,22 @@
+{
+  "recorded_utc": "2026-10-04T21:49:05.765049+00:00",
+  "campaign": "valid1",
+  "files": {
+    "probe-valid1/src/main.rs": {
+      "bytes": 7251,
+      "sha256": "c8fdcd32d0f44c0327cc43a177a4c08ae762d39eb351290a20836e5598663d7a"
+    },
+    "probe-valid1/Cargo.toml": {
+      "bytes": 379,
+      "sha256": "3a84d27a03d6f0848a84fa6551a67d39e2d36e9c5ebdf5ce25db9b0538e8135a"
+    },
+    "root/CORRECTION_PROTOCOL.md": {
+      "bytes": 1492,
+      "sha256": "f81800b09b0beba050c65263e4ef25ecbd6c14ed20b503daeb7fca7430a2f72e"
+    },
+    "root/HARNESS_CORRECTION_REVIEW.md": {
+      "bytes": 2746,
+      "sha256": "058295f4cd30498b091aa5d969ce5e440024a8e07cf7635f4e56fb804b33c38d"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "status": "PASS_RECORD_VALIDATION",
+  "lead": "PUBLIC_GATE_FASTER",
+  "input_sha256": "0e6347bd31341c42c4dec338e624d77952a7cd3136967ce397f92b881f9e138e",
+  "validation_sha256": "db1592b552a2ff65b1285e4a6c120ed749d1e76fa7bc7dfd480764b7f25297cf",
+  "batches": 32,
+  "blocks": [
+    {
+      "block": 0,
+      "neon_ns_per_pair_geomean": 1432.410537520581,
+      "fcma_ns_per_pair_geomean": 997.6443526362488,
+      "fcma_over_neon": 0.6964793447855478
+    },
+    {
+      "block": 1,
+      "neon_ns_per_pair_geomean": 1448.6022985153654,
+      "fcma_ns_per_pair_geomean": 1035.8753848195254,
+      "fcma_over_neon": 0.7150861115443258
+    },
+    {
+      "block": 2,
+      "neon_ns_per_pair_geomean": 1468.0060055224571,
+      "fcma_ns_per_pair_geomean": 1066.3778136758099,
+      "fcma_over_neon": 0.7264124326904852
+    },
+    {
+      "block": 3,
+      "neon_ns_per_pair_geomean": 1497.3953095198342,
+      "fcma_ns_per_pair_geomean": 1076.4504366202839,
+      "fcma_over_neon": 0.7188819343673959
+    },
+    {
+      "block": 4,
+      "neon_ns_per_pair_geomean": 1494.9548764929327,
+      "fcma_ns_per_pair_geomean": 1067.1184110139793,
+      "fcma_over_neon": 0.7138131242578839
+    },
+    {
+      "block": 5,
+      "neon_ns_per_pair_geomean": 1500.5595419662627,
+      "fcma_ns_per_pair_geomean": 1089.37206557264,
+      "fcma_over_neon": 0.7259772338958159
+    },
+    {
+      "block": 6,
+      "neon_ns_per_pair_geomean": 1496.2501076952342,
+      "fcma_ns_per_pair_geomean": 1089.3513650333396,
+      "fcma_over_neon": 0.7280543269008243
+    },
+    {
+      "block": 7,
+      "neon_ns_per_pair_geomean": 1509.1965751591142,
+      "fcma_ns_per_pair_geomean": 1086.6454228496063,
+      "fcma_over_neon": 0.7200158287763418
+    }
+  ],
+  "fcma_over_neon_geomean": 0.7180258802791004,
+  "relative_change_percent": -28.19741197208996,
+  "wins_of_8_blocks": 8,
+  "ratio_min": 0.6964793447855478,
+  "ratio_max": 0.7280543269008243,
+  "median_ns_per_pair": {
+    "neon": 1495.5625,
+    "fcma": 1073.646
+  },
+  "expected_checksums": {
+    "neon": "47fb0c237021b183",
+    "fcma": "da349b47ff3666ea"
+  },
+  "scope": "single-thread hot synthetic public pointwise boundary; host scheduling/load uncontrolled; no service/FHE/noise gain"
+}

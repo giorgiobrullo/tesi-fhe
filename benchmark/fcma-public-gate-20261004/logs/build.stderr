@@ -1,0 +1,13 @@
+   Compiling autocfg v1.5.1
+   Compiling num-traits v0.2.19
+   Compiling libm v0.2.16
+   Compiling paste v1.0.15
+   Compiling version_check v0.9.5
+   Compiling pulp v0.22.3
+   Compiling bytemuck v1.25.2
+   Compiling num-complex v0.4.6
+   Compiling cfg-if v1.0.4
+   Compiling pulp-wasm-simd-flag v0.1.1
+   Compiling reborrow v0.5.5
+   Compiling current-fcma-codegen-probe v0.1.0 (/workspace/research/tmp/current-fcma-public-gate-20261004/probe)
+    Finished `release` profile [optimized] target(s) in 5.61s

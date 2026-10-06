@@ -1,0 +1,70 @@
+{
+  "status": "STATIC_EXACT_SCALAR_REGION_PASS",
+  "candidates": [
+    -1,
+    0,
+    1
+  ],
+  "bit": 2,
+  "level": 5,
+  "source_multiplier": 1,
+  "delta59": 576460752303423488,
+  "rounding_unit": 4503599627370496,
+  "nominal_degrees_by_bit_value": [
+    0,
+    1024
+  ],
+  "accepted_degree_intervals_inclusive": {
+    "0": [
+      [
+        0,
+        63
+      ],
+      [
+        4032,
+        4095
+      ]
+    ],
+    "1": [
+      [
+        320,
+        1983
+      ],
+      [
+        2368,
+        4031
+      ]
+    ]
+  },
+  "zero_bit_connected_error_torus_interval": {
+    "lower_inclusive": -290482175965396992,
+    "upper_exclusive": 285978576338026496
+  },
+  "set_bit_connected_error_torus_interval": {
+    "lower_inclusive": -3172785937482514432,
+    "upper_exclusive": 4321203842461990912
+  },
+  "zero_bit_error_interval_in_delta59": [
+    "-129/256",
+    "127/256"
+  ],
+  "set_bit_error_interval_in_delta59": [
+    "-1409/256",
+    "1919/256"
+  ],
+  "set_bit_native_delta62_error_interval_in_delta59": [
+    "-4",
+    "4"
+  ],
+  "set_bit_native_interval_strictly_inside_scalar_region": true,
+  "checked_degree_centers": 8192,
+  "checked_rounding_cell_endpoints": 16384,
+  "native_set_bit_does_not_guarantee_zero_bit_consumer": true,
+  "ideal_candidate_and_keyswitch": true,
+  "coefficientwise_modulus_switch_error_assumed_zero": true,
+  "actual_composed_pbs": false,
+  "formal_probability": null,
+  "source_pins": {
+    "tmp/a169-low-correction-b0-b1-repair/model.py": "b7ddd51f18d191e9239f7138d39545e38e0f69739fdc03d5f97dc344bb2c70ad"
+  }
+}

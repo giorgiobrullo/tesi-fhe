@@ -1,0 +1,709 @@
+{
+  "all_at_once": {
+    "coefficient_touch_reduction_factor": 5.25485989301712,
+    "floor_worst_case_nonroot": 2095104,
+    "floor_worst_case_root": 522240,
+    "following_public_kernel_l1_norm": 127,
+    "id_ingress_delta_log_nonroot": 46,
+    "id_ingress_delta_log_root": 48,
+    "n127_source_lwe_coefficient_touches": 2069490,
+    "nearest_worst_case_nonroot": 1049087,
+    "nearest_worst_case_root": 262271,
+    "nonroot_divisor": 1024,
+    "nonroot_evalauto_linf_weight_pre_kernel": 2815,
+    "nonroot_evalauto_variance_weight_pre_kernel": 1201493,
+    "nonroot_source_lwe_coefficient_touches": 16392,
+    "root_divisor": 256,
+    "root_evalauto_linf_weight_pre_kernel": 255,
+    "root_evalauto_variance_weight_pre_kernel": 21845,
+    "root_source_lwe_coefficient_touches": 4098,
+    "score_ingress_delta_log_nonroot": 49,
+    "tfhepp_n127_glwe_coefficient_halvings": 10874880
+  },
+  "batch_schedules": {
+    "nonroot": [
+      {
+        "coefficient_touches_lwe_first": 69640,
+        "evalauto_linf_weight_pre_kernel": 14,
+        "evalauto_variance_weight_pre_kernel": 14,
+        "groups": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_group": 1,
+        "maximum_internal_evalauto_gain": 1,
+        "network": "nonroot",
+        "normalization_objects": 21,
+        "selected_slot_floor_error_beta_factor_conditional": 10
+      },
+      {
+        "coefficient_touches_lwe_first": 36872,
+        "evalauto_linf_weight_pre_kernel": 22,
+        "evalauto_variance_weight_pre_kernel": 38,
+        "groups": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "max_group": 2,
+        "maximum_internal_evalauto_gain": 2,
+        "network": "nonroot",
+        "normalization_objects": 13,
+        "selected_slot_floor_error_beta_factor_conditional": 15
+      },
+      {
+        "coefficient_touches_lwe_first": 28680,
+        "evalauto_linf_weight_pre_kernel": 34,
+        "evalauto_variance_weight_pre_kernel": 104,
+        "groups": [
+          3,
+          2,
+          2,
+          3
+        ],
+        "max_group": 3,
+        "maximum_internal_evalauto_gain": 4,
+        "network": "nonroot",
+        "normalization_objects": 11,
+        "selected_slot_floor_error_beta_factor_conditional": 20
+      },
+      {
+        "coefficient_touches_lwe_first": 24584,
+        "evalauto_linf_weight_pre_kernel": 43,
+        "evalauto_variance_weight_pre_kernel": 179,
+        "groups": [
+          3,
+          3,
+          4
+        ],
+        "max_group": 4,
+        "maximum_internal_evalauto_gain": 8,
+        "network": "nonroot",
+        "normalization_objects": 10,
+        "selected_slot_floor_error_beta_factor_conditional": 29
+      },
+      {
+        "coefficient_touches_lwe_first": 20488,
+        "evalauto_linf_weight_pre_kernel": 118,
+        "evalauto_variance_weight_pre_kernel": 1514,
+        "groups": [
+          5,
+          5
+        ],
+        "max_group": 5,
+        "maximum_internal_evalauto_gain": 16,
+        "network": "nonroot",
+        "normalization_objects": 9,
+        "selected_slot_floor_error_beta_factor_conditional": 62
+      },
+      {
+        "coefficient_touches_lwe_first": 20488,
+        "evalauto_linf_weight_pre_kernel": 118,
+        "evalauto_variance_weight_pre_kernel": 1514,
+        "groups": [
+          5,
+          5
+        ],
+        "max_group": 5,
+        "maximum_internal_evalauto_gain": 16,
+        "network": "nonroot",
+        "normalization_objects": 9,
+        "selected_slot_floor_error_beta_factor_conditional": 62
+      },
+      {
+        "coefficient_touches_lwe_first": 20488,
+        "evalauto_linf_weight_pre_kernel": 118,
+        "evalauto_variance_weight_pre_kernel": 1514,
+        "groups": [
+          5,
+          5
+        ],
+        "max_group": 5,
+        "maximum_internal_evalauto_gain": 16,
+        "network": "nonroot",
+        "normalization_objects": 9,
+        "selected_slot_floor_error_beta_factor_conditional": 62
+      },
+      {
+        "coefficient_touches_lwe_first": 20488,
+        "evalauto_linf_weight_pre_kernel": 118,
+        "evalauto_variance_weight_pre_kernel": 1514,
+        "groups": [
+          5,
+          5
+        ],
+        "max_group": 5,
+        "maximum_internal_evalauto_gain": 16,
+        "network": "nonroot",
+        "normalization_objects": 9,
+        "selected_slot_floor_error_beta_factor_conditional": 62
+      },
+      {
+        "coefficient_touches_lwe_first": 20488,
+        "evalauto_linf_weight_pre_kernel": 118,
+        "evalauto_variance_weight_pre_kernel": 1514,
+        "groups": [
+          5,
+          5
+        ],
+        "max_group": 5,
+        "maximum_internal_evalauto_gain": 16,
+        "network": "nonroot",
+        "normalization_objects": 9,
+        "selected_slot_floor_error_beta_factor_conditional": 62
+      },
+      {
+        "coefficient_touches_lwe_first": 16392,
+        "evalauto_linf_weight_pre_kernel": 2815,
+        "evalauto_variance_weight_pre_kernel": 1201493,
+        "groups": [
+          10
+        ],
+        "max_group": 10,
+        "maximum_internal_evalauto_gain": 512,
+        "network": "nonroot",
+        "normalization_objects": 8,
+        "selected_slot_floor_error_beta_factor_conditional": 1023
+      }
+    ],
+    "root": [
+      {
+        "coefficient_touches_lwe_first": 32770,
+        "evalauto_linf_weight_pre_kernel": 8,
+        "evalauto_variance_weight_pre_kernel": 8,
+        "groups": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_group": 1,
+        "maximum_internal_evalauto_gain": 1,
+        "network": "root",
+        "normalization_objects": 9,
+        "selected_slot_floor_error_beta_factor_conditional": 8
+      },
+      {
+        "coefficient_touches_lwe_first": 16386,
+        "evalauto_linf_weight_pre_kernel": 12,
+        "evalauto_variance_weight_pre_kernel": 20,
+        "groups": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "max_group": 2,
+        "maximum_internal_evalauto_gain": 2,
+        "network": "root",
+        "normalization_objects": 5,
+        "selected_slot_floor_error_beta_factor_conditional": 12
+      },
+      {
+        "coefficient_touches_lwe_first": 12290,
+        "evalauto_linf_weight_pre_kernel": 17,
+        "evalauto_variance_weight_pre_kernel": 47,
+        "groups": [
+          2,
+          3,
+          3
+        ],
+        "max_group": 3,
+        "maximum_internal_evalauto_gain": 4,
+        "network": "root",
+        "normalization_objects": 4,
+        "selected_slot_floor_error_beta_factor_conditional": 17
+      },
+      {
+        "coefficient_touches_lwe_first": 8194,
+        "evalauto_linf_weight_pre_kernel": 30,
+        "evalauto_variance_weight_pre_kernel": 170,
+        "groups": [
+          4,
+          4
+        ],
+        "max_group": 4,
+        "maximum_internal_evalauto_gain": 8,
+        "network": "root",
+        "normalization_objects": 3,
+        "selected_slot_floor_error_beta_factor_conditional": 30
+      },
+      {
+        "coefficient_touches_lwe_first": 8194,
+        "evalauto_linf_weight_pre_kernel": 30,
+        "evalauto_variance_weight_pre_kernel": 170,
+        "groups": [
+          4,
+          4
+        ],
+        "max_group": 4,
+        "maximum_internal_evalauto_gain": 8,
+        "network": "root",
+        "normalization_objects": 3,
+        "selected_slot_floor_error_beta_factor_conditional": 30
+      },
+      {
+        "coefficient_touches_lwe_first": 8194,
+        "evalauto_linf_weight_pre_kernel": 30,
+        "evalauto_variance_weight_pre_kernel": 170,
+        "groups": [
+          4,
+          4
+        ],
+        "max_group": 4,
+        "maximum_internal_evalauto_gain": 8,
+        "network": "root",
+        "normalization_objects": 3,
+        "selected_slot_floor_error_beta_factor_conditional": 30
+      },
+      {
+        "coefficient_touches_lwe_first": 8194,
+        "evalauto_linf_weight_pre_kernel": 30,
+        "evalauto_variance_weight_pre_kernel": 170,
+        "groups": [
+          4,
+          4
+        ],
+        "max_group": 4,
+        "maximum_internal_evalauto_gain": 8,
+        "network": "root",
+        "normalization_objects": 3,
+        "selected_slot_floor_error_beta_factor_conditional": 30
+      },
+      {
+        "coefficient_touches_lwe_first": 4098,
+        "evalauto_linf_weight_pre_kernel": 255,
+        "evalauto_variance_weight_pre_kernel": 21845,
+        "groups": [
+          8
+        ],
+        "max_group": 8,
+        "maximum_internal_evalauto_gain": 128,
+        "network": "root",
+        "normalization_objects": 2,
+        "selected_slot_floor_error_beta_factor_conditional": 255
+      }
+    ]
+  },
+  "canonical_sha256": "543309ba8be258139d5d6ed91057076217cfa960b9247ecb799fc307ec14e541",
+  "distributed_tfhepp_floor_bounds": {
+    "nonroot": {
+      "normalization_glwe_passes": 21,
+      "post_width127_kernel_torus_bound": 5462016,
+      "pre_kernel_torus_bound": 43008
+    },
+    "root": {
+      "normalization_glwe_passes": 9,
+      "post_width127_kernel_torus_bound": 2340864,
+      "pre_kernel_torus_bound": 18432
+    },
+    "scope": "universal normalization-only triangle bound; EvalAuto, input, FFT, PBS, and extraction errors excluded"
+  },
+  "inherited_scale_schedule": {
+    "ragged_paths_are_not_uniform": true,
+    "six_nonroot_levels_gain_exponent": 60,
+    "verdict": "NO_GO_WITHOUT_PER_NODE_OR_PER_LEVEL_REENCODING"
+  },
+  "invalid_flat_14_stage_schedule": {
+    "evalauto_calls": 14,
+    "id_output_delta_log": 52,
+    "predivide_exponent_if_flattened_incorrectly": 14,
+    "remaining_scale_loss_bits": 4,
+    "score_output_delta_log": 55,
+    "verdict": "NO_GO_14_IS_DAG_CALL_COUNT_NOT_PATH_GAIN"
+  },
+  "literal_cdks_inverse": {
+    "gcd_word_modulus_polynomial_size": 2048,
+    "modular_inverse_exists": false,
+    "verdict": "NO_GO_FOR_LITERAL_N_INVERSE_PREPROCESSING"
+  },
+  "n127_batch_frontier": [
+    {
+      "maximum_group": 1,
+      "n127_coefficient_touches": 8807410,
+      "nonroot_groups": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 1,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 10,
+      "root_groups": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "root_maximum_internal_evalauto_gain": 1,
+      "root_selected_slot_floor_error_beta_factor_conditional": 8,
+      "vs_tfhepp_component_touch_reduction_factor": 1.2347421092012294
+    },
+    {
+      "maximum_group": 2,
+      "n127_coefficient_touches": 4662258,
+      "nonroot_groups": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 2,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 15,
+      "root_groups": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "root_maximum_internal_evalauto_gain": 2,
+      "root_selected_slot_floor_error_beta_factor_conditional": 12,
+      "vs_tfhepp_component_touch_reduction_factor": 2.332535007715146
+    },
+    {
+      "maximum_group": 3,
+      "n127_coefficient_touches": 3625970,
+      "nonroot_groups": [
+        3,
+        2,
+        2,
+        3
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 4,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 20,
+      "root_groups": [
+        2,
+        3,
+        3
+      ],
+      "root_maximum_internal_evalauto_gain": 4,
+      "root_selected_slot_floor_error_beta_factor_conditional": 17,
+      "vs_tfhepp_component_touch_reduction_factor": 2.9991643615363612
+    },
+    {
+      "maximum_group": 4,
+      "n127_coefficient_touches": 3105778,
+      "nonroot_groups": [
+        3,
+        3,
+        4
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 8,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 29,
+      "root_groups": [
+        4,
+        4
+      ],
+      "root_maximum_internal_evalauto_gain": 8,
+      "root_selected_slot_floor_error_beta_factor_conditional": 30,
+      "vs_tfhepp_component_touch_reduction_factor": 3.5014994632584813
+    },
+    {
+      "maximum_group": 5,
+      "n127_coefficient_touches": 2589682,
+      "nonroot_groups": [
+        5,
+        5
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 16,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 62,
+      "root_groups": [
+        4,
+        4
+      ],
+      "root_maximum_internal_evalauto_gain": 8,
+      "root_selected_slot_floor_error_beta_factor_conditional": 30,
+      "vs_tfhepp_component_touch_reduction_factor": 4.1993109578705035
+    },
+    {
+      "maximum_group": 6,
+      "n127_coefficient_touches": 2589682,
+      "nonroot_groups": [
+        5,
+        5
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 16,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 62,
+      "root_groups": [
+        4,
+        4
+      ],
+      "root_maximum_internal_evalauto_gain": 8,
+      "root_selected_slot_floor_error_beta_factor_conditional": 30,
+      "vs_tfhepp_component_touch_reduction_factor": 4.1993109578705035
+    },
+    {
+      "maximum_group": 7,
+      "n127_coefficient_touches": 2589682,
+      "nonroot_groups": [
+        5,
+        5
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 16,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 62,
+      "root_groups": [
+        4,
+        4
+      ],
+      "root_maximum_internal_evalauto_gain": 8,
+      "root_selected_slot_floor_error_beta_factor_conditional": 30,
+      "vs_tfhepp_component_touch_reduction_factor": 4.1993109578705035
+    },
+    {
+      "maximum_group": 8,
+      "n127_coefficient_touches": 2585586,
+      "nonroot_groups": [
+        5,
+        5
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 16,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 62,
+      "root_groups": [
+        8
+      ],
+      "root_maximum_internal_evalauto_gain": 128,
+      "root_selected_slot_floor_error_beta_factor_conditional": 255,
+      "vs_tfhepp_component_touch_reduction_factor": 4.205963367685314
+    },
+    {
+      "maximum_group": 9,
+      "n127_coefficient_touches": 2585586,
+      "nonroot_groups": [
+        5,
+        5
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 16,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 62,
+      "root_groups": [
+        8
+      ],
+      "root_maximum_internal_evalauto_gain": 128,
+      "root_selected_slot_floor_error_beta_factor_conditional": 255,
+      "vs_tfhepp_component_touch_reduction_factor": 4.205963367685314
+    },
+    {
+      "maximum_group": 10,
+      "n127_coefficient_touches": 2069490,
+      "nonroot_groups": [
+        10
+      ],
+      "nonroot_maximum_internal_evalauto_gain": 512,
+      "nonroot_selected_slot_floor_error_beta_factor_conditional": 1023,
+      "root_groups": [
+        8
+      ],
+      "root_maximum_internal_evalauto_gain": 128,
+      "root_selected_slot_floor_error_beta_factor_conditional": 255,
+      "vs_tfhepp_component_touch_reduction_factor": 5.25485989301712
+    }
+  ],
+  "parameters": {
+    "big_lwe_dimension": 2048,
+    "glwe_dimension": 1,
+    "nonroot": {
+      "arity": 8,
+      "evalauto_count": 14,
+      "name": "nonroot",
+      "path_depth": 10,
+      "recursive_depth": 3,
+      "trace_depth": 7
+    },
+    "polynomial_size": 2048,
+    "public_kernel_width": 127,
+    "root": {
+      "arity": 2,
+      "evalauto_count": 8,
+      "name": "root",
+      "path_depth": 8,
+      "recursive_depth": 1,
+      "trace_depth": 7
+    },
+    "word_modulus": 18446744073709551616
+  },
+  "promotion_gates": {
+    "automorphism_parameter_sweep_completed": false,
+    "deterministic_rounding_bounds": true,
+    "evalauto_noise_bounded": false,
+    "full_tournament_exact_0_id_correct": false,
+    "integer_and_ring_identities": true,
+    "mixed_scale_fhe_node_correct": false,
+    "partial_factor_1024_source_port_typechecked": false,
+    "promotion_to_runtime_frontier_allowed": false,
+    "runtime_measured": false
+  },
+  "proofs": {
+    "scalar_alias_cancellation": {
+      "claim": "q/M aliases vanish after exact integer gain M",
+      "floor_and_nearest_checks": 640,
+      "groups": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "modulus": 64,
+      "status": "PASS_EXHAUSTIVE"
+    },
+    "small_packing_oracle": {
+      "evalauto_key_switch_error_included": false,
+      "input_phase_checks": 2048,
+      "maximum_absolute_floor_error_seen": 63,
+      "selected_path_depth": 3,
+      "signed_slot_map": [
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          12,
+          1
+        ]
+      ],
+      "small_arity": 4,
+      "small_polynomial_size": 16,
+      "status": "PASS_EXACT_EVALAUTO_ORACLE",
+      "trials": 512
+    },
+    "tight_lwe_residual_bounds": {
+      "divisors": [
+        2,
+        4,
+        8,
+        16
+      ],
+      "residual_assignments_checked": 2314708,
+      "status": "PASS_EXHAUSTIVE"
+    }
+  },
+  "schema": "a96-chen-normalized-rounding-preflight-v1",
+  "source_pins": {
+    "cdks": {
+      "location": "Section 3.4, page 12 (Removing the Leading Term)",
+      "sha256": "0be9a67249237d47572fa09be491fea1f6aba8e4be9a633cd7a1ea4b22fe1622",
+      "title": "Efficient Homomorphic Conversion Between (Ring) LWE Ciphertexts",
+      "url": "https://eprint.iacr.org/2020/015.pdf"
+    },
+    "local": [
+      {
+        "path": "tmp/a92-chen-partial-trace-packing/README.md",
+        "sha256": "7a8f4308cae3efa5ff75051967ef07b56daf55c7e51e130846c5953b0a7af225"
+      },
+      {
+        "path": "tmp/a92-chen-partial-trace-packing/a92_chen_partial_trace.py",
+        "sha256": "3c6c8e2cc39de5c03c027837a03c98a62b7dbd04b3b56171788e8cc6a81c814b"
+      },
+      {
+        "path": "tmp/a92-chen-partial-trace-packing/artifacts/a92_static_result.json",
+        "sha256": "85405bd3981c41c0d578a320d025dfec42a8e7e5f2cd14660527d3cd3f10cce0"
+      },
+      {
+        "path": "tmp/a92-chen-partial-trace-packing/tests/test_a92_chen_partial_trace.py",
+        "sha256": "4383638f03dec99fc1451dd420a009163ee83071a4b70335dce2b47dbec7a341"
+      }
+    ],
+    "refined_fft_preprocessing": {
+      "location": "Section 3.2, Equation (3), Theorem 3.2, Appendix C.1",
+      "sha256": "59c0a84f65ef1a2e375bf5a7f7c3e4e41f5ecedc6345e7eee15874078c5fcb33",
+      "title": "Refined TFHE Leveled Homomorphic Evaluation and Its Application",
+      "url": "https://eprint.iacr.org/2024/1318.pdf"
+    },
+    "refined_repo": {
+      "commit": "9b0426e8e197020a4bf40776cc03641e6cf9b90e",
+      "files": {
+        "src/automorphism.rs": {
+          "lines": "179-231",
+          "role": "unnormalized HomTrace as ciphertext plus EvalAuto",
+          "sha256": "f7dc58430918f09f778d4bdef9111db0a49fb0e6c8d6b5b77c46162080f52bef"
+        },
+        "src/glwe_conv.rs": {
+          "lines": "47-80,131-216",
+          "role": "per-input LWE preprocessing, unnormalized packing, partial trace",
+          "sha256": "db929276aa2d2f46f61271dfee89a62adde94375fe70d807841863956808cbc1"
+        },
+        "src/mod_switch.rs": {
+          "lines": "1-157",
+          "role": "native-to-small modulus truncation and modulus raising",
+          "sha256": "411385cb04f659f2d66c0e32ebb6d8ce69be6b735227a1b8ee1e3c2f2cb9b38c"
+        }
+      },
+      "url": "https://github.com/KAIST-CryptLab/refined-tfhe-lhe"
+    },
+    "reverse_trace": {
+      "location": "Algorithms 5-6, Theorem 4, Lemma 5, Appendices B.1 and D.3",
+      "sha256": "4f1033580542c56baa8a493aab178681082df768cd3446cc4470bc75b49589a9",
+      "title": "Homomorphic Field Trace Revisited: Breaking the Cubic Noise Barrier",
+      "url": "https://eprint.iacr.org/2025/1088.pdf"
+    },
+    "tfhepp": {
+      "commit": "c2518753a62619b469e8222b71a9480036d1a515",
+      "keyswitch": {
+        "lines": "293-332,391-437",
+        "sha256": "eb9b976e0c7ac09b9626023f0fbb537e679d3fdc71431fa1e120da8633df4281",
+        "url": "https://raw.githubusercontent.com/virtualsecureplatform/TFHEpp/c2518753a62619b469e8222b71a9480036d1a515/include/tfhe/keyswitch.hpp"
+      }
+    }
+  },
+  "source_theory_discrepancy": {
+    "a96_deterministic_floor_bound": 2095104,
+    "a96_deterministic_nearest_bound": 1049087,
+    "paper_operation": "nearest centered modulus switch q to q/M then modulus raise",
+    "paper_output_variance_term_for_factor_M": "M^2 * V_ms",
+    "paper_per_low_scale_coefficient_variance": "1/12",
+    "paper_residual_interval": [
+      -512,
+      511
+    ],
+    "paper_variance_is_heuristic": true,
+    "refined_repo_floor_error_is_not_mean_zero": true,
+    "refined_repo_floor_residual_interval": [
+      0,
+      1023
+    ],
+    "refined_repo_is_floor_not_nearest": true,
+    "refined_repo_operation": "zero low bits then unsigned wrapping_div",
+    "tfhepp_operation": "unsigned componentwise /=2 at every materialized stage"
+  },
+  "status": "PASS_STATIC_BOUNDS_ALL_AT_ONCE_OPEN_NO_RUNTIME_PROMOTION",
+  "unnormalized_without_predivide": {
+    "nonroot_gain": 1024,
+    "nonroot_id_word_after_gain_mod_2_64": 0,
+    "nonroot_score_word_after_gain_mod_2_64": 0,
+    "root_gain": 256,
+    "root_id_word_after_gain_mod_2_64": 0,
+    "verdict": "NO_GO_FIXED_SCALE_COLLAPSES_TO_ZERO"
+  }
+}

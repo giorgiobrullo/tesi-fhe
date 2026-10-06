@@ -1,0 +1,110 @@
+{
+  "schema": "binary-comparator-publication.v1",
+  "status": "PRIMITIVE_PASS_8_CASES",
+  "date": "2026-10-04",
+  "scope": "isolated noisy FHE lower-pair primitive; no pipeline, performance or formal failure result",
+  "tfhe": "1.8.1",
+  "compiler": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+  "parameters": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+  "dimensions": {
+    "small_lwe": 859,
+    "glwe_size": 2,
+    "polynomial_size": 2048
+  },
+  "fft": "Dif4/base1024",
+  "encoding_bits": {
+    "candidate_input": 55,
+    "reference_input": 59,
+    "candidate_output": 59
+  },
+  "lut": {
+    "negative": [
+      0,
+      3
+    ],
+    "positive": [
+      5,
+      2047
+    ],
+    "zero": [
+      4
+    ]
+  },
+  "oracle": "-1 for left <= right, +1 for left > right",
+  "own_fresh_key_families": 1,
+  "planned_cases": 8,
+  "completed_cases": 8,
+  "unexecuted_cases": 0,
+  "correct_candidates": 8,
+  "correct_reference_ternaries": 24,
+  "first_failure": null,
+  "native_exit_code": 0,
+  "build_exit_code": 0,
+  "binary_sha256": "15c8fcc48513f92cd60cfe764c992adf6b266674e9910e28880518c5633f8449",
+  "raw_sha256": "a569cf423703dd47b9aa43159d1b81f1d399bd85848e276830dbe95f05862c9a",
+  "local_run_receipt_sha256": "c179191e5a7d0e9b96ac0d256c97589a75547f04a8430b92fcac72b3bef3de62",
+  "local_complete_sha256": "57f56eba2f2d252c8cf6b79a305c9872dd34a2564545328fef919b25dd035a29",
+  "compiled_input_hashes_original_paths": {
+    "probe/Cargo.toml": "2a5110d5e33563182aede2961881c93013498bbf0ab939dc8b34f6262b7bb439",
+    "probe/src/main.rs": "b0067c1017f7233da4471c0d638ca29ccd0bb109e9fca61f2a34297b31c6b005",
+    "probe/PROTOCOL.md": "dec3ecda741d3e4d2c40297572cc182dbd2bcc57e155d21609e79f0110c1d730",
+    "PROTOCOL.md": "ba110a24655e7590ca9a93b20495aafa98ef81ae8bdd0dc741e5b6ece303c7fa",
+    "probe/Cargo.lock": "9cea7ac6d3b832d92af6804015f90815695f211e02196b8198a5d5c3c1c42a3e"
+  },
+  "public_file_hashes": {
+    "CONTRACT.md": "c61975529857a1b3af42655e312bdfa7bd4320e8d9c655abb6889d6246be9ee1",
+    "Cargo.lock": "9cea7ac6d3b832d92af6804015f90815695f211e02196b8198a5d5c3c1c42a3e",
+    "Cargo.toml": "2a5110d5e33563182aede2961881c93013498bbf0ab939dc8b34f6262b7bb439",
+    "GEOMETRY.md": "625b483741d8af47f6bebf192e2c390a41b52f66eecc51b8871d1125be07e13c",
+    "HEAD55_PLAN.md": "3ee8abc00b2b4477f8cf9ffaee900bbb2a9f2aa2301c3a73dd0924ad9e8c55ef",
+    "HEAD_PLAN_REVIEW.md": "de651949bf34096ddfdd99e46ce6b82ad53e90ee3a62d4defe36d0337013b985",
+    "PROTOCOL.md": "dec3ecda741d3e4d2c40297572cc182dbd2bcc57e155d21609e79f0110c1d730",
+    "README.md": "81f240fd67885972b01595ab0beadd0df04b4fcf551b2972c9653805e27ba897",
+    "RESULT_REVIEW.md": "77cbb103f08d2c2887147ea525660faaecf07cfdba78111cabcd04f0a81f2673",
+    "SOURCE_BUILD.json": "44c76b5f417129f8c0ce0a90f2fb2aadcbedd4c380f3f60667d04358fa42998b",
+    "rows.jsonl": "a569cf423703dd47b9aa43159d1b81f1d399bd85848e276830dbe95f05862c9a",
+    "samples.csv": "e2db29d9b6fe7adda220a3197712c3cf90ed25c991405b4a8e4e99b7b6927270",
+    "src/main.rs": "b0067c1017f7233da4471c0d638ca29ccd0bb109e9fca61f2a34297b31c6b005"
+  },
+  "opaque_local_envelopes": [
+    {
+      "bytes": 23449,
+      "encoding": "bincode-1.3.3",
+      "path": "client-key.bin",
+      "sha256": "8305be908f26a43e3fef4305b98f4ed0510c2ccef3e893d08a58e9d70e8cc033"
+    },
+    {
+      "bytes": 126774296,
+      "encoding": "bincode-1.3.3",
+      "path": "server-key.bin",
+      "sha256": "60ffbd2748f58560c426b856bcc6990124820408de291c9f5f9ffab34187140d"
+    }
+  ],
+  "previous_ternary_raw_sha256": "28d23a72131a9b7354e339dfab273d7e704bd89cc7f040f61b24eb891f66afd6",
+  "paired_with_previous_ternary": false,
+  "maintained_runtime_changes": 0,
+  "interpretation_limits": [
+    "Eight cases in one fresh family are not a failure-rate estimate.",
+    "The reference validates these primitive cases, not the entire baseline.",
+    "No nonzero top, combined control, refresh, Head, PFKS, tournament or final 0/ID was tested.",
+    "The unchanged uniform geometric margin is three degrees, not a noise guarantee.",
+    "The standard parameter failure bound does not transfer to this encoding.",
+    "No elapsed time is interpreted as latency or speedup.",
+    "The Head55 interface plan is source-only, unimplemented and untested.",
+    "Keys remain only in the local archive; no secret or private phase was inspected."
+  ],
+  "head_plan_revision": {
+    "current_sha256": "3ee8abc00b2b4477f8cf9ffaee900bbb2a9f2aa2301c3a73dd0924ad9e8c55ef",
+    "previous_sha256": "f27a425106cc83f9bf289107e7adf6a28797a21840edcfcdcd14bcef79140206",
+    "independent_review_sha256": "de651949bf34096ddfdd99e46ce6b82ad53e90ee3a62d4defe36d0337013b985",
+    "implemented": false,
+    "tested": false,
+    "additional_work": [
+      "Two heterogeneous PBS callbacks and a distinct binary LUT/cache.",
+      "Public mean-only correction after the packed lower KS, as in the passed primitive.",
+      "Two carry scalar multiplications by sixteen.",
+      "Per-position score and threshold encoding, constructor and public-constant assertions.",
+      "Update operation counters without changing selector-only metrics."
+    ]
+  }
+}

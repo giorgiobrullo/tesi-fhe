@@ -1,0 +1,9 @@
+{
+  "reviewers": {
+    "audit_findings": "Source/import/launcher bindings clear; frozen old verifier keeps original module binding; conditional on resolved recursive type fix.",
+    "audit_noise_runtime": "Final progression/aggregate review clear after recursive exact types and captured-byte provenance fixes.",
+    "root": "Source and expected24permutations/966records/full672/168/168/384ledger consistent; convolution kept separate."
+  },
+  "mode": "read-only source review",
+  "reviewers_executed_tests_or_actual_logs": false
+}

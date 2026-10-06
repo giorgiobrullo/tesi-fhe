@@ -1,0 +1,37 @@
+{
+  "event": {
+    "keyset": 0,
+    "actual_ms_address": 0,
+    "small_sha256": "a70c5b3ca2367fb71e988cb60c5024e30a33078b2d55477832e34600b1c5771e",
+    "coefficient_observer": {
+      "schema": "A143_POST_KS_V1",
+      "keyset": 0,
+      "lwe_dimension": 859,
+      "torus_bits": 64,
+      "log_degree_modulus": 12,
+      "public_body_degree": 0,
+      "public_body_residue_decimal": "0",
+      "direct_address": 0,
+      "phase_matches_tfhe_decrypt": true,
+      "address_matches_existing_observer": true,
+      "mask_decomposition_identity": true,
+      "phase_ms_identity": true,
+      "secret_key_bits_serialized": false,
+      "key_sensitive_client_local_only": true,
+      "client_aggregates_independently_attested": false,
+      "closure_pass": true
+    },
+    "synthetic": true
+  },
+  "replay": {
+    "public_word_hash_and_rounding_pass": true,
+    "coefficient_closure_pass": true,
+    "address_from_public_rounding_and_client_aggregate": 0,
+    "public_body_degree": 0,
+    "observed_ms_displacement": 0,
+    "private_aggregate_key_membership_attested": false,
+    "actual_secret_key_or_execution_attested": false
+  },
+  "claimed_mask_aggregate_word": "<LARGE_DIAGNOSTIC_INTEGER>",
+  "note": "Arithmetic closure does not attest binary-key membership or runtime execution."
+}

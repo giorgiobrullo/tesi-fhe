@@ -63,6 +63,11 @@ Le mediane M/H/R3 sono **3,048836 / 3,071472 / 4,615544 secondi**.
 La mediana della riduzione entro coppia per M è **0,7963% rispetto a H**
 e **34,0848% rispetto a R3**, con 6/6 coppie favorevoli in entrambi i casi.
 
+<a id="misure-salvate-integrazione-del-6-ottobre-2026"></a>
+
+Le [otto triplette registrate](evidence/finalist-result-review.md)
+comprendono le due di riscaldamento e le sei misurate.
+
 La verifica aritmetica distinta copre tre chiavi. Il servizio N127 supera
 separatamente 15 uscite cifrate e 39 controlli negativi, con sei nuove
 cifrature della query sotto una nuova famiglia. Il [riepilogo numerico](RESULTS.json)
@@ -97,7 +102,6 @@ successive modifiche adottate sono descritte nel [runtime mantenuto](../../runti
 
 ## Provenienza
 
-[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
-dai documenti storici e dalle copie redatte. I digest degli esperimenti
-identificano le esecuzioni originali; questa pubblicazione non aggiunge
-una nuova compilazione nativa o una nuova prova FHE.
+La [provenienza dei sorgenti e delle misure](PROVENANCE.json) lega i file
+alle fonti originali e dichiara le selezioni dei dati. Le impronte delle
+copie pubbliche sono distinte da quelle degli originali.

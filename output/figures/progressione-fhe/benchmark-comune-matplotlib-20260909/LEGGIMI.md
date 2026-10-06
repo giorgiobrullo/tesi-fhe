@@ -23,7 +23,7 @@ correttezza, confronti appaiati, configurazione e carico della macchina.
 - [PNG ad alta risoluzione](progressione.png): 3150 × 1680 pixel.
 - [PNG leggero](progressione-email.png): 1260 × 672 pixel.
 - [SVG](progressione.svg) e [PDF](../../../pdf/progressione-fhe-benchmark-comune-matplotlib-20260909.pdf): formati vettoriali.
-- [Mediane e quartili](punti.csv) e [dati strutturati](dati.json).
+- [Mediane e quartili](../benchmark-comune-20260909/punti.csv) e [dati strutturati](../benchmark-comune-20260909/dati.json).
 - [Osservazioni 0/ID](../benchmark-comune-20260909/osservazioni-exact.csv) e [osservazioni dei prototipi](../benchmark-comune-20260909/osservazioni-prototipi.csv).
 
 ## Rigenerare la figura

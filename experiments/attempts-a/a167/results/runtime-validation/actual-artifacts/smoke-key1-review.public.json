@@ -1,0 +1,36 @@
+{
+  "schema": "a167.actual-smoke-review.v1",
+  "status": "PASS_8_OF_8_SINGLE_KEY_SMOKE",
+  "raw_records": 250,
+  "direct_component_pass": true,
+  "scalar_reference_pass": true,
+  "convolution_component_pass": true,
+  "summary": {
+    "direct_passed": 8,
+    "convolution_passed": 8,
+    "scalar_passed": 8,
+    "effective_support_failures": 0
+  },
+  "support_failures": 0,
+  "prerequisite_failures": 0,
+  "ingress_failures": 0,
+  "post_ks_controls_unequal": 0,
+  "observer_identity_failures": 0,
+  "counter_failures": {
+    "direct": 0,
+    "convolution": 0,
+    "scalar": 0
+  },
+  "root_source_and_binary_unchanged": true,
+  "root_child_exit": 0,
+  "pid": 68353,
+  "root_finished_utc": "2026-09-05T05:11:53.117318+00:00",
+  "raw_sha256": "cdfbf5cfee18a11967aec97a9c3690355d7929ffa2317b34e1db9b25dc16b803",
+  "validation_sha256": "b123b69ed59d66585f21edc55a5f9dab24658a9cb4856d5414f490f2d9c58243",
+  "full_three_process_gate_complete": false,
+  "offset1_2_expansion_semantically_permitted": true,
+  "scheduling": "Root must separately check current workload before each fresh process; no automatic expansion",
+  "actual_p_fail": null,
+  "speedup_or_latency_claim": false,
+  "independent_ciphertext_or_key_membership_attestation": false
+}

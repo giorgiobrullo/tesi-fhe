@@ -1,0 +1,213 @@
+{
+  "correct_ids": 12,
+  "profiled_queries": 9,
+  "profiled_calls": 2196,
+  "measured_queries": 6,
+  "measured_calls": 1464,
+  "full_counts": {
+    "br": 1111,
+    "gadget_levels": 1351,
+    "glwe_additions": 358,
+    "initial_score_samples": 120,
+    "ks": 1080,
+    "lwe_addbacks": 509,
+    "lwe_subtractions": 509,
+    "marginals": 1709,
+    "pfks": 509,
+    "pfks_monomial_rotations": 509,
+    "polynomial_permutations": 1018,
+    "prototype_full51_to_full52_scales": 0,
+    "public_centering_body_additions": 240,
+    "public_centering_calls": 240,
+    "public_centering_mask_terms": 206160
+  },
+  "terminal_work": {
+    "br": 11,
+    "gadget_levels": 11,
+    "glwe_additions": 4,
+    "initial_score_samples": 0,
+    "ks": 10,
+    "lwe_addbacks": 7,
+    "lwe_subtractions": 7,
+    "marginals": 15,
+    "pfks": 7,
+    "pfks_monomial_rotations": 7,
+    "polynomial_permutations": 14,
+    "prototype_full51_to_full52_scales": 0,
+    "public_centering_body_additions": 4,
+    "public_centering_calls": 4,
+    "public_centering_mask_terms": 3436
+  },
+  "terminal_scheduling": {
+    "batch3_merges": 0,
+    "comparator_callbacks": 6,
+    "group_br_tasks": 3,
+    "parallel3_merges": 2,
+    "pfks_tasks": 7,
+    "selectors": 2,
+    "selectors_by_ready_1_to_4": [
+      2,
+      0,
+      0,
+      0
+    ]
+  },
+  "full_scheduling": {
+    "comparator": {
+      "additional_keys": 0,
+      "batch3_merges": 0,
+      "ks_calls_saved": 0,
+      "parallel3_max_ready_merges": 4,
+      "parallel3_merges": 8,
+      "pbs_calls_saved": 0
+    },
+    "selectors": {
+      "additional_keys": 0,
+      "additional_threads": 0,
+      "enabled": true,
+      "g4_pfks_tasks": 0,
+      "g4_rotation_parallelism": "serial synthesis shared across groups; no classic group BR tasks",
+      "g4_selectors_with_parallel_pfks": 0,
+      "group_br_tasks": 15,
+      "max_ready_merges": 4,
+      "pfks_tasks": 37,
+      "selectors": 8,
+      "selectors_by_ready_1_to_4": [
+        2,
+        2,
+        0,
+        4
+      ]
+    }
+  },
+  "class_distributions": {
+    "score": {
+      "calls": 1080,
+      "min_us": 1188.334,
+      "median_us": 1468.354,
+      "mean_us": 1779.6598583333334,
+      "max_us": 6848.833
+    },
+    "id_low": {
+      "calls": 360,
+      "min_us": 6.166,
+      "median_us": 6.583,
+      "mean_us": 7.66515,
+      "max_us": 54.042
+    },
+    "id_middle": {
+      "calls": 24,
+      "min_us": 6.125,
+      "median_us": 6.459,
+      "mean_us": 6.921958333333333,
+      "max_us": 17.625
+    }
+  },
+  "observations": [
+    {
+      "case": "einstein",
+      "round": 0,
+      "whole_ms": 1682.759709,
+      "terminal_ms": 81.893875,
+      "score_mask_zero_calls": 0,
+      "id_mask_zero_calls": 64,
+      "sum_score_worker_ms": 308.527252,
+      "sum_id_worker_ms": 0.478962,
+      "id_share_of_summed_primitive_worker_time_percent": 0.15500076642471664
+    },
+    {
+      "case": "curie",
+      "round": 0,
+      "whole_ms": 1659.657542,
+      "terminal_ms": 82.285458,
+      "score_mask_zero_calls": 0,
+      "id_mask_zero_calls": 64,
+      "sum_score_worker_ms": 294.527493,
+      "sum_id_worker_ms": 0.443753,
+      "id_share_of_summed_primitive_worker_time_percent": 0.15043940927042088
+    },
+    {
+      "case": "turing",
+      "round": 0,
+      "whole_ms": 1657.327417,
+      "terminal_ms": 82.118583,
+      "score_mask_zero_calls": 0,
+      "id_mask_zero_calls": 64,
+      "sum_score_worker_ms": 346.16508,
+      "sum_id_worker_ms": 0.539495,
+      "id_share_of_summed_primitive_worker_time_percent": 0.1556065419673219
+    },
+    {
+      "case": "einstein",
+      "round": 1,
+      "whole_ms": 1672.315,
+      "terminal_ms": 83.499416,
+      "score_mask_zero_calls": 0,
+      "id_mask_zero_calls": 64,
+      "sum_score_worker_ms": 329.435745,
+      "sum_id_worker_ms": 0.496037,
+      "id_share_of_summed_primitive_worker_time_percent": 0.15034532199144124
+    },
+    {
+      "case": "curie",
+      "round": 1,
+      "whole_ms": 1675.383333,
+      "terminal_ms": 83.211333,
+      "score_mask_zero_calls": 0,
+      "id_mask_zero_calls": 64,
+      "sum_score_worker_ms": 316.206124,
+      "sum_id_worker_ms": 0.485458,
+      "id_share_of_summed_primitive_worker_time_percent": 0.15329046542197008
+    },
+    {
+      "case": "turing",
+      "round": 1,
+      "whole_ms": 1681.516958,
+      "terminal_ms": 84.966416,
+      "score_mask_zero_calls": 0,
+      "id_mask_zero_calls": 64,
+      "sum_score_worker_ms": 327.170953,
+      "sum_id_worker_ms": 0.481876,
+      "id_share_of_summed_primitive_worker_time_percent": 0.1470690796324545
+    }
+  ],
+  "by_scene": {
+    "einstein": {
+      "whole_ms": [
+        1682.759709,
+        1672.315
+      ],
+      "summed_worker_id_share_percent": [
+        0.15500076642471664,
+        0.15034532199144124
+      ]
+    },
+    "curie": {
+      "whole_ms": [
+        1659.657542,
+        1675.383333
+      ],
+      "summed_worker_id_share_percent": [
+        0.15043940927042088,
+        0.15329046542197008
+      ]
+    },
+    "turing": {
+      "whole_ms": [
+        1657.327417,
+        1681.516958
+      ],
+      "summed_worker_id_share_percent": [
+        0.1556065419673219,
+        0.1470690796324545
+      ]
+    }
+  },
+  "all_selected_id_inputs_trivial": true,
+  "measured_score_mask_zero_calls": 0,
+  "stdout": {
+    "bytes": 202853,
+    "sha256": "84b1231924b0d04e09428b051f708bd9cb042b2d07087ad199705a8eb4665ff9"
+  },
+  "scope": "One fresh family/three same-source accept queries. Per-call elapsed under real concurrent work; profiling overhead remains in whole diagnostic time. Summed worker times overlap and are not request latency, a cache benefit or e2e savings. No optimized arm/adoption/noise/security/biometric proof."
+}

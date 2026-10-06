@@ -1,0 +1,30 @@
+{
+  "synthetic_public_query": {
+    "dimension": 512,
+    "first_16": "alternating+1,-1",
+    "remaining": 0,
+    "norm2": 16
+  },
+  "templates": {
+    "n": 120,
+    "base": "same as query",
+    "difference": "one coordinate16+i%64 set1+i%5, except indices75,119 identical to query"
+  },
+  "first_tied_minimum": 76,
+  "later_tied_id": 120,
+  "correctness_families": [
+    "uniform inclusive76",
+    "uniform threshold-17 rejects0",
+    "mixed winnerthreshold-16 accepts76",
+    "mixed winnerthreshold-17 rejects0 despite laterpassing120",
+    "all_reject i64MIN0"
+  ],
+  "timing_families": [
+    "uniform",
+    "mixed"
+  ],
+  "timed_pairs": 8,
+  "query_ciphertexts": 1,
+  "fresh_key_families": 1,
+  "native_started": false
+}

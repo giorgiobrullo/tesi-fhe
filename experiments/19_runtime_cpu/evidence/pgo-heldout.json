@@ -1,0 +1,207 @@
+{
+  "schema": "fast-options-campaign-result.v1",
+  "pass": true,
+  "key_index": 0,
+  "reference": "control",
+  "fresh_inputs": 45,
+  "complete_outputs": 90,
+  "correctness_outputs": 18,
+  "warmup_outputs": 24,
+  "measured_outputs": 48,
+  "comparisons": [
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "pgo_use",
+      "reference": "control",
+      "paired_ratios": [
+        1.0079559523703225,
+        1.139097481352527,
+        1.047668913293263,
+        1.0254729784958359
+      ],
+      "mean_log_ratio": 0.052470574658286036,
+      "geometric_ratio": 1.0538715510917716,
+      "geometric_reduction_percent": -5.387155109177155,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        0.9667903343162902,
+        1.1487963902597558
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "pgo_use",
+      "reference": "control",
+      "paired_ratios": [
+        0.987215152222601,
+        1.0354831195791805,
+        0.9943805879609695,
+        1.0176382309305037
+      ],
+      "mean_log_ratio": 0.008462511253597198,
+      "geometric_ratio": 1.0084984195218587,
+      "geometric_reduction_percent": -0.8498419521858702,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9740361952441099,
+        1.0441799464374035
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "pgo_use",
+      "reference": "control",
+      "paired_ratios": [
+        1.0432327739487024,
+        1.0037802218381227,
+        1.0538109458049951,
+        1.01214060518634
+      ],
+      "mean_log_ratio": 0.02764449701675559,
+      "geometric_ratio": 1.0280301516655,
+      "geometric_reduction_percent": -2.8030151665499936,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        0.9904693422639727,
+        1.0670153508413467
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "pgo_use",
+      "reference": "control",
+      "paired_ratios": [
+        1.0658265467373809,
+        0.9560660448277019,
+        0.9798984900536333,
+        0.9957317729992299
+      ],
+      "mean_log_ratio": -0.0014403353848452343,
+      "geometric_ratio": 0.9985607014003327,
+      "geometric_reduction_percent": 0.14392985996672936,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.9272459688462411,
+        1.0753602688851058
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "pgo_use",
+      "reference": "control",
+      "paired_ratios": [
+        0.9814764607402073,
+        0.9759841980150725,
+        0.9800478498930585,
+        0.9965802025971462
+      ],
+      "mean_log_ratio": -0.016646418029931612,
+      "geometric_ratio": 0.9834913679794418,
+      "geometric_reduction_percent": 1.650863202055819,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.9693083295053235,
+        0.9978819344136891
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "pgo_use",
+      "reference": "control",
+      "paired_ratios": [
+        1.0187633013227047,
+        0.9808251742415657,
+        1.0406521388701238,
+        1.0448956268597263
+      ],
+      "mean_log_ratio": 0.020748242496717757,
+      "geometric_ratio": 1.0209649836842625,
+      "geometric_reduction_percent": -2.0964983684262473,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9749940289647571,
+        1.0691034682706602
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    }
+  ],
+  "load_samples": 80,
+  "load_scope": "Repeated process/load samples throughout evaluation; all flagged and unknown blocks retained; not continuous isolation proof",
+  "load_attribution": "Final summaries use samples within one sampling interval of the block; raw block entries are provisional at block completion",
+  "timing_scope": "keys.evaluate from pre-encrypted 512-vector through encrypted scores/tournament to three-digit exact 0/ID; public views/planning, key setup, input loading, hashing, decryption, model and HTTP excluded",
+  "formal_failure_bound": null,
+  "service_validation": false,
+  "variants": [
+    {
+      "label": "control",
+      "binary_sha256": "9e4b5378e77ce6eceef64a1ce0d7b1b6695a18cde6636dec313158a814b710df",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": false,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "pgo_use",
+      "binary_sha256": "7fbcab5ebb558345ef65e3c4c8b8606ffb01573f7cee28fca10c25f255ecd78f",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": false,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    }
+  ]
+}

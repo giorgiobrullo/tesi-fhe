@@ -1,0 +1,65 @@
+{
+  "status": "PASS_BOUND_A171_THREE_PROCESS_COMPONENT",
+  "component_gate_pass": true,
+  "process_count": 3,
+  "fixture_cases": 24,
+  "records": 966,
+  "unique_four_arm_orders": 24,
+  "distinct_functional_key_hashes": 6,
+  "primitive_counts": {
+    "PFKS": 672,
+    "KS": 168,
+    "BR": 168,
+    "samples": 384
+  },
+  "processes": [
+    {
+      "order_offset": 0,
+      "d1_passed": 8,
+      "controls": {
+        "direct_passed": 8,
+        "convolution_passed": 8,
+        "scalar_passed": 8,
+        "effective_support_failures": 0
+      }
+    },
+    {
+      "order_offset": 1,
+      "d1_passed": 8,
+      "controls": {
+        "direct_passed": 8,
+        "convolution_passed": 8,
+        "scalar_passed": 8,
+        "effective_support_failures": 0
+      }
+    },
+    {
+      "order_offset": 2,
+      "d1_passed": 8,
+      "controls": {
+        "direct_passed": 8,
+        "convolution_passed": 8,
+        "scalar_passed": 8,
+        "effective_support_failures": 0
+      }
+    }
+  ],
+  "key_hash_distinctness_attests_independence": false,
+  "secret_key_membership_attested": false,
+  "actual_p_fail": null,
+  "performance_claim": false,
+  "full_exact_id_validated": false,
+  "producer_replay_unchanged": true,
+  "no_automatic_next_experiment": true,
+  "report_sha256": [
+    "c0e2d4f51eb428eaa7e7bad3fe2f32f0d4e4c1f5e5e4c2eaa6026174635fcf5c",
+    "8b6e83c13fe3872208c9084546ae0b155e5b43d5ad50f869ad2bdb06e7610d16",
+    "3f2f973d227db52cd3a3aedce5a3da425f1df62e81e42bff33899ee9043d4922"
+  ],
+  "raw_sha256": [
+    "716103483d25ce86d3f2ebe3992b694cd5668bd5ce25ad4fd9f49fe5f74a9e5e",
+    "f9766fe0a54c825864359593bf2d16d3a5f67a014ead592dce96e17ef32a3405",
+    "24bfe2cef9bab6a59ca80e9de46aeace80d55f85bfc68284ab4f4734aef2072d"
+  ],
+  "execution_manifest_sha256": "616b83ec196d7ede915344d18c872656dc9373328b6d8d0fdac733f2152d1bd5"
+}

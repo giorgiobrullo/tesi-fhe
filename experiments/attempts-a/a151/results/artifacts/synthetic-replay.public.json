@@ -1,0 +1,10 @@
+{
+  "status": "SYNTHETIC_REPLAY_PASS",
+  "records": 6,
+  "row_levels": 2049,
+  "targets": 1,
+  "pfks_calls": 1,
+  "actual_crypto_proved_by_parser": false,
+  "tails": "OPEN",
+  "scope": "synthetic binding/control replay; scalar identity from frozen A147 N8/3rows/8x2 algebra fixture; runtime geometry fields are explicitly fictitious schema values, not2049 measured rows"
+}

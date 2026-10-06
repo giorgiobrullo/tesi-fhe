@@ -1,0 +1,348 @@
+{
+  "schema": "research-package.v2",
+  "path_base": "files paths are relative to this package; source_layout and shared_files canonical paths are relative to repository root",
+  "source_layout": {
+    "schema": "research-source-map.v1",
+    "archive_root": "local research archive",
+    "source_workspace": "tmp/current-demo-sse-20261004",
+    "files": [
+      {
+        "workspace_path": "demo/dual_view/client.py",
+        "archive_relative": "demo/dual_view/client.py",
+        "canonical": "demo/dual_view/client.py",
+        "bytes": 14482,
+        "sha256": "01c0cc86f7c17ec4b0b7d18e90cf5ac2c9de1903cac11f175cb5d48c83361b28",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/dual_view/enrollment.py",
+        "archive_relative": "demo/dual_view/enrollment.py",
+        "canonical": "benchmark/demo-sse-20261004/source/demo/dual_view/enrollment.py",
+        "bytes": 5605,
+        "sha256": "134e7ffc3c12c03282365c8cbb7916ec354562cadf3c2ff4350eb204780481c8",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "demo/dual_view/gallery.py",
+        "archive_relative": "demo/dual_view/gallery.py",
+        "canonical": "demo/dual_view/gallery.py",
+        "bytes": 11592,
+        "sha256": "71131bada0dd45c818a8dc9ed5309da1765f83f90fe1249ed8d4d63f72d44249",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/web/app.py",
+        "archive_relative": "demo/web/app.py",
+        "canonical": "demo/web/app.py",
+        "bytes": 32289,
+        "sha256": "594edc632deaf39c8941decf98dbb76eddba06fb4a47ce06e85bda38b48d595b",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/web/default_gallery.py",
+        "archive_relative": "demo/web/default_gallery.py",
+        "canonical": "demo/web/default_gallery.py",
+        "bytes": 2833,
+        "sha256": "d94fce7ca977dd21414e24598907ee6028a6a492c00f153d85f5dacae287bd06",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/web/engines.py",
+        "archive_relative": "demo/web/engines.py",
+        "canonical": "demo/web/engines.py",
+        "bytes": 17191,
+        "sha256": "a19fb793e6961343214f5aab4c0b881e2bc7a789f2e1149c8da14faf0282e6a6",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/web/events.py",
+        "archive_relative": "demo/web/events.py",
+        "canonical": "demo/web/events.py",
+        "bytes": 3997,
+        "sha256": "5cf8f03358e482502251a0f26fe8208edece81f667e84523069a59003c7efe35",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/web/gallery/catalogue.json",
+        "archive_relative": "demo/web/gallery/catalogue.json",
+        "canonical": "demo/web/gallery/catalogue.json",
+        "bytes": 85032,
+        "sha256": "6c8aa96b893ce9a57cf216aa9801395e6802c4ef1a7c6db8665c9c0a0b38b454",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/web/launch.py",
+        "archive_relative": "demo/web/launch.py",
+        "canonical": "demo/web/launch.py",
+        "bytes": 2841,
+        "sha256": "bd0bc542e8058f6f39de5d1b36774c28526a4d309894108b7dafddf00fca0e6f",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "demo/web/requirements.txt",
+        "archive_relative": "demo/web/requirements.txt",
+        "canonical": "benchmark/demo-sse-20261004/source/demo/web/requirements.txt",
+        "bytes": 154,
+        "sha256": "5ccfb0ce25d40a76404db9df6ad9c8ec5721227ad22d3a46ae265cc21c6705d7",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "demo/web/timeline.py",
+        "archive_relative": "demo/web/timeline.py",
+        "canonical": "demo/web/timeline.py",
+        "bytes": 2924,
+        "sha256": "8bb12985698423ad735a1a9f249e19a7c99fec556d691ea8f153852c7ea733b8",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "experiments/08_cnn/embedding.py",
+        "archive_relative": "experiments/08_cnn/embedding.py",
+        "canonical": "experiments/08_cnn/embedding.py",
+        "bytes": 6880,
+        "sha256": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/CIRCUIT_CONTRACT.json",
+        "archive_relative": "runtime/CIRCUIT_CONTRACT.json",
+        "canonical": "runtime/CIRCUIT_CONTRACT.json",
+        "bytes": 4231,
+        "sha256": "96269130d3ed5fca499bf5ea04d901760400e2007992dc6feffbd832f739e367",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/config.json",
+        "archive_relative": "runtime/config.json",
+        "canonical": "runtime/config.json",
+        "bytes": 5535,
+        "sha256": "5a6ae46bc188c88b6585ee258532008912bbf0aa41fe2b76caff0e3747ed2a58",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "driver/driver.py",
+        "archive_relative": "tmp/current-demo-sse-20261004/driver.py",
+        "canonical": "benchmark/demo-sse-20261004/driver/driver.py",
+        "bytes": 13407,
+        "sha256": "eb399803ac845de5fb1ef9632888f40722c8a03e0474df1377ce34267a3a4b69",
+        "mapping": "existing_repository_source",
+        "privacy_redaction": {
+          "before_public_sha256": "6417a97747f8e4a6cbae5faeaa6f4193cdc7d56fef3dc940de13d01b9850e756",
+          "before_public_bytes": 13471,
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+        }
+      }
+    ],
+    "excluded_inputs": [
+      {
+        "workspace_path": "photos/albert-einstein.jpg",
+        "reason": "portrait image excluded; pin transcribed from original receipt",
+        "bytes": 86261,
+        "sha256": "bb688551ba543a965e3aa2d85c617f25667e19a5ede7b57ec3955089a7bccae3"
+      },
+      {
+        "workspace_path": "photos/marie-curie.jpg",
+        "reason": "portrait image excluded; pin transcribed from original receipt",
+        "bytes": 55463,
+        "sha256": "6c150322cc1067558915d1a0d50a419aef2104b86aa66739b555baff191b341e"
+      },
+      {
+        "workspace_path": "photos/alan-turing.jpg",
+        "reason": "portrait image excluded; pin transcribed from original receipt",
+        "bytes": 60297,
+        "sha256": "c1e54d06afde2476bedd2618508bb613f024c2890458cb60b51d7f85b133e02c"
+      },
+      {
+        "workspace_path": "models/glintr100.onnx",
+        "reason": "model weights excluded; pin transcribed from original receipt",
+        "bytes": 260665334,
+        "sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf"
+      },
+      {
+        "workspace_path": "models/det_500m.onnx",
+        "reason": "model weights excluded; pin transcribed from original receipt",
+        "bytes": 2524817,
+        "sha256": "5e4447f50245bbd7966bd6c0fa52938c61474a04ec7def48753668a9d8b4ea3a"
+      },
+      {
+        "workspace_path": "models/w600k_mbf.onnx",
+        "reason": "model weights excluded; pin transcribed from original receipt",
+        "bytes": 13616099,
+        "sha256": "9cc6e4a75f0e2bf0b1aed94578f144d15175f357bdc05e815e5c4a02b319eb4f"
+      }
+    ],
+    "path_semantics": {
+      "workspace_path": "path in reconstructed workspace",
+      "canonical": "path relative to repository root",
+      "archive_relative": "original path relative to research archive or maintained worktree"
+    },
+    "scientific_execution_in_this_recovery": false,
+    "publication_note": "The frozen enrollment helper and web requirements are retained with the measured sources; their byte identities are unchanged and independent of the live demo files."
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3229,
+      "sha256": "3ae5927fc7c2715f854e92acaca99b5e260b47d5712cc9da92f1da2f3521699e",
+      "privacy_redaction": {
+        "before_public_sha256": "1ab47fd2f06238091cc12e793e9e8e6f5b239d5c683cc25d011cb1f74d103c47",
+        "before_public_bytes": 3065,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "SUMMARY.json",
+      "bytes": 6383,
+      "sha256": "8cf5254595061c788a5cf859604bbe5255584efba11c4c0fbb9b23b436aa2a1c",
+      "privacy_redaction": {
+        "before_public_sha256": "f5cda55d043944d60daf695662841cdba401e4032a78cf119172b422b5087f84",
+        "before_public_bytes": 6449,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "driver/driver-first.py.txt",
+      "bytes": 13290,
+      "sha256": "b6abf4afeef6543a800c24f09ae5d19ed45813740b9ec029c3bdd1b6e76ad063",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-demo-sse-20261004/driver-first.py.txt",
+          "canonical": "benchmark/demo-sse-20261004/driver/driver-first.py.txt",
+          "bytes": 13290,
+          "sha256": "b6abf4afeef6543a800c24f09ae5d19ed45813740b9ec029c3bdd1b6e76ad063",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "6b0d58a3d88a7626b67a7aed41bb234fbe901ce4af04a7dc304c07c0ae06da28",
+            "before_public_bytes": 13354,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "6b0d58a3d88a7626b67a7aed41bb234fbe901ce4af04a7dc304c07c0ae06da28",
+        "before_public_bytes": 13354,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "driver/driver.py",
+      "bytes": 13407,
+      "sha256": "eb399803ac845de5fb1ef9632888f40722c8a03e0474df1377ce34267a3a4b69",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-demo-sse-20261004/driver.py",
+          "canonical": "benchmark/demo-sse-20261004/driver/driver.py",
+          "bytes": 13407,
+          "sha256": "eb399803ac845de5fb1ef9632888f40722c8a03e0474df1377ce34267a3a4b69",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "6417a97747f8e4a6cbae5faeaa6f4193cdc7d56fef3dc940de13d01b9850e756",
+            "before_public_bytes": 13471,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "6417a97747f8e4a6cbae5faeaa6f4193cdc7d56fef3dc940de13d01b9850e756",
+        "before_public_bytes": 13471,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "inputs/RECIPE.json",
+      "bytes": 3022,
+      "sha256": "edd07a151fa22fe9d023f7e87528c20965bb608ecf645138b012c109eca2971c"
+    },
+    {
+      "path": "receipts/PREPARED.json",
+      "bytes": 3692,
+      "sha256": "c9ad1977ca3665c7285d6d1963e9ba24f48f9746406bba65053744e0c3f0732f",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-demo-sse-20261004/PREPARED.json",
+          "canonical": "benchmark/demo-sse-20261004/receipts/PREPARED.json",
+          "bytes": 3692,
+          "sha256": "c9ad1977ca3665c7285d6d1963e9ba24f48f9746406bba65053744e0c3f0732f",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "cf0f2ae178a79b10b4a54c7a5ea0a7b49a8481eb67c5d459287d52e0514a4986",
+            "before_public_bytes": 3930,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "cf0f2ae178a79b10b4a54c7a5ea0a7b49a8481eb67c5d459287d52e0514a4986",
+        "before_public_bytes": 3930,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "samples.csv",
+      "bytes": 648,
+      "sha256": "872ac25ab5a4a691bf87b9b6fbcd368630fbfa35e1a4d8ce2c49d271731e982b"
+    },
+    {
+      "path": "source/demo/dual_view/enrollment.py",
+      "bytes": 5605,
+      "sha256": "134e7ffc3c12c03282365c8cbb7916ec354562cadf3c2ff4350eb204780481c8",
+      "origins": [
+        {
+          "archive_relative": "demo/dual_view/enrollment.py",
+          "canonical": "benchmark/demo-sse-20261004/source/demo/dual_view/enrollment.py",
+          "bytes": 5605,
+          "sha256": "134e7ffc3c12c03282365c8cbb7916ec354562cadf3c2ff4350eb204780481c8",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/demo/web/requirements.txt",
+      "bytes": 154,
+      "sha256": "5ccfb0ce25d40a76404db9df6ad9c8ec5721227ad22d3a46ae265cc21c6705d7",
+      "origins": [
+        {
+          "archive_relative": "demo/web/requirements.txt",
+          "canonical": "benchmark/demo-sse-20261004/source/demo/web/requirements.txt",
+          "bytes": 154,
+          "sha256": "5ccfb0ce25d40a76404db9df6ad9c8ec5721227ad22d3a46ae265cc21c6705d7",
+          "transformation": "none"
+        }
+      ]
+    }
+  ],
+  "shared_files": [],
+  "evidence_metadata": {
+    "schema": "research-package-provenance.v1",
+    "recovered_utc": "2026-10-06T06:00:09.662038+00:00",
+    "original_files_unchanged": true,
+    "source_map": "#/source_layout",
+    "scientific_execution_in_this_recovery": false
+  },
+  "inventory_metadata": {
+    "schema": "research-package-manifest.v1"
+  },
+  "administrative_consolidation": {
+    "previous_manifests": {
+      "PACKAGE_MANIFEST.json": {
+        "sha256": "be6914404c990051f267d3c445e926888e588b9ec9eb6fe79dda3a3c5cf44c96",
+        "bytes": 1424
+      },
+      "PROVENANCE.json": {
+        "sha256": "237392d5280aa1daed7ddef99672cac475b3ab7a972306da835c538fcbff8b42",
+        "bytes": 1130
+      },
+      "SOURCE_MAP.json": {
+        "sha256": "f083db36b3a83d599fbb4cb9f1f39e05b06444988b75bbd0a31481ebe60101ca",
+        "bytes": 6735
+      }
+    },
+    "field_relocations": [
+      {
+        "field": "evidence_metadata.source_map",
+        "previous": "SOURCE_MAP.json",
+        "current": "#/source_layout"
+      }
+    ],
+    "scientific_files_changed": false
+  }
+}

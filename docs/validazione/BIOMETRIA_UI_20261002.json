@@ -1,0 +1,230 @@
+{
+  "study": "paired frontend encoding sensitivity on previously consulted VGGFace2 cohort",
+  "N_id": 120,
+  "N_template": 120,
+  "T": 273,
+  "scale": 0.04098006,
+  "enrollment_photos": 3,
+  "frontend": {
+    "function": "unmodified readPhotos/encodeImage",
+    "browser": "Chrome headless154",
+    "max_side": 1280,
+    "JPEG_quality": 0.9,
+    "images": 1360,
+    "encoding_failures": 0,
+    "both_gallery_and_query": true
+  },
+  "summary": {
+    "status": "COMPLETE",
+    "completed_utc": "2026-10-02T13:18:42.351434+00:00",
+    "N_id": 120,
+    "N_template": 120,
+    "T": 273,
+    "enrollment_attempts": 120,
+    "enrollment_failures": 0,
+    "searches": 500,
+    "conditions": {
+      "primary_1photo": {
+        "known_attempted": 120,
+        "unknown_attempted": 130,
+        "known_admissible": 119,
+        "unknown_admissible": 129,
+        "known_failed_attempts": 1,
+        "unknown_failed_attempts": 1,
+        "known_rank1_correct": 110,
+        "known_correct_accepted": 110,
+        "known_wrong_accepted": 0,
+        "known_rejected": 9,
+        "unknown_false_accepted": 2,
+        "unknown_rejected": 127,
+        "rank1_conditional": 0.9243697478991597,
+        "TPIR_conditional": 0.9243697478991597,
+        "FNIR_conditional": 0.07563025210084033,
+        "FPIR_conditional": 0.015503875968992248,
+        "correct_per_known_attempt": 0.9166666666666666,
+        "false_accept_per_unknown_attempt": 0.015384615384615385,
+        "known_attempt_identity_bootstrap_95": [
+          0.8666666666666667,
+          0.9583333333333334
+        ],
+        "unknown_attempt_identity_bootstrap_95": [
+          0.0,
+          0.038461538461538464
+        ],
+        "known_attempt_binomial_model_95": [
+          0.8520845706626649,
+          0.9593138711319835
+        ],
+        "unknown_attempt_binomial_model_95": [
+          0.0018686089582520536,
+          0.054468881333788056
+        ],
+        "unknown_zeroevent_upper95_model": null,
+        "binomial_model_assumption": "iid Bernoulli searches across identities conditional on this gallery; sampling representativeness and provenance not established",
+        "winner_changed_float_vs_integer": 45,
+        "acceptance_changed_float_vs_integer": 1,
+        "frames_used_histogram": {
+          "0": 2,
+          "1": 248,
+          "2": 0,
+          "3": 0
+        },
+        "uncertainty_scope": "descriptive identity resampling conditional on fixed gallery; zero-event interval is degenerate, not a rare-event bound; no inference over new galleries or webcam sessions"
+      },
+      "secondary_3photos_disjoint": {
+        "known_attempted": 120,
+        "unknown_attempted": 130,
+        "known_admissible": 120,
+        "unknown_admissible": 130,
+        "known_failed_attempts": 0,
+        "unknown_failed_attempts": 0,
+        "known_rank1_correct": 120,
+        "known_correct_accepted": 118,
+        "known_wrong_accepted": 0,
+        "known_rejected": 2,
+        "unknown_false_accepted": 3,
+        "unknown_rejected": 127,
+        "rank1_conditional": 1.0,
+        "TPIR_conditional": 0.9833333333333333,
+        "FNIR_conditional": 0.016666666666666666,
+        "FPIR_conditional": 0.023076923076923078,
+        "correct_per_known_attempt": 0.9833333333333333,
+        "false_accept_per_unknown_attempt": 0.023076923076923078,
+        "known_attempt_identity_bootstrap_95": [
+          0.9583333333333334,
+          1.0
+        ],
+        "unknown_attempt_identity_bootstrap_95": [
+          0.0,
+          0.05384615384615385
+        ],
+        "known_attempt_binomial_model_95": [
+          0.9410907805329731,
+          0.9979751776623069
+        ],
+        "unknown_attempt_binomial_model_95": [
+          0.004784536324386381,
+          0.06595897499986639
+        ],
+        "unknown_zeroevent_upper95_model": null,
+        "binomial_model_assumption": "iid Bernoulli searches across identities conditional on this gallery; sampling representativeness and provenance not established",
+        "winner_changed_float_vs_integer": 40,
+        "acceptance_changed_float_vs_integer": 2,
+        "frames_used_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 1,
+          "3": 249
+        },
+        "uncertainty_scope": "descriptive identity resampling conditional on fixed gallery; zero-event interval is degenerate, not a rare-event bound; no inference over new galleries or webcam sessions"
+      }
+    },
+    "provenance": "conditional candidate, historical manifest incomplete",
+    "webcam_claim": false,
+    "no_FHE": true
+  },
+  "paired_to_original_bytes": {
+    "primary_1photo": {
+      "attempts": 250,
+      "both_admissible": 247,
+      "status_transitions": {
+        "admissible -> admissible": 247,
+        "no_face -> no_face": 2,
+        "extraction_failure -> admissible": 1
+      },
+      "acceptance_transitions_among_both": {
+        "accept -> accept": 111,
+        "reject -> reject": 135,
+        "reject -> accept": 1
+      },
+      "winner_changes_among_both": 37,
+      "acceptance_changes_among_both": 1,
+      "float_diagnostic": {
+        "enrolled": {
+          "admissible": 119,
+          "float_accepted": 111,
+          "float_correct_accepted": 110,
+          "float_wrong_accepted": 1,
+          "float_rank1_correct": 111,
+          "integer_only_accepts": 0,
+          "float_only_accepts": 1
+        },
+        "unknown": {
+          "admissible": 129,
+          "float_accepted": 2,
+          "float_correct_accepted": 0,
+          "float_wrong_accepted": 2,
+          "float_rank1_correct": 0,
+          "integer_only_accepts": 0,
+          "float_only_accepts": 0
+        }
+      }
+    },
+    "secondary_3photos_disjoint": {
+      "attempts": 250,
+      "both_admissible": 250,
+      "status_transitions": {
+        "admissible -> admissible": 250
+      },
+      "acceptance_transitions_among_both": {
+        "accept -> accept": 120,
+        "reject -> reject": 128,
+        "accept -> reject": 1,
+        "reject -> accept": 1
+      },
+      "winner_changes_among_both": 27,
+      "acceptance_changes_among_both": 2,
+      "float_diagnostic": {
+        "enrolled": {
+          "admissible": 120,
+          "float_accepted": 119,
+          "float_correct_accepted": 119,
+          "float_wrong_accepted": 0,
+          "float_rank1_correct": 120,
+          "integer_only_accepts": 0,
+          "float_only_accepts": 1
+        },
+        "unknown": {
+          "admissible": 130,
+          "float_accepted": 4,
+          "float_correct_accepted": 0,
+          "float_wrong_accepted": 4,
+          "float_rank1_correct": 0,
+          "integer_only_accepts": 0,
+          "float_only_accepts": 1
+        }
+      }
+    }
+  },
+  "evidence_sha256": {
+    "parent_manifest": "f5efe06743519fa6876f1455004bdeccdeb138edafe179508fae7c05016c8357",
+    "parent_summary": "6e23c434e61cb9a2f6582b91f0e2533c209c4c2c1e5dac0326d21636a5b002dc",
+    "UI_manifest": "cf146b3dad76ddd15065967cd69a53daada54d748debb4d17fb658948dccd2c3",
+    "UI_summary": "f89ad0a9deda23b7b490733c2f516280d981f0fdb82e85ab69b5860634faff38",
+    "UI_searches": "3dd4332db0c93fdaa120070bbd766f046a350e3cfaa5e8279099c7cbcaab5fd4",
+    "UI_vectors": "ed0cbacabab9f0ca09e3224bdd7283d5167c0599caab45c1253ae9b6c7386735",
+    "UI_encoding_receipt": "27a18a99f21d778bb493854a2f0b0587832b7f1ed65c81fcd586126c9b09bd91",
+    "UI_caller": "ea5773bb0bea063314ee20d088ec0f89fda0ce9a3f86c04ee5aaa68a8273b372",
+    "original_runner": "5d1e1b63e2ab5d1a17658797f8f2224f23ff11b5eb63622f6821285d3c6f9533",
+    "frontend_source": "90da50d762d3c303c19dd9caf0f4ffb630655f79aa5dc59bd4dad60cea219115"
+  },
+  "metadata_qualification": "cohort_provenance in immutable UI manifest describes parent selection. This paired run uses a previously consulted cohort, as paired_parent/evaluation state; interpretation receipt preserved separately.",
+  "limits": [
+    "same cohort and fixed parameters; no fresh heldout or threshold calibration",
+    "conditional provenance; incomplete historical manifests and pretrained overlap unknown",
+    "three-photo enrollment, not default single-portrait gallery",
+    "Chrome photo upload encoding, not Safari/webcam sessions",
+    "cleartext extraction/oracle, no HTTP service/FHE/timing measured",
+    "float uses same rule/threshold, not independently optimized calibration"
+  ],
+  "independent_checks": {
+    "status": "PASS",
+    "integer_and_float_scalar_oracles": "all 497 raw and 498 UI admissible results agree with saved outputs",
+    "max_float_score_absolute_difference": 3.13e-13,
+    "source_sha256": {
+      "UI_PROTOCOL_REVIEW.json": "7e8ff28e5c70c97da4a0880cd02d5dbdfc3056bb36143a238dfa22ea00661b11",
+      "UI_RESULTS_RECOMPUTED.json": "70b365e1968966c22c24adc09585eb3c7a2e7473c898c0cb24cb2ceddfeb39d0",
+      "UI_REVIEW_RECEIPT.json": "2d94dbe618a27869576abdd58952ee04beb8ef2513cba59a99e0e90e54841f0a"
+    }
+  }
+}

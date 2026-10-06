@@ -1,0 +1,16 @@
+{
+  "started_utc": "2026-10-04T17:38:18.394261+00:00",
+  "pid": 26671,
+  "parent_pid": 26669,
+  "command": [
+    "/workspace/research/tmp/current-fcma-public-gate-20261004/bin/public-gate",
+    "--bench"
+  ],
+  "status": "terminal",
+  "scope": "bench",
+  "keys_FHE": false,
+  "returncode": 0,
+  "ended_utc": "2026-10-04T17:38:18.436792+00:00",
+  "stdout_sha256": "0e6347bd31341c42c4dec338e624d77952a7cd3136967ce397f92b881f9e138e",
+  "stdout_bytes": 4470
+}

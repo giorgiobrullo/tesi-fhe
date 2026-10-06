@@ -1,0 +1,20 @@
+{
+  "status": "SOURCE_STATIC_TESTS_AND_PEER_REVIEW_PASS",
+  "tests": 3,
+  "test_seconds": 0.002,
+  "ruff": "PASS",
+  "safe_plans": "PASS",
+  "native_fhe_performed": false,
+  "first_fixture_index": 2,
+  "keysets": 1,
+  "arms": 6,
+  "records": 355,
+  "coefficient_events": 346,
+  "changes": [
+    "immediate direct-child wait checkpoint",
+    "strict captured-byte envelope",
+    "local optimization guard in addition to frozen semantic module guard",
+    "duplicate/nonfinite JSON rejected"
+  ],
+  "performance_claim": false
+}

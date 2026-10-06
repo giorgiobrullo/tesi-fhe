@@ -1,0 +1,138 @@
+{
+  "schema": "a182-independent-first-key-review-v1",
+  "status": "INDEPENDENT_BOUND_COMPLETE_NEGATIVE",
+  "complete_gate_pass": false,
+  "root_saved_validation_matches_fresh_replay": true,
+  "root_validation_sha256": "ed0cb2930ef34623695be3f4fdd1acca4b3fdfc7cd8de08aff25042a179dfa55",
+  "fresh_validation_sha256": "ed0cb2930ef34623695be3f4fdd1acca4b3fdfc7cd8de08aff25042a179dfa55",
+  "source_sha256": "24e55295dd3ce07fca1ad9ac37f95eb75bb64fc39cff96031731aca298c19c89",
+  "binary_sha256": "a85ca9972e02d3f4067beb5884cfcd8e837a60419a9590af1ab3203e5bbbd0ee",
+  "child_pid": 92665,
+  "actual_exit_code": 1,
+  "started_at_utc": "2026-09-05T08:40:25.272817+00:00",
+  "exited_at_utc": "2026-09-05T08:41:33.498821+00:00",
+  "raw_sha256": "b5a4515a48f879b2b5c5d6ea830c4bde70c8fc4faec06e42c1376c7fb2b2f58f",
+  "records": 17703,
+  "consumers": 1568,
+  "producer_gate_pass": false,
+  "actual_consumer_gate_pass": false,
+  "original_six_arm_summary": {
+    "status": "A169_DIAGNOSTIC_COMPLETE",
+    "cases": 28,
+    "positive_arm_order": [
+      "baseline_dual",
+      "shift_initial_only",
+      "single_full_reuse_x256",
+      "single_full_direct_b1",
+      "single_full_direct_b0_b1"
+    ],
+    "failures_baseline_shift_single_b1_b0_b1": [
+      0,
+      0,
+      2,
+      1,
+      1
+    ],
+    "native_decode_failures_baseline_shift_single_b1_b0_b1": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "consumer_scalar_phase_failures_baseline_shift_single_b1_b0_b1": [
+      0,
+      0,
+      2,
+      1,
+      1
+    ],
+    "both_original_candidates_native_decode_pass": true,
+    "both_original_candidates_consumer_scalar_phase_pass": false,
+    "both_original_candidates_all_checks_pass": false,
+    "repair_native_decode_pass": true,
+    "repair_consumer_scalar_phase_pass": false,
+    "repair_all_checks_pass": false,
+    "repair_pair_failures": 0,
+    "repair_gate_pass": false,
+    "repair_b0_pair_failures": 0,
+    "repair_b0_b1_native_decode_pass": true,
+    "repair_b0_b1_consumer_scalar_phase_pass": false,
+    "repair_b0_b1_all_checks_pass": false,
+    "repair_b0_b1_gate_pass": false,
+    "negative_detections_drop_rescale": [
+      12,
+      16
+    ],
+    "controls_valid": true,
+    "p_fail_certified": false,
+    "whole_exact_id_validated": false,
+    "latency_claim_allowed": false
+  },
+  "consumer_arm_order": [
+    "baseline_dual",
+    "single_full_direct_b0_b1"
+  ],
+  "consumer_gate_order": [
+    "candidate_native",
+    "actual_address",
+    "output_at_actual_address",
+    "semantic_output",
+    "stock_equivalence",
+    "observer_closure"
+  ],
+  "consumer_failure_counts": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0,
+      0
+    ]
+  ],
+  "consumer_case_failures": [
+    0,
+    1
+  ],
+  "failed_consumers": [
+    {
+      "keyset": 0,
+      "scene": "dense_nonzero",
+      "x": 17,
+      "arm": "single_full_direct_b0_b1",
+      "bit": 2,
+      "candidate": 0,
+      "failed_gates": [
+        "actual_address",
+        "semantic_output"
+      ]
+    }
+  ],
+  "ledger": {
+    "BR": 5124,
+    "KS": 3360,
+    "samples": 6020,
+    "client_lwe_encryptions": 784,
+    "client_glwe_encryptions": 28
+  },
+  "stock_equivalence_failures": [
+    0,
+    0
+  ],
+  "independently_attested_key_membership": false,
+  "root_source_to_binary_build_attestation_required": true,
+  "candidate_from_prior_selector_round": false,
+  "full_exact_id_validated": false,
+  "actual_p_fail": null,
+  "timing_claim_allowed": false,
+  "retry_or_expansion_authorized": false
+}

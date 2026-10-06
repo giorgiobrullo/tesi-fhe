@@ -1,0 +1,16 @@
+[package]
+name = "a191_pfks_actual_comparator"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+serde_json = "=1.0.150"
+dyn-stack = "=0.11.0"
+sha2 = "=0.10.9"
+tfhe = { version = "=0.11.3", features = ["integer"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

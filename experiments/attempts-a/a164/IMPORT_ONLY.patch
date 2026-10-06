@@ -1,0 +1,10 @@
+--- A160/candidate/src/main.rs
++++ A164/candidate/src/main.rs (task labels normalized)
+@@ -3,6 +3,7 @@
+ use observe::*;
+ use std::fs;
+ use std::path::PathBuf;
++use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_add_mul_assign;
+ use tfhe::core_crypto::prelude::*;
+ use tfhe::shortint::atomic_pattern::AtomicPatternServerKey;
+ use tfhe::shortint::client_key::atomic_pattern::AtomicPatternClientKey;

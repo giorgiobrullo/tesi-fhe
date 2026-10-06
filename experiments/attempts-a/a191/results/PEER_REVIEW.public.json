@@ -1,0 +1,28 @@
+{
+  "schema": "a191.peer-review.v1",
+  "type": "bounded read-only source review; no reviewer tests, actual logs, Cargo, FHE or native probes",
+  "reviews": [
+    {
+      "reviewer": "audit_noise_runtime",
+      "scope": "comparator.rs and a191.rs source/interface/algebra",
+      "status": "clear",
+      "findings": "Actual L-R differences, ternary/raw control orientation, four-stage composition, all six actual KS input objects, plus-remainder convention and actual retained small used by stock BR confirmed. Completed replay not reviewed by this reviewer."
+    },
+    {
+      "reviewer": "audit_frontier",
+      "scope": "model.py/replay.py and private launcher/verifier",
+      "status": "clear after correction",
+      "correction": "Explicit modulo-Q affine input-phase equality added for all four stages, alongside unchanged word equality. Coherent local-closure counterexample rejects.",
+      "findings": "Fixed48 order/counts, actual comparator/six KS binding, complete negative classes, captured bytes and private lifecycle reviewed."
+    },
+    {
+      "reviewer": "root",
+      "scope": "comparator.rs/a191.rs/model.py/replay.py/run_gate.py/verify.py",
+      "status": "clear after correction",
+      "correction": "Console output now uses explicit compact whitelist; actual degrees remain only in private result file.",
+      "findings": "First-only scope, source/API typing still Cargo obligation; actual observed small/source-linked degrees do not claim internal returned receipt."
+    }
+  ],
+  "actual_compilation_reviewed": false,
+  "actual_fhe_reviewed": false
+}

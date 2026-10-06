@@ -1,0 +1,106 @@
+{
+  "schema": "a150-witness-key2-diagnosis-v1",
+  "status": "FAILED_GATE_PRESERVED_NEGATIVE_NONDISCRIMINATING",
+  "private_client_diagnostic": true,
+  "gate_summary_unchanged": {
+    "bounded_diagnostic_gate_pass": false,
+    "forced_unmet_detected": true,
+    "formal_failure_claim": false,
+    "fresh_keys": 1,
+    "full_c1_requirement_satisfied": false,
+    "graph_negatives_pass": false,
+    "n4_pair_pass": true,
+    "noise_improvement_claim": false,
+    "service_claim": false,
+    "stock_pair_pass": true,
+    "suite": "witness",
+    "timing_claim": false,
+    "type": "summary"
+  },
+  "source_and_record_pins": {
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/algorithms/lwe_keyswitch.rs": "4e21ac924972ca8884257aa5bb778f672c07b4c35be542b51e86583bfcd45913",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/algorithms/lwe_programmable_bootstrapping/mod.rs": "3d29abdf88906f3a43d9487fb1557ffee4b12bfbc9ecf62213b39595ea73ce18"
+  },
+  "cyclic_sum_phase_difference_zero_mod_2_64": true,
+  "next_finite_margin_control_clear_replay": [
+    {
+      "body_offset_torus": "-<LARGE_DIAGNOSTIC_INTEGER>",
+      "degree_offset": -128,
+      "scope": "CLEAR_REPLAY_EXISTING_COEFFICIENTWISE_ADDRESSES_ONLY",
+      "n4_plain": {
+        "predicted_lut_outputs_signed": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "mismatch_count": 0,
+        "original_center_displacements": [
+          6,
+          1,
+          -11,
+          -10
+        ]
+      },
+      "n4_negative_WrongLaneKsk": {
+        "predicted_lut_outputs_signed": [
+          1,
+          -3,
+          0,
+          0
+        ],
+        "mismatch_count": 1,
+        "original_center_displacements": [
+          -121,
+          -227,
+          172,
+          163
+        ]
+      }
+    },
+    {
+      "body_offset_torus": "<LARGE_DIAGNOSTIC_INTEGER>",
+      "degree_offset": 128,
+      "scope": "CLEAR_REPLAY_EXISTING_COEFFICIENTWISE_ADDRESSES_ONLY",
+      "n4_plain": {
+        "predicted_lut_outputs_signed": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "mismatch_count": 0,
+        "original_center_displacements": [
+          6,
+          1,
+          -11,
+          -10
+        ]
+      },
+      "n4_negative_WrongLaneKsk": {
+        "predicted_lut_outputs_signed": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "mismatch_count": 2,
+        "original_center_displacements": [
+          -121,
+          -227,
+          172,
+          163
+        ]
+      }
+    }
+  ],
+  "not_demonstrated": [
+    "new FHE result",
+    "universal wrong-key discriminator",
+    "independent lane-error trials",
+    "noise improvement",
+    "composed failure bound"
+  ],
+  "runtime_actions": 0,
+  "source_edits": 0
+}

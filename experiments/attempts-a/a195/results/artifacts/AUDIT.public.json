@@ -1,0 +1,106 @@
+{
+  "origin": {
+    "status": "EXACT_PRODUCER_LABEL_SUCCESSOR",
+    "mapped_files": 30,
+    "byte_identical_files": 20,
+    "old_source_sha256": "2548875eb4988a16e68c55b4aa3063d6409c10e2b999e8b826d004d870594b67",
+    "coefficients_checker_relaxed": false,
+    "crypto_arithmetic_changed": false,
+    "old_runtime_success_inherited": false,
+    "actual_a195_runtime": false
+  },
+  "inherited_audit": {
+    "status": "SOURCE_AND_FIXED_SCHEDULE_PASS",
+    "unchanged_files": 13,
+    "origin_pins": 23,
+    "primary_pins": 9,
+    "fixtures": 16,
+    "nominal_wrongscale_detected_by_fixture": [
+      true,
+      true,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "arm_events": [
+      63,
+      71,
+      71
+    ],
+    "component_records": 211,
+    "component_events": 205,
+    "stages": {
+      "n4-smoke": {
+        "record": "stage_plan",
+        "schema": "a195.precision_expansion.v1",
+        "execution_requested": false,
+        "stage": "n4-smoke",
+        "keysets": 3,
+        "fixture_indices": [
+          0,
+          1
+        ],
+        "planned_components": 6,
+        "component_records": 211,
+        "raw_records_if_pass": 1268,
+        "pbs_if_pass": 1230,
+        "ks_if_pass": 1230,
+        "input_encryptions_if_pass": 6,
+        "total_extractions_if_pass": 1278,
+        "stop_first_component_negative": true,
+        "fresh_stage_keys": true,
+        "timing_allowed": false,
+        "automatic_expansion": false
+      },
+      "n4-full": {
+        "record": "stage_plan",
+        "schema": "a195.precision_expansion.v1",
+        "execution_requested": false,
+        "stage": "n4-full",
+        "keysets": 3,
+        "fixture_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "planned_components": 48,
+        "component_records": 211,
+        "raw_records_if_pass": 10130,
+        "pbs_if_pass": 9840,
+        "ks_if_pass": 9840,
+        "input_encryptions_if_pass": 48,
+        "total_extractions_if_pass": 10224,
+        "stop_first_component_negative": true,
+        "fresh_stage_keys": true,
+        "timing_allowed": false,
+        "automatic_expansion": false
+      }
+    },
+    "compiled": false,
+    "actual_fhe": false
+  }
+}

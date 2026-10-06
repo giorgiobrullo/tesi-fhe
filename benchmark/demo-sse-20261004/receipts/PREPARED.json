@@ -1,0 +1,72 @@
+{
+  "observed_utc": "2026-10-04T09:20:49.022911+00:00",
+  "recognized_running": [],
+  "ports": {
+    "web": 8020,
+    "native": 9020
+  },
+  "python": "/workspace/research/.venv/bin/python",
+  "overlay": "/workspace/research/tmp/general-audit-20261002/root/pillow123",
+  "versions": {
+    "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "Pillow_imported": "12.3.0",
+    "packages": {
+      "fastapi": "0.141.1",
+      "uvicorn": "0.52.4",
+      "numpy": "1.26.4",
+      "Pillow": "12.3.0",
+      "insightface": "1.0.1",
+      "onnxruntime": "1.27.0"
+    }
+  },
+  "source_sha256": {
+    "demo/web/app.py": "594edc632deaf39c8941decf98dbb76eddba06fb4a47ce06e85bda38b48d595b",
+    "demo/web/engines.py": "a19fb793e6961343214f5aab4c0b881e2bc7a789f2e1149c8da14faf0282e6a6",
+    "demo/web/launch.py": "bd0bc542e8058f6f39de5d1b36774c28526a4d309894108b7dafddf00fca0e6f",
+    "demo/web/timeline.py": "8bb12985698423ad735a1a9f249e19a7c99fec556d691ea8f153852c7ea733b8",
+    "demo/web/events.py": "5cf8f03358e482502251a0f26fe8208edece81f667e84523069a59003c7efe35",
+    "demo/web/default_gallery.py": "d94fce7ca977dd21414e24598907ee6028a6a492c00f153d85f5dacae287bd06",
+    "demo/dual_view/enrollment.py": "134e7ffc3c12c03282365c8cbb7916ec354562cadf3c2ff4350eb204780481c8",
+    "demo/dual_view/client.py": "01c0cc86f7c17ec4b0b7d18e90cf5ac2c9de1903cac11f175cb5d48c83361b28",
+    "demo/dual_view/gallery.py": "71131bada0dd45c818a8dc9ed5309da1765f83f90fe1249ed8d4d63f72d44249",
+    "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+    "demo/web/requirements.txt": "5ccfb0ce25d40a76404db9df6ad9c8ec5721227ad22d3a46ae265cc21c6705d7",
+    "runtime/config.json": "5a6ae46bc188c88b6585ee258532008912bbf0aa41fe2b76caff0e3747ed2a58",
+    "runtime/CIRCUIT_CONTRACT.json": "96269130d3ed5fca499bf5ea04d901760400e2007992dc6feffbd832f739e367",
+    "demo/web/gallery/catalogue.json": "6c8aa96b893ce9a57cf216aa9801395e6802c4ef1a7c6db8665c9c0a0b38b454"
+  },
+  "photos": {
+    "einstein": {
+      "path": "/workspace/maintained/demo/web/gallery/portraits/albert-einstein.jpg",
+      "bytes": 86261,
+      "sha256": "bb688551ba543a965e3aa2d85c617f25667e19a5ede7b57ec3955089a7bccae3"
+    },
+    "curie": {
+      "path": "/workspace/maintained/demo/web/gallery/portraits/marie-curie.jpg",
+      "bytes": 55463,
+      "sha256": "6c150322cc1067558915d1a0d50a419aef2104b86aa66739b555baff191b341e"
+    },
+    "turing": {
+      "path": "/workspace/maintained/demo/web/gallery/portraits/alan-turing.jpg",
+      "bytes": 60297,
+      "sha256": "c1e54d06afde2476bedd2618508bb613f024c2890458cb60b51d7f85b133e02c"
+    }
+  },
+  "models": {
+    "/opt/models/models/antelopev2/antelopev2/glintr100.onnx": {
+      "bytes": 260665334,
+      "sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf"
+    },
+    "/opt/models/models/buffalo_s/det_500m.onnx": {
+      "bytes": 2524817,
+      "sha256": "5e4447f50245bbd7966bd6c0fa52938c61474a04ec7def48753668a9d8b4ea3a"
+    },
+    "/opt/models/models/buffalo_s/w600k_mbf.onnx": {
+      "bytes": 13616099,
+      "sha256": "9cc6e4a75f0e2bf0b1aed94578f144d15175f357bdc05e815e5c4a02b319eb4f"
+    }
+  },
+  "binary_sha256": "5b157b37c74c995f624d049d400cb5c0c62cdf4b71e121ebc926c90d17fec546",
+  "keygen_receipt_sha256": "543016e5b2801e9dbf258a1af00edf9b106cdf1d18f436eb018ef9286acc3ec4",
+  "plan": "One untimed warmup Einstein, then one measured single-photo query Einstein/Curie/Turing, serial same session; start before POST send, end first complete SSE event for the returned request_id. No browser/camera capture or startup in timer. Own launcher/native only; no build/keygen; desktop load uncontrolled."
+}

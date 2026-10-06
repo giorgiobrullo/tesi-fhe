@@ -1,0 +1,29 @@
+{
+  "schema": "a171-execution-development-history-v1",
+  "events": [
+    {
+      "stage": "first tests",
+      "result": "19 envelope tests passed; semantic fixture import failed",
+      "cause": "Legacy test_verify.py imported this new verifier under common module name verify.",
+      "correction": "Test-only module cache isolation while loading pinned legacy synthetic fixtures. No frozen candidate/replay edit."
+    },
+    {
+      "stage": "second tests",
+      "result": "23 tests passed in 1.986s"
+    },
+    {
+      "stage": "final durability refinement",
+      "result": "wait checkpoint moved before log flushing and explicit failing-flush test added; exact clearance bytes preserved"
+    },
+    {
+      "stage": "lint",
+      "result": "one unused test import removed; Ruff then passed"
+    },
+    {
+      "stage": "peer review",
+      "result": "Reject dangling optional failure-marker symlinks; dedicated regression added before freeze. Final suite 25 tests."
+    }
+  ],
+  "actual_fhe_or_binary_run": false,
+  "actual_process_probe": false
+}

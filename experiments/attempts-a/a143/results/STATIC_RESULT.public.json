@@ -1,0 +1,29 @@
+{
+  "status": "STATIC_AND_SYNTHETIC_CHECKS_PASS",
+  "tests_run": 11,
+  "test_output": "test_aggregate_closure_does_not_attest_binary_key_membership (test_a143.A143) ... ok\ntest_complete_smoke_and_no_subset_promotion (test_a143.A143) ... ok\ntest_each_private_aggregate_mutation (test_a143.A143) ... ok\ntest_owner_only_and_exclusive_artifacts (test_a143.A143) ... ok\ntest_public_rounding_ties_and_wrap (test_a143.A143) ... ok\ntest_public_word_closure_does_not_replace_consumer_region (test_a143.A143) ... ok\ntest_public_words_rounding_and_hash_mutations (test_a143.A143) ... ok\ntest_reproducible_source_and_unchanged_crypto_prefix (test_a143.A143) ... ok\ntest_scheduler_preflight_is_read_only_refusal (test_a143.A143) ... ok\ntest_smoke_schedule_detects_source_negative (test_a143.A143) ... ok\ntest_zero_phase_nonzero_actual_ms (test_a143.A143) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 1.017s\n\nOK\n",
+  "smoke_source_fixture_indices": [
+    2,
+    4
+  ],
+  "smoke_coefficient_events": 346,
+  "synthetic_joint_witness_pass": true,
+  "full_schedule_executed": false,
+  "full_schedule_complete": false,
+  "original_first_two_fixture_indices_rejected_as_negative_insensitive": true,
+  "ms64_consumer_region_pass": false,
+  "ms64_final_flags_pass": true,
+  "coherent_impossible_binary_aggregate_passes_conditional_arithmetic": true,
+  "synthetic_ciphertexts_encrypted": false,
+  "rust_typecheck_or_execution": false,
+  "fhe_execution": false,
+  "extra_crypto_calls": false,
+  "formal_failure_bound": false,
+  "service_validation": false,
+  "synthetic_evidence_sha256": {
+    "coherent-impossible-binary-aggregate.json": "c379a24c1bcad8d0e49f7618ec20c4c0f32494eead4443d64f26a62703786461",
+    "consumer-ms64.json": "eeda70b1e7f39a70cf33494a3f0fabeb38049082fec136bbc068643a35a0b0b5",
+    "smoke-replay.json": "8755519ef28e31c080d4e87521b91283f47d581ee0bfcba3b6f01a821cb640d1",
+    "smoke.jsonl": "70d9d8e0b43a16eba687600cd0d922d6d555f2ceb21de22fa82ea393a9f6253a"
+  }
+}

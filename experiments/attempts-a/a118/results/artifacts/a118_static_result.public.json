@@ -1,0 +1,55 @@
+{
+  "decision": {
+    "D": "BENCHMARK_WORTHY_NOT_PROMOTED",
+    "H_compaction_or_throughput": "RETAINED_UNMEASURED_LEAD",
+    "H_fixed_context_single_query": "NEGATIVE_DOMINATED_BY_D_AT_STATIC_CIPHERTEXT_OPERATION_BOUNDARY",
+    "reason": "Both fit one fixed 16384-slot ciphertext and invoke the same SIMD LT once. D spends spare lanes to duplicate pair bits and avoids H's post-LT transpose, loss reduction, and count fanout. H's 8128 active lanes can matter only if a real compaction/batching schedule turns occupancy into end-to-end savings."
+  },
+  "ledger": {
+    "block_width": 128,
+    "candidate_d_post_lt_rotations": 14,
+    "candidate_d_total_rotations": 49,
+    "candidate_h_post_lt_rotations": 49,
+    "candidate_h_total_rotations": 84,
+    "candidate_input_score_fanout_rotations": 35,
+    "d_factor_lanes": 16256,
+    "d_inferred_depth_after_scores": 23,
+    "d_pair_lanes": 16002,
+    "d_public_pad_lanes": 127,
+    "d_selector_levels": 7,
+    "d_threshold_lanes": 127,
+    "d_unused_lanes": 128,
+    "gallery_size": 127,
+    "h_comparison_active_lanes": 8128,
+    "h_fermat_equality_depth": 13,
+    "h_fermat_inferred_depth_after_scores": 29,
+    "h_inferred_depth_after_scores": 23,
+    "h_pair_lanes": 8001,
+    "h_public_pad_lanes": 127,
+    "h_selector_levels": 7,
+    "h_threshold_lanes": 127,
+    "h_zero_roots": 127,
+    "inferred_lt_depth": 16,
+    "simd_slots": 16384,
+    "unordered_pairs": 8001
+  },
+  "rotation_ledger_warning": "The 49-vs-84 totals are one explicit diagonal/BSGS candidate schedule from a packed 127-score input, not lower bounds, HElib measurements, or speedups.",
+  "scope": {
+    "fhe_executed": false,
+    "helib_built": false,
+    "keys_generated": false,
+    "runtime_speedup_claimed": false,
+    "timing_measured": false
+  },
+  "semantics": {
+    "output": "0 reject or exact stable-first index+1",
+    "smoke": {
+      "duplicated_candidate_major": 94,
+      "one_copy_loss_count": 94,
+      "reference": 94
+    },
+    "threshold": "inclusive score<=threshold",
+    "winner_threshold_only": true
+  },
+  "status": "PASS_STATIC_D_BENCHMARK_WORTHY_H_SINGLE_QUERY_DOMINATED_UNDER_FIXED_CONTEXT"
+}

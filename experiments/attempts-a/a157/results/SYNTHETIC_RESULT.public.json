@@ -1,0 +1,38 @@
+{
+  "dataset_kind": "SYNTHETIC_NO_RUNTIME_SAMPLE",
+  "new_runtime_evidence": false,
+  "result": {
+    "status": "QUALIFIED_WITHIN_FRAME_POLICY_NOT_CONTENTION_FREE",
+    "frames": [
+      {
+        "start_ns": 10000000000,
+        "end_ns": 12000000000,
+        "host_cpu_ns": 8000000000,
+        "owned_cpu_ns": 7040000000,
+        "signed_nonbenchmark_cpu_ns": 960000000,
+        "nonbenchmark_fraction_bounds": [
+          0.026,
+          0.034
+        ],
+        "uncertainty_fraction": 0.004,
+        "host_busy_upper": 0.254
+      },
+      {
+        "start_ns": 12000000000,
+        "end_ns": 14000000000,
+        "host_cpu_ns": 8000000000,
+        "owned_cpu_ns": 7040000000,
+        "signed_nonbenchmark_cpu_ns": 960000000,
+        "nonbenchmark_fraction_bounds": [
+          0.026,
+          0.034
+        ],
+        "uncertainty_fraction": 0.004,
+        "host_busy_upper": 0.254
+      }
+    ],
+    "within_cell_contention_excluded": false,
+    "ownership_membership_attested": false,
+    "source": "supplied cumulative counters only; collector implementation not attested"
+  }
+}

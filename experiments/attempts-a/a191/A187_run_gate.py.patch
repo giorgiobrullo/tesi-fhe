@@ -1,0 +1,142 @@
+--- frozen-A187/run_gate.py
++++ A191/run_gate.py
+@@ -1,4 +1,4 @@
+-"""One fixed A187 first fixture, with saved root clearance and terminal checkpoint."""
++"""One fixed A191 first fixture, with saved root clearance and terminal checkpoint."""
+ 
+ import argparse
+ from datetime import datetime, timezone
+@@ -7,19 +7,20 @@
+ import os
+ from pathlib import Path
+ import subprocess
++import shutil
+ 
+ HERE = Path(__file__).resolve().parent
+ ROOT = HERE.parents[1]
+-SOURCE = HERE
+-BINARY = SOURCE / "target-a187-only/release/a149_padding_coefficient_gate"
+-RUN = HERE / "runs/first-precision"
++SOURCE = HERE / "candidate"
++BINARY = HERE / "target-a191-only/release/a191_pfks_actual_comparator"
++RUN = HERE / "runs/first-composition"
+ 
+ 
+ def environment():
+     return {
+         "RAYON_NUM_THREADS": "1",
+-        "A187_RUN_ACK": "A187_FIRST_N4_AUTHORIZED",
+-        "A187_SOURCE_SHA256": (HERE / "SOURCE_DIGEST.txt").read_text().strip(),
++        "A191_RUN_ACK": "A191_FIRST_COMPARATOR_AUTHORIZED",
++        "A191_SOURCE_SHA256": (HERE / "SOURCE_DIGEST.txt").read_text().strip(),
+     }
+ 
+ 
+@@ -56,19 +57,21 @@
+         handle.write("\n")
+         handle.flush()
+         os.fsync(handle.fileno())
++    sync_directory(path.parent)
++
++
++def sync_directory(path):
++    fd = os.open(path, os.O_RDONLY | os.O_DIRECTORY)
++    try:
++        os.fsync(fd)
++    finally:
++        os.close(fd)
+ 
+ 
+ def source_check():
+     import replay
+ 
+     replay.source_check()
+-    origins = json.loads((HERE / "SOURCE_ORIGINS.json").read_text())
+-    for name, expected in origins["files"].items():
+-        require(digest(Path(name)) == expected, "frozen origin " + name)
+-    for name, expected in json.loads((HERE / "SOURCE_PINS.json").read_text())[
+-        "files"
+-    ].items():
+-        require(digest(Path(name)) == expected, "primary API " + name)
+     return digest(HERE / "MANIFEST.json")
+ 
+ 
+@@ -114,12 +117,18 @@
+             json.dumps(
+                 dict(
+                     status="PLAN_ONLY_NO_CHILD",
+-                    suite="first-precision",
++                    suite="first-composition",
+                     keysets=1,
+-                    fixture=[255, 256, 254, 4095],
+-                    arms=3,
+-                    coefficient_events=205,
+-                    raw_records=211,
++                    fixture_index=7,
++                    left=[0, 1, 0, 126],
++                    right=[0, 0, 15, 127],
++                    selector_arms=3,
++                    comparator_stages=4,
++                    raw_records=48,
++                    pfks=20,
++                    ks=10,
++                    br=10,
++                    samples=16,
+                     actual_fhe=False,
+                     retry=False,
+                     automatic_expansion=False,
+@@ -136,6 +145,10 @@
+     )
+     binding = source_check()
+     require(binding == args.artifact_sha256, "explicit artifact hash")
++    require(
++        BINARY.is_file() and not any(p.is_symlink() for p in [BINARY, *BINARY.parents]),
++        "regular binary without symlink ancestry",
++    )
+     require(digest(BINARY) == args.binary_sha256, "actual binary hash")
+     private(args.clearance)
+     clearance_bytes = args.clearance.read_bytes()
+@@ -159,15 +172,21 @@
+     os.umask(0o077)
+     RUN.parent.mkdir(mode=0o700, exist_ok=True)
+     private(RUN.parent, True)
++    require(
++        shutil.disk_usage(HERE).free >= 2 * (1 << 30), "two GiB free disk prerequisite"
++    )
+     RUN.mkdir(mode=0o700, exist_ok=False)
++    sync_directory(RUN.parent)
+     fd = os.open(RUN / "preflight.json", os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+     with os.fdopen(fd, "wb") as handle:
+         handle.write(clearance_bytes)
+         handle.flush()
+         os.fsync(handle.fileno())
++    sync_directory(RUN)
+     command = [str(BINARY), "--run", "--expected-binary-sha256=" + args.binary_sha256]
+     prepared = dict(
+-        schema="a187.a187.first.v1",
++        schema="a191.first_composition.v1",
++        run_directory=str(RUN),
+         driver_pid=os.getpid(),
+         command=command,
+         cwd=str(SOURCE),
+@@ -225,8 +244,18 @@
+         ),
+         flush=True,
+     )
+-    return code or (0 if terminal["postchecks_complete"] else 2)
++    return (code if code in (0, 1) else 2) if terminal["postchecks_complete"] else 2
+ 
+ 
+ if __name__ == "__main__":
+-    raise SystemExit(main())
++    try:
++        result = main()
++    except Exception as error:
++        print(
++            json.dumps(
++                dict(status="INVALID_OR_INCOMPLETE_A191_LAUNCH", error=str(error))
++            ),
++            flush=True,
++        )
++        result = 2
++    raise SystemExit(result)

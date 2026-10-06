@@ -1,0 +1,253 @@
+{
+  "schema": "a169-post-replay-private-observation-review-v1",
+  "status": "PASS_FROZEN_REPLAY_WITH_CONSERVATIVE_MARGIN_OBSERVATIONS",
+  "acceptance_rules_changed": false,
+  "actual_run_retried": false,
+  "validation_sha256": "8d918dd9ba74e902f1f835c8566914966357e2943fbfc6a46438e016ab690096",
+  "stdout_sha256": "74ce83fe13079a940422d300c9d4f04be11fbafc9b34da2190618442c51ccf23",
+  "source_sha256": "35ea371d06d7616f079b72190115daa449ba5a50e4a0761c0930bfbe70f40c60",
+  "binary_sha256": "d5c92454d90477ca511f7be7d9719e18140741d1d1e9758551b8e4583ad53a62",
+  "frozen_checker_manifest_sha256": "ed28768d8f70022a1797d480fd3a280a3ed247faf03990e230053630b5600c51",
+  "records": 16104,
+  "arms": [
+    {
+      "arm": "baseline_dual",
+      "cases": 28,
+      "native_failed_cases": 0,
+      "scalar_consumer_failed_cases": 0,
+      "scalar_consumer_failed_rows": 0,
+      "case_failures": 0,
+      "conservative_margin_outside_rows": 0,
+      "conservative_margin_outside_bit_counts": {}
+    },
+    {
+      "arm": "shift_initial_only",
+      "cases": 28,
+      "native_failed_cases": 0,
+      "scalar_consumer_failed_cases": 0,
+      "scalar_consumer_failed_rows": 0,
+      "case_failures": 0,
+      "conservative_margin_outside_rows": 0,
+      "conservative_margin_outside_bit_counts": {}
+    },
+    {
+      "arm": "single_full_reuse_x256",
+      "cases": 28,
+      "native_failed_cases": 0,
+      "scalar_consumer_failed_cases": 0,
+      "scalar_consumer_failed_rows": 0,
+      "case_failures": 0,
+      "conservative_margin_outside_rows": 3,
+      "conservative_margin_outside_bit_counts": {
+        "2": 2,
+        "1": 1
+      }
+    },
+    {
+      "arm": "single_full_direct_b1",
+      "cases": 28,
+      "native_failed_cases": 0,
+      "scalar_consumer_failed_cases": 0,
+      "scalar_consumer_failed_rows": 0,
+      "case_failures": 0,
+      "conservative_margin_outside_rows": 2,
+      "conservative_margin_outside_bit_counts": {
+        "2": 2
+      }
+    },
+    {
+      "arm": "single_full_direct_b0_b1",
+      "cases": 28,
+      "native_failed_cases": 0,
+      "scalar_consumer_failed_cases": 0,
+      "scalar_consumer_failed_rows": 0,
+      "case_failures": 0,
+      "conservative_margin_outside_rows": 2,
+      "conservative_margin_outside_bit_counts": {
+        "2": 2
+      }
+    },
+    {
+      "arm": "negative_drop_first_correction",
+      "cases": 28,
+      "native_failed_cases": 6,
+      "scalar_consumer_failed_cases": 9,
+      "scalar_consumer_failed_rows": 33,
+      "case_failures": 9,
+      "conservative_margin_outside_rows": 31,
+      "conservative_margin_outside_bit_counts": {
+        "1": 7,
+        "2": 7,
+        "3": 4,
+        "4": 4,
+        "5": 3,
+        "6": 3,
+        "7": 3
+      }
+    }
+  ],
+  "b1_pair_rows": 28,
+  "b0_pair_rows": 28,
+  "b1_pair_failures": 0,
+  "b0_pair_failures": 0,
+  "original_b1_gate_pass": true,
+  "new_b0_b1_gate_pass": true,
+  "negative_detections": [
+    9,
+    16
+  ],
+  "private_new_repair_margin_excursions": [
+    {
+      "margin_record": {
+        "actual_p16": 9,
+        "arm": "single_full_direct_b0_b1",
+        "bit": 2,
+        "composed_noise_margin_certified": false,
+        "error_in_delta59": 0.7690387964248657,
+        "expected_p16": 8,
+        "inside_open_half_slot": false,
+        "keyset": 0,
+        "record": "weighted_p16_margin",
+        "scene": "sparse_nonzero",
+        "schema": "a169.low_b0_b1_direct_scale.v1",
+        "signed_error": "<LARGE_DIAGNOSTIC_INTEGER>",
+        "x": 7
+      },
+      "scalar_consumer_records": [
+        {
+          "actual": 0,
+          "actual_pbs_executed": false,
+          "arm": "single_full_direct_b0_b1",
+          "bit": 2,
+          "candidate": -1,
+          "coefficientwise_modulus_switch_error_assumed_zero": true,
+          "expected": 0,
+          "ideal_candidate_and_keyswitch": true,
+          "input_torus": "<LARGE_DIAGNOSTIC_INTEGER>",
+          "keyset": 0,
+          "level": 5,
+          "pass": true,
+          "record": "consumer_scalar_phase",
+          "scene": "sparse_nonzero",
+          "schema": "a169.low_b0_b1_direct_scale.v1",
+          "x": 7
+        },
+        {
+          "actual": 0,
+          "actual_pbs_executed": false,
+          "arm": "single_full_direct_b0_b1",
+          "bit": 2,
+          "candidate": 0,
+          "coefficientwise_modulus_switch_error_assumed_zero": true,
+          "expected": 0,
+          "ideal_candidate_and_keyswitch": true,
+          "input_torus": "<LARGE_DIAGNOSTIC_INTEGER>",
+          "keyset": 0,
+          "level": 5,
+          "pass": true,
+          "record": "consumer_scalar_phase",
+          "scene": "sparse_nonzero",
+          "schema": "a169.low_b0_b1_direct_scale.v1",
+          "x": 7
+        },
+        {
+          "actual": 0,
+          "actual_pbs_executed": false,
+          "arm": "single_full_direct_b0_b1",
+          "bit": 2,
+          "candidate": 1,
+          "coefficientwise_modulus_switch_error_assumed_zero": true,
+          "expected": 0,
+          "ideal_candidate_and_keyswitch": true,
+          "input_torus": "<LARGE_DIAGNOSTIC_INTEGER>",
+          "keyset": 0,
+          "level": 5,
+          "pass": true,
+          "record": "consumer_scalar_phase",
+          "scene": "sparse_nonzero",
+          "schema": "a169.low_b0_b1_direct_scale.v1",
+          "x": 7
+        }
+      ],
+      "unchanged_bit_margin_matches_prior_two_candidates": true
+    },
+    {
+      "margin_record": {
+        "actual_p16": 7,
+        "arm": "single_full_direct_b0_b1",
+        "bit": 2,
+        "composed_noise_margin_certified": false,
+        "error_in_delta59": -0.5431177839636803,
+        "expected_p16": 8,
+        "inside_open_half_slot": false,
+        "keyset": 0,
+        "record": "weighted_p16_margin",
+        "scene": "dense_nonzero",
+        "schema": "a169.low_b0_b1_direct_scale.v1",
+        "signed_error": "-<LARGE_DIAGNOSTIC_INTEGER>",
+        "x": 1023
+      },
+      "scalar_consumer_records": [
+        {
+          "actual": 0,
+          "actual_pbs_executed": false,
+          "arm": "single_full_direct_b0_b1",
+          "bit": 2,
+          "candidate": -1,
+          "coefficientwise_modulus_switch_error_assumed_zero": true,
+          "expected": 0,
+          "ideal_candidate_and_keyswitch": true,
+          "input_torus": "<LARGE_DIAGNOSTIC_INTEGER>",
+          "keyset": 0,
+          "level": 5,
+          "pass": true,
+          "record": "consumer_scalar_phase",
+          "scene": "dense_nonzero",
+          "schema": "a169.low_b0_b1_direct_scale.v1",
+          "x": 1023
+        },
+        {
+          "actual": 0,
+          "actual_pbs_executed": false,
+          "arm": "single_full_direct_b0_b1",
+          "bit": 2,
+          "candidate": 0,
+          "coefficientwise_modulus_switch_error_assumed_zero": true,
+          "expected": 0,
+          "ideal_candidate_and_keyswitch": true,
+          "input_torus": "<LARGE_DIAGNOSTIC_INTEGER>",
+          "keyset": 0,
+          "level": 5,
+          "pass": true,
+          "record": "consumer_scalar_phase",
+          "scene": "dense_nonzero",
+          "schema": "a169.low_b0_b1_direct_scale.v1",
+          "x": 1023
+        },
+        {
+          "actual": 0,
+          "actual_pbs_executed": false,
+          "arm": "single_full_direct_b0_b1",
+          "bit": 2,
+          "candidate": 1,
+          "coefficientwise_modulus_switch_error_assumed_zero": true,
+          "expected": 0,
+          "ideal_candidate_and_keyswitch": true,
+          "input_torus": "<LARGE_DIAGNOSTIC_INTEGER>",
+          "keyset": 0,
+          "level": 5,
+          "pass": true,
+          "record": "consumer_scalar_phase",
+          "scene": "dense_nonzero",
+          "schema": "a169.low_b0_b1_direct_scale.v1",
+          "x": 1023
+        }
+      ],
+      "unchanged_bit_margin_matches_prior_two_candidates": true
+    }
+  ],
+  "prior_a165_failure_preserved_sha256": "315102a7f1dc717b891f0000692e137abdb17524e70a5173c679fa2ac8722a2c",
+  "margin_interpretation": "Conservative open-half-slot excursions are observational. The frozen gate uses actual scalar-LUT predicates, which pass in all five positive arms. No independent coefficientwise KS/MS or composed noise bound follows.",
+  "scope": "One declared fresh keyset, fixed 28-score smoke. Actual producer FHE and scalar ideal-candidate/KS zero-MS consumer checks only; no actual composed consumer PBS, full ID, latency, formal p_fail or independent key-membership attestation.",
+  "next_changed_premise": "For consumer correctness, source-gate actual composed consumers with their real candidate/KS/coefficientwise MS noise. If investigating conservative bit-2 support, a separately derived direct-scale b2 intervention would increase the candidate from 10 to 11 PBS with 8 KS, removing its one-PBS extractor saving versus the 11-PBS split baseline; no such successor is implemented or authorized here."
+}

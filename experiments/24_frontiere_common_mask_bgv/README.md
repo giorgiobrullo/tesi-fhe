@@ -55,6 +55,11 @@ e quattro coppie misurate. La mediana delle riduzioni entro coppia è
 **24,567076% più lento di R3**. Non viene selezionato come percorso più veloce
 né estrapolato a N127.
 
+<a id="misure-salvate-integrazione-del-6-ottobre-2026"></a>
+
+Le [osservazioni del pilot common-mask](evidence/common-mask-timing.json)
+conservano il confronto Joint4/common-mask/R3.
+
 **BGV:** il grafo con phi(m)=65536 passa 210 stadi ammessi e tutti i 32.768
 valori terminali, su una chiave e scene N8/8/8/4. La capacità finale è
 **575,184 bit**; HElib riporta **135,336 bit di sicurezza**. La chiave pubblica
@@ -76,18 +81,56 @@ la correttezza a N127 o una probabilità globale di errore.
 
 Sono disponibili il [worker common-mask](sources/common-mask-timing/Cargo.toml),
 il [prefisso](sources/common-mask-prefix/Cargo.toml) e il
-[grafo BGV](sources/bgv/src/main.cpp). Il common-mask contiene estratti che
-non forniscono ancora tutte le dipendenze Cargo necessarie a una build autonoma.
+[grafo BGV](sources/bgv/src/main.cpp). Il pacchetto comprende il
+[riferimento R3](sources/r3/candidate/Cargo.toml), gli input deterministici,
+il piano del confronto e le tabelle pubbliche incluse dai sorgenti.
+La baseline è riusata dal [pacchetto 17](../17_head_pfks_tfhe17/source/baseline-20260905-tfhe17/candidate/Cargo.toml):
+i sette file di sorgente e input richiesti coincidono con quelli originali
+e sono condivisi fra i due pacchetti.
+
+Dalla radice della repository, con Rust 1.98.1:
+
+```sh
+rustup run 1.98.1 cargo build --release --locked \
+  --manifest-path experiments/24_frontiere_common_mask_bgv/sources/common-mask-timing/Cargo.toml \
+  --target-dir .local/target-common-mask
+```
+
+Il worker genera nuove chiavi e richiede un percorso assoluto nuovo per il
+log, dentro una directory con permessi `0700`. Prima dell'esecuzione richiede
+`RAYON_NUM_THREADS=8`, `CM_NIBBLE_N16_TIMING_ACK=ROOT_EXCLUSIVE_CM_NIBBLE_N16_TIMING`,
+`CM_NIBBLE_N16_TIMING_SOURCE` uguale al contenuto di
+[SOURCE_DIGEST.txt](sources/common-mask-timing/SOURCE_DIGEST.txt) e
+`CM_NIBBLE_N16_TIMING_BINARY` uguale allo SHA-256 del binario appena compilato.
+L'invocazione è `BINARIO --run PERCORSO_ASSOLUTO_NUOVO.jsonl`.
+Il digest sorgente incorporato identifica la revisione sperimentale; le
+impronte della distribuzione attuale sono nel manifest di provenienza.
 
 BGV richiede HElib 2.2.0, l'header esterno `json.hpp` e CommonCrypto su macOS.
-Il percorso dell'header nel CMake va configurato per il proprio ambiente.
-Questi prototipi non offrono un'applicazione pronta all'avvio; per un servizio
-integrato consultare la [demo 22](../22_demo_composita/README.md).
+CMake cerca l'header installato; per una posizione non standard usare
+`-DNLOHMANN_JSON_INCLUDE_DIR=/directory/che/contiene/json.hpp`. Dalla radice del repository:
+
+```sh
+cmake -S experiments/24_frontiere_common_mask_bgv/sources/bgv \
+  -B .local/build-bgv -DCMAKE_BUILD_TYPE=Release
+cmake --build .local/build-bgv
+```
+
+Il file [PUBLIC_SLOTS.json](sources/bgv/PUBLIC_SLOTS.json), necessario anche
+durante l'esecuzione BGV, è incluso e coincide con l'impronta incorporata
+nel programma. `BGV_LR_N8_SOURCE_DIR` deve indicare la directory assoluta
+`sources/bgv`; il programma documenta e verifica gli altri vincoli
+nell'[ingresso](sources/bgv/src/main.cpp).
+
+Il [manifest dei sorgenti e degli input](PROVENANCE.json) identifica
+anche i file condivisi e quelli richiesti tramite inclusione. I percorsi
+Cargo e gli input dei quattro crate sono stati verificati con i metadati
+Cargo offline; questa verifica della distribuzione non è una nuova build FHE.
+Per un servizio interattivo consultare il [runtime](../../runtime/README.md).
 Il [primo PoC common-mask](../16_common_mask_poc/README.md) introduce il filone.
 
 ## Provenienza
 
-[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
-dai documenti storici e dalle copie redatte. I digest degli esperimenti
-identificano le esecuzioni originali; questa pubblicazione non aggiunge
-una nuova compilazione nativa o una nuova prova FHE.
+La [provenienza dei sorgenti e delle misure](PROVENANCE.json) lega i file
+alle fonti originali e dichiara le selezioni dei dati. Le impronte delle
+copie pubbliche sono distinte da quelle degli originali.

@@ -1,0 +1,6 @@
+{
+  "initial_review_exit": 1,
+  "reason": "System python hashlib has no file_digest; failed before actual record review and wrote no result",
+  "repair": "Portable streaming SHA256 in this new reviewer only",
+  "candidate_or_frozen_evidence_modified": false
+}

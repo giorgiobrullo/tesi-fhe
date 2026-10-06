@@ -1,6 +1,6 @@
 # Approfondimento sui testi integrali
 
-[Indice della rassegna](../../../letteratura.md) · [Metodo](../metodo-ricerca.md) · [Bibliografia](../aggiornamento-20260919.bib)
+[Indice della rassegna](../../../letteratura.md) · [Metodo](../metodo-ricerca.md) · [Bibliografia](../bibliografia.bib)
 
 Queste schede collegano gli articoli alle scelte del progetto: come
 estrarre e confrontare numeri cifrati, quale risultato restituire al client
@@ -90,3 +90,34 @@ per approfondire la costruzione con soglie individuali. Il PDF conferenza
 con appendice è già disponibile. Altre famiglie adiacenti, elencate nel
 [metodo](../metodo-ricerca.md), restano possibili estensioni del corpus,
 non lavori implicitamente verificati da questo approfondimento.
+
+
+## Letture successive, 2 ottobre 2026
+
+Il [registro del riesame](../versioni-e-verifiche.md) aggiunge BioZKFHE, SMOOTHIE, Sorted Extended Bootstrapping, correttezza reattiva e sanitizzazione, sicurezza CKKS, rare-event simulation e ANN/PIR. Distingue i testi completi consultati online dalle copie scaricate; non tutti i nuovi lavori sono disponibili come PDF locale. SFRA rimane un accesso parziale. Il numero 23 sopra si riferisce alla passata di settembre.
+
+Sono stati letti anche [HEBI, manoscritto accettato](hebi.md), dieci pagine,
+e [Liu, Informatica 2024](liu-informatica.md), otto pagine. HEBI protegge
+la preselezione e delega la decisione a una terza parte; Liu verifica un
+UID dichiarato, con limiti nella specifica del circuito e delle misure.
+HEFT arXiv v1 di 12 pagine integra le appendici; FDFB ricorsivo SAC di
+22 pagine è il preproceedings, non il finale Springer. Versioni diverse
+non sono conteggiate come nuovi articoli.
+
+La [decomposizione di LUT grandi](lut-decomposition.md) di Belaïd, Bon e
+Rivain aggiunge una copia autore di 32 pagine: costruzione con PBS ordinari,
+riuso fra più uscite e parametri. Il confronto con WoP-PBS usa target
+d'errore diversi; non misura un guadagno nel nostro circuito.
+
+## Letture del 3 ottobre 2026
+
+| Scheda | Testo letto | Cosa chiarisce | Limite di accesso |
+|---|---|---|---|
+| [FDFB ricorsivo](fdfb-ricorsivo.md) | ePrint 2025/1255, 22 pagine complete; formule e tabelle decisive controllate visivamente | Decomposizione della LUT, ruolo di EBS e condizioni dei due fattori di accelerazione | Finale Springer di 21 pagine non acquisito; confronto del testo estratto soltanto con il SAC preliminare |
+| [FAKES](fakes.md) | Research Square v1 del 2023, cinque autori, 19 pagine PDF complete; protocollo controllato visivamente | Volto usato per recuperare una chiave, ricerca per keyword e fiducia nel centro di autenticazione | Finale con sei autori e 35 pagine non acquisito |
+
+SFRA rimane parziale dopo i nuovi tentativi di accesso tramite publisher e
+API. Una risposta contenente soltanto metadati non è stata trattata come
+lettura dell'articolo. Il numero 23 sopra resta riferito alla passata di
+settembre; copie preliminari diverse dello stesso lavoro non aumentano
+il numero di articoli.

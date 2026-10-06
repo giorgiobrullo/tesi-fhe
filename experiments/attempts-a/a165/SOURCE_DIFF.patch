@@ -1,0 +1,247 @@
+--- A130/candidate/.cargo/config.toml
++++ A165/candidate/.cargo/config.toml
+@@ -1,5 +1,5 @@
+ [build]
+-target-dir = "target-a130-a125-only"
++target-dir = "target-a165-b1-only"
+ 
+ [net]
+ offline = true
+--- A130/candidate/src/main.rs
++++ A165/candidate/src/main.rs
+@@ -2,7 +2,7 @@
+ 
+ fn main() {
+     if let Err(error) = diagnostic::run() {
+-        eprintln!("A125_ERROR: {error}");
++        eprintln!("A165_ERROR: {error}");
+         std::process::exit(1);
+     }
+ }
+--- A130/candidate/src/diagnostic.rs
++++ A165/candidate/src/diagnostic.rs
+@@ -10,6 +10,10 @@
+ use tfhe::shortint::parameters::V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64;
+ use tfhe::shortint::server_key::ShortintBootstrappingKey;
+ use tfhe::shortint::{ClientKey, ServerKey};
++
++const A165_SCHEMA: &str = "a165.low_b1_direct_scale.v1";
++const A165_SOURCE: &str = include_str!("../SOURCE_DIGEST.txt");
++const A165_ACK: &str = "A165_EXCLUSIVE_B1_REPAIR_AUTHORIZED";
+ 
+ const FULL_DELTA_LOG: u32 = 52;
+ const LOW_DELTA_LOG: u32 = 60;
+@@ -456,6 +460,49 @@
+     }
+ }
+ 
++/// One new PBS consumes the retained full.ks_b1 ciphertext. The original full
++/// extraction, x256 snapshots and residual stay exactly as single_arm produced them.
++fn repaired_b1_arm(full: &Lwe, sk: &ServerKey) -> Arm {
++    let mut arm = single_arm(full, sk, false);
++    let retained = arm
++        .trace
++        .iter()
++        .find(|point| point.stage == "full.ks_b1")
++        .unwrap();
++    assert!(retained.small_key);
++    let small = retained.ciphertext.clone();
++    let bsk = match &sk.bootstrapping_key {
++        ShortintBootstrappingKey::Classic(bsk) => bsk,
++        _ => panic!("A165 requires classic BSK"),
++    };
++    let extra_pbs = AtomicU64::new(0);
++    let direct = correction_from_small_bit(
++        &small,
++        &accumulator(bsk, 61, false),
++        bsk,
++        full.lwe_size(),
++        1u64 << 60,
++        &extra_pbs,
++    );
++    assert!(direct.boolean.is_none());
++    snapshot_raw_correction(&mut arm.trace, "repair_b1", 1, 61, &direct.correction);
++    snapshot(
++        &mut arm.trace,
++        "repair_b1.pbs_correction_b1",
++        &direct.correction,
++        false,
++        Expectation::Bit {
++            bit: 1,
++            delta_log: 61,
++        },
++    );
++    arm.weighted_bits[1] = direct.correction;
++    arm.pbs += extra_pbs.load(Ordering::Relaxed);
++    assert_eq!((arm.pbs, arm.ks), (9, 8));
++    arm.name = "single_full_direct_b1";
++    arm
++}
++
+ fn boundary_targets(stage: &str) -> Result<Vec<u64>, String> {
+     let values = match stage {
+         "smoke" => vec![0, 1, 7, 8, 15, 16, 17, 127, 128, 255, 256, 1023, 1024, 4095],
+@@ -500,7 +547,11 @@
+     }
+ }
+ 
+-fn emit(record: Value) {
++fn emit(mut record: Value) {
++    record
++        .as_object_mut()
++        .unwrap()
++        .insert("schema".into(), json!(A165_SCHEMA));
+     println!("{record}");
+ }
+ 
+@@ -523,22 +574,30 @@
+             return Err(format!("unknown argument: {arg}"));
+         }
+     }
+-    if keysets == 0 {
+-        return Err("keysets must be positive".into());
++    if stage != "smoke" || keysets != 1 {
++        return Err("A165 is preregistered for smoke and exactly one keyset".into());
+     }
+     let targets = boundary_targets(&stage)?;
+     emit(
+-        json!({"record":"plan","stage":stage,"keysets":keysets,"scores_per_scene":targets.len(),"scenes":2,"arms":["baseline_dual","shift_initial_only","single_full_reuse_x256","negative_drop_first_correction"],"pbs_per_score":[11,11,8,8],"ks_per_score":[8,8,8,8],"frozen_control_extra_pbs_per_split":7,"diagnostic_only":true,"latency_claim_allowed":false,"p_fail_certified":false,"whole_exact_id_validated":false}),
++        json!({"record":"plan","stage":stage,"keysets":keysets,"scores_per_scene":targets.len(),"scenes":2,"arms":["baseline_dual","shift_initial_only","single_full_reuse_x256","single_full_direct_b1","negative_drop_first_correction"],"pbs_per_score":[11,11,8,9,8],"ks_per_score":[8,8,8,8,8],"frozen_control_extra_pbs_per_split":7,"frozen_control_extra_ks_per_split":8,"diagnostic_only":true,"latency_claim_allowed":false,"p_fail_certified":false,"whole_exact_id_validated":false}),
+     );
+     if !execute {
+         return Ok(());
++    }
++    if std::env::var("A165_RUN_ACK").as_deref() != Ok(A165_ACK)
++        || std::env::var("A165_SOURCE_SHA256").as_deref() != Ok(A165_SOURCE.trim())
++        || std::env::var("RAYON_NUM_THREADS").as_deref() != Ok("1")
++    {
++        return Err(
++            "A165 source/runner acknowledgment and one requested Rayon thread required".into(),
++        );
+     }
+     let binary = std::env::current_exe().map_err(|e| e.to_string())?;
+     if !binary
+         .components()
+-        .any(|component| component.as_os_str() == "target-a130-a125-only")
++        .any(|component| component.as_os_str() == "target-a165-b1-only")
+     {
+-        return Err("execution requires isolated target-a130-a125-only".into());
++        return Err("execution requires isolated target-a165-b1-only".into());
+     }
+     let binary_bytes = std::fs::read(&binary).map_err(|e| e.to_string())?;
+     let binary_sha256 = format!("{:x}", Sha256::digest(binary_bytes));
+@@ -548,15 +607,17 @@
+         );
+     }
+     emit(json!({"record":"provenance","binary_sha256":binary_sha256,
++        "source_manifest_sha256":A165_SOURCE.trim(),
+         "source_sha256":format!("{:x}",Sha256::digest(include_bytes!("diagnostic.rs"))),
+         "frozen_helpers_sha256":format!("{:x}",Sha256::digest(include_bytes!("frozen_extract.rs"))),
+         "lock_sha256":format!("{:x}",Sha256::digest(include_bytes!("../Cargo.lock"))),
+         "parameter_fingerprint":"b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1"}));
+-    let mut failures = [0usize; 3];
+-    let mut native_decode_failures = [0usize; 3];
+-    let mut consumer_phase_failures = [0usize; 3];
++    let mut failures = [0usize; 4];
++    let mut native_decode_failures = [0usize; 4];
++    let mut consumer_phase_failures = [0usize; 4];
+     let mut negatives_detected = [0usize; 2];
+     let mut cases = 0usize;
++    let mut repair_pair_failures = 0usize;
+     for keyset in 0..keysets {
+         let client = ClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64);
+         let server = ServerKey::new(&client);
+@@ -643,8 +704,54 @@
+                     split_arm(&full, &low, &server, "baseline_dual"),
+                     split_arm(&full, &scaled(&full, 8), &server, "shift_initial_only"),
+                     single_arm(&full, &server, false),
++                    repaired_b1_arm(&full, &server),
+                     single_arm(&full, &server, true),
+                 ];
++                // All five server arms finished before comparisons or any client decryption.
++                let original = &arms[2];
++                let repair = &arms[3];
++                let old_trace_identical = repair.trace.len() == original.trace.len() + 2
++                    && original.trace.iter().zip(&repair.trace).all(|(a, b)| {
++                        a.stage == b.stage
++                            && a.small_key == b.small_key
++                            && same_lwe(&a.ciphertext, &b.ciphertext)
++                    });
++                let top_identical = same_lwe(&original.top_residual, &repair.top_residual);
++                let other_weighted_identical = (0..8)
++                    .filter(|&bit| bit != 1)
++                    .all(|bit| same_lwe(&original.weighted_bits[bit], &repair.weighted_bits[bit]));
++                let retained_small = repair
++                    .trace
++                    .iter()
++                    .find(|point| point.stage == "full.ks_b1")
++                    .unwrap();
++                let direct_trace = repair
++                    .trace
++                    .iter()
++                    .find(|point| point.stage == "repair_b1.pbs_correction_b1")
++                    .unwrap();
++                let direct_output_consumed =
++                    same_lwe(&repair.weighted_bits[1], &direct_trace.ciphertext);
++                let pair_pass = old_trace_identical
++                    && top_identical
++                    && other_weighted_identical
++                    && direct_output_consumed
++                    && original.pbs == 8
++                    && repair.pbs == 9
++                    && original.ks == 8
++                    && repair.ks == 8;
++                repair_pair_failures += usize::from(!pair_pass);
++                emit(
++                    json!({"record":"repair_pair","keyset":keyset,"scene":scene,"x":x,
++                    "original_arm":original.name,"repair_arm":repair.name,
++                    "old_trace_byte_identical":old_trace_identical,"top_byte_identical":top_identical,
++                    "other_weighted_byte_identical":other_weighted_identical,
++                    "direct_output_consumed":direct_output_consumed,"pass":pair_pass,
++                    "retained_small_input_sha256":digest(&retained_small.ciphertext),
++                    "direct_weighted_b1_sha256":digest(&repair.weighted_bits[1]),
++                    "original_x256_b1_sha256":digest(&original.weighted_bits[1]),
++                    "additional_pbs":1,"additional_ks":0,"full_residual_correction_retained":true}),
++                );
+                 // The client now inspects every arm. No branch above depends on these decrypted values.
+                 for (arm_index, arm) in arms.iter().enumerate() {
+                     let mut bit_mismatches = 0;
+@@ -712,7 +819,7 @@
+                         .iter()
+                         .find(|point| point.stage == "score.low")
+                         .map(|point| digest(&point.ciphertext));
+-                    if arm_index < 3 {
++                    if arm_index < 4 {
+                         failures[arm_index] += usize::from(!passed);
+                         native_decode_failures[arm_index] += usize::from(!native_decode_pass);
+                         consumer_phase_failures[arm_index] += usize::from(!consumer_phase_pass);
+@@ -743,11 +850,25 @@
+         }
+     }
+     let controls_valid = failures[0] == 0 && negatives_detected.iter().all(|count| *count > 0);
++    let repair_gate_pass = controls_valid && repair_pair_failures == 0 && failures[3] == 0;
+     emit(
+-        json!({"record":"summary","status":if controls_valid {"DIAGNOSTIC_COMPLETE"}else{"INVALID_CONTROLS"},"cases":cases,"failures_baseline_shift_single":failures,"native_decode_failures_baseline_shift_single":native_decode_failures,"consumer_scalar_phase_failures_baseline_shift_single":consumer_phase_failures,"both_candidates_native_decode_pass":native_decode_failures[1..].iter().all(|count| *count == 0),"both_candidates_consumer_scalar_phase_pass":consumer_phase_failures[1..].iter().all(|count| *count == 0),"both_candidates_all_checks_pass":failures[1..].iter().all(|count| *count == 0),"negative_detections_drop_rescale":negatives_detected,"controls_valid":controls_valid,"p_fail_certified":false,"whole_exact_id_validated":false,"latency_claim_allowed":false}),
+-    );
+-    if !controls_valid {
+-        return Err("baseline or negative-control gate failed; evidence retained".into());
++        json!({"record":"summary","status":if controls_valid {"A165_DIAGNOSTIC_COMPLETE"}else{"INVALID_CONTROLS"},
++        "cases":cases,"positive_arm_order":["baseline_dual","shift_initial_only","single_full_reuse_x256","single_full_direct_b1"],
++        "failures_baseline_shift_single_repair":failures,
++        "native_decode_failures_baseline_shift_single_repair":native_decode_failures,
++        "consumer_scalar_phase_failures_baseline_shift_single_repair":consumer_phase_failures,
++        "both_original_candidates_native_decode_pass":native_decode_failures[1..3].iter().all(|count| *count == 0),
++        "both_original_candidates_consumer_scalar_phase_pass":consumer_phase_failures[1..3].iter().all(|count| *count == 0),
++        "both_original_candidates_all_checks_pass":failures[1..3].iter().all(|count| *count == 0),
++        "repair_native_decode_pass":native_decode_failures[3] == 0,
++        "repair_consumer_scalar_phase_pass":consumer_phase_failures[3] == 0,
++        "repair_all_checks_pass":failures[3] == 0,
++        "repair_pair_failures":repair_pair_failures,"repair_gate_pass":repair_gate_pass,
++        "negative_detections_drop_rescale":negatives_detected,"controls_valid":controls_valid,
++        "p_fail_certified":false,"whole_exact_id_validated":false,"latency_claim_allowed":false}),
++    );
++    if !repair_gate_pass {
++        return Err("A165 repair or control gate failed; all original outcomes retained".into());
+     }
+     Ok(())
+ }

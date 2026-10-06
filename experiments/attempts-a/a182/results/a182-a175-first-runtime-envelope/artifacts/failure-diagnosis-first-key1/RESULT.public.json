@@ -1,0 +1,278 @@
+{
+  "actual_consumer_checks_replayed": 56,
+  "actual_p_fail": null,
+  "case": {
+    "bit": 2,
+    "expected_bit": 0,
+    "keyset": 0,
+    "scene": "dense_nonzero",
+    "x": 17
+  },
+  "client_secret_membership_independently_attested": false,
+  "consumer_actual_used_receipt_observed_and_stock_byte_control_passes": true,
+  "earlier_a169_key_pass_preserved": {
+    "actual_composed_consumer_pbs_validated": false,
+    "binary_sha256": "d5c92454d90477ca511f7be7d9719e18140741d1d1e9758551b8e4583ad53a62",
+    "child_pid": 27533,
+    "raw_sha256": "74ce83fe13079a940422d300c9d4f04be11fbafc9b34da2190618442c51ccf23",
+    "source_sha256": "35ea371d06d7616f079b72190115daa449ba5a50e4a0761c0930bfbe70f40c60"
+  },
+  "failed_actual_consumers": [
+    [
+      "single_full_direct_b0_b1",
+      2,
+      0
+    ]
+  ],
+  "failed_repair_scalar_candidate_states": [
+    0,
+    1
+  ],
+  "ks_row_term_independently_measured": false,
+  "latency_claim_allowed": false,
+  "native_interval_upper_exclusive": true,
+  "previous_selector_candidate_provenance": false,
+  "producer_correction_error_before_x256": 1134571592613888,
+  "producer_excess_above_first_bad_integer": 4471751371128832,
+  "producer_lut_actual_address_observed": false,
+  "producer_scaling_evidence": "Exact phase scaling and frozen source; pre-scaling ciphertext words are not emitted.",
+  "retry_expansion_or_third_repair_authorized": false,
+  "schema": "a182-actual-first-key-bit2-diagnosis-v1",
+  "set_bit_joint_degree_regions_inclusive": [
+    [
+      320,
+      1983
+    ],
+    [
+      2368,
+      4031
+    ]
+  ],
+  "six_actual_bit2_consumers": [
+    {
+      "actual_decoded_output": 0,
+      "actual_lifted_degree": -124,
+      "arm": "baseline_dual",
+      "body_rounding_residue": 178467119356050,
+      "candidate": -1,
+      "candidate_error": 3254,
+      "degree_by_stage": {
+        "actual_receipt": 3972,
+        "producer_only_scalar": 3968
+      },
+      "degree_displacement_from_phase_only": 1,
+      "expected_output": 0,
+      "gates": {
+        "actual_address": true,
+        "candidate_native": true,
+        "observer_closure": true,
+        "output_at_actual_address": true,
+        "semantic_output": true,
+        "stock_equivalence": true
+      },
+      "ks_remainder_sum": -5544902528431261,
+      "lut_value_by_stage": {
+        "actual_receipt": 0,
+        "producer_only_scalar": 0
+      },
+      "observed_component_terms_are_correlated_not_independent_interventions": true,
+      "output_error_relative_to_actual_lut": 522666582736896,
+      "producer_error": -797193443213312,
+      "producer_error_in_delta59": {
+        "denominator": 2147483648,
+        "numerator": -2969777
+      },
+      "scalar_is_a_counterfactual_with_ideal_candidate_ks_and_zero_ms": true,
+      "weighted_rounding_residues": 6216622068192708
+    },
+    {
+      "actual_decoded_output": 0,
+      "actual_lifted_degree": -60,
+      "arm": "single_full_direct_b0_b1",
+      "body_rounding_residue": 1063270447513043,
+      "candidate": -1,
+      "candidate_error": 3254,
+      "degree_by_stage": {
+        "actual_receipt": 4036,
+        "producer_only_scalar": 4032
+      },
+      "degree_displacement_from_phase_only": 1,
+      "expected_output": 0,
+      "gates": {
+        "actual_address": true,
+        "candidate_native": true,
+        "observer_closure": true,
+        "output_at_actual_address": true,
+        "semantic_output": true,
+        "stock_equivalence": true
+      },
+      "inferred_signed_ks_row_term": 4902778684061437,
+      "ks_remainder_sum": 6266533218782051,
+      "lut_value_by_stage": {
+        "actual_receipt": 0,
+        "producer_only_scalar": 0
+      },
+      "observed_component_terms_are_correlated_not_independent_interventions": true,
+      "output_error_relative_to_actual_lut": -157924068425728,
+      "producer_error_in_delta59": {
+        "denominator": 536870912,
+        "numerator": 270502947
+      },
+      "scalar_is_a_counterfactual_with_ideal_candidate_ks_and_zero_ms": true,
+      "weighted_rounding_residues": 5688405496704701
+    },
+    {
+      "actual_decoded_output": 0,
+      "actual_lifted_degree": -1,
+      "arm": "baseline_dual",
+      "body_rounding_residue": -1499076643639294,
+      "candidate": 0,
+      "candidate_error": -93053,
+      "degree_by_stage": {
+        "actual_receipt": 4095,
+        "producer_only_scalar": 0
+      },
+      "degree_displacement_from_phase_only": 1,
+      "expected_output": 0,
+      "gates": {
+        "actual_address": true,
+        "candidate_native": true,
+        "observer_closure": true,
+        "output_at_actual_address": true,
+        "semantic_output": true,
+        "stock_equivalence": true
+      },
+      "inferred_signed_ks_row_term": -4011147629787637,
+      "ks_remainder_sum": -2437940079588577,
+      "lut_value_by_stage": {
+        "actual_receipt": 0,
+        "producer_only_scalar": 0
+      },
+      "observed_component_terms_are_correlated_not_independent_interventions": true,
+      "output_error_relative_to_actual_lut": -337079569481728,
+      "producer_error": -797193443213312,
+      "producer_error_in_delta59": {
+        "denominator": 2147483648,
+        "numerator": -2969777
+      },
+      "scalar_is_a_counterfactual_with_ideal_candidate_ks_and_zero_ms": true,
+      "weighted_rounding_residues": 1243604881672789
+    },
+    {
+      "actual_decoded_output": 1,
+      "actual_lifted_degree": 73,
+      "arm": "single_full_direct_b0_b1",
+      "body_rounding_residue": -1537611070113120,
+      "candidate": 0,
+      "candidate_error": -93053,
+      "degree_by_stage": {
+        "actual_receipt": 73,
+        "producer_only_scalar": 64
+      },
+      "degree_displacement_from_phase_only": 9,
+      "expected_output": 0,
+      "gates": {
+        "actual_address": false,
+        "candidate_native": true,
+        "observer_closure": true,
+        "output_at_actual_address": true,
+        "semantic_output": false,
+        "stock_equivalence": true
+      },
+      "inferred_signed_ks_row_term": -3777812776423181,
+      "ks_remainder_sum": 2618096226568991,
+      "lut_value_by_stage": {
+        "actual_receipt": 1,
+        "producer_only_scalar": 1
+      },
+      "observed_component_terms_are_correlated_not_independent_interventions": true,
+      "output_error_relative_to_actual_lut": 507769429950464,
+      "producer_error_in_delta59": {
+        "denominator": 536870912,
+        "numerator": 270502947
+      },
+      "scalar_is_a_counterfactual_with_ideal_candidate_ks_and_zero_ms": true
+    },
+    {
+      "actual_decoded_output": 1,
+      "actual_lifted_degree": 136,
+      "arm": "baseline_dual",
+      "body_rounding_residue": -976201008004602,
+      "candidate": 1,
+      "candidate_error": -38143,
+      "degree_by_stage": {
+        "actual_receipt": 136,
+        "producer_only_scalar": 128
+      },
+      "degree_displacement_from_phase_only": 10,
+      "expected_output": 1,
+      "gates": {
+        "actual_address": true,
+        "candidate_native": true,
+        "observer_closure": true,
+        "output_at_actual_address": true,
+        "semantic_output": true,
+        "stock_equivalence": true
+      },
+      "inferred_signed_ks_row_term": -4906621204776040,
+      "ks_remainder_sum": -3226768809809389,
+      "lut_value_by_stage": {
+        "actual_receipt": 1,
+        "producer_only_scalar": 1
+      },
+      "observed_component_terms_are_correlated_not_independent_interventions": true,
+      "output_error_relative_to_actual_lut": 50676990214144,
+      "producer_error": -797193443213312,
+      "producer_error_in_delta59": {
+        "denominator": 2147483648,
+        "numerator": -2969777
+      },
+      "scalar_is_a_counterfactual_with_ideal_candidate_ks_and_zero_ms": true
+    },
+    {
+      "actual_decoded_output": 1,
+      "actual_lifted_degree": 190,
+      "arm": "single_full_direct_b0_b1",
+      "body_rounding_residue": -226840218646108,
+      "candidate": 1,
+      "candidate_error": -38143,
+      "degree_by_stage": {
+        "actual_receipt": 190,
+        "producer_only_scalar": 192
+      },
+      "degree_displacement_from_phase_only": -7,
+      "expected_output": 1,
+      "gates": {
+        "actual_address": true,
+        "candidate_native": true,
+        "observer_closure": true,
+        "output_at_actual_address": true,
+        "semantic_output": true,
+        "stock_equivalence": true
+      },
+      "ks_remainder_sum": 2955167403190803,
+      "lut_value_by_stage": {
+        "actual_receipt": 1,
+        "producer_only_scalar": 0
+      },
+      "observed_component_terms_are_correlated_not_independent_interventions": true,
+      "output_error_relative_to_actual_lut": 303956513259520,
+      "producer_error_in_delta59": {
+        "denominator": 536870912,
+        "numerator": 270502947
+      },
+      "scalar_is_a_counterfactual_with_ideal_candidate_ks_and_zero_ms": true
+    }
+  ],
+  "status": "BOUND_COMPLETED_NEGATIVE_WITH_EXACT_OBSERVED_CONTRIBUTION_CLOSURE",
+  "zero_bit_joint_degree_regions_inclusive": [
+    [
+      0,
+      63
+    ],
+    [
+      4032,
+      4095
+    ]
+  ]
+}

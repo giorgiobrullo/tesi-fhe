@@ -1,0 +1,27 @@
+{
+  "schema": "a174-static-development-history-v1",
+  "events": [
+    {
+      "stage": "inherited suite adaptation",
+      "result": "24passed; one test still called old verify_envelope signature. Corrected test-only call and predecessor fixture offset."
+    },
+    {
+      "stage": "initial expanded suite",
+      "result": "41tests passed; removed unused import."
+    },
+    {
+      "stage": "peer review",
+      "result": "Recursive type-strict equality added for nested report/permutation bool-int aliases; regression tests added."
+    },
+    {
+      "stage": "exact byte binding",
+      "result": "Verifier and aggregate parse the same captured raw bytes whose hashes match verified envelopes; stored report hashes also derive from exact parsed bytes."
+    },
+    {
+      "stage": "final validation",
+      "result": "44tests pass1.847s; Ruff/noargs plans pass."
+    }
+  ],
+  "actual_offset1_or2_output_inspected": false,
+  "native_or_fhe_or_process_probes": false
+}

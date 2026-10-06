@@ -47,13 +47,26 @@ L'interprete deve restare accessibile all'utente `varco-demo`. La unit usa
 home dell'amministratore non può funzionare in quel servizio. Il percorso
 esplicito `/usr/bin/python3.12` evita questa dipendenza dalle home private.
 La directory dell'ambiente deve essere nuova; agli aggiornamenti usare
-quella esistente. Per preparare i modelli usare questo interprete con la
-home dell'utente di servizio, seguendo la [guida web](../README.md).
+quella esistente. Nei comandi Python della [guida web](../README.md), usare
+`/opt/varco-demo/venv/bin/python` al posto di `.local/venv-web/bin/python`:
+vale sia per preparare i modelli sia per verificare la configurazione del
+runtime prima della compilazione. Preparare i modelli come utente
+`varco-demo`, con home `/var/lib/varco-demo`, perché il servizio li cerca lì.
 
 ## 3. Compilare il motore e generare le chiavi
 
-Dopo la compilazione descritta nella [guida web](../README.md), generare
-le chiavi attuali come utente del servizio:
+Dopo la compilazione descritta nella [guida web](../README.md), dalla radice
+dei sorgenti installare il binario nel percorso usato dalla unit. Directory
+e binario appartengono a root; l'utente del servizio può leggerli ed eseguirli:
+
+```sh
+sudo install -d -m 0755 -o root -g root /opt/varco-demo/bin
+sudo install -m 0755 -o root -g root \
+  target-selector-pack4/release/varco_demo_composite_v9 \
+  /opt/varco-demo/bin/varco_demo_composite_v9
+```
+
+Generare quindi le chiavi attuali come utente del servizio:
 
 ```sh
 sudo -u varco-demo env HOME=/var/lib/varco-demo RAYON_NUM_THREADS=16 \

@@ -1,18 +1,24 @@
 # Stato dell'arte: identificazione biometrica cifrata 1:N
 
-[Approfondimento sui testi integrali](docs/letteratura/testi-integrali/README.md):
-versioni, pagine verificate e correzioni. L'approfondimento riguarda 23 articoli,
-incluse le edizioni pubblicate HEArgmax e Akbari; i PDF sono stati consultati
-localmente e non sono distribuiti nel repository.
+La rassegna confronta i sistemi in base alla funzione restituita e alle
+assunzioni di fiducia, poi esamina le primitive che possono realizzare
+quel contratto. Collega i precedenti applicativi al runtime Head/PFKS con
+selettore corretto, anchor e pack4 adottato il 20 settembre.
 
-Fonti verificate il 19 settembre 2026, con controllo delle edizioni pubblicate
-di compensazione della media e FDFB ricorsivo il 22 settembre, come precisato
-nelle schede. Anche il raccordo con il progetto è aggiornato al 22 settembre.
-La rassegna collega i precedenti applicativi al runtime
-Head/PFKS con selettore corretto, anchor e pack4 adottato il 20 settembre.
-La data delle letture non garantisce una copertura esaustiva: il
-[metodo di ricerca](docs/letteratura/metodo-ricerca.md) registra criteri,
-versioni e limiti di accesso.
+Per cercare un lavoro, usare le [fonti annotate](docs/letteratura/fonti.md);
+per citarlo, la [bibliografia canonica BibTeX](docs/letteratura/bibliografia.bib).
+Le sezioni qui sotto guidano il confronto fra le costruzioni.
+
+Il [metodo di ricerca](docs/letteratura/metodo-ricerca.md), il
+[registro delle versioni](docs/letteratura/versioni-e-verifiche.md) e le
+[schede dei testi integrali](docs/letteratura/testi-integrali/README.md)
+distinguono testo letto, metadati verificati e limiti di accesso. Le 23
+letture approfondite di settembre, comprese le edizioni pubblicate HEArgmax
+e Akbari, sono un gruppo del corpus. Le altre verifiche sono registrate per
+fonte, comprese quelle del [FDFB ricorsivo](docs/letteratura/testi-integrali/fdfb-ricorsivo.md)
+e di [FAKES](docs/letteratura/testi-integrali/fakes.md). I PDF consultati
+localmente non sono distribuiti nel repository; preprint e finale restano
+distinti quando non sono stati confrontati.
 
 La domanda guida è come selezionare un'identità e applicare la soglia senza
 consegnare una lista di score decifrabili. Il confronto richiede funzione
@@ -36,8 +42,8 @@ e [contratto matematico](docs/letteratura/contratto-e-schemi.md#punteggio-soglia
 Le [schede dei sistemi](docs/letteratura/sistemi.md) distinguono score,
 membership, insieme di match, nearest-ID e top-k; riportano chi decifra e chi
 decide. Conservano i precedenti Erkin/Sadeghi/SCiFI e i sistemi HERS, GROTE,
-Cong, Blind Counting Sort, Blind-Match, IDFace, HyDia e CryptoFace. La revisione
-aggiunge o precisa CipherFace, HEFT, la variante GPU BSGS-Diagonal e HEArgmax.
+Cong, Blind Counting Sort, Blind-Match, IDFace, HyDia, CryptoFace, CipherFace,
+HEFT, la variante GPU BSGS-Diagonal, HEArgmax e BioZKFHE.
 I tempi dei paper rimangono risultati esterni nelle condizioni originali.
 
 ## 3. Primitive della costruzione attuale
@@ -75,7 +81,7 @@ una costruzione specifica: rappresentazione bounded della query, decisione
 cifrata, adattamento delle primitive, riduzione del lavoro pubblico e
 valutazione dei benefici dopo la composizione. Le [implicazioni e la cronologia](docs/letteratura/implicazioni-storiche.md)
 collegano i precedenti alle revisioni effettivamente provate; il
-[percorso sperimentale](docs/percorso-sperimentale-20260920.md) organizza le domande e le prove.
+[percorso sperimentale](docs/percorso-sperimentale.md) organizza le domande e le prove.
 
 Non si rivendicano una nuova primitiva, la prima identificazione cifrata o
 una superiorità universale. Una combinazione non trovata nel corpus non prova
@@ -84,10 +90,23 @@ nel selettore e ha portato alla correzione successiva; non dimostra un difetto
 della primitiva Head. Restano aperti il limite formale di fallimento composto,
 la circuit privacy e la valutazione biometrica indipendente.
 
+La [prova biometrica del 2 ottobre](docs/validazione/BIOMETRIA_VGGFACE2_20261002.md)
+e la [sensibilità della preparazione UI](docs/validazione/BIOMETRIA_UI_20261002.md)
+aggiungono risultati circoscritti, con falsi accessi conservati. Non sono
+una nuova calibrazione o una certificazione delle sessioni webcam.
+
 ## 7. Fonti e controllabilità
 
-La [bibliografia annotata](docs/letteratura/fonti.md) raccoglie riferimenti e
-versioni. Il [registro della ricerca](docs/letteratura/metodo-ricerca.md)
-distingue testo letto, abstract/metadati verificati e piste ancora da
-approfondire. Per i nuovi riferimenti a primitive, sistemi e privacy è disponibile anche la
-[bibliografia BibTeX](docs/letteratura/aggiornamento-20260919.bib).
+La [bibliografia annotata](docs/letteratura/fonti.md) collega ogni riferimento
+alla sua chiave nella [bibliografia canonica BibTeX](docs/letteratura/bibliografia.bib).
+Il corpus riunisce fonti applicative, primitive, sistemi, privacy e brevetti
+esaminati nella rassegna. Le versioni lette e le edizioni finali restano riconoscibili.
+
+Il [registro della ricerca](docs/letteratura/metodo-ricerca.md) distingue testo
+letto, metadati verificati e piste ancora da approfondire. La
+[mappa bibliografica](docs/letteratura/BIBLIOGRAPHY_MAP.json) permette di controllare
+la copertura delle voci annotate e la provenienza delle chiavi.
+
+[HEBI](docs/letteratura/testi-integrali/hebi.md) è letto integralmente nella
+versione accettata; SFRA rimane parziale. La copertura del corpus elencato non
+è una dichiarazione di SOTA completa o di primato di velocità.

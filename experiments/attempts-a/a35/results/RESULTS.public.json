@@ -1,0 +1,147 @@
+{
+  "schema": "saved-test-receipt-projection.v1",
+  "recovered_utc": "2026-10-06T07:27:38.181242+00:00",
+  "scope": "Historical clear/model unit tests from the 2026-10-02 saved audit; no test rerun, FHE execution, performance or failure-bound validation. A passing test of an obstruction validates the model/test, not the rejected construction.",
+  "original_receipt": {
+    "path": "tmp/general-audit-20261002/root/historical-tests-isolated/RESULTS.json",
+    "sha256": "88249f91c8502e67bb87bcd2b7605c84ec758bae83413a9aa1fdc0f548a4098b",
+    "bytes": 5012
+  },
+  "selected_original_indices": [
+    6,
+    7,
+    8
+  ],
+  "runs": [
+    {
+      "module": "tests.test_a35_block_label_scan_output_model",
+      "exit": 0,
+      "seconds": 6.212104541998997,
+      "log": "tmp/general-audit-20261002/root/historical-tests-isolated/test_a35_block_label_scan_output_model.log"
+    },
+    {
+      "module": "tests.test_a35_fused_group_classifier_model",
+      "exit": 0,
+      "seconds": 5.396559917004197,
+      "log": "tmp/general-audit-20261002/root/historical-tests-isolated/test_a35_fused_group_classifier_model.log"
+    },
+    {
+      "module": "tests.test_a35_radix5_reduction_model",
+      "exit": 0,
+      "seconds": 0.47133120900252834,
+      "log": "tmp/general-audit-20261002/root/historical-tests-isolated/test_a35_radix5_reduction_model.log"
+    }
+  ],
+  "source_binding": {
+    "files": [
+      {
+        "path": "benchmark/a35_block_label_scan_output_model.py",
+        "sha256": "d657e87a0b2af9acfa3b7672926164ad831ea59b85efabc19cc8a74b72442231",
+        "bytes": 31939
+      },
+      {
+        "path": "benchmark/a35_fused_group_classifier_model.py",
+        "sha256": "7da56a70c3e8677ba2796ab5c4ffa5fd9369b9aca64dc5138694c71b513fe0a3",
+        "bytes": 28711
+      },
+      {
+        "path": "benchmark/a35_radix5_reduction_model.py",
+        "sha256": "256e86104cd193ce9950ae1ea66c16a606615a3823b0d65a1866f21d802fdc88",
+        "bytes": 18891
+      },
+      {
+        "path": "tests/test_a35_block_label_scan_output_model.py",
+        "sha256": "f2d33d1a5bd241ecf36e187f8829b9712b0929ef7d144eeb308fba4a87b60a50",
+        "bytes": 9400
+      },
+      {
+        "path": "tests/test_a35_fused_group_classifier_model.py",
+        "sha256": "e06c81a30fac41ed6d187b9a168d783725285dd86401c574b28a5dc3eaecd6f0",
+        "bytes": 9738
+      },
+      {
+        "path": "tests/test_a35_radix5_reduction_model.py",
+        "sha256": "267e0aea842320e14a8388c62cf151875f660cf7c373f6c9596e201251d8bae1",
+        "bytes": 8154
+      }
+    ],
+    "historical_sources": [
+      {
+        "path": "tmp/general-audit-20261002/root/BEFORE.json",
+        "sha256": "031e8de422faebeaa3c3769a5a6441bc8e1e88a60ef6733bfe57584b7c1849ae",
+        "bytes": 310587,
+        "selected_field": "files",
+        "selected_public_source_hashes": {
+          "benchmark/a35_block_label_scan_output_model.py": "d657e87a0b2af9acfa3b7672926164ad831ea59b85efabc19cc8a74b72442231",
+          "benchmark/a35_fused_group_classifier_model.py": "7da56a70c3e8677ba2796ab5c4ffa5fd9369b9aca64dc5138694c71b513fe0a3",
+          "benchmark/a35_radix5_reduction_model.py": "256e86104cd193ce9950ae1ea66c16a606615a3823b0d65a1866f21d802fdc88",
+          "tests/test_a35_block_label_scan_output_model.py": "f2d33d1a5bd241ecf36e187f8829b9712b0929ef7d144eeb308fba4a87b60a50",
+          "tests/test_a35_fused_group_classifier_model.py": "e06c81a30fac41ed6d187b9a168d783725285dd86401c574b28a5dc3eaecd6f0",
+          "tests/test_a35_radix5_reduction_model.py": "267e0aea842320e14a8388c62cf151875f660cf7c373f6c9596e201251d8bae1"
+        }
+      },
+      {
+        "path": "tmp/general-audit-20261002/root/PRESERVATION.json",
+        "sha256": "a68bc898b3def4e069b58e57f4da9356d5bc1bc0c040740db9b233a1cb10e7aa",
+        "bytes": 311105,
+        "selected_field": "current_hashes",
+        "selected_public_source_hashes": {
+          "benchmark/a35_block_label_scan_output_model.py": "d657e87a0b2af9acfa3b7672926164ad831ea59b85efabc19cc8a74b72442231",
+          "benchmark/a35_fused_group_classifier_model.py": "7da56a70c3e8677ba2796ab5c4ffa5fd9369b9aca64dc5138694c71b513fe0a3",
+          "benchmark/a35_radix5_reduction_model.py": "256e86104cd193ce9950ae1ea66c16a606615a3823b0d65a1866f21d802fdc88",
+          "tests/test_a35_block_label_scan_output_model.py": "f2d33d1a5bd241ecf36e187f8829b9712b0929ef7d144eeb308fba4a87b60a50",
+          "tests/test_a35_fused_group_classifier_model.py": "e06c81a30fac41ed6d187b9a168d783725285dd86401c574b28a5dc3eaecd6f0",
+          "tests/test_a35_radix5_reduction_model.py": "267e0aea842320e14a8388c62cf151875f660cf7c373f6c9596e201251d8bae1"
+        }
+      }
+    ],
+    "verification": "Each of the six current public source hashes equals both the pre-audit hash and preserved post-audit hash."
+  },
+  "public_log_files": [
+    {
+      "path": "test_a35_block_label_scan_output_model.log",
+      "sha256": "8eb3fa336a5351e84b1429a6d670b94f723a8203da01cf9b05c2a843805e183f",
+      "bytes": 107
+    },
+    {
+      "path": "test_a35_fused_group_classifier_model.log",
+      "sha256": "3fe3a5c20e035f5641d157d70bd27036bc8fa473e3bb1e361a026eb48578f02b",
+      "bytes": 109
+    },
+    {
+      "path": "test_a35_radix5_reduction_model.log",
+      "sha256": "968aa280d675df565589b4d09d2aa706efbc88f56cdf3ccc408bbad8cead31a5",
+      "bytes": 109
+    }
+  ],
+  "transformations": [
+    {
+      "action": "select_original_receipt_entries",
+      "selected_indices": [
+        6,
+        7,
+        8
+      ],
+      "original_entry_fields_preserved": true
+    },
+    {
+      "action": "add_public_source_binding",
+      "origin_fields": [
+        "BEFORE.json/files",
+        "PRESERVATION.json/current_hashes"
+      ],
+      "selected_source_paths": [
+        "benchmark/a35_block_label_scan_output_model.py",
+        "benchmark/a35_fused_group_classifier_model.py",
+        "benchmark/a35_radix5_reduction_model.py",
+        "tests/test_a35_block_label_scan_output_model.py",
+        "tests/test_a35_fused_group_classifier_model.py",
+        "tests/test_a35_radix5_reduction_model.py"
+      ]
+    },
+    {
+      "action": "add_recovery_scope_and_local_log_pins",
+      "no_new_execution": true
+    }
+  ]
+}

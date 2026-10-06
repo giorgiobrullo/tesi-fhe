@@ -1,0 +1,111 @@
+{
+  "schema": "a167.actual-full-three-process-review.v1",
+  "status": "PASS_24_OF_24_DIRECT_COMPONENT",
+  "full_three_process_gate_complete": true,
+  "source_sha256": "4d2c1f18a7fb74c7e90a41d4a362f7f2fd5d49a01f1fd7fad250c87fa82648d8",
+  "binary_sha256": "13275f13ef2dd7f0f3b52790014375ab42ee3d6347f0f7a229d0da2d9eb10c36",
+  "validation_sha256": "375e0d8d411b109c57232288b934e5e04523851b383e1802fffca0c212f7cffb",
+  "process_count": 3,
+  "raw_record_count": 750,
+  "fixture_cases": 24,
+  "direct_passed": 24,
+  "scalar_passed": 24,
+  "convolution_passed": 24,
+  "direct_component_pass": true,
+  "scalar_reference_pass": true,
+  "convolution_component_pass": true,
+  "order_offsets": [
+    0,
+    1,
+    2
+  ],
+  "unique_actual_PIDs": 3,
+  "unique_functional_key_serialization_hashes": 6,
+  "functional_key_families_per_process": 2,
+  "six_distinct_hashes_verified": true,
+  "cross_process_chronology_and_source_binary_bindings": "PASS_FROZEN_AGGREGATE_CHECKER",
+  "processes": [
+    {
+      "run_id": "smoke-key1",
+      "pid": 68353,
+      "offset": 0,
+      "raw_records": 250,
+      "raw_sha256": "cdfbf5cfee18a11967aec97a9c3690355d7929ffa2317b34e1db9b25dc16b803",
+      "direct_passed": 8,
+      "scalar_passed": 8,
+      "convolution_passed": 8,
+      "support_failures": 0,
+      "prerequisite_failures": 0,
+      "ingress_failures": 0,
+      "post_ks_controls_unequal": 0,
+      "observer_identity_failures": 0,
+      "counter_failures": {
+        "direct": 0,
+        "convolution": 0,
+        "scalar": 0
+      },
+      "root_source_and_binary_unchanged": true,
+      "root_child_exit": 0,
+      "finished_utc": "2026-09-05T05:11:53.117318+00:00"
+    },
+    {
+      "run_id": "full-key2-offset1",
+      "pid": 70577,
+      "offset": 1,
+      "raw_records": 250,
+      "raw_sha256": "b60ca285ce5e69c4e17cb926b5e5f56de42917f6ed67992e297d600e21b8c6dc",
+      "direct_passed": 8,
+      "scalar_passed": 8,
+      "convolution_passed": 8,
+      "support_failures": 0,
+      "prerequisite_failures": 0,
+      "ingress_failures": 0,
+      "post_ks_controls_unequal": 0,
+      "observer_identity_failures": 0,
+      "counter_failures": {
+        "direct": 0,
+        "convolution": 0,
+        "scalar": 0
+      },
+      "root_source_and_binary_unchanged": true,
+      "root_child_exit": 0,
+      "finished_utc": "2026-09-05T05:14:01.330698+00:00"
+    },
+    {
+      "run_id": "full-key3-offset2",
+      "pid": 71685,
+      "offset": 2,
+      "raw_records": 250,
+      "raw_sha256": "49dce9581b0fe47679ad2b9a2d9d9ac3a30340b99efd78b02139f9854832eeb7",
+      "direct_passed": 8,
+      "scalar_passed": 8,
+      "convolution_passed": 8,
+      "support_failures": 0,
+      "prerequisite_failures": 0,
+      "ingress_failures": 0,
+      "post_ks_controls_unequal": 0,
+      "observer_identity_failures": 0,
+      "counter_failures": {
+        "direct": 0,
+        "convolution": 0,
+        "scalar": 0
+      },
+      "root_source_and_binary_unchanged": true,
+      "root_child_exit": 0,
+      "finished_utc": "2026-09-05T05:15:04.954468+00:00"
+    }
+  ],
+  "source_bound_crypto_ledger": {
+    "PFKS": 576,
+    "ordinary_KS": 144,
+    "BR": 144,
+    "sample_extractions": 288
+  },
+  "scope": "Three fresh recorded-process direct-D2 component gate; same smoke offset0 is included once, not added again. Convolution passes this new sample; A108 historical wrong-output evidence remains unchanged.",
+  "independence_or_variance_reduction_proven": false,
+  "base_key_or_secret_membership_attested": false,
+  "comparator_tournament_full_ID_service_validated": false,
+  "actual_p_fail": null,
+  "performance_or_speedup_claim": false,
+  "next_scope": "Registered D2 component gate is complete. D1 or downstream composition needs its own source/interface/noise gate; no further FHE launched by this review."
+}

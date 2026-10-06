@@ -1,0 +1,93 @@
+{
+  "schema": "a112.head-start-r3-r4.static-freeze.v1",
+  "created_utc": "2026-09-03T06:24:00Z",
+  "status": "PASS_STATIC_PREFLIGHT_NOT_COMPILED_NOT_RUN",
+  "authorization_consumed": "read-only source inspection, apply_patch materialization, pure Python finite checks, Ruff, standalone rustfmt, JSON parsing, and hashing only",
+  "checks": {
+    "unittest_python_3_9_6": "PASS 9/9",
+    "static_model_python_3_9_6": "PASS",
+    "ruff_0_14_6_check": "PASS",
+    "ruff_0_14_6_format_check": "PASS",
+    "rustfmt_1_9_0_check": "PASS parser/format only, not type-check",
+    "json_parse": "PASS",
+    "tfhe_1_7_source_hashes_and_api_fragments": "PASS",
+    "a98_r2b_raw_hash_and_summary": "PASS 14/14, tie0=6, tie1=8",
+    "protected_hashes": "PASS",
+    "cargo_manifest_absent": "PASS",
+    "cargo_lock_absent": "PASS",
+    "target_absent": "PASS"
+  },
+  "frozen_artifacts": {
+    "API_AUDIT.md": "82d339170765c24dbf6128e3fa5b52682d8ff46d7ea92cd0bb84f87c45e8a12d",
+    "README.md": "1fa2fb8a170d6b55cf3e40e9711e63e215f7c7b3c54fa5a69c5bdaf0d05bd6b3",
+    "PREREGISTRATION.json": "041090dc27c08b6d858cd591d012ccbf36b3f63be66cc1bf803547a829940e3d",
+    "SOURCE_PINS.json": "ed714f87ce35f64de3dcaae047edcc9b12995d18aed4957417763f42235370cb",
+    "a112_static_model.py": "958f557a749e118ce09cb27ea666dcff18b03cfe616ba984c1706843d80f0315",
+    "src/lib.rs": "09908a40d3f078e07aaf210821353af83f6f6698b4aa8d1d2ca7532e299da93e",
+    "tests/test_static_model.py": "de452f2bb8b08a60d076685a43eee43bbc4561cd6c67598e7e9c11eba1d52187"
+  },
+  "r2b_prerequisite": {
+    "raw_path": "tmp/a98-head-start-exact-adapter-port/artifacts/a98_r2b_component_smoke_2026-09-03T0517.jsonl",
+    "raw_sha256": "bd4cfd5e7bdf2bffd4d0dfc6ac1fc3042536d9b5493b09945fe9325f3f46f9d1",
+    "status": "PASS_COMPONENT_FHE_SMOKE_R2B",
+    "cases_passed": 14,
+    "tie_zero_cases": 6,
+    "tie_one_cases": 8,
+    "r3_r4_run_by_r2b": false
+  },
+  "geometry": {
+    "big_lwe_dimension": 2048,
+    "small_lwe_dimension": 859,
+    "ks_precision_bits": 15,
+    "blind_rotation_modulus": 4096,
+    "score_delta_log": 51
+  },
+  "finite_integer_evidence": {
+    "decomposition_states_checked": 32768,
+    "reference_local_digit_mismatches": 0,
+    "recomposition_failures": 0,
+    "digit_stream_sha256": "cca1c6d6728dcee2c18920e5985557541e07ddb49e4b6820094971ee5e29a184",
+    "rounding_edge_values_checked": 26,
+    "rounding_mismatches": 0,
+    "signed_half_edge_values_checked": 8,
+    "signed_half_mismatches": 0
+  },
+  "future_fixture_ledger": {
+    "ordered_cases": 16,
+    "honest_gaussian_encryptions": 9,
+    "key_consistent_non_gaussian_component_cases": 7,
+    "named_decomposition_states": [
+      16384,
+      16385,
+      18204,
+      18205
+    ],
+    "post_ks_tie_classes_required": [
+      0,
+      1
+    ],
+    "negative_and_wrap_coverage": true
+  },
+  "candidate_scope": {
+    "reference_path": "independent pinned-patch KS semantics plus direct Head Start modulus-switch oracle plus stock blind rotate",
+    "local_path": "A98 local rounding/decomposition/half plus passing R2B adapter plus stock blind rotate",
+    "primary_future_gate": "paired bitwise equality after KS, pre-FFT, after blind rotation, and after degree-zero extraction; ideal-LUT decode equality",
+    "phase_error_cap": null,
+    "full_glwe_independence_assumed": false,
+    "timing_decisional": false,
+    "exact_id_promotion_allowed": false
+  },
+  "executions": {
+    "cargo": 0,
+    "rustc": 0,
+    "type_check": 0,
+    "build": 0,
+    "binary": 0,
+    "keygen": 0,
+    "encryption": 0,
+    "keyswitch": 0,
+    "pbs": 0,
+    "timing": 0
+  },
+  "claim_boundary": "Static R3/R4 source candidate and finite integer audit only. Rustfmt does not prove API/type correctness. No compiled binary, key generation, encrypted input, corrected key switch, PBS, phase sample, timing, p_fail, Head Start digit reconstruction, exact-ID integration, or speedup result exists."
+}

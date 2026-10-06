@@ -1,0 +1,38 @@
+{
+  "artifact": "A109",
+  "gates": {
+    "algebraic_mapping": "PASS",
+    "bgv_parameters_q_noise_security": "UNKNOWN",
+    "boostcom_public_artifact": "NOT_FOUND_BY_BOUNDED_SEARCH",
+    "boostcom_runtime_transfer": "FORBIDDEN",
+    "comparison_circuit_source": "AVAILABLE_AT_PINNED_COMMIT",
+    "helib_runtime": "NOT_RUN"
+  },
+  "ledger": {
+    "comparison_lanes": 8128,
+    "cyclotomic_order": 81920,
+    "factor_lanes": 16256,
+    "gallery_size": 127,
+    "inferred_lt_depth_from_paper_formula": 16,
+    "inferred_selector_depth_after_scores": 23,
+    "inferred_univariate_non_scalar_multiplications": 151,
+    "padded_factors_per_candidate": 128,
+    "ring_degree": 32768,
+    "score_bits": 12,
+    "score_max": 4095,
+    "score_min": 0,
+    "selector_product_levels": 7,
+    "semantic_factors_per_candidate": 127,
+    "simd_slots": 16384,
+    "threshold_lanes": 127,
+    "univariate_exact_max": 4095,
+    "unordered_pair_lanes": 8001
+  },
+  "semantics": {
+    "comparison": "strict LT",
+    "output": "single encrypted code: 0 reject, index+1 accept",
+    "threshold": "winner score <= winner threshold is accepted",
+    "tie_policy": "first gallery index wins"
+  },
+  "status": "STATIC_BENCHMARK_WORTHY_NOT_IMPLEMENTED"
+}

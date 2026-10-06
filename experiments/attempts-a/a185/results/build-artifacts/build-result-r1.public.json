@@ -1,0 +1,9 @@
+{
+  "status": "CHECK_AND_RELEASE_PASS",
+  "binary": "archive:/tmp/a185-a175-private-helper-successor/candidate/target-a185-private-helper-only/release/a125_low_extraction_gate",
+  "binary_sha256": "a85ca9972e02d3f4067beb5884cfcd8e837a60419a9590af1ab3203e5bbbd0ee",
+  "artifact_manifest_sha256": "a4946b59f41008b377ded09d0be104b34b0813f2a6c0baa2f9015658ade7557e",
+  "source_identity_sha256": "24e55295dd3ce07fca1ad9ac37f95eb75bb64fc39cff96031731aca298c19c89",
+  "completed_at_utc": "2026-09-05T08:38:12.250870+00:00",
+  "actual_fhe": false
+}

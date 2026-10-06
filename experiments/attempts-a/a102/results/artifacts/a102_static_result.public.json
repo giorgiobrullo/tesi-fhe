@@ -1,0 +1,435 @@
+{
+  "cargo_rustc_keygen_fhe_or_timing_run": false,
+  "claims": {
+    "allowed": [
+      "MS-PackLWEs can reuse A99's ten key degrees and 14-call A92 schedule",
+      "A99's retained trace is already in RevHomTrace order",
+      "MS reduces g1 logical GLWE normalizations from 21 to 14 per non-root node",
+      "the exact encoded clear geometry and width-127 isolation pass"
+    ],
+    "forbidden": [
+      "runtime speedup",
+      "A44 noise sufficiency or p-fail",
+      "paper benchmark transfer to this host or TFHE-rs 0.11.3",
+      "full selector, tournament, or exact-ID correctness",
+      "novelty claim for RevHomTrace or MS-PackLWEs"
+    ]
+  },
+  "compatibility": {
+    "a99_ms_delta": "replace separate H(E),H(X^sO) by one H(E-X^sO) in each merge",
+    "a99_partial_trace_is_already_revhomtrace_order": true,
+    "encrypted_exact_id_semantics_proven_here": false,
+    "grouped_normalization_direct_theorem_transfer": false,
+    "grouped_reason": "q/4 block boundaries are not Algorithm 6's per-level q/2 recurrence",
+    "guard_coefficients_between_support_cells": 1,
+    "hp_full_ingress_divisor": 2048,
+    "hp_partial_required_nonroot_ingress_divisor": 1024,
+    "hp_partial_required_root_ingress_divisor": 256,
+    "hp_unchanged_partial_nonroot_scale_ratio": "1/2",
+    "hp_unchanged_partial_root_scale_ratio": "1/8",
+    "kernel_width": 127,
+    "ms_partial_trace_algebraically_composable": true,
+    "official_converter_drop_in": false,
+    "official_converter_issue": "it hard-codes trace target to lwe_count=8 and keeps pack_lwes_rev private",
+    "required_reverse_trace_degrees": [
+      33,
+      65,
+      129,
+      257,
+      513,
+      1025,
+      2049
+    ],
+    "required_trace_target": 16,
+    "support_spacing": 128,
+    "two_trace_stages_omitted_is_unsafe": true
+  },
+  "date": "2026-09-03",
+  "exact_clear_geometry": {
+    "arms": [
+      "a99-g1-floor",
+      "a99-g2-floor",
+      "a99-g2-nearest",
+      "ms-partial-floor",
+      "ms-partial-nearest"
+    ],
+    "dense_certified_samples_equal": true,
+    "dense_global_a99_g1_ms_equality_expected": false,
+    "dense_residual_cell_disagreements": 5,
+    "dense_wanted_slot_disagreements": 0,
+    "encoded_full_polynomial_equality": true,
+    "encoded_slot_checks": 40,
+    "partial_support_step": 128,
+    "residual_interleaved_cells_exercised": 8,
+    "root_wanted_slot_checks": 4,
+    "wanted_slot_step": 256,
+    "width127_robust_sample_checks": 3048
+  },
+  "local_input_pins": {
+    "tmp/a92-chen-partial-trace-packing/README.md": "7a8f4308cae3efa5ff75051967ef07b56daf55c7e51e130846c5953b0a7af225",
+    "tmp/a92-chen-partial-trace-packing/a92_chen_partial_trace.py": "3c6c8e2cc39de5c03c027837a03c98a62b7dbd04b3b56171788e8cc6a81c814b",
+    "tmp/a92-chen-partial-trace-packing/artifacts/a92_static_result.json": "85405bd3981c41c0d578a320d025dfec42a8e7e5f2cd14660527d3cd3f10cce0",
+    "tmp/a96-chen-normalized-rounding-preflight/README.md": "946473a243a2c61dd129749f7e41729a65885a8a931319ef91a2f278009df003",
+    "tmp/a96-chen-normalized-rounding-preflight/a96_chen_rounding.py": "5e071a359cf3e1948eaccaad5c205eb79a7bfcde4e267e1755f0d7ece1bac588",
+    "tmp/a96-chen-normalized-rounding-preflight/artifacts/a96_static_result.json": "1e132be1b87de948603bd5e1c8127f88d00a53f64325c678adc93a8ef007df92",
+    "tmp/a99-chen-grouped-runtime/README.md": "f7ae26d0464dd7d16555ea31517fa1efe530e94738ed277419a83a103ebec632",
+    "tmp/a99-chen-grouped-runtime/SOURCE_PINS.json": "7abb011b197409cf16f106ecb667a37d6db7376605c00308a300f4cc1032ce8b",
+    "tmp/a99-chen-grouped-runtime/a99_static_oracle.py": "8b9d138e35c6fa78ca1de47d5bc0864309a174b30433335b27127901f31b5055",
+    "tmp/a99-chen-grouped-runtime/artifacts/a99_static_result.json": "09f0810312303fffc3f3fd4b87944b23f9a98555f21c2eb291e37cd81146235e",
+    "tmp/a99-chen-grouped-runtime/src/main.rs": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b"
+  },
+  "n127_structural_ledger": {
+    "A99_g1_partial": {
+      "evalauto_calls_rank1": 1772,
+      "normalization_objects": 2655
+    },
+    "A99_g2_partial": {
+      "evalauto_calls_rank1": 1772,
+      "normalization_objects_are_mixed_lwe_glwe": true
+    },
+    "HP_full_paper_geometry": {
+      "backward_glwe_keyswitches": 127,
+      "evalauto_calls_rank2": 1901,
+      "forward_glwe_keyswitches": 1010,
+      "ingress_normalized_scalar_words_rank2": 6205440
+    },
+    "MS_A92_partial": {
+      "direct_shift_element_visits": 7258112,
+      "evalauto_calls_rank1": 1772,
+      "normalization_objects": 1772,
+      "official_helper_element_loop_iterations": 14516224,
+      "official_helper_temporary_allocations": 1772
+    },
+    "MS_full_paper_geometry": {
+      "evalauto_calls_rank1": 1901,
+      "normalization_objects": 1901
+    },
+    "invariants_common_to_all_rows": {
+      "encrypted_control_and_tournament_costs": "unchanged and not included",
+      "public_width127_kernel_products": 127
+    },
+    "selector_nodes": 127
+  },
+  "parameters": {
+    "a99_tfhe_rs_0_11_3_full_fourier_ggsw_sweep": [
+      "base_log=23,levels=1",
+      "base_log=8,levels=5",
+      "base_log=7,levels=6"
+    ],
+    "comparability_warning": "the official AutomorphKey uses custom Fourier/split-FFT GLWE keyswitch code; A99 uses TFHE-rs 0.11.3 full Fourier GGSW external products, so decomposition labels do not imply equal kernels",
+    "official_bench_ks_frozen_input_count": 4,
+    "official_n8_measurement_available": false,
+    "official_paper_table6_input_counts": [
+      4,
+      32,
+      256,
+      2048
+    ],
+    "official_rank1_revhomtrace": {
+      "INT_LHE_BASE_256_REV": {
+        "auto_base_log": 7,
+        "auto_fft": "Split(35)",
+        "auto_levels": 6,
+        "glwe_rank": 1,
+        "lwe_dimension": 953
+      },
+      "INT_LHE_BASE_64_REV": {
+        "auto_base_log": 10,
+        "auto_fft": "Split(37)",
+        "auto_levels": 4,
+        "glwe_rank": 1,
+        "lwe_dimension": 873
+      }
+    },
+    "official_rank2_hp": {
+      "INT_LHE_BASE_256": {
+        "auto": "base_log=9,levels=6,Split(37)",
+        "base_glwe_rank": 1,
+        "from_large": "base_log=10,levels=4,Split(38)",
+        "large_glwe_rank": 2,
+        "to_large": "base_log=15,levels=3,Split(42)"
+      },
+      "INT_LHE_BASE_64": {
+        "auto": "base_log=12,levels=4,Split(40)",
+        "base_glwe_rank": 1,
+        "from_large": "base_log=12,levels=3,Split(42)",
+        "large_glwe_rank": 2,
+        "to_large": "base_log=15,levels=3,Split(42)"
+      }
+    },
+    "ring": {
+      "base_glwe_rank": 1,
+      "input_count": 8,
+      "native_torus_bits": 64,
+      "polynomial_size": 2048
+    }
+  },
+  "per_nonroot_ledger": [
+    {
+      "assumptions_and_scope": "exact EvalAuto/stage algebra and binary k=1 secret; excludes input, EvalAuto, FFT, PBS, extraction error and covariance",
+      "direct_shift_element_visits": 86016,
+      "distinct_automorphism_keys": 10,
+      "evalauto_rank": 1,
+      "glwe_ks_backward": 0,
+      "glwe_ks_forward": 0,
+      "ingress_normalization_bits": null,
+      "input_count": 8,
+      "logical_normalization_objects": 21,
+      "logical_normalized_scalar_words": 86016,
+      "name": "A99-g1-floor-partial",
+      "normalization_layout": "21 GLWE floor /2: two branches per merge plus trace",
+      "official_helper_element_loop_iterations": null,
+      "packing_evalauto_calls": 7,
+      "selected_path_depth": 10,
+      "status": "materialized A99 arm; FHE run pending",
+      "theoretical_noise_or_bound": "A96 distributed deterministic floor-only bound: 43,008 torus units before the width-127 kernel, 5,462,016 after it",
+      "total_evalauto_calls": 14,
+      "trace_evalauto_calls": 7,
+      "trace_order": "reverse",
+      "trace_target": 16
+    },
+    {
+      "assumptions_and_scope": "q/4 block-boundary invariant; not Algorithm 6's per-level q/2 recurrence and therefore outside Lee Lemma 5",
+      "direct_shift_element_visits": 36872,
+      "distinct_automorphism_keys": 10,
+      "evalauto_rank": 1,
+      "glwe_ks_backward": 0,
+      "glwe_ks_forward": 0,
+      "ingress_normalization_bits": 2,
+      "input_count": 8,
+      "logical_normalization_objects": 13,
+      "logical_normalized_scalar_words": 36872,
+      "name": "A99-g2-floor-or-nearest-partial",
+      "normalization_layout": "8 input LWEs plus 5 live GLWEs, each nearest/floor /4",
+      "official_helper_element_loop_iterations": null,
+      "packing_evalauto_calls": 7,
+      "selected_path_depth": 10,
+      "status": "materialized A99 arms; FHE run pending",
+      "theoretical_noise_or_bound": "A96 conditional grouped floor factor 15 on a selected path; no promoted composed variance or failure bound",
+      "total_evalauto_calls": 14,
+      "trace_evalauto_calls": 7,
+      "trace_order": "reverse grouped in pairs",
+      "trace_target": 16
+    },
+    {
+      "assumptions_and_scope": "paper modulus-switch and EvalAuto model; source helper uses unsigned floor, so its mean-zero VMS premise is not automatically inherited",
+      "direct_shift_element_visits": 16392,
+      "distinct_automorphism_keys": 11,
+      "evalauto_rank": 1,
+      "glwe_ks_backward": 0,
+      "glwe_ks_forward": 0,
+      "ingress_normalization_bits": 11,
+      "input_count": 8,
+      "logical_normalization_objects": 8,
+      "logical_normalized_scalar_words": 16392,
+      "name": "Standard-PackLWEs-full-paper-source",
+      "normalization_layout": "8 input LWEs preprocessed once by /2048",
+      "official_helper_element_loop_iterations": 32784,
+      "packing_evalauto_calls": 7,
+      "selected_path_depth": 11,
+      "status": "paper/source-backed comparator; not an A44 measurement",
+      "theoretical_noise_or_bound": "Lemma 3 at N=2048,n=8: Vin + 4,194,304 VMS + 1,376,256 VAuto",
+      "total_evalauto_calls": 15,
+      "trace_evalauto_calls": 8,
+      "trace_order": "standard descending degrees",
+      "trace_target": 8
+    },
+    {
+      "assumptions_and_scope": "full n=8 packing, paper centered-nearest modulus-switch model and its error assumptions; not a bound for source-faithful unsigned floor",
+      "direct_shift_element_visits": 61440,
+      "distinct_automorphism_keys": 11,
+      "evalauto_rank": 1,
+      "glwe_ks_backward": 0,
+      "glwe_ks_forward": 0,
+      "ingress_normalization_bits": null,
+      "input_count": 8,
+      "logical_normalization_objects": 15,
+      "logical_normalized_scalar_words": 61440,
+      "name": "MS-PackLWEs-full-paper",
+      "normalization_layout": "one GLWE /2 before every EvalAuto",
+      "official_helper_element_loop_iterations": 122880,
+      "packing_evalauto_calls": 7,
+      "selected_path_depth": 11,
+      "status": "paper/source-backed algorithm; not an A44 measurement",
+      "theoretical_noise_or_bound": "Lemma 5 at N=2048: Vin + 44 VMS + 11 VAuto",
+      "total_evalauto_calls": 15,
+      "trace_evalauto_calls": 8,
+      "trace_order": "reverse",
+      "trace_target": 8
+    },
+    {
+      "assumptions_and_scope": "conditional extension of Lemma 5 after omitting degree 17; requires an A92-specific proof and width-127 kernel covariance composition",
+      "direct_shift_element_visits": 57344,
+      "distinct_automorphism_keys": 10,
+      "evalauto_rank": 1,
+      "glwe_ks_backward": 0,
+      "glwe_ks_forward": 0,
+      "ingress_normalization_bits": null,
+      "input_count": 8,
+      "logical_normalization_objects": 14,
+      "logical_normalized_scalar_words": 57344,
+      "name": "MS-PackLWEs-A92-partial",
+      "normalization_layout": "one GLWE /2 before every EvalAuto",
+      "official_helper_element_loop_iterations": 114688,
+      "packing_evalauto_calls": 7,
+      "selected_path_depth": 10,
+      "status": "A102 static candidate; no TFHE-rs port or FHE result",
+      "theoretical_noise_or_bound": "derived retained-coefficient recurrence candidate: Vin + 40 VMS + 10 VAuto",
+      "total_evalauto_calls": 14,
+      "trace_evalauto_calls": 7,
+      "trace_order": "reverse",
+      "trace_target": 16
+    },
+    {
+      "assumptions_and_scope": "full n=8 packing under rank k'=2 and official paper parameter family; not a bound for A44 or partial width-127 geometry",
+      "direct_shift_element_visits": 49152,
+      "distinct_automorphism_keys": 11,
+      "evalauto_rank": 2,
+      "glwe_ks_backward": 1,
+      "glwe_ks_forward": 8,
+      "ingress_normalization_bits": 11,
+      "input_count": 8,
+      "logical_normalization_objects": 8,
+      "logical_normalized_scalar_words": 49152,
+      "name": "HP-PackLWEs-full-paper",
+      "normalization_layout": "8 rank-2 GLWEs preprocessed once by /2048",
+      "official_helper_element_loop_iterations": 98304,
+      "packing_evalauto_calls": 7,
+      "selected_path_depth": 11,
+      "status": "paper/source-backed comparator; not an A44 measurement",
+      "theoretical_noise_or_bound": "Lemma 4 at N=2048,n=8: Vin + 4,194,304 VS-to-S' + 4,194,304 VMS + 1,376,256 VAuto,k' + VS'-to-S",
+      "total_evalauto_calls": 15,
+      "trace_evalauto_calls": 8,
+      "trace_order": "standard",
+      "trace_target": 8
+    },
+    {
+      "assumptions_and_scope": "hypothetical rank-2 adaptation; needs a new partial-trace correctness and noise proof plus a custom /1024 preprocessing entry point",
+      "direct_shift_element_visits": 49152,
+      "distinct_automorphism_keys": 10,
+      "evalauto_rank": 2,
+      "glwe_ks_backward": 1,
+      "glwe_ks_forward": 8,
+      "ingress_normalization_bits": 10,
+      "input_count": 8,
+      "logical_normalization_objects": 8,
+      "logical_normalized_scalar_words": 49152,
+      "name": "HP-PackLWEs-A92-partial-custom",
+      "normalization_layout": "8 rank-2 GLWEs custom-preprocessed once by /1024",
+      "official_helper_element_loop_iterations": null,
+      "packing_evalauto_calls": 7,
+      "selected_path_depth": 10,
+      "status": "hypothetical only; unchanged HP code would return half scale",
+      "theoretical_noise_or_bound": "none: unchanged /2048 code is mis-scaled, while /1024 has no theorem",
+      "total_evalauto_calls": 14,
+      "trace_evalauto_calls": 7,
+      "trace_order": "standard or reverse only with a new proof",
+      "trace_target": 16
+    },
+    {
+      "assumptions_and_scope": "trace target n=8 after packing; same centered-nearest assumptions as the paper, not source unsigned-floor transfer",
+      "direct_shift_element_visits": 32768,
+      "distinct_automorphism_keys": 8,
+      "evalauto_rank": 1,
+      "glwe_ks_backward": 0,
+      "glwe_ks_forward": 0,
+      "ingress_normalization_bits": null,
+      "input_count": 8,
+      "logical_normalization_objects": 8,
+      "logical_normalized_scalar_words": 32768,
+      "name": "RevHomTrace-postpack-n8-component",
+      "normalization_layout": "one rank-1 GLWE /2 before each of 8 EvalAuto calls",
+      "official_helper_element_loop_iterations": 65536,
+      "packing_evalauto_calls": 0,
+      "selected_path_depth": 8,
+      "status": "paper/source-backed trace component, isolated from packing",
+      "theoretical_noise_or_bound": "Lemma 5 trace portion: +32 VMS + 8 VAuto; full constant trace Theorem 4 is +44 VMS + 11 VAuto",
+      "total_evalauto_calls": 8,
+      "trace_evalauto_calls": 8,
+      "trace_order": "reverse ascending degrees 17..2049",
+      "trace_target": 8
+    }
+  ],
+  "primary_source_pins": {
+    "paper_pdf_sha256": "4f1033580542c56baa8a493aab178681082df768cd3446cc4470bc75b49589a9",
+    "repository_commit": "47c8f6f6b65a451a14b542dc45c873f1e962decd",
+    "required_remote_file_pins": 4,
+    "source_pins_sha256": "aecf0522d7595dfccff8003732d72acb40ff69b7d7c688ae9bca178ff49c1afc"
+  },
+  "promotion_to_runtime_frontier_allowed": false,
+  "schedule": {
+    "a92_omitted_degree": 17,
+    "a92_partial_revtrace_degrees": [
+      33,
+      65,
+      129,
+      257,
+      513,
+      1025,
+      2049
+    ],
+    "full_distinct_keys": 11,
+    "full_total_evalauto": 15,
+    "packing_degree_multiplicity": {
+      "3": 4,
+      "5": 2,
+      "9": 1
+    },
+    "packing_evalauto_degrees_by_layer": [
+      3,
+      3,
+      3,
+      3,
+      5,
+      5,
+      9
+    ],
+    "packing_evalauto_temporal_order_even_first": [
+      3,
+      3,
+      5,
+      3,
+      3,
+      5,
+      9
+    ],
+    "paper_full_revtrace_degrees": [
+      17,
+      33,
+      65,
+      129,
+      257,
+      513,
+      1025,
+      2049
+    ],
+    "paper_full_standard_trace_degrees": [
+      2049,
+      1025,
+      513,
+      257,
+      129,
+      65,
+      33,
+      17
+    ],
+    "partial_distinct_keys": 10,
+    "partial_total_evalauto": 14
+  },
+  "schema": "a102.revhomtrace-ms-packlwes.static-mapping.v1",
+  "status": "STATIC_GO_FOR_MS_A92_PORT_DESIGN_ONLY",
+  "tfhe_rs_0_11_3_port_requirements": [
+    "Add a distinct MS-floor merge arm after A99 type-checking; do not silently rewrite g1.",
+    "Preserve parity recursion and the exact D2 slot/sign order.",
+    "Compute shifted_odd before subtraction; normalize the combined difference only.",
+    "Reuse A99 degrees and A97 full-GGSW EvalAuto first; no new key degree is needed.",
+    "Keep trace degrees 33..2049 in ascending order; this is partial RevHomTrace n=16.",
+    "Add source-faithful floor/2 and paper-aligned nearest/2 as separately labelled arms.",
+    "Audit each modulus-switch phase outside timing; paper VMS assumes centered rounding.",
+    "Add the paper's 10x4 decomposition as a lead, but do not transfer its p-fail or timing.",
+    "Replay mixed Delta59/Delta56 outputs through the width-127 kernel for all errors.",
+    "Measure full-GGSW and pseudo-GGSW variants separately if A101 passes.",
+    "Compose covariance/noise through the public kernel before any failure claim.",
+    "Retest root, ragged N<=127, threshold equality, reject 0, and stable first tie end to end."
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "status": "INDEPENDENT_BOUND_FIRST_NEGATIVE_CONFIRMED",
+  "saved_validation_sha256": "2909be7579a391ba9053e567f20a392c63e1f1724b12e44265c813aef046fb62",
+  "diagnosis_sha256": "2381a362a65811e508ddea84c8ce98952e7d8e927c0a680b9c78d67696603397",
+  "launcher_manifest_sha256": "adef237853d18d4eba8e2b4eda4b5b783d7ede465193592cc6aaba8341f46f25",
+  "records": 355,
+  "record_types": {
+    "plan": 1,
+    "provenance": 1,
+    "event": 346,
+    "case": 6,
+    "summary": 1
+  },
+  "actual_child_pid": 98764,
+  "exit_code": 1,
+  "postchecks_complete": true,
+  "coefficient_events": 346,
+  "coefficient_closure_failures": 0,
+  "functional_gate_pass": false,
+  "coefficient_gate_pass": false,
+  "joint_witness_pass": false,
+  "positive_arm_failures": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "controls_detected": [
+    1,
+    1
+  ],
+  "positive_arm_details": [
+    {
+      "arm": "canonical_shared",
+      "native_digit_margin_failures": 4,
+      "native_decode_pass": false,
+      "final_flags_pass": true,
+      "native_msb_outputs_pass": true,
+      "wrong_lut_value_events": 16
+    },
+    {
+      "arm": "canonical_separate",
+      "native_digit_margin_failures": 2,
+      "native_decode_pass": false,
+      "final_flags_pass": false,
+      "native_msb_outputs_pass": true,
+      "wrong_lut_value_events": 14
+    },
+    {
+      "arm": "padding_shared",
+      "native_digit_margin_failures": 4,
+      "native_decode_pass": false,
+      "final_flags_pass": true,
+      "native_msb_outputs_pass": true,
+      "wrong_lut_value_events": 16
+    },
+    {
+      "arm": "padding_separate",
+      "native_digit_margin_failures": 2,
+      "native_decode_pass": false,
+      "final_flags_pass": false,
+      "native_msb_outputs_pass": true,
+      "wrong_lut_value_events": 8
+    }
+  ],
+  "source_and_envelope_replay_matches_saved": true,
+  "actual_fhe_rerun": false,
+  "noise_law_claim": false,
+  "full_exact_id": false,
+  "next_changed_premise": "Alter low/middle digit ingress or consumer precision in a separately frozen successor; preserve both shared and separate failures. No fresh-key retry or padding-only success claim."
+}

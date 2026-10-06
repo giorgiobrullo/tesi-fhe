@@ -1,0 +1,15 @@
+{
+  "started_utc": "2026-10-04T17:37:49.869598+00:00",
+  "pid": 26639,
+  "parent_pid": 26638,
+  "command": [
+    "/opt/homebrew/bin/python3.12",
+    "/workspace/research/tmp/current-fcma-public-gate-20261004/root/EXACT_ORACLE.py",
+    "/workspace/research/tmp/current-fcma-public-gate-20261004/logs/validate.stdout",
+    "/workspace/research/tmp/current-fcma-public-gate-20261004/logs/ORACLE.json"
+  ],
+  "status": "terminal",
+  "scope": "new exact public oracle, no FFT/key/FHE/oldmodel",
+  "returncode": 0,
+  "ended_utc": "2026-10-04T17:37:50.784647+00:00"
+}

@@ -1,0 +1,159 @@
+{
+  "status": "PASS_RECORD_CONSISTENCY",
+  "summary": {
+    "status": "A165_DIAGNOSTIC_COMPLETE",
+    "cases": 28,
+    "positive_arm_order": [
+      "baseline_dual",
+      "shift_initial_only",
+      "single_full_reuse_x256",
+      "single_full_direct_b1"
+    ],
+    "failures_baseline_shift_single_repair": [
+      0,
+      0,
+      2,
+      1
+    ],
+    "native_decode_failures_baseline_shift_single_repair": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "consumer_scalar_phase_failures_baseline_shift_single_repair": [
+      0,
+      0,
+      2,
+      1
+    ],
+    "both_original_candidates_native_decode_pass": true,
+    "both_original_candidates_consumer_scalar_phase_pass": false,
+    "both_original_candidates_all_checks_pass": false,
+    "repair_native_decode_pass": true,
+    "repair_consumer_scalar_phase_pass": false,
+    "repair_all_checks_pass": false,
+    "repair_pair_failures": 0,
+    "repair_gate_pass": false,
+    "negative_detections_drop_rescale": [
+      13,
+      16
+    ],
+    "controls_valid": true,
+    "p_fail_certified": false,
+    "whole_exact_id_validated": false,
+    "latency_claim_allowed": false
+  },
+  "expected_exit_code": 1,
+  "records": {
+    "plan": 1,
+    "provenance": 1,
+    "keyset": 1,
+    "repair_pair": 28,
+    "weighted_p16_margin": 1120,
+    "weighted_bit": 1120,
+    "case": 140,
+    "negative_missing_rescale": 28,
+    "summary": 1
+  },
+  "ledger": {
+    "score_cases": 28,
+    "arm_cases": 140,
+    "consumer_rows": 3920,
+    "weighted_rows": 1120,
+    "margin_rows": 1120,
+    "repair_pair_rows": 28,
+    "negative_rows": 28,
+    "total_rows": 13360,
+    "traced_pbs_per_arm": [
+      11,
+      11,
+      8,
+      9,
+      8
+    ],
+    "traced_ks_per_arm": [
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "source_frozen_extra_pbs_per_score": 14,
+    "source_frozen_extra_ks_per_score": 16,
+    "source_total_pbs_per_score": 61,
+    "source_total_ks_per_score": 56
+  },
+  "candidate_failed_cases": [
+    {
+      "keyset": 0,
+      "scene": "sparse_nonzero",
+      "x": 17,
+      "arm": "single_full_reuse_x256",
+      "native_pass": true,
+      "consumer_scalar_pass": false
+    },
+    {
+      "keyset": 0,
+      "scene": "dense_nonzero",
+      "x": 1024,
+      "arm": "single_full_reuse_x256",
+      "native_pass": true,
+      "consumer_scalar_pass": false
+    },
+    {
+      "keyset": 0,
+      "scene": "dense_nonzero",
+      "x": 1024,
+      "arm": "single_full_direct_b1",
+      "native_pass": true,
+      "consumer_scalar_pass": false
+    }
+  ],
+  "outside_open_half_slot_in_five_arm_order": [
+    0,
+    0,
+    6,
+    4,
+    47
+  ],
+  "original_aggressive_failure_not_required_on_new_key": true,
+  "downstream_consumer_is_scalar_ideal_candidate_ks_zero_ms": true,
+  "actual_composed_consumer_pbs_validated": false,
+  "full_exact_id_validated": false,
+  "top_ciphertext_byte_identity_independently_attested": false,
+  "ciphertext_word_or_secret_membership_attested": false,
+  "key_freshness_independently_attested": false,
+  "coefficientwise_ms_or_ks_error_bound_established": false,
+  "benchmark_or_pfail_claim": false,
+  "launch_binding": {
+    "run_id": "smoke-key1",
+    "driver_pid": 51185,
+    "stage": "smoke",
+    "keysets": 1,
+    "binary_sha256": "db51101b5feccb918d16259a9cea7bb7714982025dc76c7490df817b549b0f1e",
+    "source_sha256": "4c513c136a831aeebcd8f3b2e7e2aa96d072322064876e6d3fd5e80e25beaf68",
+    "prepared_at_utc": "2026-09-05T04:58:27.854252+00:00",
+    "child_pid": 51186,
+    "started_at_utc": "2026-09-05T04:58:27.854807+00:00",
+    "exited_at_utc": "2026-09-05T04:58:51.285192+00:00",
+    "exit_code": 1,
+    "requested_rayon_threads": 1,
+    "operating_system_threads_attested": false,
+    "complete_exit_bound": true,
+    "benchmark_guard_or_isolation_attested": false,
+    "files_sha256": {
+      "prepared.json": "0ce72c2541884304b33ddb3bb298e5cd13775c6dfb44a9a2abaef66a55be91ee",
+      "child.json": "f99522bb7a657f8f7ccde224f5e4bc9a5bf23a5426361cf40a81933998a2c646",
+      "exit.json": "949cc0fc0178e20a9718dec06ec1b69bd4e0ee1d9a6bc34a43a9f338ba2bec73",
+      "stdout.jsonl": "e3e10ef5fa7f94de5618d0db10b625276f117b087e173c6c347ad17119085d0d",
+      "stderr.log": "501f33f599361ae521846e672df4f0fc4b5579a0011bd9e8f6cd3aea3609f84c"
+    },
+    "run_dir": "archive:/tmp/a165-low-correction-b1-repair/runs/smoke-key1"
+  },
+  "validator_freeze": {
+    "manifest_sha256": "6073fed7e9e83df4dc13009a7d3a2b76d8b86aaca2201b9704e5a3022600b0aa",
+    "source_files": 11,
+    "rules_frozen_before_actual_a165_log_inspection": true
+  }
+}

@@ -1,0 +1,130 @@
+--- frozen/run_gate.py
++++ corrected/run_pilot.py
+@@ -1,4 +1,4 @@
+-"""One root-cleared, explicitly guard-unqualified paired pilot; no automatic retries."""
++"""Corrected A168 private launcher: persist exit even if terminal artifact checks fail."""
+ 
+ import argparse
+ from datetime import datetime, timezone
+@@ -67,6 +67,48 @@
+     )
+ 
+ 
++def terminal_checks(binary, expected_binary, expected_source, expected_launcher):
++    checks = {}
++    errors = {}
++    for name, operation in (
++        ("binary", lambda: sha(binary) == expected_binary),
++        ("source", lambda: verify_source() == expected_source),
++        ("launcher", lambda: sha(Path(__file__)) == expected_launcher),
++    ):
++        try:
++            checks[name] = operation()
++        except Exception as error:
++            checks[name] = False
++            errors[name] = repr(error)
++    return checks, errors
++
++
++def verify_launcher():
++    manifest = json.loads((HERE / "LAUNCHER_MANIFEST.json").read_text())
++    for name, digest in manifest["files"].items():
++        assert sha(HERE / name) == digest, name
++    assert (
++        sha(HERE / "ARTIFACT_MANIFEST.json")
++        == manifest["preserved_pilot_manifest_sha256"]
++    )
++    return sha(Path(__file__))
++
++
++def terminal_log_hashes(run):
++    hashes, errors = {}, {}
++    for name, field in (
++        ("stdout.log", "stdout_sha256"),
++        ("stderr.log", "stderr_sha256"),
++        ("records.jsonl", "records_sha256"),
++    ):
++        try:
++            hashes[field] = sha(run / name)
++        except Exception as error:
++            hashes[field] = None
++            errors[field] = repr(error)
++    return hashes, errors
++
++
+ def main(argv=None):
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--run-pilot", action="store_true")
+@@ -74,6 +116,7 @@
+     parser.add_argument("--binary-sha256")
+     parser.add_argument("--root-preflight", type=Path)
+     args = parser.parse_args(argv)
++    launcher_hash = verify_launcher()
+     if not args.run_pilot:
+         print((HERE / "PILOT.json").read_text())
+         return 0
+@@ -103,7 +146,10 @@
+     run = runs / args.run_id
+     run.mkdir(mode=0o700)
+     base = dict(
+-        run_id=args.run_id, source_sha256=source, binary_sha256=args.binary_sha256
++        run_id=args.run_id,
++        source_sha256=source,
++        binary_sha256=args.binary_sha256,
++        launcher_sha256=launcher_hash,
+     )
+     command = [str(binary), "--run-pilot", str(run), args.run_id]
+     write_new(run / "preflight.json", preflight)
+@@ -178,11 +224,13 @@
+         err.flush()
+         os.fsync(out.fileno())
+         os.fsync(err.fileno())
+-    unchanged = sha(binary) == args.binary_sha256
+-    try:
+-        source_unchanged = verify_source() == source
+-    except (AssertionError, OSError):
+-        source_unchanged = False
++    checks, verification_errors = terminal_checks(
++        binary, args.binary_sha256, source, launcher_hash
++    )
++    unchanged = checks["binary"]
++    source_unchanged = checks["source"]
++    log_hashes, log_errors = terminal_log_hashes(run)
++    verification_errors.update(log_errors)
+     write_new(
+         run / "exit.json",
+         dict(
+@@ -193,14 +241,18 @@
+             exited_at_utc=now(),
+             binary_unchanged=unchanged,
+             source_unchanged=source_unchanged,
+-            stdout_sha256=sha(run / "stdout.log"),
+-            stderr_sha256=sha(run / "stderr.log"),
+-            records_sha256=sha(run / "records.jsonl")
+-            if (run / "records.jsonl").exists()
+-            else None,
++            launcher_unchanged=checks["launcher"],
++            terminal_verification_errors=verification_errors,
++            **log_hashes,
+         ),
+     )
+-    if code or not unchanged or not source_unchanged:
++    if (
++        code
++        or not unchanged
++        or not source_unchanged
++        or not checks["launcher"]
++        or verification_errors
++    ):
+         return code or 2
+     from validate import replay
+ 
+@@ -212,6 +264,8 @@
+             dict(status="VALIDATION_FAILED", error=repr(error)),
+         )
+         raise
++    result["launcher_sha256"] = launcher_hash
++    result["launcher_checked_against_separate_frozen_manifest"] = True
+     write_new(run / "validation.json", result)
+     print(
+         "A168 paired pilot record replay complete; guard unqualified, no speedup promotion."

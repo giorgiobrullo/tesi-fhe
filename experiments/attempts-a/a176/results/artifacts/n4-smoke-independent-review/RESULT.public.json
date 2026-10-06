@@ -1,0 +1,142 @@
+{
+  "status": "INDEPENDENT_BOUND_N4_SMOKE_PASS",
+  "source_sha256": "3104f9d691a4d5fb31695c8c07beb5b0fb9de8b6da7747bab60035b6802f32fa",
+  "manifest_sha256": "e49b68da0e25ed540144eca1c355e2aa931acc5e0db3d6dc85404ddafed54fde",
+  "binary_sha256": "8bc24eccba0375f015b94a8d3ef4cbe0723025df3e8b09bedba650d009a77cba",
+  "validation_sha256": "e3b52ce52e973efaeae239b1a30950c70619943c16f56a2d3be9f201c648e480",
+  "raw_sha256": "06731336214b95b833cb59f3253cb50d3b35c7f48ccb142aa05e76fedd72e174",
+  "raw_bytes": 28874505,
+  "records": 14210,
+  "record_types": {
+    "a176_meta": 1,
+    "a176_key_begin": 3,
+    "meta": 3,
+    "key_ready": 3,
+    "stock_preparation_counts": 3,
+    "cm_zero_pool_event": 630,
+    "cm_zero_pool_summary": 216,
+    "stock_case": 9,
+    "case_summary": 207,
+    "graph_negative": 9,
+    "n4_pair_summary": 3,
+    "egress_margin_probe": 48,
+    "egress_margin_summary": 3,
+    "summary": 3,
+    "a176_anchor_result": 3,
+    "a176_pair_begin": 96,
+    "a176_pair_result": 96,
+    "a176_key_end": 3,
+    "a176_summary": 1
+  },
+  "child_pid": 31793,
+  "exit_code": 0,
+  "postchecks_complete": true,
+  "keys": 3,
+  "fixtures_per_key": 4,
+  "layouts_per_fixture": 8,
+  "positive_pairs": 96,
+  "positive_rounds": 192,
+  "complete_coverage": true,
+  "positive_cm_events": 576,
+  "shared_chooser_invocations": 288,
+  "shared_zero_additions": 281,
+  "ordinary_and_corrected_cm_outside_center_boxes": 0,
+  "reported_algorithm_counts": {
+    "packing": 621,
+    "cm_ks": 417,
+    "cm_pbs": 627,
+    "ordinary_ks": 1863,
+    "ordinary_pbs": 2289,
+    "extraction": 1656
+  },
+  "stock_output_extractions_outside_counts": 24,
+  "anchor_diagnostics": [
+    {
+      "key_index": 1,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          2,
+          3
+        ],
+        "wrong_lut_crossings_by_offset": [
+          2,
+          3
+        ],
+        "wrong_discriminators_by_offset": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "key_index": 2,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          4,
+          4
+        ],
+        "wrong_lut_crossings_by_offset": [
+          4,
+          4
+        ],
+        "wrong_discriminators_by_offset": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "key_index": 3,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          3,
+          4
+        ],
+        "wrong_lut_crossings_by_offset": [
+          3,
+          4
+        ],
+        "wrong_discriminators_by_offset": [
+          3,
+          4
+        ]
+      }
+    }
+  ],
+  "frozen_replay_equals_saved": true,
+  "actual_fhe_rerun": false,
+  "exhaustive_n4_validated": false,
+  "n127_validated": false,
+  "eight_round_composition": false,
+  "input_variance_proven": false,
+  "noise_failure_probability": null,
+  "timing_claim": false,
+  "next_gate": "Separate explicit frozen n4-exhaustive stage after fresh root clearance; no resampling or automatic expansion."
+}

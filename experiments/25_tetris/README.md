@@ -29,23 +29,24 @@ formato cifrato richiesto da Tetris; il suo costo non può essere omesso.
 Il [produttore temporizzato](runtime/src/main.rs) include conversioni,
 allocazioni e parallelismo; la misura esclude il selettore PFKS successivo.
 
-I controlli del componente e del selettore passano, ma il produttore
-completo di conversioni è più lento del riferimento. Per questo la
-costruzione viene esclusa dalla demo; l'esito non esclude altre integrazioni
-possibili di Tetris.
-
 ## Risultati e limiti
 
 Il componente e il consumatore superano i controlli con rumore: **54 uscite
 complete e 2091 verifiche LWE** nel percorso accelerato. Il produttore è però
-**66,401451% più lento** nel pilot, con zero vittorie su 18 coppie,
+**66,4% più lento** nel pilot, con zero vittorie su 18 coppie,
 una famiglia di chiavi e tre scene. Le medie geometriche sono
-**23,688078 contro 14,235500 ms**.
+**23,69 contro 14,24 ms**.
 
 La misura comprende la conversione del produttore; non è la latenza della
 query completa. Il risultato negativo riguarda questa costruzione e non
 ogni possibile variante Tetris. Il prototipo è escluso dalla demo selezionata.
 [Dati del produttore](evidence/producer-timing.json) e [riepilogo](RESULTS.json).
+
+<a id="misure-salvate-integrazione-del-6-ottobre-2026"></a>
+
+Le prove del [consumatore](evidence/consumer-result.json) e delle
+[primitive](evidence/primitive-result.json) documentano i controlli
+distinti dalla misura del produttore.
 
 Un [primo controllo aritmetico fallito](failed-first/RESULT.json), con
 [sorgente](failed-first/tetris.rs), rileva al nibble 5/prefix bit 3 un valore
@@ -67,7 +68,6 @@ La [demo 22](../22_demo_composita/README.md) usa la variante selezionata senza T
 
 ## Provenienza
 
-[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
-dai documenti storici e dalle copie redatte. I digest degli esperimenti
-identificano le esecuzioni originali; questa pubblicazione non aggiunge
-una nuova compilazione nativa o una nuova prova FHE.
+La [provenienza dei sorgenti e delle misure](PROVENANCE.json) lega i file
+alle fonti originali e dichiara le selezioni dei dati. Le impronte delle
+copie pubbliche sono distinte da quelle degli originali.

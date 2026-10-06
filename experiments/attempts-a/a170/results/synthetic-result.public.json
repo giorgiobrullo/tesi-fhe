@@ -1,0 +1,122 @@
+{
+  "schema": "a170.raw-replay.v1",
+  "record_consistent": true,
+  "snapshots": 4,
+  "frames": [
+    {
+      "left_seq": 0,
+      "right_seq": 1,
+      "elapsed_ns_rational": [
+        3999999999,
+        2
+      ],
+      "capacity_ns_rational": [
+        15999999996,
+        1
+      ],
+      "host_delta_ticks": [
+        50,
+        10,
+        130,
+        10
+      ],
+      "process_delta_raw": {
+        "user_raw": 100,
+        "system_raw": 10
+      }
+    },
+    {
+      "left_seq": 1,
+      "right_seq": 2,
+      "elapsed_ns_rational": [
+        3999999999,
+        2
+      ],
+      "capacity_ns_rational": [
+        15999999996,
+        1
+      ],
+      "host_delta_ticks": [
+        50,
+        10,
+        130,
+        10
+      ],
+      "process_delta_raw": {
+        "user_raw": 100,
+        "system_raw": 10
+      }
+    },
+    {
+      "left_seq": 2,
+      "right_seq": 3,
+      "elapsed_ns_rational": [
+        3999999999,
+        2
+      ],
+      "capacity_ns_rational": [
+        15999999996,
+        1
+      ],
+      "host_delta_ticks": [
+        50,
+        10,
+        130,
+        10
+      ],
+      "process_delta_raw": {
+        "user_raw": 10,
+        "system_raw": 0
+      }
+    }
+  ],
+  "arms": [
+    {
+      "id": "A",
+      "covered": true,
+      "whole_frame_indices": [
+        0,
+        1
+      ],
+      "duration_ns_rational": [
+        1999999863,
+        1
+      ]
+    },
+    {
+      "id": "B",
+      "covered": true,
+      "whole_frame_indices": [
+        1,
+        2
+      ],
+      "duration_ns_rational": [
+        1999999863,
+        1
+      ]
+    }
+  ],
+  "max_read_width_ns_rational": [
+    150,
+    1
+  ],
+  "observed_final_counter": true,
+  "coverage_issues": [],
+  "status": "UNQUALIFIED_RAW_COUNTERS",
+  "collector_qualified": false,
+  "ownership_membership_attested": false,
+  "final_accounting_settled": false,
+  "source_binary_execution_attested": false,
+  "host_busy_cpu_ns": null,
+  "owned_cpu_ns": null,
+  "nonbenchmark_occupancy": null,
+  "speedup_promotion_allowed": false,
+  "open_premises": [
+    "host tick CPU-ns conversion and quantization bound",
+    "rusage CPU units, all-thread/exclusive and exit-final semantics",
+    "parent lifecycle handshake and no unregistered descendants",
+    "runtime source/binary/run/boot provenance and marker producer",
+    "actual OS qualification and collector overhead"
+  ],
+  "evidence_kind": "SYNTHETIC_ONLY"
+}

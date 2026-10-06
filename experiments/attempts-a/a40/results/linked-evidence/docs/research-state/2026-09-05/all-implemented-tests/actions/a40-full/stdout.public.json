@@ -1,0 +1,15 @@
+{
+  "schema": "saved-controlled-pass-public-result.v1",
+  "records": [
+    {
+      "source_line": 41,
+      "data": {
+        "record": "SUMMARY",
+        "status": "PASS",
+        "cases": 39,
+        "keys": "ephemeral_in_memory",
+        "secret_material_persisted": false
+      }
+    }
+  ]
+}

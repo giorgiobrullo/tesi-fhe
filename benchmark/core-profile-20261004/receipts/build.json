@@ -1,0 +1,20 @@
+{
+  "started_utc": "2026-10-04T09:45:43.211207+00:00",
+  "finished_utc": "2026-10-04T09:46:00.462998+00:00",
+  "returncode": 0,
+  "elapsed_s": 17.251588125000126,
+  "compiler_identity": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+  "build_settings": {
+    "profile": "release",
+    "opt_level": 3,
+    "codegen_units": 1,
+    "lto": false,
+    "cargo_locked": true,
+    "cargo_offline": true,
+    "rustflags": null,
+    "target": "aarch64-apple-darwin"
+  },
+  "source_snapshot_sha256": "1fdc50b27d97e9ce885b7282fe1d5be9a4d0903543b04369840ab6f19c064d92",
+  "binary_sha256": "46c028647bca1b06d0b00f9fd514b7418d6d92b6e0deb01dc08f4fb8700bbcbf",
+  "binary_path": "/workspace/research/tmp/current-core-profile-20261004/bin/profile"
+}

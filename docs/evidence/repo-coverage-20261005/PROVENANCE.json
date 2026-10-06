@@ -1,0 +1,246 @@
+{
+  "date": "2026-10-05",
+  "scope": "Text-only excerpts. Origin paths are archive identifiers, not packaged dependencies. Hashes attest bytes, not scientific validity.",
+  "entries": [
+    {
+      "id": "raw9-review",
+      "origin_archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/source/RESULT_REVIEW.md",
+      "origin_sha256": "22491d961a916dc31aa8bc7150842b85be0242ea8c63b60499440fe815fed092",
+      "source_lines": [
+        1,
+        21
+      ],
+      "copy": "raw9-review.md",
+      "copy_sha256": "2c179a7421e7bbb78a3aa4cba5bea9420995eb0e471c73f6170c5315e6af1afa",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "pfks-id-review",
+      "origin_archive_relative": "tmp/current-first-level-pfks-profile-20261005/source/RESULT_REVIEW.md",
+      "origin_sha256": "8581b8ff1f74b29c86268a9bcf5bb33376b0abbc6ba86fd4298ff45ca14832ca",
+      "source_lines": [
+        1,
+        11
+      ],
+      "copy": "pfks-id-review.md",
+      "copy_sha256": "8f3148208c3fd1bce138d83db53cb55766884661687510c8f592f634b095a652",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "glwe-interface",
+      "origin_archive_relative": "tmp/current-pfks-output-carry-source-20261005/root/RESULT.md",
+      "origin_sha256": "6f8834f4398e9c15943e9d515289f4314f941288af622b462880ee42b744b5b9",
+      "source_lines": [
+        1,
+        11
+      ],
+      "copy": "glwe-interface.md",
+      "copy_sha256": "d8de11357dc8674c3def5e5dc90ba65a7d20b7e2fb783ed87d9141232bb504be",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "cbs-review",
+      "origin_archive_relative": "tmp/current-canonical-carrier-cbs-screen-20261005/source/INTERFACE_REVIEW.md",
+      "origin_sha256": "8f77c38a1547d99eacfef6cc657aab6bfff99fa3d60e0e0fecc3a554f340df52",
+      "source_lines": [
+        1,
+        13
+      ],
+      "copy": "cbs-review.md",
+      "copy_sha256": "ed4e6881c150f5bf380319ffaf85960edb4e1a4e76830c24822023a51b0f0e29",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "cbs-parameters",
+      "origin_archive_relative": "tmp/current-cbs-parameter-reference-20261005/root/RESULT.md",
+      "origin_sha256": "207e22a13983d80c6f9965735f49e568d38bee6db47f7bae68bb43eb28067330",
+      "source_lines": [
+        1,
+        5
+      ],
+      "copy": "cbs-parameters.md",
+      "copy_sha256": "7e71cfa49c5cfc4e2f7b1b09f9969a56744304a9cb8ea9dd10a6eda3bd1ac7a9",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "georgia-tech-result",
+      "origin_archive_relative": "tmp/validation-closure-20261005/biometrics-v4/RESULT.md",
+      "origin_sha256": "c8789bdf77f943cd1601b0968349ea7c3da669f0f482262b0aa5e8bc9df1197f",
+      "source_lines": [
+        1,
+        20
+      ],
+      "copy": "georgia-tech-result.md",
+      "copy_sha256": "dfb576af2583768ef0f947a7c89f1f2cc4e29695e46bb5a9020628a8d65fadd1",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "a108-correction",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-3.md",
+      "origin_sha256": "1c0cdf1734f9d6b1b8d4decabb5133625a4e769ef6aa09d980490bc7d6b880d0",
+      "source_lines": [
+        32,
+        36
+      ],
+      "copy": "a108-correction.md",
+      "copy_sha256": "994bf2f53ce77d8d87410824d49261215611e5e9ee0ca312a2b3bdbfb371978c",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "a149-result",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-14.md",
+      "origin_sha256": "7d733ccb67088c76afd86f907a12fb2e9c2b6be06ad72ef676d265e516869ca3",
+      "source_lines": [
+        61,
+        63
+      ],
+      "copy": "a149-result.md",
+      "copy_sha256": "7361adc95560331cb13ff52aaa0773e607b5327b8a9ca4b1a8c18d50cf3ca97d",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "a187-result",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-15.md",
+      "origin_sha256": "78b2a08a94f0381c05bd2f1c159fe726d69d77d899e383afce79a7777380e7fd",
+      "source_lines": [
+        291,
+        298
+      ],
+      "copy": "a187-result.md",
+      "copy_sha256": "2a5d31b1cf0cf40497b64e9476e7c872ac5fa583f380ec5d82266f423de5698a",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "a185-result",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-15.md",
+      "origin_sha256": "78b2a08a94f0381c05bd2f1c159fe726d69d77d899e383afce79a7777380e7fd",
+      "source_lines": [
+        223,
+        236
+      ],
+      "copy": "a185-result.md",
+      "copy_sha256": "a4fa2745fe34cf609d76d5fb9f00bb4a7be2423bc15e1852c68249f96681a1bb",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "a150-result",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-9.md",
+      "origin_sha256": "fa76ba5bc9950c20a29c05ab61686860d259ba045c5a58d343705758eea3dcdb",
+      "source_lines": [
+        109,
+        118
+      ],
+      "copy": "a150-result.md",
+      "copy_sha256": "8c5006256f636b3ce3330c910ea2b06b92624475a507fa6adff635cbaa5e55fa",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "a192-result",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-16.md",
+      "origin_sha256": "5f008fd5310cec0d861b906b960e34ff3ad661c9c64617937898750384e6571b",
+      "source_lines": [
+        164,
+        178
+      ],
+      "copy": "a192-result.md",
+      "copy_sha256": "5fbe3d1bee8603266238a25df5c8a2e003c3555e79d1b115bc1e255c7107b554",
+      "transformation": "Text-only line excerpt; introductory provenance note added. No payload included."
+    },
+    {
+      "id": "a190-a195-results-source-1",
+      "origin_archive_relative": "docs/research-state/2026-09-05/existing-implementation-test-pass.md",
+      "origin_sha256": "f90d3af247ef7e87abfe3fc5aba5b3f39cf292284e2db3950b065b1efdc4b6c4",
+      "source_lines": [
+        17,
+        17
+      ],
+      "copy": "a190-a195-results.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "e511e6a9c6f5dcf418d5aa4290fbc6a1f0ecb2714002a51c0c3563fd683df0e7"
+    },
+    {
+      "id": "a190-a195-results-source-2",
+      "origin_archive_relative": "docs/research-state/2026-09-05/existing-implementation-test-pass.md",
+      "origin_sha256": "f90d3af247ef7e87abfe3fc5aba5b3f39cf292284e2db3950b065b1efdc4b6c4",
+      "source_lines": [
+        23,
+        30
+      ],
+      "copy": "a190-a195-results.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "e511e6a9c6f5dcf418d5aa4290fbc6a1f0ecb2714002a51c0c3563fd683df0e7"
+    },
+    {
+      "id": "a190-a195-results-source-3",
+      "origin_archive_relative": "docs/research-state/2026-09-05/existing-implementation-test-pass.md",
+      "origin_sha256": "f90d3af247ef7e87abfe3fc5aba5b3f39cf292284e2db3950b065b1efdc4b6c4",
+      "source_lines": [
+        38,
+        38
+      ],
+      "copy": "a190-a195-results.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "e511e6a9c6f5dcf418d5aa4290fbc6a1f0ecb2714002a51c0c3563fd683df0e7"
+    },
+    {
+      "id": "integration-results-source-1",
+      "origin_archive_relative": "docs/research-state/2026-09-05/integration-pass/RESULTS.md",
+      "origin_sha256": "a5bc1e2adfc18281e9433c8f43a16b7a1a095c22b94d90433bc8dfebde42a2af",
+      "source_lines": [
+        15,
+        28
+      ],
+      "copy": "integration-results.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "98d57e3e616f90daddf61337afb49a2cbe966a355f412dcee3154d8b9096d80f"
+    },
+    {
+      "id": "integration-results-source-2",
+      "origin_archive_relative": "docs/research-state/2026-09-05/integration-pass/RESULTS.md",
+      "origin_sha256": "a5bc1e2adfc18281e9433c8f43a16b7a1a095c22b94d90433bc8dfebde42a2af",
+      "source_lines": [
+        38,
+        43
+      ],
+      "copy": "integration-results.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "98d57e3e616f90daddf61337afb49a2cbe966a355f412dcee3154d8b9096d80f"
+    },
+    {
+      "id": "pfks-successors-source-1",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-12.md",
+      "origin_sha256": "659cfb95188e81c700a7b84a4ed79850b5dfd5c0e76d39f28f3e783cda208d56",
+      "source_lines": [
+        311,
+        329
+      ],
+      "copy": "pfks-successors.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "45941ba94bf51238ecba5dc56b2d1c858f31d386ef06303c84c52a771b49d3f1"
+    },
+    {
+      "id": "pfks-successors-source-2",
+      "origin_archive_relative": "docs/research-state/2026-09-05/continuation-14.md",
+      "origin_sha256": "7d733ccb67088c76afd86f907a12fb2e9c2b6be06ad72ef676d265e516869ca3",
+      "source_lines": [
+        26,
+        26
+      ],
+      "copy": "pfks-successors.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "45941ba94bf51238ecba5dc56b2d1c858f31d386ef06303c84c52a771b49d3f1"
+    },
+    {
+      "id": "pfks-successors-source-3",
+      "origin_archive_relative": "docs/research-state/2026-09-05/personal-report-support/frontier-map.md",
+      "origin_sha256": "484da9e493c75624ec28829293205a765652b74add429a2d1d4bb5c0a9bbc63f",
+      "source_lines": [
+        39,
+        39
+      ],
+      "copy": "pfks-successors.md",
+      "transformation": "Exact text-only line excerpt; title and source identifiers added. Multiple excerpts retain their own source ranges; no raw ciphertext payload.",
+      "copy_sha256": "45941ba94bf51238ecba5dc56b2d1c858f31d386ef06303c84c52a771b49d3f1"
+    }
+  ]
+}

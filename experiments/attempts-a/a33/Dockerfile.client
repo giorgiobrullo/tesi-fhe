@@ -1,0 +1,86 @@
+# Terminale fidato per il gate Docker A33 frozen. Il binario Rust viene ricostruito dallo stesso
+# snapshot del server; chiave segreta, dataset e modello restano fuori dai layer dell'immagine.
+FROM rust:1-bookworm AS rust
+WORKDIR /src
+
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/Cargo.toml ./Cargo.toml
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/Cargo.lock ./Cargo.lock
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/lib.rs ./src/lib.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs ./src/private_argmin.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs ./src/bin/varco_demo.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/a33_full_validation.rs ./src/bin/a33_full_validation.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/a33_sparse_residual_trace.rs ./src/bin/a33_sparse_residual_trace.rs
+RUN cargo build --locked --release --bin varco_demo
+
+COPY tmp/a33-docker-gate-2026-09-02/Dockerfile.client ./gate/Dockerfile.client
+COPY tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml ./gate/docker-compose.e2e.yml
+COPY tmp/a33-docker-gate-2026-09-02/run_gate.py ./gate/run_gate.py
+COPY tmp/a33-docker-gate-2026-09-02/frozen-inputs.sha256 ./gate/frozen-inputs.sha256
+COPY tmp/a33-aligned-sparse-2026-09-02/README.md ./snapshot/README.md
+COPY tmp/a33-aligned-sparse-2026-09-02/inputs-before.sha256 ./snapshot/inputs-before.sha256
+COPY tmp/a33-aligned-sparse-2026-09-02/binaries.sha256 ./snapshot/binaries.sha256
+COPY tmp/a33-aligned-sparse-2026-09-02/source/benchmark/demo_e2e.py ./gate/frozen_demo_e2e.py
+COPY demo/client/app.py ./demo/client/app.py
+COPY tmp/a33-aligned-sparse-2026-09-02/source/demo/config.json ./demo/config.json
+COPY experiments/08_cnn/embedding.py ./experiments/08_cnn/embedding.py
+COPY demo/client/static/index.html ./demo/client/static/index.html
+COPY core/__init__.py ./core/__init__.py
+COPY core/client.py ./core/client.py
+COPY core/dataset.py ./core/dataset.py
+COPY core/matching.py ./core/matching.py
+COPY core/metriche.py ./core/metriche.py
+COPY core/quantize.py ./core/quantize.py
+COPY core/server.py ./core/server.py
+RUN sha256sum \
+      Cargo.toml \
+      Cargo.lock \
+      src/bin/varco_demo.rs \
+      src/bin/a33_full_validation.rs \
+      src/bin/a33_sparse_residual_trace.rs \
+      src/lib.rs \
+      src/private_argmin.rs \
+      gate/Dockerfile.client \
+      gate/docker-compose.e2e.yml \
+      gate/run_gate.py \
+      gate/frozen-inputs.sha256 \
+      gate/frozen_demo_e2e.py \
+      snapshot/README.md \
+      snapshot/inputs-before.sha256 \
+      snapshot/binaries.sha256 \
+      demo/client/app.py \
+      demo/config.json \
+      experiments/08_cnn/embedding.py \
+      demo/client/static/index.html \
+      core/__init__.py \
+      core/client.py \
+      core/dataset.py \
+      core/matching.py \
+      core/metriche.py \
+      core/quantize.py \
+      core/server.py \
+      target/release/varco_demo \
+      > /src/build-provenance.sha256
+
+FROM python:3.12-slim
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential cmake libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir numpy==1.26.4 onnxruntime insightface fastapi uvicorn \
+        imageio scikit-image pydantic
+COPY --from=rust /src/target/release/varco_demo /usr/local/bin/varco_demo
+COPY --from=rust /src/build-provenance.sha256 /usr/local/share/tesi-fhe/build-provenance.sha256
+WORKDIR /app
+COPY demo/client/app.py /app/demo/client/app.py
+COPY demo/client/static/index.html /app/demo/client/static/index.html
+COPY tmp/a33-aligned-sparse-2026-09-02/source/demo/config.json /app/demo/config.json
+COPY experiments/08_cnn/embedding.py /app/experiments/08_cnn/embedding.py
+COPY core/__init__.py /app/core/__init__.py
+COPY core/client.py /app/core/client.py
+COPY core/dataset.py /app/core/dataset.py
+COPY core/matching.py /app/core/matching.py
+COPY core/metriche.py /app/core/metriche.py
+COPY core/quantize.py /app/core/quantize.py
+COPY core/server.py /app/core/server.py
+ENV VARCO_SERVER=http://server:9000 VARCO_BIN=/usr/local/bin/varco_demo VARCO_CHIAVI=/app/chiavi \
+    PYTHONPATH=/app INSIGHTFACE_HOME=/root/.insightface
+EXPOSE 8000
+CMD ["/usr/local/bin/uvicorn", "demo.client.app:app", "--host", "0.0.0.0", "--port", "8000"]

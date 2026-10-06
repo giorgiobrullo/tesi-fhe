@@ -1,0 +1,178 @@
+{
+  "observed_utc": "2026-10-04T17:48:57.788179+00:00",
+  "files": {
+    "PROTOCOL.md": {
+      "bytes": 2583,
+      "sha256": "1c7da903db5fffd649523d65f32a211f3c8da0abf7063177c44c0d33fef1e579"
+    },
+    "RESULT.md": {
+      "bytes": 1432,
+      "sha256": "5118916eb7f383bcb6cd0247e446c413240c72f99203c5e860c43c53d8371185"
+    },
+    "bin/public-gate": {
+      "bytes": 476000,
+      "sha256": "0ef735eec45191d0236c2f51978a3fe7572f95d995d40ead71ce82525f0dd485"
+    },
+    "logs/ANALYSIS.json": {
+      "bytes": 2228,
+      "sha256": "ce182da93e04f206481ec62871b8e46013ecdcda4fe94517680f42a4cbbffbc2"
+    },
+    "logs/BENCH.json": {
+      "bytes": 476,
+      "sha256": "1b9004fae4f96c992a79cf6d0a77b7902c8f2e521c17359060811d7fcb7fe5fc"
+    },
+    "logs/BUILD.json": {
+      "bytes": 830,
+      "sha256": "9eb6e5bf228b82881c4b9a99a073610570f9cd81292d60a5b0bce3caed5a8b55"
+    },
+    "logs/ORACLE.json": {
+      "bytes": 733,
+      "sha256": "4d46c9ba4f9731037be2dffd0cc2a45c37501d652d746759c2f1523005bb9714"
+    },
+    "logs/ORACLE_DRIVER.json": {
+      "bytes": 621,
+      "sha256": "72f187de997cc1e01223ffbc8906c62f9c35beadad876c887babf5f284995e05"
+    },
+    "logs/VALIDATE.json": {
+      "bytes": 485,
+      "sha256": "3ff5a3d682638ff07f368a6bc01416193913ace4c39a42c7e367d71a1894c58f"
+    },
+    "logs/bench.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/bench.stdout": {
+      "bytes": 4470,
+      "sha256": "0e6347bd31341c42c4dec338e624d77952a7cd3136967ce397f92b881f9e138e"
+    },
+    "logs/build.stderr": {
+      "bytes": 526,
+      "sha256": "1609df752807fc2baa365a821e0d2e176a231e719aebbc2fd9f366819b3a0a37"
+    },
+    "logs/build.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/oracle.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/oracle.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/validate.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/validate.stdout": {
+      "bytes": 3534936,
+      "sha256": "db1592b552a2ff65b1285e4a6c120ed749d1e76fa7bc7dfd480764b7f25297cf"
+    },
+    "probe/Cargo.lock": {
+      "bytes": 2966,
+      "sha256": "d091029dccf1939dbb573d3a658f273bacd53b88ea0c95d83f296c5bd13dd729"
+    },
+    "probe/Cargo.toml": {
+      "bytes": 228,
+      "sha256": "3010be99def04ec4257692c353bc82505179cf1b390064089820683208bfb075"
+    },
+    "probe/src/main.rs": {
+      "bytes": 11518,
+      "sha256": "7ef97bf24cae04b14407cb56f89a43cf770b2a28105a5caadc8f1458c0970f65"
+    },
+    "root/ANALYZE.py": {
+      "bytes": 3174,
+      "sha256": "b1f2136dbf1045f2f26364b33456c4ad2116cf1e5cc99b6a4c63025a1562e85b"
+    },
+    "root/ARM_PRIMARY_FETCH.json": {
+      "bytes": 416,
+      "sha256": "4778ae0f4400b5723b753bd9856700d81c79e57684378a81e88e9da343c3053b"
+    },
+    "root/ARM_REGISTERS_2021.pdf": {
+      "bytes": 8935128,
+      "sha256": "a6eca120622b9bbce6ba7b8991ed6f5dbb4c1a4af600f832420e352ef83b0570"
+    },
+    "root/ARM_REGISTERS_2021.txt": {
+      "bytes": 6879035,
+      "sha256": "c8505cecf9741c36909f952d5a57dd075fa42a4168a4ed9c745ffc4090f82d0f"
+    },
+    "root/CODEGEN_BINDING.json": {
+      "bytes": 2858,
+      "sha256": "dc0adc7257fe8be7976c1dbaa55b12d36d9773138762ab0485bb7dfde4012eb5"
+    },
+    "root/DRIVER.py": {
+      "bytes": 4348,
+      "sha256": "fdb506e9e03795d25a1fd2458130317287a3eb4fd1c789241c2c7b9fb9b74968"
+    },
+    "root/EXACT_ORACLE.py": {
+      "bytes": 9324,
+      "sha256": "3e1c8bce11070ff5dca76000789d14ccdc72af8ffe507f46bb177ade8f28d1e0"
+    },
+    "root/FCMA.asm": {
+      "bytes": 3966,
+      "sha256": "dfbf56f8fae114ad6db2b7e5edc7aba598fa310f6740f22515e915ca593ca851"
+    },
+    "root/FPCR_PRIMARY.md": {
+      "bytes": 1123,
+      "sha256": "037e690b6ad2b4b40cba312e8e2dd0d819700105534d06b9e00f1556d1d3d5ab"
+    },
+    "root/NEON.asm": {
+      "bytes": 4824,
+      "sha256": "3926aba2b070827ba6fcff8359b3b1c43b9f7bdabcf25eb782c1888c76961436"
+    },
+    "root/NEXT.md": {
+      "bytes": 1939,
+      "sha256": "d8d23c057519c8f2b4df34fbc6bbf479b2e42241a0cfd001622e2db5b6722ddc"
+    },
+    "root/ORACLE_SPEC.md": {
+      "bytes": 3806,
+      "sha256": "3e9e9578b619475ad9fed8a22b33687e18daa4512b8cdf73bcb64ebba3459133"
+    },
+    "root/ORIENTATION.json": {
+      "bytes": 1302,
+      "sha256": "3e78d0d6c4f2394cf6b41c0a5fb993688f52eff2210c95f1fe9d048bf1d22ff0"
+    },
+    "root/POSTCHECK.json": {
+      "bytes": 1138,
+      "sha256": "e2a8513e41a854176b0a0360bc762206d4c527b8820e08079670a04c47aedc86"
+    },
+    "root/PREBUILD_REVIEW.md": {
+      "bytes": 4844,
+      "sha256": "931f87b947aaea4dc4ceb3c53e8167d2b7da99daa6f24baab12716e67f105bd1"
+    },
+    "root/PRE_BENCH_LIVENESS.json": {
+      "bytes": 150,
+      "sha256": "59d97e7bdec7610998344b3215b36c5135a27cc01d14bdc28842bf65cc92c107"
+    },
+    "root/PRE_BUILD_LIVENESS.json": {
+      "bytes": 150,
+      "sha256": "62e67523b60b286a363243a72e92a2ad8fcaf1110939fbc670f6aae229a8b516"
+    },
+    "root/PRE_VALIDATE_LIVENESS.json": {
+      "bytes": 150,
+      "sha256": "3568a6ddee3e5d13f873bfa83b626ff46ec7ddc8fdf6ac0e850fabc78fa7decb"
+    },
+    "root/PROJECT_PROCESS_CHECK.json": {
+      "bytes": 160,
+      "sha256": "0bb43f9676889c7c7909d4fef02eab7e3d7e02f4a4a0d6423495ed69c292cd60"
+    },
+    "root/RESULT_REVIEW.md": {
+      "bytes": 4190,
+      "sha256": "3db241bb483cfdab0c09b5c858085b15863c927d57f89b2f37ed7b7951e9fbdc"
+    },
+    "root/SOURCE_BUILD.json": {
+      "bytes": 1319,
+      "sha256": "f7a7cc63e018a0a29ae6b76d4d01d0333247a708a237751442815103ecfbd2b5"
+    },
+    "root/SOURCE_SCOPE.md": {
+      "bytes": 5999,
+      "sha256": "9030a83d10424482eaeef885020a5726bf0933b6276c917e7eeaf4b047f92692"
+    },
+    "root/VERSION_BINDING.json": {
+      "bytes": 484,
+      "sha256": "c4a00165ad7b281c9e947eac6adaf028b6288aefae00e167a3e263e57eb6e2b8"
+    }
+  },
+  "scope": "all newphase public evidence, sources, primaryArm text/pdf, frozenbinary, logs; excludeCargo target andmanifestself"
+}

@@ -1,0 +1,109 @@
+{
+  "artifact": "A76 combined scalar PBS buffer-reuse evidence",
+  "blind_rotate": {
+    "allocation_observations": {
+      "reuse_alloc_calls_unique": [
+        0
+      ],
+      "reuse_allocated_bytes_unique": [
+        0
+      ],
+      "wrapper_alloc_calls_unique": [
+        1
+      ],
+      "wrapper_allocated_bytes_unique": [
+        163967
+      ]
+    },
+    "at_least_one_percent_gain_in_every_run": false,
+    "combined": {
+      "independent_median_reduction_percent": -0.0033710478405043283,
+      "paired_mean_wrapper_minus_reuse_ns": -86903.75208333334,
+      "paired_median_reduction_percent_of_wrapper_median": -0.02998373247105648,
+      "paired_median_wrapper_minus_reuse_ns": -3709,
+      "reuse_median_ns": 12370458,
+      "reuse_wins": 238,
+      "wrapper_median_ns": 12370041
+    },
+    "pairs": 480,
+    "per_run": [
+      {
+        "independent_median_reduction_percent": 0.2749392454764739,
+        "paired_median_wrapper_minus_reuse_ns": 22166,
+        "pairs": 240,
+        "reuse_median_ns": 12377708,
+        "reuse_wins": 129,
+        "run": 1,
+        "wrapper_median_ns": 12411833
+      },
+      {
+        "independent_median_reduction_percent": -0.06819061123208589,
+        "paired_median_wrapper_minus_reuse_ns": -17375,
+        "pairs": 240,
+        "reuse_median_ns": 12350291,
+        "reuse_wins": 109,
+        "run": 2,
+        "wrapper_median_ns": 12341875
+      }
+    ],
+    "timing_sign_consistent_across_runs": false
+  },
+  "claim_limit": "two scalar host runs; no exact-ID or parallel performance claim",
+  "decision": {
+    "next_bounded_test": "per-worker reusable buffers under controlled parallel primitive load, before A66 integration",
+    "reason": "both operations stay below 1 percent and change sign across independent runs",
+    "remove_per_call_allocation_confirmed": true,
+    "scalar_latency_integration_gate": "NO_GO"
+  },
+  "pbs": {
+    "allocation_observations": {
+      "reuse_alloc_calls_unique": [
+        0
+      ],
+      "reuse_allocated_bytes_unique": [
+        0
+      ],
+      "wrapper_alloc_calls_unique": [
+        1
+      ],
+      "wrapper_allocated_bytes_unique": [
+        196735
+      ]
+    },
+    "at_least_one_percent_gain_in_every_run": false,
+    "combined": {
+      "independent_median_reduction_percent": 0.27869621481721124,
+      "paired_mean_wrapper_minus_reuse_ns": -138172.59583333333,
+      "paired_median_reduction_percent_of_wrapper_median": 0.22072953736654805,
+      "paired_median_wrapper_minus_reuse_ns": 27291,
+      "reuse_median_ns": 12329542,
+      "reuse_wins": 263,
+      "wrapper_median_ns": 12364000
+    },
+    "pairs": 480,
+    "per_run": [
+      {
+        "independent_median_reduction_percent": -0.05815658947752792,
+        "paired_median_wrapper_minus_reuse_ns": 3334,
+        "pairs": 240,
+        "reuse_median_ns": 12330792,
+        "reuse_wins": 124,
+        "run": 1,
+        "wrapper_median_ns": 12323625
+      },
+      {
+        "independent_median_reduction_percent": 0.5275652117003191,
+        "paired_median_wrapper_minus_reuse_ns": 39583,
+        "pairs": 240,
+        "reuse_median_ns": 12326458,
+        "reuse_wins": 139,
+        "run": 2,
+        "wrapper_median_ns": 12391833
+      }
+    ],
+    "timing_sign_consistent_across_runs": false
+  },
+  "run_count": 2,
+  "status": "PASS_CORRECTNESS_NO_MATERIAL_SCALAR_LATENCY_GAIN",
+  "total_pairs_per_operation": 480
+}

@@ -1,0 +1,32 @@
+{
+  "actual_fhe_execution": false,
+  "actual_input_records": false,
+  "actual_sampler_p_fail": null,
+  "cargo_invoked": false,
+  "cases": [
+    {
+      "conditional_lut_address_pass": true,
+      "name": "safe",
+      "native_first_bit_decode_pass": true,
+      "selected_prefix_gate_pass": true
+    },
+    {
+      "conditional_lut_address_pass": false,
+      "name": "native_pass_ms_fail",
+      "native_first_bit_decode_pass": true,
+      "selected_prefix_gate_pass": false
+    }
+  ],
+  "own_source_files": 14,
+  "rust_typecheck": false,
+  "rustfmt_parse_only": true,
+  "source_sha256": "f78a1638da380dd504e60b6ea4392ca5855bb91cc1a89b326a0534c5a06bd5ce",
+  "static_artifacts_sha256": {
+    "native_pass_ms_fail.json": "288d6b90d99eda37010f10a3b84f55b20b1ee956ee2e7a38b7ddf8972703322a",
+    "safe.json": "78a57757102dd4fdd8ec6629ae55aeae0682d04ee50268592ec774b33f8deb10"
+  },
+  "status": "STATIC_SOURCE_AND_SYNTHETIC_READY",
+  "test_output": "test_complete_synthetic_public_chain (test_gate.Prefix) ... ok\ntest_envelope_command_and_chronology_mutations (test_gate.Prefix) ... ok\ntest_envelope_hash_pid_run_mutations (test_gate.Prefix) ... ok\ntest_exclusive_private_evidence (test_gate.Prefix) ... ok\ntest_frozen_checker_detects_aggregate_and_ms_mutations (test_gate.Prefix) ... ok\ntest_native_pass_cannot_hide_ms_failure (test_gate.Prefix) ... ok\ntest_noargs_never_starts_child (test_gate.Prefix) ... ok\ntest_premeasurement_binding_and_scope_mutations (test_gate.Prefix) ... ok\ntest_private_read_side_rejects_mode_and_symlink (test_gate.Prefix) ... ok\ntest_public_producer_mutations_even_with_rehashed_words (test_gate.Prefix) ... ok\ntest_source_lock_and_single_prefix_order (test_gate.Prefix) ... ok\ntest_used_row_value_order_and_sum_mutations (test_gate.Prefix) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 1.725s\n\nOK\n",
+  "tests_run": 12,
+  "upstream_source_pins": 21
+}

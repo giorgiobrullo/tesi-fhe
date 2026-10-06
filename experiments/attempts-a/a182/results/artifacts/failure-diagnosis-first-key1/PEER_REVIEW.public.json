@@ -1,0 +1,6 @@
+{
+  "result": "No material issue found. Zero-bit region, KS signs, residue displacement, candidate-1 restoration and attestation limits agree.",
+  "reviewer": "audit_frontier",
+  "schema": "a182-actual-diagnosis-peer-review-v1",
+  "scope": "Read-only diagnose/model/result mathematical and evidence-scope review. No tests or raw-log reads by reviewer."
+}

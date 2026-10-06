@@ -1,0 +1,134 @@
+{
+  "observed_utc": "2026-10-04T17:15:45.781089+00:00",
+  "files": {
+    "PROTOCOL.md": {
+      "bytes": 1858,
+      "sha256": "2d4a0960ca88e220e27f3d05f2970bcbe536393fc4ef7b13683587850a342d48"
+    },
+    "RESULT.md": {
+      "bytes": 1030,
+      "sha256": "0538311b377f13fdfa037c52daff52395402f9c18f15ec91c8ad1c9570294413"
+    },
+    "bin/codegen-probe": {
+      "bytes": 454480,
+      "sha256": "a7276e4bccee81362779aaee551b2a559733cece450494b2e60f545d93dfc668"
+    },
+    "logs/BUILD.json": {
+      "bytes": 819,
+      "sha256": "344b6ca517ff8d7c3c2d6f8dbebed82bd4ce93a831efdfe3e14ca82c12828728"
+    },
+    "logs/CAPABILITIES.json": {
+      "bytes": 863,
+      "sha256": "91fcc03424fb9a30fd6932ad862bf6cb2e1c81635cb022dae5317af9f5c7d045"
+    },
+    "logs/build.stderr": {
+      "bytes": 522,
+      "sha256": "cc83bfdc5559f7d7f541d6ce61bf88ba6be099e1475dbc331aa0bf2065eff107"
+    },
+    "logs/build.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/capabilities.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/capabilities.stdout": {
+      "bytes": 282,
+      "sha256": "f1dc969b23584be2994bcbb0f430dfd4ed45d8ff578895d257fae550376d959e"
+    },
+    "probe/Cargo.lock": {
+      "bytes": 2966,
+      "sha256": "d091029dccf1939dbb573d3a658f273bacd53b88ea0c95d83f296c5bd13dd729"
+    },
+    "probe/Cargo.toml": {
+      "bytes": 228,
+      "sha256": "3010be99def04ec4257692c353bc82505179cf1b390064089820683208bfb075"
+    },
+    "probe/src/main.rs": {
+      "bytes": 3904,
+      "sha256": "420c3f98e5fa37fa538b1c9a671c030cf660658843973903ab1eadcadb9f2ae5"
+    },
+    "root/BUILD_DRIVER.py": {
+      "bytes": 3519,
+      "sha256": "1b141ce3184a9913b00078bea470ce6c9b34a7664b023e1fc1288ae5c89e3089"
+    },
+    "root/BUILD_SETTINGS.json": {
+      "bytes": 737,
+      "sha256": "dcfa60cd209dfc73bed4ac0e229e09c9f7300056c6d43994f25ac318fd12cb41"
+    },
+    "root/CAPABILITIES_DRIVER.py": {
+      "bytes": 1630,
+      "sha256": "3ff2c373504286e98ab456a0bd8a04a75dc258bf8239028e2885f33eb502027f"
+    },
+    "root/CODEGEN_RESULT.md": {
+      "bytes": 2283,
+      "sha256": "c187ad23ee8b5cd21571c58ad101011768f2e64b08a7ba8d6727cc453fb5316b"
+    },
+    "root/CODEGEN_REVIEW.md": {
+      "bytes": 3581,
+      "sha256": "5450a611ede3653bc6f0ee0f8d18dd92f8fee669d8cc3b975054ad091d75ef32"
+    },
+    "root/CODEGEN_SYMBOLS.json": {
+      "bytes": 1579,
+      "sha256": "b838015e7f349c2a79a36e36769ff4d7bc25b4eb10dcbc5f894b572d4ae173d2"
+    },
+    "root/DEPENDENCY_BINDING.json": {
+      "bytes": 3151,
+      "sha256": "5ac51c479f189288fc215f5164f41bda63a5963c9fe9c7e449f3a2a526edbc7f"
+    },
+    "root/DISASSEMBLY_RECEIPT.json": {
+      "bytes": 803,
+      "sha256": "4fecb23ffb910f988eece98391f47fc2169f1243fa566ea56711c2db35654090"
+    },
+    "root/FCMA.asm": {
+      "bytes": 3946,
+      "sha256": "3de59a429f51e6f6eb73812f79b038fcf94d606667f3804cf3f3e599a0a0937b"
+    },
+    "root/FCMA_BOUND.md": {
+      "bytes": 4403,
+      "sha256": "cfae8a0681deb835760105825ce86f1247c908ed8abfe3f8e7f0dfdb6548a4d3"
+    },
+    "root/HELPER_SOURCE.md": {
+      "bytes": 2865,
+      "sha256": "8b2d1749e477bab0efe841c95662d76a23edd0e5e6364b44c622b6f63174aa5a"
+    },
+    "root/LOOP_COUNTS.json": {
+      "bytes": 12421,
+      "sha256": "ceafd7697ffc6bb4ce88c9578e9079585598b665f2490b4d94a68de80f4483f5"
+    },
+    "root/NEON.asm": {
+      "bytes": 4766,
+      "sha256": "0676aa29834f6077d66fcaac0e944b26944cd43899c9ce31dc0926286a0f6f71"
+    },
+    "root/NEXT.md": {
+      "bytes": 1643,
+      "sha256": "bdae8da5b80244d6918a2776dc9e5cbbcf3b3f407418d4735fdc139729d311bf"
+    },
+    "root/ORIENTATION.json": {
+      "bytes": 1408,
+      "sha256": "89a3ae78a90bf70855b0ffad990e2098eba72b5bcee686839eeeedf4b373b77f"
+    },
+    "root/POSTCHECK.json": {
+      "bytes": 747,
+      "sha256": "bb7897be6b23295e6f566d7132b4c94521818946571b1fd2a453111010a1b32c"
+    },
+    "root/PREBUILD_LIVENESS.json": {
+      "bytes": 150,
+      "sha256": "920b1292f5dcf62f680ac03d0ccb8e96c275682b266160b1e8bee889fb975329"
+    },
+    "root/PRECAP_LIVENESS.json": {
+      "bytes": 150,
+      "sha256": "b34abfe21ed48fd90ee3568f1cf280c153275fad1a2fae9ea516267601ad15d2"
+    },
+    "root/REVIEW.md": {
+      "bytes": 3859,
+      "sha256": "7eaad85fde3d33acbe8f246b23bdd911661faf07cc6adcff7fb1f72562a8707d"
+    },
+    "root/SOURCE_BUILD.json": {
+      "bytes": 1252,
+      "sha256": "2dc4470f244a459eaa7e85256124d520c784875c6116702b8273423e4ab18b81"
+    }
+  },
+  "scope": "all phase evidence/helper/logs/frozen binary, excluding Cargo target and manifest self"
+}

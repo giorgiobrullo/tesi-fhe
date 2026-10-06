@@ -1,0 +1,99 @@
+{
+  "schema": "a98.head-start-exact-adapter-port.compiled.v1",
+  "created_utc": "2026-09-03T01:40:55Z",
+  "status": "COMPILE_AND_PURE_INTEGER_TESTS_PASS_RUNTIME_GATE_NOT_RUN",
+  "frozen_input": {
+    "src/lib.rs": "a750dc4eebef73238ae80fcfde90c8b0fa6995d150c5b9120a1adbb37f9dfce4",
+    "STATIC_REPORT.json": "003f32e547dc376bea2fdb7d2d6dc10174ccc14ae456596c3ea5dfecbfc60e86"
+  },
+  "isolation": {
+    "compile_wrapper": "compile-gate/src/lib.rs",
+    "compile_target": "/tmp/a98-head-start-target.48Ucvn",
+    "workspace_target_created": false,
+    "network_allowed_by_cargo": false,
+    "profile": "dev",
+    "timings_are_build_logs_not_benchmarks": true
+  },
+  "toolchain": {
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30) (Homebrew)",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+    "rustc_commit": "8bab26f4f68e0e26f0bb7960be334d5b520ea452",
+    "llvm": "22.1.8",
+    "host": "aarch64-apple-darwin",
+    "os": "macOS 27.0 build 26A5421a"
+  },
+  "lockfile": {
+    "path": "compile-gate/Cargo.lock",
+    "sha256": "f080b69b592f6d741a03c282afe1d6168d4e96071f9e24da17be311ef36b7242",
+    "package_entries_including_gate": 66,
+    "tfhe_version": "1.7.0",
+    "tfhe_registry_checksum": "f341a7a6fe90bf813ecb2b098f04c0e5bca82436ddd1b256e6f1ec68be58da52"
+  },
+  "compile_gate_sources": {
+    "compile-gate/Cargo.toml": "2377dc2d051b7c91d632013189ad01d73cb4dd22b539298ba4bc68372f2c589d",
+    "compile-gate/src/lib.rs": "601907676e4d1794490f95c71b5c900c467bc0dc2ce618c6ad65f95300fdee59"
+  },
+  "commands": [
+    {
+      "command": "cargo generate-lockfile --offline --manifest-path compile-gate/Cargo.toml",
+      "exit_code": 0,
+      "result": "65 dependency packages locked"
+    },
+    {
+      "command": "CARGO_TARGET_DIR=/tmp/a98-head-start-target.48Ucvn cargo check --offline --locked --manifest-path compile-gate/Cargo.toml",
+      "exit_code": 0,
+      "cargo_reported_seconds": 10.38,
+      "warnings": 0
+    },
+    {
+      "command": "CARGO_TARGET_DIR=/tmp/a98-head-start-target.48Ucvn cargo test --offline --locked --manifest-path compile-gate/Cargo.toml",
+      "exit_code": 0,
+      "cargo_reported_build_seconds": 9.85,
+      "rust_tests_passed": 4,
+      "rust_tests_failed": 0,
+      "rust_tests_ignored": 0,
+      "test_execution_seconds": 0.01,
+      "doc_tests_passed": 0,
+      "doc_tests_failed": 0
+    },
+    {
+      "command": "CARGO_TARGET_DIR=/tmp/a98-head-start-target.48Ucvn cargo build --offline --locked --manifest-path compile-gate/Cargo.toml",
+      "exit_code": 0,
+      "cargo_reported_seconds": 0.06,
+      "warnings": 0
+    }
+  ],
+  "rust_tests": [
+    "adapter_recovers_both_tie_classes",
+    "iterator_preserves_patch_boundary_streams",
+    "rounded_constructor_recomposes_every_a44_term",
+    "invalid_inputs_fail_closed"
+  ],
+  "build_outputs": {
+    "rlib_sha256": "67ba8f38dce63082297b3ec4744d910fc9cb315facd41d9028a4836bc2ac9f37",
+    "rlib_bytes": 158496,
+    "test_binary_sha256": "ed3eac735d8705243788d887a71b033d93e43c1a6dfc7cc057da10e47c4797c6",
+    "test_binary_bytes": 1060328,
+    "outputs_are_ephemeral": true
+  },
+  "static_audit": {
+    "verdict": "CLEAN",
+    "independent_dimension_2_cases": 582528,
+    "independent_dimension_3_cases": 1455104,
+    "independent_adapter_mismatches": 0,
+    "independent_a44_iterator_states": 32768,
+    "independent_iterator_mismatches": 0,
+    "note": "Audit was read-only. One accidental rustc --print sysroot invocation was disclosed; the parent discarded the affected A97 run as canonical timing."
+  },
+  "not_run": [
+    "key_generation",
+    "encrypted_keyswitch",
+    "programmable_bootstrap",
+    "fhe",
+    "noise_measurement",
+    "runtime_benchmark",
+    "composed_pfail",
+    "exact_id_integration"
+  ],
+  "claim_boundary": "The exact frozen Rust source compiles and its pure integer tests pass. No encrypted-runtime, noise, p_fail, latency, speedup, or exact-ID claim follows."
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "a167.root-driver-review.v1",
+  "reviewed_utc": "2026-09-05T05:09:57.309238+00:00",
+  "scope": "Read-only source/interface review; no driver/test/build/FHE/process execution by reviewer",
+  "result": "NO_REMAINING_MATERIAL_INTERFACE_ISSUE_FOUND",
+  "build": {
+    "offline_locked_selected_bin_j1": true,
+    "fixed_target_a137_only": true,
+    "no_features_required": true,
+    "check_test_release_serial_and_stop_on_failure": true,
+    "source_and_upstream_bindings_match_A167": true,
+    "review_corrections_applied_before_launch": [
+      "Reject optimized Python before assertion-based source verification",
+      "Preserve terminal exit.json with source_unchanged=false and verification error if post-child source check fails"
+    ]
+  },
+  "runtime": {
+    "direct_Rust_child_not_time_wrapper": true,
+    "prepared_child_exit_schema_matches_A167": true,
+    "fixed_command_env_cwd_paths": true,
+    "private_exclusive_fsynced_outputs": true,
+    "source_binary_PID_run_UTC_log_bindings": true,
+    "no_auto_expansion": true,
+    "independent_validation_not_automatically_run": true
+  },
+  "additional_root_acceptance_obligation": "Require root runtime-driver exit0 and exit.json source_and_binary_unchanged=true in addition to frozen A167 semantic replay. This extra terminal field is not enforced by the frozen verifier.",
+  "remaining_limits": [
+    "Preflight is a point observation of selected relevant workload names, not a continuous OS timing guard",
+    "No inference that queued or uninspected processes are clear; root owns fresh scheduling checks",
+    "Record/source/hash binding is not independent execution or key-membership attestation",
+    "No p_fail, timing, or larger selector correctness claim"
+  ],
+  "actual_runtime_logs_read": 0
+}

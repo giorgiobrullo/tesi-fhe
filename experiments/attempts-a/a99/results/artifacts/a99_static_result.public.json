@@ -1,0 +1,137 @@
+{
+  "basis_slot_audit": {
+    "all_arms_identical": true,
+    "arms": [
+      "g1-floor",
+      "g2-floor",
+      "g2-nearest"
+    ],
+    "coefficient_checks": 49152
+  },
+  "date": "2026-09-03",
+  "interpretation": {
+    "awaits_build_and_fhe": [
+      "Rust API/type correctness",
+      "real grouped-normalization ciphertext correctness",
+      "EvalAuto noise sufficiency for each decomposition",
+      "all timings"
+    ],
+    "exact": [
+      "clear u64 ring geometry for all eight basis inputs and three arms",
+      "mixed Delta59/Delta56 slot map and width-127 robust extraction geometry",
+      "normalization object/coefficient counts and full-GGSW storage geometry"
+    ]
+  },
+  "key_ledger": [
+    {
+      "base_log": 23,
+      "full_fourier_bytes_per_key": 65536,
+      "level_count": 1,
+      "name": "23x1",
+      "ten_full_fourier_keys_bytes": 655360,
+      "ten_full_fourier_keys_mib": 0.625
+    },
+    {
+      "base_log": 8,
+      "full_fourier_bytes_per_key": 327680,
+      "level_count": 5,
+      "name": "8x5",
+      "ten_full_fourier_keys_bytes": 3276800,
+      "ten_full_fourier_keys_mib": 3.125
+    },
+    {
+      "base_log": 7,
+      "full_fourier_bytes_per_key": 393216,
+      "level_count": 6,
+      "name": "7x6",
+      "ten_full_fourier_keys_bytes": 3932160,
+      "ten_full_fourier_keys_mib": 3.75
+    }
+  ],
+  "local_input_pins": {
+    "tmp/a92-chen-partial-trace-packing/README.md": "7a8f4308cae3efa5ff75051967ef07b56daf55c7e51e130846c5953b0a7af225",
+    "tmp/a92-chen-partial-trace-packing/a92_chen_partial_trace.py": "3c6c8e2cc39de5c03c027837a03c98a62b7dbd04b3b56171788e8cc6a81c814b",
+    "tmp/a92-chen-partial-trace-packing/artifacts/a92_static_result.json": "85405bd3981c41c0d578a320d025dfec42a8e7e5f2cd14660527d3cd3f10cce0",
+    "tmp/a95-chen-radius-trace-sensitivity/README.md": "ce51912a6096467dcd934bddfc12855c28ed6982b9b099c74e44fab922764f1c",
+    "tmp/a95-chen-radius-trace-sensitivity/a95_trace_radius_sensitivity.py": "9d23140b5cf2b392784f280cb0aabfdd675ccd3e52659e4460f69fb006b0a6a1",
+    "tmp/a96-chen-normalized-rounding-preflight/README.md": "946473a243a2c61dd129749f7e41729a65885a8a931319ef91a2f278009df003",
+    "tmp/a96-chen-normalized-rounding-preflight/a96_chen_rounding.py": "5e071a359cf3e1948eaccaad5c205eb79a7bfcde4e267e1755f0d7ece1bac588",
+    "tmp/a96-chen-normalized-rounding-preflight/artifacts/a96_static_result.json": "1e132be1b87de948603bd5e1c8127f88d00a53f64325c678adc93a8ef007df92",
+    "tmp/a97-chen-evalauto-materialization/Cargo.lock": "8887f8122cbb3426642637211c0a7be26baa9579e2468ad77c4f880c4002fe8b",
+    "tmp/a97-chen-evalauto-materialization/Cargo.toml": "560142b7e94c155928bf1b8d1bdd4f9bf0923aea766bc114c57fdbe891da4cec",
+    "tmp/a97-chen-evalauto-materialization/results/a97_clean_fresh5_trials64_2026-09-03.log": "7a34bbf8b1d2c956c7f86e90940d1ac17db6ab1880626d1a5549189af59b90d9",
+    "tmp/a97-chen-evalauto-materialization/src/main.rs": "7024620d3a1d68a02d6c1e9cc1d167a9dc4506fce18a264f4279a3af9d8f945f"
+  },
+  "primary_and_api_source_pins": {
+    "api_files_verified": 5,
+    "compiled_release_binary_bytes": 997056,
+    "compiled_release_binary_sha256": "c66739334ab4ff7c83e9aba9c7bb63bc3960c07150a36ec9962b3bad727a15e9",
+    "compiled_rust_source_sha256": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b",
+    "generated_lockfile_sha256": "6a0e077b686f2060e7057d0d6183e0c0d04ed000bfe6efa70069498440dfb177",
+    "matching_local_tfhe_source_trees": 1,
+    "refined_parameter_source_sha256": "6d856bf9858491d34e79cb656afad7f653715eda71d2b6bded8489ab0fcb4f11",
+    "source_pins_json_sha256": "7abb011b197409cf16f106ecb667a37d6db7376605c00308a300f4cc1032ce8b",
+    "tfhe_crate_checksum": "ebacd6973a20d4967a64bac147ad6890182fd8ce910ce841ecbb3cae47bdf5ff"
+  },
+  "runtime_scope": {
+    "cargo_fmt_check_passed": true,
+    "causal_cross_parameter_timing_or_noise_comparison_allowed": false,
+    "composed_pfail_proven": false,
+    "cross_parameter_pairing": false,
+    "encrypted_control_blind_rotation_included": false,
+    "fail_closed_dry_plan_passed": true,
+    "fhe_run_in_this_static_report": false,
+    "full_fourier_ggsw_first_gate": true,
+    "full_selector_included": false,
+    "full_tournament_proven": false,
+    "offline_cargo_lockfile_generated": true,
+    "real_lwe_encryptions_planned": true,
+    "release_binary_built": true,
+    "runtime_frontier_promoted": false,
+    "rust_compilation_passed": true,
+    "rust_tests_passed": 7,
+    "stage_actual_phase_audit_planned": true,
+    "tie_first_encrypted_decision_proven": false,
+    "timed_path_separate_from_client_decryption": true
+  },
+  "schedule_ledger": {
+    "degree_multiplicity": {
+      "1025": 1,
+      "129": 1,
+      "2049": 1,
+      "257": 1,
+      "3": 4,
+      "33": 1,
+      "5": 2,
+      "513": 1,
+      "65": 1,
+      "9": 1
+    },
+    "evalauto_calls": 14,
+    "g1_coefficient_touches": 86016,
+    "g1_normalization_objects": 21,
+    "g2_coefficient_touches": 36872,
+    "g2_groups": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "g2_normalization_objects": 13,
+    "maximum_internal_evalauto_gain_g2": 2
+  },
+  "schema": "a99.chen-grouped-runtime.static-preflight.v3",
+  "source_text_audit": {
+    "modular_inverse_markers_absent": true,
+    "required_markers_checked": 21,
+    "rust_source_sha256": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b",
+    "stale_fixed_decomposition_markers_absent": true
+  },
+  "static_environment": {
+    "python": "3.12.11",
+    "system_python_3_9_supported": false,
+    "uv": "0.11.29"
+  },
+  "status": "COMPILED_DRY_ONLY_AWAITING_FHE_GATE"
+}

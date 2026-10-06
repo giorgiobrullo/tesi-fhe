@@ -1,0 +1,102 @@
+{
+  "date_client": "2026-10-04",
+  "hardware": "Apple M4 Max,16threads",
+  "host": "macOS-27.2-arm64-arm-64bit",
+  "compiler_identity": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+  "counts": {
+    "fresh_key_families_per_version": 3,
+    "fixed_scene_vectors": 3,
+    "blocks_per_family": 4,
+    "warmup": 72,
+    "measured": 144,
+    "correct_queries": 216
+  },
+  "timer": "HTTP X-Tempo-Ms; service compute including probe decoding/planning/response serialization, excluding key load, gallery enrollment, encryption, transport and decryption. Separate HTTP elapsed recorded; not browserclick timing.",
+  "estimand": "Per scene and family: median of two requests per arm/block, candidate/baseline ratio per block, median of four block ratios; then median of three family ratios.",
+  "scenes": {
+    "einstein": {
+      "arms": {
+        "baseline": {
+          "median_service_ms": 1855.85,
+          "median_http_ms": 1856.395646,
+          "minimum_service_ms": 1762.4,
+          "maximum_service_ms": 2037.1
+        },
+        "candidate": {
+          "median_service_ms": 1899.1999999999998,
+          "median_http_ms": 1899.7226665,
+          "minimum_service_ms": 1776.9,
+          "maximum_service_ms": 2070.0
+        }
+      },
+      "hierarchical_candidate_over_baseline_ratio": 1.0208549624855106,
+      "family_block_median_ratios": [
+        1.0208549624855106,
+        1.0289062132973388,
+        1.016595413212747
+      ]
+    },
+    "curie": {
+      "arms": {
+        "baseline": {
+          "median_service_ms": 1857.1999999999998,
+          "median_http_ms": 1857.7475410000002,
+          "minimum_service_ms": 1786.6,
+          "maximum_service_ms": 2144.0
+        },
+        "candidate": {
+          "median_service_ms": 1884.3,
+          "median_http_ms": 1884.844604,
+          "minimum_service_ms": 1799.8,
+          "maximum_service_ms": 2183.6
+        }
+      },
+      "hierarchical_candidate_over_baseline_ratio": 1.0139893483674687,
+      "family_block_median_ratios": [
+        1.0004097173785,
+        1.0139893483674687,
+        1.0358767094995414
+      ]
+    },
+    "turing": {
+      "arms": {
+        "baseline": {
+          "median_service_ms": 1852.9,
+          "median_http_ms": 1853.502167,
+          "minimum_service_ms": 1771.8,
+          "maximum_service_ms": 1985.4
+        },
+        "candidate": {
+          "median_service_ms": 1877.8000000000002,
+          "median_http_ms": 1878.3764795,
+          "minimum_service_ms": 1791.5,
+          "maximum_service_ms": 1994.3
+        }
+      },
+      "hierarchical_candidate_over_baseline_ratio": 1.008825644962947,
+      "family_block_median_ratios": [
+        1.008825644962947,
+        1.036828759980685,
+        1.005325530204471
+      ]
+    }
+  },
+  "limits": [
+    "One host,three fixed enrollment-photo queries; no independent biometrics or rare-failure guarantee.",
+    "Keys generated separately/version; no identical paired keys. No confidence interval or universal library regression claim.",
+    "Desktop background load not controlled; start/during snapshots retained, all measurements included.",
+    "Initial interpreter and copied test-fixture preparation failures preserved; light offline checks overlap initial blocks, no failed numerical check ignored or measurements removed."
+  ],
+  "evidence": {
+    "samples": "samples.csv",
+    "samples_sha256": "aa2ef5837f8be015a33eeeeb20fcc943c40ac1397e699b62d4ec17a538f72a85",
+    "raw_samples_jsonl_sha256": "756a706c3cf55d80a838763f6a6f9de1be2d02be8ca914fcf4b8b036336d3dee",
+    "complete_sha256": "2956cb2e7ac0e64bc3333c0e8cf17ea62476eadaa2abab9c754eb88196cf5189",
+    "source_snapshots_sha256": "15f3de1a82bab5bd8cd28228ca870c67ff99e0f2b16680bdfc175b142949e444",
+    "driver_sha256": "0984f94a95b4bd0c1fcb5d799ad6f0c71453ab6a461e4796b2e107df6ec413ef",
+    "independent_review_sha256": "b508e221b1fa9c38cad61cb0e959ab4369286f4e01a0005565902bf29b8a91cb",
+    "baseline_binary_sha256": "a33e77ce772e34584c2e90a6a8ab681c46a138b86405a3dce45b9827a93904f8",
+    "candidate_binary_sha256": "5b157b37c74c995f624d049d400cb5c0c62cdf4b71e121ebc926c90d17fec546",
+    "local_archive": "tmp/current-build-timing-20261004, in the research workspace; keys and ciphertexts excluded"
+  }
+}

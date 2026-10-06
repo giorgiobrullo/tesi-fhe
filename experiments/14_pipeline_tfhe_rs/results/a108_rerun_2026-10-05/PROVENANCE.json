@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-05T19:06:12.334568+00:00",
+  "scope": "Fresh five-point A108 diagnostic, original sources and TFHE0.11.3; new compiler, fresh random keys. Raw output is copied without edits.",
+  "copies": [
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/source/Cargo.toml",
+      "copy": "source/Cargo.toml",
+      "sha256": "4499dd04f2ce136cbfb38f25a001a5d24949f6a84d66aa188d66a51a09b14f31",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/source/Cargo.lock",
+      "copy": "source/Cargo.lock",
+      "sha256": "6a2b140a057ade3ee94e21294e6e2a73d6397b02c1951df5cba3a37e78e8ed7f",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/source/src/main.rs",
+      "copy": "source/src/main.rs",
+      "sha256": "d0f31b2f67e346989066a4d6fe3f126b9f73d64a2ea3429da8c7fae1033240fa",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-packed-pfks-d2-k4/PREREGISTRATION.json",
+      "copy": "PREREGISTRATION.json",
+      "sha256": "b12dbbb9c2e81de20f54070dba2a48c9f5a6f64c351f26f2889a7e8d5d899ce6",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/23x1/stdout.jsonl",
+      "copy": "runs/23x1/stdout.jsonl",
+      "sha256": "f17946db5170cee3358b150dc5f678afce55604e34c456a9c2e25f4a2b453120",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/23x1/stderr.log",
+      "copy": "runs/23x1/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/23x1/exit.json",
+      "copy": "runs/23x1/exit.json",
+      "sha256": "57201b65c5f6aa7c16b866f11b3114ddbce6e8113cd1e249ef2871f3aa5010dc",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/24x1/stdout.jsonl",
+      "copy": "runs/24x1/stdout.jsonl",
+      "sha256": "946f5ba955ea97a888870884457d1375f6073403828e740b2cc1403ad469e873",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/24x1/stderr.log",
+      "copy": "runs/24x1/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/24x1/exit.json",
+      "copy": "runs/24x1/exit.json",
+      "sha256": "90d2f3246f5b4f80862350efaed7c9b6c3e6affe13608e59a63e3d0229d75bcc",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/16x2/stdout.jsonl",
+      "copy": "runs/16x2/stdout.jsonl",
+      "sha256": "d39e141ebef22fbc840143a612462a7412d4df53444e0187e18f983b1193f48f",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/16x2/stderr.log",
+      "copy": "runs/16x2/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/16x2/exit.json",
+      "copy": "runs/16x2/exit.json",
+      "sha256": "a037960c195f3b3ad6165a8e81091ae9863932e1c73abdefd6669574a42cee38",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/12x3/stdout.jsonl",
+      "copy": "runs/12x3/stdout.jsonl",
+      "sha256": "02850ce393a8b74123b40c32df80a695f644f30008bf47e5c7c2401473b2240a",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/12x3/stderr.log",
+      "copy": "runs/12x3/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/12x3/exit.json",
+      "copy": "runs/12x3/exit.json",
+      "sha256": "ebc0fe0aeecd1e0699905659e1275922ec43a8b83f95c7f938b204996ce09b39",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/10x4/stdout.jsonl",
+      "copy": "runs/10x4/stdout.jsonl",
+      "sha256": "5764f5329ade0e76c04754bd8c329e8124680e3a7e574e68a1bf0a79c2697f97",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/10x4/stderr.log",
+      "copy": "runs/10x4/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/runs/10x4/exit.json",
+      "copy": "runs/10x4/exit.json",
+      "sha256": "0143da00bbbcea78a2afad193240dafa33761cd9e50fc660e6e52b28bdc69b72",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/review/validate_logs.py",
+      "copy": "review/validate_logs.py",
+      "sha256": "d3d65e30b53b728867dff5c16e22e05a3d6370b490aad94d5dd2eb16fc444aa4",
+      "transformation": "Byte-identical copy"
+    },
+    {
+      "origin_archive_relative": "tmp/a108-rerun-20261005/VALIDATION.json",
+      "copy": "VALIDATION.json",
+      "sha256": "6f5b7ed3e9904afe3b41f9de5ab26b2de96cff4777cd4f3b44569bace0bfa147",
+      "transformation": "Byte-identical copy"
+    }
+  ],
+  "validation_receipt": {
+    "exit_code": 0,
+    "cases": 40,
+    "records": 295,
+    "arithmetic_and_consistency_checks": 16755,
+    "native_reruns": 5,
+    "retries": 0,
+    "observed_competing_native_workloads": false
+  },
+  "original_report": {
+    "archive_relative": "tmp/a108-packed-pfks-d2-k4/RUNTIME_SWEEP_RESULT.md",
+    "sha256": "61eede3cef5e2b05dac65603e1809a56abcffdb573c2cbc4bbc480cf708eeb60",
+    "preserved_unchanged": true,
+    "relationship": "New independent random samples, not the original September log stream."
+  }
+}

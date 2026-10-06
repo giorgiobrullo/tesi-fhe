@@ -9,6 +9,13 @@ sessioni individuali e registro delle verifiche. La
 [demo client/server](dual_view/README.md) separa invece la gestione della
 galleria e la richiesta d'accesso in due pagine, partendo da una galleria vuota.
 
+Entrambe usano il [runtime mantenuto](../runtime/README.md). I percorsi
+`client/`, `server/`, `calibra.py`, `config.json`, `config.env` e
+`docker-compose.yml` direttamente in `demo/` appartengono invece al prototipo
+dell'esperimento 14. La
+[guida di quel prototipo](README-storico.md) ne conserva configurazione,
+prove e comandi; per l'avvio corrente scegliere `web/` oppure `dual_view/`.
+
 La foto viene trasformata in un vettore di numeri, detto **template** quando
 è conservato nella galleria. Il motore confronta la richiesta con gli iscritti
 e cerca il minimo esatto: vince il punteggio più basso e, a parità, la prima
@@ -38,7 +45,7 @@ a livello applicativo.
 ## Versione della demo
 
 I sorgenti della demo attuale usano il runtime derivato dal pacchetto 22,
-TFHE-rs 1.7 e la modalità
+aggiornato a TFHE-rs 1.8.1, e la modalità
 `public_parallel`: ingresso full51/low60 e risposta di tre LWE, con ID
 in base 15. Full51/low60 indica le codifiche numeriche dell'ingresso; le LWE
 sono i valori cifrati che trasportano il risultato. Il dominio ammette fino a
@@ -47,12 +54,8 @@ campagne, non l'intera capienza.
 Il limite dell'interfaccia web è descritto nella sua guida. La versione
 installata di un servizio ospitato dipende dal suo ultimo aggiornamento.
 
-I file `config.json`, `client/` e `docker-compose.yml` in questa cartella
-appartengono alla demo precedente dell'esperimento 14, full52 e una LWE.
-La guida storica ne conserva configurazione, prove e limiti.
-Per l'avvio corrente seguire una delle due guide sopra, entrambe basate sul
-runtime mantenuto in `runtime/`. I tempi storici del servizio restano
-associati ai sorgenti congelati dell'esperimento 22.
+I tempi storici del servizio restano associati ai sorgenti congelati
+dell'esperimento 22.
 
 La variante client/server è destinata all'esecuzione locale con un terminale fidato.
 Il [modello di fiducia](../README.md#modello-di-fiducia) descrive le ipotesi

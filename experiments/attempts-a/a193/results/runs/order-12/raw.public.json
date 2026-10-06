@@ -1,0 +1,26 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 42,
+      "data": {
+        "kind": "summary",
+        "seq": 41,
+        "status": "A193_NATIVE_SEQUENCE_COMPLETE",
+        "worker_process_clock_reads": 18,
+        "worker_thread_clock_reads": 6,
+        "worker_clock_getres_calls": 2,
+        "thread_id_calls": 3,
+        "worker_identity_v0_reads": 1,
+        "parent_live_v0_reads": 10,
+        "parent_terminal_v0_reads": 2,
+        "waitid_calls": 2,
+        "wait4_calls": 1,
+        "records": 42,
+        "selected_scale": null,
+        "normalized_occupancy": null,
+        "settlement_proven": false
+      }
+    }
+  ]
+}

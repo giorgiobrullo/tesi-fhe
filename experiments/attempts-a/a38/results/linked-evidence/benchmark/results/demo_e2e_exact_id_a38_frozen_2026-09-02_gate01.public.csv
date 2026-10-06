@@ -1,0 +1,7 @@
+trial,esito_corretto,identita_corretta,corretto,embedding_ms,cifratura_ms,server_ms,rete_e_server_ms,decifratura_ms,somma_tappe_strumentate_ms,endpoint_interno_ms,endpoint_http_ms,pbs
+0,True,True,True,660.8,3.4,8229.4,8233.8,2.5,8900.5,8972.0,8977.01,3655
+1,True,True,True,1177.1,2.8,8604.6,8610.2,9.2,9799.3,9866.5,9882.116,3655
+2,True,True,True,888.4,2.6,8611.6,8612.9,2.2,9506.1,9591.4,9607.025,3655
+3,True,True,True,838.8,3.7,8717.8,8718.7,2.3,9563.5,9641.2,9645.815,3655
+4,True,True,True,1101.1,4.2,8660.3,8661.3,1.8,9768.4,9880.1,9884.946,3655
+5,True,True,True,753.5,3.7,7606.1,7606.9,1.5,8365.6,8449.0,8452.691,3655

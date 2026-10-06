@@ -23,8 +23,15 @@ sys.modules[SPEC.name] = paired
 SPEC.loader.exec_module(paired)
 
 
+def require_archived_inputs(test: unittest.TestCase) -> None:
+    paths = [*paired.PROVENANCE_PATHS.values(), paired.DEFAULT_A33_BINARY, paired.DEFAULT_A38_BINARY]
+    if any(not path.is_file() for path in paths):
+        test.skipTest("requires private A33/A38 cache, binaries and snapshots; see tests/README.md")
+
+
 class FrozenInputTest(unittest.TestCase):
     def test_binaries_and_a38_source_provenance_are_pinned(self) -> None:
+        require_archived_inputs(self)
         records = paired.collect_provenance(
             paired.DEFAULT_A33_BINARY, paired.DEFAULT_A38_BINARY
         )
@@ -128,6 +135,7 @@ class PairedDesignTest(unittest.TestCase):
         )
 
     def test_default_mode_is_read_only_dry_validation(self) -> None:
+        require_archived_inputs(self)
         with (
             mock.patch.object(sys, "argv", [str(paired.__file__)]),
             mock.patch.object(

@@ -1,0 +1,77 @@
+{
+  "actual_exit_code": 0,
+  "actual_p_fail": null,
+  "binary_sha256": "369c74ed455fb584a2dfd702bd27e43bc8d23ca7e8cc9e5770556b7128e91640",
+  "completed_blocks": 6,
+  "failures": 0,
+  "native_pass": true,
+  "pass_replay": true,
+  "physical_ledger": {
+    "cm_br": 1064,
+    "cm_ks": 1008,
+    "complete_endpoints": 21,
+    "extra_joint4_prefixes": 2,
+    "extraction": 672,
+    "initial_score_samples": 672,
+    "ordinary_br": 5497,
+    "ordinary_ks": 5497,
+    "ordinary_marginals": 7181,
+    "packed_encryptions": 6,
+    "packing": 616
+  },
+  "scope": "one key, one N16 public scene, six fresh paired inputs; exact public-word/client phase observations, no independent key membership proof",
+  "source_sha256": "ef810c3a9a22da0fc3de81343a41baad40682a5e8642068d1172d3c02ebfde97",
+  "statistics": {
+    "arm_median_seconds": {
+      "C": 1.020072375,
+      "J": 0.84104275,
+      "R": 0.676118896
+    },
+    "confidence_interval": null,
+    "continuous_cpu_attestation": false,
+    "joint4_paired_reduction_percent": {
+      "C": {
+        "median": 17.774834331025936,
+        "values": [
+          12.060228875557028,
+          17.748255974137866,
+          17.801412687914002,
+          18.39289689446121
+        ]
+      },
+      "R": {
+        "median": -24.56707575585478,
+        "values": [
+          -32.39817441877723,
+          -24.355232102397007,
+          -24.778919409312554,
+          -22.546975220389985
+        ]
+      }
+    },
+    "measured_blocks": 4,
+    "measured_pair_precedence": {
+      "C_before_R": 2,
+      "J_before_C": 2,
+      "J_before_R": 2
+    },
+    "measured_position_frequencies": {
+      "C": [
+        1,
+        2,
+        1
+      ],
+      "J": [
+        1,
+        2,
+        1
+      ],
+      "R": [
+        2,
+        0,
+        2
+      ]
+    },
+    "warmups_excluded": 2
+  }
+}

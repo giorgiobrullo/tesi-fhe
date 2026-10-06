@@ -1,0 +1,6 @@
+[net]
+offline = true
+
+[build]
+target-dir = "target-a132-only"
+

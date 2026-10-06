@@ -1,0 +1,321 @@
+{
+  "schema": "a181.replay.v1",
+  "case": "order-21",
+  "status": "RAW_LIFECYCLE_CONSISTENT",
+  "lifecycle_records": 27,
+  "raw_records": 15,
+  "same_parent_reads": true,
+  "parent_capture_matches_collector": true,
+  "parent_before_reap_order_consistent": true,
+  "terminal_parent_lifecycle_consistent": true,
+  "raw_replay": {
+    "schema": "a181.raw-replay.v1",
+    "record_consistent": true,
+    "snapshots": 8,
+    "frames": [
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 0,
+        "right_seq": 1,
+        "elapsed_ns_rational": [
+          2008516750,
+          1
+        ],
+        "capacity_ns_rational": [
+          32136268000,
+          1
+        ],
+        "host_delta_ticks": [
+          246,
+          198,
+          2753,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 289818,
+          "system_raw": 7784
+        }
+      },
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 1,
+        "right_seq": 2,
+        "elapsed_ns_rational": [
+          6015431125,
+          3
+        ],
+        "capacity_ns_rational": [
+          96246898000,
+          3
+        ],
+        "host_delta_ticks": [
+          691,
+          164,
+          2343,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 95091418,
+          "system_raw": 314362
+        }
+      },
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 2,
+        "right_seq": 3,
+        "elapsed_ns_rational": [
+          6028268750,
+          3
+        ],
+        "capacity_ns_rational": [
+          96452300000,
+          3
+        ],
+        "host_delta_ticks": [
+          450,
+          268,
+          2484,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 413921,
+          "system_raw": 8814
+        }
+      },
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 3,
+        "right_seq": 4,
+        "elapsed_ns_rational": [
+          6026660875,
+          3
+        ],
+        "capacity_ns_rational": [
+          96426574000,
+          3
+        ],
+        "host_delta_ticks": [
+          473,
+          212,
+          2516,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 47190276,
+          "system_raw": 330301
+        }
+      },
+      {
+        "controlled_barrier_gap": true,
+        "left_seq": 4,
+        "right_seq": 5,
+        "elapsed_ns_rational": [
+          91426375,
+          3
+        ],
+        "capacity_ns_rational": [
+          1462822000,
+          3
+        ],
+        "host_delta_ticks": [
+          5,
+          1,
+          41,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 28,
+          "system_raw": 224
+        }
+      },
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 5,
+        "right_seq": 6,
+        "elapsed_ns_rational": [
+          2004240250,
+          1
+        ],
+        "capacity_ns_rational": [
+          32067844000,
+          1
+        ],
+        "host_delta_ticks": [
+          286,
+          230,
+          2678,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 0,
+          "system_raw": 0
+        }
+      },
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 6,
+        "right_seq": 7,
+        "elapsed_ns_rational": [
+          6031858000,
+          3
+        ],
+        "capacity_ns_rational": [
+          96509728000,
+          3
+        ],
+        "host_delta_ticks": [
+          199,
+          205,
+          2791,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 0,
+          "system_raw": 0
+        }
+      }
+    ],
+    "arms": [
+      {
+        "id": "stage-0",
+        "covered": true,
+        "whole_frame_indices": [
+          0
+        ],
+        "duration_ns_rational": [
+          6005735875,
+          3
+        ]
+      },
+      {
+        "id": "stage-1",
+        "covered": true,
+        "whole_frame_indices": [
+          0,
+          1
+        ],
+        "duration_ns_rational": [
+          2000033500,
+          1
+        ]
+      },
+      {
+        "id": "stage-2",
+        "covered": true,
+        "whole_frame_indices": [
+          1,
+          2
+        ],
+        "duration_ns_rational": [
+          2002050250,
+          1
+        ]
+      },
+      {
+        "id": "stage-3",
+        "covered": true,
+        "whole_frame_indices": [
+          2,
+          3
+        ],
+        "duration_ns_rational": [
+          6000063250,
+          3
+        ]
+      }
+    ],
+    "max_read_width_ns_rational": [
+      121750,
+      3
+    ],
+    "observed_final_counter": true,
+    "first_terminal_snapshot_seq": 5,
+    "retained_terminal_usage": {
+      "user_raw": 142986413,
+      "system_raw": 666396,
+      "birth_abs": 12195043263140,
+      "exit_abs": 12195236110018
+    },
+    "parent_nonreaping_capture_attested": false,
+    "coverage_issues": [
+      "CONTROLLED_PARENT_BARRIER_GAP"
+    ],
+    "status": "UNQUALIFIED_RAW_COUNTERS",
+    "collector_qualified": false,
+    "ownership_membership_attested": false,
+    "final_accounting_settled": false,
+    "source_binary_execution_attested": false,
+    "host_busy_cpu_ns": null,
+    "owned_cpu_ns": null,
+    "nonbenchmark_occupancy": null,
+    "speedup_promotion_allowed": false,
+    "open_premises": [
+      "host tick CPU-ns conversion and quantization bound",
+      "rusage CPU units, all-thread/exclusive and exit-final semantics",
+      "parent lifecycle handshake and no unregistered descendants",
+      "runtime source/binary/run/boot provenance and marker producer",
+      "actual OS qualification and collector overhead"
+    ]
+  },
+  "markers": {
+    "schema": "a170.markers.v1",
+    "clock": "mach_absolute_time",
+    "pid": 6834,
+    "birth_abs": 12195043263140,
+    "numer": 125,
+    "denom": 3,
+    "arms": [
+      {
+        "id": "stage-0",
+        "begin_abs": 12195043342189,
+        "end_abs": 12195091388076
+      },
+      {
+        "id": "stage-1",
+        "begin_abs": 12195091388534,
+        "end_abs": 12195139389338
+      },
+      {
+        "id": "stage-2",
+        "begin_abs": 12195139389429,
+        "end_abs": 12195187438635
+      },
+      {
+        "id": "stage-3",
+        "begin_abs": 12195187438862,
+        "end_abs": 12195235439368
+      }
+    ]
+  },
+  "cpu_units_justified": false,
+  "settled_accounting_proven": false,
+  "os_membership_independently_attested": false,
+  "collector_qualified": false,
+  "nonbenchmark_occupancy": null,
+  "speedup_promotion_allowed": false,
+  "paused_interval": {
+    "begin_abs": 12195236106410,
+    "end_abs": 12195236837410,
+    "duration_ns_rational": [
+      91375000,
+      3
+    ],
+    "coverage_gap": true,
+    "prorated": false
+  },
+  "live_samples": 5,
+  "protocol_barriers_consistent": true,
+  "old_fixed_spacing_inherited": false,
+  "full_interval_normalization_allowed": false,
+  "fixture_binary_sha256": "376fd3693e543a5702471d551b1e296865f4b37cd9a3bd5b429581ea960d6393",
+  "collector_binary_sha256": "f534b2ce770a01f2303be2bf035c4593c5cd9cd6a195912270b5a90e3b725377",
+  "parent_pid": 6833,
+  "parent_exit_code": 0,
+  "lifecycle_sha256": "0182fbef971f19b7591468fca87bc45e6eb0cd35f6a3ceccfda3c38fba32327e",
+  "raw_sha256": "1c4deef5877271a540fa24c0a1b56e51f74ca01900f95902af6c2f429e6988a3",
+  "source_id": "44ba04f2064d918ef70fc294ad3cbd719c7e1092ca789f53cc429f345c86259c",
+  "launch_sha256": "cd1f212b2fc86289cfc151eca881a419505abdfc7992da6a9710925f349eea13",
+  "child_sha256": "5bf441b9e1cea9393ee77e1816b7127883979748f9fdb5e4f4046340ddb5d084",
+  "exit_sha256": "1bff969c67f74850a5e20598b41c6f65cd6d94a9b3bb782fe1a5e54cdf283a0f",
+  "parent_reaped_sha256": "98abb70ecf6a90751d1ca97d94848e699824c88d85adc4ce8d9d3e95d802cc87"
+}

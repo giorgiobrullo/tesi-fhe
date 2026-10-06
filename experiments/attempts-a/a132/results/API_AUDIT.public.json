@@ -1,0 +1,102 @@
+{
+  "status": "SOURCE_ONLY_NOT_TYPECHECKED",
+  "tfhe": "1.7.0",
+  "functions": [
+    {
+      "symbol": "allocate_and_generate_new_cm_lwe_keyswitch_key",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_keyswitch_key_generation.rs",
+      "line": 102,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "allocate_and_generate_new_cm_lwe_packing_key",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_packing_key_generation.rs",
+      "line": 117,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "pack_lwe_ciphertexts_into_cm",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_packing.rs",
+      "line": 12,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "cm_keyswitch_lwe_ciphertext",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_keyswitch.rs",
+      "line": 12,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "cm_generate_programmable_bootstrap_glwe_lut",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_programmable_bootstrapping/mod.rs",
+      "line": 12,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "programmable_bootstrap_cm_lwe_ciphertext",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_programmable_bootstrapping/cm_fft64.rs",
+      "line": 12,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "par_generate_cm_lwe_bootstrap_key",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_bootstrap_key_generation.rs",
+      "line": 12,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "par_convert_standard_cm_lwe_bootstrap_key_to_fourier",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_bootstrap_key_conversion.rs",
+      "line": 94,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "cm_lwe_ciphertext_plaintext_add_assign",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_linear_algebra.rs",
+      "line": 101,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "cm_lwe_ciphertext_cleartext_mul_assign",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_linear_algebra.rs",
+      "line": 223,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "cm_lwe_ciphertext_add_assign",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_linear_algebra.rs",
+      "line": 10,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "cm_lwe_ciphertext_sub_assign",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/algorithms/common_mask_algorithms/cm_lwe_linear_algebra.rs",
+      "line": 253,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "extract_lwe_ciphertext",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/experimental/entities/common_mask_entities/cm_lwe_ciphertext.rs",
+      "line": 88,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "generate_programmable_bootstrap_glwe_lut",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/algorithms/lwe_programmable_bootstrapping/mod.rs",
+      "line": 26,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "allocate_and_generate_new_lwe_keyswitch_key",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/algorithms/lwe_keyswitch_key_generation.rs",
+      "line": 293,
+      "visibility": "pub fn found in cached source; not typechecked"
+    },
+    {
+      "symbol": "modulus_switch",
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/fft_impl/common.rs",
+      "line": 10,
+      "visibility": "pub fn found in cached source; not typechecked"
+    }
+  ]
+}

@@ -93,3 +93,10 @@ targets/
 /DELIVERY_PREPARATION.json
 /SOURCE_DELTA.patch
 /SELECTOR_REPAIR_VALIDATION.md
+
+# Tracce pubbliche congelate della diagnostica A108; le nuove esecuzioni restano escluse.
+!/experiments/14_pipeline_tfhe_rs/results/a108_rerun_2026-10-05/runs/23x1/stdout.jsonl
+!/experiments/14_pipeline_tfhe_rs/results/a108_rerun_2026-10-05/runs/24x1/stdout.jsonl
+!/experiments/14_pipeline_tfhe_rs/results/a108_rerun_2026-10-05/runs/16x2/stdout.jsonl
+!/experiments/14_pipeline_tfhe_rs/results/a108_rerun_2026-10-05/runs/12x3/stdout.jsonl
+!/experiments/14_pipeline_tfhe_rs/results/a108_rerun_2026-10-05/runs/10x4/stdout.jsonl

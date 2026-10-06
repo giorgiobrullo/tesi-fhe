@@ -1,0 +1,102 @@
+{
+  "status": "PASS_STATIC_SOURCE_ONLY",
+  "tests": 7,
+  "log": "test_active_error_absolute_versus_relative (__main__.Checks.test_active_error_absolute_versus_relative) ... ok\ntest_all_nominal_positive_profiles_and_ledgers (__main__.Checks.test_all_nominal_positive_profiles_and_ledgers) ... ok\ntest_canonical_trace_matches_frozen_a142 (__main__.Checks.test_canonical_trace_matches_frozen_a142) ... ok\ntest_frozen_inputs_and_unchanged_crypto_functions (__main__.Checks.test_frozen_inputs_and_unchanged_crypto_functions) ... ok\ntest_larger_padding_error_can_fail (__main__.Checks.test_larger_padding_error_can_fail) ... ok\ntest_negative_controls_smallest_case (__main__.Checks.test_negative_controls_smallest_case) ... ok\ntest_padding_does_not_repair_ingress_shared_fold (__main__.Checks.test_padding_does_not_repair_ingress_shared_fold) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.114s\n\nOK\n",
+  "source_pins": 8,
+  "active_error_examples": {
+    "canonical_absolute_error": {
+      "injected_candidate_error": "72057594037927936",
+      "output_log": 59,
+      "candidate_native_pass": true,
+      "flags": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "native_ingress_pass": true,
+      "composed_pass": false,
+      "region_failures": [
+        "middle_round.mask/1",
+        "middle_round.minimum/52/0",
+        "middle_round.update/1",
+        "low_round.mask/1",
+        "low_round.minimum/52/0",
+        "low_round.minimum/53/0",
+        "low_round.update/0",
+        "low_round.update/1"
+      ]
+    },
+    "padding_same_absolute_error": {
+      "injected_candidate_error": "72057594037927936",
+      "output_log": 63,
+      "candidate_native_pass": true,
+      "flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "native_ingress_pass": true,
+      "composed_pass": true,
+      "region_failures": []
+    },
+    "padding_same_relative_error": {
+      "injected_candidate_error": "1152921504606846976",
+      "output_log": 63,
+      "candidate_native_pass": true,
+      "flags": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "native_ingress_pass": true,
+      "composed_pass": false,
+      "region_failures": [
+        "middle_round.mask/1",
+        "middle_round.minimum/52/0",
+        "middle_round.update/1",
+        "low_round.mask/1",
+        "low_round.minimum/52/0",
+        "low_round.minimum/53/0",
+        "low_round.update/0",
+        "low_round.update/1"
+      ]
+    }
+  },
+  "first_fixture_index": 2,
+  "positive_arms": 4,
+  "negative_arms": 2,
+  "br_ks_per_fixture": [
+    55,
+    63,
+    55,
+    63,
+    55,
+    55
+  ],
+  "cargo_run": false,
+  "fhe_run": false,
+  "noise_improvement_claimed": false,
+  "p_fail_certified": false,
+  "output_interface": "Delta59 canonical flags only; no A53/service"
+}

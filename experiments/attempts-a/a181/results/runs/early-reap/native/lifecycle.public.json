@@ -1,0 +1,21 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 15,
+      "data": {
+        "kind": "summary",
+        "seq": 14,
+        "case": "early-reap",
+        "fixture_pass": true,
+        "stages": 0,
+        "descendants": 0,
+        "expected_refusal": true,
+        "single_pid_coverage_supported": true,
+        "collector_qualified": false,
+        "cpu_units_justified": false,
+        "settled_accounting_proven": false
+      }
+    }
+  ]
+}

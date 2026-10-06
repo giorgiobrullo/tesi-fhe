@@ -1,0 +1,391 @@
+{
+  "basis_slot_audit": {
+    "all_arms_identical": true,
+    "arms": [
+      "g1-floor",
+      "g2-floor",
+      "g2-nearest",
+      "ms-floor",
+      "ms-nearest"
+    ],
+    "coefficient_checks": 81920
+  },
+  "date": "2026-09-03",
+  "dense_residual_audit": {
+    "certified_width127_checks_per_arm": 1016,
+    "certified_width127_disagreements": 0,
+    "coefficient_low_zero_bits": 20,
+    "global_full_polynomial_equality_required": false,
+    "off_support_nonzero_allowed": false,
+    "residual_cell_disagreement_indices": [
+      128,
+      384,
+      640,
+      896,
+      1408,
+      1664,
+      1920
+    ],
+    "residual_nonzero_indices": [
+      128,
+      384,
+      640,
+      896,
+      1152,
+      1408,
+      1664,
+      1920
+    ],
+    "wanted_slot_disagreement_indices": []
+  },
+  "inherited_clear_tournament_contract": {
+    "arms_covered_by_geometry_before_transfer": [
+      "g1-floor",
+      "g2-floor",
+      "g2-nearest",
+      "ms-floor",
+      "ms-nearest"
+    ],
+    "gallery_cases": 96,
+    "output_contract": "0 reject / i+1 exact nearest accepted identity",
+    "ragged_sizes": [
+      33,
+      63,
+      64,
+      65,
+      126
+    ],
+    "random_trial_budget": 90,
+    "status": "PASS_INHERITED_EXACT_0_ID_CONTRACT",
+    "threshold_policy": "accept minimum <= 1023; reject as 0 otherwise",
+    "tie_policy": "first minimum",
+    "transfer_basis": "each A104 arm passes the same non-root wanted-slot and root maps; the encrypted selector remains outside A104",
+    "variant_cases": 192
+  },
+  "interpretation": {
+    "awaits_build_and_fhe": [
+      "Rust API/type correctness",
+      "real baseline and MS ciphertext correctness",
+      "EvalAuto noise sufficiency for each decomposition",
+      "normalization residual and covariance sufficiency",
+      "ciphertext residual/off-support magnitudes and decode margins",
+      "all timings"
+    ],
+    "exact": [
+      "clear u64 ring geometry for all eight basis inputs and five arms",
+      "mixed Delta59/Delta56 slot map and width-127 robust extraction geometry",
+      "wanted-slot and certified-read equality despite permitted residual differences",
+      "zero clear support outside wanted and documented residual cells",
+      "root D2/D1 clear geometry, D1 add-back, and inherited ragged/tie/reject exact-ID contract",
+      "normalization object/coefficient counts and full-GGSW storage geometry"
+    ],
+    "forbidden": [
+      "runtime speedup",
+      "iid/binomial p-fail from correlated within-keyset trials",
+      "A44 p-fail or paper-bound transfer",
+      "root or full-selector FHE correctness",
+      "runtime-frontier promotion"
+    ]
+  },
+  "key_ledger": [
+    {
+      "base_log": 23,
+      "full_fourier_bytes_per_key": 65536,
+      "level_count": 1,
+      "name": "23x1",
+      "ten_full_fourier_keys_bytes": 655360,
+      "ten_full_fourier_keys_mib": 0.625
+    },
+    {
+      "base_log": 10,
+      "full_fourier_bytes_per_key": 262144,
+      "level_count": 4,
+      "name": "10x4",
+      "ten_full_fourier_keys_bytes": 2621440,
+      "ten_full_fourier_keys_mib": 2.5
+    },
+    {
+      "base_log": 8,
+      "full_fourier_bytes_per_key": 327680,
+      "level_count": 5,
+      "name": "8x5",
+      "ten_full_fourier_keys_bytes": 3276800,
+      "ten_full_fourier_keys_mib": 3.125
+    },
+    {
+      "base_log": 7,
+      "full_fourier_bytes_per_key": 393216,
+      "level_count": 6,
+      "name": "7x6",
+      "ten_full_fourier_keys_bytes": 3932160,
+      "ten_full_fourier_keys_mib": 3.75
+    }
+  ],
+  "local_input_pins": {
+    "tmp/a102-revhomtrace-mapping/a102_revhomtrace_mapping.py": "51e27becec3ca4084008057a9e17188bf2ec9f65a598996a3f3bd1118ff9280d",
+    "tmp/a102-revhomtrace-mapping/artifacts/a102_static_result.json": "277c25fba3fff2da4f6f2b1e68244b79bf115e4fbfea3ca298805c1253a0c9e0",
+    "tmp/a87-packed-dynamic-pfks-tuple-selector/a87_packed_pfks.py": "4b895a48703806612156e258356a5d3c957e0abae3ec44648ba5520cfda193ff",
+    "tmp/a92-chen-partial-trace-packing/a92_chen_partial_trace.py": "3c6c8e2cc39de5c03c027837a03c98a62b7dbd04b3b56171788e8cc6a81c814b",
+    "tmp/a92-chen-partial-trace-packing/artifacts/a92_static_result.json": "85405bd3981c41c0d578a320d025dfec42a8e7e5f2cd14660527d3cd3f10cce0",
+    "tmp/a99-chen-grouped-runtime/a99_static_oracle.py": "8b9d138e35c6fa78ca1de47d5bc0864309a174b30433335b27127901f31b5055",
+    "tmp/a99-chen-grouped-runtime/artifacts/a99_static_result.json": "09f0810312303fffc3f3fd4b87944b23f9a98555f21c2eb291e37cd81146235e",
+    "tmp/a99-chen-grouped-runtime/src/main.rs": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b"
+  },
+  "primary_and_api_source_pins": {
+    "a104_compiled_or_built": false,
+    "a104_rust_source_sha256": "c134a62d4f04df0ae350d5993b054b5391c80ea96721b83d926eb50ed497c769",
+    "api_files_verified": 5,
+    "cargo_lockfile_sha256": "10af240d99f6a21a44af82c64913eb6180fcca4b2449a129dee2d50ced6c6717",
+    "declared_local_artifact_hashes": {
+      "tmp/a102-revhomtrace-mapping/README.md": "7bfeea8551c69346c1597f1f51511736d2fb07d19e1cf09eb4c74ec9ebe8ea4a",
+      "tmp/a102-revhomtrace-mapping/SOURCE_PINS.json": "aecf0522d7595dfccff8003732d72acb40ff69b7d7c688ae9bca178ff49c1afc",
+      "tmp/a102-revhomtrace-mapping/a102_revhomtrace_mapping.py": "51e27becec3ca4084008057a9e17188bf2ec9f65a598996a3f3bd1118ff9280d",
+      "tmp/a102-revhomtrace-mapping/artifacts/a102_static_result.json": "277c25fba3fff2da4f6f2b1e68244b79bf115e4fbfea3ca298805c1253a0c9e0",
+      "tmp/a87-packed-dynamic-pfks-tuple-selector/a87_packed_pfks.py": "4b895a48703806612156e258356a5d3c957e0abae3ec44648ba5520cfda193ff",
+      "tmp/a92-chen-partial-trace-packing/a92_chen_partial_trace.py": "3c6c8e2cc39de5c03c027837a03c98a62b7dbd04b3b56171788e8cc6a81c814b",
+      "tmp/a92-chen-partial-trace-packing/artifacts/a92_static_result.json": "85405bd3981c41c0d578a320d025dfec42a8e7e5f2cd14660527d3cd3f10cce0",
+      "tmp/a99-chen-grouped-runtime/Cargo.lock": "6a0e077b686f2060e7057d0d6183e0c0d04ed000bfe6efa70069498440dfb177",
+      "tmp/a99-chen-grouped-runtime/Cargo.toml": "4d83d30cc8d1d13ac5156d137825d912cd36bea5a0044d6c75584a696cfb485e",
+      "tmp/a99-chen-grouped-runtime/README.md": "f7ae26d0464dd7d16555ea31517fa1efe530e94738ed277419a83a103ebec632",
+      "tmp/a99-chen-grouped-runtime/SOURCE_PINS.json": "7abb011b197409cf16f106ecb667a37d6db7376605c00308a300f4cc1032ce8b",
+      "tmp/a99-chen-grouped-runtime/a99_static_oracle.py": "8b9d138e35c6fa78ca1de47d5bc0864309a174b30433335b27127901f31b5055",
+      "tmp/a99-chen-grouped-runtime/artifacts/a99_static_result.json": "09f0810312303fffc3f3fd4b87944b23f9a98555f21c2eb291e37cd81146235e",
+      "tmp/a99-chen-grouped-runtime/src/main.rs": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b"
+    },
+    "declared_local_artifacts_verified": 14,
+    "matching_local_tfhe_source_trees": 1,
+    "official_files_pinned": 6,
+    "official_pins_inherited_from_hash_verified_a102": true,
+    "official_repository_commit": "47c8f6f6b65a451a14b542dc45c873f1e962decd",
+    "official_repository_tree": "e2283e183bd4c0e43b9ef3462c8e0decaa9508e5",
+    "paper_or_official_repository_redownloaded_in_a104": false,
+    "source_pins_json_sha256": "bd7a56b17eb8178629a4e22f77007c58f5f4d9a004a9da0d4255c22e0a5d533a",
+    "tfhe_crate_checksum": "ebacd6973a20d4967a64bac147ad6890182fd8ce910ce841ecbb3cae47bdf5ff"
+  },
+  "root_geometry_audit": {
+    "arms": [
+      "g1-floor",
+      "g2-floor",
+      "g2-nearest",
+      "ms-floor",
+      "ms-nearest"
+    ],
+    "certified_reads": 30480,
+    "certified_reads_per_arm_variant_fixture": 254,
+    "d1_left_add_after_extraction": true,
+    "fixture_pairs": 12,
+    "id_delta_log": 56,
+    "input_order_d1": [
+      "0",
+      "R0-L0"
+    ],
+    "input_order_d2": [
+      "L0",
+      "R0"
+    ],
+    "post_shift_centers": [
+      512,
+      1536
+    ],
+    "pre_shift_slot_indices": {
+      "g1-floor": [
+        0,
+        1024
+      ],
+      "g2-floor": [
+        0,
+        1024
+      ],
+      "g2-nearest": [
+        0,
+        1024
+      ],
+      "ms-floor": [
+        0,
+        1024
+      ],
+      "ms-nearest": [
+        0,
+        1024
+      ]
+    },
+    "public_global_shift": 512,
+    "root_fhe_included": false,
+    "variants": [
+      "D2",
+      "D1"
+    ]
+  },
+  "runtime_scope": {
+    "cargo_lockfile_inherited_and_root_name_adjusted": true,
+    "cargo_or_rustc_invoked": false,
+    "causal_cross_parameter_timing_or_noise_comparison_allowed": false,
+    "composed_pfail_proven": false,
+    "cross_arm_pairing": true,
+    "cross_parameter_pairing": false,
+    "double_runtime_acknowledgement_source_audited": true,
+    "empirical_pfail_reported": false,
+    "encrypted_control_blind_rotation_included": false,
+    "fail_closed_dry_default_source_audited": true,
+    "fhe_run_in_this_static_report": false,
+    "full_fourier_ggsw_first_gate": true,
+    "full_selector_included": false,
+    "full_tournament_proven": false,
+    "normalization_evalauto_kernel_extraction_timing_separate": true,
+    "pre_kernel_interleaved_residual_magnitude_diagnostic_only": true,
+    "pre_kernel_wanted_and_off_support_decode_gate_planned": true,
+    "real_lwe_encryptions_planned": true,
+    "release_binary_built": false,
+    "root_fhe_included": false,
+    "runtime_frontier_promoted": false,
+    "rust_compilation_passed": false,
+    "rust_format_checked": false,
+    "rust_tests_run": false,
+    "stage_actual_phase_audit_planned": true,
+    "stage_normalization_error_mod_small_q_planned": true,
+    "tie_first_encrypted_decision_proven": false,
+    "timed_path_separate_from_client_decryption": true,
+    "whole_polynomial_cross_arm_equality_required": false
+  },
+  "schedule_ledger": {
+    "degree_multiplicity": {
+      "1025": 1,
+      "129": 1,
+      "2049": 1,
+      "257": 1,
+      "3": 4,
+      "33": 1,
+      "5": 2,
+      "513": 1,
+      "65": 1,
+      "9": 1
+    },
+    "distinct_automorphism_keys": 10,
+    "evalauto_calls": 14,
+    "g1_coefficient_touches": 86016,
+    "g1_normalization_objects": 21,
+    "g2_coefficient_touches": 36872,
+    "g2_groups": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "g2_normalization_objects": 13,
+    "grouped_temporal_degrees_g2": [
+      3,
+      3,
+      3,
+      3,
+      5,
+      5,
+      9,
+      33,
+      65,
+      129,
+      257,
+      513,
+      1025,
+      2049
+    ],
+    "maximum_internal_evalauto_gain_g2": 2,
+    "ms_coefficient_touches": 57344,
+    "ms_merge": "D=E-X^sO; H(D); H(D)+EvalAuto(H(D))+X^sO",
+    "ms_normalization_objects": 14,
+    "parity_recursive_temporal_degrees_g1_ms": [
+      3,
+      3,
+      5,
+      3,
+      3,
+      5,
+      9,
+      33,
+      65,
+      129,
+      257,
+      513,
+      1025,
+      2049
+    ],
+    "partial_revhomtrace_temporal_degrees_ascending": [
+      33,
+      65,
+      129,
+      257,
+      513,
+      1025,
+      2049
+    ],
+    "root": {
+      "evalauto_calls": 8,
+      "g1_coefficient_touches": 36864,
+      "g1_normalization_objects": 9,
+      "g2_coefficient_touches": 16386,
+      "g2_normalization_objects": 5,
+      "ms_coefficient_touches": 32768,
+      "ms_normalization_objects": 8
+    },
+    "trace_target": 16
+  },
+  "schema": "a104.ms-pack-chen-runtime.static-preflight.v1",
+  "source_text_audit": {
+    "modular_inverse_markers_absent": true,
+    "ms_merge_operation_order_checked": [
+      "monomial_mul_assign(&mut shifted_odd",
+      "glwe_ciphertext_sub_assign(&mut normalized_difference",
+      "normalize_glwe_stage(&mut normalized_difference",
+      "let mut output = eval_auto(",
+      "glwe_ciphertext_add_assign(&mut output, &normalized_difference)",
+      "glwe_ciphertext_add_assign(&mut output, &shifted_odd)"
+    ],
+    "pre_kernel_phase_audit_call_count": 1,
+    "required_markers_checked": 45,
+    "rust_format_records": {
+      "ARM_RESULT": {
+        "arguments": 37,
+        "placeholders": 37
+      },
+      "CASE": {
+        "arguments": 38,
+        "placeholders": 38
+      },
+      "PLAN": {
+        "arguments": 6,
+        "placeholders": 6
+      },
+      "PRIMITIVE_AUDIT": {
+        "arguments": 11,
+        "placeholders": 11
+      },
+      "PRIMITIVE_RESULT": {
+        "arguments": 11,
+        "placeholders": 11
+      },
+      "RESULT": {
+        "arguments": 5,
+        "placeholders": 5
+      },
+      "STAGE_AUDIT_CALL": {
+        "arguments": 7,
+        "placeholders": 7
+      },
+      "STAGE_NORMALIZATION_AUDIT": {
+        "arguments": 10,
+        "placeholders": 10
+      }
+    },
+    "rust_source_sha256": "c134a62d4f04df0ae350d5993b054b5391c80ea96721b83d926eb50ed497c769",
+    "rust_typecheck_or_build_run": false,
+    "stale_a99_runtime_identity_absent": true,
+    "stale_fixed_decomposition_markers_absent": true,
+    "unjustified_empirical_pfail_marker_absent": true
+  },
+  "static_environment": {
+    "python": "3.12.11",
+    "system_python_3_9_supported": false,
+    "uv": "0.11.29"
+  },
+  "status": "STATIC_SOURCE_CANDIDATE_NO_RUST_OR_FHE_RUN"
+}

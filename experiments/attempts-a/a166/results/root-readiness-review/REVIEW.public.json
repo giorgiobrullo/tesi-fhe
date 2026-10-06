@@ -1,0 +1,44 @@
+{
+  "schema": "a166.root-readiness.review.v1",
+  "observed_utc": "2026-09-05T05:00:15.876981+00:00",
+  "result": "NO_MATERIAL_SOURCE_OR_REPLAY_ISSUE_FOUND",
+  "source_sha256": "91738324d837f89cadbc2d20b59390bae3349bb0a4548a7d180ba12693cd2138",
+  "artifact_manifest_sha256": "31298a1018c7691823dc01401f0ef77503f8c2df0dd1950dcb6f7d1355a2d937",
+  "verified_artifact_leaves": 29,
+  "verified_source_leaves": 21,
+  "verified_upstream_pins": 25,
+  "verified_A164_origins": 20,
+  "smallest_gate": {
+    "fresh_keys": 1,
+    "fixtures": [
+      "n4_boundary_accept/index0"
+    ],
+    "template_count": 1,
+    "rayon_threads": 1,
+    "expected_translated_score": 1029,
+    "expected_first_bit": 1,
+    "ordinary_KS": 1,
+    "configured_Standard_MS": 1,
+    "BR": 1,
+    "P0_nested_BR": 0
+  },
+  "prior_A164_row_count_is_not_this_runs_count": true,
+  "acceptance": {
+    "validation.status": "PASS_P0_AND_P1_RECORD_CONSISTENCY",
+    "validation.p0.selected_prefix_gate_pass": true,
+    "validation.p0.actual_public_product_and_sample_pass": true,
+    "validation.p0.used_row_contribution_replay_pass": true,
+    "validation.p1.p1_selected_consumer_gate_pass": true,
+    "validation.p1.predicates": "all seven true",
+    "completed.status": "P1_SINGLE_RETAINED_MS_CONSUMER_PASS",
+    "exit.exit_code": 0,
+    "exit.binary_unchanged": true,
+    "exit.source_unchanged": true
+  },
+  "reviewed_raw_A166_runs": 0,
+  "reviewer_ran_tests": false,
+  "Cargo_FHE_or_process_probes": false,
+  "actual_sampler_p_fail": null,
+  "fixed_key_p_fail": null,
+  "pipeline_p_fail": null
+}

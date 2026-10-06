@@ -117,6 +117,10 @@ class ConditionalArithmeticTest(unittest.TestCase):
                     accounting.conditional_union(count, log2_probability)
 
 
+@unittest.skipUnless(
+    (ROOT / accounting.DIAGNOSTIC_RELATIVE_PATH).is_file(),
+    "requires the original private A33 transcript and frozen evidence; see tests/README.md",
+)
 class FrozenEvidenceTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:

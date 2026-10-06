@@ -1,0 +1,74 @@
+{
+  "actual_a44_p_fail": null,
+  "actual_sampler_or_pipeline_or_reused_key_validated": false,
+  "artifacts_sha256": {
+    "g1.bound.json": "6512cc6b8bdf631d20b557999f552be74659210bc73537d24dc5902cc79078df",
+    "g1.input.json": "15a160b71a857474438fdcb1b64cbc4b5dea3250c865167502caefcfc6c14eb4",
+    "g1_negative_remainder.bound.json": "f6d7fdf778590835f6a4ef581abca421c6c20c345b6479d7317d72141c773ee5",
+    "g1_negative_remainder.input.json": "a496584ce970e89b9cf2fe4cdd4c25351428c685452fb4af29b8fec87e0e2700",
+    "g2.bound.json": "2d22c94c7745a9fae478fa91e6073ad6a76581b5060944204872f05f2ed2997e",
+    "g2.input.json": "7c86d46e56c51af7f6250748cd11a4ef2c2b510a2f43258c507320f446e8e68c",
+    "g4.bound.json": "56b7b0cfc580a94795da146a6982c2695ce21cc78625d051b06c44353c2135e7",
+    "g4.input.json": "2515ac4551ecb56fcaa1a7bc71b453603feabf8d84b6730847ed2afab13cf16c",
+    "tiny-joint-laws-and-counterexamples.json": "8bbfb6bdb12849716e79ad293a391e7d4b3a38b93df8efeaae378820ce568969",
+    "zero_digits.bound.json": "39256ad78294b7e81fa2279f6321c5237e1875d2dd6d59522f1f3cde2bad7381",
+    "zero_digits.input.json": "c661ba8e0416b595aaf3d0280d790dc7dc9c733e41e4b0b26f417adfe0bb9c01"
+  },
+  "cargo_build_fhe_process_inspection_network": false,
+  "finite_native_joint_observations": 32768,
+  "first_correction_safe_lifts": [
+    -1024,
+    1023
+  ],
+  "native_synthetic_scenarios": [
+    {
+      "actual_a44_p_fail": null,
+      "conditional_failure_upper": "1/50000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "g": 1,
+      "input_kind": "synthetic",
+      "name": "g1",
+      "power2_upper_exponent": -2658
+    },
+    {
+      "actual_a44_p_fail": null,
+      "conditional_failure_upper": "1/50000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "g": 2,
+      "input_kind": "synthetic",
+      "name": "g2",
+      "power2_upper_exponent": -2656
+    },
+    {
+      "actual_a44_p_fail": null,
+      "conditional_failure_upper": "1/50000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "g": 4,
+      "input_kind": "synthetic",
+      "name": "g4",
+      "power2_upper_exponent": -2650
+    },
+    {
+      "actual_a44_p_fail": null,
+      "conditional_failure_upper": "1/50000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "g": 18446744073709551616,
+      "input_kind": "synthetic",
+      "name": "zero_digits",
+      "power2_upper_exponent": -2762
+    },
+    {
+      "actual_a44_p_fail": null,
+      "conditional_failure_upper": "1/50000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "g": 1,
+      "input_kind": "synthetic",
+      "name": "g1_negative_remainder",
+      "power2_upper_exponent": -2661
+    }
+  ],
+  "no_actual_input_data": true,
+  "reference_degrees": [
+    1024,
+    3072
+  ],
+  "source_pins": 20,
+  "status": "STATIC_CONDITIONAL_JOINT_MGF_GATE_PASS",
+  "test_output": "test_correlated_row_error_breaks_the_product_mgf_premise (test_model.JointMGF) ... ok\ntest_directed_arithmetic_and_cancellation_without_underflow (test_model.JointMGF) ... ok\ntest_exponential_enclosures_against_high_precision_crosscheck (test_model.JointMGF) ... ok\ntest_full_native_tiny_joint_enumeration_matches_product_and_mgf (test_model.JointMGF) ... ok\ntest_gaussian_coefficients_rounding_allowance_and_bias_are_separate (test_model.JointMGF) ... ok\ntest_native_interface_rejects_wrong_domains_coefficients_and_scales (test_model.JointMGF) ... ok\ntest_native_synthetic_groups_have_nontrivial_conditional_bound_only (test_model.JointMGF) ... ok\ntest_pins_and_native_first_call_geometry (test_model.JointMGF) ... ok\ntest_same_version_decomposition_recomposition_and_ties (test_model.JointMGF) ... ok\ntest_zero_digits_have_zero_residue_but_nonzero_remainder_can_fail (test_model.JointMGF) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.266s\n\nOK\n",
+  "tests_run": 10
+}

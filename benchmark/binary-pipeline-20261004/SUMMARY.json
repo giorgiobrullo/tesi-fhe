@@ -1,0 +1,206 @@
+{
+  "schema": "binary-pipeline-publication.v1",
+  "date": "2026-10-04",
+  "status": "CANDIDATE_REJECTED",
+  "scope": "one fresh-family complete Head55/binary2 N2 gate; scientific rejection at fifth fixed case",
+  "planned_cases": 6,
+  "completed_cases": 5,
+  "passed_cases": 4,
+  "failed_cases": 1,
+  "unexecuted_cases": 1,
+  "fresh_key_families": 1,
+  "key_generation_attempts": 1,
+  "saved_key_load": false,
+  "first_failure": {
+    "case_index": 4,
+    "name": "mixed_first_tie_reject_other_passes",
+    "query_prefix": [
+      1,
+      1
+    ],
+    "templates_prefix": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "scores": [
+      -1,
+      -1
+    ],
+    "thresholds": [
+      -2,
+      -1
+    ],
+    "oracle_winner_index": 0,
+    "expected_id": 0,
+    "decoded_id": 2,
+    "decoded_id_digits": [
+      2,
+      0,
+      0
+    ]
+  },
+  "unexecuted_fixture": {
+    "expected_id": 2,
+    "name": "mixed_inclusive_second_id",
+    "query_prefix": [
+      3,
+      0
+    ],
+    "templates_prefix": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "thresholds": [
+      -6,
+      -8
+    ]
+  },
+  "tfhe": "1.8.1",
+  "compiler_identity": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+  "parameter_id": "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+  "parameter_fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+  "geometry": {
+    "glwe_size": 2,
+    "polynomial_size": 2048,
+    "small_lwe_dimension": 859
+  },
+  "fft": {
+    "algorithm": "Dif4",
+    "base_n": 1024,
+    "complex_size": 1024
+  },
+  "rayon_threads": 16,
+  "score_encoding_logs_high_to_low": [
+    59,
+    55,
+    55
+  ],
+  "id_encoding_log": 59,
+  "observed_binary2_comparisons_per_query": 2,
+  "observed_legacy_batch3_or_parallel3": 0,
+  "all_executed_operation_ledgers_match": true,
+  "build_exit_code": 0,
+  "native_test_exit_code": 101,
+  "launcher_exit_code": 0,
+  "launcher_exit_provenance": "RESULT.md and independent RESULT_REVIEW.md; scientific rejection validated, not candidate PASS",
+  "measured_service_latency": null,
+  "speedup": null,
+  "failure_rate_estimate": null,
+  "cause_identified": false,
+  "maintained_runtime_changes": 0,
+  "local_archive": "/workspace/research/tmp/current-binary-pipeline-20261004",
+  "local_compiled_source": "/workspace/research/tmp/current-binary-pipeline-20261004/runtime",
+  "compiled_input_count": 144,
+  "binary_sha256": "fc366eb91f3827d9acc58c3c7ae3bc56e84457ce2eb880ae7f72f864ac890586",
+  "local_provenance_sha256": {
+    "RESULT.md": "5c9f553cabd9aa7d4a588c4467a8979ffddf3495dc6548626b0df1af2345bf21",
+    "SOURCE_BUILD.json": "b0285dbdd648d8688c3768180d2e6eeca84cea1ebdf2ea991131ef1164974282",
+    "BUILD.json": "4d1e8fc4abb2b72d1a20f5defc5d7eff38f58411c4b3de1f551879745d1c9780",
+    "RUN.json": "3b31cae771de840f04c651489d328c2dc7f4c13c8ac1f17a2eade49aa0530178",
+    "root/RESULT_REVIEW.md": "15db0c41c4657be6aef86462f1de7ed4349d96a3d4d144ea5bbe6d20c52e8293",
+    "PROTOCOL.md": "dc09fdbbc37e405eebce2e47c3a2c8d5b6293b1d0dbfe097c53a985303e064b9",
+    "PROBE_PROTOCOL.md": "190ee3d78a520dc042b817acc4cf4e3d2956ec8e413aad513bceaf318c78ff34",
+    "run01/rows.jsonl": "94026f636d8eeb16b9a3fcb2e231cae42933e8b84f75102358039a30e203aa88",
+    "run01/COMPLETE.json": "3adf8a6c44854b5eda77773c33ac2c46aa351efd2a3a662ce0687540df62ff66"
+  },
+  "copied_file_origins": {
+    "rows.jsonl": "run01/rows.jsonl",
+    "COMPLETE.json": "run01/COMPLETE.json",
+    "PROTOCOL.md": "PROTOCOL.md",
+    "PROBE_PROTOCOL.md": "PROBE_PROTOCOL.md",
+    "RESULT_REVIEW.md": "root/RESULT_REVIEW.md",
+    "SOURCE_BUILD.json": "SOURCE_BUILD.json",
+    "BUILD.json": "BUILD.json",
+    "RUN.json": "RUN.json"
+  },
+  "public_file_sha256": {
+    "BUILD.json": "4d1e8fc4abb2b72d1a20f5defc5d7eff38f58411c4b3de1f551879745d1c9780",
+    "COMPLETE.json": "3adf8a6c44854b5eda77773c33ac2c46aa351efd2a3a662ce0687540df62ff66",
+    "PROBE_PROTOCOL.md": "190ee3d78a520dc042b817acc4cf4e3d2956ec8e413aad513bceaf318c78ff34",
+    "PROTOCOL.md": "dc09fdbbc37e405eebce2e47c3a2c8d5b6293b1d0dbfe097c53a985303e064b9",
+    "RESULT_REVIEW.md": "15db0c41c4657be6aef86462f1de7ed4349d96a3d4d144ea5bbe6d20c52e8293",
+    "RUN.json": "3b31cae771de840f04c651489d328c2dc7f4c13c8ac1f17a2eade49aa0530178",
+    "SOURCE_BUILD.json": "b0285dbdd648d8688c3768180d2e6eeca84cea1ebdf2ea991131ef1164974282",
+    "rows.jsonl": "94026f636d8eeb16b9a3fcb2e231cae42933e8b84f75102358039a30e203aa88",
+    "samples.csv": "e89ddd709d86845408bb923776210fde2c6964e645d1ea66537e1275465739da"
+  },
+  "opaque_local_envelope_identities_only": [
+    {
+      "bytes": 23750,
+      "header": {
+        "encoding": "bincode-1.3.3",
+        "family": "fresh-family-1",
+        "format": "binary-pipeline-local-envelope.v1",
+        "kind": "client-key",
+        "parameter_fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+        "params_id": "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64"
+      },
+      "path": "client-key.envelope",
+      "sha256": "0f56ca01d820a2b8488e9c5a59a6dba31ed92e093391ce17cd8b7b36f96ce24a"
+    },
+    {
+      "bytes": 306562260,
+      "header": {
+        "encoding": "bincode-1.3.3",
+        "family": "fresh-family-1",
+        "format": "binary-pipeline-local-envelope.v1",
+        "kind": "ordinary-head-pfks-bundle",
+        "parameter_fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+        "params_id": "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64"
+      },
+      "path": "server-bundle.envelope",
+      "sha256": "c8a830eac33107c24566ea57237b877b60954458da13a9c9883bbfe197f38fb0"
+    },
+    {
+      "bytes": 49575,
+      "header": {
+        "encoding": "bincode-1.3.3",
+        "family": "fresh-family-1",
+        "format": "binary-pipeline-local-envelope.v1",
+        "kind": "three-id-lwe",
+        "parameter_fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+        "params_id": "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64"
+      },
+      "path": "failed-outputs.envelope",
+      "sha256": "3f5c0ffe74d3b0ace7b08df5e9b264709a555ad5c28f9fd75ae9c3bb16e9f99a"
+    },
+    {
+      "bytes": 33109,
+      "header": {
+        "encoding": "bincode-1.3.3",
+        "family": "fresh-family-1",
+        "format": "binary-pipeline-local-envelope.v1",
+        "kind": "query-glwe",
+        "parameter_fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+        "params_id": "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64"
+      },
+      "path": "failed-query.envelope",
+      "sha256": "770e740533512bb0b7f398df9be741e7d7814806dedc2ddc0ce25bf026562e4f"
+    }
+  ],
+  "excluded_artifacts": [
+    "keys",
+    "ciphertext envelopes",
+    "binaries"
+  ],
+  "interpretation_limits": [
+    "The final ID does not identify Head/comparison/refresh/selection/final-predicate cause.",
+    "Five cases with stop-first-failure are not an error-rate sample.",
+    "F and G use separate fresh key families; no paired causal or runtime comparison.",
+    "No current maintained-baseline failure, N120 behavior, noise bound or speed benefit is established.",
+    "The published data identify the local archived run; compiled source is not included as a runnable reproduction package.",
+    "G is closed; no retry or saved-family import is authorized."
+  ]
+}

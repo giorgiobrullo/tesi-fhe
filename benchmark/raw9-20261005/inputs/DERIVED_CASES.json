@@ -1,0 +1,62 @@
+{
+  "created_utc": "2026-10-05T04:51:50.272723+00:00",
+  "public_gallery_source": "/workspace/research/tmp/m4-thread-scaling-20260921/fixtures/gallery.json",
+  "public_gallery_pin": {
+    "bytes": 154052,
+    "sha256": "6ad678a67bc755c30b1e25afc336079d31a9ee410a8a16b73043a6e1c98a86fe"
+  },
+  "Einstein_source": "/workspace/research/tmp/m4-thread-scaling-20260921/fixtures/probes/einstein.json",
+  "Einstein_pin": {
+    "bytes": 2092,
+    "sha256": "2f4c48262685673af1de0ab97c77b0e3a9f60aca876a2fcea4c7d2ab7ca7ad6a"
+  },
+  "new_scalar_primary_formula_validation": true,
+  "runtime_plan_validation_pending": true,
+  "original_files_edited": false,
+  "FHE_or_keys": false,
+  "cases": {
+    "right83": {
+      "query_source": "originalpublicgallery.entries[82].vettore",
+      "gallery_transform": "none",
+      "expected": {
+        "query_norm2": 633,
+        "winner_id": 83,
+        "selected_id": 83,
+        "winner_score": -633,
+        "threshold": 273,
+        "tied_minimum_ids": [
+          83
+        ]
+      }
+    },
+    "zero_reject": {
+      "query_source": "512 integer zeros",
+      "gallery_transform": "none",
+      "expected": {
+        "query_norm2": 0,
+        "winner_id": 62,
+        "selected_id": 0,
+        "winner_score": 589,
+        "threshold": 273,
+        "tied_minimum_ids": [
+          62
+        ]
+      }
+    },
+    "crossroot_tie": {
+      "query_source": "originalpublicEinstein.query",
+      "gallery_transform": "newpubliccopy.entries[64].vettore = originalentries[0].vettore",
+      "expected": {
+        "query_norm2": 612,
+        "winner_id": 1,
+        "selected_id": 1,
+        "winner_score": -612,
+        "threshold": 273,
+        "tied_minimum_ids": [
+          1,
+          65
+        ]
+      }
+    }
+  }
+}

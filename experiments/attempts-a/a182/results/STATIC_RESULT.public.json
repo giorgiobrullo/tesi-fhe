@@ -1,0 +1,14 @@
+{
+  "status": "PASS_BOUNDED_SOURCE_AND_SYNTHETIC_GATE",
+  "distinct_tests": 23,
+  "elapsed_seconds": 1.172,
+  "private_filesystem_fake_child_tests": 17,
+  "semantic_import_projection_tests": 6,
+  "full_projection_records": 17703,
+  "full_projection_new_consumer_word_payloads_mocked": true,
+  "original_synthetic_producer_oracle_used": true,
+  "actual_native_children": 0,
+  "actual_new_runtime_logs_read": false,
+  "compiled": false,
+  "actual_fhe": false
+}

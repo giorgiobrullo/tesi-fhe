@@ -1,0 +1,167 @@
+{
+  "status": "EXACT_STATIC_ERROR_MAP_NO_FHE_OR_TAIL_CERTIFICATE",
+  "checks": {
+    "decompositions": 1300,
+    "full_support_atom_disjointness": 3048,
+    "gram_matrix_entries": 96
+  },
+  "d2_exact_norm_factor": 127,
+  "d2_covariance_factor_condition": "Given public digits and independent equal-variance key row/level/coefficient errors only",
+  "example": {
+    "control": 512,
+    "offset": -63,
+    "row_ids": [
+      0,
+      17,
+      2048
+    ],
+    "decomposition": "16x2 diagnostic map",
+    "direct_norms": {
+      "atoms": 48,
+      "l1": 709583,
+      "squared_l2": 14794630187
+    },
+    "convolution_norms": {
+      "atoms": 6096,
+      "l1": 90117041,
+      "squared_l2": 1878918033749
+    },
+    "direct_gram": [
+      [
+        14794630187,
+        813576455,
+        -1733591102,
+        1879332031
+      ],
+      [
+        813576455,
+        14794630187,
+        813576455,
+        -1733591102
+      ],
+      [
+        -1733591102,
+        813576455,
+        14794630187,
+        813576455
+      ],
+      [
+        1879332031,
+        -1733591102,
+        813576455,
+        14794630187
+      ]
+    ],
+    "convolution_gram": [
+      [
+        1878918033749,
+        103324209785,
+        -220166069954,
+        238675167937
+      ],
+      [
+        103324209785,
+        1878918033749,
+        103324209785,
+        -220166069954
+      ],
+      [
+        -220166069954,
+        103324209785,
+        1878918033749,
+        103324209785
+      ],
+      [
+        238675167937,
+        -220166069954,
+        103324209785,
+        1878918033749
+      ]
+    ]
+  },
+  "shared_key_example": {
+    "four_lane_gram": [
+      [
+        8,
+        6,
+        4,
+        2
+      ],
+      [
+        6,
+        8,
+        6,
+        4
+      ],
+      [
+        4,
+        6,
+        8,
+        6
+      ],
+      [
+        2,
+        4,
+        6,
+        8
+      ]
+    ],
+    "lane0_minus_lane1_after_alias_cancellation": {
+      "atoms": 4,
+      "l1": 4,
+      "squared_l2": 4
+    },
+    "lane0_minus_lane1_naive_independent_variance_multiplier": 16,
+    "four_lane_sum_squared_l2": 88
+  },
+  "cross_degree_counterexample": {
+    "only_payload0_row0_level1_digit": 1,
+    "degrees": [
+      512,
+      513
+    ],
+    "direct_inner_product": 0,
+    "convolution_inner_product": 126,
+    "universal_cross_degree_covariance_factor127": false
+  },
+  "d1_digit_nonlinearity_counterexample": {
+    "scope": "synthetic nontrivial masks, zero selected secret bit; no sampled FHE",
+    "digits_left_right_delta": [
+      0,
+      0,
+      -1
+    ],
+    "d2_key_error_norms": {
+      "atoms": 0,
+      "l1": 0,
+      "squared_l2": 0
+    },
+    "d1_left_key_error": "-eta_window[row0,level1,coefficient1024]",
+    "d1_right_key_error": "+eta_window[row0,level1,coefficient0]",
+    "conditional_iid_variance_d2_d1": [
+      0,
+      "sigma_eta^2"
+    ],
+    "unconditional_variance_claim": false
+  },
+  "d2_no_pointwise_dominance_counterexample": {
+    "eta_coefficient_assignment_for_both_key_families": {
+      "0": 1,
+      "1": -1
+    },
+    "only_nonzero_digit": "payload0,row0,level1=+1",
+    "output_degree": 512,
+    "direct_error": -1,
+    "convolution_error": 0,
+    "interpretation": "No pointwise dominance follows from smaller L1/L2 envelope."
+  },
+  "public_24x1_envelopes": {
+    "assumed_uniform_key_error_absolute_bound": "E (must be supplied; no Gaussian sure bound claimed)",
+    "direct_d2_key_error_absolute_bound_multiplier": 137506062336,
+    "convolution_d2_key_error_absolute_bound_multiplier": 17463269916672,
+    "direct_d1_key_error_absolute_bound_multiplier": 68753031168,
+    "selected_d2_rho_absolute_bound": 1126449662656512,
+    "selected_d2_rho_over_id_half_slot": 0.0312652587890625,
+    "blind_rotation_error": "separate measured/proved residual; not bounded here"
+  }
+}

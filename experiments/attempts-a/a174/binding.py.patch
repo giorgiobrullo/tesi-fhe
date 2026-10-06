@@ -1,0 +1,117 @@
+--- frozen-a171/binding.py
++++ a174/binding.py
+@@ -14,13 +14,18 @@
+ if not __debug__:
+     raise RuntimeError("A171 verification requires assertions enabled")
+ HERE = Path(__file__).resolve().parent
+-BASE = HERE.parent
+-SCHEMA = "a171-direct-child-envelope-v1"
++BASE = HERE.parent / "a171-pfks-d1-runtime-gate"
++SCHEMA = "a174-a171-progression-envelope-v1"
+ SOURCE_ID = "44613def7387d3a24f9d5633664e76c4376247870d3b0a3e7e8ab41c1bd54022"
+ ARTIFACT_HASH = "60d9faf3f2af7591935c261804a71cd0f257a0aaa22ecd68ea3fcc60c62f1b7c"
+ REPLAY_HASH = "d1b51f2a87f82edc1c30611b313fdfe3e4a49af8e2b6af84f87f0f7466c4c918"
+ PREREG_HASH = "d7d0566ce494c3eece3fe1c862a0dcb2bfa6e838a489d39fa82ba3e5183611ee"
+-RUN_ID = "offset0-key1"
++RUN_IDS = {1: "offset1-key2", 2: "offset2-key3"}
++BINARY_HASH = "03405436a6d9412ac42b31bc0c556d8b99c97500ce148a8444bdc79650ec2cc5"
++FIRST_MANIFEST_HASH = "4b7aa7267fd8ddb4a4331f472e549057053d8f8fe83c8946f6e81a5da64f2c5c"
++FIRST_VALIDATION_HASH = (
++    "c0e2d4f51eb428eaa7e7bad3fe2f32f0d4e4c1f5e5e4c2eaa6026174635fcf5c"
++)
+ BINARY_REL = "target-a171-only/release/a171_pfks_d1_component"
+ ENV = {
+     "RAYON_NUM_THREADS": "1",
+@@ -35,9 +40,28 @@
+         raise ValueError(reason)
+ 
+ 
++def strictly_equal(actual, expected):
++    if type(actual) is not type(expected):
++        return False
++    if isinstance(expected, dict):
++        if not strictly_equal(set(actual), set(expected)):
++            return False
++        return all(
++            strictly_equal(actual[key], value) for key, value in expected.items()
++        )
++    if isinstance(expected, (list, tuple)):
++        return len(actual) == len(expected) and all(
++            strictly_equal(a, e) for a, e in zip(actual, expected)
++        )
++    if isinstance(expected, set):
++        return len(actual) == len(expected) and all(
++            any(strictly_equal(a, e) for a in actual) for e in expected
++        )
++    return actual == expected
++
++
+ def eq(actual, expected, reason):
+-    need(type(actual) is type(expected), reason + " type")
+-    need(actual == expected, reason)
++    need(strictly_equal(actual, expected), reason)
+ 
+ 
+ def digest(path):
+@@ -141,10 +165,23 @@
+         expected, name = line.split("  ", 1)
+         eq(digest(BASE / name), expected, "producer leaf " + name)
+     import_path("a171_bound_replay_source", BASE / "replay.py").source_check()
++    first = load(HERE / "FIRST_PINS.json")
++    for name, expected in first["files"].items():
++        eq(digest(no_symlinks(BASE / name)), expected, "actual first-gate pin " + name)
++    eq(
++        digest(BASE / "execution-readiness/MANIFEST.json"),
++        FIRST_MANIFEST_HASH,
++        "frozen first envelope",
++    )
++    first_binding = import_path(
++        "a174_first_binding", BASE / "execution-readiness/binding.py"
++    )
++    first_binding.source_check()
+     own = load(HERE / "MANIFEST.json")
+     for name, expected in own["files"].items():
+         eq(digest(no_symlinks(HERE / name)), expected, "execution source " + name)
+     return {
++        "first_gate_pins_sha256": digest(HERE / "FIRST_PINS.json"),
+         "source_sha256": SOURCE_ID,
+         "artifact_manifest_sha256": ARTIFACT_HASH,
+         "artifact_files_sha256": manifest["files"],
+@@ -154,8 +191,35 @@
+     }
+ 
+ 
+-def fixed_paths(base=BASE):
+-    return (base / BINARY_REL, base / "candidate", base / "runs" / RUN_ID)
++def fixed_paths(offset, base=BASE, run_base=HERE):
++    need(type(offset) is int and offset in RUN_IDS, "registered later offset1 or2")
++    return (base / BINARY_REL, base / "candidate", run_base / "runs" / RUN_IDS[offset])
++
++
++def environment(offset):
++    fixed_paths(offset)
++    return dict(ENV, A171_ORDER_OFFSET=str(offset))
++
++
++def report_path(offset):
++    return HERE / "artifacts" / (RUN_IDS[offset] + "-validation.json")
++
++
++def first_verifier():
++    old_binding = import_path(
++        "a174_first_bound_binding", BASE / "execution-readiness/binding.py"
++    )
++    previous = sys.modules.get("binding")
++    sys.modules["binding"] = old_binding
++    try:
++        return import_path(
++            "a174_first_bound_verifier", BASE / "execution-readiness/verify.py"
++        )
++    finally:
++        if previous is None:
++            sys.modules.pop("binding", None)
++        else:
++            sys.modules["binding"] = previous
+ 
+ 
+ def clearance_check(value, prepared_at):

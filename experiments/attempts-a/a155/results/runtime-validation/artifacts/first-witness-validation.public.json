@@ -1,0 +1,46 @@
+{
+  "status": "PASS_RECORD_CONSISTENCY",
+  "suite": "witness",
+  "key_id": "witness-key1",
+  "records": 381,
+  "cm_events": 18,
+  "margin": {
+    "passed": true,
+    "probe_count": 16,
+    "wrong_output_mismatches_by_offset": [
+      3,
+      3
+    ],
+    "wrong_lut_crossings_by_offset": [
+      3,
+      3
+    ],
+    "wrong_discriminators_by_offset": [
+      3,
+      3
+    ]
+  },
+  "a155_margin_control_gate_pass": true,
+  "original_a150_criterion_on_this_new_run": true,
+  "original_wrong_lane_detected": true,
+  "historical_a150_witness_key2_gate": "FAILED and frozen",
+  "selected_runtime_gate_pass": true,
+  "original_returncode": 0,
+  "source_sha256": "021a175eba55d612150251a2306b540d1cb9028e8a53a9bd03f2bb83b911f930",
+  "binary_sha256": "5b6731061f20f9b2e76a26eb9d256c287b3a02cfb924f199af163b54074d963a",
+  "execution_attestation": false,
+  "secret_membership_attestation": false,
+  "raw_ciphertext_mask_or_phase_attestation": false,
+  "formal_failure_bound": false,
+  "no_probability_from_dependent_lanes": true,
+  "run_directory": "archive:/tmp/a155-common-mask-egress-margin-control/runs/witness-key1",
+  "input_sha256": {
+    "prepared": "133ca6f932028e285dcaf3e38b2af08c6831722a1f2635741473f64d7ac45e5e",
+    "started": "fd9c371938a028b704fb426645346dae9f2bef6f3f7d5aab823bd4d9b21e58a0",
+    "exit": "ee8fe2d7bf3e910bf3660676a2313d015893938fd4190ec87498a5df8fbd1cd1",
+    "stdout": "3ae92c3e0295ed7a2449a34c0bb0517c025dd9a372b702a66d21d12f99061091",
+    "stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "validated_at_utc": "2026-09-05T03:05:05.961744+00:00",
+  "validator_sha256": "5e53aaa4636803814b26010b8ffb9fa7691ba3d4f5f2eab54ce9e699b9e7cbcf"
+}

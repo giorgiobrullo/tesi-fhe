@@ -1,0 +1,48 @@
+--- frozen-A171/candidate/src/main.rs
++++ A191/candidate/src/main.rs
+@@ -1321,7 +1321,7 @@
+     }
+ }
+ 
+-fn main() {
++fn legacy_component_main() {
+     let action = parse_args_from(env::args().skip(1)).unwrap_or_else(|e| emit_invalid(&e));
+     match action {
+         Action::Plan => emit(json!({
+@@ -1419,3 +1419,7 @@
+         }
+     }
+ }
++
++mod comparator;
++mod a191;
++fn main() { a191::main(); }
+--- frozen-A171/candidate/Cargo.toml
++++ A191/candidate/Cargo.toml
+@@ -1,5 +1,5 @@
+ [package]
+-name = "a171_pfks_d1_component"
++name = "a191_pfks_actual_comparator"
+ version = "0.1.0"
+ edition = "2021"
+ publish = false
+--- frozen-A171/candidate/Cargo.lock
++++ A191/candidate/Cargo.lock
+@@ -3,7 +3,7 @@
+ version = 4
+ 
+ [[package]]
+-name = "a171_pfks_d1_component"
++name = "a191_pfks_actual_comparator"
+ version = "0.1.0"
+ dependencies = [
+  "dyn-stack",
+--- frozen-A171/candidate/.cargo/config.toml
++++ A191/candidate/.cargo/config.toml
+@@ -1,5 +1,5 @@
+ [build]
+-target-dir = "../target-a171-only"
++target-dir = "../target-a191-only"
+ jobs = 1
+ 
+ [net]

@@ -1,0 +1,20 @@
+{
+  "status": "EIGHT_SYNTHETIC_MODEL_TESTS_PASS",
+  "command": [
+    "archive:/.venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "test_model.py"
+  ],
+  "observed_test_seconds": 0.001,
+  "test_count": 8,
+  "exit_code": 0,
+  "model_sha256": "04c59a0334f20a3e4709fd55aaba532264e995d60491461619c31fdfb4227463",
+  "test_sha256": "58185988fc842b2e0b4f4b193f6f98b6e023345e24e56253a6b08dff992824eb",
+  "lint_exit": 0,
+  "actual_native_calls": false,
+  "actual_data_loaded": false,
+  "scope": "Conditional live-reference interval arithmetic and API/identity/chronology mutation checks only. No C/native/envelope verification exists yet."
+}

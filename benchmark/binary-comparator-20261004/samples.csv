@@ -1,0 +1,9 @@
+round,case,left_middle,left_low,right_middle,right_low,left_value,right_value,difference,oracle_ternary,oracle_binary,reference_top,reference_middle,reference_low,reference_correct,candidate,candidate_correct,status
+0,0,0,0,0,0,0,0,0,0,-1,0,0,0,True,-1,True,CANDIDATE_PASS
+0,1,0,0,0,1,0,1,-1,-1,-1,0,0,-1,True,-1,True,CANDIDATE_PASS
+0,2,0,1,0,0,1,0,1,1,1,0,0,1,True,1,True,CANDIDATE_PASS
+0,3,1,0,0,15,16,15,1,1,1,0,1,-1,True,1,True,CANDIDATE_PASS
+0,4,0,15,1,0,15,16,-1,-1,-1,0,-1,1,True,-1,True,CANDIDATE_PASS
+0,5,15,15,0,0,255,0,255,1,1,0,1,1,True,1,True,CANDIDATE_PASS
+0,6,0,0,15,15,0,255,-255,-1,-1,0,-1,-1,True,-1,True,CANDIDATE_PASS
+0,7,15,15,15,15,255,255,0,0,-1,0,0,0,True,-1,True,CANDIDATE_PASS

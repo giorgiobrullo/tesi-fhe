@@ -2,7 +2,7 @@
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Aggiornamento mirato al 19 settembre 2026. Questi lavori cambiano interazione,
+Questi lavori cambiano interazione,
 informazione restituita, distribuzione della fiducia o funzione di ricerca.
 Le differenze delimitano il confronto con il [contratto locale](contratto-e-schemi.md)
 e impediscono di ordinare i sistemi usando soltanto i tempi pubblicati.
@@ -47,12 +47,18 @@ in Practice](https://cic.iacr.org/p/1/4/33), IACR Communications in Cryptology
 fondativo di [Ducas e Stehlé sulla sanitizzazione, EUROCRYPT 2016](https://iacr.org/cryptodb/data/paper.php?pubkey=27639).
 Il precedente ePrint 2022/1459, ricevuto nel 2022 e revisionato l'8 marzo 2024,
 mantiene l'etichetta preprint; l'edizione pubblicata è stata verificata
-separatamente. La nuova [lettura dei testi completi](testi-integrali/privacy-e-indicizzazione.md)
+separatamente. La [lettura dei testi completi](testi-integrali/privacy-e-indicizzazione.md)
 include la correzione Ducas–Stehlé del marzo 2025, che restringe la correttezza
 del bootstrap ai ciphertext generati onestamente. Nell'edizione CiC, i tempi
 del campionatore Box–Muller arrotondato sono dichiarati euristici rispetto
 alla prova basata su Gaussiane discrete. Nessuna di queste proprietà si
 trasferisce automaticamente al runtime locale.
+
+<a id="correttezza-adattiva-sanitizzazione-e-annpir-aggiornamento-del-2-ottobre-2026"></a>
+
+**Correttezza sotto interrogazioni adattive.** [Smart e Walter, CiC 2026](https://cic.iacr.org/p/3/1/8), formalizzano la correttezza reattiva e sIND-CPA-D per una costruzione TFHE modificata, sotto ipotesi esplicite. Il risultato amplia il contesto delle query ripetute: non attribuisce automaticamente questa garanzia a TFHE-rs standard. Questa proprietà va distinta dalla circuit privacy dell'uscita e dalle informazioni che la funzione `0/ID` rivela per definizione.
+
+**Sanitizzazione recente.** [Bourse e Izabachène, CiC 2026](https://cic.iacr.org/p/3/1/3) e [Hwang et al., CCS 2025](https://eprint.iacr.org/2025/216) forniscono costruzioni TFHE per nascondere informazioni nel ciphertext valutato a chi lo decifra. Nel caso malevolo servono inoltre requisiti sulle chiavi e sugli input. Un bootstrap ordinario non prova da solo tale proprietà; una prova di buona formazione non dimostra la provenienza biometrica del dato. La demo non è stata validata contro queste costruzioni.
 
 Questa obbligazione è separata dall'oracolo adattivo: anche una risposta
 perfettamente protetta oltre il proprio contenuto autorizzato può rivelare
@@ -80,6 +86,8 @@ single-thread, la tabella 4 riporta 3,86 s per 1.024 messaggi a 4 bit, 18,31 s p
 54,54 s per 2.048 a 8 bit; batch, p-fail e chiavi cambiano tra le righe. Resta da implementare il
 ponte pre-bootstrap di packing/key-switch compatibile coi parametri.
 
+## Selezione e ricerca privata
+
 **k-NN CKKS single-server.** [Pan, Lou e Shao](https://doi.org/10.1007/s12083-026-02267-x),
 pubblicato il 9 luglio 2026, cifra sia database sia query e restituisce gli indici top-k cifrati da
 un solo server semi-honest. `MEHP-kNN` usa sorting sicuro CKKS e `iMEHP-kNN` elimina il lavoro non
@@ -90,7 +98,7 @@ vincitore e codice `0`/ID. Questa osservazione riguarda i due algoritmi del
 paper, non tutte le [costruzioni discrete basate su CKKS](ckks-discreto.md).
 
 **Argmax interattivo.** [HEArgmax, Nguyen et al.](https://doi.org/10.1016/j.csi.2025.104071),
-2026, è stato ora letto nel PDF editoriale completo con appendice. Il client
+2026, è stato letto nel PDF editoriale completo con appendice. Il client
 decifra differenze mascherate e ricifra i segni; HT lavora su batch, LC su
 un vettore. Le varianti `loose` autorizzano più informazione dell'indice.
 La [verifica della specifica ideale](testi-integrali/heargmax-edizione-pubblicata.md)
@@ -129,8 +137,28 @@ multi-hop è N^epsilon. [Isozaki et al.](https://arxiv.org/abs/2608.21131), arXi
 client decifra e instrada a ogni livello, i tempi warm escludono rete/decrypt e il percorso
 d'accesso rivela struttura geometrica anche quando il padding ne riduce parte.
 
-Altre famiglie adiacenti includono ricerca mediante PIR e indicizzazione
-protetta. Sono piste per ampliare il corpus, non baseline numeriche già
-qualificate. Il criterio resta verificare quale vicino venga restituito,
-quali accessi e risultati siano visibili e quali assunzioni rendano valido
-il confronto.
+**Ricerca approssimata e PIR.** [PRECO](https://sachaservanschreiber.com/papers/preco.pdf) restituisce un ID oppure zero entro un raggio, usando ANN e due server non colludenti, con leakage aggiuntivo quantificato verso client malevoli. [Tiptoe](https://dspace.mit.edu/entities/publication/00f974ce-2276-4020-9d31-b8b20997f71c) protegge query su una base pubblica, restituendo score cifrati di un cluster che il client decifra e ordina. [Pacmann](https://proceedings.iclr.cc/paper_files/paper/2025/hash/391d50b3fe1c59b3e2b8b644e0c8fe81-Abstract-Conference.html) sposta sul client la navigazione del grafo e i confronti, recuperando vettori e vicini con PIR. Questi lavori riducono il lavoro online con contratti differenti dall'argmin completo sul server.
+
+[Compass, OSDI 2025](https://www.usenix.org/conference/osdi25/presentation/zhu-jinhao), combina HNSW e ORAM per ricercare nella collezione privata del client, con interazione e top-k con punteggi. [Wally v7](https://arxiv.org/abs/2406.06761v7), luglio 2026, usa SHE insieme a batch di query anonime e query finte; protegge gli accessi ai cluster con privacy differenziale. Quest'ultimo requisito è più debole del loro occultamento completo e dipende da un contesto con molti client. Non trasferiamo i tempi di questi sistemi alla nostra sessione individuale `0/ID`.
+
+Versioni, pagine e accesso sono nel [registro delle verifiche](versioni-e-verifiche.md).
+
+Il confronto richiede quale vicino venga restituito, quali accessi e risultati
+siano visibili e quali assunzioni rendano valida la costruzione. Queste famiglie
+non sono baseline numeriche già qualificate per il contratto locale.
+
+## Il volto come credenziale: FAKES
+
+[FAKES, preprint Research Square v1](https://www.researchsquare.com/article/rs-3489519/v1),
+usa una nuova acquisizione del volto e dati ausiliari di registrazione per
+recuperare una chiave. La chiave consente di creare il token con cui cercare
+file cifrati per parola chiave. Il cloud verifica il token, trova i match e
+restituisce i file corrispondenti; la variante multiutente aggiunge un centro
+di autenticazione fidato, al quale vengono inviati template biometrici.
+
+Questo precedente distingue l'uso del volto come credenziale dalla ricerca
+di un'identità tramite punteggi cifrati. Il suo output è una lista di match,
+visibile al cloud che la costruisce. La [lettura del protocollo](testi-integrali/fakes.md)
+è riferita al preprint del 2023: il finale journal ha autori e lunghezza diversi
+e resta da confrontare. I tempi pubblicati non entrano nella progressione
+del nostro argmin con uscita cifrata `0/ID`.

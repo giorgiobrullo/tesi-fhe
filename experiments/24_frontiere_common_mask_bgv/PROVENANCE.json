@@ -1,21 +1,22 @@
 {
-  "schema": "publication-provenance.v1",
+  "schema": "publication-provenance.v2",
   "experiment": 24,
   "publication_date": "2026-09-18",
   "path_base": "directory containing this manifest",
-  "scope": "All distributed package files except the introductory README.md and this manifest. File entries describe publication bytes, not a new runtime qualification.",
+  "scope": "Distributed package files excluding README.md and this manifest. Source and measurement identities refer to their recorded campaigns; distribution is not a new execution.",
   "digest_semantics": {
     "sha256": "SHA-256 of the current public file bytes.",
     "historical_selection_sha256": "SHA-256 of the same path in the preserved 2026-09-09 publication selection, present only when those bytes differ. These are historical identities, not hashes of the current public copy.",
-    "unchanged_files": "When historical_selection_sha256 is absent, the public bytes match the preserved selection unless historical_selection explicitly states otherwise.",
-    "historical_evidence": "Original evidence identities retained from the source provenance records. A digest-only record is not a downloadable file; RESULTS.json is a curated summary, not the full original evidence.",
-    "embedded_run_digests": "SOURCE_DIGEST files and recorded source/binary identifiers belong to historical runs or ancestors. Use the per-file hashes below to identify this distribution."
+    "unchanged_files": "A file with origin_archive_relative is identified by its recorded origin and transformations; absence of historical_selection_sha256 does not place that file in the earlier selection. For selection files without an origin record, absence of historical_selection_sha256 means the bytes match the preserved selection unless historical_selection states otherwise.",
+    "historical_evidence": "Original campaign evidence identities. public_paths identify available originals or declared field projections; a summary does not replace the full original.",
+    "embedded_run_digests": "SOURCE_DIGEST files and recorded source/binary identifiers belong to historical runs or ancestors. Use the per-file hashes below to identify this distribution.",
+    "pre_completion_sha256": "Previous distributed bytes before dependency-path relocation; preserved in the local review snapshot. Cryptographic Rust/C++ sources were not edited."
   },
   "historical_selection": {
     "date": "2026-09-09",
     "commit": "38e8ccdf15985b99e3ff960a4eccaa83d2ee56cd"
   },
-  "file_count": 53,
+  "file_count": 74,
   "files": {
     "RESULTS.json": {
       "sha256": "69eee9ad4b5f7f71260a00d6e226c3a92e35334220f32ecd10563e5f83089ede",
@@ -29,9 +30,21 @@
       "historical_selection_sha256": "6d04ba2c8084fc3d4d294be199923254929e5599b1db44c02cfeac9d83bf0bd3",
       "historical_selection_bytes": 5631
     },
+    "sources/PLAN.json": {
+      "sha256": "004038e2e4c1e8a448b3fd56e79fbe5062f03c1699c0520a4556942d570c806e",
+      "bytes": 3269,
+      "origin_archive_relative": "tmp/cm-nibble-n16-timing-20260906-r1/PLAN.json"
+    },
     "sources/bgv/CMakeLists.txt": {
-      "sha256": "3cd59c68930c58d2e9b0f74b8a14702076e0c860486333ebb0145066c831aa8b",
-      "bytes": 549
+      "sha256": "9b3db6fca0a08bafea75bb73edb3780a619e037d713a8b04d9d4682157f83377",
+      "bytes": 623,
+      "pre_completion_sha256": "3cd59c68930c58d2e9b0f74b8a14702076e0c860486333ebb0145066c831aa8b",
+      "pre_completion_bytes": 549
+    },
+    "sources/bgv/PUBLIC_SLOTS.json": {
+      "sha256": "f4053e96301b49b5120449836a008a556244315efb10b50877a462e75355b312",
+      "bytes": 795618,
+      "origin_archive_relative": "tmp/bgv-larger-ring-direct-n8-20260906/PUBLIC_SLOTS.json"
     },
     "sources/bgv/src/a117_fast_univariate_poly.h": {
       "sha256": "f4df67c90bfd1556ad7d5f5ec83f4564b23c4262a169b999783b5ec8377c2489",
@@ -126,6 +139,11 @@
       "sha256": "35271e9cdc1ff153fe658e5bdcc1e679f9c219cc65c9b6d7461f1aaf3f832d68",
       "bytes": 355
     },
+    "sources/common-mask-prefix/artifacts/fused_candidate_zero_body.u64le": {
+      "sha256": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+      "bytes": 16384,
+      "origin_archive_relative": "tmp/cm-nibble-n16-id-20260906/prefix/artifacts/fused_candidate_zero_body.u64le"
+    },
     "sources/common-mask-prefix/src/a53_scan/fhe.rs": {
       "sha256": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99",
       "bytes": 19307
@@ -147,8 +165,10 @@
       "bytes": 20361
     },
     "sources/common-mask-timing/Cargo.toml": {
-      "sha256": "c75716def003016eb04bf59be047af5f407cda9ffef24f240294f8a95a32c549",
-      "bytes": 627
+      "sha256": "57a823e460fba0dec123075b61e7e428b30ff0be0eab9237dd294ad73fffd0bf",
+      "bytes": 609,
+      "pre_completion_sha256": "c75716def003016eb04bf59be047af5f407cda9ffef24f240294f8a95a32c549",
+      "pre_completion_bytes": 627
     },
     "sources/common-mask-timing/SOURCE_DIGEST.txt": {
       "sha256": "ce9a040d809018d1a3798c4563a7c0cd556a2d6cca7a47bda7b2c1bd9b8bbff3",
@@ -237,6 +257,123 @@
     "sources/common-mask-timing/src/zero_pool.rs": {
       "sha256": "3a6bb108fea85153ba183ba9b81d52dba84864e5d9590373c1b8a10cbb8260a4",
       "bytes": 4364
+    },
+    "sources/fixture.json": {
+      "sha256": "5032b76171a70af6bd2f233eb563d8613bf9e1e7bcb4f709d08d56c325409ec1",
+      "bytes": 78190,
+      "origin_archive_relative": "tmp/cm-nibble-n16-timing-20260906-r1/fixture.json"
+    },
+    "sources/r3/FIXTURES.json": {
+      "sha256": "27ca72edcc9734926d4ac990e0ec46ed6cf8592e29160674a31724ef10d6ef92",
+      "bytes": 3386234,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/FIXTURES.json"
+    },
+    "sources/r3/STAGES.json": {
+      "sha256": "fbb84525e88a3ad05ad7dd7022c7dd94aae79e7613d5b143c9d5ad8ee63790a9",
+      "bytes": 9347,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/STAGES.json"
+    },
+    "sources/r3/TARGET_REFERENCE.json": {
+      "sha256": "6c61f05bc7ed15528dd7fb8c1379f794cc6d84f145f6e8d95149aaecb2a3ea59",
+      "bytes": 959543,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/TARGET_REFERENCE.json"
+    },
+    "sources/r3/candidate/Cargo.toml": {
+      "sha256": "9a614b58639bd7c044af8159ae85bd3433c521d76fd29d868c72d2c99b1cc05e",
+      "bytes": 421,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/Cargo.toml"
+    },
+    "sources/r3/candidate/SOURCE_DIGEST.txt": {
+      "sha256": "b47fbad5fa02f49e7b1e0c27ed4f1883f2d002d62dca2c5419c06795c7748cf2",
+      "bytes": 65,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/SOURCE_DIGEST.txt"
+    },
+    "sources/r3/candidate/artifacts/fused_candidate_zero_body.u64le": {
+      "sha256": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+      "bytes": 16384,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/artifacts/fused_candidate_zero_body.u64le"
+    },
+    "sources/r3/candidate/src/a34_tables.rs": {
+      "sha256": "cb8e9f25350357c1b5df7ad0092a419b32947c44ee0d7ebe89cd570b13678463",
+      "bytes": 905,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/a34_tables.rs"
+    },
+    "sources/r3/candidate/src/a53_scan/fhe.rs": {
+      "sha256": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99",
+      "bytes": 19307,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/a53_scan/fhe.rs"
+    },
+    "sources/r3/candidate/src/a53_scan.rs": {
+      "sha256": "24afeac53d99abeaba9ef3ff245d6f97f74114e76a35f3a438ced8960a2fbf3d",
+      "bytes": 24531,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/a53_scan.rs"
+    },
+    "sources/r3/candidate/src/coefficient_observer.rs": {
+      "sha256": "d211f7fc0c5e444ee39b9e0308de9eac4203a0647230f9cc5164a90a35f186af",
+      "bytes": 3941,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/coefficient_observer.rs"
+    },
+    "sources/r3/candidate/src/lib.rs": {
+      "sha256": "77b45dae544b5f4355dbc8dcaddc901d1d5b1bc85643aa181bd1733d086d1f55",
+      "bytes": 1621,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/lib.rs"
+    },
+    "sources/r3/candidate/src/main.rs": {
+      "sha256": "2a8b6984ae37104f117b28dd93b7a5865bf01146556aa94d49d015ae855529a5",
+      "bytes": 24050,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/main.rs"
+    },
+    "sources/r3/candidate/src/nibble.rs": {
+      "sha256": "d0a5075422133eb26bb68f1e337b37e574ed83a73253c18891715b2cbda6d94d",
+      "bytes": 10191,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/nibble.rs"
+    },
+    "sources/r3/candidate/src/parallel.rs": {
+      "sha256": "410953fe486052b23829ec5f7898805cf6cfb4553077a801488a81c35b549849",
+      "bytes": 8672,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/parallel.rs"
+    },
+    "sources/r3/candidate/src/precision.rs": {
+      "sha256": "e96e95fd2cb1957abb64c06a0ca58add46d1d3b7e8b449d25aa4e2ad886d0ef5",
+      "bytes": 6349,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/precision.rs"
+    },
+    "sources/r3/candidate/src/private_argmin.rs": {
+      "sha256": "56430e4a8723111b4d8f1504865d9177d090d3b9e43b40e25fa6886fce59c84e",
+      "bytes": 205045,
+      "origin_archive_relative": "tmp/integrate-frontier-20260905-r3/candidate/src/private_argmin.rs"
+    },
+    "evidence/common-mask-timing.json": {
+      "sha256": "c342e8f1780e3f29de851f8937d9b21f49a098b47ca170d6aa528a4c4d3b08b7",
+      "bytes": 1818,
+      "origin_archive_relative": "tmp/cm-nibble-n16-timing-20260906-r1/runs/first-native/validation.json",
+      "origin_sha256": "d743079cf00004c6dc0df9103814f2dac1f212e7aff3280ac4738640c07512f9",
+      "origin_bytes": 1979,
+      "transformations": [
+        {
+          "action": "select_public_top_level_fields",
+          "retained_fields": [
+            "actual_exit_code",
+            "actual_p_fail",
+            "binary_sha256",
+            "completed_blocks",
+            "failures",
+            "native_pass",
+            "pass_replay",
+            "physical_ledger",
+            "scope",
+            "source_sha256",
+            "statistics"
+          ],
+          "omitted_fields": [
+            "native_pid",
+            "records_bytes",
+            "records_count",
+            "records_sha256"
+          ]
+        }
+      ],
+      "representation": "declared_field_projection"
     }
   },
   "historical_evidence": [
@@ -244,7 +381,10 @@
       "id": "cm_timing",
       "sha256": "d743079cf00004c6dc0df9103814f2dac1f212e7aff3280ac4738640c07512f9",
       "bytes": 1979,
-      "distribution": "digest-only; full original is not distributed"
+      "distribution": "published-field-projection; original identity retained",
+      "public_paths": [
+        "evidence/common-mask-timing.json"
+      ]
     },
     {
       "id": "cm_gate",
@@ -279,5 +419,19 @@
       "bytes": 2381,
       "distribution": "digest-only; full original is not distributed"
     }
-  ]
+  ],
+  "distribution_date": "2026-10-06",
+  "measurement_scope": "Retained measurements allow descriptive recomputation within the saved families, schedules and conditions. They are not raw private-phase replay or new correctness, security, tail-bound or performance certification.",
+  "shared_source_layouts": [
+    {
+      "path": "../17_head_pfks_tfhe17/source/baseline-20260905-tfhe17/candidate",
+      "byte_identical_source_and_input_files_checked": 7
+    }
+  ],
+  "relocated_build_manifests": [
+    "sources/common-mask-timing/Cargo.toml",
+    "sources/bgv/CMakeLists.txt"
+  ],
+  "source_identity_scope": "Retained run identifiers describe original sources; PROVENANCE.json identifies the distributed package.",
+  "origin_path_base": "local research archive root"
 }

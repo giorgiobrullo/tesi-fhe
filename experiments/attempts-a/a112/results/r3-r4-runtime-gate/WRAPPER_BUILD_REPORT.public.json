@@ -1,0 +1,33 @@
+{
+  "schema": "a112.head-start-r3-r4.wrapper-build-report.v1",
+  "status": "PASS_OFFLINE_LOCKED_BUILD_NOT_RUN",
+  "source_sha256": "ff02fc973206019d01a8ef780c79970e0d078445e9a564a646b37bf2c8598095",
+  "manifest_sha256": "f43c8a9d53183e13a38bae5f5510837113ce423bd85ea35f93ac61bedcaca247",
+  "lock_sha256": "b2eb502fbbb7e5e95c888a648f9d7f175eed46abac8aac2d96ff4669184c031f",
+  "executable_sha256": "07d705c9b9b342a694dc6405d675ca05737affffb43926150e2ba0cc3647de00",
+  "build": {
+    "offline": true,
+    "locked": true,
+    "release": true,
+    "jobs": 1
+  },
+  "keygen_run_during_build": false,
+  "fhe_run_during_build": false,
+  "actual_build_record": {
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked",
+      "--offline",
+      "-j",
+      "1"
+    ],
+    "cwd": "archive:/tmp/a112-head-start-r3-r4-preflight/r3-r4-runtime-gate",
+    "started_at_utc": "2026-09-05T11:14:52.239179+00:00",
+    "child_pid": 58623,
+    "exit_code": 0,
+    "ended_at_utc": "2026-09-05T11:15:43.452592+00:00"
+  },
+  "compiler": "rustc 1.98.0 (88d9e12ae 2026-08-18) (Homebrew)"
+}

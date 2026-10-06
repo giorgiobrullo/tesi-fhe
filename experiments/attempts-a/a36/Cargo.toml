@@ -1,0 +1,13 @@
+[package]
+name = "a36_chunked_candidate_prototype"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pipeline_tfhe_rs = { path = "../a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs", features = ["diagnostic-trace"] }
+rayon = "=1.12.0"
+sha2 = "=0.10.9"
+tfhe = { version = "=0.11.3", features = ["integer"] }
+
+[profile.release]
+opt-level = 3

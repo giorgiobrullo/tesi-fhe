@@ -1,0 +1,61 @@
+{
+  "artifact": "A115",
+  "binary": {
+    "bytes": 2042984,
+    "path_ephemeral": "/tmp/a115-context-build/a115_bgv_context_envelope",
+    "sha256": "727f8177d9592834cb7fbe298563ba22424e185b2db531946057563e0bb18516"
+  },
+  "build": {
+    "cmake": "4.4.0",
+    "compiler": "Apple clang 21.0.0 clang-2100.3.20.102 arm64-apple-darwin27.0.0",
+    "jobs": 1,
+    "source_modified": false
+  },
+  "dependencies": {
+    "gmp": {
+      "bytes": 480656,
+      "sha256": "1642a7a85935c47e282b4d80007403146d3b551d8c122048106c1b31403c59c3",
+      "version": "6.2.1"
+    },
+    "helib": {
+      "bytes": 5697360,
+      "commit": "3e337a66a91a92d49de6a9505340826b0eb71081",
+      "exported_package_version": "2.2.0",
+      "release_tag": "v2.3.0",
+      "sha256": "cdcbdad0bd1542e75155ce15c5d5869bf4bb386bcbd5714828430d7ef2e4ac03"
+    },
+    "ntl": {
+      "bytes": 3011264,
+      "sha256": "12e0e8d94d177ec9ce9bed349b1c270a6c988c5d1043a325d641cb6512f5acfb",
+      "version": "11.5.1"
+    }
+  },
+  "source_hashes": {
+    "helib_root_cmake": "bcbd6fc157150419162eb65ad0ad6f07e0578929b0a3a0bfe8f9f986c996df12",
+    "helib_src_cmake": "c746d4946851de47354e99ebf52baa9845cfb4b0775750f68c0064790676e4c3",
+    "helib_version_file": "c4a2383a03bdb6739d16a0e24058e4b9c7da4e63d203e0be2f448868cc03c530"
+  },
+  "toolchain_compatibility": [
+    {
+      "resolution": "configured the inner HElib target directly and passed the warning list as one quoted CMake value",
+      "stage": "HElib package wrapper inner configure",
+      "symptom": "CMake 4.4 interpreted the split -Wall token as an unknown CMake warning category"
+    },
+    {
+      "resolution": "added -Wno-deprecated-literal-operator while retaining -Werror for every other warning",
+      "stage": "HElib compile with Apple clang 21",
+      "symptom": "bundled json.hpp old literal-operator spelling is deprecated"
+    },
+    {
+      "resolution": "find_package requests exported 2.2.0 and the full v2.3.0 source commit is pinned independently",
+      "stage": "A115 consumer configure",
+      "symptom": "official v2.3.0 tag tracks VERSION=2.2.0"
+    }
+  ],
+  "verification": {
+    "fhe_eval": false,
+    "keygen": false,
+    "no_argument_fail_closed_exit": 2,
+    "source_commit_verified": true
+  }
+}

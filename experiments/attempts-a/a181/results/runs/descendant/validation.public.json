@@ -1,0 +1,184 @@
+{
+  "schema": "a181.replay.v1",
+  "case": "descendant",
+  "status": "UNSUPPORTED_DESCENDANT_OBSERVED",
+  "lifecycle_records": 24,
+  "raw_records": 12,
+  "same_parent_reads": true,
+  "parent_capture_matches_collector": true,
+  "parent_before_reap_order_consistent": true,
+  "terminal_parent_lifecycle_consistent": true,
+  "raw_replay": {
+    "schema": "a181.raw-replay.v1",
+    "record_consistent": true,
+    "snapshots": 5,
+    "frames": [
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 0,
+        "right_seq": 1,
+        "elapsed_ns_rational": [
+          6004468000,
+          3
+        ],
+        "capacity_ns_rational": [
+          96071488000,
+          3
+        ],
+        "host_delta_ticks": [
+          222,
+          176,
+          2788,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 1810,
+          "system_raw": 18622
+        }
+      },
+      {
+        "controlled_barrier_gap": true,
+        "left_seq": 1,
+        "right_seq": 2,
+        "elapsed_ns_rational": [
+          32453250,
+          1
+        ],
+        "capacity_ns_rational": [
+          519252000,
+          1
+        ],
+        "host_delta_ticks": [
+          4,
+          4,
+          47,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 122,
+          "system_raw": 1171
+        }
+      },
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 2,
+        "right_seq": 3,
+        "elapsed_ns_rational": [
+          2010707375,
+          1
+        ],
+        "capacity_ns_rational": [
+          32171318000,
+          1
+        ],
+        "host_delta_ticks": [
+          208,
+          253,
+          2737,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 0,
+          "system_raw": 0
+        }
+      },
+      {
+        "controlled_barrier_gap": false,
+        "left_seq": 3,
+        "right_seq": 4,
+        "elapsed_ns_rational": [
+          2008535625,
+          1
+        ],
+        "capacity_ns_rational": [
+          32136570000,
+          1
+        ],
+        "host_delta_ticks": [
+          227,
+          177,
+          2797,
+          0
+        ],
+        "process_delta_raw": {
+          "user_raw": 0,
+          "system_raw": 0
+        }
+      }
+    ],
+    "arms": [],
+    "max_read_width_ns_rational": [
+      205250,
+      3
+    ],
+    "observed_final_counter": true,
+    "first_terminal_snapshot_seq": 2,
+    "retained_terminal_usage": {
+      "user_raw": 2818,
+      "system_raw": 24372,
+      "birth_abs": 12196352616455,
+      "exit_abs": 12196400733353
+    },
+    "parent_nonreaping_capture_attested": false,
+    "coverage_issues": [
+      "CONTROLLED_PARENT_BARRIER_GAP",
+      "NO_ALIGNED_ARM_MARKERS"
+    ],
+    "status": "UNQUALIFIED_RAW_COUNTERS",
+    "collector_qualified": false,
+    "ownership_membership_attested": false,
+    "final_accounting_settled": false,
+    "source_binary_execution_attested": false,
+    "host_busy_cpu_ns": null,
+    "owned_cpu_ns": null,
+    "nonbenchmark_occupancy": null,
+    "speedup_promotion_allowed": false,
+    "open_premises": [
+      "host tick CPU-ns conversion and quantization bound",
+      "rusage CPU units, all-thread/exclusive and exit-final semantics",
+      "parent lifecycle handshake and no unregistered descendants",
+      "runtime source/binary/run/boot provenance and marker producer",
+      "actual OS qualification and collector overhead"
+    ]
+  },
+  "markers": {
+    "schema": "a170.markers.v1",
+    "clock": "mach_absolute_time",
+    "pid": 7773,
+    "birth_abs": 12196352616455,
+    "numer": 125,
+    "denom": 3,
+    "arms": []
+  },
+  "cpu_units_justified": false,
+  "settled_accounting_proven": false,
+  "os_membership_independently_attested": false,
+  "collector_qualified": false,
+  "nonbenchmark_occupancy": null,
+  "speedup_promotion_allowed": false,
+  "paused_interval": {
+    "begin_abs": 12196400714287,
+    "end_abs": 12196401491523,
+    "duration_ns_rational": [
+      97154500,
+      3
+    ],
+    "coverage_gap": true,
+    "prorated": false
+  },
+  "live_samples": 2,
+  "protocol_barriers_consistent": true,
+  "old_fixed_spacing_inherited": false,
+  "full_interval_normalization_allowed": false,
+  "fixture_binary_sha256": "376fd3693e543a5702471d551b1e296865f4b37cd9a3bd5b429581ea960d6393",
+  "collector_binary_sha256": "f534b2ce770a01f2303be2bf035c4593c5cd9cd6a195912270b5a90e3b725377",
+  "parent_pid": 7772,
+  "parent_exit_code": 0,
+  "lifecycle_sha256": "45c0295ec56e0176209d34d41f2ddcfc7e9974de7b5e1cb29f12c28cb8c5b955",
+  "raw_sha256": "50ffa2068856cc4195a3a430020a7f3e558fdbe8d16eb655276c3be7c827c309",
+  "source_id": "44ba04f2064d918ef70fc294ad3cbd719c7e1092ca789f53cc429f345c86259c",
+  "launch_sha256": "5df830f4c0909c7b034dbaeab7c968eab8a4b5565f31a8c7e1c26b2c95227bb2",
+  "child_sha256": "dde58345941d4e7bb5d13eefa2b9d5c924b2fe05b7f2aa37432dd8a0e7e39615",
+  "exit_sha256": "6f93bd0e21b03933d3c17f98bb0dc3ac13f8fc065640bb0351ea31125761fe5c",
+  "parent_reaped_sha256": "1e4b21d04e815a35191c81370ca7c65f47c1d4b0ac77798836221fc3a3df4d1c"
+}

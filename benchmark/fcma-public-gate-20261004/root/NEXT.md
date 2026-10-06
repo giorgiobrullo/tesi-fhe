@@ -1,0 +1,9 @@
+# Next: current ordinary FHE binding, then one fresh-family gate
+
+Public numerical/paired runtime gate passed and independently reviewed:28.20% less time on a hot single-thread synthetic First+MAC boundary. This is now enough to investigate a real FHE operation; it does not predict demo speed or qualify full noise/0-ID. Maintainedlock verifiedTFHE1.8.1/Pulp0.22.3/FFT0.10.1. Preserve U and all prior failed/frozen evidence.
+
+First source-only: design a new isolated TFHE1.8.1 copy with a hook at the actual update_with_fmadd call boundary. Restrict initial candidate to ordinary23×1, GLWE1/poly2048, two-output/two-term geometry already bound/tested. Do not globally replace pulpArch or silently change Head15×2/fourterms, FFT, keygeneration or other shapes. Require correct fallback/checkedfeature and identical comparison arms/boundaries. Root only builds/runs; agents disjointsource/design/review. No registry or W/runtime edit.
+
+If interface and graph gate passes, a separate limited native experiment may generate ONE fresh local GLWE/GGSW family, reuse its identical ciphertext inputs and key material in both arms, and test public known plaintext/selector cases under actual ordinary parameters. Never deserialize existing envelopes, inspect/log private phase/spectra, search keys or retry. Return only expected public decoded correctness and run metadata. Paired ordinary-operation timing follows only after correctness PASS; stop at mismatch. No full service campaign yet. Source protocol must specify exact gates before any keygen.
+
+Actual process identity and frozen preservation must be fresh before build/native; do not stop/suspend/reschedule existing processes. A124 scheduling consent remains absent. Goal active, indefinite/local; noGit/remote/cloud/oldC3–C34/A77 models/privatepayload. Full BR/history/FP/caps/address/errorprobability remains open; Ycoarseformula stays rejected, not evidence of maintainedfailure.

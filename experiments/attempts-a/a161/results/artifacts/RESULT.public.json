@@ -1,0 +1,18 @@
+{
+  "status": "PINNED_SOURCE_CALLGRAPH_AND_SYNTHETIC_MODEL_ONLY",
+  "source_files": 27,
+  "actual_generic_query_route": "one accepted pair per scalar; second discarded",
+  "query_coefficients_per_encryption": 2048,
+  "query_accepted_pairs_per_encryption": 2048,
+  "query_mask_bytes_per_encryption": 16384,
+  "query_minimum_noise_bytes_per_encryption": 32768,
+  "ksk_mask_bytes_reserved_per_row": 6872,
+  "source_formula_attempt_allowance_per_row": 58,
+  "source_formula_noise_bytes_reserved_per_row": 928,
+  "library_formula_uses_success_probability": "pi/4; allocation model, not verified finite-sampler law",
+  "linked_rust_reservation_value_observed": false,
+  "actual_sampler_executed": false,
+  "compiled_float_enclosure_established": false,
+  "finite_csprng_statistical_independence_established": false,
+  "actual_pipeline_p_fail": null
+}

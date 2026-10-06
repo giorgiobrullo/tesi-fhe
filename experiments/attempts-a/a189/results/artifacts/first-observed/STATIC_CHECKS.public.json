@@ -1,0 +1,12 @@
+{
+  "schema": "a189.adapter-static-checks.v1",
+  "tests": 7,
+  "elapsed_seconds": 0.03,
+  "successful": true,
+  "test_scope": "Synthetic in-memory A181 records and mocked envelopes; unchanged A181 replay and A189 calculate. No actual logs, keys, native API or binary execution.",
+  "ruff": "PASS",
+  "initial_test_command_scaffolding_error": "Log directory absent; no tests started. Created only owned subdirectory, then seven tests passed.",
+  "source_binding": "A189 10 leaves / 31 evidence pins and A181 21 source leaves / 28 artifact leaves / 44 source pins match; 65 distinct external input paths.",
+  "root_source_review": "Root reported no material issue in bounded source/binary/five-case/same-captured-byte binding or preserved refusal behavior before freeze.",
+  "actual_run_data_read": false
+}

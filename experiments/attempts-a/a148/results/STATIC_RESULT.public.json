@@ -1,0 +1,43 @@
+{
+  "a126_nearest_bad_distance": 64,
+  "actual_a44": {
+    "actual_a44_certified": false,
+    "failure_bound": null,
+    "status": "OPEN_MOMENT_PREMISES"
+  },
+  "actual_a44_p_fail": null,
+  "artifacts_sha256": {
+    "a126-sharp-conditional-bound.json": "98629f6da1f0e5d3172140374049990affd0d0beae4c89be6aef0a9facb66a25",
+    "hypothetical-bound.json": "fbed378d9e939f4df91878489da3f332ecdfc3807f854c9a887bc18f4a74d42c",
+    "hypothetical-premises.json": "b3b605f2cf69b0483ed141fad59c0ee826d135c099df972f6ddd875087f617dc",
+    "lift-wrap-counterexample.json": "205ec50f9fc8f8f197dcf35231d44fbc004a3df8df61af4e3724007ac4f4b028",
+    "same-marginals-coupled-laws.json": "91ce059926204fb53270c7c64aaa70a36f60d79b4509c8c81350450671d3ba9a"
+  },
+  "exact_small_coefficient_checks": 1280,
+  "exact_three_point_laws_checked": 45,
+  "hypothetical_lifted_variance": 16,
+  "hypothetical_sharp_failure_bound": "1/256",
+  "noise_tail_premises_supplied_for_actual_a44": false,
+  "runtime_observation_claimed": false,
+  "rust_or_fhe_execution": false,
+  "same_coordinate_marginal_failure_probabilities": [
+    "0",
+    "1/4",
+    "1"
+  ],
+  "source_pins": 9,
+  "source_safe_residue_intervals": [
+    [
+      0,
+      63
+    ],
+    [
+      4033,
+      4095
+    ]
+  ],
+  "statistical_independence_assumed": false,
+  "status": "STATIC_CONDITIONAL_THEOREM_AND_FINITE_LAWS_PASS",
+  "test_output": "test_actual_lut_conditional_bound_saturation_and_45_laws (test_model.TailGate) ... ok\ntest_alias_cancellation_bias_and_zero_distance (test_model.TailGate) ... ok\ntest_existing_a143_words_close_same_ms64_lift (test_model.TailGate) ... ok\ntest_first_failure_union_keeps_missing_tail_open (test_model.TailGate) ... ok\ntest_frozen_sources_and_actual_a126_lut_geometry (test_model.TailGate) ... ok\ntest_half_quantum_semantic_center_retains_reference_offset (test_model.TailGate) ... ok\ntest_lifted_vs_centered_variance_are_distinct (test_model.TailGate) ... ok\ntest_missing_false_covariance_and_support_not_promoted (test_model.TailGate) ... ok\ntest_periodic_nearest_bad_matches_enumeration (test_model.TailGate) ... ok\ntest_same_all_atom_marginals_different_joint_failure (test_model.TailGate) ... ok\ntest_small_coefficients_integer_identity_and_support (test_model.TailGate) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 1.123s\n\nOK\n",
+  "tests_run": 11
+}

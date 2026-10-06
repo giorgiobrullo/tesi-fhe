@@ -1,0 +1,147 @@
+{
+  "status": "INCOMPLETE_EVIDENCE",
+  "created_utc": "2026-09-04T21:31:03.678168+00:00",
+  "cells": [
+    {
+      "gallery_size": 127,
+      "threads": 12,
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "schedule_sha256": "d7c94ae438bd9ca611dbfcb01f3b3cea5708fc618012921bf0ba4f14b3b56c1a",
+      "measured_queries": 10,
+      "exact_query_records": 14,
+      "wall_s_median": 4.752769708000001,
+      "guard_status": "MISSING_DRIVER_METADATA",
+      "path": "archive:/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads12_2026-09-04T130912.627776Z.jsonl",
+      "sha256": "c2ce01de4abf75f67f5696579fa97c99ad037a01b534142d740e3963f1724eb0"
+    },
+    {
+      "gallery_size": 127,
+      "threads": 16,
+      "scene_sha256": "6851bf74493537348f47a9cd93df927eb287a90f3fd9a12d200c3096168f07f2",
+      "schedule_sha256": "8b22700c3e2dc9db944af83f082b20371b055d8de4c614594597660e07f16963",
+      "measured_queries": 10,
+      "exact_query_records": 14,
+      "wall_s_median": 4.2221641875,
+      "guard_status": "MISSING_DRIVER_METADATA",
+      "path": "archive:/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+      "sha256": "40caa14ad7a4d5a20f4ac250ec291922356286567a9ea13cb5e2f0ca4a224461"
+    },
+    {
+      "gallery_size": 128,
+      "threads": 12,
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "schedule_sha256": "f5a23c3898853e47acc10c0962165fcda6af12bce00a49121064d976fd0c2fa6",
+      "measured_queries": 10,
+      "exact_query_records": 14,
+      "wall_s_median": 4.7329087085,
+      "guard_status": "MISSING_DRIVER_METADATA",
+      "path": "archive:/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads12_2026-09-04T130912.627776Z.jsonl",
+      "sha256": "9da0c5d9b12179a1f579f7e7d4c9ebf115b9939c85b690b07388c05c0f479dd1"
+    },
+    {
+      "gallery_size": 128,
+      "threads": 16,
+      "scene_sha256": "fddec9e6cc9186ddaaccaa30784d65cba4912aa5d51c039ef0e4ae1ac15077f1",
+      "schedule_sha256": "97488b618e7b1db7a22ebf79c74c98a11f7d2fbed919e7730a6ffef6fd84b37c",
+      "measured_queries": 10,
+      "exact_query_records": 14,
+      "wall_s_median": 4.3776445625000004,
+      "guard_status": "MISSING_DRIVER_METADATA",
+      "path": "archive:/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
+      "sha256": "05b9b629605c5481e19365cfba3df95b315d17e51084d538c5dce5ff3e66ff89"
+    },
+    {
+      "gallery_size": 64,
+      "threads": 12,
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "schedule_sha256": "ae57d8fa94ef73a7f601ac357117f9a0cba692e1c959a2303555262c945a418a",
+      "measured_queries": 10,
+      "exact_query_records": 14,
+      "wall_s_median": 2.743891875,
+      "guard_status": "MISSING_DRIVER_METADATA",
+      "path": "archive:/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads12_2026-09-04T130912.627776Z.jsonl",
+      "sha256": "da1529ada3e1ad1d4470d70dd855fbf0be09d2c41a555c4e40a4bb3a61426327"
+    },
+    {
+      "gallery_size": 64,
+      "threads": 16,
+      "scene_sha256": "4bb1c241c606be757ae73f52dccfba4570c5edb90fac674f2d8db52245062976",
+      "schedule_sha256": "6eda0861ca24374d9d6ed6026346354869a5800d02b6be32425606a3212ce554",
+      "measured_queries": 10,
+      "exact_query_records": 14,
+      "wall_s_median": 2.4671873745,
+      "guard_status": "MISSING_DRIVER_METADATA",
+      "path": "archive:/experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+      "sha256": "89a8c8fce6cce51147070bae3acfbefedf2395d86675993abe6cf0f392a96222"
+    }
+  ],
+  "missing_cells": [
+    [
+      64,
+      1
+    ],
+    [
+      64,
+      2
+    ],
+    [
+      64,
+      4
+    ],
+    [
+      64,
+      6
+    ],
+    [
+      64,
+      8
+    ],
+    [
+      127,
+      1
+    ],
+    [
+      127,
+      2
+    ],
+    [
+      127,
+      4
+    ],
+    [
+      127,
+      6
+    ],
+    [
+      127,
+      8
+    ],
+    [
+      128,
+      1
+    ],
+    [
+      128,
+      2
+    ],
+    [
+      128,
+      4
+    ],
+    [
+      128,
+      6
+    ],
+    [
+      128,
+      8
+    ]
+  ],
+  "planned_cells": 21,
+  "complete_schedule": false,
+  "all_pre_post_guards_validated": false,
+  "final_scaling_analysis_allowed": false,
+  "within_cell_contention_excluded": false,
+  "cryptographic_promotion_allowed": false,
+  "scope": "Preserved log consistency, exact-oracle checks and saved pre/post guard evidence; no runtime attestation or new FHE"
+}

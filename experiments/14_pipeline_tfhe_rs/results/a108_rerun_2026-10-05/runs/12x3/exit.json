@@ -1,0 +1,13 @@
+{
+  "parameter": "12x3",
+  "pid": 38797,
+  "started": "2026-10-05T19:04:35.239694+00:00",
+  "ended": "2026-10-05T19:04:39.086201+00:00",
+  "elapsed_seconds": 3.8468209580000003,
+  "exit_code": 1,
+  "stdout_sha256": "02850ce393a8b74123b40c32df80a695f644f30008bf47e5c7c2401473b2240a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "binary_sha256": "79d5c6bad53e375fe649cdd6c762f377697a2afb3f37e0899788bb7d16c6c0f2",
+  "other_native_workload_observed": false,
+  "timing_claim": false
+}

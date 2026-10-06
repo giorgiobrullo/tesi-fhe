@@ -1,0 +1,57 @@
+{
+  "recorded_utc": "2026-10-04T21:32:29.103115+00:00",
+  "files": {
+    "PROTOCOL.md": {
+      "bytes": 2981,
+      "sha256": "b83ff1674aaf846760ac21b93ab5d217d960f8ad0aebf34c7c4ca6099ec67eb3"
+    },
+    "runtime/core/src/dag_scheduler.rs": {
+      "bytes": 6862,
+      "sha256": "94c1b9114a23bdba05a8bf232ee8858434a8425fb34b0627323597f7879e8159"
+    },
+    "runtime/core/src/classic_batch.rs": {
+      "bytes": 5337,
+      "sha256": "101ceca17b40dfa96af8469e5782d021b967f04fc34456cad1f711af418d3e5f"
+    },
+    "runtime/core/src/selector_parallel.rs": {
+      "bytes": 10601,
+      "sha256": "84638d8e4ed7917b12ca09271af3ee4cbb908dabb3355d2e2de1ef300d14e22e"
+    },
+    "runtime/core/src/wide_id.rs": {
+      "bytes": 20118,
+      "sha256": "59e286f80efe34d9768d0f741d65d5817744581bb48a276f5769b4b3df98212e"
+    },
+    "runtime/core/src/mixed.rs": {
+      "bytes": 23215,
+      "sha256": "c01b6cd60bf88b9babc81fbe450593864c7407c137108d2d9fa523d036501881"
+    },
+    "runtime/core/src/smallcuts.rs": {
+      "bytes": 16973,
+      "sha256": "6cfef61c42bdb466eb39058d73f9d173569ff53783f02abaeced86443e225d93"
+    },
+    "runtime/core/src/lib.rs": {
+      "bytes": 4203,
+      "sha256": "a3cd583854740a4cfd77afe4ae4959dcc2407f02b3df40b9ee7443a1bbadba8b"
+    },
+    "probe/Cargo.toml": {
+      "bytes": 372,
+      "sha256": "63d2689b360e3b2ee1a7aa04ebc08901b7e6039ab0ea773e00f77e118897f0ea"
+    },
+    "probe/src/main.rs": {
+      "bytes": 6539,
+      "sha256": "f7db084f76b1e45812d1c030dd370101a6cbe4bda27cbfe3ff6f18585c8761ee"
+    },
+    "root/CASEPLAN.json": {
+      "bytes": 725,
+      "sha256": "343bc51a0052bfc8e1b91c065094d9b9cce00fc4dc8a052da6fddfef5a16785e"
+    },
+    "math/INVARIANTS.md": {
+      "bytes": 4171,
+      "sha256": "c01714d6a30b2637fa8ba5e80be26d5d7a00a05bed623b39fc10c75726c6b498"
+    }
+  },
+  "gate": "pending independent source review",
+  "builds": 0,
+  "native_runs": 0,
+  "handles": []
+}

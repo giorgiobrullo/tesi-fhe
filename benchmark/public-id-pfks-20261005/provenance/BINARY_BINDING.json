@@ -1,0 +1,38 @@
+{
+  "observed_utc": "2026-10-05T06:27:56.471023+00:00",
+  "new_binary": "/workspace/research/tmp/current-final-threshold-stage-20261005/target/release/first_level_pfks_profile",
+  "binary_pin": {
+    "bytes": 2226944,
+    "sha256": "918cd5fc3e5084bff8babddf14cf7ee186803384e7272b4b1846086073863b38"
+  },
+  "source_binding": {
+    "bytes": 12446,
+    "sha256": "06f04a65dbc56a85bfed9f9f2bacee56bdb9b2fc82f4938956b01ee0f6111931"
+  },
+  "source_seal": {
+    "bytes": 14940,
+    "sha256": "ceaeae8ff36a1f1c1430313ca7ccbea92f5f4b60ad1a6af7d47f97a7f06217f0"
+  },
+  "build_capture": {
+    "bytes": 1178,
+    "sha256": "cd2f39217be0fb15948b9cd0263a888455db0fec0461bc9e951714a866c7d5e4"
+  },
+  "build_exit_code": 0,
+  "command": [
+    "cargo",
+    "build",
+    "--release",
+    "--offline",
+    "--locked",
+    "--features",
+    "opt-owned-pfks,opt-lut-cache",
+    "--bin",
+    "first_level_pfks_profile"
+  ],
+  "environment": {
+    "RUSTFLAGS": "",
+    "CARGO_TARGET_DIR": "/workspace/research/tmp/current-final-threshold-stage-20261005/target",
+    "RAYON_NUM_THREADS": "16"
+  },
+  "no_native_yet": true
+}

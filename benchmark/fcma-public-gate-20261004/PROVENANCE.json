@@ -1,0 +1,730 @@
+{
+  "schema": "research-package.v2",
+  "path_base": "files paths are relative to this package; source_layout and shared_files canonical paths are relative to repository root",
+  "source_layout": {
+    "schema": "research-source-map.v1",
+    "archive_root": "local research archive",
+    "source_workspace": "tmp/current-fcma-public-gate-20261004",
+    "files": [
+      {
+        "workspace_path": "probe/Cargo.toml",
+        "archive_relative": "tmp/current-fcma-public-gate-20261004/probe/Cargo.toml",
+        "canonical": "benchmark/fcma-codegen-20261004/source/probe/Cargo.toml",
+        "bytes": 228,
+        "sha256": "3010be99def04ec4257692c353bc82505179cf1b390064089820683208bfb075",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "probe/Cargo.lock",
+        "archive_relative": "tmp/current-fcma-public-gate-20261004/probe/Cargo.lock",
+        "canonical": "benchmark/fcma-codegen-20261004/source/probe/Cargo.lock",
+        "bytes": 2966,
+        "sha256": "d091029dccf1939dbb573d3a658f273bacd53b88ea0c95d83f296c5bd13dd729",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "probe/src/main.rs",
+        "archive_relative": "tmp/current-fcma-public-gate-20261004/probe/src/main.rs",
+        "canonical": "benchmark/fcma-public-gate-20261004/source/probe/src/main.rs",
+        "bytes": 11518,
+        "sha256": "7ef97bf24cae04b14407cb56f89a43cf770b2a28105a5caadc8f1458c0970f65",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "root/ANALYZE.py",
+        "archive_relative": "tmp/current-fcma-public-gate-20261004/root/ANALYZE.py",
+        "canonical": "benchmark/fcma-public-gate-20261004/root/ANALYZE.py",
+        "bytes": 3174,
+        "sha256": "b1f2136dbf1045f2f26364b33456c4ad2116cf1e5cc99b6a4c63025a1562e85b",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "root/DRIVER.py",
+        "archive_relative": "tmp/current-fcma-public-gate-20261004/root/DRIVER.py",
+        "canonical": "benchmark/fcma-public-gate-20261004/root/DRIVER.py",
+        "bytes": 4328,
+        "sha256": "a7b974e3d73bc1269e2ab0c63c304922f74715f3e6090a1539b4a6d795eb9696",
+        "mapping": "existing_repository_source",
+        "privacy_redaction": {
+          "before_public_sha256": "fdb506e9e03795d25a1fd2458130317287a3eb4fd1c789241c2c7b9fb9b74968",
+          "before_public_bytes": 4348,
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+        }
+      },
+      {
+        "workspace_path": "root/EXACT_ORACLE.py",
+        "archive_relative": "tmp/current-fcma-public-gate-20261004/root/EXACT_ORACLE.py",
+        "canonical": "benchmark/fcma-public-gate-20261004/root/EXACT_ORACLE.py",
+        "bytes": 9307,
+        "sha256": "ba613af40cc728d353ad1ecf6e0fbfe6913747066972b7229748144eb0031f4c",
+        "mapping": "existing_repository_source",
+        "privacy_redaction": {
+          "before_public_sha256": "3e1c8bce11070ff5dca76000789d14ccdc72af8ffe507f46bb177ade8f28d1e0",
+          "before_public_bytes": 9324,
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+        }
+      }
+    ],
+    "excluded_inputs": [],
+    "non_source_exclusions": [
+      "bin (compiled native executable not redistributed)",
+      "Cargo registry dependencies/cache",
+      "ARM register PDF/text (public-gate only; external primary-source reference retained in original notes)"
+    ],
+    "scientific_execution_in_this_recovery": false
+  },
+  "files": [
+    {
+      "path": "ORIGINAL_MANIFEST.json",
+      "bytes": 6225,
+      "sha256": "3c95e04e4234afa682dedf44460e723e357266fbc4026b72c5327c4ae391a537",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/MANIFEST.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/ORIGINAL_MANIFEST.json",
+          "bytes": 6225,
+          "sha256": "3c95e04e4234afa682dedf44460e723e357266fbc4026b72c5327c4ae391a537",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 2583,
+      "sha256": "1c7da903db5fffd649523d65f32a211f3c8da0abf7063177c44c0d33fef1e579",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/PROTOCOL.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/PROTOCOL.md",
+          "bytes": 2583,
+          "sha256": "1c7da903db5fffd649523d65f32a211f3c8da0abf7063177c44c0d33fef1e579",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "README.md",
+      "bytes": 2832,
+      "sha256": "930e63541ac3a33d2efc4f7b12c61456eafef53c3fd2407ffbe134c8ae602dce"
+    },
+    {
+      "path": "RESULT.md",
+      "bytes": 1432,
+      "sha256": "5118916eb7f383bcb6cd0247e446c413240c72f99203c5e860c43c53d8371185",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/RESULT.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/RESULT.md",
+          "bytes": 1432,
+          "sha256": "5118916eb7f383bcb6cd0247e446c413240c72f99203c5e860c43c53d8371185",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "inputs/RECIPE.json",
+      "bytes": 544,
+      "sha256": "08a7c984814a14b47ecd84e2032f5f4525c3a06bdbce19d3d2a741869bde4fbb"
+    },
+    {
+      "path": "logs/ANALYSIS.json",
+      "bytes": 2228,
+      "sha256": "ce182da93e04f206481ec62871b8e46013ecdcda4fe94517680f42a4cbbffbc2",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/ANALYSIS.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/ANALYSIS.json",
+          "bytes": 2228,
+          "sha256": "ce182da93e04f206481ec62871b8e46013ecdcda4fe94517680f42a4cbbffbc2",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/BENCH.json",
+      "bytes": 456,
+      "sha256": "c7e737948f4bef4e01a10764b60699cbbe25aae069c8233704911c8aa0ec5e55",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/BENCH.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/BENCH.json",
+          "bytes": 456,
+          "sha256": "c7e737948f4bef4e01a10764b60699cbbe25aae069c8233704911c8aa0ec5e55",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "1b9004fae4f96c992a79cf6d0a77b7902c8f2e521c17359060811d7fcb7fe5fc",
+            "before_public_bytes": 476,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "1b9004fae4f96c992a79cf6d0a77b7902c8f2e521c17359060811d7fcb7fe5fc",
+        "before_public_bytes": 476,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "logs/BUILD.json",
+      "bytes": 770,
+      "sha256": "da3d920c332e12b2e261a3f10536d8f84e6a16df06044246c14c7a4ff4062a45",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/BUILD.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/BUILD.json",
+          "bytes": 770,
+          "sha256": "da3d920c332e12b2e261a3f10536d8f84e6a16df06044246c14c7a4ff4062a45",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "9eb6e5bf228b82881c4b9a99a073610570f9cd81292d60a5b0bce3caed5a8b55",
+            "before_public_bytes": 830,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "9eb6e5bf228b82881c4b9a99a073610570f9cd81292d60a5b0bce3caed5a8b55",
+        "before_public_bytes": 830,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "logs/ORACLE.json",
+      "bytes": 733,
+      "sha256": "4d46c9ba4f9731037be2dffd0cc2a45c37501d652d746759c2f1523005bb9714",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/ORACLE.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/ORACLE.json",
+          "bytes": 733,
+          "sha256": "4d46c9ba4f9731037be2dffd0cc2a45c37501d652d746759c2f1523005bb9714",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/ORACLE_DRIVER.json",
+      "bytes": 561,
+      "sha256": "6175f8cf749dfe10c00fbfd9b869ca6ab08c5331bd4ca37a3ec3d86ff09da2d7",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/ORACLE_DRIVER.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/ORACLE_DRIVER.json",
+          "bytes": 561,
+          "sha256": "6175f8cf749dfe10c00fbfd9b869ca6ab08c5331bd4ca37a3ec3d86ff09da2d7",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "72f187de997cc1e01223ffbc8906c62f9c35beadad876c887babf5f284995e05",
+            "before_public_bytes": 621,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "72f187de997cc1e01223ffbc8906c62f9c35beadad876c887babf5f284995e05",
+        "before_public_bytes": 621,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "logs/VALIDATE.json",
+      "bytes": 465,
+      "sha256": "c5c3137e45a45396bc28d211cb77a73e5e2b96d24b9f7b770b32bb3f42bfbe26",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/VALIDATE.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/VALIDATE.json",
+          "bytes": 465,
+          "sha256": "c5c3137e45a45396bc28d211cb77a73e5e2b96d24b9f7b770b32bb3f42bfbe26",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "3ff5a3d682638ff07f368a6bc01416193913ace4c39a42c7e367d71a1894c58f",
+            "before_public_bytes": 485,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "3ff5a3d682638ff07f368a6bc01416193913ace4c39a42c7e367d71a1894c58f",
+        "before_public_bytes": 485,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "logs/bench.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/bench.stderr",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/bench.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/bench.stdout",
+      "bytes": 4470,
+      "sha256": "0e6347bd31341c42c4dec338e624d77952a7cd3136967ce397f92b881f9e138e",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/bench.stdout",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/bench.stdout",
+          "bytes": 4470,
+          "sha256": "0e6347bd31341c42c4dec338e624d77952a7cd3136967ce397f92b881f9e138e",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/build.stderr",
+      "bytes": 506,
+      "sha256": "9648e97dc0be45af5170bbfef55c2685d9ae4791d5a9c00f484a3508a7e8f412",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/build.stderr",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/build.stderr",
+          "bytes": 506,
+          "sha256": "9648e97dc0be45af5170bbfef55c2685d9ae4791d5a9c00f484a3508a7e8f412",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "1609df752807fc2baa365a821e0d2e176a231e719aebbc2fd9f366819b3a0a37",
+            "before_public_bytes": 526,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "1609df752807fc2baa365a821e0d2e176a231e719aebbc2fd9f366819b3a0a37",
+        "before_public_bytes": 526,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "logs/build.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/build.stdout",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/build.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/oracle.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/oracle.stderr",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/oracle.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/oracle.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/oracle.stdout",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/oracle.stdout",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/validate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/validate.stderr",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/validate.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "logs/validate.stdout",
+      "bytes": 3534936,
+      "sha256": "db1592b552a2ff65b1285e4a6c120ed749d1e76fa7bc7dfd480764b7f25297cf",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/logs/validate.stdout",
+          "canonical": "benchmark/fcma-public-gate-20261004/logs/validate.stdout",
+          "bytes": 3534936,
+          "sha256": "db1592b552a2ff65b1285e4a6c120ed749d1e76fa7bc7dfd480764b7f25297cf",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/ANALYZE.py",
+      "bytes": 3174,
+      "sha256": "b1f2136dbf1045f2f26364b33456c4ad2116cf1e5cc99b6a4c63025a1562e85b",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/ANALYZE.py",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/ANALYZE.py",
+          "bytes": 3174,
+          "sha256": "b1f2136dbf1045f2f26364b33456c4ad2116cf1e5cc99b6a4c63025a1562e85b",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/ARM_PRIMARY_FETCH.json",
+      "bytes": 416,
+      "sha256": "4778ae0f4400b5723b753bd9856700d81c79e57684378a81e88e9da343c3053b",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/ARM_PRIMARY_FETCH.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/ARM_PRIMARY_FETCH.json",
+          "bytes": 416,
+          "sha256": "4778ae0f4400b5723b753bd9856700d81c79e57684378a81e88e9da343c3053b",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/CODEGEN_BINDING.json",
+      "bytes": 2818,
+      "sha256": "5ad1653a1092d6b4f71030686589ed1da0e2bb005653a2026a5bd8503e5df0d6",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/CODEGEN_BINDING.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/CODEGEN_BINDING.json",
+          "bytes": 2818,
+          "sha256": "5ad1653a1092d6b4f71030686589ed1da0e2bb005653a2026a5bd8503e5df0d6",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "dc0adc7257fe8be7976c1dbaa55b12d36d9773138762ab0485bb7dfde4012eb5",
+            "before_public_bytes": 2858,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "dc0adc7257fe8be7976c1dbaa55b12d36d9773138762ab0485bb7dfde4012eb5",
+        "before_public_bytes": 2858,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "root/DRIVER.py",
+      "bytes": 4328,
+      "sha256": "a7b974e3d73bc1269e2ab0c63c304922f74715f3e6090a1539b4a6d795eb9696",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/DRIVER.py",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/DRIVER.py",
+          "bytes": 4328,
+          "sha256": "a7b974e3d73bc1269e2ab0c63c304922f74715f3e6090a1539b4a6d795eb9696",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "fdb506e9e03795d25a1fd2458130317287a3eb4fd1c789241c2c7b9fb9b74968",
+            "before_public_bytes": 4348,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "fdb506e9e03795d25a1fd2458130317287a3eb4fd1c789241c2c7b9fb9b74968",
+        "before_public_bytes": 4348,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "root/EXACT_ORACLE.py",
+      "bytes": 9307,
+      "sha256": "ba613af40cc728d353ad1ecf6e0fbfe6913747066972b7229748144eb0031f4c",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/EXACT_ORACLE.py",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/EXACT_ORACLE.py",
+          "bytes": 9307,
+          "sha256": "ba613af40cc728d353ad1ecf6e0fbfe6913747066972b7229748144eb0031f4c",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "3e1c8bce11070ff5dca76000789d14ccdc72af8ffe507f46bb177ade8f28d1e0",
+            "before_public_bytes": 9324,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "3e1c8bce11070ff5dca76000789d14ccdc72af8ffe507f46bb177ade8f28d1e0",
+        "before_public_bytes": 9324,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "root/FCMA.asm",
+      "bytes": 3946,
+      "sha256": "6247764e58a39d8b2deade89c09d1c0c78fb9962c4fdd06fdb0b868e62aa0f12",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/FCMA.asm",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/FCMA.asm",
+          "bytes": 3946,
+          "sha256": "6247764e58a39d8b2deade89c09d1c0c78fb9962c4fdd06fdb0b868e62aa0f12",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "dfbf56f8fae114ad6db2b7e5edc7aba598fa310f6740f22515e915ca593ca851",
+            "before_public_bytes": 3966,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "dfbf56f8fae114ad6db2b7e5edc7aba598fa310f6740f22515e915ca593ca851",
+        "before_public_bytes": 3966,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "root/FPCR_PRIMARY.md",
+      "bytes": 1123,
+      "sha256": "037e690b6ad2b4b40cba312e8e2dd0d819700105534d06b9e00f1556d1d3d5ab",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/FPCR_PRIMARY.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/FPCR_PRIMARY.md",
+          "bytes": 1123,
+          "sha256": "037e690b6ad2b4b40cba312e8e2dd0d819700105534d06b9e00f1556d1d3d5ab",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/NEON.asm",
+      "bytes": 4804,
+      "sha256": "575e304952e4268eb6d87d2e17f9cd6656e79e12e1bc1cf15fa5bc38049c204c",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/NEON.asm",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/NEON.asm",
+          "bytes": 4804,
+          "sha256": "575e304952e4268eb6d87d2e17f9cd6656e79e12e1bc1cf15fa5bc38049c204c",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "3926aba2b070827ba6fcff8359b3b1c43b9f7bdabcf25eb782c1888c76961436",
+            "before_public_bytes": 4824,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "3926aba2b070827ba6fcff8359b3b1c43b9f7bdabcf25eb782c1888c76961436",
+        "before_public_bytes": 4824,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "root/NEXT.md",
+      "bytes": 1939,
+      "sha256": "d8d23c057519c8f2b4df34fbc6bbf479b2e42241a0cfd001622e2db5b6722ddc",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/NEXT.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/NEXT.md",
+          "bytes": 1939,
+          "sha256": "d8d23c057519c8f2b4df34fbc6bbf479b2e42241a0cfd001622e2db5b6722ddc",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/ORACLE_SPEC.md",
+      "bytes": 3806,
+      "sha256": "3e9e9578b619475ad9fed8a22b33687e18daa4512b8cdf73bcb64ebba3459133",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/ORACLE_SPEC.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/ORACLE_SPEC.md",
+          "bytes": 3806,
+          "sha256": "3e9e9578b619475ad9fed8a22b33687e18daa4512b8cdf73bcb64ebba3459133",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/ORIENTATION.json",
+      "bytes": 1251,
+      "sha256": "423fee4c918ea662d3274f9407749b574690eb9ccd841736d8a3d56f5c346b48",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/ORIENTATION.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/ORIENTATION.json",
+          "bytes": 1251,
+          "sha256": "423fee4c918ea662d3274f9407749b574690eb9ccd841736d8a3d56f5c346b48",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "3e78d0d6c4f2394cf6b41c0a5fb993688f52eff2210c95f1fe9d048bf1d22ff0",
+            "before_public_bytes": 1302,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "3e78d0d6c4f2394cf6b41c0a5fb993688f52eff2210c95f1fe9d048bf1d22ff0",
+        "before_public_bytes": 1302,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "root/PREBUILD_REVIEW.md",
+      "bytes": 4844,
+      "sha256": "931f87b947aaea4dc4ceb3c53e8167d2b7da99daa6f24baab12716e67f105bd1",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/PREBUILD_REVIEW.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/PREBUILD_REVIEW.md",
+          "bytes": 4844,
+          "sha256": "931f87b947aaea4dc4ceb3c53e8167d2b7da99daa6f24baab12716e67f105bd1",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/RESULT_REVIEW.md",
+      "bytes": 4190,
+      "sha256": "3db241bb483cfdab0c09b5c858085b15863c927d57f89b2f37ed7b7951e9fbdc",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/RESULT_REVIEW.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/RESULT_REVIEW.md",
+          "bytes": 4190,
+          "sha256": "3db241bb483cfdab0c09b5c858085b15863c927d57f89b2f37ed7b7951e9fbdc",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/SOURCE_BUILD.json",
+      "bytes": 1319,
+      "sha256": "f7a7cc63e018a0a29ae6b76d4d01d0333247a708a237751442815103ecfbd2b5",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/SOURCE_BUILD.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/SOURCE_BUILD.json",
+          "bytes": 1319,
+          "sha256": "f7a7cc63e018a0a29ae6b76d4d01d0333247a708a237751442815103ecfbd2b5",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "root/SOURCE_SCOPE.md",
+      "bytes": 5965,
+      "sha256": "6b547c61b158deea5f0560c1741b3b964e3281fa59f465c836049467be0b749a",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/SOURCE_SCOPE.md",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/SOURCE_SCOPE.md",
+          "bytes": 5965,
+          "sha256": "6b547c61b158deea5f0560c1741b3b964e3281fa59f465c836049467be0b749a",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "9030a83d10424482eaeef885020a5726bf0933b6276c917e7eeaf4b047f92692",
+            "before_public_bytes": 5999,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "9030a83d10424482eaeef885020a5726bf0933b6276c917e7eeaf4b047f92692",
+        "before_public_bytes": 5999,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "root/VERSION_BINDING.json",
+      "bytes": 440,
+      "sha256": "5957d8b2bfb420a5633b9f171d03fbd86fd67da19e652b22d12cece0a4aceddc",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/root/VERSION_BINDING.json",
+          "canonical": "benchmark/fcma-public-gate-20261004/root/VERSION_BINDING.json",
+          "bytes": 440,
+          "sha256": "5957d8b2bfb420a5633b9f171d03fbd86fd67da19e652b22d12cece0a4aceddc",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "c4a00165ad7b281c9e947eac6adaf028b6288aefae00e167a3e263e57eb6e2b8",
+            "before_public_bytes": 484,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "c4a00165ad7b281c9e947eac6adaf028b6288aefae00e167a3e263e57eb6e2b8",
+        "before_public_bytes": 484,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "source/probe/src/main.rs",
+      "bytes": 11518,
+      "sha256": "7ef97bf24cae04b14407cb56f89a43cf770b2a28105a5caadc8f1458c0970f65",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-fcma-public-gate-20261004/probe/src/main.rs",
+          "canonical": "benchmark/fcma-public-gate-20261004/source/probe/src/main.rs",
+          "bytes": 11518,
+          "sha256": "7ef97bf24cae04b14407cb56f89a43cf770b2a28105a5caadc8f1458c0970f65",
+          "transformation": "none"
+        }
+      ]
+    }
+  ],
+  "shared_files": [],
+  "evidence_metadata": {
+    "schema": "research-package-provenance.v1",
+    "recovered_utc": "2026-10-06T06:05:01.622369+00:00",
+    "source_map": "#/source_layout",
+    "original_manifest": "ORIGINAL_MANIFEST.json",
+    "scope": "public source/evidence selection; no native executable/cache/private payload imported",
+    "scientific_execution_in_this_recovery": false
+  },
+  "inventory_metadata": {
+    "schema": "research-package-manifest.v1"
+  },
+  "administrative_consolidation": {
+    "previous_manifests": {
+      "PACKAGE_MANIFEST.json": {
+        "sha256": "1f0e4d28ff5f44f5d0ce0f3a105224b572d81afc05669f6f168c4e06ac2851dc",
+        "bytes": 5857
+      },
+      "PROVENANCE.json": {
+        "sha256": "4d1cbdac121e10daad7b6076a2767760c3e609398526e3e3af343b0374149ad4",
+        "bytes": 10955
+      },
+      "SOURCE_MAP.json": {
+        "sha256": "4763321c50745396bbd6ca087713cb7839b156470995004bb6ab99ce078363a7",
+        "bytes": 2697
+      }
+    },
+    "field_relocations": [
+      {
+        "field": "evidence_metadata.source_map",
+        "previous": "SOURCE_MAP.json",
+        "current": "#/source_layout"
+      }
+    ],
+    "scientific_files_changed": false
+  }
+}

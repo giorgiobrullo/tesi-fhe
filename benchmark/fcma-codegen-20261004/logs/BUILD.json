@@ -1,0 +1,25 @@
+{
+  "started_utc": "2026-10-04T17:09:35.314255+00:00",
+  "pid": 24317,
+  "parent_pid": 24315,
+  "command": [
+    "/opt/homebrew/bin/cargo",
+    "build",
+    "--manifest-path",
+    "/workspace/research/tmp/current-fcma-codegen-20261004/probe/Cargo.toml",
+    "--release",
+    "--offline",
+    "--locked",
+    "--jobs",
+    "1",
+    "--target-dir",
+    "/workspace/research/tmp/current-fcma-codegen-20261004/target"
+  ],
+  "status": "terminal",
+  "target_arithmetic_execution": false,
+  "returncode": 0,
+  "ended_utc": "2026-10-04T17:09:40.854326+00:00",
+  "binary_path": "/workspace/research/tmp/current-fcma-codegen-20261004/bin/codegen-probe",
+  "binary_bytes": 454480,
+  "binary_sha256": "a7276e4bccee81362779aaee551b2a559733cece450494b2e60f545d93dfc668"
+}

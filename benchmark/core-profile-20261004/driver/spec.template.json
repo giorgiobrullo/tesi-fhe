@@ -1,0 +1,18 @@
+{
+  "schema": "current-core-profile-http.v1",
+  "python": "/opt/tool-cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "output": "/workspace/research/tmp/current-core-profile-20261004/results",
+  "fixtures": "/workspace/research/tmp/m4-thread-scaling-20260921/fixtures",
+  "runtime": "/workspace/research/tmp/current-core-profile-20261004/runtimes/profile",
+  "binary": "/workspace/research/tmp/current-core-profile-20261004/bin/profile",
+  "build_receipt": "/workspace/research/tmp/current-core-profile-20261004/logs/build.json",
+  "keydir": "/workspace/research/tmp/current-core-profile-20261004/keys/family1",
+  "keygen_receipt": "/workspace/research/tmp/current-core-profile-20261004/logs/keygen.json",
+  "key_origin": "fresh",
+  "compiler_identity": "REPLACE_WITH_COMPLETE_RUSTC_1.98.1_VERSION",
+  "rayon_threads": 16,
+  "blocks": 4,
+  "warmups_per_scene": 1,
+  "measured_reps": 2,
+  "stage_tolerance_ns": 250000
+}

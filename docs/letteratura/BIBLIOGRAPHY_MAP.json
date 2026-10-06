@@ -1,0 +1,1962 @@
+{
+  "schema": "bibliography-map.v1",
+  "updated": "2026-10-06",
+  "scope": "All 97 pre-consolidation source-list bullets, one existing BibTeX reference previously absent from that list, and six primary references for biometric methods/datasets actually used. The six additions were checked at metadata/abstract level; no claim of full-text review or exhaustive SOTA.",
+  "canonical": "bibliografia.bib",
+  "canonical_sha256": "371bb249916ca9090101e0202a9876753fb541be2a8e20fa2b2dc7b6654629c3",
+  "counts": {
+    "preserved_keys": 52,
+    "new_records": 60,
+    "canonical_entries": 112,
+    "original_annotated_bullets": 97,
+    "annotated_bullets": 104,
+    "unmapped_bullets": 0,
+    "unmapped_keys": 0
+  },
+  "version_groups": [
+    {
+      "work": "Mean compensation",
+      "keys": [
+        "deruijter2025mean",
+        "deruijter2025meanpreprint"
+      ],
+      "reason": "Final TCHES edition and earlier preprint have separately qualified parameter/table scopes."
+    },
+    {
+      "work": "Circuit privacy",
+      "keys": [
+        "kluczniak2025circuitprivacy",
+        "kluczniak2022circuitprivacypreprint"
+      ],
+      "reason": "Published CiC edition versus revised ePrint."
+    },
+    {
+      "work": "Recursive FDFB",
+      "keys": [
+        "hwang2025recursive",
+        "Hwang2025RecursivePreprint",
+        "hwang2025recursivepreproceedings"
+      ],
+      "reason": "Final chapter, ePrint and preproceedings are identified separately; final text comparison remains unclaimed."
+    },
+    {
+      "work": "FAKES",
+      "keys": [
+        "Yue2025FAKES",
+        "Yue2023FAKESPreprint"
+      ],
+      "reason": "Six-author final edition versus five-author preprint actually read."
+    },
+    {
+      "work": "CEA database patent family",
+      "keys": [
+        "cea2025wo027253",
+        "cea2025fr3151957"
+      ],
+      "reason": "Distinct WO and FR publication documents in the same family."
+    }
+  ],
+  "metadata_notes": [
+    {
+      "key": "yu2024circuits",
+      "issue": "DOI registry reported 2023; author ACM PDF and institutional record explicitly give 2024. Canonical entry uses 2024."
+    },
+    {
+      "key": "kim2024grass",
+      "issue": "Source list shorthand 2025 corrected to ePrint received 13 December 2024; no later publication inferred."
+    },
+    {
+      "key": "sadeghi2010face",
+      "issue": "ICISC 2009 is the conference; chapter publication year is 2010."
+    },
+    {
+      "key": "legiest2025leuvenshtein",
+      "issue": "Invalid DOI placeholder xxx returned by ePrint deliberately omitted."
+    },
+    {
+      "key": "chakraborty2022comparisons",
+      "issue": "ePrint labels a preprint; WAHC attribution from prior list is retained in note without inventing final publisher fields."
+    },
+    {
+      "key": "demicheli2026lightweight",
+      "issue": "Current arXiv metadata revision is newer than initial review; no automatic transfer of technical reading to the newer version."
+    }
+  ],
+  "sources": [
+    {
+      "id": "S001",
+      "source": "fonti.md",
+      "line": 24,
+      "label": "Erkin, Franz, Guajardo, Katzenbeisser, Lagendijk, Toft, Privacy-Preserving Face Recognition,",
+      "bibtex_keys": [
+        "erkin2009face"
+      ],
+      "annotation_sha256": "b863f2d2d716d6126255f72210b297e2589de3778cd558d53c29315bcef44558"
+    },
+    {
+      "id": "S002",
+      "source": "fonti.md",
+      "line": 29,
+      "label": "Sadeghi, Schneider, Wehrenberg, Efficient Privacy-Preserving Face Recognition, ICISC 2009,",
+      "bibtex_keys": [
+        "sadeghi2010face"
+      ],
+      "annotation_sha256": "4d89d2b6513f4df5786cf1181964d393b07aaa5dfaf7b532affda18ca85c8133"
+    },
+    {
+      "id": "S003",
+      "source": "fonti.md",
+      "line": 34,
+      "label": "Kolesnikov, Sadeghi, Schneider, Improved Garbled Circuit Building Blocks and Applications to",
+      "bibtex_keys": [
+        "kolesnikov2009minima"
+      ],
+      "annotation_sha256": "f89d077fc65909e4c9a5c3508382b99d8ed9e7b269a5a34b526ebac2a1d8b325"
+    },
+    {
+      "id": "S004",
+      "source": "fonti.md",
+      "line": 38,
+      "label": "Osadchy, Pinkas, Jarrous, Moskovich, SCiFI -- A System for Secure Face Identification, IEEE",
+      "bibtex_keys": [
+        "osadchy2010scifi"
+      ],
+      "annotation_sha256": "8875b52c82532adc9c9de4f84c89d6410fd64a161fa97f5b4207a7f393943369"
+    },
+    {
+      "id": "S005",
+      "source": "fonti.md",
+      "line": 43,
+      "label": "Zuber, Sirdey, Efficient homomorphic evaluation of k-NN classifiers, PoPETs 2021(2), <https://petsymposium.org/popets/2021/popets-2021-0020.php> (verificato sul testo: query cifrata vs modello in chiaro, distanza quadratica leveled con encoding polinomiale, sign bootstrapping con \"zone rosse\" di esito casuale, (d²−d)/2 bootstrap; d=10 in 4 s, d=457 in 71 min sequenziali, libreria TFHE, λ=110; base del varco a soglia di F37)",
+      "bibtex_keys": [
+        "zuber2021knn"
+      ],
+      "annotation_sha256": "648ab137ae483e42fbdb6516ce02c0794186bf6f28b9f82db0b50b1db73e1ee5"
+    },
+    {
+      "id": "S006",
+      "source": "fonti.md",
+      "line": 262,
+      "label": "Liu, Micciancio, Polyakov, Large-Precision Homomorphic Sign Evaluation using FHEW/TFHE Bootstrapping, ePrint 2021/1337, <https://eprint.iacr.org/2021/1337.pdf> (segno via floor iterativa/digit decomposition; prior art di contesto, non prova della composizione corrente)",
+      "bibtex_keys": [
+        "liu2021sign"
+      ],
+      "annotation_sha256": "1e74a4beef43e72aa6798f1c1dbd611b6878151744e88d090668c61459ce1341"
+    },
+    {
+      "id": "S007",
+      "source": "fonti.md",
+      "line": 264,
+      "label": "Chillotti, Ligier, Orfila, Tap, Improved Programmable Bootstrapping with Larger Precision and Efficient Arithmetic Circuits for TFHE, ASIACRYPT 2021, <https://www.iacr.org/archive/asiacrypt2021/130900334/130900334.pdf> (WoP-PBS/chunk extraction; contesto per le costruzioni residuali ritirate)",
+      "bibtex_keys": [
+        "chillotti2021woppbs"
+      ],
+      "annotation_sha256": "b5caf3101ba36012e797c8d711dd612081508e8bc7c55c8899caaa5f08506365"
+    },
+    {
+      "id": "S008",
+      "source": "fonti.md",
+      "line": 266,
+      "label": "Carpov, Izabachène, Mollimard, New Techniques for Multi-value Input Homomorphic Evaluation and",
+      "bibtex_keys": [
+        "carpov2019multivalue"
+      ],
+      "annotation_sha256": "3dd7adc403fb2627e1a5a4991cd24ef04ea191490659a7fa190e3b0648fc63bf"
+    },
+    {
+      "id": "S009",
+      "source": "fonti.md",
+      "line": 270,
+      "label": "Cho, Chung, Ha, Lee, Oh, Son, FRAST: TFHE-Friendly Cipher Based on Random S-Boxes, ToSC",
+      "bibtex_keys": [
+        "cho2024frast"
+      ],
+      "annotation_sha256": "2184dc4b82b4b902110a544351b184d277366afad4ca7fc033f4d7dd40eb45b3"
+    },
+    {
+      "id": "S010",
+      "source": "fonti.md",
+      "line": 275,
+      "label": "Trama, Clet, Boudguiga, Sirdey, Ye, Designing a General-Purpose 8-bit (T)FHE Processor",
+      "bibtex_keys": [
+        "trama2025processor"
+      ],
+      "annotation_sha256": "cd34237ee382cfddfd1cb7a6026abeec37fdc835d057e2b64ad024b4295b658e"
+    },
+    {
+      "id": "S011",
+      "source": "fonti.md",
+      "line": 488,
+      "label": "Axell, US20240154786A1, <https://patents.google.com/patent/US20240154786A1/en>",
+      "bibtex_keys": [
+        "axell2024us154786"
+      ],
+      "annotation_sha256": "223d30369321472d44151da8f3bd53f2975ac35abac6f38035bc60bd903a285d"
+    },
+    {
+      "id": "S012",
+      "source": "fonti.md",
+      "line": 492,
+      "label": "Axell, US20240121077A1, <https://patents.google.com/patent/US20240121077A1/en>",
+      "bibtex_keys": [
+        "axell2024us121077"
+      ],
+      "annotation_sha256": "7bdfae2c5fbf7be3f08dd1706fd70b9df5dd4c9fadb3e4e3f16830704c4bc5ac"
+    },
+    {
+      "id": "S013",
+      "source": "fonti.md",
+      "line": 495,
+      "label": "Axell, US20240187210A1, <https://patents.google.com/patent/US20240187210A1/en>",
+      "bibtex_keys": [
+        "axell2024us187210"
+      ],
+      "annotation_sha256": "352f1fa249dddf96026d3de70be38ed4d32f6b9a574c0f0488e7b8f22c301f97"
+    },
+    {
+      "id": "S014",
+      "source": "fonti.md",
+      "line": 365,
+      "label": "Guimarães, Pereira, **Fast amortized bootstrapping with small keys and polynomial noise overhead**,",
+      "bibtex_keys": [
+        "GuimaraesPereira2025Amortized"
+      ],
+      "annotation_sha256": "07def53c12d7cf2043f4d17df3d7f8cb6b619d82f2cbf6cf40382e2c2831da94"
+    },
+    {
+      "id": "S015",
+      "source": "fonti.md",
+      "line": 351,
+      "label": "Li, Shen, Lu, Wang, Zhao, Wang, Wei, Leveled Functional Bootstrapping via External Product Tree,",
+      "bibtex_keys": [
+        "li2025lfbs"
+      ],
+      "annotation_sha256": "21c279f34268ad06b9ce68b7577f408ebfb2d9c0f9df4722d9a17239c289e139"
+    },
+    {
+      "id": "S016",
+      "source": "fonti.md",
+      "line": 280,
+      "label": "Bergerat et al., Parameter Optimization and Larger Precision for (T)FHE, Journal of",
+      "bibtex_keys": [
+        "bergerat2023precision"
+      ],
+      "annotation_sha256": "d02e83895f0a82cfb6a49cd2857e97fccd7175b7c0907bab7db9a91ac9c632fe"
+    },
+    {
+      "id": "S017",
+      "source": "fonti.md",
+      "line": 498,
+      "label": "Zama, domanda di brevetto EP4096148A1 poi ritirata, pubblicazione 2022,",
+      "bibtex_keys": [
+        "zama2022ep4096148"
+      ],
+      "annotation_sha256": "5a8a70238adbadf643ef6080075cb7ed46c068e56b8dae24d407bd62a6a7f5b8"
+    },
+    {
+      "id": "S018",
+      "source": "fonti.md",
+      "line": 129,
+      "label": "Alansari, Hay, Javed, Shoufan, Zweiri, Werghi, GhostFaceNets: Lightweight Face Recognition Model From Cheap Operations, IEEE Access 11, 2023, doi 10.1109/ACCESS.2023.3266068; pesi ufficiali <https://github.com/HamadYA/GhostFaceNets> (release v1.2, W1.3 S1 ArcFace MS1MV3; dichiarati LFW 99,73 / CFP-FP 96,83 / AgeDB-30 98,0; riprodotti in F44)",
+      "bibtex_keys": [
+        "alansari2023ghostfacenets"
+      ],
+      "annotation_sha256": "1bde3d601ab8c82c20faf99ca33470fb5816acb079f4f6ea9d41cf8976eaeff2"
+    },
+    {
+      "id": "S019",
+      "source": "fonti.md",
+      "line": 80,
+      "label": "HERS, T-BIOM 2022, <https://arxiv.org/abs/2003.12197>",
+      "bibtex_keys": [
+        "engelsma2022hers"
+      ],
+      "annotation_sha256": "31abbb8261c6769fd6fdc87339d838e7c46cba5437f772b7acef83f7a75e9e02"
+    },
+    {
+      "id": "S020",
+      "source": "fonti.md",
+      "line": 84,
+      "label": "Blind-Match, CIKM 2024, <https://arxiv.org/abs/2408.06167>",
+      "bibtex_keys": [
+        "choi2024blindmatch"
+      ],
+      "annotation_sha256": "041f23bc200bcd79e8dcd34707a0c0a54515f407b8d158db22fe0a9e18072b0d"
+    },
+    {
+      "id": "S021",
+      "source": "fonti.md",
+      "line": 82,
+      "label": "GROTE, CODASPY 2023, <https://hal.science/hal-04000209> (anche <https://www.eurecom.fr/en/publication/7213>)",
+      "bibtex_keys": [
+        "ibarrondo2023grote"
+      ],
+      "annotation_sha256": "9b46798db621ca0e35cebdcecc5daba0acd39c81cf7da1b14505e8a6ff809c14"
+    },
+    {
+      "id": "S022",
+      "source": "fonti.md",
+      "line": 398,
+      "label": "Cheon, Kim, Kim, Efficient Homomorphic Comparison Methods with Optimal Complexity, ASIACRYPT 2020, <https://eprint.iacr.org/2019/1234> (verificato sul testo: segno come polinomio composto f_n^(d_f)∘g_n^(d_g), f_1=(3x−x³)/2, g_1=(2126x−1359x³)/2¹⁰, ecc.; d_g ≈ log(1/ε)/log g'_n(0), d_f ≈ log α/log(n+1); usato per la soglia CKKS di F39)",
+      "bibtex_keys": [
+        "cheon2020comparison"
+      ],
+      "annotation_sha256": "15c37647c358ce126a0c588a64988e38978e5568af66e81ea2e6be5016f81d38"
+    },
+    {
+      "id": "S023",
+      "source": "fonti.md",
+      "line": 407,
+      "label": "Mazzone, Everts, Hahn, Peter, Efficient Ranking, Order Statistics, and Sorting under CKKS,",
+      "bibtex_keys": [
+        "mazzone2025ranking"
+      ],
+      "annotation_sha256": "f961dab9ad733de5a537ec6e53b368f6faa944adc6ba86a81a756059770d6d7c"
+    },
+    {
+      "id": "S024",
+      "source": "fonti.md",
+      "line": 86,
+      "label": "CryptoFace, CVPR 2025, <https://arxiv.org/abs/2509.00332>",
+      "bibtex_keys": [
+        "ao2025cryptoface"
+      ],
+      "annotation_sha256": "8a05b74be70d9bdb6469733c9198003d73ed8efed4446d5901b8a28eb2fedc92"
+    },
+    {
+      "id": "S025",
+      "source": "fonti.md",
+      "line": 88,
+      "label": "Lightweight/BSGS-Diagonal, De Micheli et al., 2026, <https://arxiv.org/abs/2604.00546>",
+      "bibtex_keys": [
+        "demicheli2026lightweight"
+      ],
+      "annotation_sha256": "bbaf35be974ee3639d5c739e058757d245d854a31f7bd2b5bfadf03ddecaa343"
+    },
+    {
+      "id": "S026",
+      "source": "fonti.md",
+      "line": 90,
+      "label": "HyDia, Martin et al., PoPETs 2025, <https://www.petsymposium.org/popets/2025/popets-2025-0146.php>",
+      "bibtex_keys": [
+        "martin2025hydia"
+      ],
+      "annotation_sha256": "dd326c3cf47d3eadf699dcdaaa27465673e857bff5f93602b9129116a4f8d231"
+    },
+    {
+      "id": "S027",
+      "source": "fonti.md",
+      "line": 92,
+      "label": "CryptoMask, ICICS 2023, <https://arxiv.org/abs/2307.12010>",
+      "bibtex_keys": [
+        "bai2023cryptomask"
+      ],
+      "annotation_sha256": "2a6784ab0bec758ce2cc2298c9e26585d74f028c87260af92723b91ea4df99eb"
+    },
+    {
+      "id": "S028",
+      "source": "fonti.md",
+      "line": 78,
+      "label": "HERS predecessore: Boddeti, \"Secure Face Matching\", 2018, <https://arxiv.org/abs/1805.00577>",
+      "bibtex_keys": [
+        "boddeti2018secureface"
+      ],
+      "annotation_sha256": "0ebe57d8629d51303455ba110687120ada3ad7acbd1ead7113875d4578563815"
+    },
+    {
+      "id": "S029",
+      "source": "fonti.md",
+      "line": 396,
+      "label": "Cheon et al., Comparison (numerical), ASIACRYPT 2019, <https://eprint.iacr.org/2019/417>",
+      "bibtex_keys": [
+        "cheon2019numerical"
+      ],
+      "annotation_sha256": "24c61f55ea5d99ca5c042d68485754ab43824dde196363abb5f0b5712011b1b3"
+    },
+    {
+      "id": "S030",
+      "source": "fonti.md",
+      "line": 405,
+      "label": "Lee, Choi, Lee, Approximating Max Function in Fully Homomorphic Encryption, Electronics 12(7), 2023, <https://doi.org/10.3390/electronics12071724> (CKKS; restituisce le posizioni dei valori che condividono i primi `k` MSB con il massimo; prior art diretto per il candidate narrowing MSB-first)",
+      "bibtex_keys": [
+        "lee2023max"
+      ],
+      "annotation_sha256": "3c4bbe5120b7bb75f0cf5b45dceb3eb58551d7011cce7fa4fe421f16a974e99a"
+    },
+    {
+      "id": "S031",
+      "source": "fonti.md",
+      "line": 400,
+      "label": "Lee, Lee, No, Kim, Minimax Approximation of Sign Function by Composite Polynomial for",
+      "bibtex_keys": [
+        "lee2020minimax"
+      ],
+      "annotation_sha256": "9619902c3580c62211e2a6c5d60a8f45ded2d74814df6f95352097c5874bd033"
+    },
+    {
+      "id": "S032",
+      "source": "fonti.md",
+      "line": 45,
+      "label": "Azogagh, Killijian, Larose-Gervais, A non-comparison oblivious sort and its application to",
+      "bibtex_keys": [
+        "azogagh2025blindcounting"
+      ],
+      "annotation_sha256": "b262c11add7c0687975e28ebc79cc2e2bd1a0eadc7a7b730b2b880ec7073e28e"
+    },
+    {
+      "id": "S033",
+      "source": "fonti.md",
+      "line": 94,
+      "label": "Zama, FHE Biometrics, repository Concrete/TFHE archiviato, commit `3038bc9`,",
+      "bibtex_keys": [
+        "zamaFHEBiometrics3038bc9"
+      ],
+      "annotation_sha256": "f9bbe8391c116e3705aeea0cdfda0ed510cce68e7981e03a3e82e37a955b9b51"
+    },
+    {
+      "id": "S034",
+      "source": "fonti.md",
+      "line": 52,
+      "label": "Cong, Geelen, Kang, Park, Revisiting Oblivious Top-k Selection with Applications to Secure k-NN",
+      "bibtex_keys": [
+        "cong2024topk"
+      ],
+      "annotation_sha256": "0d5685088a620e4cd4d49ee92f9737eb437f32b759156f8faae5660e270b4b8e"
+    },
+    {
+      "id": "S035",
+      "source": "fonti.md",
+      "line": 58,
+      "label": "Chakraborty & Zuber, Efficient and Accurate Homomorphic Comparisons (argmin TFHE a torneo), WAHC 2022, <https://eprint.iacr.org/2022/622>",
+      "bibtex_keys": [
+        "chakraborty2022comparisons"
+      ],
+      "annotation_sha256": "53bd8c71d329dec7c93ca2c12faec53d281a20ca5fb7b8a83005ade57d79a8c8"
+    },
+    {
+      "id": "S036",
+      "source": "fonti.md",
+      "line": 285,
+      "label": "Yu et al., WAHC 2024, priority encoder TFHE generico e sintesi FBS multi-value,",
+      "bibtex_keys": [
+        "yu2024circuits"
+      ],
+      "annotation_sha256": "f1f5a6b81612a7753528baf2c78060584117d4563426384d9ca0aaeb95794f49"
+    },
+    {
+      "id": "S037",
+      "source": "fonti.md",
+      "line": 289,
+      "label": "Legiest et al., Leuvenshtein: Efficient FHE-based Edit Distance, ePrint 2025/012,",
+      "bibtex_keys": [
+        "legiest2025leuvenshtein"
+      ],
+      "annotation_sha256": "b53188e9271ed0805a1bf299b81b51f364ce95c6d9a851b4afed5ac58b01e0fd"
+    },
+    {
+      "id": "S038",
+      "source": "fonti.md",
+      "line": 346,
+      "label": "Azogagh, Birba, Killijian, Larose-Gervais, Gambs, RevoLUT: Rust Efficient Versatile Oblivious",
+      "bibtex_keys": [
+        "azogagh2024revolut"
+      ],
+      "annotation_sha256": "9e327b75f4fe9b230d3751d864dd101fd2e63b849a196415fe395f7f0297fc06"
+    },
+    {
+      "id": "S039",
+      "source": "fonti.md",
+      "line": 60,
+      "label": "k-NN simmetrico TFHE (Ameur, Aziz, Audigier, Bouzefrane), PSD 2022, <https://doi.org/10.1007/978-3-031-13945-1_11>",
+      "bibtex_keys": [
+        "ameur2022knn"
+      ],
+      "annotation_sha256": "f6b2ab4664aab41c59034e892da325029ac1934cf3d4bae787fd69a8ef060b2b"
+    },
+    {
+      "id": "S040",
+      "source": "fonti.md",
+      "line": 99,
+      "label": "Blind-Touch, AAAI 2024, <https://ojs.aaai.org/index.php/AAAI/article/view/30200>",
+      "bibtex_keys": [
+        "choi2024blindtouch"
+      ],
+      "annotation_sha256": "a0b52a70f5a4a3224b752d5906b9c22c0dc7d082be1df13d41a08f2bb659cedb"
+    },
+    {
+      "id": "S041",
+      "source": "fonti.md",
+      "line": 101,
+      "label": "IDFace, ICCV 2025, <https://arxiv.org/abs/2507.12050>",
+      "bibtex_keys": [
+        "kim2025idface"
+      ],
+      "annotation_sha256": "41e164a9e354d1d8000be1baa3f1adabd594b5dc6083844fab206894c31eea72"
+    },
+    {
+      "id": "S042",
+      "source": "fonti.md",
+      "line": 131,
+      "label": "Review HE biometrics, Sensors 2023, <https://www.mdpi.com/1424-8220/23/7/3566>",
+      "bibtex_keys": [
+        "yang2023biometricsreview"
+      ],
+      "annotation_sha256": "915f0aa60cc3400f0469a11a71d506a476dbdb9c73e40daafdeef8c8c76d4bbf"
+    },
+    {
+      "id": "S043",
+      "source": "fonti.md",
+      "line": 133,
+      "label": "Rathgeb et al., DL in template protection, 2023, <https://arxiv.org/abs/2303.02715>",
+      "bibtex_keys": [
+        "rathgeb2023templateprotection"
+      ],
+      "annotation_sha256": "078b9f34ecd168b0a7707fa38d1f6b0a1bbeb1927b0a253eb73ad85b57f6de23"
+    },
+    {
+      "id": "S044",
+      "source": "fonti.md",
+      "line": 211,
+      "label": "Monchi, BFV + FSS private biometric identification, 2024, <https://eprint.iacr.org/2024/654>",
+      "bibtex_keys": [
+        "ibarrondo2024monchi"
+      ],
+      "annotation_sha256": "117b3ccf1877c5c836917180649386bd14749cd9a1ff2329d56a608f75be19b9"
+    },
+    {
+      "id": "S045",
+      "source": "fonti.md",
+      "line": 213,
+      "label": "Funshade, PoPETs 2023, <https://petsymposium.org/popets/2023/popets-2023-0096.php>",
+      "bibtex_keys": [
+        "ibarrondo2023funshade"
+      ],
+      "annotation_sha256": "1e5f76746e123aeea4e12d8dd0c08b19899e4478febd188c37befd4b67fb3c6e"
+    },
+    {
+      "id": "S046",
+      "source": "fonti.md",
+      "line": 447,
+      "label": "Eliron Rahimi, Margarita Osadchy, Orr Dunkelman,",
+      "bibtex_keys": [
+        "rahimi2025binary"
+      ],
+      "annotation_sha256": "778fd0cdc238db1504d37a3d7688d8f62dcac0b2836213bc71d0ef811ec2ebfe"
+    },
+    {
+      "id": "S047",
+      "source": "fonti.md",
+      "line": 362,
+      "label": "BatchBoot, USENIX Security 2026,",
+      "bibtex_keys": [
+        "li2026batchboot"
+      ],
+      "annotation_sha256": "4fb259c69bb2c73138b7c97031aad72b87a1f1458665dc4e9a7f235e95cddfc4"
+    },
+    {
+      "id": "S048",
+      "source": "fonti.md",
+      "line": 355,
+      "label": "Bergerat, Bonte, Curtis, Orfila, Paillier, Tap, Sharing the Mask: TFHE Bootstrapping on Packed",
+      "bibtex_keys": [
+        "bergerat2025sharing"
+      ],
+      "annotation_sha256": "76c3f40e084a1e5811dc0e3c16308768c519d8082140bcb3a73ace9633236c40"
+    },
+    {
+      "id": "S049",
+      "source": "fonti.md",
+      "line": 215,
+      "label": "Pan, Lou e Shao, single-server encrypted kNN, 2026,",
+      "bibtex_keys": [
+        "pan2026encryptedknn"
+      ],
+      "annotation_sha256": "f04d5837b551c39b12c818f7eacb5ddacc860a4b90d629197682c50296839f09"
+    },
+    {
+      "id": "S050",
+      "source": "fonti.md",
+      "line": 218,
+      "label": "GraSS, graph-based secure similarity search, preprint 2024,",
+      "bibtex_keys": [
+        "kim2024grass"
+      ],
+      "annotation_sha256": "627901c5cf8f668cb68bd5c2e525a282590e8f96bfa228c70d9e28619faab380"
+    },
+    {
+      "id": "S051",
+      "source": "fonti.md",
+      "line": 221,
+      "label": "SANNS, USENIX Security 2020,",
+      "bibtex_keys": [
+        "chen2020sanns"
+      ],
+      "annotation_sha256": "e8d2e28b896ee1ebb31babf4ca6fba9d53d444eadb1b31abaf08f6b98bcaa066"
+    },
+    {
+      "id": "S052",
+      "source": "fonti.md",
+      "line": 224,
+      "label": "PANTHER, CCS 2025, <https://doi.org/10.1145/3719027.3765190>",
+      "bibtex_keys": [
+        "li2025panther"
+      ],
+      "annotation_sha256": "c51f9e3c2c9fc515aa83294ff27992a2c1d0f9948e607dda308913509762f9b5"
+    },
+    {
+      "id": "S053",
+      "source": "fonti.md",
+      "line": 226,
+      "label": "RAM-FHE, 2019, <https://eprint.iacr.org/2019/632>",
+      "bibtex_keys": [
+        "hamlin2019ramfhe"
+      ],
+      "annotation_sha256": "3abf17b59b926e2965a6dcd131482d0299d7f42d593a7acff744ebb031d99a0d"
+    },
+    {
+      "id": "S054",
+      "source": "fonti.md",
+      "line": 228,
+      "label": "Isozaki et al., hierarchical private vector search, arXiv v1 2026,",
+      "bibtex_keys": [
+        "isozaki2026hierarchical"
+      ],
+      "annotation_sha256": "96d26da7e77a497ee940b1cb5c8b7cc11addbcc2d4583cf374d8b7a097ca0902"
+    },
+    {
+      "id": "S055",
+      "source": "fonti.md",
+      "line": 503,
+      "label": "CEA, WO2025027253A1 / FR3151957A1, Methode d'interrogation confidentielle d'une base de donnees,",
+      "bibtex_keys": [
+        "cea2025wo027253",
+        "cea2025fr3151957"
+      ],
+      "annotation_sha256": "0bd60e9fca8b78fedc022d0fa3b9cf32b4801a43a18b5ddd29343084e4982516"
+    },
+    {
+      "id": "S056",
+      "source": "fonti.md",
+      "line": 508,
+      "label": "Microsoft, US9825758B2, <https://patents.google.com/patent/US9825758B2/en>; IBM,",
+      "bibtex_keys": [
+        "microsoft2017us9825758",
+        "ibm2022us269717",
+        "dhs2024us11924349",
+        "twente2025nl2035809"
+      ],
+      "annotation_sha256": "15d51ce6af98a3c60d37990745d9eba09e837ade3b76377eb1d5ce8ece450548"
+    },
+    {
+      "id": "S057",
+      "source": "fonti.md",
+      "line": 103,
+      "label": "Sefik Serengil, Alper Ozpinar,",
+      "bibtex_keys": [
+        "serengil2025cipherface"
+      ],
+      "annotation_sha256": "a13da56ee70c5a6a25b3ab57caeb03c72df7c8645fc7968bde4bd36e8a01588d"
+    },
+    {
+      "id": "S058",
+      "source": "fonti.md",
+      "line": 110,
+      "label": "Luke Sperling, Nalini Ratha, Arun Ross, Vishnu Naresh Boddeti,",
+      "bibtex_keys": [
+        "sperling2022heft"
+      ],
+      "annotation_sha256": "e09c8a3eb459020ce1fd674ff32fd7be5eddf8b2e3487fd6030856773226fe9f"
+    },
+    {
+      "id": "S059",
+      "source": "fonti.md",
+      "line": 116,
+      "label": "Ramin Akbari, Luke Sperling, Nalini K. Ratha, Arun Ross, Vishnu Naresh Boddeti,",
+      "bibtex_keys": [
+        "akbari2025fusion"
+      ],
+      "annotation_sha256": "ea026e8e73b1b155b95448087fab923ab1bcacaccce2ae501ea6ba6d67138d00"
+    },
+    {
+      "id": "S060",
+      "source": "fonti.md",
+      "line": 197,
+      "label": "Pawel Drozdowski, Fabian Stockhardt, Christian Rathgeb, Dailé Osorio-Roig,",
+      "bibtex_keys": [
+        "drozdowski2021indexing"
+      ],
+      "annotation_sha256": "90c24e89c6750e7b0d4ccc678b997540f68de2261aaf7e177e94b1633037baf1"
+    },
+    {
+      "id": "S061",
+      "source": "fonti.md",
+      "line": 62,
+      "label": "Duy Tung Khanh Nguyen, Dung Hoang Duong, Willy Susilo, Yang-Wai Chow, The Anh Ta,",
+      "bibtex_keys": [
+        "nguyen2026heargmax"
+      ],
+      "annotation_sha256": "ff11bd7f36ce9395255c10bfc54ff487b9a21aa77bfbcbc88e48aa252444aa99"
+    },
+    {
+      "id": "S062",
+      "source": "fonti.md",
+      "line": 455,
+      "label": "Kamil Kluczniak, Circuit Privacy for FHEW/TFHE-Style Fully Homomorphic Encryption",
+      "bibtex_keys": [
+        "kluczniak2025circuitprivacy",
+        "kluczniak2022circuitprivacypreprint"
+      ],
+      "annotation_sha256": "65c734a7b04862aaa3a430310d45e2330657cc0c92efd5b65de1f09f9217ccae"
+    },
+    {
+      "id": "S063",
+      "source": "fonti.md",
+      "line": 465,
+      "label": "Léo Ducas, Damien Stehlé, Sanitization of FHE Ciphertexts, EUROCRYPT 2016,",
+      "bibtex_keys": [
+        "ducas2016sanitization"
+      ],
+      "annotation_sha256": "6fa120315bb84f8089a7bfdbe4c03435a8437f0d541d1376df7049967b0e2835"
+    },
+    {
+      "id": "S064",
+      "source": "fonti.md",
+      "line": 294,
+      "label": "Jan-Pieter D'Anvers, Xander Pottier, Thomas de Ruijter, Ingrid Verbauwhede,",
+      "bibtex_keys": [
+        "danvers2025headstart"
+      ],
+      "annotation_sha256": "b698c028383ee30ed6f8f5c68e96835a10b293289fc11c211bce1b9630ab1a0a"
+    },
+    {
+      "id": "S065",
+      "source": "fonti.md",
+      "line": 301,
+      "label": "Thomas de Ruijter, Jan-Pieter D'Anvers, Ingrid Verbauwhede,",
+      "bibtex_keys": [
+        "deruijter2025mean",
+        "deruijter2025meanpreprint"
+      ],
+      "annotation_sha256": "dffb58665f06dd82c9dce53fd84c3c0656b9126b35775cbb8487805ed070fe23"
+    },
+    {
+      "id": "S066",
+      "source": "fonti.md",
+      "line": 311,
+      "label": "Hao Chen, Wei Dai, Miran Kim, Yongsoo Song,",
+      "bibtex_keys": [
+        "chen2021conversion"
+      ],
+      "annotation_sha256": "1dafdcd48ed5360439ce87c48fbafd588c76a8ffa1996470c6a9aebe9ba73153"
+    },
+    {
+      "id": "S067",
+      "source": "fonti.md",
+      "line": 317,
+      "label": "Kang Hoon Lee, Ji Won Yoon, Homomorphic Field Trace Revisited: Breaking the Cubic Noise",
+      "bibtex_keys": [
+        "lee2026trace"
+      ],
+      "annotation_sha256": "fa37a4fd40fb819e11aa4145423ecdcce3f9ab9fe0851e2ad09c6211897c043a"
+    },
+    {
+      "id": "S068",
+      "source": "fonti.md",
+      "line": 322,
+      "label": "Ruida Wang, Jikang Bai, Xuan Shen, Xianhui Lu, Zhihao Li, Binwu Xiang, Zhiwei Wang,",
+      "bibtex_keys": [
+        "wang2025tetris"
+      ],
+      "annotation_sha256": "0c302e25bb5e0da702fef3fe1e4b97b0a306212155d89ddd0323ba261572149b"
+    },
+    {
+      "id": "S069",
+      "source": "fonti.md",
+      "line": 329,
+      "label": "Kamil Kluczniak, Leonard Schild,",
+      "bibtex_keys": [
+        "kluczniak2023fdfb"
+      ],
+      "annotation_sha256": "d360881f4bbb59f9f63caed8d7d8b7dc0fcf2b103012f02b6727f22d2847422a"
+    },
+    {
+      "id": "S070",
+      "source": "fonti.md",
+      "line": 334,
+      "label": "Intak Hwang, Shinwon Lee, Seonhong Min, Yongsoo Song,",
+      "bibtex_keys": [
+        "hwang2025recursive",
+        "Hwang2025RecursivePreprint",
+        "hwang2025recursivepreproceedings"
+      ],
+      "annotation_sha256": "1f65c05e977a79af664f25541148642bdbdf19251346ba6b35bdb1376efbd82a"
+    },
+    {
+      "id": "S071",
+      "source": "fonti.md",
+      "line": 413,
+      "label": "Youngjin Bae, Jaehyung Kim, Damien Stehlé, Elias Suvanto,",
+      "bibtex_keys": [
+        "bae2024smallintegers"
+      ],
+      "annotation_sha256": "89bf048539bfedce2fc4b5809a4a1de3d9cfb474e29d18af22e9a2b6fa4a9319"
+    },
+    {
+      "id": "S072",
+      "source": "fonti.md",
+      "line": 418,
+      "label": "Andreea Alexandru, Andrey Kim, Yuriy Polyakov,",
+      "bibtex_keys": [
+        "alexandru2025functional"
+      ],
+      "annotation_sha256": "c46e24ed92172bd169da1a66d1c04549cf1271ab13420d9e2e57433f8ecd3b99"
+    },
+    {
+      "id": "S073",
+      "source": "fonti.md",
+      "line": 423,
+      "label": "Jaehyung Kim, Efficient Homomorphic Integer Computer from CKKS, TCHES 2025,",
+      "bibtex_keys": [
+        "kim2025integer"
+      ],
+      "annotation_sha256": "377590aad3b28947c1bf0cdf22cfc8926e1318acb4e8aa19f52ec4e2671d58c7"
+    },
+    {
+      "id": "S074",
+      "source": "fonti.md",
+      "line": 427,
+      "label": "Jaehyung Kim, Faster Homomorphic Integer Computer, TCHES 2026,",
+      "bibtex_keys": [
+        "kim2026faster"
+      ],
+      "annotation_sha256": "3d6900a9d71a9b6a9779ca4a9bc39891c0419199bbe713ed17532306bd384964"
+    },
+    {
+      "id": "S075",
+      "source": "fonti.md",
+      "line": 432,
+      "label": "Gyeongwon Cha, Dongjin Park, Joon-Woo Lee,",
+      "bibtex_keys": [
+        "cha2026radix"
+      ],
+      "annotation_sha256": "0ceb78a4c198cd0c3a6007cbf3117d38d2d2c54f8212537d411e4a03ec0a8273"
+    },
+    {
+      "id": "S076",
+      "source": "fonti.md",
+      "line": 439,
+      "label": "OpenFHE, [API di scheme switching](https://openfhe-development.readthedocs.io/en/latest/api/classlbcrypto_1_1SWITCHCKKSRNS.html)",
+      "bibtex_keys": [
+        "openfhe2026switching"
+      ],
+      "annotation_sha256": "000bbdb9cfcadd0325d3c1d2bb3c48888821b58bd34089dc3b09e8daf43940f3"
+    },
+    {
+      "id": "S077",
+      "source": "fonti.md",
+      "line": 125,
+      "label": "Xin et al., **BioZKFHE**, [arXiv:2607.22065v1](https://arxiv.org/abs/2607.22065v1), 24 luglio 2026; DOI [10.1109/TDSC.2026.3716308](https://doi.org/10.1109/TDSC.2026.3716308), early access riportato nelle metadata arXiv.",
+      "bibtex_keys": [
+        "Xin2026BioZKFHE"
+      ],
+      "annotation_sha256": "9ea01537ddd0eefe76ce1136fc54c0c9427e6e8cfacb91da7c136aefd532b465"
+    },
+    {
+      "id": "S078",
+      "source": "fonti.md",
+      "line": 371,
+      "label": "Pottier, D'Anvers, de Ruijter, Verbauwhede, **SMOOTHIE**, [ePrint 2025/1267](https://eprint.iacr.org/2025/1267), revisione 8 giugno 2026; metadata dichiarano CRYPTO 2026.",
+      "bibtex_keys": [
+        "Pottier2025Smoothie"
+      ],
+      "annotation_sha256": "511480ebbeb42f74764254ab390918c597338e37938b36d5f9be2f629432c70a"
+    },
+    {
+      "id": "S079",
+      "source": "fonti.md",
+      "line": 373,
+      "label": "Bergerat, Orfila, Roux-Langlois, Tap, **Accelerating TFHE with Sorted Bootstrapping Techniques**, [ePrint 2025/2214](https://eprint.iacr.org/2025/2214), ASIACRYPT 2025, DOI [10.1007/978-981-95-5122-4_3](https://doi.org/10.1007/978-981-95-5122-4_3).",
+      "bibtex_keys": [
+        "Bergerat2025SortedBootstrap"
+      ],
+      "annotation_sha256": "4cf50e0298ab0d1aa5451ba686d051f5e2c0e0657628cf9c99301899c16083e6"
+    },
+    {
+      "id": "S080",
+      "source": "fonti.md",
+      "line": 375,
+      "label": "Sonia Belaïd, Nicolas Bon, Matthieu Rivain,",
+      "bibtex_keys": [
+        "Belaid2026LargeLUT"
+      ],
+      "annotation_sha256": "8608ab4b01f2d45fae7293238451f38ed512624338ef823f8b9fa4309e0d6286"
+    },
+    {
+      "id": "S081",
+      "source": "fonti.md",
+      "line": 473,
+      "label": "Smart, Walter, **Reactive Correctness, sIND-CPAD-Security and Deterministic Evaluation for TFHE**, [CiC 3(1), 2026](https://cic.iacr.org/p/3/1/8).",
+      "bibtex_keys": [
+        "Smart2026ReactiveCorrectness"
+      ],
+      "annotation_sha256": "86d38c90ef3fb6b317598d575f9155fa2c5e7beae26a744462924debf9da9c5d"
+    },
+    {
+      "id": "S082",
+      "source": "fonti.md",
+      "line": 475,
+      "label": "Bourse, Izabachène, **Plug-and-play sanitization for TFHE**, [CiC 3(1), 2026](https://cic.iacr.org/p/3/1/3); ePrint 2022/1438 è il riferimento precedente.",
+      "bibtex_keys": [
+        "Bourse2026PlugAndPlay"
+      ],
+      "annotation_sha256": "77c0cb9c7ed075004e5fb4a78c462d43cd57728abfd1b4de710031ae2f7c534c"
+    },
+    {
+      "id": "S083",
+      "source": "fonti.md",
+      "line": 477,
+      "label": "Hwang, Min, Seo, Song, **Practical TFHE Ciphertext Sanitization for Oblivious Circuit Evaluation**, [ePrint 2025/216](https://eprint.iacr.org/2025/216), CCS 2025.",
+      "bibtex_keys": [
+        "Hwang2025PracticalTFHESanitization"
+      ],
+      "annotation_sha256": "4c9424e50a0569f3aab7409e7b95e72868082cb2b239912e81bce8e9bdcd6374"
+    },
+    {
+      "id": "S084",
+      "source": "fonti.md",
+      "line": 479,
+      "label": "Ballandras, Orfila, Tap, **Concrete Estimation of Correctness and IND-CPA-D Security for FHE via Rare Event Simulation**, [ePrint 2026/610](https://eprint.iacr.org/2026/610), preprint.",
+      "bibtex_keys": [
+        "RareEventSimulation2026"
+      ],
+      "annotation_sha256": "bf4935b0b72874a259d8d3d743878766c7998c1feb9e49ba608d84e186bc029c"
+    },
+    {
+      "id": "S085",
+      "source": "fonti.md",
+      "line": 481,
+      "label": "Hwang, Min, Seo, Song, **On the Security and Privacy of CKKS-based Homomorphic Evaluation Protocols**, [ePrint 2025/382](https://eprint.iacr.org/2025/382), ASIACRYPT 2025.",
+      "bibtex_keys": [
+        "Hwang2025CKKSProtocols"
+      ],
+      "annotation_sha256": "58b00cd04311a02ad2a81dbe8c5aa8e042f8a2c0a1a363862eca76f7e99b807b"
+    },
+    {
+      "id": "S086",
+      "source": "fonti.md",
+      "line": 483,
+      "label": "Hwang, Hwang, Kim, Lee, Song, **On the (In)security of Approximate Computation Protocols from CKKS**, [ePrint 2025/395](https://eprint.iacr.org/2025/395), PDF del 29 settembre 2026; metadata ASIACRYPT 2026, finale non verificato.",
+      "bibtex_keys": [
+        "Hwang2025CKKSInsecurity"
+      ],
+      "annotation_sha256": "5c230297ceb52e1ed838683c0d007a9daeac4d39be3e3ca7f01dea3faea753f8"
+    },
+    {
+      "id": "S087",
+      "source": "fonti.md",
+      "line": 205,
+      "label": "Osorio-Roig, Rathgeb, Drozdowski, Busch, **Stable Hash Generation for Efficient Privacy-Preserving Face Identification**, [T-BIOM 4(3), 333–348](https://doi.org/10.1109/TBIOM.2021.3100639), 2022, early access 2021; copia accettata letta.",
+      "bibtex_keys": [
+        "OsorioRoig2022StableHash"
+      ],
+      "annotation_sha256": "08904a7651184a41178c68166553a451d08de0fb97083b58ecb1629f9d989f19"
+    },
+    {
+      "id": "S088",
+      "source": "fonti.md",
+      "line": 207,
+      "label": "Bauspieß et al., **HEBI**, [IJCB 2023](https://doi.org/10.1109/IJCB57857.2023.10448618); manoscritto accettato NVA di dieci pagine letto, [protocollo e misure](testi-integrali/hebi.md).",
+      "bibtex_keys": [
+        "Bauspiess2023HEBI"
+      ],
+      "annotation_sha256": "9e72979ed6bc007185b11c867b9bf6f0df823295ec9fa393e6134a065f17c830"
+    },
+    {
+      "id": "S089",
+      "source": "fonti.md",
+      "line": 127,
+      "label": "Tao Liu, **Secure Face Recognition Using Fully Homomorphic Encryption and Convolutional Neural Networks**, [Informatica 48(18), 2024](https://doi.org/10.31449/inf.v48i18.6396); PDF completo letto, [verifica 1:1 e limiti](testi-integrali/liu-informatica.md).",
+      "bibtex_keys": [
+        "Liu2024SecureFace"
+      ],
+      "annotation_sha256": "566e4d98fea6fec5e78af4fa96cf73d63ed66f770caa6dfbf11511f803b11fd4"
+    },
+    {
+      "id": "S090",
+      "source": "fonti.md",
+      "line": 209,
+      "label": "Wu et al., **Searchable face recognition authentication based on homomorphic encryption**, [JISA 94, 104208](https://doi.org/10.1016/j.jisa.2025.104208), 2025; lettura parziale.",
+      "bibtex_keys": [
+        "Wu2025SFRA"
+      ],
+      "annotation_sha256": "016a2bb36a2342301c22709f09140fcddc845f2dd7ad70d1368b3e3b28d67ad9"
+    },
+    {
+      "id": "S091",
+      "source": "fonti.md",
+      "line": 231,
+      "label": "Servan-Schreiber, Langowski, Devadas, **Private Approximate Nearest Neighbor Search with Sublinear Communication**, [PRECO](https://sachaservanschreiber.com/papers/preco.pdf), IEEE S&P 2022; copia corretta integrale 24 maggio 2023.",
+      "bibtex_keys": [
+        "ServanSchreiber2022PRECO"
+      ],
+      "annotation_sha256": "65da1c9b58bbb13b3894a8570d40d51f8c1c52d94873106948f7eb6a81a4aa6f"
+    },
+    {
+      "id": "S092",
+      "source": "fonti.md",
+      "line": 233,
+      "label": "Henzinger, Dauterman, Corrigan-Gibbs, Zeldovich, **Private Web Search with Tiptoe**, [SOSP 2023](https://doi.org/10.1145/3600006.3613134), finale MIT letto.",
+      "bibtex_keys": [
+        "Henzinger2023Tiptoe"
+      ],
+      "annotation_sha256": "49993f061caa963f78626ad9331aa8494c477ce934d1c232b90a67d11fda6f61"
+    },
+    {
+      "id": "S093",
+      "source": "fonti.md",
+      "line": 239,
+      "label": "Asi et al., **Wally: Batched Private Nearest Neighbor Search at Scale**, [arXiv:2406.06761v7](https://arxiv.org/abs/2406.06761v7), 10 luglio 2026.",
+      "bibtex_keys": [
+        "Asi2026WallyV7"
+      ],
+      "annotation_sha256": "785340ac3bf52106ee4aa4e49fdac08627cf2c9407c1a2923cf9f6004dab229f"
+    },
+    {
+      "id": "S094",
+      "source": "fonti.md",
+      "line": 237,
+      "label": "Zhu, Patel, Zaharia, Popa, **Compass: Encrypted Semantic Search with High Accuracy**, [OSDI 2025, 915–938](https://www.usenix.org/conference/osdi25/presentation/zhu-jinhao), finale letto online.",
+      "bibtex_keys": [
+        "Zhu2025Compass"
+      ],
+      "annotation_sha256": "ddf4358a532bf90a80c0c5bc9b416926888f482897b4f8bd6b904e90ec597fd7"
+    },
+    {
+      "id": "S095",
+      "source": "fonti.md",
+      "line": 235,
+      "label": "Zhou, Shi, Fanti, **Pacmann: Efficient Private Approximate Nearest Neighbor Search**, [ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/hash/391d50b3fe1c59b3e2b8b644e0c8fe81-Abstract-Conference.html), finale letto.",
+      "bibtex_keys": [
+        "Zhou2025Pacmann"
+      ],
+      "annotation_sha256": "3ec857f52a285014802551e9e9f5429f2c34ca1438b62461311f0ed33133150e"
+    },
+    {
+      "id": "S096",
+      "source": "fonti.md",
+      "line": 241,
+      "label": "Xiaohan Yue, Gang Yi, Haoran Si, Haibo Yang, Shi Bai, Yuan He,",
+      "bibtex_keys": [
+        "Yue2025FAKES"
+      ],
+      "annotation_sha256": "8168e200a08b38f480c76a5e080e10daffb05b5adf48369c71f346f867f7312e"
+    },
+    {
+      "id": "S097",
+      "source": "fonti.md",
+      "line": 247,
+      "label": "Xiaohan Yue, Gang Yi, Haibo Yang, Shi Bai, Yuan He,",
+      "bibtex_keys": [
+        "Yue2023FAKESPreprint"
+      ],
+      "annotation_sha256": "60e4dc7bd3ebf08b2fc31de326abd1e768c082259ce69c3a74edac95c41c5f86"
+    },
+    {
+      "id": "S098",
+      "source": "fonti.md",
+      "line": 384,
+      "label": "Shintaro Narisada, Hiroki Okada, Kazuhide Fukushima, Takashi Nishide,",
+      "bibtex_keys": [
+        "Narisada2024TimeMemoryLUT"
+      ],
+      "annotation_sha256": "6e0e4d965bcf15fee6ddf7e09f8a7cc8cd144826b07d9ecfa5c2da5210a4e8be"
+    },
+    {
+      "id": "S099",
+      "source": "fonti.md",
+      "line": 144,
+      "label": "Jiankang Deng, Jia Guo, Niannan Xue, Stefanos Zafeiriou,",
+      "bibtex_keys": [
+        "deng2019arcface"
+      ],
+      "annotation_sha256": "dd8012c97ada83b19e7327d91cd849a9f278cb483440462a713e3307613eeb9e"
+    },
+    {
+      "id": "S100",
+      "source": "fonti.md",
+      "line": 150,
+      "label": "Sheng Chen, Yang Liu, Xiang Gao, Zhen Han,",
+      "bibtex_keys": [
+        "chen2018mobilefacenets"
+      ],
+      "annotation_sha256": "1e57e3d5caa36869d55978e36e7804d9ede09b1c007cae864b64dd65e36dacf6"
+    },
+    {
+      "id": "S101",
+      "source": "fonti.md",
+      "line": 158,
+      "label": "Minchul Kim, Anil K. Jain, Xiaoming Liu,",
+      "bibtex_keys": [
+        "kim2022adaface"
+      ],
+      "annotation_sha256": "1c5840c7ab4dc668b6e88e8bb966582484fcda24b69881fbdd09125a7c64e556"
+    },
+    {
+      "id": "S102",
+      "source": "fonti.md",
+      "line": 165,
+      "label": "Qiong Cao, Li Shen, Weidi Xie, Omkar M. Parkhi, Andrew Zisserman,",
+      "bibtex_keys": [
+        "cao2018vggface2"
+      ],
+      "annotation_sha256": "a213b9c60872f20332795604cebd682af4a152fd420589bf032686ddced82a5e"
+    },
+    {
+      "id": "S103",
+      "source": "fonti.md",
+      "line": 172,
+      "label": "Gwangbin Bae, Martin de La Gorce, Tadas Baltrušaitis, Charlie Hewitt,",
+      "bibtex_keys": [
+        "bae2023digiface1m"
+      ],
+      "annotation_sha256": "e6069c2c8adb4adcef06cd66ab9a7ebdf7b5fd9f272ccbe8653d027b06c8e624"
+    },
+    {
+      "id": "S104",
+      "source": "fonti.md",
+      "line": 182,
+      "label": "Gary B. Huang, Manu Ramesh, Tamara Berg, Erik Learned-Miller,",
+      "bibtex_keys": [
+        "huang2007lfw"
+      ],
+      "annotation_sha256": "91c301caf8f6030eb5f7dd5488e250acfcf6c065ce47a348bebec2404a1da984"
+    }
+  ],
+  "entries": {
+    "cong2024topk": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "azogagh2025blindcounting": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "mazzone2025ranking": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "cheon2020comparison": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "lee2020minimax": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "danvers2025headstart": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "deruijter2025mean": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "chen2021conversion": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "lee2026trace": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "bergerat2025sharing": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "wang2025tetris": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "kluczniak2023fdfb": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "hwang2025recursive": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "azogagh2024revolut": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "bae2024smallintegers": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "alexandru2025functional": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "kim2025integer": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "kim2026faster": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "cha2026radix": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "openfhe2026switching": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "serengil2025cipherface": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "sperling2022heft": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "akbari2025fusion": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "drozdowski2021indexing": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "nguyen2026heargmax": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "rahimi2025binary": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "kluczniak2025circuitprivacy": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "ducas2016sanitization": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20260919"
+    },
+    "Liu2024SecureFace": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Xin2026BioZKFHE": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Pottier2025Smoothie": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Bergerat2025SortedBootstrap": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Smart2026ReactiveCorrectness": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Bourse2026PlugAndPlay": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Hwang2025PracticalTFHESanitization": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "RareEventSimulation2026": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Hwang2025CKKSProtocols": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Hwang2025CKKSInsecurity": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "OsorioRoig2022StableHash": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Bauspiess2023HEBI": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Wu2025SFRA": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "ServanSchreiber2022PRECO": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Henzinger2023Tiptoe": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Asi2026WallyV7": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Zhu2025Compass": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Zhou2025Pacmann": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Belaid2026LargeLUT": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Hwang2025RecursivePreprint": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Yue2025FAKES": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Yue2023FAKESPreprint": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "Narisada2024TimeMemoryLUT": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "GuimaraesPereira2025Amortized": {
+      "kind": "dated_bibliography",
+      "metadata_status": "preserved",
+      "origin_collection": "aggiornamento-20261002"
+    },
+    "erkin2009face": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://doi.org/10.1007/978-3-642-03168-7_14"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "sadeghi2010face": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://doi.org/10.1007/978-3-642-14423-3_16",
+        "https://eprint.iacr.org/2009/507"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "kolesnikov2009minima": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2009/411"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "osadchy2010scifi": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://doi.org/10.1109/SP.2010.39",
+        "https://pinkas.net/PAPERS/scifi.pdf"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "zuber2021knn": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://petsymposium.org/popets/2021/popets-2021-0020.php"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "liu2021sign": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2021/1337"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "chillotti2021woppbs": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2021/729"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "carpov2019multivalue": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2018/622"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "cho2024frast": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2024/745"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "trama2025processor": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2024/1201"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "axell2024us154786": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/US20240154786A1/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "axell2024us121077": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/US20240121077A1/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "axell2024us187210": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/US20240187210A1/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "li2025lfbs": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2025/022"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "bergerat2023precision": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2022/704"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "zama2022ep4096148": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/EP4096148A1/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "alansari2023ghostfacenets": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://github.com/HamadYA/GhostFaceNets/blob/main/README.md"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "engelsma2022hers": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2003.12197"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "choi2024blindmatch": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2408.06167"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "ibarrondo2023grote": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://www.eurecom.fr/en/publication/7213"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "ao2025cryptoface": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2509.00332"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "demicheli2026lightweight": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2604.00546"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "martin2025hydia": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://www.petsymposium.org/popets/2025/popets-2025-0146.php"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "bai2023cryptomask": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2307.12010"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "boddeti2018secureface": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/1805.00577"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "cheon2019numerical": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2019/417"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "lee2023max": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://www.mdpi.com/2079-9292/12/7/1724"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "zamaFHEBiometrics3038bc9": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://github.com/zama-ai/fhe-biometrics/tree/3038bc94e907ae73e67df9087f27191d091874e8"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "chakraborty2022comparisons": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2022/622"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "yu2024circuits": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://si2.epfl.ch/~demichel/publications/archive/2024/wahc06-yu.pdf",
+        "https://doi.org/10.1145/3689945.3694803"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "legiest2025leuvenshtein": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2025/012"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "ameur2022knn": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://doi.org/10.1007/978-3-031-13945-1_11"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "choi2024blindtouch": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://ojs.aaai.org/index.php/AAAI/article/view/30200"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "kim2025idface": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2507.12050"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "yang2023biometricsreview": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://www.mdpi.com/1424-8220/23/7/3566"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "rathgeb2023templateprotection": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2303.02715"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "ibarrondo2024monchi": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2024/654"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "ibarrondo2023funshade": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://petsymposium.org/popets/2023/popets-2023-0096.php"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "li2026batchboot": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://www.usenix.org/conference/usenixsecurity26/presentation/li-zhihao"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "pan2026encryptedknn": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://doi.org/10.1007/s12083-026-02267-x"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "kim2024grass": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2024/2012"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "chen2020sanns": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://www.usenix.org/conference/usenixsecurity20/presentation/chen-hao"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "li2025panther": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2024/1774"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "hamlin2019ramfhe": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2019/632"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "isozaki2026hierarchical": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://arxiv.org/abs/2608.21131"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "cea2025wo027253": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/WO2025027253A1/fr"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "cea2025fr3151957": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/FR3151957A1/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "microsoft2017us9825758": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/US9825758B2/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "ibm2022us269717": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/US20220269717A1/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "dhs2024us11924349": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/US11924349B2/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "twente2025nl2035809": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://patents.google.com/patent/NL2035809B1/en"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "deruijter2025meanpreprint": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2025/809"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "kluczniak2022circuitprivacypreprint": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://eprint.iacr.org/2022/1459"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "hwang2025recursivepreproceedings": {
+      "kind": "metadata_completion",
+      "sources": [
+        "https://sacworkshop.org/SAC25/preproceedings/sac2025-2-paper18.pdf"
+      ],
+      "checked": "2026-10-05",
+      "metadata_status": "verified_metadata_only"
+    },
+    "deng2019arcface": {
+      "kind": "methodological_reference",
+      "sources": [
+        "https://openaccess.thecvf.com/content_CVPR_2019/html/Deng_ArcFace_Additive_Angular_Margin_Loss_for_Deep_Face_Recognition_CVPR_2019_paper.html"
+      ],
+      "checked": "2026-10-06",
+      "metadata_status": "verified_metadata_and_abstract_only",
+      "reading_scope": "Metadata and abstract; title page for PDF sources. No full-text review or local replication claimed."
+    },
+    "chen2018mobilefacenets": {
+      "kind": "methodological_reference",
+      "sources": [
+        "https://link.springer.com/chapter/10.1007/978-3-319-97909-0_46",
+        "https://arxiv.org/abs/1804.07573"
+      ],
+      "checked": "2026-10-06",
+      "metadata_status": "verified_metadata_and_abstract_only",
+      "reading_scope": "Metadata and abstract; title page for PDF sources. No full-text review or local replication claimed."
+    },
+    "kim2022adaface": {
+      "kind": "methodological_reference",
+      "sources": [
+        "https://openaccess.thecvf.com/content/CVPR2022/html/Kim_AdaFace_Quality_Adaptive_Margin_for_Face_Recognition_CVPR_2022_paper.html"
+      ],
+      "checked": "2026-10-06",
+      "metadata_status": "verified_metadata_and_abstract_only",
+      "reading_scope": "Metadata and abstract; title page for PDF sources. No full-text review or local replication claimed."
+    },
+    "cao2018vggface2": {
+      "kind": "methodological_reference",
+      "sources": [
+        "https://www.robots.ox.ac.uk/~vgg/publications/2018/Cao18/"
+      ],
+      "checked": "2026-10-06",
+      "metadata_status": "verified_metadata_and_abstract_only",
+      "reading_scope": "Metadata and abstract; title page for PDF sources. No full-text review or local replication claimed."
+    },
+    "bae2023digiface1m": {
+      "kind": "methodological_reference",
+      "sources": [
+        "https://github.com/microsoft/DigiFace1M#citation",
+        "https://openaccess.thecvf.com/content/WACV2023/papers/Bae_DigiFace-1M_1_Million_Digital_Face_Images_for_Face_Recognition_WACV_2023_paper.pdf",
+        "https://arxiv.org/abs/2210.02579v1"
+      ],
+      "checked": "2026-10-06",
+      "metadata_status": "verified_metadata_and_abstract_only",
+      "reading_scope": "Metadata and abstract; title page for PDF sources. No full-text review or local replication claimed."
+    },
+    "huang2007lfw": {
+      "kind": "methodological_reference",
+      "sources": [
+        "https://people.cs.umass.edu/~elm/papers/lfw.pdf",
+        "https://people.cs.umass.edu/~elm/papers_by_locale.html"
+      ],
+      "checked": "2026-10-06",
+      "metadata_status": "verified_metadata_and_abstract_only",
+      "reading_scope": "Metadata and abstract; title page for PDF sources. No full-text review or local replication claimed."
+    }
+  },
+  "source_collections": [
+    {
+      "id": "aggiornamento-20260919",
+      "original_filename": "aggiornamento-20260919.bib",
+      "sha256": "ef2b1bc5b18ee7b2476a2bcfb2e13652e356f3e89fdadb87175bbdbf3523bec7",
+      "bytes": 15839,
+      "keys": [
+        "cong2024topk",
+        "azogagh2025blindcounting",
+        "mazzone2025ranking",
+        "cheon2020comparison",
+        "lee2020minimax",
+        "danvers2025headstart",
+        "deruijter2025mean",
+        "chen2021conversion",
+        "lee2026trace",
+        "bergerat2025sharing",
+        "wang2025tetris",
+        "kluczniak2023fdfb",
+        "hwang2025recursive",
+        "azogagh2024revolut",
+        "bae2024smallintegers",
+        "alexandru2025functional",
+        "kim2025integer",
+        "kim2026faster",
+        "cha2026radix",
+        "openfhe2026switching",
+        "serengil2025cipherface",
+        "sperling2022heft",
+        "akbari2025fusion",
+        "drozdowski2021indexing",
+        "nguyen2026heargmax",
+        "rahimi2025binary",
+        "kluczniak2025circuitprivacy",
+        "ducas2016sanitization"
+      ],
+      "storage": "All entries are preserved verbatim in the canonical bibliography; this is an origin collection, not a separate distributed file."
+    },
+    {
+      "id": "aggiornamento-20261002",
+      "original_filename": "aggiornamento-20261002.bib",
+      "sha256": "e188cae5e9900e9aa318b33cc0e7af60ccce6a29519ed7691a7ad89ff29532ac",
+      "bytes": 13217,
+      "keys": [
+        "Liu2024SecureFace",
+        "Xin2026BioZKFHE",
+        "Pottier2025Smoothie",
+        "Bergerat2025SortedBootstrap",
+        "Smart2026ReactiveCorrectness",
+        "Bourse2026PlugAndPlay",
+        "Hwang2025PracticalTFHESanitization",
+        "RareEventSimulation2026",
+        "Hwang2025CKKSProtocols",
+        "Hwang2025CKKSInsecurity",
+        "OsorioRoig2022StableHash",
+        "Bauspiess2023HEBI",
+        "Wu2025SFRA",
+        "ServanSchreiber2022PRECO",
+        "Henzinger2023Tiptoe",
+        "Asi2026WallyV7",
+        "Zhu2025Compass",
+        "Zhou2025Pacmann",
+        "Belaid2026LargeLUT",
+        "Hwang2025RecursivePreprint",
+        "Yue2025FAKES",
+        "Yue2023FAKESPreprint",
+        "Narisada2024TimeMemoryLUT",
+        "GuimaraesPereira2025Amortized"
+      ],
+      "storage": "All entries are preserved verbatim in the canonical bibliography; this is an origin collection, not a separate distributed file."
+    }
+  ]
+}

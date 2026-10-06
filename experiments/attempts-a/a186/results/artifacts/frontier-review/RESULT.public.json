@@ -1,0 +1,59 @@
+{
+  "status": "PASS_BOUNDED_INDEPENDENT_A186_MATH_INTERFACE_REVIEW",
+  "frozen_manifest_sha256": "2713035029dc76cf06625c5fe252de6de612d04e392af4a2a2fb99e23e264c97",
+  "frozen_leaves_verified": 14,
+  "source_and_metadata_pins_verified": 24,
+  "independent_public_checks": {
+    "ternary_difference_centers": 31,
+    "ternary_patterns": 27,
+    "coefficient_MS_witnesses": 3,
+    "right_window_hole_lanes": 4
+  },
+  "primitive_order": [
+    "PFKS",
+    "ordinary_KS",
+    "BR",
+    "sample_extractions"
+  ],
+  "independent_ledger": {
+    "comparator": [
+      0,
+      4,
+      4,
+      4
+    ],
+    "D1": [
+      4,
+      1,
+      1,
+      4
+    ],
+    "direct_D2": [
+      8,
+      1,
+      1,
+      4
+    ],
+    "scalar_D2": [
+      8,
+      4,
+      4,
+      4
+    ]
+  },
+  "total": [
+    20,
+    10,
+    10,
+    16
+  ],
+  "id_delta_log": 56,
+  "actual_upstream_bridge": false,
+  "actual_comparator_executed": false,
+  "actual_raw_logs_or_binary_read": false,
+  "full_test_suite_rerun": false,
+  "frozen_files_modified": false,
+  "remainder_notation": "R_j=sum_i s_i(a_i-a_hat_i); native same-modulus body copied unchanged; K_j=-sum d_i,l eta_i,l",
+  "blocking_math_issue": false,
+  "conditional_scope_preserved": true
+}

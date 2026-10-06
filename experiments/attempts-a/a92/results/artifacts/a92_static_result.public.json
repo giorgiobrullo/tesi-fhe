@@ -1,0 +1,331 @@
+{
+  "attempt": "A92",
+  "canonical_sha256": "f59865d2b921b3210dc45daafc853d04fc638c7ab40c3dee89024261e1b65f44",
+  "contract": {
+    "gallery_cases": 132,
+    "output_contract": "0 reject / i+1 exact nearest accepted identity",
+    "ragged_sizes": [
+      33,
+      63,
+      64,
+      65,
+      126
+    ],
+    "random_trial_budget": 126,
+    "status": "PASS_INHERITED_EXACT_0_ID_CONTRACT",
+    "threshold_policy": "accept minimum <= 1023; reject as 0 otherwise",
+    "tie_policy": "first minimum",
+    "variant_cases": 264
+  },
+  "geometry": {
+    "arbitrary_u64_exact_by_module_linearity": true,
+    "basis_cases": 20,
+    "d1_slot_order": [
+      "-D2",
+      "-D3",
+      "0",
+      "0",
+      "0",
+      "0",
+      "D0",
+      "D1"
+    ],
+    "d2_slot_order": [
+      "-R2",
+      "-R3",
+      "L0",
+      "L1",
+      "L2",
+      "L3",
+      "R0",
+      "R1"
+    ],
+    "deterministic_u64_fuzz_trials": 4096,
+    "fuzz_variants_per_trial": 2,
+    "nonroot_folded_centers": [
+      0,
+      256,
+      512,
+      768,
+      1024,
+      1280,
+      1536,
+      1792
+    ],
+    "nonroot_virtual_centers": {
+      "left": [
+        512,
+        768,
+        1024,
+        1280
+      ],
+      "right": [
+        1536,
+        1792,
+        2048,
+        2304
+      ]
+    },
+    "robust_output_word_checks": 17272,
+    "root_global_monomial_shift": 512,
+    "root_slot_order_d1": [
+      "0",
+      "D0"
+    ],
+    "root_slot_order_d2": [
+      "L0",
+      "R0"
+    ],
+    "sample_step": 256,
+    "single_public_kernel_width": 127,
+    "status": "PASS_EXACT_CLEAR_RING_GEOMETRY"
+  },
+  "known_nonclaims": [
+    "Chen packing is prior art and is not claimed as a new primitive",
+    "the workload-specific slot map and omitted trace stage have not been prior-art audited",
+    "ideal exact phase arithmetic does not model unsigned ciphertext division rounding",
+    "separated residual plaintext cells do not imply separated or independent ciphertext noise",
+    "primitive counts and smaller keys do not imply a wall-clock speedup",
+    "no security level or composed failure probability was derived for the new automorphism keys"
+  ],
+  "ledger": {
+    "a87_packed_d1_n127": {
+      "bridge_blind_rotations": 1651,
+      "bridge_classic_key_switches": 1270,
+      "bridge_marginals": 2540,
+      "dynamic_blind_rotations": 127,
+      "dynamic_control_key_switches": 127,
+      "dynamic_output_marginals": 505,
+      "dynamic_sample_extractions": 505,
+      "gallery_size": 127,
+      "glwe_additions": 378,
+      "logical_selector_accumulator_br_inputs": 127,
+      "lwe_post_selection_additions": 505,
+      "lwe_preselection_subtractions": 505,
+      "pfks_calls": 505,
+      "pfks_variant": "D1",
+      "public_polynomial_multiplications": 505,
+      "refreshed_limbs": false,
+      "relation_blind_rotations": 508,
+      "root_keeps_score": false,
+      "total_blind_rotations": 2286,
+      "total_classic_key_switches": 1905,
+      "total_marginals": 3553,
+      "tournament_nodes": 127
+    },
+    "a87_packed_d2_n127": {
+      "bridge_blind_rotations": 1651,
+      "bridge_classic_key_switches": 1270,
+      "bridge_marginals": 2540,
+      "dynamic_blind_rotations": 127,
+      "dynamic_control_key_switches": 127,
+      "dynamic_output_marginals": 505,
+      "dynamic_sample_extractions": 505,
+      "gallery_size": 127,
+      "glwe_additions": 883,
+      "logical_selector_accumulator_br_inputs": 127,
+      "lwe_post_selection_additions": 0,
+      "lwe_preselection_subtractions": 0,
+      "pfks_calls": 1010,
+      "pfks_variant": "D2",
+      "public_polynomial_multiplications": 1010,
+      "refreshed_limbs": false,
+      "relation_blind_rotations": 508,
+      "root_keeps_score": false,
+      "total_blind_rotations": 2286,
+      "total_classic_key_switches": 1905,
+      "total_marginals": 3553,
+      "tournament_nodes": 127
+    },
+    "a92_partial_chen_n127": {
+      "blind_rotations_inherited": 2286,
+      "classic_key_switches_inherited": 1905,
+      "coefficient_halvings": 10874880,
+      "eval_auto_nonroot": 14,
+      "eval_auto_root": 8,
+      "eval_auto_total": 1772,
+      "gallery_size": 127,
+      "glwe_addition_passes": 1772,
+      "glwe_monomial_shifts": 884,
+      "input_lwe_negations": 252,
+      "lwe_postselection_additions_d1": 505,
+      "lwe_preselection_subtractions_d1": 505,
+      "marginals_inherited": 3553,
+      "nonroot_nodes": 126,
+      "nontrivial_input_lwes_d1": 505,
+      "nontrivial_input_lwes_d2": 1010,
+      "pfpks_calls": 0,
+      "public_kernel_glwe_multiplications": 127,
+      "selector_nodes": 127,
+      "trivial_zero_input_lwes_d1": 505
+    },
+    "eval_auto_count_divided_by_one_a44_br_859_steps": 2.062863795110594,
+    "exact_structural_delta_from_a87_d1": {
+      "blind_rotations": 0,
+      "classic_key_switches": 0,
+      "eval_auto_calls": 1772,
+      "marginals": 0,
+      "pfpks_calls": -505,
+      "public_polynomial_multiplications": -378
+    },
+    "exact_structural_delta_from_a87_d2": {
+      "blind_rotations": 0,
+      "classic_key_switches": 0,
+      "eval_auto_calls": 1772,
+      "marginals": 0,
+      "pfpks_calls": -1010,
+      "public_polynomial_multiplications": -883
+    },
+    "key_ledger": {
+      "a87_pfpks_level1_bytes": 67141632,
+      "a87_pfpks_level1_mib": 64.03125,
+      "automorphism_degrees": [
+        3,
+        5,
+        9,
+        33,
+        65,
+        129,
+        257,
+        513,
+        1025,
+        2049
+      ],
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "latency_ready_first_port": "stock full Fourier GGSW external product; custom polynomial GGSW keygen still required",
+      "optional_later_port": "TFHEpp-style half-GGSW external product",
+      "pfpks_to_standard_full_key_size_ratio": 102.45,
+      "pfpks_to_tfhepp_half_key_size_ratio": 204.9,
+      "standard_full_fourier_ggsw_bytes_per_key": 65536,
+      "standard_full_fourier_ggsw_total_bytes": 655360,
+      "standard_full_fourier_ggsw_total_mib": 0.625,
+      "tfhepp_half_fourier_ggsw_bytes_per_key": 32768,
+      "tfhepp_half_fourier_ggsw_total_bytes": 327680,
+      "tfhepp_half_fourier_ggsw_total_mib": 0.3125
+    },
+    "orientation_warning": "the quotient is not a timing estimate: EvalAuto implementation, full/half key, clear permutations, memory traffic, scheduling, and noise all remain unmeasured",
+    "status": "PASS_STRUCTURAL_LEDGER_NOT_LATENCY"
+  },
+  "local_source_pins_verified": [
+    {
+      "path": "tmp/a87-packed-dynamic-pfks-tuple-selector/a87_packed_pfks.py",
+      "sha256": "4b895a48703806612156e258356a5d3c957e0abae3ec44648ba5520cfda193ff"
+    },
+    {
+      "path": "tmp/a87-packed-dynamic-pfks-tuple-selector/artifacts/a87_static_result.json",
+      "sha256": "72f20b2c9e1c3eca45eca0043b843971a8ad698fcf54682b72cb34bacd1536fc"
+    },
+    {
+      "path": "tmp/a86-a30-pfks-parameter-preflight/a86_pfks_preflight.py",
+      "sha256": "15a2a73d725951dda0073f294d62bf2615cc21fe4ee4f85bca1c9cf4398e1dd6"
+    },
+    {
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/entities/ggsw_ciphertext.rs",
+      "sha256": "dd175759511c1650508762502b01f4a68667dbd3461aa1731857a7fdfce1c821"
+    },
+    {
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/algorithms/lwe_programmable_bootstrapping/fft64.rs",
+      "sha256": "174c74c30625316491a408b34f5a7bd135ead4652df63d102b8791b13e957e52"
+    },
+    {
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/algorithms/ggsw_encryption.rs",
+      "sha256": "833955bd7f71fd05e9fdff348b6b99f6c1a2c67acef3d15a6c09684962c4f179"
+    },
+    {
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/algorithms/glwe_sample_extraction.rs",
+      "sha256": "981d3839cd83cb8c24b02fe48d945d61e23c9c0f2e714b554d9296eed304ec43"
+    }
+  ],
+  "next_gate": [
+    "port one A44 full-GGSW EvalAuto with custom polynomial-message keygen using public core APIs",
+    "validate exact automorphism phases before and after each u64 halving stage",
+    "run isolated k=4 D2 fixtures with all 127 rotation errors and mixed Delta59/Delta56 payloads",
+    "record joint four-output phase errors and compare full versus optional half-GGSW port",
+    "time EvalAuto, halving, one width-127 kernel multiply, and the following control BR separately",
+    "only then extend the source-pinned A30/A87 tournament scaffold"
+  ],
+  "partial_trace": {
+    "exact_basis_checks": 6144,
+    "full_eval_auto_stages": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "full_projection_support_step": 256,
+    "omitted_standard_stage": 3,
+    "partial_eval_auto_stages": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "partial_projection_support_step": 128,
+    "partial_trace_is_maximal_for_one_shared_width127_kernel": true,
+    "safe_guard_coefficients_between_radius63_cells": 1,
+    "scope": "ideal exact phase arithmetic; ciphertext u64 division rounding excluded",
+    "skip_two_support_step": 64
+  },
+  "promotion_gates": {
+    "a44_composed_p_fail_bounded": false,
+    "automorphism_keygen_executed": false,
+    "ciphertext_phase_error_measured": false,
+    "clear_ring_geometry": true,
+    "exact_0_id_contract": true,
+    "ideal_partial_trace_projection": true,
+    "joint_output_failures_measured": false,
+    "promotion_to_runtime_frontier_allowed": false,
+    "runtime_measured": false,
+    "source_port_typechecked": false
+  },
+  "remote_primary_source_manifest": {
+    "commit": "c2518753a62619b469e8222b71a9480036d1a515",
+    "commit_was_remote_HEAD_when_recorded_2026_09_03": true,
+    "files": {
+      "include/params.hpp": {
+        "relevant_lines": "163-217,267-275",
+        "role": "TLWE/TRLWE/HalfTRGSWFFT/EvalAutoKey/AnnihilateKey layouts",
+        "sha256": "71207a0cfe75db1c8fa7a19346ebddddd087c397555bc87e45603b7a8e64203c"
+      },
+      "include/tfhe/evalkeygens.hpp": {
+        "relevant_lines": "206-226",
+        "role": "automorphism and annihilate key generation",
+        "sha256": "5f8e9861a416347ce813127734ee39fb8fddfaad3173fa77b065c00c75a121fa"
+      },
+      "include/tfhe/keyswitch.hpp": {
+        "relevant_lines": "293-332,391-437",
+        "role": "EvalAuto, AnnihilateKeySwitching, PackLWEs, and Chen packing",
+        "sha256": "eb9b976e0c7ac09b9626023f0fbb537e679d3fdc71431fa1e120da8633df4281"
+      },
+      "test/tfhe/chenspacking.cpp": {
+        "relevant_lines": "9-52",
+        "role": "upstream executable packing test and output spacing",
+        "sha256": "d4acfa55f1df539abd5a2c5b67a2c4913c2d0f05803204a631867900b793f62f"
+      }
+    },
+    "network_revalidation_is_not_part_of_offline_gate": true,
+    "repository": "https://github.com/virtualsecureplatform/TFHEpp",
+    "upstream_name": "Modified Chen's Packing / annihilate key switching"
+  },
+  "schema_version": 1,
+  "scope": "source-pinned clear-ring geometry, ideal exact trace projection, inherited exact-ID contract, key/operation ledger; no Cargo, keygen, FHE, noise bound, or timing",
+  "status": "GO_STATIC_GEOMETRY_AND_LEDGER_NO_RUNTIME_PROMOTION"
+}

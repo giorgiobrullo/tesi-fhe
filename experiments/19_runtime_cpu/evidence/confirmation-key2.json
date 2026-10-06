@@ -1,0 +1,2627 @@
+{
+  "schema": "fast-options-independent-public-replay.v1",
+  "complete_outputs": 225,
+  "fresh_inputs": 45,
+  "load_samples": 242,
+  "provisional_to_final_load_differences": [
+    {
+      "input": 0,
+      "provisional": {
+        "samples": 1,
+        "flagged": false,
+        "unknown": true
+      },
+      "final": {
+        "samples": 3,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 1,
+      "provisional": {
+        "samples": 2,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 2,
+      "provisional": {
+        "samples": 2,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 3,
+      "provisional": {
+        "samples": 2,
+        "flagged": true,
+        "unknown": false
+      },
+      "final": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 4,
+      "provisional": {
+        "samples": 1,
+        "flagged": true,
+        "unknown": false
+      },
+      "final": {
+        "samples": 3,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 5,
+      "provisional": {
+        "samples": 2,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 6,
+      "provisional": {
+        "samples": 2,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 7,
+      "provisional": {
+        "samples": 14,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 16,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 8,
+      "provisional": {
+        "samples": 15,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 17,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 9,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 10,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 11,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 12,
+      "provisional": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 6,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 13,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 14,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 15,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 16,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 17,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 18,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 19,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 20,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 21,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 22,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 23,
+      "provisional": {
+        "samples": 6,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 24,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 25,
+      "provisional": {
+        "samples": 5,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 26,
+      "provisional": {
+        "samples": 6,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 27,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 28,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 29,
+      "provisional": {
+        "samples": 9,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 30,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 31,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 32,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 33,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 34,
+      "provisional": {
+        "samples": 9,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 35,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 36,
+      "provisional": {
+        "samples": 9,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 37,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 38,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 39,
+      "provisional": {
+        "samples": 9,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 40,
+      "provisional": {
+        "samples": 9,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 41,
+      "provisional": {
+        "samples": 9,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 42,
+      "provisional": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 43,
+      "provisional": {
+        "samples": 9,
+        "flagged": true,
+        "unknown": true
+      },
+      "final": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    }
+  ],
+  "final_blocks": [
+    {
+      "input": 0,
+      "scene": 0,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 336092708,
+        "combined16": 327299917,
+        "original_context8": 329380917,
+        "fixed_reference8": 334407542,
+        "fixed_native8": 323804875
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 3,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 1,
+      "scene": 1,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "combined16": 313407500,
+        "original_context8": 318786875,
+        "fixed_reference8": 317772750,
+        "fixed_native8": 316882250,
+        "fixed_cgu1_8": 314615417
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 2,
+      "scene": 2,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "original_context8": 311814958,
+        "fixed_reference8": 316503958,
+        "fixed_native8": 314123250,
+        "fixed_cgu1_8": 312522292,
+        "combined16": 318941250
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true
+      },
+      "load": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 3,
+      "scene": 3,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 317580458,
+        "fixed_native8": 313460041,
+        "fixed_cgu1_8": 314180875,
+        "combined16": 314102125,
+        "original_context8": 311728625
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 4,
+      "scene": 4,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 359976084,
+        "fixed_cgu1_8": 354286333,
+        "combined16": 339287708,
+        "original_context8": 340142542,
+        "fixed_reference8": 347657625
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 3,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 5,
+      "scene": 5,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 346496417,
+        "combined16": 346694042,
+        "original_context8": 340284208,
+        "fixed_reference8": 344639917,
+        "fixed_native8": 352289583
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 6,
+      "scene": 6,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "combined16": 339838959,
+        "original_context8": 340233375,
+        "fixed_reference8": 343917625,
+        "fixed_native8": 349929834,
+        "fixed_cgu1_8": 348556458
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 4,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 7,
+      "scene": 7,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "original_context8": 5926215375,
+        "fixed_reference8": 5742243000,
+        "fixed_native8": 5726870667,
+        "fixed_cgu1_8": 5593756000,
+        "combined16": 4219026417
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true
+      },
+      "load": {
+        "samples": 16,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 8,
+      "scene": 8,
+      "phase": "correctness",
+      "repetition": 0,
+      "order": [
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 6081109292,
+        "fixed_native8": 5996236334,
+        "fixed_cgu1_8": 5902733959,
+        "combined16": 4279365708,
+        "original_context8": 5699626833
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 17,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 9,
+      "scene": 9,
+      "phase": "warmup",
+      "repetition": 0,
+      "order": [
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 1681614416,
+        "fixed_cgu1_8": 1655387083,
+        "combined16": 1382644708,
+        "original_context8": 1821051917,
+        "fixed_reference8": 1805621458
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 10,
+      "scene": 9,
+      "phase": "warmup",
+      "repetition": 1,
+      "order": [
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 1675978875,
+        "original_context8": 1667781959,
+        "combined16": 1359015083,
+        "fixed_cgu1_8": 1660331625,
+        "fixed_native8": 1674465000
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 11,
+      "scene": 9,
+      "phase": "measured",
+      "repetition": 2,
+      "order": [
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 1650879792,
+        "combined16": 1349921584,
+        "original_context8": 1635450875,
+        "fixed_reference8": 1679406708,
+        "fixed_native8": 1680241959
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 12,
+      "scene": 9,
+      "phase": "measured",
+      "repetition": 3,
+      "order": [
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 1644168458,
+        "fixed_reference8": 1645070958,
+        "original_context8": 1702197834,
+        "combined16": 1369735583,
+        "fixed_cgu1_8": 1638864166
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 6,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 13,
+      "scene": 9,
+      "phase": "measured",
+      "repetition": 4,
+      "order": [
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "combined16": 1325403875,
+        "original_context8": 1688979583,
+        "fixed_reference8": 1696288250,
+        "fixed_native8": 1681015792,
+        "fixed_cgu1_8": 1667470167
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 14,
+      "scene": 9,
+      "phase": "measured",
+      "repetition": 5,
+      "order": [
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 1649713000,
+        "fixed_native8": 1706506917,
+        "fixed_reference8": 1737332458,
+        "original_context8": 1624459250,
+        "combined16": 1367541667
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 15,
+      "scene": 10,
+      "phase": "warmup",
+      "repetition": 0,
+      "order": [
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 1691380250,
+        "combined16": 1339175792,
+        "original_context8": 1629368417,
+        "fixed_reference8": 1647897792,
+        "fixed_native8": 1653009292
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 16,
+      "scene": 10,
+      "phase": "warmup",
+      "repetition": 1,
+      "order": [
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 1669643542,
+        "fixed_reference8": 1694671583,
+        "original_context8": 1664979083,
+        "combined16": 1346213042,
+        "fixed_cgu1_8": 1651305542
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 17,
+      "scene": 10,
+      "phase": "measured",
+      "repetition": 2,
+      "order": [
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "combined16": 1360635250,
+        "original_context8": 1650018292,
+        "fixed_reference8": 1673827666,
+        "fixed_native8": 1645454709,
+        "fixed_cgu1_8": 1643863500
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 18,
+      "scene": 10,
+      "phase": "measured",
+      "repetition": 3,
+      "order": [
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 1683950250,
+        "fixed_native8": 1713353042,
+        "fixed_reference8": 1775012583,
+        "original_context8": 1632932875,
+        "combined16": 1375558334
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 19,
+      "scene": 10,
+      "phase": "measured",
+      "repetition": 4,
+      "order": [
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "original_context8": 1650409958,
+        "fixed_reference8": 1693297500,
+        "fixed_native8": 1660946209,
+        "fixed_cgu1_8": 1669455875,
+        "combined16": 1453269917
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 20,
+      "scene": 10,
+      "phase": "measured",
+      "repetition": 5,
+      "order": [
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "combined16": 1366806792,
+        "fixed_cgu1_8": 1661896542,
+        "fixed_native8": 1807541666,
+        "fixed_reference8": 1740163166,
+        "original_context8": 1662522792
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 21,
+      "scene": 11,
+      "phase": "warmup",
+      "repetition": 0,
+      "order": [
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "combined16": 1496071250,
+        "original_context8": 1852782791,
+        "fixed_reference8": 1881134916,
+        "fixed_native8": 1858046958,
+        "fixed_cgu1_8": 1868892000
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 22,
+      "scene": 11,
+      "phase": "warmup",
+      "repetition": 1,
+      "order": [
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 1798570917,
+        "fixed_native8": 1815013167,
+        "fixed_reference8": 1809652208,
+        "original_context8": 1792867834,
+        "combined16": 1482299791
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 23,
+      "scene": 11,
+      "phase": "measured",
+      "repetition": 2,
+      "order": [
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "original_context8": 1820426458,
+        "fixed_reference8": 1839203791,
+        "fixed_native8": 1911433000,
+        "fixed_cgu1_8": 1802105417,
+        "combined16": 1518415208
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true
+      },
+      "load": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 24,
+      "scene": 11,
+      "phase": "measured",
+      "repetition": 3,
+      "order": [
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "combined16": 1567517375,
+        "fixed_cgu1_8": 1869057125,
+        "fixed_native8": 1913582500,
+        "fixed_reference8": 1878777000,
+        "original_context8": 1790358958
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 25,
+      "scene": 11,
+      "phase": "measured",
+      "repetition": 4,
+      "order": [
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 1869458667,
+        "fixed_native8": 1817134458,
+        "fixed_cgu1_8": 1816719084,
+        "combined16": 1486011833,
+        "original_context8": 1784013167
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 7,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 26,
+      "scene": 11,
+      "phase": "measured",
+      "repetition": 5,
+      "order": [
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "original_context8": 1791358625,
+        "combined16": 1514989875,
+        "fixed_cgu1_8": 1789261833,
+        "fixed_native8": 1844182125,
+        "fixed_reference8": 1844129083
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 8,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 27,
+      "scene": 12,
+      "phase": "warmup",
+      "repetition": 0,
+      "order": [
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "original_context8": 3081814208,
+        "fixed_reference8": 3086888208,
+        "fixed_native8": 3220751292,
+        "fixed_cgu1_8": 3085765917,
+        "combined16": 2410852000
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 28,
+      "scene": 12,
+      "phase": "warmup",
+      "repetition": 1,
+      "order": [
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "combined16": 2363099000,
+        "fixed_cgu1_8": 3066054625,
+        "fixed_native8": 3221762875,
+        "fixed_reference8": 3159502875,
+        "original_context8": 3343022709
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 29,
+      "scene": 12,
+      "phase": "measured",
+      "repetition": 2,
+      "order": [
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 3247981917,
+        "fixed_native8": 3250960000,
+        "fixed_cgu1_8": 3109881500,
+        "combined16": 2399201208,
+        "original_context8": 3137464917
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 30,
+      "scene": 12,
+      "phase": "measured",
+      "repetition": 3,
+      "order": [
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "original_context8": 3061159792,
+        "combined16": 2387944583,
+        "fixed_cgu1_8": 3072993750,
+        "fixed_native8": 3093429209,
+        "fixed_reference8": 3100001709
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 31,
+      "scene": 12,
+      "phase": "measured",
+      "repetition": 4,
+      "order": [
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 3164758500,
+        "fixed_cgu1_8": 3111980083,
+        "combined16": 2424416584,
+        "original_context8": 3048557750,
+        "fixed_reference8": 3083449167
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 32,
+      "scene": 12,
+      "phase": "measured",
+      "repetition": 5,
+      "order": [
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 3056833084,
+        "original_context8": 3035340916,
+        "combined16": 2398346792,
+        "fixed_cgu1_8": 3074065958,
+        "fixed_native8": 3130734292
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 33,
+      "scene": 13,
+      "phase": "warmup",
+      "repetition": 0,
+      "order": [
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 3251645583,
+        "fixed_native8": 3099639125,
+        "fixed_cgu1_8": 3121218291,
+        "combined16": 2438494250,
+        "original_context8": 3130858583
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 34,
+      "scene": 13,
+      "phase": "warmup",
+      "repetition": 1,
+      "order": [
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "original_context8": 3264261750,
+        "combined16": 2936250500,
+        "fixed_cgu1_8": 3176737416,
+        "fixed_native8": 3249735291,
+        "fixed_reference8": 3357511458
+      },
+      "ciphertext_equal": {
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 35,
+      "scene": 13,
+      "phase": "measured",
+      "repetition": 2,
+      "order": [
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 3102444416,
+        "fixed_cgu1_8": 3054779833,
+        "combined16": 2535672666,
+        "original_context8": 3056885666,
+        "fixed_reference8": 3423331375
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 36,
+      "scene": 13,
+      "phase": "measured",
+      "repetition": 3,
+      "order": [
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 3406381250,
+        "original_context8": 3445634750,
+        "combined16": 2468981416,
+        "fixed_cgu1_8": 3113505458,
+        "fixed_native8": 3196806792
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 37,
+      "scene": 13,
+      "phase": "measured",
+      "repetition": 4,
+      "order": [
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 3096205791,
+        "combined16": 2665217583,
+        "original_context8": 3079546208,
+        "fixed_reference8": 3213449125,
+        "fixed_native8": 3173793959
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 38,
+      "scene": 13,
+      "phase": "measured",
+      "repetition": 5,
+      "order": [
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 3179563375,
+        "fixed_reference8": 3113896333,
+        "original_context8": 3052881583,
+        "combined16": 2452917209,
+        "fixed_cgu1_8": 3132973209
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 39,
+      "scene": 14,
+      "phase": "warmup",
+      "repetition": 0,
+      "order": [
+        "fixed_native8",
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 3513775375,
+        "fixed_cgu1_8": 3430239625,
+        "combined16": 2953748708,
+        "original_context8": 3367092208,
+        "fixed_reference8": 3437451959
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true
+      },
+      "load": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 40,
+      "scene": 14,
+      "phase": "warmup",
+      "repetition": 1,
+      "order": [
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_reference8": 3361164917,
+        "original_context8": 3410534083,
+        "combined16": 3120986583,
+        "fixed_cgu1_8": 3514855541,
+        "fixed_native8": 3380683542
+      },
+      "ciphertext_equal": {
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 41,
+      "scene": 14,
+      "phase": "measured",
+      "repetition": 2,
+      "order": [
+        "fixed_cgu1_8",
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 3738561667,
+        "combined16": 3172444708,
+        "original_context8": 3393764500,
+        "fixed_reference8": 3466599000,
+        "fixed_native8": 3568214416
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true
+      },
+      "load": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 42,
+      "scene": 14,
+      "phase": "measured",
+      "repetition": 3,
+      "order": [
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "fixed_native8": 3526683041,
+        "fixed_reference8": 3439788667,
+        "original_context8": 3374000875,
+        "combined16": 2812151416,
+        "fixed_cgu1_8": 3396287791
+      },
+      "ciphertext_equal": {
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 43,
+      "scene": 14,
+      "phase": "measured",
+      "repetition": 4,
+      "order": [
+        "combined16",
+        "original_context8",
+        "fixed_reference8",
+        "fixed_native8",
+        "fixed_cgu1_8"
+      ],
+      "elapsed_ns": {
+        "combined16": 2892828375,
+        "original_context8": 3393195792,
+        "fixed_reference8": 3365202250,
+        "fixed_native8": 3420033417,
+        "fixed_cgu1_8": 3388138584
+      },
+      "ciphertext_equal": {
+        "combined16": true,
+        "original_context8": false,
+        "fixed_reference8": true,
+        "fixed_native8": true,
+        "fixed_cgu1_8": true
+      },
+      "load": {
+        "samples": 11,
+        "flagged": true,
+        "unknown": true
+      }
+    },
+    {
+      "input": 44,
+      "scene": 14,
+      "phase": "measured",
+      "repetition": 5,
+      "order": [
+        "fixed_cgu1_8",
+        "fixed_native8",
+        "fixed_reference8",
+        "original_context8",
+        "combined16"
+      ],
+      "elapsed_ns": {
+        "fixed_cgu1_8": 3367349375,
+        "fixed_native8": 3819835125,
+        "fixed_reference8": 3490839500,
+        "original_context8": 3618386958,
+        "combined16": 3016569959
+      },
+      "ciphertext_equal": {
+        "fixed_cgu1_8": true,
+        "fixed_native8": true,
+        "fixed_reference8": true,
+        "original_context8": false,
+        "combined16": true
+      },
+      "load": {
+        "samples": 10,
+        "flagged": true,
+        "unknown": true
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "fixed_native8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        1.000497348853033,
+        0.9994513914456935,
+        0.9909965431877512,
+        0.9822569705308528
+      ],
+      "mean_log_ratio": -0.0067495227046065484,
+      "geometric_ratio": 0.9932732041631801,
+      "geometric_reduction_percent": 0.6726795836819899,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.9798115793069294,
+        1.0069197781949637
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "fixed_cgu1_8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9830136941432296,
+        0.9962270369130181,
+        0.9830110931912663,
+        0.9495666718269532
+      ],
+      "mean_log_ratio": -0.022449183464454115,
+      "geometric_ratio": 0.9778009243862911,
+      "geometric_reduction_percent": 2.219907561370893,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.9463852487313849,
+        1.0102594572477919
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "combined16",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.8038086173941852,
+        0.8326300919355236,
+        0.7813553356866086,
+        0.7871502432955754
+      ],
+      "mean_log_ratio": -0.2219053196827797,
+      "geometric_ratio": 0.8009911988453821,
+      "geometric_reduction_percent": 19.900880115461796,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.7655048488360462,
+        0.8381225822452966
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "original_context8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9738265705438638,
+        1.034726086265271,
+        0.9956913767456681,
+        0.9350307377956096
+      ],
+      "mean_log_ratio": -0.015969779287588963,
+      "geometric_ratio": 0.9841570615334024,
+      "geometric_reduction_percent": 1.5842938466597567,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.9200258177967834,
+        1.052758632453942
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": false
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "fixed_native8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9830490572139939,
+        0.9652624766773273,
+        0.9808945025903599,
+        1.0387196449829923
+      ],
+      "mean_log_ratio": -0.00843824857575957,
+      "geometric_ratio": 0.9915972535150848,
+      "geometric_reduction_percent": 0.8402746484915236,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.9423642329154891,
+        1.043402411545938
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "fixed_cgu1_8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.982098416337205,
+        0.9486976408662451,
+        0.985920002244142,
+        0.9550233992253115
+      ],
+      "mean_log_ratio": -0.03273209823182119,
+      "geometric_ratio": 0.9677977996038057,
+      "geometric_reduction_percent": 3.220220039619426,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.938325531776773,
+        0.998195774492463
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "combined16",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.8128884936234528,
+        0.7749569480094215,
+        0.8582484276980271,
+        0.78544749061767
+      ],
+      "mean_log_ratio": -0.21411812142253867,
+      "geometric_ratio": 0.8072530255150695,
+      "geometric_reduction_percent": 19.27469744849305,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.7508427024385173,
+        0.8679014194142673
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "original_context8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9857754926127502,
+        0.9199556615199499,
+        0.9746721754446576,
+        0.9553832792711807
+      ],
+      "mean_log_ratio": -0.042263305956628486,
+      "geometric_ratio": 0.9586173376839454,
+      "geometric_reduction_percent": 4.138266231605458,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.9134298668464744,
+        1.0060402374194626
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": false
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "fixed_native8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        1.0392719987602506,
+        1.018525615333805,
+        0.9720110372464309,
+        1.0000287626286517
+      ],
+      "mean_log_ratio": 0.00712930402320946,
+      "geometric_ratio": 1.0071547780124257,
+      "geometric_reduction_percent": -0.71547780124257,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9626208104923033,
+        1.0537490316197238
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "fixed_cgu1_8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9798291118246178,
+        0.994826488188859,
+        0.9717888477926964,
+        0.9702476087461607
+      ],
+      "mean_log_ratio": -0.021096186296176867,
+      "geometric_ratio": 0.9791247816537371,
+      "geometric_reduction_percent": 2.0875218346262936,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.9614510584949002,
+        0.9971233892542055
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "combined16",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.8255829046407179,
+        0.8343285951446073,
+        0.7948888409416757,
+        0.8215205155462536
+      ],
+      "mean_log_ratio": -0.19973622791578982,
+      "geometric_ratio": 0.8189467398795203,
+      "geometric_reduction_percent": 18.105326012047975,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.7921607022985165,
+        0.8466385176811752
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "original_context8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9897905098435065,
+        0.9529385115955752,
+        0.9542939881430392,
+        0.9713846180907499
+      ],
+      "mean_log_ratio": -0.03357078451850389,
+      "geometric_ratio": 0.9669864611377766,
+      "geometric_reduction_percent": 3.3013538862223357,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.9399524986723012,
+        0.9947979470713177
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": false
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "fixed_native8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        1.0009169025801568,
+        0.9978798398785012,
+        1.0263696038417616,
+        1.024175742007901
+      ],
+      "mean_log_ratio": 0.01217753153160703,
+      "geometric_ratio": 1.0122519795595273,
+      "geometric_reduction_percent": -1.2251979559527282,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9886360945819127,
+        1.0364319851739792
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "fixed_cgu1_8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9574811619864076,
+        0.991287759964264,
+        1.0092529224432647,
+        1.0056374926358262
+      ],
+      "mean_log_ratio": -0.009341901978585275,
+      "geometric_ratio": 0.9907015980247276,
+      "geometric_reduction_percent": 0.929840197527243,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9535411199354507,
+        1.0293102581619031
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "combined16",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.7386744351754345,
+        0.7703042795322537,
+        0.7862677322353276,
+        0.7845854602115396
+      ],
+      "mean_log_ratio": -0.261731343004301,
+      "geometric_ratio": 0.7697177860001869,
+      "geometric_reduction_percent": 23.02822139998131,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.7350674193354613,
+        0.8060015374108797
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "original_context8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9659736406100194,
+        0.9874703562623101,
+        0.9886842898616853,
+        0.9929691391680842
+      ],
+      "mean_log_ratio": -0.016415861906258877,
+      "geometric_ratio": 0.9837181440782133,
+      "geometric_reduction_percent": 1.6281855921786659,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.9645495232353545,
+        1.0032677054701742
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": false
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "fixed_native8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9062647100589262,
+        0.9384759242671383,
+        0.987659625387721,
+        1.0210883841263703
+      ],
+      "mean_log_ratio": -0.03836749137378132,
+      "geometric_ratio": 0.9623592171891798,
+      "geometric_reduction_percent": 3.7640782810820173,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.8845547952645924,
+        1.0470072265358539
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "fixed_cgu1_8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.8923412601270597,
+        0.9140214290458533,
+        0.9635148000048079,
+        1.0061263683693737
+      ],
+      "mean_log_ratio": -0.058716913878156016,
+      "geometric_ratio": 0.9429736741371819,
+      "geometric_reduction_percent": 5.702632586281808,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.8655995506545427,
+        1.0272641078006428
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "combined16",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.7407032472864243,
+        0.7248106523601843,
+        0.8293946719943792,
+        0.7877324569237675
+      ],
+      "mean_log_ratio": -0.26191399021361195,
+      "geometric_ratio": 0.7695772120327292,
+      "geometric_reduction_percent": 23.04227879672708,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.6982739153632173,
+        0.8481615484261664
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "original_context8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.8929564015695092,
+        1.011523519277239,
+        0.9583304692897542,
+        0.9804056579040905
+      ],
+      "mean_log_ratio": -0.04102783795285015,
+      "geometric_ratio": 0.9598024106416423,
+      "geometric_reduction_percent": 4.019758935835771,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.8822099164777544,
+        1.044219352182647
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": false
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "fixed_native8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        1.0293127113923475,
+        1.0252615443598705,
+        1.016293572548277,
+        1.0942454171840326
+      ],
+      "mean_log_ratio": 0.04001658001588217,
+      "geometric_ratio": 1.0408280309946134,
+      "geometric_reduction_percent": -4.082803099461341,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        0.9863477268674644,
+        1.098317520885502
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "fixed_cgu1_8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        1.078452300655484,
+        0.987353619593747,
+        1.0068157371522024,
+        0.9646245194028542
+      ],
+      "mean_log_ratio": 0.0083940486144707,
+      "geometric_ratio": 1.0084293774219324,
+      "geometric_reduction_percent": -0.8429377421932394,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9341934194080518,
+        1.0885645179260202
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "combined16",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9151461441026205,
+        0.8175361012665375,
+        0.8596298706860783,
+        0.8641388293560904
+      ],
+      "mean_log_ratio": -0.14685173225123346,
+      "geometric_ratio": 0.8634219855603799,
+      "geometric_reduction_percent": 13.657801443962015,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.8022997341023632,
+        0.9292007630827817
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "original_context8",
+      "reference": "fixed_reference8",
+      "paired_ratios": [
+        0.9789896379708181,
+        0.9808744669022424,
+        1.0083185318207843,
+        1.036537760616035
+      ],
+      "mean_log_ratio": 0.0009062984514658858,
+      "geometric_ratio": 1.0009067092640043,
+      "geometric_reduction_percent": -0.09067092640042684,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9589101423009138,
+        1.0447425639339214
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": false
+    }
+  ],
+  "formal_failure_bound": null,
+  "service_validation": false,
+  "pass": true
+}

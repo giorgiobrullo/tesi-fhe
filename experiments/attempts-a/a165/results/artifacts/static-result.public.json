@@ -1,0 +1,59 @@
+{
+  "status": "SOURCE_STATIC_PASS_NOT_TYPECHECKED",
+  "source_id": "4c513c136a831aeebcd8f3b2e7e2aa96d072322064876e6d3fd5e80e25beaf68",
+  "static_tests": {
+    "count": 10,
+    "passed": 10,
+    "elapsed_seconds": 0.045,
+    "command": "python3 -B -m unittest -v test_static",
+    "recorded_from_observed_command": true
+  },
+  "source": {
+    "unchanged_functions": 13,
+    "original_single_arm_byte_identical": true,
+    "frozen_helpers_byte_identical": true,
+    "retained_actual_small_input": true,
+    "added_pbs": 1,
+    "added_ks": 0,
+    "only_weighted_bit_replaced": 1
+  },
+  "ledger": {
+    "schema": "a165.low_b1_direct_scale.v1",
+    "score_cases": 28,
+    "arm_cases": 140,
+    "consumer_rows": 3920,
+    "weighted_rows": 1120,
+    "margin_rows": 1120,
+    "repair_pair_rows": 28,
+    "negative_rows": 28,
+    "metadata_rows": 4,
+    "total_rows": 13360,
+    "conceptual_pbs_per_arm": [
+      11,
+      11,
+      8,
+      9,
+      8
+    ],
+    "conceptual_ks_per_arm": [
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "extra_frozen_pbs": 14,
+    "extra_frozen_ks": 16,
+    "source_total_pbs_per_score": 61,
+    "source_total_ks_per_score": 56
+  },
+  "direct_lut_degrees_checked": 4096,
+  "clear_target_centers": 14,
+  "ruff_check_passed": true,
+  "rustfmt_check_passed": true,
+  "independent_crypto_peer_review": "audit_findings: no material algebra defect; extra frozen KS count now explicit",
+  "compiled": false,
+  "real_noisy_gate_run": false,
+  "actual_consumer_pbs_executed": false,
+  "independent_runtime_validator_ready": false
+}

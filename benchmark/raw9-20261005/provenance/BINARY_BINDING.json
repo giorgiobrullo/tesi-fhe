@@ -1,0 +1,42 @@
+{
+  "observed_utc": "2026-10-05T05:15:57.576755+00:00",
+  "new_binary": "/workspace/research/tmp/current-final-threshold-stage-20261005/target/release/raw_threshold_fullquery",
+  "binary_pin": {
+    "bytes": 2227184,
+    "sha256": "5f0e8bcabef1342dfaba8374a604a3300d624e9fc3746c2e1cfa3319e0f25efc"
+  },
+  "source_binding": {
+    "bytes": 12143,
+    "sha256": "aed7ea6b7192fe9f638201afaf6802e9aabe04376c17c0882c59b58349bef32d"
+  },
+  "sealed_source_manifest": {
+    "bytes": 15343,
+    "sha256": "a51851d469c9d47f2931273f577cfafe2ef17274ac0e7f154fa388c62303d278"
+  },
+  "build_capture": {
+    "bytes": 1198,
+    "sha256": "53a19842e109c1a1a315d9bbaa8dda5e8c117ca1e443f742f60ce75c4e288a7d"
+  },
+  "build_exit_code": 0,
+  "command": [
+    "cargo",
+    "build",
+    "--release",
+    "--offline",
+    "--locked",
+    "--features",
+    "opt-owned-pfks,opt-lut-cache",
+    "--bin",
+    "raw_threshold_fullquery"
+  ],
+  "environment": {
+    "RUSTFLAGS": "",
+    "CARGO_TARGET_DIR": "/workspace/research/tmp/current-final-threshold-stage-20261005/target",
+    "RAYON_NUM_THREADS": "16"
+  },
+  "old_binary_pins_verified": {
+    "raw_threshold_stage": "40cb0eb36bc58e5c92b6026043f69b6a45bd6ca5e5e698d1a97271d75723a68a",
+    "raw_threshold_parallel_stage": "5c5a5a4a8d7c974dbdd629c22df512360b95809e8e477f1c9823dfb83e17b908"
+  },
+  "native_started": false
+}

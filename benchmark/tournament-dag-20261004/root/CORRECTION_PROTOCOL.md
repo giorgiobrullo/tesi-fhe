@@ -1,0 +1,7 @@
+# Correzione del harness prima delle operazioni FHE
+
+La campagna originale è chiusa con INPUT_ADMISSION_FAILURE: exit101, famigliafresh1 e querycifrata1, zero chiamate evaluate/correctness/timing. service::plan ha rifiutato la coordinata4 perché il limite è±3. Errori/probe/binary/review/raw originali restano invariati; nessun guadagno o fallimento del baseline dedotto. Il SOURCE_PASS precedente non aveva rilevato questa violazione del harness.
+
+Nuova campagna distinta, non retry dopo errore cifrato o ricerca di una chiave favorevole. Prima di qualsiasi keygen, service::plan ammette TUTTE5fixture deterministiche; coordinata perturbata1+i%3. Sourcecorrectionreview richiesta. Inputquery512/primi16±1, due templateidentici75/119, soglie/ordine/contratto/metrica/pairing identici. Una nuova famigliafreshRAM unica, nessuna selezione/rekey se fallisce una valutazione valida. Vecchia chiave già terminata e mai salvata; non si riutilizzano envelope/frozenmaterial.
+
+Protocollo di timing originale invariato:10correctness+4warmup+16timed,8coppieAB/BA, stessikeys/queryciphertextentrocampagna, counts/counters/outputmatched, geomeanratio<0.97 e ogni famiglia<=1.01. G4/profileoff/pool16. Cambiano soltanto admission del harness e package/binary/receiptpaths separati. No modifiche ai7file dello scheduler dopo SOURCE_PASS o agli originaliW. Root sola build/native isolata; nuovo controllo di liveness prima di ogni lancio. Nessun vecchio modello, fase/spectrum/payloadfrozen o upload.

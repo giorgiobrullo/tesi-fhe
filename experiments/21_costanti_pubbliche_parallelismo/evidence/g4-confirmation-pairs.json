@@ -1,0 +1,603 @@
+{
+  "pass": true,
+  "schema": "g4-composite-heldout-two-families-result.v1",
+  "source_sha256": "2ba7db072cdd2ba136be359812b7b0fd87691285baeffb11272502d2376106e9",
+  "binary_sha256": "579ac3d4e83fb319e76120ece49d144370088951e69ed90e5ed6c38f0e659112",
+  "primary_summary": {
+    "pairs": 56,
+    "candidate_wins": 45,
+    "geometric_ratio_candidate_over_reference": 0.9767656796533457,
+    "geometric_reduction_percent": 2.323432034665429,
+    "median_paired_reduction_percent": 2.3850053863567924,
+    "reference_median_seconds": 1.9203702085,
+    "candidate_median_seconds": 1.8883507295
+  },
+  "primary_scope": "Exactly 28 measured pairs from each of two prespecified fresh confirmation families; screening and all standalone runs excluded.",
+  "reference_arm": "Combined classic route: shared normalizer, classic parallel4 comparators, public threshold specialization and both ID cuts. Legacy reader label scalar refers to this route.",
+  "candidate_arm": "Same combined classic route plus dynamic g4 selection; both arms load supplemental g4 keys.",
+  "per_family": {
+    "1": {
+      "pairs": 28,
+      "candidate_wins": 19,
+      "geometric_ratio_candidate_over_reference": 0.9803590645968363,
+      "geometric_reduction_percent": 1.9640935403163695,
+      "median_paired_reduction_percent": 1.2176984536729996,
+      "reference_median_seconds": 1.9452300005,
+      "candidate_median_seconds": 1.9117694374999998
+    },
+    "2": {
+      "pairs": 28,
+      "candidate_wins": 26,
+      "geometric_ratio_candidate_over_reference": 0.9731854658180933,
+      "geometric_reduction_percent": 2.6814534181906713,
+      "median_paired_reduction_percent": 2.9774610188381456,
+      "reference_median_seconds": 1.8904587290000001,
+      "candidate_median_seconds": 1.8327479370000002
+    }
+  },
+  "per_scene": {
+    "12": {
+      "pairs": 8,
+      "candidate_wins": 6,
+      "geometric_ratio_candidate_over_reference": 0.9883855168761005,
+      "geometric_reduction_percent": 1.1614483123899455,
+      "median_paired_reduction_percent": 1.7224176329929064,
+      "reference_median_seconds": 1.8315154790000001,
+      "candidate_median_seconds": 1.7845076875
+    },
+    "13": {
+      "pairs": 8,
+      "candidate_wins": 6,
+      "geometric_ratio_candidate_over_reference": 0.9913110508380046,
+      "geometric_reduction_percent": 0.8688949161995363,
+      "median_paired_reduction_percent": 1.25599089623048,
+      "reference_median_seconds": 1.8410826045,
+      "candidate_median_seconds": 1.819930271
+    },
+    "14": {
+      "pairs": 8,
+      "candidate_wins": 7,
+      "geometric_ratio_candidate_over_reference": 0.9691664225292344,
+      "geometric_reduction_percent": 3.083357747076565,
+      "median_paired_reduction_percent": 3.2494526302550284,
+      "reference_median_seconds": 1.941431854,
+      "candidate_median_seconds": 1.887351604
+    },
+    "23": {
+      "pairs": 8,
+      "candidate_wins": 6,
+      "geometric_ratio_candidate_over_reference": 0.9657729178524436,
+      "geometric_reduction_percent": 3.422708214755643,
+      "median_paired_reduction_percent": 1.2384065362977537,
+      "reference_median_seconds": 1.9203702085,
+      "candidate_median_seconds": 1.8674688124999999
+    },
+    "35": {
+      "pairs": 8,
+      "candidate_wins": 7,
+      "geometric_ratio_candidate_over_reference": 0.978192883323952,
+      "geometric_reduction_percent": 2.1807116676047955,
+      "median_paired_reduction_percent": 2.865767658634982,
+      "reference_median_seconds": 2.062304625,
+      "candidate_median_seconds": 2.017462625
+    },
+    "38": {
+      "pairs": 8,
+      "candidate_wins": 7,
+      "geometric_ratio_candidate_over_reference": 0.9685141388014815,
+      "geometric_reduction_percent": 3.1485861198518483,
+      "median_paired_reduction_percent": 3.382129696176367,
+      "reference_median_seconds": 1.899101063,
+      "candidate_median_seconds": 1.850199916
+    },
+    "39": {
+      "pairs": 8,
+      "candidate_wins": 6,
+      "geometric_ratio_candidate_over_reference": 0.9763208725134154,
+      "geometric_reduction_percent": 2.367912748658463,
+      "median_paired_reduction_percent": 2.7944574369859754,
+      "reference_median_seconds": 2.1271204585000003,
+      "candidate_median_seconds": 2.0737394790000003
+    }
+  },
+  "pairs": [
+    {
+      "scene": 12,
+      "repetition": 2,
+      "scalar_ns": 1823558916,
+      "candidate_ns": 1764702375,
+      "ratio": 0.9677243545664527,
+      "family": 1
+    },
+    {
+      "scene": 12,
+      "repetition": 3,
+      "scalar_ns": 1832832959,
+      "candidate_ns": 1789488458,
+      "ratio": 0.9763510903777893,
+      "family": 1
+    },
+    {
+      "scene": 12,
+      "repetition": 4,
+      "scalar_ns": 1859819292,
+      "candidate_ns": 1841421625,
+      "ratio": 0.9901078201096539,
+      "family": 1
+    },
+    {
+      "scene": 12,
+      "repetition": 5,
+      "scalar_ns": 1888599125,
+      "candidate_ns": 1947422042,
+      "ratio": 1.0311463222773651,
+      "family": 1
+    },
+    {
+      "scene": 13,
+      "repetition": 2,
+      "scalar_ns": 1858249917,
+      "candidate_ns": 1818848042,
+      "ratio": 0.9787962455213713,
+      "family": 1
+    },
+    {
+      "scene": 13,
+      "repetition": 3,
+      "scalar_ns": 1865889375,
+      "candidate_ns": 1821012500,
+      "ratio": 0.9759488018950748,
+      "family": 1
+    },
+    {
+      "scene": 13,
+      "repetition": 4,
+      "scalar_ns": 1853038041,
+      "candidate_ns": 1838420750,
+      "ratio": 0.9921117156385458,
+      "family": 1
+    },
+    {
+      "scene": 13,
+      "repetition": 5,
+      "scalar_ns": 1849100500,
+      "candidate_ns": 1886928375,
+      "ratio": 1.0204574467423486,
+      "family": 1
+    },
+    {
+      "scene": 14,
+      "repetition": 2,
+      "scalar_ns": 1944193667,
+      "candidate_ns": 1999973542,
+      "ratio": 1.0286904931061067,
+      "family": 1
+    },
+    {
+      "scene": 14,
+      "repetition": 3,
+      "scalar_ns": 2014848458,
+      "candidate_ns": 1907671583,
+      "ratio": 0.9468064833489328,
+      "family": 1
+    },
+    {
+      "scene": 14,
+      "repetition": 4,
+      "scalar_ns": 1938670041,
+      "candidate_ns": 1915867292,
+      "ratio": 0.988237942239909,
+      "family": 1
+    },
+    {
+      "scene": 14,
+      "repetition": 5,
+      "scalar_ns": 2055334750,
+      "candidate_ns": 1875619916,
+      "ratio": 0.9125617693176258,
+      "family": 1
+    },
+    {
+      "scene": 23,
+      "repetition": 2,
+      "scalar_ns": 1916931000,
+      "candidate_ns": 1896150375,
+      "ratio": 0.9891594298386327,
+      "family": 1
+    },
+    {
+      "scene": 23,
+      "repetition": 3,
+      "scalar_ns": 1923809417,
+      "candidate_ns": 1971993625,
+      "ratio": 1.025046248123236,
+      "family": 1
+    },
+    {
+      "scene": 23,
+      "repetition": 4,
+      "scalar_ns": 2324955583,
+      "candidate_ns": 1904237250,
+      "ratio": 0.8190424212504193,
+      "family": 1
+    },
+    {
+      "scene": 23,
+      "repetition": 5,
+      "scalar_ns": 1962660875,
+      "candidate_ns": 2008435167,
+      "ratio": 1.0233225681436178,
+      "family": 1
+    },
+    {
+      "scene": 35,
+      "repetition": 2,
+      "scalar_ns": 2176920041,
+      "candidate_ns": 2108012542,
+      "ratio": 0.968346334407236,
+      "family": 1
+    },
+    {
+      "scene": 35,
+      "repetition": 3,
+      "scalar_ns": 2061889125,
+      "candidate_ns": 2035926000,
+      "ratio": 0.987408088686631,
+      "family": 1
+    },
+    {
+      "scene": 35,
+      "repetition": 4,
+      "scalar_ns": 2120975958,
+      "candidate_ns": 2116228667,
+      "ratio": 0.9977617421913275,
+      "family": 1
+    },
+    {
+      "scene": 35,
+      "repetition": 5,
+      "scalar_ns": 2096409166,
+      "candidate_ns": 2144552208,
+      "ratio": 1.0229645256187552,
+      "family": 1
+    },
+    {
+      "scene": 38,
+      "repetition": 2,
+      "scalar_ns": 1940990250,
+      "candidate_ns": 1897694375,
+      "ratio": 0.9776939245315632,
+      "family": 1
+    },
+    {
+      "scene": 38,
+      "repetition": 3,
+      "scalar_ns": 1976578500,
+      "candidate_ns": 1866769291,
+      "ratio": 0.9444448024705318,
+      "family": 1
+    },
+    {
+      "scene": 38,
+      "repetition": 4,
+      "scalar_ns": 1904998792,
+      "candidate_ns": 1932924041,
+      "ratio": 1.0146589326551132,
+      "family": 1
+    },
+    {
+      "scene": 38,
+      "repetition": 5,
+      "scalar_ns": 1946266334,
+      "candidate_ns": 1889773084,
+      "ratio": 0.9709735255586043,
+      "family": 1
+    },
+    {
+      "scene": 39,
+      "repetition": 2,
+      "scalar_ns": 2176145125,
+      "candidate_ns": 2063638666,
+      "ratio": 0.9483001121076426,
+      "family": 1
+    },
+    {
+      "scene": 39,
+      "repetition": 3,
+      "scalar_ns": 2096749834,
+      "candidate_ns": 2136720583,
+      "ratio": 1.01906319406915,
+      "family": 1
+    },
+    {
+      "scene": 39,
+      "repetition": 4,
+      "scalar_ns": 2176721667,
+      "candidate_ns": 2214079291,
+      "ratio": 1.017162333874081,
+      "family": 1
+    },
+    {
+      "scene": 39,
+      "repetition": 5,
+      "scalar_ns": 2236721333,
+      "candidate_ns": 2112048583,
+      "ratio": 0.9442609375783156,
+      "family": 1
+    },
+    {
+      "scene": 12,
+      "repetition": 2,
+      "scalar_ns": 1831877250,
+      "candidate_ns": 1775652625,
+      "ratio": 0.9693076460226797,
+      "family": 2
+    },
+    {
+      "scene": 12,
+      "repetition": 3,
+      "scalar_ns": 1831153708,
+      "candidate_ns": 1778972750,
+      "ratio": 0.9715037805007684,
+      "family": 2
+    },
+    {
+      "scene": 12,
+      "repetition": 4,
+      "scalar_ns": 1798954625,
+      "candidate_ns": 1779526917,
+      "ratio": 0.9892005569623525,
+      "family": 2
+    },
+    {
+      "scene": 12,
+      "repetition": 5,
+      "scalar_ns": 1779285125,
+      "candidate_ns": 1803456084,
+      "ratio": 1.0135846462494311,
+      "family": 2
+    },
+    {
+      "scene": 13,
+      "repetition": 2,
+      "scalar_ns": 1820990042,
+      "candidate_ns": 1768179750,
+      "ratio": 0.970999131910684,
+      "family": 2
+    },
+    {
+      "scene": 13,
+      "repetition": 3,
+      "scalar_ns": 1833064709,
+      "candidate_ns": 1867024416,
+      "ratio": 1.0185261910467558,
+      "family": 2
+    },
+    {
+      "scene": 13,
+      "repetition": 4,
+      "scalar_ns": 1803090375,
+      "candidate_ns": 1772907208,
+      "ratio": 0.9832603138375691,
+      "family": 2
+    },
+    {
+      "scene": 13,
+      "repetition": 5,
+      "scalar_ns": 1795347666,
+      "candidate_ns": 1780302416,
+      "ratio": 0.9916198682378213,
+      "family": 2
+    },
+    {
+      "scene": 14,
+      "repetition": 2,
+      "scalar_ns": 1882414625,
+      "candidate_ns": 1812687458,
+      "ratio": 0.962958656358718,
+      "family": 2
+    },
+    {
+      "scene": 14,
+      "repetition": 3,
+      "scalar_ns": 1953684292,
+      "candidate_ns": 1899083292,
+      "ratio": 0.9720522910361814,
+      "family": 2
+    },
+    {
+      "scene": 14,
+      "repetition": 4,
+      "scalar_ns": 1912116083,
+      "candidate_ns": 1814740083,
+      "ratio": 0.9490742215570811,
+      "family": 2
+    },
+    {
+      "scene": 14,
+      "repetition": 5,
+      "scalar_ns": 1868570834,
+      "candidate_ns": 1863928500,
+      "ratio": 0.9975155696987615,
+      "family": 2
+    },
+    {
+      "scene": 23,
+      "repetition": 2,
+      "scalar_ns": 1837793708,
+      "candidate_ns": 1831865333,
+      "ratio": 0.9967741890865153,
+      "family": 2
+    },
+    {
+      "scene": 23,
+      "repetition": 3,
+      "scalar_ns": 1864758791,
+      "candidate_ns": 1838787250,
+      "ratio": 0.9860724394354122,
+      "family": 2
+    },
+    {
+      "scene": 23,
+      "repetition": 4,
+      "scalar_ns": 1897434917,
+      "candidate_ns": 1834199791,
+      "ratio": 0.9666733623201265,
+      "family": 2
+    },
+    {
+      "scene": 23,
+      "repetition": 5,
+      "scalar_ns": 1938701958,
+      "candidate_ns": 1817176750,
+      "ratio": 0.9373161988625793,
+      "family": 2
+    },
+    {
+      "scene": 35,
+      "repetition": 2,
+      "scalar_ns": 2051648000,
+      "candidate_ns": 1998999250,
+      "ratio": 0.9743383124200643,
+      "family": 2
+    },
+    {
+      "scene": 35,
+      "repetition": 3,
+      "scalar_ns": 2062720125,
+      "candidate_ns": 1964221875,
+      "ratio": 0.9522483691286039,
+      "family": 2
+    },
+    {
+      "scene": 35,
+      "repetition": 4,
+      "scalar_ns": 2058670375,
+      "candidate_ns": 1973234250,
+      "ratio": 0.9584993663689361,
+      "family": 2
+    },
+    {
+      "scene": 35,
+      "repetition": 5,
+      "scalar_ns": 2027822458,
+      "candidate_ns": 1958660916,
+      "ratio": 0.9658936896930254,
+      "family": 2
+    },
+    {
+      "scene": 38,
+      "repetition": 2,
+      "scalar_ns": 1891410000,
+      "candidate_ns": 1833630541,
+      "ratio": 0.9694516477125531,
+      "family": 2
+    },
+    {
+      "scene": 38,
+      "repetition": 3,
+      "scalar_ns": 1893203334,
+      "candidate_ns": 1809570208,
+      "ratio": 0.9558245411372174,
+      "family": 2
+    },
+    {
+      "scene": 38,
+      "repetition": 4,
+      "scalar_ns": 1875614541,
+      "candidate_ns": 1806040042,
+      "ratio": 0.9629057583639196,
+      "family": 2
+    },
+    {
+      "scene": 38,
+      "repetition": 5,
+      "scalar_ns": 1889507458,
+      "candidate_ns": 1802192792,
+      "ratio": 0.9537897214269688,
+      "family": 2
+    },
+    {
+      "scene": 39,
+      "repetition": 2,
+      "scalar_ns": 2058685583,
+      "candidate_ns": 1990706041,
+      "ratio": 0.9669791528335583,
+      "family": 2
+    },
+    {
+      "scene": 39,
+      "repetition": 3,
+      "scalar_ns": 2036246542,
+      "candidate_ns": 1989681042,
+      "ratio": 0.9771316984267222,
+      "family": 2
+    },
+    {
+      "scene": 39,
+      "repetition": 4,
+      "scalar_ns": 2113377750,
+      "candidate_ns": 2083840292,
+      "ratio": 0.9860235786053866,
+      "family": 2
+    },
+    {
+      "scene": 39,
+      "repetition": 5,
+      "scalar_ns": 2140863167,
+      "candidate_ns": 2043820625,
+      "ratio": 0.9546713010453695,
+      "family": 2
+    }
+  ],
+  "supplementary_bootstrap": {
+    "supplementary": true,
+    "iterations": 20000,
+    "seed": 20260908,
+    "conditional_percentile_interval_95_percent": [
+      1.512880851102414,
+      3.220447585104982
+    ],
+    "method": "Resample four paired log ratios within each fixed family/scene stratum; average all 56; transform as 100*(1-exp(mean)). Linear-interpolated percentile endpoints.",
+    "scope": "Conditional on these two families, seven scenes and recorded load. Assumes exchangeable repeats within each stratum; no population-of-keys or service confidence interval."
+  },
+  "load": {
+    "1": {
+      "windows": 84,
+      "high_load": 84,
+      "unknown": 77,
+      "complete_coverage": 84,
+      "weighted_cpu_percent_range": [
+        192.27667132691735,
+        404.26959935949145
+      ],
+      "weighted_cpu_percent_median": 247.92759048648844,
+      "raw_process_snapshots_replayed": 81,
+      "floating_summation_max_delta": 5.684341886080802e-14,
+      "scope": "Independent raw-ps parsing, PID+birth deltas and overlap accounting; churn is not complete CPU accounting."
+    },
+    "2": {
+      "windows": 84,
+      "high_load": 84,
+      "unknown": 74,
+      "complete_coverage": 84,
+      "weighted_cpu_percent_range": [
+        162.40243359985413,
+        400.2443528140986
+      ],
+      "weighted_cpu_percent_median": 185.7164399916199,
+      "raw_process_snapshots_replayed": 78,
+      "floating_summation_max_delta": 2.842170943040401e-14,
+      "scope": "Independent raw-ps parsing, PID+birth deltas and overlap accounting; churn is not complete CPU accounting."
+    }
+  },
+  "screen_pairs_in_primary": 0,
+  "standalone_pairs_in_primary": 0,
+  "limits": [
+    "Two fresh observed families do not establish a general key-population speedup or failure-tail bound.",
+    "All measured pairs retained regardless of gain or load flags; raw-load review does not prove continuous isolation.",
+    "Query timing excludes setup, input loading, public scene planning and terminal decoding. No matched service result.",
+    "Complete stock GLWE equality remains a source-bound native assertion; saved LWE phases and intended selected-node genealogy are independently replayed.",
+    "Do not add this incremental reduction to earlier component percentages."
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "status": "PASS_REPLAYED_C1_ROUND_SCHEDULE",
+  "gate_pass": true,
+  "stage": "n127",
+  "source_sha256": "3104f9d691a4d5fb31695c8c07beb5b0fb9de8b6da7747bab60035b6802f32fa",
+  "binary_sha256": "8bc24eccba0375f015b94a8d3ef4cbe0723025df3e8b09bedba650d009a77cba",
+  "pid": 40248,
+  "records": 777890,
+  "fresh_keysets": 3,
+  "pairs": 216,
+  "reported_algorithm_counts": {
+    "packing": 28125,
+    "cm_ks": 35025,
+    "cm_pbs": 48867,
+    "ordinary_ks": 57159,
+    "ordinary_pbs": 111201,
+    "extraction": 56712
+  },
+  "anchor_diagnostics": [
+    {
+      "key_index": 1,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          2,
+          3
+        ],
+        "wrong_lut_crossings_by_offset": [
+          2,
+          3
+        ],
+        "wrong_discriminators_by_offset": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "key_index": 2,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          4,
+          3
+        ],
+        "wrong_lut_crossings_by_offset": [
+          4,
+          3
+        ],
+        "wrong_discriminators_by_offset": [
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "key_index": 3,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          3,
+          3
+        ],
+        "wrong_lut_crossings_by_offset": [
+          3,
+          3
+        ],
+        "wrong_discriminators_by_offset": [
+          3,
+          3
+        ]
+      }
+    }
+  ],
+  "estimator_prefix": false,
+  "actual_input_variance_attested": false,
+  "ciphertext_key_membership_attested": false,
+  "eight_round_composition": false,
+  "timing_claim": false,
+  "binding": {
+    "source_sha256": "3104f9d691a4d5fb31695c8c07beb5b0fb9de8b6da7747bab60035b6802f32fa",
+    "manifest_sha256": "e49b68da0e25ed540144eca1c355e2aa931acc5e0db3d6dc85404ddafed54fde",
+    "child_pid": 40248,
+    "started_at_utc": "2026-09-05T09:25:15.842207+00:00",
+    "exited_at_utc": "2026-09-05T10:00:38.877975+00:00",
+    "exit_code": 0,
+    "stdout_sha256": "406b30c55a6b1a382f8c7eedb07e20e9d7f8293a98024749b43f0db5bf954152",
+    "envelope_sha256": {
+      "prepared.json": "589e62b3ab754a49e6971b90792215b01c5a4e9cca8e737f0eb6fe09a2f48830",
+      "child.json": "b5d4b086497ea6b4f64046e9d61815297be6d4b65eb88c8a62aaef7b3926e80a",
+      "wait-complete.json": "8d041d3e3157a8bcb47066e4b31658a6a38d905bdb2aa2311f27f03000ad18ef",
+      "exit.json": "bb03a9e6af9fc13642cd3547803949bb08e10772c221b003c472791e57bb9e41",
+      "clearance.json": "5ad8e293f1829bd0d15772f1fcd94bbd056677eddbf424a68a99cf4cae20a3cc"
+    },
+    "prior": {
+      "stage": "n4-exhaustive",
+      "report_sha256": "d543cb7f52f8dbe9224cff98251d746c8edab5970bf4256870b97d130fd04d9b",
+      "exited_at_utc": "2026-09-05T08:34:14.030529+00:00"
+    }
+  }
+}

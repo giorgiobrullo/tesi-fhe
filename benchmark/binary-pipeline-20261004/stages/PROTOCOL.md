@@ -1,0 +1,7 @@
+# Head and equal-score comparison diagnostic
+
+New local copy of the frozen G prototype; G remains scientifically rejected. This is a new diagnostic, not a retry to qualify G. One fresh ordinary family, no saved family load, one fixed public fixture q=(1,1), template e0/e1, own thresholds−2/−1. Scoring and Head run exactly once. Preserve the resulting ciphertext objects.
+
+Maximum THREE stage records, stop the first noncanonical/incorrect semantic output: (1) rounded score limbs from Head (expected normalized62, top/middle/low0/3/14 for both leaves); (2) actual comparison of one leaf with its identical clone, expected top0/lower−1/C−1; (3) actual comparison of the two distinct Head leaves, same expectations. No further selection/final gate in this invocation. These outputs are ordinary rounded public symbols/digits for a known synthetic fixture; no unrounded phases, secret bits, addresses, spectra or residuals are inspected. Source-only wrappers reuse current producer and actual comparator implementation.
+
+One no-run/offline/locked build after source review, then one exact isolated ignored test after actual liveness and preserved input checks. Root alone launches. No timing, error-rate estimate, all-PASS promotion, key selection or resampling. A new failure narrows only this diagnostic family/stage; it does not identify the historical G-family causal path. All-PASS leaves G cause unresolved; consider transfer/final cuts only then. Do not modify frozen G, maintained W runtime, protected records or preexisting processes.

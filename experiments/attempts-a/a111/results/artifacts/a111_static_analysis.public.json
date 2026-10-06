@@ -1,0 +1,145 @@
+{
+  "a98_r2b": {
+    "adapter_blind_rotation_total_seconds_diagnostic": 0.048295584,
+    "bitwise_extracted_lwe_matches": 14,
+    "bitwise_glwe_matches": 14,
+    "cases_passed": 14,
+    "consumed_decode_matches": 14,
+    "direct_centered_degree_mismatch_cases": 10,
+    "fresh_keys": 1,
+    "input_lwe_noise_scope": "none_crafted_raw_container",
+    "not_run": [
+      "R3_corrected_keyswitch",
+      "R4_composed_KS_to_PBS",
+      "R5_fresh_key_campaign",
+      "2048_mask_campaign",
+      "composed_p_fail",
+      "exact_ID_integration"
+    ],
+    "reference_blind_rotation_total_seconds_diagnostic": 0.048715042,
+    "status": "PASS_COMPONENT_FHE_SMOKE_R2B",
+    "tie_one_cases": 8,
+    "tie_zero_cases": 6,
+    "total_wall_seconds_diagnostic": 0.534467667
+  },
+  "a99_chen_grouped": {
+    "all_failure_counters_zero": true,
+    "arm_cases_passed": 9,
+    "arms": [
+      "g1-floor",
+      "g2-floor",
+      "g2-nearest"
+    ],
+    "fresh_keys": 3,
+    "parameter_sets": [
+      "23x1",
+      "7x6",
+      "8x5"
+    ],
+    "per_parameter": {
+      "23x1": {
+        "conservative_margin_against_id_half_step_bits": 2.985924281810413,
+        "conservative_margin_against_id_half_step_ratio": 7.922327170324843,
+        "full_fourier_key_bytes_for_ten_keys": 655360,
+        "kernel_milliseconds_range_diagnostic": [
+          0.261667,
+          0.292959
+        ],
+        "key_and_client_generation_seconds_diagnostic": 0.231272,
+        "pack_trace_milliseconds_range_diagnostic": [
+          0.307292,
+          0.364667
+        ],
+        "primitive_eval_mean_seconds_diagnostic": 2.1729e-05,
+        "worst_robust_word_error": 4547754244979845
+      },
+      "7x6": {
+        "conservative_margin_against_id_half_step_bits": 19.20525234316726,
+        "conservative_margin_against_id_half_step_ratio": 604445.3342554801,
+        "full_fourier_key_bytes_for_ten_keys": 3932160,
+        "kernel_milliseconds_range_diagnostic": [
+          0.28075,
+          0.325042
+        ],
+        "key_and_client_generation_seconds_diagnostic": 0.054861,
+        "pack_trace_milliseconds_range_diagnostic": [
+          0.816833,
+          0.887125
+        ],
+        "primitive_eval_mean_seconds_diagnostic": 5.6713e-05,
+        "worst_robust_word_error": 59606377909
+      },
+      "8x5": {
+        "conservative_margin_against_id_half_step_bits": 17.642040550608094,
+        "conservative_margin_against_id_half_step_ratio": 204542.42025805003,
+        "full_fourier_key_bytes_for_ten_keys": 3276800,
+        "kernel_milliseconds_range_diagnostic": [
+          0.271125,
+          0.284625
+        ],
+        "key_and_client_generation_seconds_diagnostic": 0.04664,
+        "pack_trace_milliseconds_range_diagnostic": [
+          0.716542,
+          0.7436670000000001
+        ],
+        "primitive_eval_mean_seconds_diagnostic": 4.8175e-05,
+        "worst_robust_word_error": 176143398389
+      }
+    },
+    "plan_scope": {
+      "cross_parameter_pairing": false,
+      "encrypted_control_br_included": false,
+      "full_selector_included": false
+    },
+    "primitive_cases_passed": 30,
+    "primitive_coefficients_checked": 61440,
+    "result_wall_seconds_diagnostic": 0.430091,
+    "robust_tuples_checked": 2286,
+    "robust_words_checked": 9144,
+    "stage_evalauto_calls_replayed": 126,
+    "status": "PASS_SAMPLED_COMPONENT_ARMS_REPORTED_SEPARATELY"
+  },
+  "claim_boundaries": {
+    "a99_parameter_winner_selected": false,
+    "component_fhe_executed": true,
+    "exact_id_end_to_end_executed": false,
+    "full_selector_executed": false,
+    "full_tournament_executed": false,
+    "p_fail_proven": false,
+    "runtime_frontier_promoted": false,
+    "timings_are_diagnostic_single_key": true
+  },
+  "date": "2026-09-03",
+  "input_pins": {
+    "experiments/14_pipeline_tfhe_rs/results/ritaratura_soglia.txt": "e490b7431e3531b532d4a383e6d0d1231bb4537126ec2ec4e01eb9202f0db3ab",
+    "tmp/a38-combined-prototype/README.md": "156a35f3407a5914ea6712ad2c5e76f413f1f125bc275371e8fe6d4f7dcd4d37",
+    "tmp/a98-head-start-exact-adapter-port/artifacts/a98_r2b_component_smoke_2026-09-03T0517.jsonl": "bd4cfd5e7bdf2bffd4d0dfc6ac1fc3042536d9b5493b09945fe9325f3f46f9d1",
+    "tmp/a98-head-start-exact-adapter-port/r2b-runtime-gate/src/main.rs": "964dd1d8c467a350ec6e2de9e1b9b7b0b3fe20f31998b2e19eb455ee04da0a54",
+    "tmp/a99-chen-grouped-runtime/artifacts/a99_component_smoke_2026-09-03T0519.jsonl": "dc28c1c0abcecda82fabfd2ed225d0867abdc4d0113092a7029592ce8af0931a",
+    "tmp/a99-chen-grouped-runtime/src/main.rs": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b",
+    "ultimo-meeting-transcription.md": "01e08d541287aa057441f3861e549408ec8bf1448f20ae6193fc1be8b1e87745"
+  },
+  "joint_interpretation": {
+    "established": [
+      "A98 corrected R2B adapter is bitwise identical to its reference on 14 real blind-rotation cases",
+      "A99 three packing arms decode every certified mixed score/ID word on one fresh key per parameter set",
+      "A99 stage replay observes the declared 14 EvalAuto calls per arm with zero ciphertext mismatch"
+    ],
+    "next_gates": [
+      "A98 R3 corrected keyswitch then R4 composed KS-to-PBS",
+      "compile/run A104 to add 10x4 and MS-Pack arms after a clean-load gate",
+      "compile/run A101 full versus pseudo-GGSW EvalAuto after A104 ordering is fixed",
+      "materialize and run A108 packed PFKS D2 k4 selector before any full tournament"
+    ],
+    "not_established": [
+      "A98 correctness under encrypted noisy input before the adapter",
+      "A98 R3 key switching or R4 composed KS-to-PBS",
+      "A99 encrypted comparison/control blind rotation",
+      "encrypted stable-first tournament and final inclusive threshold 0/ID",
+      "fresh-key failure bound or composed p-fail",
+      "causal latency comparison or end-to-end speedup"
+    ]
+  },
+  "schema": "a111.a98_a99_runtime_smoke_freeze.v1",
+  "status": "PASS_TWO_COMPONENT_FHE_SMOKES_NO_FRONTIER_PROMOTION"
+}

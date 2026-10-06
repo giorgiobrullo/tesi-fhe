@@ -1,0 +1,6 @@
+sequence,suite,cohort,repetition,discrepancy,encrypt_wall_ms,encrypt_reported_ms,http_wall_ms,server_reported_ms,pbs,output_gallery_size,decrypt_wall_ms,decrypt_reported_ms
+0,targeted_regression,tuning_impostor,0,False,6.77,0.76,6745.842,6745.2,3655,127,6.208,
+1,targeted_regression,primary_test_impostor,0,False,6.622,0.67,8980.959,8980.1,3655,127,6.689,
+2,targeted_regression,tuning_impostor,0,False,7.232,0.87,8149.369,8148.4,3655,127,5.596,
+3,targeted_regression,extended_holdout_non_tuning_impostor,0,False,5.322,0.46,6812.971,6812.3,3655,127,5.447,
+4,targeted_regression,tuning_impostor,0,False,5.284,0.45,7624.588,7623.4,3655,127,6.53,

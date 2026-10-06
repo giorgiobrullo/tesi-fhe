@@ -1,0 +1,16 @@
+[package]
+name = "a76-a68-progress-instrumentation"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+tfhe = { version = "=0.11.3", default-features = false, features = ["integer"] }
+
+[lib]
+name = "a76_a68_progress"
+path = "src/lib.rs"
+
+[[bin]]
+name = "a76-a68-progress"
+path = "src/bin/a76_progress.rs"

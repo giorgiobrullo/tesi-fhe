@@ -1,0 +1,22 @@
+{
+  "status": "STATIC_SOURCE_ONLY_PASS",
+  "source_pins": 42,
+  "model_byte_identical": true,
+  "cm_wrapper_sites": 4,
+  "n4_ledger": {
+    "packing": 3,
+    "cm_ks": 2,
+    "cm_pbs": 3,
+    "ordinary_ks": 9,
+    "ordinary_pbs": 7,
+    "extraction": 8
+  },
+  "stock_preparation_cm_ks": 1,
+  "stock_pair_cm_pbs": 2,
+  "forced_unmet_cm_pbs": 0,
+  "whole_witness_completed_cm_pbs": 17,
+  "whole_witness_cm_events": 18,
+  "typechecked": false,
+  "fhe_executed": false,
+  "probability_guarantee": false
+}

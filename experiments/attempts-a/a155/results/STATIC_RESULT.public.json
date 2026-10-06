@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_STATIC_ONLY",
+  "original_crypto_byte_identical_prefix": true,
+  "a150_origins": 15,
+  "cached_source_pins": 44,
+  "additional_margin_operations": {
+    "body_additions": 16,
+    "ordinary_pbs": 16,
+    "ordinary_ks": 0
+  },
+  "typechecked": false,
+  "fhe_executed": false,
+  "light_tests": 11,
+  "test_seconds": 0.027,
+  "exhaustive_lut_degrees": 4096,
+  "exact_body_offset_checks": 32768,
+  "ruff": "PASS",
+  "rustfmt": "PASS_FORMAT_ONLY",
+  "no_child_plan_suites": [
+    "witness",
+    "stock"
+  ]
+}

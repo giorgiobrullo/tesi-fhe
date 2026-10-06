@@ -1,0 +1,283 @@
+{
+  "status": "ALL_FULL_WITNESS_GATES_PASS",
+  "run_id": "full-keys3-threads8",
+  "keysets": 3,
+  "record_counts": {
+    "run_start": 1,
+    "plan": 1,
+    "fusion_witness": 1050,
+    "summary": 1,
+    "case_start": 27,
+    "case_result": 27,
+    "key_block": 3
+  },
+  "expected_record_counts": {
+    "plan": 1,
+    "run_start": 1,
+    "key_block": 3,
+    "case_start": 27,
+    "fusion_witness": 1050,
+    "case_result": 27,
+    "summary": 1
+  },
+  "gates": {
+    "correctness": true,
+    "input_prerequisites": true,
+    "identities": true,
+    "actual_joint_lut": true,
+    "connected_margins": true,
+    "raw_nearest_cells": true,
+    "raw_expected_decodes": true,
+    "ledger": true,
+    "record_counts": true,
+    "source_and_binary": true,
+    "process_exit": true
+  },
+  "summary": {
+    "cases": 27,
+    "contains_secret_derived_observations": true,
+    "correctness_or_count_failures": 0,
+    "fusion_witnesses": 1050,
+    "joint_connected_margin_escapes": 0,
+    "key_blocks": 3,
+    "noise_tail_status": "OPEN",
+    "observer_identity_failures": 0,
+    "raw_nearest_cell_escapes": 0,
+    "record": "summary",
+    "runtime_execution_attested": false,
+    "scope": "fused event and immediate update; no full-trace or service promotion",
+    "secret_key_bytes_persisted": false,
+    "status": "DIAGNOSTIC_COMPLETE",
+    "timed": false
+  },
+  "observed_counts": [
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 1,
+      "observed_baseline_br": 25,
+      "observed_candidate_br": 24,
+      "structural_candidate_ks": 21,
+      "structural_candidate_output_marginals": 30
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 64,
+      "observed_baseline_br": 1713,
+      "observed_candidate_br": 1649,
+      "structural_candidate_ks": 1457,
+      "structural_candidate_output_marginals": 1985
+    },
+    {
+      "n": 127,
+      "observed_baseline_br": 3390,
+      "observed_candidate_br": 3263,
+      "structural_candidate_ks": 2882,
+      "structural_candidate_output_marginals": 3930
+    },
+    {
+      "n": 128,
+      "observed_baseline_br": 3415,
+      "observed_candidate_br": 3287,
+      "structural_candidate_ks": 2903,
+      "structural_candidate_output_marginals": 3959
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 1,
+      "observed_baseline_br": 25,
+      "observed_candidate_br": 24,
+      "structural_candidate_ks": 21,
+      "structural_candidate_output_marginals": 30
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 64,
+      "observed_baseline_br": 1713,
+      "observed_candidate_br": 1649,
+      "structural_candidate_ks": 1457,
+      "structural_candidate_output_marginals": 1985
+    },
+    {
+      "n": 127,
+      "observed_baseline_br": 3390,
+      "observed_candidate_br": 3263,
+      "structural_candidate_ks": 2882,
+      "structural_candidate_output_marginals": 3930
+    },
+    {
+      "n": 128,
+      "observed_baseline_br": 3415,
+      "observed_candidate_br": 3287,
+      "structural_candidate_ks": 2903,
+      "structural_candidate_output_marginals": 3959
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 1,
+      "observed_baseline_br": 25,
+      "observed_candidate_br": 24,
+      "structural_candidate_ks": 21,
+      "structural_candidate_output_marginals": 30
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 2,
+      "observed_baseline_br": 60,
+      "observed_candidate_br": 58,
+      "structural_candidate_ks": 52,
+      "structural_candidate_output_marginals": 69
+    },
+    {
+      "n": 64,
+      "observed_baseline_br": 1713,
+      "observed_candidate_br": 1649,
+      "structural_candidate_ks": 1457,
+      "structural_candidate_output_marginals": 1985
+    },
+    {
+      "n": 127,
+      "observed_baseline_br": 3390,
+      "observed_candidate_br": 3263,
+      "structural_candidate_ks": 2882,
+      "structural_candidate_output_marginals": 3930
+    },
+    {
+      "n": 128,
+      "observed_baseline_br": 3415,
+      "observed_candidate_br": 3287,
+      "structural_candidate_ks": 2903,
+      "structural_candidate_output_marginals": 3959
+    }
+  ],
+  "expected_codes": [
+    11,
+    2,
+    1,
+    1,
+    0,
+    1,
+    64,
+    127,
+    128,
+    11,
+    2,
+    1,
+    1,
+    0,
+    1,
+    64,
+    127,
+    128,
+    11,
+    2,
+    1,
+    1,
+    0,
+    1,
+    64,
+    127,
+    128
+  ],
+  "validation_sha256": "6144c121c48eaf8a444b1b083edde155d42d00cdb6c21ab537e0ec1d4af6baf4",
+  "envelope_sha256": {
+    "prepared.json": "ea4d16219961bdeb1c69a514cc855377c405a4b4cc7eb02ec1407f18052e22f5",
+    "child.json": "704bf58fc0613053ab1e9081d879f34c4119e6b192d3d83a643ea981adae6a1f",
+    "exit.json": "51be0e4f9658c7fb01cd751b17ce90795921f6f0d131fdab7ba4966916a2c6f3",
+    "preflight.json": "a63534607eeb8c3f4bdefe31b6263cea215cf37676a91e09ef6373451565587d"
+  },
+  "actual_downstream_full_trace_validated": false,
+  "formal_p_fail": null,
+  "paired_runtime": false
+}

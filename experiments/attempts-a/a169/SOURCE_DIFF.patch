@@ -1,0 +1,346 @@
+--- A165/candidate/src/main.rs
++++ A169/candidate/src/main.rs
+@@ -2,7 +2,7 @@
+ 
+ fn main() {
+     if let Err(error) = diagnostic::run() {
+-        eprintln!("A165_ERROR: {error}");
++        eprintln!("A169_ERROR: {error}");
+         std::process::exit(1);
+     }
+ }
+--- A165/candidate/src/diagnostic.rs
++++ A169/candidate/src/diagnostic.rs
+@@ -11,9 +11,9 @@
+ use tfhe::shortint::server_key::ShortintBootstrappingKey;
+ use tfhe::shortint::{ClientKey, ServerKey};
+ 
+-const A165_SCHEMA: &str = "a165.low_b1_direct_scale.v1";
+-const A165_SOURCE: &str = include_str!("../SOURCE_DIGEST.txt");
+-const A165_ACK: &str = "A165_EXCLUSIVE_B1_REPAIR_AUTHORIZED";
++const A169_SCHEMA: &str = "a169.low_b0_b1_direct_scale.v1";
++const A169_SOURCE: &str = include_str!("../SOURCE_DIGEST.txt");
++const A169_ACK: &str = "A169_EXCLUSIVE_B0_B1_REPAIR_AUTHORIZED";
+ 
+ const FULL_DELTA_LOG: u32 = 52;
+ const LOW_DELTA_LOG: u32 = 60;
+@@ -503,6 +503,49 @@
+     arm
+ }
+ 
++/// Extend the complete unchanged b1 repair. The consumed b0 output changes;
++/// its original full-scale residual correction and all later small inputs do not.
++fn repaired_b0_b1_arm(full: &Lwe, sk: &ServerKey) -> Arm {
++    let mut arm = repaired_b1_arm(full, sk);
++    let retained = arm
++        .trace
++        .iter()
++        .find(|point| point.stage == "full.ks_b0")
++        .unwrap();
++    assert!(retained.small_key);
++    let small = retained.ciphertext.clone();
++    let bsk = match &sk.bootstrapping_key {
++        ShortintBootstrappingKey::Classic(bsk) => bsk,
++        _ => panic!("A169 requires classic BSK"),
++    };
++    let extra_pbs = AtomicU64::new(0);
++    let direct = correction_from_small_bit(
++        &small,
++        &accumulator(bsk, 60, false),
++        bsk,
++        full.lwe_size(),
++        1u64 << 59,
++        &extra_pbs,
++    );
++    assert!(direct.boolean.is_none());
++    snapshot_raw_correction(&mut arm.trace, "repair_b0", 0, 60, &direct.correction);
++    snapshot(
++        &mut arm.trace,
++        "repair_b0.pbs_correction_b0",
++        &direct.correction,
++        false,
++        Expectation::Bit {
++            bit: 0,
++            delta_log: 60,
++        },
++    );
++    arm.weighted_bits[0] = direct.correction;
++    arm.pbs += extra_pbs.load(Ordering::Relaxed);
++    assert_eq!((arm.pbs, arm.ks), (10, 8));
++    arm.name = "single_full_direct_b0_b1";
++    arm
++}
++
+ fn boundary_targets(stage: &str) -> Result<Vec<u64>, String> {
+     let values = match stage {
+         "smoke" => vec![0, 1, 7, 8, 15, 16, 17, 127, 128, 255, 256, 1023, 1024, 4095],
+@@ -551,7 +594,7 @@
+     record
+         .as_object_mut()
+         .unwrap()
+-        .insert("schema".into(), json!(A165_SCHEMA));
++        .insert("schema".into(), json!(A169_SCHEMA));
+     println!("{record}");
+ }
+ 
+@@ -575,29 +618,29 @@
+         }
+     }
+     if stage != "smoke" || keysets != 1 {
+-        return Err("A165 is preregistered for smoke and exactly one keyset".into());
++        return Err("A169 is preregistered for smoke and exactly one keyset".into());
+     }
+     let targets = boundary_targets(&stage)?;
+     emit(
+-        json!({"record":"plan","stage":stage,"keysets":keysets,"scores_per_scene":targets.len(),"scenes":2,"arms":["baseline_dual","shift_initial_only","single_full_reuse_x256","single_full_direct_b1","negative_drop_first_correction"],"pbs_per_score":[11,11,8,9,8],"ks_per_score":[8,8,8,8,8],"frozen_control_extra_pbs_per_split":7,"frozen_control_extra_ks_per_split":8,"diagnostic_only":true,"latency_claim_allowed":false,"p_fail_certified":false,"whole_exact_id_validated":false}),
++        json!({"record":"plan","stage":stage,"keysets":keysets,"scores_per_scene":targets.len(),"scenes":2,"arms":["baseline_dual","shift_initial_only","single_full_reuse_x256","single_full_direct_b1","single_full_direct_b0_b1","negative_drop_first_correction"],"pbs_per_score":[11,11,8,9,10,8],"ks_per_score":[8,8,8,8,8,8],"repair_pair_records_per_score":2,"frozen_control_extra_pbs_per_split":7,"frozen_control_extra_ks_per_split":8,"diagnostic_only":true,"latency_claim_allowed":false,"p_fail_certified":false,"whole_exact_id_validated":false}),
+     );
+     if !execute {
+         return Ok(());
+     }
+-    if std::env::var("A165_RUN_ACK").as_deref() != Ok(A165_ACK)
+-        || std::env::var("A165_SOURCE_SHA256").as_deref() != Ok(A165_SOURCE.trim())
++    if std::env::var("A169_RUN_ACK").as_deref() != Ok(A169_ACK)
++        || std::env::var("A169_SOURCE_SHA256").as_deref() != Ok(A169_SOURCE.trim())
+         || std::env::var("RAYON_NUM_THREADS").as_deref() != Ok("1")
+     {
+         return Err(
+-            "A165 source/runner acknowledgment and one requested Rayon thread required".into(),
++            "A169 source/runner acknowledgment and one requested Rayon thread required".into(),
+         );
+     }
+     let binary = std::env::current_exe().map_err(|e| e.to_string())?;
+     if !binary
+         .components()
+-        .any(|component| component.as_os_str() == "target-a165-b1-only")
++        .any(|component| component.as_os_str() == "target-a169-b0-b1-only")
+     {
+-        return Err("execution requires isolated target-a165-b1-only".into());
++        return Err("execution requires isolated target-a169-b0-b1-only".into());
+     }
+     let binary_bytes = std::fs::read(&binary).map_err(|e| e.to_string())?;
+     let binary_sha256 = format!("{:x}", Sha256::digest(binary_bytes));
+@@ -607,17 +650,18 @@
+         );
+     }
+     emit(json!({"record":"provenance","binary_sha256":binary_sha256,
+-        "source_manifest_sha256":A165_SOURCE.trim(),
++        "source_manifest_sha256":A169_SOURCE.trim(),
+         "source_sha256":format!("{:x}",Sha256::digest(include_bytes!("diagnostic.rs"))),
+         "frozen_helpers_sha256":format!("{:x}",Sha256::digest(include_bytes!("frozen_extract.rs"))),
+         "lock_sha256":format!("{:x}",Sha256::digest(include_bytes!("../Cargo.lock"))),
+         "parameter_fingerprint":"b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1"}));
+-    let mut failures = [0usize; 4];
+-    let mut native_decode_failures = [0usize; 4];
+-    let mut consumer_phase_failures = [0usize; 4];
++    let mut failures = [0usize; 5];
++    let mut native_decode_failures = [0usize; 5];
++    let mut consumer_phase_failures = [0usize; 5];
+     let mut negatives_detected = [0usize; 2];
+     let mut cases = 0usize;
+     let mut repair_pair_failures = 0usize;
++    let mut repair_b0_pair_failures = 0usize;
+     for keyset in 0..keysets {
+         let client = ClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64);
+         let server = ServerKey::new(&client);
+@@ -705,9 +749,10 @@
+                     split_arm(&full, &scaled(&full, 8), &server, "shift_initial_only"),
+                     single_arm(&full, &server, false),
+                     repaired_b1_arm(&full, &server),
++                    repaired_b0_b1_arm(&full, &server),
+                     single_arm(&full, &server, true),
+                 ];
+-                // All five server arms finished before comparisons or any client decryption.
++                // All six server arms finished before comparisons or any client decryption.
+                 let original = &arms[2];
+                 let repair = &arms[3];
+                 let old_trace_identical = repair.trace.len() == original.trace.len() + 2
+@@ -751,6 +796,71 @@
+                     "direct_weighted_b1_sha256":digest(&repair.weighted_bits[1]),
+                     "original_x256_b1_sha256":digest(&original.weighted_bits[1]),
+                     "additional_pbs":1,"additional_ks":0,"full_residual_correction_retained":true}),
++                );
++
++                // A second comparison retains the entire A165 b1 repair as the control.
++                let original_b1 = &arms[3];
++                let repair_b0_b1 = &arms[4];
++                let old_b1_trace_identical = repair_b0_b1.trace.len()
++                    == original_b1.trace.len() + 2
++                    && original_b1
++                        .trace
++                        .iter()
++                        .zip(&repair_b0_b1.trace)
++                        .all(|(a, b)| {
++                            a.stage == b.stage
++                                && a.small_key == b.small_key
++                                && same_lwe(&a.ciphertext, &b.ciphertext)
++                        });
++                let b0_top_identical =
++                    same_lwe(&original_b1.top_residual, &repair_b0_b1.top_residual);
++                let b0_other_weighted_identical = (1..8).all(|bit| {
++                    same_lwe(
++                        &original_b1.weighted_bits[bit],
++                        &repair_b0_b1.weighted_bits[bit],
++                    )
++                });
++                let b0_small = repair_b0_b1
++                    .trace
++                    .iter()
++                    .find(|point| point.stage == "full.ks_b0")
++                    .unwrap();
++                let b1_small = repair_b0_b1
++                    .trace
++                    .iter()
++                    .find(|point| point.stage == "full.ks_b1")
++                    .unwrap();
++                let b0_direct_trace = repair_b0_b1
++                    .trace
++                    .iter()
++                    .find(|point| point.stage == "repair_b0.pbs_correction_b0")
++                    .unwrap();
++                let b0_direct_consumed =
++                    same_lwe(&repair_b0_b1.weighted_bits[0], &b0_direct_trace.ciphertext);
++                let b0_pair_pass = old_b1_trace_identical
++                    && b0_top_identical
++                    && b0_other_weighted_identical
++                    && b0_direct_consumed
++                    && original_b1.pbs == 9
++                    && repair_b0_b1.pbs == 10
++                    && original_b1.ks == 8
++                    && repair_b0_b1.ks == 8;
++                repair_b0_pair_failures += usize::from(!b0_pair_pass);
++                emit(
++                    json!({"record":"repair_pair_b0","keyset":keyset,"scene":scene,"x":x,
++                    "original_arm":original_b1.name,"repair_arm":repair_b0_b1.name,
++                    "old_b1_trace_byte_identical":old_b1_trace_identical,
++                    "top_byte_identical":b0_top_identical,"other_weighted_byte_identical":b0_other_weighted_identical,
++                    "direct_output_consumed":b0_direct_consumed,"pass":b0_pair_pass,
++                    "retained_small_input_sha256":digest(&b0_small.ciphertext),
++                    "retained_b1_small_input_sha256":digest(&b1_small.ciphertext),
++                    "direct_weighted_b0_sha256":digest(&repair_b0_b1.weighted_bits[0]),
++                    "original_x256_b0_sha256":digest(&original_b1.weighted_bits[0]),
++                    "original_direct_b1_sha256":digest(&original_b1.weighted_bits[1]),
++                    "preserved_direct_b1_sha256":digest(&repair_b0_b1.weighted_bits[1]),
++                    "original_top_sha256":digest(&original_b1.top_residual),
++                    "repair_top_sha256":digest(&repair_b0_b1.top_residual),
++                    "additional_pbs":1,"additional_ks":0,"full_residual_corrections_retained":true}),
+                 );
+                 // The client now inspects every arm. No branch above depends on these decrypted values.
+                 for (arm_index, arm) in arms.iter().enumerate() {
+@@ -819,7 +929,7 @@
+                         .iter()
+                         .find(|point| point.stage == "score.low")
+                         .map(|point| digest(&point.ciphertext));
+-                    if arm_index < 4 {
++                    if arm_index < 5 {
+                         failures[arm_index] += usize::from(!passed);
+                         native_decode_failures[arm_index] += usize::from(!native_decode_pass);
+                         consumer_phase_failures[arm_index] += usize::from(!consumer_phase_pass);
+@@ -851,12 +961,16 @@
+     }
+     let controls_valid = failures[0] == 0 && negatives_detected.iter().all(|count| *count > 0);
+     let repair_gate_pass = controls_valid && repair_pair_failures == 0 && failures[3] == 0;
++    let repair_b0_b1_gate_pass = controls_valid
++        && repair_pair_failures == 0
++        && repair_b0_pair_failures == 0
++        && failures[4] == 0;
+     emit(
+-        json!({"record":"summary","status":if controls_valid {"A165_DIAGNOSTIC_COMPLETE"}else{"INVALID_CONTROLS"},
+-        "cases":cases,"positive_arm_order":["baseline_dual","shift_initial_only","single_full_reuse_x256","single_full_direct_b1"],
+-        "failures_baseline_shift_single_repair":failures,
+-        "native_decode_failures_baseline_shift_single_repair":native_decode_failures,
+-        "consumer_scalar_phase_failures_baseline_shift_single_repair":consumer_phase_failures,
++        json!({"record":"summary","status":if controls_valid {"A169_DIAGNOSTIC_COMPLETE"}else{"INVALID_CONTROLS"},
++        "cases":cases,"positive_arm_order":["baseline_dual","shift_initial_only","single_full_reuse_x256","single_full_direct_b1","single_full_direct_b0_b1"],
++        "failures_baseline_shift_single_b1_b0_b1":failures,
++        "native_decode_failures_baseline_shift_single_b1_b0_b1":native_decode_failures,
++        "consumer_scalar_phase_failures_baseline_shift_single_b1_b0_b1":consumer_phase_failures,
+         "both_original_candidates_native_decode_pass":native_decode_failures[1..3].iter().all(|count| *count == 0),
+         "both_original_candidates_consumer_scalar_phase_pass":consumer_phase_failures[1..3].iter().all(|count| *count == 0),
+         "both_original_candidates_all_checks_pass":failures[1..3].iter().all(|count| *count == 0),
+@@ -864,11 +978,16 @@
+         "repair_consumer_scalar_phase_pass":consumer_phase_failures[3] == 0,
+         "repair_all_checks_pass":failures[3] == 0,
+         "repair_pair_failures":repair_pair_failures,"repair_gate_pass":repair_gate_pass,
++        "repair_b0_pair_failures":repair_b0_pair_failures,
++        "repair_b0_b1_native_decode_pass":native_decode_failures[4] == 0,
++        "repair_b0_b1_consumer_scalar_phase_pass":consumer_phase_failures[4] == 0,
++        "repair_b0_b1_all_checks_pass":failures[4] == 0,
++        "repair_b0_b1_gate_pass":repair_b0_b1_gate_pass,
+         "negative_detections_drop_rescale":negatives_detected,"controls_valid":controls_valid,
+         "p_fail_certified":false,"whole_exact_id_validated":false,"latency_claim_allowed":false}),
+     );
+-    if !repair_gate_pass {
+-        return Err("A165 repair or control gate failed; all original outcomes retained".into());
++    if !repair_b0_b1_gate_pass {
++        return Err("A169 b0+b1 repair or control gate failed; all prior outcomes retained".into());
+     }
+     Ok(())
+ }
+--- A165/candidate/.cargo/config.toml
++++ A169/candidate/.cargo/config.toml
+@@ -1,5 +1,5 @@
+ [build]
+-target-dir = "target-a165-b1-only"
++target-dir = "target-a169-b0-b1-only"
+ 
+ [net]
+ offline = true
+--- A165/run_gate.py
++++ A169/run_gate.py
+@@ -1,4 +1,4 @@
+-"""Private fixed A165 smoke launcher; root must independently clear the workload."""
++"""Private fixed A169 smoke launcher; root must independently clear the workload."""
+ 
+ import argparse
+ from datetime import datetime, timezone
+@@ -11,7 +11,7 @@
+ import audit
+ import model
+ 
+-ACK = "A165_EXCLUSIVE_B1_REPAIR_AUTHORIZED"
++ACK = "A169_EXCLUSIVE_B0_B1_REPAIR_AUTHORIZED"
+ HERE = Path(__file__).resolve().parent
+ 
+ 
+@@ -55,9 +55,9 @@
+             )
+         )
+         return 0
+-    if os.environ.get("A165_RUN_ACK") != ACK:
++    if os.environ.get("A169_RUN_ACK") != ACK:
+         parser.error(
+-            "A165_RUN_ACK required; token does not confer scheduling permission"
++            "A169_RUN_ACK required; token does not confer scheduling permission"
+         )
+     if not args.run_id or not re.fullmatch(
+         r"[A-Za-z0-9][A-Za-z0-9_-]{0,79}", args.run_id
+@@ -66,7 +66,7 @@
+     if not args.binary_sha256 or not re.fullmatch(r"[0-9a-f]{64}", args.binary_sha256):
+         parser.error("actual acknowledged binary hash required")
+     source = audit.verify_source()
+-    binary = HERE / "candidate/target-a165-b1-only/release/a125_low_extraction_gate"
++    binary = HERE / "candidate/target-a169-b0-b1-only/release/a125_low_extraction_gate"
+     audit.require(
+         not binary.is_symlink() and audit.sha(binary) == args.binary_sha256,
+         "binary differs from acknowledgment",
+@@ -88,7 +88,7 @@
+         f"--expected-binary-sha256={args.binary_sha256}",
+     ]
+     base = dict(
+-        schema="a165-private-driver-v1",
++        schema="a169-private-driver-v1",
+         run_id=args.run_id,
+         source_sha256=source,
+         binary_sha256=args.binary_sha256,
+@@ -109,8 +109,8 @@
+     write_new(run / "prepared.json", dict(base, status="LAUNCH_PREPARED"))
+     env = dict(
+         os.environ,
+-        A165_SOURCE_SHA256=source,
+-        A165_BINARY_SHA256=args.binary_sha256,
++        A169_SOURCE_SHA256=source,
++        A169_BINARY_SHA256=args.binary_sha256,
+         RAYON_NUM_THREADS="1",
+     )
+     with (

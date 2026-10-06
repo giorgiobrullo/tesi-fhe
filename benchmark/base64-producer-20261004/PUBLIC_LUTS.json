@@ -1,0 +1,35 @@
+{
+  "kind": "new-public-literal-LUT-contract-only",
+  "score_cases_checked": 4096,
+  "ideal_head_range": [
+    0,
+    63
+  ],
+  "ideal_dirty_range": [
+    0,
+    78
+  ],
+  "ideal_chunks_correct": true,
+  "head_address_radius_checked": 7,
+  "head_radius8_counterexample": {
+    "x": 63,
+    "nominal_address": 16,
+    "address_error": 8,
+    "head_digit": 1,
+    "dirty_mod256": 255,
+    "dirty_signed": -1
+  },
+  "normalizer_states_checked": 128,
+  "normalizer_address_radius_checked": 7,
+  "comparator_differences_checked": 127,
+  "comparator_address_radius_checked": 15,
+  "lexicographic_pairs_checked": 16129,
+  "assumptions": [
+    "Exact public input x*Delta51; nearest-half-up ideal phase address.",
+    "Exact LUT values, arithmetic and outputs. Perturbation checks change only integer addresses.",
+    "No masked-ciphertext KS/MS or FFT noise represented; no actual adapter identity inferred."
+  ],
+  "native_crypto_queries": 0,
+  "key_loads": 0,
+  "historical_models_imported": 0
+}

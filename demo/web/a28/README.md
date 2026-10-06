@@ -146,7 +146,7 @@ senza header, serializzazione HTTP o JSON. Il collegamento stdin di questa
 demo fidata riceve il vettore in chiaro; non è un protocollo che cifra le
 fotografie nel browser.
 
-Il motore corrente usa altre chiavi, TFHE-rs 1.7, full51/low60 e tre LWE in
+Il motore corrente usa altre chiavi, TFHE-rs 1.8.1, full51/low60 e tre LWE in
 base 15. Un confronto live deve dare ai due motori lo stesso vettore in
 chiaro, la stessa galleria ordinata e le stesse soglie, cifrandoli separatamente.
 Non convertire le chiavi o i ciphertext modificandone gli header.

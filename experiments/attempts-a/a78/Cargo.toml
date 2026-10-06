@@ -1,0 +1,14 @@
+[package]
+name = "a78-common-mask-cross-lane-poc"
+version = "0.1.0"
+edition = "2021"
+default-run = "a78-common-mask-cross-lane-poc"
+
+[dependencies]
+rayon = "1.12"
+tfhe = { version = "=1.7.0", default-features = false, features = ["experimental", "shortint"] }
+
+[profile.release]
+debug = false
+lto = "thin"
+codegen-units = 1

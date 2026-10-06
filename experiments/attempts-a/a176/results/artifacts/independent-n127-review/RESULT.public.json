@@ -1,0 +1,161 @@
+{
+  "status": "INDEPENDENT_BOUND_N127_PASS",
+  "source_sha256": "3104f9d691a4d5fb31695c8c07beb5b0fb9de8b6da7747bab60035b6802f32fa",
+  "manifest_sha256": "e49b68da0e25ed540144eca1c355e2aa931acc5e0db3d6dc85404ddafed54fde",
+  "binary_sha256": "8bc24eccba0375f015b94a8d3ef4cbe0723025df3e8b09bedba650d009a77cba",
+  "validation_sha256": "5ca13c34815fa60beafeba1c6393c9ef1e82c514ba047993d466e146bd72d55d",
+  "raw_sha256": "406b30c55a6b1a382f8c7eedb07e20e9d7f8293a98024749b43f0db5bf954152",
+  "raw_bytes": 2135418812,
+  "records": 777890,
+  "record_types": {
+    "a176_meta": 1,
+    "a176_key_begin": 3,
+    "meta": 3,
+    "key_ready": 3,
+    "stock_preparation_counts": 3,
+    "cm_zero_pool_event": 48870,
+    "cm_zero_pool_summary": 456,
+    "stock_case": 9,
+    "case_summary": 447,
+    "graph_negative": 9,
+    "n4_pair_summary": 3,
+    "egress_margin_probe": 48,
+    "egress_margin_summary": 3,
+    "summary": 3,
+    "a176_anchor_result": 3,
+    "a176_pair_begin": 216,
+    "a176_pair_result": 216,
+    "a176_key_end": 3,
+    "a176_summary": 1
+  },
+  "child_pid": 40248,
+  "exit_code": 0,
+  "fresh_replay_equals_saved": true,
+  "private_source_binary_pid_utc_and_exact_bytes_bound": true,
+  "keys": 3,
+  "fixtures_per_key": 9,
+  "layouts_per_fixture": 8,
+  "positive_pairs": 216,
+  "positive_rounds": 432,
+  "complete_registered_n127_fixture_coverage": true,
+  "positive_cm": {
+    "events": 48816,
+    "chooser_invocations": 24408,
+    "zero_additions": 23674,
+    "refusals": 0,
+    "unmet_bounds": 0,
+    "pbs_executed": 48816,
+    "shared_policy_events": 24408
+  },
+  "anchor_cm": {
+    "events": 54,
+    "chooser_invocations": 15,
+    "zero_additions": 15,
+    "refusals": 3,
+    "unmet_bounds": 3,
+    "pbs_executed": 51,
+    "shared_policy_events": 12
+  },
+  "positive_cm_outside_center_boxes": 0,
+  "positive_ordinary_outside_center_boxes": 0,
+  "reported_algorithm_counts": {
+    "packing": 28125,
+    "cm_ks": 35025,
+    "cm_pbs": 48867,
+    "ordinary_ks": 57159,
+    "ordinary_pbs": 111201,
+    "extraction": 56712
+  },
+  "stock_output_extractions_outside_counts": 24,
+  "anchor_diagnostics": [
+    {
+      "key_index": 1,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          2,
+          3
+        ],
+        "wrong_lut_crossings_by_offset": [
+          2,
+          3
+        ],
+        "wrong_discriminators_by_offset": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "key_index": 2,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          4,
+          3
+        ],
+        "wrong_lut_crossings_by_offset": [
+          4,
+          3
+        ],
+        "wrong_discriminators_by_offset": [
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "key_index": 3,
+      "original_a150_gate_pass": true,
+      "original_a155_gate_pass": true,
+      "original_graph_detections": [
+        true,
+        true,
+        true
+      ],
+      "margin": {
+        "passed": true,
+        "probe_count": 16,
+        "wrong_output_mismatches_by_offset": [
+          3,
+          3
+        ],
+        "wrong_lut_crossings_by_offset": [
+          3,
+          3
+        ],
+        "wrong_discriminators_by_offset": [
+          3,
+          3
+        ]
+      }
+    }
+  ],
+  "physical_counts_exclude_diagnostic_trace_extractions": true,
+  "margin_body_additions": 48,
+  "old_A150_failure_unchanged": true,
+  "control_failures_not_used_for_key_selection": true,
+  "full_eight_round_composition": false,
+  "n127_executed": true,
+  "input_variance_proven": false,
+  "independent_lane_trials_or_key_membership_attested": false,
+  "noise_failure_probability": null,
+  "timing_claim": false,
+  "next_gate": "Separate source-only A190 persistent eight-round composition; no automatic launch or inherited runtime result."
+}

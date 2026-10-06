@@ -1,0 +1,42 @@
+{
+  "schema": "a177.first-failure-diagnosis.v1",
+  "evidence": "ACTUAL_A172_FAILED_ORDER12_WITH_EXACT_SOURCE_TRANSCRIPTION",
+  "original_a172_gate": "FAILED",
+  "audit_source_id": "8c41424a4d505ca9efb73b389c2e367150c9ee1ff46cd5d8c6faf9929a9b4071",
+  "actual_audit_sha256": "9ba8e8068a753997834dbcd55deac71b1d377bbdd094e06c5944e7084e5b3b74",
+  "first_snapshot_seen": false,
+  "first_snapshot_raw_ok": true,
+  "actual_snapshot_prefix_match_offset": 1,
+  "frozen_parser_required_offset": 0,
+  "worker_stages": 0,
+  "parent_zombie_rusage_rc": [
+    0,
+    0
+  ],
+  "parent_reads_equal": true,
+  "parent_exit_nonzero": true,
+  "collector_zombie_rusage_rc": [
+    0,
+    0
+  ],
+  "collector_bsd_bytes": 0,
+  "collector_bsd_errno": 3,
+  "collector_last_equals_parent": true,
+  "collector_two_usage_reads_equal": true,
+  "collector_same_expected_birth": true,
+  "collector_raw_failure_clauses": [
+    {
+      "snapshot_seq": 1,
+      "failed": [
+        "bsd_or_retained_final"
+      ]
+    }
+  ],
+  "collector_final_counter_observed": false,
+  "child_normal_exit_observed": true,
+  "collector_exit_wait_status": 256,
+  "later_cases_evaluated": false,
+  "cpu_units_justified": false,
+  "settled_accounting_proven": false,
+  "collector_qualified": false
+}

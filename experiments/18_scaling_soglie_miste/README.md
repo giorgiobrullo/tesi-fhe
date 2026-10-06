@@ -79,6 +79,11 @@ fino a 225 sono evidenze diverse. I tempi conservano carico esterno e non
 misurano ogni configurazione di soglie, la latenza web o una probabilità
 formale di errore. [Dati e risultati](RESULTS.json).
 
+<a id="misure-salvate-integrazione-del-6-ottobre-2026"></a>
+
+Le osservazioni sono disponibili per lo [scaling sulle tre famiglie](evidence/scaling-timings.json)
+e per il [pilot a cinque dimensioni](evidence/wide-pilot-timings.json).
+
 ## Compilazione
 
 Ogni variante ha un runner in `candidate/Cargo.toml` e una libreria in `core/`.
@@ -96,7 +101,6 @@ Per il servizio integrato partire dalla [demo 22](../22_demo_composita/README.md
 
 ## Provenienza
 
-[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
-dai documenti storici e dalle copie redatte. I digest degli esperimenti
-identificano le esecuzioni originali; questa pubblicazione non aggiunge
-una nuova compilazione nativa o una nuova prova FHE.
+La [provenienza dei sorgenti e delle misure](PROVENANCE.json) lega i file
+alle fonti originali e dichiara le selezioni dei dati. Le impronte delle
+copie pubbliche sono distinte da quelle degli originali.

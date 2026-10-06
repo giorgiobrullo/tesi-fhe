@@ -1,0 +1,39 @@
+{
+  "artifact": "A99",
+  "date": "2026-09-03",
+  "status": "PASS_COMPILE_TEST_RELEASE_DRY_NO_FHE",
+  "isolated_target": "/tmp/a99-chen-grouped-runtime-target",
+  "toolchain": {
+    "rustc": "1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "1.97.1 (c980f4866 2026-06-30)"
+  },
+  "first_attempt": {
+    "status": "EXPECTED_COMPILE_GATE_CAUGHT_SOURCE_ERROR",
+    "exit_code": 101,
+    "rust_error": "E0716 temporary value dropped while borrowed",
+    "location": "src/main.rs:475",
+    "source_sha256": "aed5c97e61b4811933a3b518582fb76f621a9463381bf39ee563db7d9663c935",
+    "keygen_invoked": false,
+    "fhe_invoked": false
+  },
+  "remediation": {
+    "lifetime": "keep the polynomial-list view alive before borrowing its first polynomial",
+    "runtime_authorization": "require both --run and --ack-component-only",
+    "maximum_fresh_keysets": 16,
+    "maximum_trials_per_keyset": 64,
+    "duplicate_runtime_flags_rejected": true
+  },
+  "final": {
+    "cargo_fmt_check": "PASS",
+    "rust_tests": "7/7 PASS",
+    "release_build": "PASS_WITHOUT_WARNINGS",
+    "dry_plan": "PASS_NO_KEYGEN_NO_FHE",
+    "source_sha256": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b",
+    "cargo_lock_sha256": "6a0e077b686f2060e7057d0d6183e0c0d04ed000bfe6efa70069498440dfb177",
+    "binary_sha256": "c66739334ab4ff7c83e9aba9c7bb63bc3960c07150a36ec9962b3bad727a15e9",
+    "binary_bytes": 997056,
+    "keygen_invoked": false,
+    "fhe_invoked": false
+  },
+  "claim_boundary": "Compilation and pure Rust tests only; no ciphertext correctness, noise, timing, selector, tournament, p_fail, or frontier result follows."
+}

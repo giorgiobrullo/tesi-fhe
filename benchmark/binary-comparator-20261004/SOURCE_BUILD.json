@@ -1,0 +1,19 @@
+{
+  "compiler_identity": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+  "files": {
+    "probe/Cargo.toml": "2a5110d5e33563182aede2961881c93013498bbf0ab939dc8b34f6262b7bb439",
+    "probe/src/main.rs": "b0067c1017f7233da4471c0d638ca29ccd0bb109e9fca61f2a34297b31c6b005",
+    "probe/PROTOCOL.md": "dec3ecda741d3e4d2c40297572cc182dbd2bcc57e155d21609e79f0110c1d730",
+    "PROTOCOL.md": "ba110a24655e7590ca9a93b20495aafa98ef81ae8bdd0dc741e5b6ece303c7fa",
+    "probe/Cargo.lock": "9cea7ac6d3b832d92af6804015f90815695f211e02196b8198a5d5c3c1c42a3e"
+  },
+  "build_settings": {
+    "release": true,
+    "opt_level": 3,
+    "codegen_units": 1,
+    "lto": false,
+    "locked": true,
+    "offline": true,
+    "rustflags": null
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "actual_sampler_p_fail": null,
+  "actual_secret_key_membership_attested": false,
+  "blind_rotation_consumed": false,
+  "conditional_lut_address_pass": false,
+  "direct_address": 40,
+  "displacement_lift": 1064,
+  "full_n4_evaluation": false,
+  "ideal_gaussian_integer_lifts_attested": false,
+  "independently_attested_client_aggregates": false,
+  "native_first_bit_decode_pass": true,
+  "phase_component_modular_closure_pass": true,
+  "public_coefficients_and_domains_pass": true,
+  "selected_prefix_gate_pass": false,
+  "status": "CONDITIONAL_CLIENT_ARITHMETIC_CLOSURE"
+}

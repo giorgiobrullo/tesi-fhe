@@ -1,0 +1,58 @@
+{
+  "schema": "a98.head-start-exact-adapter.r2b-static-freeze.v1",
+  "created_utc": "2026-09-03T02:30:46Z",
+  "status": "PASS_STATIC_R2B_NOT_BUILT_NOT_RUN",
+  "authorization_consumed": "Static materialization, Python verification, Ruff, and standalone rustfmt only",
+  "checks": {
+    "static_gate_python_3_9_6": "PASS 13/13",
+    "unittest_python_3_9_6": "PASS 4/4",
+    "static_gate_python_3_12_13": "PASS 13/13",
+    "unittest_python_3_12_13": "PASS 4/4",
+    "ruff_0_14_6_check": "PASS",
+    "ruff_0_14_6_format_check": "PASS",
+    "rustfmt_1_9_0_check": "PASS",
+    "json_parse": "PASS",
+    "original_r2_and_protected_hashes": "PASS",
+    "r2b_lock_absent": "PASS",
+    "r2b_target_absent": "PASS"
+  },
+  "frozen_inputs": {
+    "r2b_preregistration_sha256": "a4b7e4f22dd259aca00504a33225cfafd8eaf8346e1759ad0a66bbf4a01825fb",
+    "r2b_source_sha256": "964dd1d8c467a350ec6e2de9e1b9b7b0b3fe20f31998b2e19eb455ee04da0a54",
+    "r2b_manifest_sha256": "2b5d204f7c76988935b59d8beb0df2d6ef632c01637add2c8890953f932aef4c",
+    "static_gate_sha256": "f62cbc66f5dc7abdea01b8a612c3e4ff6ef07eff1a3dbfa50deb8b203786b0e6",
+    "static_test_sha256": "3a91142b567ad5ba0d44f4f91b5da414c80561f21b76f5471f1742a88f26927a"
+  },
+  "geometry": {
+    "case_count": 14,
+    "tie_zero_cases": 6,
+    "tie_one_cases": 8,
+    "fresh_keys_if_future_run_is_authorized": 1,
+    "paired_blind_rotations_if_future_run_is_authorized": 28,
+    "consumed_output": "degree-0 extracted LWE sample",
+    "shared_lut_sha256": "a9a70a617f48ebbf2625b34f590349afafe4530f8d5fd480eff94be993ea7f77"
+  },
+  "decision_logic": {
+    "primary": "Bitwise reference-vs-adapter equality before FFT, after blind rotation, and after degree-0 sample extraction",
+    "separate_consumed_output_gate": "Decrypted plaintext and ramp-decoded degree equality between reference and adapter",
+    "diagnostic_only": "Consumed-sample signed/absolute ideal error, ideal ramp-decode match, and full-GLWE maximum/p50/p95/p99",
+    "phase_error_cap": null,
+    "independence_assumed": false,
+    "pfail_inferred": false
+  },
+  "execution": {
+    "cargo_or_rustc_invocations": 0,
+    "build_invocations": 0,
+    "keygen_or_fhe_invocations": 0,
+    "original_r2_binary_invocations": 0,
+    "future_build_requires_separate_authorization": true,
+    "future_runtime_requires_separate_authorization": true
+  },
+  "independent_audit": {
+    "status": "CLEAN",
+    "reviewer": "separate root read-only pass",
+    "original_note": "Ruff format would change the static gate",
+    "resolution": "Applied Ruff formatting only, reran gate/tests/lint/format checks, and refroze the static-gate hash; Rust source and preregistration were unchanged"
+  },
+  "claim_boundary": "Static R2B source freeze only. No R2B lockfile, binary, encrypted runtime, noise sample, latency, p_fail, composed-pipeline, or exact-ID result exists."
+}

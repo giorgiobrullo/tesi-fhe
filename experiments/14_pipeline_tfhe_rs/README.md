@@ -12,15 +12,18 @@ Se la sua soglia è `20`, il risultato è `0` anche se ID 2 avrebbe superato
 una soglia più permissiva. Il [confronto illustrato](../../docs/come-funziona-il-confronto.md)
 segue l'intero passaggio fino al risultato.
 
-Il [registro dei risultati](RISULTATI.md) copre **più prototipi nel tempo**,
-non una singola versione immutabile. Al 2 settembre 2026 riportava:
+Il [registro dei risultati](RISULTATI.md) copre **più prototipi nel tempo**.
+Il ramo si sviluppa in questi passaggi:
 
 | Passaggio | Che cosa cambiava | Stato nel registro |
 |---|---|---|
-| A28 | Prima baseline congelata del contratto 0/ID esatto, con score, torneo e soglia del vincitore. | Implementazione e prove proprie. |
+| A23 | Primo argmin, soglia del vincitore e risposta 0/ID. | [Costruzione e prove](../../docs/risultati/catalogo-tentativi-a.md#a23). |
+| A28 | Estrazione split4 del contratto 0/ID, con score, torneo e soglia del vincitore. | Implementazione congelata e prove proprie. |
 | A29 | Estrazione con più uscite dalla stessa tabella cifrata; percorso generale di riserva. | Controlli e confronto appaiato con A28. |
 | A33 | Percorso più rapido quando la soglia è comune e il dominio degli score è allineato. | Promosso **solo** per quelle condizioni; A29 resta per gli altri ingressi validi. |
-| A34/A36 | Componenti candidate per ridurre ulteriormente il costo. | Stima statica e prove isolate; **non** una pipeline completa promossa. |
+| A34/A36 → A38 | Nuova codifica dell'uscita e successiva integrazione. | Prima componenti isolate, poi [pipeline A38 verificata](../../docs/risultati/catalogo-tentativi-a.md#a38). |
+| A41/A44 → A62/A66 | Riduzioni dello stato e della scansione, poi parallelismo. | [Esiti delle versioni](../../docs/risultati/catalogo-tentativi-a.md#a41), inclusi i confronti appaiati. |
+| PFKS e Head → servizio | Nuove rappresentazioni e composizione completa, con correzioni dei primi negativi. | [Sequenza dei componenti](../../docs/risultati/tentativi-a.md#pfks) e [pacchetto 17](../17_head_pfks_tfhe17/README.md). |
 
 Lo stesso registro contiene tentativi antecedenti al contratto 0/ID,
 microbenchmark, prove sul rumore e analisi del protocollo. Le sezioni
@@ -35,3 +38,7 @@ contiene il percorso crittografico condiviso dai benchmark e dal servizio
 storico [`varco_demo.rs`](src/bin/varco_demo.rs); il
 [registro](RISULTATI.md) indica per ogni prova il binario e l'evidenza.
 Per la versione mantenuta partire dal [runtime](../../runtime/README.md).
+Le altre revisioni A, comprese quelle scartate, sono recuperabili dal
+[pacchetto dei sorgenti A](../attempts-a/README.md). Il ricostruttore conserva
+gli alberi delle versioni originali e riusa i file identici, evitando una
+nuova copia del medesimo sorgente per ogni tentativo.

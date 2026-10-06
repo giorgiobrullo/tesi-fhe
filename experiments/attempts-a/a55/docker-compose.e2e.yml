@@ -1,0 +1,28 @@
+services:
+  server:
+    build:
+      context: ../..
+      dockerfile: tmp/a55-a38-docker-gate-design/Dockerfile.server
+    env_file: ../../demo/config.env
+    networks: [varco]
+
+  client:
+    build:
+      context: ../..
+      dockerfile: tmp/a55-a38-docker-gate-design/Dockerfile.client
+    depends_on: [server]
+    environment:
+      VARCO_SERVER: http://server:9000
+    volumes:
+      - ../../datasets/digiface/estratto:/app/datasets/digiface/estratto:ro
+      - "${A38_MODEL_CACHE:?A38_MODEL_CACHE required}:/root/.insightface:ro"
+      - chiavi:/app/chiavi
+    networks: [varco]
+    ports:
+      - "127.0.0.1:18038:8000"
+
+networks:
+  varco:
+
+volumes:
+  chiavi:

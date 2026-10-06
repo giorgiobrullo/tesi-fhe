@@ -1,0 +1,42 @@
+{
+  "status": "COMPLETE",
+  "ended_utc": "2026-10-05T11:14:28.953264+00:00",
+  "N": 120,
+  "new_enrolled": 20,
+  "new_unknown": 30,
+  "queries": 100,
+  "no_tuning": true,
+  "no_FHE": true,
+  "conditions": {
+    "primary": {
+      "known_attempted": 20,
+      "unknown_attempted": 30,
+      "known_admissible": 20,
+      "unknown_admissible": 30,
+      "correct_accepted": 20,
+      "wrong_accepted": 0,
+      "false_access": 1,
+      "unknown_accepted_preset": 0,
+      "unknown_accepted_GT_enrolled": 1,
+      "FPIR_conditional": 0.03333333333333333,
+      "false_access_per_attempt": 0.03333333333333333,
+      "FPIR_one_sided_95_upper_model_based": 0.14859606865911312,
+      "supports_1_percent": false
+    },
+    "secondary": {
+      "known_attempted": 20,
+      "unknown_attempted": 30,
+      "known_admissible": 20,
+      "unknown_admissible": 30,
+      "correct_accepted": 20,
+      "wrong_accepted": 0,
+      "false_access": 1,
+      "unknown_accepted_preset": 0,
+      "unknown_accepted_GT_enrolled": 1,
+      "FPIR_conditional": 0.03333333333333333,
+      "false_access_per_attempt": 0.03333333333333333,
+      "FPIR_one_sided_95_upper_model_based": 0.14859606865911312,
+      "supports_1_percent": false
+    }
+  }
+}

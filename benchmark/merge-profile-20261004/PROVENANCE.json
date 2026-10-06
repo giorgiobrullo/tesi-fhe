@@ -1,0 +1,1627 @@
+{
+  "schema": "research-package.v2",
+  "path_base": "files paths are relative to this package; source_layout and shared_files canonical paths are relative to repository root",
+  "source_layout": {
+    "schema": "research-source-map.v1",
+    "archive_root": "local research archive",
+    "source_workspace": "tmp/current-merge-profile-20261004",
+    "files": [
+      {
+        "workspace_path": "runtime/BASELINE_ORIGINS.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/BASELINE_ORIGINS.json",
+        "canonical": "runtime/BASELINE_ORIGINS.json",
+        "bytes": 5046,
+        "sha256": "a73e1cc8b0f5449e5d0d2d7ddccde67ea58ac7f0958cb8ae745ca768fd0cc098",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/BUILD_SELECTION.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/BUILD_SELECTION.json",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/BUILD_SELECTION.json",
+        "bytes": 168,
+        "sha256": "784fcc13a58f1b7066dbec4192a9ab816b7f8b863f4c272b613c84b6b558044a",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/CIRCUIT_CONTRACT.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/CIRCUIT_CONTRACT.json",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/CIRCUIT_CONTRACT.json",
+        "bytes": 4231,
+        "sha256": "27872011a69f4621e0c28c8243e6c6e4eabe576791918d591ad908f91326e9cf",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/CORE_ORIGINS.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/CORE_ORIGINS.json",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/CORE_ORIGINS.json",
+        "bytes": 8063,
+        "sha256": "307de117b624ae317e2d22d85aadad1bc9e664ad72c2a976d90559cb8f533e11",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/Cargo.lock",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/Cargo.lock",
+        "canonical": "runtime/Cargo.lock",
+        "bytes": 20634,
+        "sha256": "34579017e5e1b1871532156e1596ebc2924f5a807bbf691c8410e3aade0152d7",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/Cargo.toml",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/Cargo.toml",
+        "canonical": "runtime/Cargo.toml",
+        "bytes": 154,
+        "sha256": "ea2c493ebb5912a4af9321ed992eb0b72c54e6668297d1460aaa631064ff3497",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/README.md",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/README.md",
+        "canonical": "runtime/README.md",
+        "bytes": 1951,
+        "sha256": "2aab91fdde6a8fabd0b20820d423b0861c7f6e128fec8250d37e19612bb887e9",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/REPAIR.md",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/REPAIR.md",
+        "canonical": "runtime/REPAIR.md",
+        "bytes": 2140,
+        "sha256": "a66d3afda1e209edea30e01b0c6fb29f52c0bf745a9f5f90f866b993054f9e02",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/SOURCE_DIGEST.txt",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/SOURCE_DIGEST.txt",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/SOURCE_DIGEST.txt",
+        "bytes": 64,
+        "sha256": "9394c29ecfa864a5a3bb10e2730148b80e149843335d1b6ad22bc6e1e56c1888",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/SOURCE_PINS.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/SOURCE_PINS.json",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/SOURCE_PINS.json",
+        "bytes": 26335,
+        "sha256": "268826d0e74965adf7ea96ea2bc07782fb831c39585bb413d0d230e2ba49103d",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/__init__.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/__init__.py",
+        "canonical": "runtime/__init__.py",
+        "bytes": 79,
+        "sha256": "8cc863c63c0b1b425ceccf9277218e61688695929e4edc56b50c3cfb05d0222a",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/Cargo.toml",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/Cargo.toml",
+        "canonical": "runtime/candidate/Cargo.toml",
+        "bytes": 444,
+        "sha256": "68db494da5f10852c324957c444ca26d2a1f008d6a309f346af3484d9fa2b82e",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/cli.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/cli.rs",
+        "canonical": "runtime/candidate/src/cli.rs",
+        "bytes": 9117,
+        "sha256": "1e717fcf7c5420e1f9ead7afb55d3738e06351cd92d4da1d87f9b65f10c73034",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/client_commands.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/client_commands.rs",
+        "canonical": "runtime/candidate/src/client_commands.rs",
+        "bytes": 5660,
+        "sha256": "087e0d730c274a3206a329218c87977fac3952da96cdf3fc1a93ffa371aec92b",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/diagnostics.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/diagnostics.rs",
+        "canonical": "runtime/candidate/src/diagnostics.rs",
+        "bytes": 2573,
+        "sha256": "07f76d6882f47b1ab289c334c20b480b409b6028be8b5c5aac4a493dcb6b6983",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/dispatch.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/dispatch.rs",
+        "canonical": "runtime/candidate/src/dispatch.rs",
+        "bytes": 4403,
+        "sha256": "212636e1bec7200b9bcd1697339ccbf7f3263662813f132e1a801ef543e4b4dc",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/evaluation.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/evaluation.rs",
+        "canonical": "runtime/candidate/src/evaluation.rs",
+        "bytes": 2463,
+        "sha256": "6c25f6c724144f3d8e1d2960cbaecf2deb71e993207cf50a6aef4d056149855d",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/gallery.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/gallery.rs",
+        "canonical": "runtime/candidate/src/gallery.rs",
+        "bytes": 7439,
+        "sha256": "06de40b8df4402c92127ac116e58444b6b5abd49091438ef18c80d5ab17e152d",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/http.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/http.rs",
+        "canonical": "runtime/candidate/src/http.rs",
+        "bytes": 3791,
+        "sha256": "8ce0951f71edc48fa69826a2b79f2a737602c96b44618ff9ec3e720a52d3c212",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/http_request.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/http_request.rs",
+        "canonical": "runtime/candidate/src/http_request.rs",
+        "bytes": 7320,
+        "sha256": "38a1aa1201b1e5cf4c7201a1e2e3558e2aee70a2d571450414cddcca677a9b6d",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/http_request_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/http_request_tests.rs",
+        "canonical": "runtime/candidate/src/http_request_tests.rs",
+        "bytes": 5987,
+        "sha256": "4eea045cdceffd49d91c35680b82e5d81c0668cc2a6458bd73041d0d6c0f2c9e",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/keygen.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/keygen.rs",
+        "canonical": "runtime/candidate/src/keygen.rs",
+        "bytes": 2980,
+        "sha256": "1f244a9263ce15823297c6753b9d722eddb3762604dbcac35d3fad19e347c280",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/keys.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/keys.rs",
+        "canonical": "runtime/candidate/src/keys.rs",
+        "bytes": 7418,
+        "sha256": "8a156c276f6c4221bfa717b79fd955c645529f17e70a3b66606cbc7cabfef5de",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/main.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/main.rs",
+        "canonical": "runtime/candidate/src/main.rs",
+        "bytes": 717,
+        "sha256": "841d054f4cdf64e5bdfbbcf1f75530f625fc88c81b2d28c2aadab5c1ff68122d",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/metadata.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/metadata.rs",
+        "canonical": "runtime/candidate/src/metadata.rs",
+        "bytes": 12309,
+        "sha256": "4db9aa80a68edeec86c0192807008b79e2267c354985daa2c9c58c00c58d225e",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/profile.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/profile.rs",
+        "canonical": "runtime/candidate/src/profile.rs",
+        "bytes": 2963,
+        "sha256": "5dd1b4e62d3fb2edd6b5c7562c979d5adfdca4f613f278011bbde1796ab2fab9",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/profile_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/profile_tests.rs",
+        "canonical": "runtime/candidate/src/profile_tests.rs",
+        "bytes": 3887,
+        "sha256": "7dcae65acf3af03df44f83054bdb1dc0c91c27b6584ab6bec4f90f731fc94417",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/protocol.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/protocol.rs",
+        "canonical": "runtime/candidate/src/protocol.rs",
+        "bytes": 5535,
+        "sha256": "4e68fa66d7f3000c6e5a6edf4958d2c731d2579dae75398a9fbd81c4994ff0c0",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/rebind.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/rebind.rs",
+        "canonical": "runtime/candidate/src/rebind.rs",
+        "bytes": 8709,
+        "sha256": "5eb7bb3944b06102fbb2bdf56b4cf14156c89294fb1beffccd5e8b044fcedbe2",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/routes.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/routes.rs",
+        "canonical": "benchmark/core-profile-20261004/source/runtime/candidate/src/routes.rs",
+        "bytes": 13336,
+        "sha256": "1433d21d22e9c02c018108a9423cff5c6e39d7f42b08d6e52bf2b72ac367e249",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/runtime.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/runtime.rs",
+        "canonical": "runtime/candidate/src/runtime.rs",
+        "bytes": 3079,
+        "sha256": "27f059762eea854340a31f06312c27d5b9799114e6701509c027e7026578e4e2",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/supplement.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/supplement.rs",
+        "canonical": "runtime/candidate/src/supplement.rs",
+        "bytes": 4959,
+        "sha256": "74ddea84b365afb6799c28b22977af3bcf02309a18e9012121a96cdbb85ec5f5",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/tests.rs",
+        "canonical": "runtime/candidate/src/tests.rs",
+        "bytes": 9735,
+        "sha256": "be1a780ab33e483a09b4b86c7d33b69442ed8b34a977da4ff244b3c71fb29565",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/threshold_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/threshold_tests.rs",
+        "canonical": "runtime/candidate/src/threshold_tests.rs",
+        "bytes": 7967,
+        "sha256": "c47b745fbd9c809fe06e70a68c8736f468f63cf250fd83985e77f0b14ae04e72",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/candidate/src/wire.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/candidate/src/wire.rs",
+        "canonical": "runtime/candidate/src/wire.rs",
+        "bytes": 13230,
+        "sha256": "0de5db8f81f389e75277a9fd9638837c023c6578de893f62f4a0399c79e0cb14",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/circuit.sha256",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/circuit.sha256",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/circuit.sha256",
+        "bytes": 64,
+        "sha256": "8dcc6086264cbd82c4b417d4aae05b20ccd36abd0b0a18abc144bc5486eb0c10",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/circuit.template.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/circuit.template.json",
+        "canonical": "runtime/circuit.template.json",
+        "bytes": 3472,
+        "sha256": "3b2f7a1fc7c0a0a2281a349f4095b6481c6e0cd651df08d07c56f86e6a6353f9",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/__init__.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/__init__.py",
+        "canonical": "runtime/client/__init__.py",
+        "bytes": 70,
+        "sha256": "5f66b02ddc41d63d25f54f3c24552bc3efff4744090d3bd76a1e112650fbb9b4",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/adapters.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/adapters.py",
+        "canonical": "runtime/client/adapters.py",
+        "bytes": 1600,
+        "sha256": "ab1a7a9b28b3de67feadb691a4f503ecebf06818848cdf87b24f4f15bcbc8fea",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/app.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/app.py",
+        "canonical": "runtime/client/app.py",
+        "bytes": 8266,
+        "sha256": "929d69bbb4613006e58990ecdd9dfc07afdae3e4b8a71e8314cb8315640d5bad",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/configuration.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/configuration.py",
+        "canonical": "runtime/client/configuration.py",
+        "bytes": 903,
+        "sha256": "761406d238c6f188d77afe911fdf50125664a72be590a5607ed4f14682fa32cb",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/embedding.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/embedding.py",
+        "canonical": "runtime/client/embedding.py",
+        "bytes": 2899,
+        "sha256": "83d149ea683cb16961a08df9440f27b138d8a375b22f691d19be0bd5a504a27a",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/ledger.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/ledger.py",
+        "canonical": "runtime/client/ledger.py",
+        "bytes": 3354,
+        "sha256": "4a9229eb752c8860ee9ef1bd1d75db12b895fab5c84452d316d3d44a682fba53",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/pipeline.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/pipeline.py",
+        "canonical": "runtime/client/pipeline.py",
+        "bytes": 10969,
+        "sha256": "fd0d1b96cee6f3e56d98b1553a7a7dd8b82a28e81662aaa4f18d4e7de552a80f",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/protocol.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/protocol.py",
+        "canonical": "runtime/client/protocol.py",
+        "bytes": 12592,
+        "sha256": "2d1158e79f23d2f065585da1488c075d0989d4b5693a6925f26e6c6e90a81c96",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/test_app.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/test_app.py",
+        "canonical": "runtime/client/test_app.py",
+        "bytes": 2223,
+        "sha256": "4ec3f61c9baf42ff8a13d012ffd54a0f97f12854b191a237effedb4c4b1a0759",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/test_pack4_ledger.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/test_pack4_ledger.py",
+        "canonical": "runtime/client/test_pack4_ledger.py",
+        "bytes": 2004,
+        "sha256": "38841f85d38e9cc465e7766f1fd0779fe68e7ce538a756898e1d48c927538afc",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/client/test_protocol.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/client/test_protocol.py",
+        "canonical": "runtime/client/test_protocol.py",
+        "bytes": 17834,
+        "sha256": "42b5e015612b07332173f1c6689100b9209bb56548d42632070d8da1bbe99ff4",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/config.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/config.json",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/config.json",
+        "bytes": 5535,
+        "sha256": "7db57f248c138a3f5f5396225f2c36ea4ed25eb33ca9ffafd034a31467f84a7e",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/config.template.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/config.template.json",
+        "canonical": "runtime/config.template.json",
+        "bytes": 5194,
+        "sha256": "ed4a20d57808001718d12927bffcf80c77676063fbd64cf14b7c2b44070548a1",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/configure.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/configure.py",
+        "canonical": "runtime/configure.py",
+        "bytes": 7508,
+        "sha256": "8dc420640466d40e8e3684c3c08fc796ac6d25584523c04c6ebb9d11f4e3dd29",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core-source.sha256",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core-source.sha256",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/SOURCE_DIGEST.txt",
+        "bytes": 64,
+        "sha256": "9394c29ecfa864a5a3bb10e2730148b80e149843335d1b6ad22bc6e1e56c1888",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/Cargo.toml",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/Cargo.toml",
+        "canonical": "runtime/core/Cargo.toml",
+        "bytes": 397,
+        "sha256": "66b0ca21898de8f0a0cf8529fdf5fa2a111ee0aa5cab34a06acce7e657cebb9f",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/README.md",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/README.md",
+        "canonical": "runtime/core/README.md",
+        "bytes": 8342,
+        "sha256": "0e22584d4eeb2194df660e03e2789dcb1b1a6008e284d0d06b929173ec00449a",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/artifacts/fused_candidate_zero_body.u64le",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/artifacts/fused_candidate_zero_body.u64le",
+        "canonical": "runtime/core/artifacts/fused_candidate_zero_body.u64le",
+        "bytes": 16384,
+        "sha256": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/a112.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/a112.rs",
+        "canonical": "runtime/core/src/a112.rs",
+        "bytes": 13925,
+        "sha256": "4f9ee8169c737597bbdb6120d59f4effb0a9d9702b73d35739f884bba9da1e9d",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/a53_scan.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/a53_scan.rs",
+        "canonical": "runtime/core/src/a53_scan.rs",
+        "bytes": 24531,
+        "sha256": "d0be0765fd52f27046e77b2921f83da50cb1d7df7d080d788656aaa5595f8425",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/a53_scan/fhe.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/a53_scan/fhe.rs",
+        "canonical": "runtime/core/src/a53_scan/fhe.rs",
+        "bytes": 19307,
+        "sha256": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/a98.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/a98.rs",
+        "canonical": "runtime/core/src/a98.rs",
+        "bytes": 13473,
+        "sha256": "a750dc4eebef73238ae80fcfde90c8b0fa6995d150c5b9120a1adbb37f9dfce4",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/centering_counts.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/centering_counts.rs",
+        "canonical": "runtime/core/src/centering_counts.rs",
+        "bytes": 1691,
+        "sha256": "a31d3df780f05e7b81d06823c3cd40a31ad411ae435f1195327f97d83ab3098f",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/classic_batch.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/classic_batch.rs",
+        "canonical": "runtime/core/src/classic_batch.rs",
+        "bytes": 5162,
+        "sha256": "c496e843f2909c616cae76e9f549846d496fa55e191cfd5d34930a9babfc886f",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/comparator.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/comparator.rs",
+        "canonical": "runtime/core/src/comparator.rs",
+        "bytes": 12538,
+        "sha256": "d22b803ac46c5ae100eab337971e5dd14602ab986e5a57c65e65660d7a753815",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/compat.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/compat.rs",
+        "canonical": "runtime/core/src/compat.rs",
+        "bytes": 3971,
+        "sha256": "d6565c7b69a9774a92505ffe6c2303b284e8ba810b91fb6cf6a7d84690fbb633",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/composite.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/composite.rs",
+        "canonical": "runtime/core/src/composite.rs",
+        "bytes": 2581,
+        "sha256": "1058cc3493d17848afae7b6f2649b23c1eed112d2bb5ec0add4a1e2b08bc8d97",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/d1.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/d1.rs",
+        "canonical": "runtime/core/src/d1.rs",
+        "bytes": 9241,
+        "sha256": "77f23c0ac4da62be19078e01f99fdeca5f83def76a82393db5a4d74ebfe0077f",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/g4_dynamic.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/g4_dynamic.rs",
+        "canonical": "runtime/core/src/g4_dynamic.rs",
+        "bytes": 22954,
+        "sha256": "025980717f2a7c743a45dc761e0414815e2c59a61e767d762915cb101ad56934",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/g4_query.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/g4_query.rs",
+        "canonical": "runtime/core/src/g4_query.rs",
+        "bytes": 13510,
+        "sha256": "6311dbb40e266b31164d341e14613b34d0eb044f9d9861fa778c3ca9c3986c8e",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/general.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/general.rs",
+        "canonical": "runtime/core/src/general.rs",
+        "bytes": 2920,
+        "sha256": "af61741b78548836b7939f51096470816dd6fe190e4bbce016d6d7644ddb58d3",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/h_untraced.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/h_untraced.rs",
+        "canonical": "runtime/core/src/h_untraced.rs",
+        "bytes": 12319,
+        "sha256": "7c59035d2839a3cfb6161f1563ecc1bd8b5596873dd3179093632a43736b4859",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/hd1.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/hd1.rs",
+        "canonical": "runtime/core/src/hd1.rs",
+        "bytes": 7416,
+        "sha256": "186da530940051717ade57b2f56a62c74788f47681fc4a06cb67fc946947807d",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/head_key.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/head_key.rs",
+        "canonical": "runtime/core/src/head_key.rs",
+        "bytes": 972,
+        "sha256": "7ae5a60cf6f7acd82614b9db21b2be1184b025f2ddf9e0b8eb3102da5bab10c7",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/head_witness.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/head_witness.rs",
+        "canonical": "runtime/core/src/head_witness.rs",
+        "bytes": 8178,
+        "sha256": "a085f8998677f4d221333996c2071469b78a62e746b2fad53929a4d177e0ac65",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/helpers.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/helpers.rs",
+        "canonical": "runtime/core/src/helpers.rs",
+        "bytes": 2643,
+        "sha256": "8baeb4147d290a1ec0ed461f666b7554653350407dea78563b32f14129a2bdc3",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/hybrid.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/hybrid.rs",
+        "canonical": "runtime/core/src/hybrid.rs",
+        "bytes": 1934,
+        "sha256": "e2bda4df162b480dd8f6d681a07b21e568fd776a9d81e1c066e3cf0dce14028a",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/key_envelope.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/key_envelope.rs",
+        "canonical": "runtime/core/src/key_envelope.rs",
+        "bytes": 8971,
+        "sha256": "3d5332e066758ba8fd61b581c62a9b139cb01b4645b1d66aefff31280d7e2106",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/key_envelope_core.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/key_envelope_core.rs",
+        "canonical": "runtime/core/src/key_envelope_core.rs",
+        "bytes": 3419,
+        "sha256": "65cb595267777789972c9b8bba3a844842161a7f6ec592b66b8a2db04c05bbf4",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/lib.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/lib.rs",
+        "canonical": "runtime/core/src/lib.rs",
+        "bytes": 4180,
+        "sha256": "0cbae55764baab00f27acae946338a7e4960233982b636e6ed1240ee6dca7350",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/m_untraced.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/m_untraced.rs",
+        "canonical": "runtime/core/src/m_untraced.rs",
+        "bytes": 10127,
+        "sha256": "67f73be26e3a9e8ac76b34bc12f6006b3d930aecff6668b85dd186959a769c30",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/mean_center.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/mean_center.rs",
+        "canonical": "runtime/core/src/mean_center.rs",
+        "bytes": 5203,
+        "sha256": "3f7f0205cc04c0aff6083d1040d8bc9e368e8ca07087507165a5f7b448a23de2",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/mixed.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/mixed.rs",
+        "canonical": "runtime/core/src/mixed.rs",
+        "bytes": 21808,
+        "sha256": "467492d764ae8b51c78b1bba531082cd401ce1b6d27e84d7e03cd61751916ec2",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/mixed_plan.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/mixed_plan.rs",
+        "canonical": "runtime/core/src/mixed_plan.rs",
+        "bytes": 2583,
+        "sha256": "18e2f9267d798cbcdf3338ea36985fbcd7acd302c1f47fa2516e00ae63d94ffd",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/mixed_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/mixed_tests.rs",
+        "canonical": "runtime/core/src/mixed_tests.rs",
+        "bytes": 15169,
+        "sha256": "8b9784ff08160652230b71edd0385de59a7d303247a3f619db3f5ef1f2d87fa7",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/multibit.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/multibit.rs",
+        "canonical": "runtime/core/src/multibit.rs",
+        "bytes": 23085,
+        "sha256": "e254cb68f1c689072aa5d0c6a3c0b6925b3d0fbb1e2fae265cd6004dc843ff70",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/observer.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/observer.rs",
+        "canonical": "runtime/core/src/observer.rs",
+        "bytes": 381,
+        "sha256": "ef2a5444ed630211797728194ec9d2a2914082d01cef78d2096e77fdefeefdd1",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin.rs",
+        "canonical": "runtime/core/src/private_argmin.rs",
+        "bytes": 925,
+        "sha256": "bffa8e581fcd143347e105b73d6424756bff7fa8908fa0cfffe576b8d5a12af6",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/contracts.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/contracts.rs",
+        "canonical": "runtime/core/src/private_argmin/contracts.rs",
+        "bytes": 17509,
+        "sha256": "402c65f3caa06019b68c02999a054bc8d0295ca17de635398308e2d2429bffd2",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/domain.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/domain.rs",
+        "canonical": "runtime/core/src/private_argmin/domain.rs",
+        "bytes": 7391,
+        "sha256": "b2e62d5e791c1c6e9c74989be6e865edabf3f0b3cafec9e3a7cfa3f4bb2e555a",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/input.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/input.rs",
+        "canonical": "runtime/core/src/private_argmin/input.rs",
+        "bytes": 2328,
+        "sha256": "41f0b041b15aa5702ef75601860f8783285f634908aed4e5379e12571a4b0f26",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/aligned.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/aligned.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/aligned.rs",
+        "bytes": 37390,
+        "sha256": "1e152c0941e85d4602852c5cc003631b066b228e0d65aa2c0c5d356cb6dd1c61",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/api.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/api.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/api.rs",
+        "bytes": 11140,
+        "sha256": "de8bf6afb2ae4abc07a9cda7322d3885c783f7df4b3680472ed42157f4bbf0c6",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/bridge.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/bridge.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/bridge.rs",
+        "bytes": 9556,
+        "sha256": "3b8d31ca33b902fb98fb67504b98c7482d675929d85b06d6b516a497eeae9b8e",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/counts.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/counts.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/counts.rs",
+        "bytes": 10733,
+        "sha256": "8f5d2080f85c4872a597d5cdc2074e308ab3ab7f2ef9cd620a5729aec3d02215",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/extraction.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/extraction.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/extraction.rs",
+        "bytes": 7331,
+        "sha256": "649e3e4464d50fd6c6f32087c44c794a15d0662472e928aa09ac4638c2a5a8a4",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/general.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/general.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/general.rs",
+        "bytes": 31806,
+        "sha256": "4abbc7a8a72bdd02c33ac03ef4e610eac06aa402ff46bb06380c3f56364b8385",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/luts.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/luts.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/luts.rs",
+        "bytes": 6725,
+        "sha256": "292f4c3ea6616c232ce3caf770ae863f3d0887fb216aa7a86768ad4f95a50681",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/mod.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/mod.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/mod.rs",
+        "bytes": 3558,
+        "sha256": "73601ead80974574bf3e64e83b4bed219cceb8b81a9a04a96467a10f0695511f",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/reductions.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/reductions.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/reductions.rs",
+        "bytes": 4002,
+        "sha256": "ab7fa5bde144ab09fd623fec3f38a73fd7e3a0ca9c441902c781666ab281f878",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/scan.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/scan.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/scan.rs",
+        "bytes": 6939,
+        "sha256": "5f8fc28c0a94c3b8b969d080f96c0939966a3229b4cd157b4175776eaceaa25a",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/tests/counts.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/tests/counts.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/counts.rs",
+        "bytes": 4095,
+        "sha256": "6745e8fd635ee6c7cc6427d286b22b41b930d6bfa79949d83a580f89623dc03e",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/tests/extraction.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/tests/extraction.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/extraction.rs",
+        "bytes": 3709,
+        "sha256": "02785a9ddf708e1d007c5c1f322dd10f32ce15258fc83b77c063d23d47b810c5",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/tests/fhe.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/tests/fhe.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/fhe.rs",
+        "bytes": 15169,
+        "sha256": "7119cd1ee8c688609a0a6e14ce865dfb0dba8c81351dcdc8104737a164381c12",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/tests/luts.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/tests/luts.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/luts.rs",
+        "bytes": 15767,
+        "sha256": "8c1c0d58a16082bcbd7a435be2f4acba5a156c06fbaee6249f2e30e35abc3723",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/legacy/tests/mod.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/legacy/tests/mod.rs",
+        "canonical": "runtime/core/src/private_argmin/legacy/tests/mod.rs",
+        "bytes": 217,
+        "sha256": "75ca7f33ec649dbed1e206e52ba2b845199d49a129a4b5b8f64daea4a032bf36",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/parameters.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/parameters.rs",
+        "canonical": "runtime/core/src/private_argmin/parameters.rs",
+        "bytes": 4287,
+        "sha256": "7d0ae38f4685efa3dc32d324e5b7d19b1433e5d8012f7b0467c78ceae8494ec8",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/score.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/score.rs",
+        "canonical": "runtime/core/src/private_argmin/score.rs",
+        "bytes": 3296,
+        "sha256": "56fdabb4e36c088b223e0881f1faff0d10c0d5d353c5256896b61f5a531e28d3",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/test_support.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/test_support.rs",
+        "canonical": "runtime/core/src/private_argmin/test_support.rs",
+        "bytes": 605,
+        "sha256": "9939d9f8a7d0af921ef773c57517f93de48ee5fe362ab43708eab02f98791b53",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/tests/domain.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/tests/domain.rs",
+        "canonical": "runtime/core/src/private_argmin/tests/domain.rs",
+        "bytes": 7126,
+        "sha256": "6ca42b1ca07e85a4b3fc017e13c047648372a19690063eff974997140fee2c80",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/private_argmin/tests/parameters.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/private_argmin/tests/parameters.rs",
+        "canonical": "runtime/core/src/private_argmin/tests/parameters.rs",
+        "bytes": 809,
+        "sha256": "0c2fdda7047da7535930684f4be80c5ce35b98ac65b8415fa89aa10056eae1e4",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/public_digits.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/public_digits.rs",
+        "canonical": "runtime/core/src/public_digits.rs",
+        "bytes": 10712,
+        "sha256": "5c402b3296a599640f8b91543ace8149707488e0114f518276e6dd1d7c508439",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/public_thresholds.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/public_thresholds.rs",
+        "canonical": "runtime/core/src/public_thresholds.rs",
+        "bytes": 6671,
+        "sha256": "183c501162564b0e5d8af250b853ff1d8e6ba70a5147de64f0ddbe98c4b92103",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/request_guard.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/request_guard.rs",
+        "canonical": "runtime/core/src/request_guard.rs",
+        "bytes": 667,
+        "sha256": "729ca33e9411fa31ba97c7e35fb537e3dfb72cf2c62e98a7a6b01ac15bb708df",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/scaling_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/scaling_tests.rs",
+        "canonical": "runtime/core/src/scaling_tests.rs",
+        "bytes": 8016,
+        "sha256": "3796a16c3088986d44655ec1417644eb6bbdde0e3e6936319e97ab1d796d51f5",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/score_anchor.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/score_anchor.rs",
+        "canonical": "runtime/core/src/score_anchor.rs",
+        "bytes": 5000,
+        "sha256": "4d3907c5f82591794749a2b4d865ef2761888fee988090c54a5fde1fe9498c31",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/selector_parallel.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/selector_parallel.rs",
+        "canonical": "runtime/core/src/selector_parallel.rs",
+        "bytes": 10250,
+        "sha256": "4e54015fc8ad82a7deb2d842c607bbd58a0dd8409113038e3d49f8a83f8078f4",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/selector_refresh.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/selector_refresh.rs",
+        "canonical": "runtime/core/src/selector_refresh.rs",
+        "bytes": 2420,
+        "sha256": "2def89a65e9da264e26e86d6e58946213bb71eaaf5249478b55cf0043dd2905b",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/service.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/service.rs",
+        "canonical": "runtime/core/src/service.rs",
+        "bytes": 19458,
+        "sha256": "65f57f569abb0ad97ab3709799f5144c8f87fb20f071893cbf0d85e968bb2b3d",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/service_selected.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/service_selected.rs",
+        "canonical": "runtime/core/src/service_selected.rs",
+        "bytes": 2753,
+        "sha256": "88e59ecce0847bd5231109fa7775b295ea8c559823d76c4529455b4b9cc74026",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/service_smoke_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/service_smoke_tests.rs",
+        "canonical": "runtime/core/src/service_smoke_tests.rs",
+        "bytes": 4079,
+        "sha256": "aa61c53bebcb8822a5808b2ea06712372bede83bf73976677bd654bfe8d43ef6",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/shared_normalizers.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/shared_normalizers.rs",
+        "canonical": "runtime/core/src/shared_normalizers.rs",
+        "bytes": 10299,
+        "sha256": "9aad98bdf1d4b2954ca0c3ab3adb9ae7282158d275087c70ea0b2dbfd18672cc",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/smallcuts.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/smallcuts.rs",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/core/src/smallcuts.rs",
+        "bytes": 21600,
+        "sha256": "69b7d5d5cf89b2f7250ee8d5d439f7efde275d3e1e4aa10b911a7d4b8092aae9",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/split.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/split.rs",
+        "canonical": "runtime/core/src/split.rs",
+        "bytes": 10060,
+        "sha256": "c145a703897dedd7be700d5e08c57d222bb8ddd45707612e9ac850f6963793d6",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/split32_observer.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/split32_observer.rs",
+        "canonical": "runtime/core/src/split32_observer.rs",
+        "bytes": 15826,
+        "sha256": "95cd3d48b20cf4994e5db924cff56e7a60f2fafac6ef4f75d7951d2dc45d4882",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/template_permutation.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/template_permutation.rs",
+        "canonical": "runtime/core/src/template_permutation.rs",
+        "bytes": 356,
+        "sha256": "d64de4ce0c485b32aa959954cfb0266c12bf88e4d8e560633c89b994a9637c62",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/uniform_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/uniform_tests.rs",
+        "canonical": "runtime/core/src/uniform_tests.rs",
+        "bytes": 10646,
+        "sha256": "da2ed6c85d3fae2e83c14c299077d54b575e9c0bbdeb6a07a3f6c879bd8251fb",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/wide.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/wide.rs",
+        "canonical": "runtime/core/src/wide.rs",
+        "bytes": 8146,
+        "sha256": "d03e108e0b32a23fc04e035a8a6f749b87b38ee463ee357225598e857d262b70",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/wide_id.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/wide_id.rs",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/core/src/wide_id.rs",
+        "bytes": 19713,
+        "sha256": "28443af60e3e66edc4e6ea2b0e7f9279a7f92c38728b35a799b451fd743a574f",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/core/src/wide_id_tests.rs",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/wide_id_tests.rs",
+        "canonical": "runtime/core/src/wide_id_tests.rs",
+        "bytes": 16111,
+        "sha256": "c7b9a2c89e02213f60adb3ce6386229d903eb8a0049b3d0f390a6e77831ad51b",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/runtime-mode.txt",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/runtime-mode.txt",
+        "canonical": "runtime/runtime-mode.txt",
+        "bytes": 15,
+        "sha256": "6cb7301049ba8f648d71d3ada88f9423fe95dd2b245361a9b842e259b1f76abf",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/service-source.sha256",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/service-source.sha256",
+        "canonical": "benchmark/merge-profile-20261004/source/runtime/service-source.sha256",
+        "bytes": 64,
+        "sha256": "5c286b45ecc8b7babf5337b72b1d60cf41d2fce879d503063ef4acd9912ca476",
+        "mapping": "copied_frozen_source"
+      },
+      {
+        "workspace_path": "runtime/test_configure.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/test_configure.py",
+        "canonical": "runtime/test_configure.py",
+        "bytes": 5123,
+        "sha256": "8e2b3555b3888a4bba138c5bf7200ce34ddc27627b8b196736862f19553e6a4a",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/ui/__init__.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/ui/__init__.py",
+        "canonical": "runtime/ui/__init__.py",
+        "bytes": 33,
+        "sha256": "d47da28d5c37c40b94c20bfe51337eefa6bec4bd8e261a166eb46a41d956f60c",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/ui/camera_web.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/ui/camera_web.py",
+        "canonical": "runtime/ui/camera_web.py",
+        "bytes": 811,
+        "sha256": "4824208cfa73a0e1816587bf99bb35fde1d8f40b47c723bfb552c178940829a2",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/ui/index.html",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/ui/index.html",
+        "canonical": "runtime/ui/index.html",
+        "bytes": 8037,
+        "sha256": "75d1967f6aa364fb106b43d8b8a5a0137f9c12f94064553a9e9ecd0b00f99523",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "runtime/variant-id.txt",
+        "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/variant-id.txt",
+        "canonical": "runtime/variant-id.txt",
+        "bytes": 84,
+        "sha256": "7e396366669fa716fd45122b8cf7709a6dc4e2ca35b0f0edddd6ad9903c877d9",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "driver/merge_http.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/root/merge_http.py",
+        "canonical": "benchmark/merge-profile-20261004/driver/merge_http.py",
+        "bytes": 19391,
+        "sha256": "349b142458b4dea356a335479e4e05e33ca273db1b5655e7f5ab928fae816950",
+        "mapping": "existing_repository_source",
+        "privacy_redaction": {
+          "before_public_sha256": "9f5ccfe041de280ea134c647fe999d03c4324dc174c3404ac08e84aad27cbd2b",
+          "before_public_bytes": 19411,
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+        }
+      },
+      {
+        "workspace_path": "driver/test_merge_http.py",
+        "archive_relative": "tmp/current-merge-profile-20261004/root/test_merge_http.py",
+        "canonical": "benchmark/merge-profile-20261004/driver/test_merge_http.py",
+        "bytes": 3749,
+        "sha256": "d158c55d1f996bfb13db1dd86fc8a7a7f728dec596ce40077ef8cfec2bfd8cc1",
+        "mapping": "existing_repository_source"
+      },
+      {
+        "workspace_path": "driver/spec.template.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/root/spec.template.json",
+        "canonical": "benchmark/merge-profile-20261004/driver/spec.template.json",
+        "bytes": 913,
+        "sha256": "db40c53c699ba0b46eb676335d6f3ce5de1473ffe283a131bbb6895775d222e8",
+        "mapping": "existing_repository_source",
+        "privacy_redaction": {
+          "before_public_sha256": "581fc27b867aa80c402e190a2674f0b6e9dffa8b8eb7b8b2e0bd4ac426ea3bcf",
+          "before_public_bytes": 1053,
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+        }
+      },
+      {
+        "workspace_path": "driver/spec.json",
+        "archive_relative": "tmp/current-merge-profile-20261004/root/spec.json",
+        "canonical": "benchmark/merge-profile-20261004/driver/spec.json",
+        "bytes": 1079,
+        "sha256": "5fb03c59fbdbe485844b38e1fcedc66d57fa17461ab6255badb70507ad32c7a9",
+        "mapping": "existing_repository_source",
+        "privacy_redaction": {
+          "before_public_sha256": "2eb34ce9aa4dbbaddfd9b58906d212fd22f22a7b2002f1d1614f2b3a02432af5",
+          "before_public_bytes": 1219,
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+        }
+      },
+      {
+        "workspace_path": "helpers/profile_http.py",
+        "archive_relative": "tmp/current-core-profile-20261004/root/profile_http.py",
+        "canonical": "benchmark/core-profile-20261004/driver/profile_http.py",
+        "bytes": 18943,
+        "sha256": "5a1e079ff99373a320f20ed0176acb34e65117ae752798c148be510d43170269",
+        "mapping": "existing_repository_source",
+        "privacy_redaction": {
+          "before_public_sha256": "248e8f8f049460307c0d010d0e0ee5a87f2f59ef6d7d5dfded68c40b4b729268",
+          "before_public_bytes": 18963,
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+        }
+      },
+      {
+        "workspace_path": "helpers/paired_http.py",
+        "archive_relative": "tmp/current-build-timing-20261004/root/paired_http.py",
+        "canonical": "benchmark/tfhe-181-20261004/driver/paired_http.py",
+        "bytes": 33482,
+        "sha256": "0984f94a95b4bd0c1fcb5d799ad6f0c71453ab6a461e4796b2e107df6ec413ef",
+        "mapping": "existing_repository_source"
+      }
+    ],
+    "excluded_inputs": [
+      {
+        "workspace_path": "fixtures/gallery.json",
+        "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/gallery.json",
+        "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+        "pin": {
+          "sha256": "6ad678a67bc755c30b1e25afc336079d31a9ee410a8a16b73043a6e1c98a86fe",
+          "bytes": 154052
+        }
+      },
+      {
+        "workspace_path": "fixtures/probes/einstein.json",
+        "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/probes/einstein.json",
+        "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+        "pin": {
+          "sha256": "2f4c48262685673af1de0ab97c77b0e3a9f60aca876a2fcea4c7d2ab7ca7ad6a",
+          "bytes": 2092
+        }
+      },
+      {
+        "workspace_path": "fixtures/probes/curie.json",
+        "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/probes/curie.json",
+        "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+        "pin": {
+          "sha256": "a69a253fd5d8f998b9e017335123d41add577f1872cabdff0c349971fc2cf616",
+          "bytes": 2100
+        }
+      },
+      {
+        "workspace_path": "fixtures/probes/turing.json",
+        "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/probes/turing.json",
+        "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+        "pin": {
+          "sha256": "19ecbebc1afcd692baf66efb0950a8387687372e4ca7c56b86ecca5b3226bc5e",
+          "bytes": 2116
+        }
+      }
+    ],
+    "path_semantics": {
+      "workspace_path": "path in reconstructed workspace",
+      "canonical": "path relative to repository root",
+      "archive_relative": "original path relative to research archive or maintained worktree"
+    },
+    "scientific_execution_in_this_recovery": false
+  },
+  "files": [
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 1980,
+      "sha256": "e87331194d3acd66bda1081897a04d23980ca3f724c82da993a47c311bf3ee9e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2858,
+      "sha256": "de31c1298172124b65033ee0f089f0b545c8bc586baf214c161016b6f0c86a44"
+    },
+    {
+      "path": "SUMMARY.json",
+      "bytes": 5919,
+      "sha256": "d415c7e099ccd8e224b5096925f95de1106b49d35eaf5d02f3428e68cc190da0"
+    },
+    {
+      "path": "driver/build_profile.py",
+      "bytes": 2310,
+      "sha256": "fe23ff7b024fb148ea6e39021a1aa221ab4c2fcbb8630c130b58eb134f823c76",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/build_profile.py",
+          "canonical": "benchmark/merge-profile-20261004/driver/build_profile.py",
+          "bytes": 2310,
+          "sha256": "fe23ff7b024fb148ea6e39021a1aa221ab4c2fcbb8630c130b58eb134f823c76",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "c58e4a218698afa513e85f321af5d2e2874a71ea63c0eb22d9e7bcd9813796bd",
+            "before_public_bytes": 2350,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "c58e4a218698afa513e85f321af5d2e2874a71ea63c0eb22d9e7bcd9813796bd",
+        "before_public_bytes": 2350,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "driver/keygen_profile.py",
+      "bytes": 1400,
+      "sha256": "e06b67da9ecc5e685a8a6bdfecd4d5c6fdf7c703ad7208504985f6560f0755ac",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/keygen_profile.py",
+          "canonical": "benchmark/merge-profile-20261004/driver/keygen_profile.py",
+          "bytes": 1400,
+          "sha256": "e06b67da9ecc5e685a8a6bdfecd4d5c6fdf7c703ad7208504985f6560f0755ac",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "45b1f5f35e515b80e087dd2531469083e67b90ac93db7143f79761de9630dda5",
+            "before_public_bytes": 1420,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "45b1f5f35e515b80e087dd2531469083e67b90ac93db7143f79761de9630dda5",
+        "before_public_bytes": 1420,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "driver/merge_http.py",
+      "bytes": 19391,
+      "sha256": "349b142458b4dea356a335479e4e05e33ca273db1b5655e7f5ab928fae816950",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/merge_http.py",
+          "canonical": "benchmark/merge-profile-20261004/driver/merge_http.py",
+          "bytes": 19391,
+          "sha256": "349b142458b4dea356a335479e4e05e33ca273db1b5655e7f5ab928fae816950",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "9f5ccfe041de280ea134c647fe999d03c4324dc174c3404ac08e84aad27cbd2b",
+            "before_public_bytes": 19411,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "9f5ccfe041de280ea134c647fe999d03c4324dc174c3404ac08e84aad27cbd2b",
+        "before_public_bytes": 19411,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "driver/spec.json",
+      "bytes": 1079,
+      "sha256": "5fb03c59fbdbe485844b38e1fcedc66d57fa17461ab6255badb70507ad32c7a9",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/spec.json",
+          "canonical": "benchmark/merge-profile-20261004/driver/spec.json",
+          "bytes": 1079,
+          "sha256": "5fb03c59fbdbe485844b38e1fcedc66d57fa17461ab6255badb70507ad32c7a9",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "2eb34ce9aa4dbbaddfd9b58906d212fd22f22a7b2002f1d1614f2b3a02432af5",
+            "before_public_bytes": 1219,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "2eb34ce9aa4dbbaddfd9b58906d212fd22f22a7b2002f1d1614f2b3a02432af5",
+        "before_public_bytes": 1219,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "driver/spec.template.json",
+      "bytes": 913,
+      "sha256": "db40c53c699ba0b46eb676335d6f3ce5de1473ffe283a131bbb6895775d222e8",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/spec.template.json",
+          "canonical": "benchmark/merge-profile-20261004/driver/spec.template.json",
+          "bytes": 913,
+          "sha256": "db40c53c699ba0b46eb676335d6f3ce5de1473ffe283a131bbb6895775d222e8",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "581fc27b867aa80c402e190a2674f0b6e9dffa8b8eb7b8b2e0bd4ac426ea3bcf",
+            "before_public_bytes": 1053,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "581fc27b867aa80c402e190a2674f0b6e9dffa8b8eb7b8b2e0bd4ac426ea3bcf",
+        "before_public_bytes": 1053,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "driver/test_merge_http.py",
+      "bytes": 3749,
+      "sha256": "d158c55d1f996bfb13db1dd86fc8a7a7f728dec596ce40077ef8cfec2bfd8cc1",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/test_merge_http.py",
+          "canonical": "benchmark/merge-profile-20261004/driver/test_merge_http.py",
+          "bytes": 3749,
+          "sha256": "d158c55d1f996bfb13db1dd86fc8a7a7f728dec596ce40077ef8cfec2bfd8cc1",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "receipts/PREPARATION_FAILURE.json",
+      "bytes": 320,
+      "sha256": "fbb957e284a65b063de1ef12319c866ac40fd1e9e44e02bf692ce851dd15ad90",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/logs/PREPARATION_FAILURE.json",
+          "canonical": "benchmark/merge-profile-20261004/receipts/PREPARATION_FAILURE.json",
+          "bytes": 320,
+          "sha256": "fbb957e284a65b063de1ef12319c866ac40fd1e9e44e02bf692ce851dd15ad90",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "receipts/SOURCE_AFTER_BINDINGS.json",
+      "bytes": 13711,
+      "sha256": "e4d94c1ec76790722ea342e68af7267a44ebf362a54c26f95e758e2af72201b5",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/SOURCE_AFTER_BINDINGS.json",
+          "canonical": "benchmark/merge-profile-20261004/receipts/SOURCE_AFTER_BINDINGS.json",
+          "bytes": 13711,
+          "sha256": "e4d94c1ec76790722ea342e68af7267a44ebf362a54c26f95e758e2af72201b5",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "receipts/build.json",
+      "bytes": 903,
+      "sha256": "d7bc900318270500ecdffa10ac2435c77f3f03c05dc1ad649173f7af6caac3bb",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/logs/build.json",
+          "canonical": "benchmark/merge-profile-20261004/receipts/build.json",
+          "bytes": 903,
+          "sha256": "d7bc900318270500ecdffa10ac2435c77f3f03c05dc1ad649173f7af6caac3bb",
+          "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten.",
+          "privacy_redaction": {
+            "before_public_sha256": "9be28c0bfdbc625a22da1907dc0b8e0b55b2190b16e008f27cab6fee37be3206",
+            "before_public_bytes": 923,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "9be28c0bfdbc625a22da1907dc0b8e0b55b2190b16e008f27cab6fee37be3206",
+        "before_public_bytes": 923,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "review/IMPLEMENTATION.md",
+      "bytes": 2560,
+      "sha256": "3ca0cc6494e34f57626f313f5b4736b8e8265dc05f1ffcb76c76d8332e3467c4",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/IMPLEMENTATION.md",
+          "canonical": "benchmark/merge-profile-20261004/review/IMPLEMENTATION.md",
+          "bytes": 2560,
+          "sha256": "3ca0cc6494e34f57626f313f5b4736b8e8265dc05f1ffcb76c76d8332e3467c4",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "review/INDEPENDENT_REVIEW.md",
+      "bytes": 2833,
+      "sha256": "20357bcef629160d515178a1321638d078d5b7adcc09ea381b6d3ba8319ee88f",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/results/INDEPENDENT_REVIEW.md",
+          "canonical": "benchmark/merge-profile-20261004/review/INDEPENDENT_REVIEW.md",
+          "bytes": 2833,
+          "sha256": "20357bcef629160d515178a1321638d078d5b7adcc09ea381b6d3ba8319ee88f",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "review/SOURCE_REVIEW.md",
+      "bytes": 2412,
+      "sha256": "76f94cff318ed68966576dff8511ab013f820e0b0d744dc673cbf0c890d128db",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/root/SOURCE_REVIEW.md",
+          "canonical": "benchmark/merge-profile-20261004/review/SOURCE_REVIEW.md",
+          "bytes": 2412,
+          "sha256": "76f94cff318ed68966576dff8511ab013f820e0b0d744dc673cbf0c890d128db",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "samples.csv",
+      "bytes": 10227,
+      "sha256": "5b690c38ecaaeeb93f0a6c26bbe378798b91960ecef7bcc2a5e9df47a9c38746"
+    },
+    {
+      "path": "source/runtime/BUILD_SELECTION.json",
+      "bytes": 168,
+      "sha256": "784fcc13a58f1b7066dbec4192a9ab816b7f8b863f4c272b613c84b6b558044a",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/BUILD_SELECTION.json",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/BUILD_SELECTION.json",
+          "bytes": 168,
+          "sha256": "784fcc13a58f1b7066dbec4192a9ab816b7f8b863f4c272b613c84b6b558044a",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/CIRCUIT_CONTRACT.json",
+      "bytes": 4231,
+      "sha256": "27872011a69f4621e0c28c8243e6c6e4eabe576791918d591ad908f91326e9cf",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/CIRCUIT_CONTRACT.json",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/CIRCUIT_CONTRACT.json",
+          "bytes": 4231,
+          "sha256": "27872011a69f4621e0c28c8243e6c6e4eabe576791918d591ad908f91326e9cf",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/CORE_ORIGINS.json",
+      "bytes": 8063,
+      "sha256": "307de117b624ae317e2d22d85aadad1bc9e664ad72c2a976d90559cb8f533e11",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/CORE_ORIGINS.json",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/CORE_ORIGINS.json",
+          "bytes": 8063,
+          "sha256": "307de117b624ae317e2d22d85aadad1bc9e664ad72c2a976d90559cb8f533e11",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/SOURCE_DIGEST.txt",
+      "bytes": 64,
+      "sha256": "9394c29ecfa864a5a3bb10e2730148b80e149843335d1b6ad22bc6e1e56c1888",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/SOURCE_DIGEST.txt",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/SOURCE_DIGEST.txt",
+          "bytes": 64,
+          "sha256": "9394c29ecfa864a5a3bb10e2730148b80e149843335d1b6ad22bc6e1e56c1888",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/SOURCE_PINS.json",
+      "bytes": 26335,
+      "sha256": "268826d0e74965adf7ea96ea2bc07782fb831c39585bb413d0d230e2ba49103d",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/SOURCE_PINS.json",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/SOURCE_PINS.json",
+          "bytes": 26335,
+          "sha256": "268826d0e74965adf7ea96ea2bc07782fb831c39585bb413d0d230e2ba49103d",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/circuit.sha256",
+      "bytes": 64,
+      "sha256": "8dcc6086264cbd82c4b417d4aae05b20ccd36abd0b0a18abc144bc5486eb0c10",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/circuit.sha256",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/circuit.sha256",
+          "bytes": 64,
+          "sha256": "8dcc6086264cbd82c4b417d4aae05b20ccd36abd0b0a18abc144bc5486eb0c10",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/config.json",
+      "bytes": 5535,
+      "sha256": "7db57f248c138a3f5f5396225f2c36ea4ed25eb33ca9ffafd034a31467f84a7e",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/config.json",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/config.json",
+          "bytes": 5535,
+          "sha256": "7db57f248c138a3f5f5396225f2c36ea4ed25eb33ca9ffafd034a31467f84a7e",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/core/src/smallcuts.rs",
+      "bytes": 21600,
+      "sha256": "69b7d5d5cf89b2f7250ee8d5d439f7efde275d3e1e4aa10b911a7d4b8092aae9",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/smallcuts.rs",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/core/src/smallcuts.rs",
+          "bytes": 21600,
+          "sha256": "69b7d5d5cf89b2f7250ee8d5d439f7efde275d3e1e4aa10b911a7d4b8092aae9",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/core/src/wide_id.rs",
+      "bytes": 19713,
+      "sha256": "28443af60e3e66edc4e6ea2b0e7f9279a7f92c38728b35a799b451fd743a574f",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/core/src/wide_id.rs",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/core/src/wide_id.rs",
+          "bytes": 19713,
+          "sha256": "28443af60e3e66edc4e6ea2b0e7f9279a7f92c38728b35a799b451fd743a574f",
+          "transformation": "none"
+        }
+      ]
+    },
+    {
+      "path": "source/runtime/service-source.sha256",
+      "bytes": 64,
+      "sha256": "5c286b45ecc8b7babf5337b72b1d60cf41d2fce879d503063ef4acd9912ca476",
+      "origins": [
+        {
+          "archive_relative": "tmp/current-merge-profile-20261004/runtimes/profile/service-source.sha256",
+          "canonical": "benchmark/merge-profile-20261004/source/runtime/service-source.sha256",
+          "bytes": 64,
+          "sha256": "5c286b45ecc8b7babf5337b72b1d60cf41d2fce879d503063ef4acd9912ca476",
+          "transformation": "none"
+        }
+      ]
+    }
+  ],
+  "shared_files": [
+    {
+      "canonical": "benchmark/inputs/web-query-n120-d512.json",
+      "sha256": "8b92c1c83be33c701faa6504415a57df70c815a8dfe39be22d0c99ade0f182ee",
+      "bytes": 3145,
+      "role": "input_recipe"
+    }
+  ],
+  "evidence_metadata": {
+    "schema": "research-package-provenance.v1",
+    "recovered_utc": "2026-10-06T06:00:09.658178+00:00",
+    "original_files_unchanged": true,
+    "source_map": "#/source_layout",
+    "scientific_execution_in_this_recovery": false
+  },
+  "inventory_metadata": {
+    "schema": "research-package-manifest.v1"
+  },
+  "administrative_consolidation": {
+    "previous_manifests": {
+      "PACKAGE_MANIFEST.json": {
+        "sha256": "25a2528cb080aedbdcb7f115267e33af107cf27e6ce6a3892e68604b96808ee5",
+        "bytes": 4925
+      },
+      "PROVENANCE.json": {
+        "sha256": "9c329f64fd1d8eadd6b08660268a8fbd33389b66b515aaca70c94b6de37122c4",
+        "bytes": 7411
+      },
+      "SOURCE_MAP.json": {
+        "sha256": "fe00326a043442f54b35d9aacdb7b1fd67feef9d5a69a9cd48f1f356a45315aa",
+        "bytes": 56543
+      }
+    },
+    "field_relocations": [
+      {
+        "field": "evidence_metadata.source_map",
+        "previous": "SOURCE_MAP.json",
+        "current": "#/source_layout"
+      }
+    ],
+    "scientific_files_changed": false
+  }
+}

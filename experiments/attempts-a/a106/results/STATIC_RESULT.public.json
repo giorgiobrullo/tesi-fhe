@@ -1,0 +1,32 @@
+{
+  "artifact": "A106",
+  "date": "2026-09-03",
+  "status": "STATIC_CLASSIFICATION_COMPLETE",
+  "runtime": {
+    "cargo_invoked": false,
+    "keygen_invoked": false,
+    "fhe_invoked": false,
+    "local_lfbs_timing_exists": false
+  },
+  "classification": {
+    "direct_24_bit_pair_comparator": "STATIC_NO_GO_FOR_CURRENT_FRONTIER_BY_EXPONENTIAL_TABLE_SHAPE",
+    "direct_score_plus_dynamic_id_fusion": "STATIC_NO_GO_BY_EXPONENTIAL_TABLE_SHAPE",
+    "12_bit_identity_or_digit_extraction": "NOT_PROMOTED_PUBLISHED_LATENCY_AND_INPUT_ADAPTER_DO_NOT_BEAT_CURRENT_EVIDENCE",
+    "8_bit_nibble_pair_chunk": "DEFERRED_LOW_PRIORITY_REQUIRES_MATCHED_IMPLEMENTATION_AND_REUSE_PATH"
+  },
+  "direct_24_bit_base16_shape": {
+    "domain_entries": 16777216,
+    "horizontal_test_polynomials": 1048576,
+    "test_plaintext_bytes_lower_bound": 17179869184,
+    "inferred_horizontal_external_product_tree_nodes": 1118481,
+    "inferred_prca_calls_for_one_output_digit": 69905,
+    "conversion_blind_rotations": 6
+  },
+  "claim_boundary": {
+    "shape_counts_are_cryptographic_runtime": false,
+    "paper_speedups_transfer_to_a66": false,
+    "paper_failure_probability_transfers_to_composed_exact_id": false,
+    "absence_of_public_code_proven": false,
+    "exact_id_requirement_removed": false
+  }
+}

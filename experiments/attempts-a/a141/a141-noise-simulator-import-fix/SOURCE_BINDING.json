@@ -1,0 +1,7 @@
+{
+  "schema": "a141.compiled-source-binding.v1",
+  "main_sha256": "968db3a3ae7fa6b4fda711b37b8b8d12c15a973b94c16e2f1ed4834dfa3e3a9d",
+  "source_pins_sha256": "9dde4b58269cbfea6594fab27114e76cd9282a868c42a31cf04299760a1935a5",
+  "lockfile_sha256": "5ee23d6607c29c762f4d510e0ab66ed515d4f4c2767aaa1dc5e51f1e21e66f90",
+  "attestation": "artifact consistency only; independent binary digest still required at execution"
+}

@@ -1,0 +1,27 @@
+{
+  "actual_evaluations": 1,
+  "actual_p_fail": null,
+  "adapter_manifest_sha256": "9412c7b57a878e805c3f164cc0c1f01ba81c1f42493ee1a7ce983f8bb384bd98",
+  "chosen_lambda_per_degree": [
+    "2",
+    "2"
+  ],
+  "combined_dyadic_power2_upper_exponent": -2833,
+  "completed_sha256": "b8d0514e2fca94d27ef4b0455e02c8161893c271a966c30bb09706aab8e676b2",
+  "conditional_safe_interval_exit_upper": "1/<LARGE_DIAGNOSTIC_INTEGER>",
+  "conditional_upper_decimal_display_only": "2E-80",
+  "finite_sampler_bound": false,
+  "fixed_key_bound": false,
+  "full_pipeline_bound": false,
+  "inputs_sha256": "b58c483fb13da6c336857070af7d15ee298f85835c58e8f7a333215bef3cdf0d",
+  "model": "unchanged A156 counterfactual ideal Gaussian joint MGF at observed public coefficients",
+  "native_decode_failure_bound": false,
+  "observed_prefix_success_is_not_a_conditioning_event": true,
+  "producer": "A164",
+  "record_bindings_pass": true,
+  "result_sha256": "93e118cb51a50ed5f5040328f5c376c7e9cf63264b843a5e8a18a337b8bfeead",
+  "run_id": "first-prefix-key1",
+  "source_freeze_unchanged": true,
+  "source_pins_verified": 89,
+  "status": "ONE_ACTUAL_PUBLIC_TUPLE_CONDITIONAL_EVALUATION_COMPLETE"
+}
