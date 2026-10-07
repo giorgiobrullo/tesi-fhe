@@ -1,0 +1,78 @@
+{
+  "artifact": "A114",
+  "direct_source_invariant": "all Table 5.4 methods use exactly n external products plus nonnegative automorphism key switches",
+  "inference": "at fixed parameters the method cannot undercut the paper's binary-GINX operation floor",
+  "later_official_repo_implementation": {
+    "benchmark_key_generation": "binary LWE and binary GLWE",
+    "benchmark_results_in_commit": "none found",
+    "branch": "mz/automorphism",
+    "commit": "527f617af69da9f9ac1083e7007b9ad313d6f51b",
+    "same_harness_ginx_control": false,
+    "status": "experimental, based on paper, Algorithm 4.1 implemented"
+  },
+  "paper_tfhe_rs_parameter_pin": {
+    "carry_modulus": 4,
+    "commit": "400ce27beb5bea8fdc68826ad437099ec62680d0",
+    "constant": "PARAM_MESSAGE_2_CARRY_2_KS_PBS_GAUSSIAN_2M64",
+    "glwe_dimension": 1,
+    "lwe_dimension": 834,
+    "message_modulus": 4,
+    "pbs_base_log": 23,
+    "pbs_level": 1,
+    "polynomial_size": 2048
+  },
+  "paper_up_to_38_context": {
+    "baseline": "LMK+ Windowed-Horner, not binary GINX",
+    "candidate_method": "S={tau+/-g^delta,0<=delta<=6}",
+    "candidate_normalized_cost": 1.003065,
+    "displayed_candidate_key_switches": 1.9,
+    "displayed_lmkh_key_switches": 375.8,
+    "ks_over_external_product_ratio": 0.75,
+    "lmkh_normalized_cost": 1.606129,
+    "lmkh_to_candidate_reduction_percent": 37.5477
+  },
+  "table_5_4": {
+    "all_rows_external_products_equal_n": true,
+    "context": "operation counts averaged over 10000 random masks; not wall-clock FHE timings",
+    "parameter_set_a_rows": 15,
+    "parameter_set_b_rows": 16,
+    "rows_transcribed_in_model": 31
+  },
+  "transform_count_model": {
+    "ks_over_external_product_k1_level1": 0.75,
+    "ks_over_external_product_k1_level3": 0.625,
+    "parameter_set_a": {
+      "binary_ginx_same_parameter_normalized_cost": 1.0,
+      "closest_table_key_material": "17n+3",
+      "closest_table_key_switches": 1.5,
+      "closest_table_method": "S={tau+/-g^delta,0<=delta<=7}",
+      "cost_with_k1_level1_ratio_3_over_4": {
+        "closest": 1.002419,
+        "lmkh": 1.606129,
+        "lmkh_to_closest_reduction_percent": 37.587869
+      },
+      "cost_with_ks_ratio_5_over_8": {
+        "closest": 1.002016,
+        "lmkh": 1.505108,
+        "lmkh_to_closest_reduction_percent": 33.425612
+      }
+    },
+    "parameter_set_b": {
+      "binary_ginx_same_parameter_normalized_cost": 1.0,
+      "closest_table_key_material": "19n+3",
+      "closest_table_key_switches": 1.9,
+      "closest_table_method": "S={tau+/-g^delta,0<=delta<=8}",
+      "cost_with_k1_level1_ratio_3_over_4": {
+        "closest": 1.001709,
+        "lmkh": 1.619155,
+        "lmkh_to_closest_reduction_percent": 38.133852
+      },
+      "cost_with_ks_ratio_5_over_8": {
+        "closest": 1.001424,
+        "lmkh": 1.515962,
+        "lmkh_to_closest_reduction_percent": 33.941371
+      }
+    }
+  },
+  "verdict": "NO_DIRECT_BINARY_GINX_SPEEDUP; GAUSSIAN_KEY_GAP_CLOSER"
+}

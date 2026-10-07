@@ -2,7 +2,7 @@
 
 Aggiornamento del 20 settembre 2026. La baseline corrente è
 [pack4](validazione/PACK4_VALIDATION.md), con selettore corretto e gruppi fino a quattro
-payload. Questa nota accompagna il [percorso della tesi](percorso-sperimentale-20260920.md)
+payload. Questa nota accompagna il [percorso della tesi](percorso-sperimentale.md)
 e il [catalogo dei risultati](../findings.md). Le campagne storiche e i loro
 identificatori restano conservati; la documentazione non modifica il runtime.
 
@@ -98,7 +98,7 @@ cinque scenari primari e non raggiunge il criterio temporale. Una sola
 famiglia riusata e il carico esterno limitano lo screening. Il candidato
 non è adottato; il runtime corrente resta pack4.
 
-Le [due rimisurazioni dei grafici](percorso-sperimentale-20260920.md) usano
+Le [due rimisurazioni dei grafici](percorso-sperimentale.md) usano
 campagne e circuiti propri. Nessuna delle percentuali sopra viene applicata
 ai loro punti. Le vecchie risposte corrette restano tali; la diagnosi impone
 di conservare il limite del selettore stretto insieme ai risultati positivi.

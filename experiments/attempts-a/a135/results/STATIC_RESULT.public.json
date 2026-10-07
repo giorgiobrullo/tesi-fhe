@@ -1,0 +1,136 @@
+{
+  "status": "PASS_STATIC_EXACT_TORUS_ONLY",
+  "rust_compiled": false,
+  "runtime_or_noise_claim": false,
+  "source_pins": 16,
+  "local_lemmas": {
+    "minimum_pairs_across_seven_scales": 2023,
+    "reachable_update_states": 153,
+    "validity_states": 17
+  },
+  "round_cases": {
+    "n2_exhaustive": 1024,
+    "bounded_gallery_rounds": 112
+  },
+  "exact_id_cases": {
+    "all_12bit_singleton_scores": 4096,
+    "paired_boundary_and_gallery_cases": 756,
+    "three_round_argmin_gallery_cases": 80
+  },
+  "ledgers": [
+    {
+      "n": 4,
+      "nibble_round_pbs": 12,
+      "nibble_round_ks": 12,
+      "round_minimum": 3,
+      "round_valid": 1,
+      "round_update": 4,
+      "two_low_round_pbs": 24,
+      "two_low_round_ks": 24,
+      "unchanged_a34_select_pbs": 7,
+      "new_select_pbs": 31,
+      "old_low_region_pbs": 48,
+      "saved_low_region_pbs": 24,
+      "low_region_interface_adapter_pbs": "not established",
+      "source_digit_scale_log": 51,
+      "no_full_core_latency_or_extraction_savings_claim": true
+    },
+    {
+      "n": 64,
+      "nibble_round_pbs": 192,
+      "nibble_round_ks": 192,
+      "round_minimum": 63,
+      "round_valid": 1,
+      "round_update": 64,
+      "two_low_round_pbs": 384,
+      "two_low_round_ks": 384,
+      "unchanged_a34_select_pbs": 127,
+      "new_select_pbs": 511,
+      "old_low_region_pbs": 688,
+      "saved_low_region_pbs": 304,
+      "low_region_interface_adapter_pbs": "not established",
+      "source_digit_scale_log": 51,
+      "no_full_core_latency_or_extraction_savings_claim": true
+    },
+    {
+      "n": 127,
+      "nibble_round_pbs": 381,
+      "nibble_round_ks": 381,
+      "round_minimum": 126,
+      "round_valid": 1,
+      "round_update": 127,
+      "two_low_round_pbs": 762,
+      "two_low_round_ks": 762,
+      "unchanged_a34_select_pbs": 253,
+      "new_select_pbs": 1015,
+      "old_low_region_pbs": 1350,
+      "saved_low_region_pbs": 588,
+      "low_region_interface_adapter_pbs": "not established",
+      "source_digit_scale_log": 51,
+      "no_full_core_latency_or_extraction_savings_claim": true
+    },
+    {
+      "n": 128,
+      "nibble_round_pbs": 384,
+      "nibble_round_ks": 384,
+      "round_minimum": 127,
+      "round_valid": 1,
+      "round_update": 128,
+      "two_low_round_pbs": 768,
+      "two_low_round_ks": 768,
+      "unchanged_a34_select_pbs": 255,
+      "new_select_pbs": 1023,
+      "old_low_region_pbs": 1360,
+      "saved_low_region_pbs": 592,
+      "low_region_interface_adapter_pbs": "not established",
+      "source_digit_scale_log": 51,
+      "no_full_core_latency_or_extraction_savings_claim": true
+    }
+  ],
+  "negatives": {
+    "naive_fixed_scale_min": {
+      "left": 1,
+      "right": 1,
+      "expected": 1,
+      "unnormalized_formula": 2,
+      "reason": "The linear sum-minus-centered-absolute formula doubles the value at a fixed scale.",
+      "repair": "Track and double the ciphertext scale at every reduction level; no encrypted division."
+    },
+    "naive_update_without_valid": {
+      "active": [
+        0,
+        0
+      ],
+      "digits": [
+        0,
+        15
+      ],
+      "minimum": 16,
+      "equality_only_survivors": [
+        1,
+        1
+      ],
+      "expected": [
+        0,
+        0
+      ],
+      "repair": "One global valid PBS, fused as a padding flip in the update PBS."
+    },
+    "heterogeneous_prefilter": {
+      "thresholds": [
+        9,
+        100
+      ],
+      "winner_then_own_threshold": 0,
+      "prefilter_then_min": 2,
+      "scope": "Uniform1023 A34 prefilter is valid; this does not license heterogeneous prefiltering."
+    }
+  },
+  "padding_alternative": {
+    "n2_exhaustive_padding_rounds": 1024,
+    "exact_id_gallery_cases": 96,
+    "a34_rescaled_candidate_states": 128,
+    "same_br_ks_count": true,
+    "same_noise_law_assumed": false
+  }
+}

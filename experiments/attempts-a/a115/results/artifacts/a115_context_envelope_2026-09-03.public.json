@@ -1,0 +1,86 @@
+{
+  "artifact": "A115",
+  "binary_sha256": "727f8177d9592834cb7fbe298563ba22424e185b2db531946057563e0bb18516",
+  "candidate": {
+    "m": 81920,
+    "ord_p": 2,
+    "p": 8191,
+    "phi_m": 32768,
+    "slots": 16384
+  },
+  "context_only": true,
+  "date": "2026-09-03",
+  "fhe_eval": false,
+  "keygen": false,
+  "load_refusals": [
+    {
+      "limit_1m": 24.0,
+      "observed_load_1m": 24.5591,
+      "requested_bits": 400
+    }
+  ],
+  "rows": [
+    {
+      "classification": "SECURITY_ENVELOPE_PASS",
+      "columns": 3,
+      "ctxt_prime_bits": 323.230254242,
+      "full_prime_bits": 417.102177523,
+      "observed_load_1m": 10.359863281,
+      "requested_bits": 300,
+      "security_bits_helib": 285.744338955
+    },
+    {
+      "classification": "SECURITY_ENVELOPE_PASS",
+      "columns": 3,
+      "ctxt_prime_bits": 405.309478597,
+      "full_prime_bits": 567.003648770,
+      "observed_load_1m": 20.500488281,
+      "requested_bits": 400,
+      "security_bits_helib": 203.485837283
+    },
+    {
+      "classification": "SECURITY_ENVELOPE_PASS",
+      "columns": 3,
+      "ctxt_prime_bits": 502.752275161,
+      "full_prime_bits": 658.438751299,
+      "observed_load_1m": 17.589355469,
+      "requested_bits": 500,
+      "security_bits_helib": 171.980349442
+    },
+    {
+      "classification": "SECURITY_ENVELOPE_PASS",
+      "columns": 3,
+      "ctxt_prime_bits": 603.824751602,
+      "full_prime_bits": 811.624895538,
+      "observed_load_1m": 15.990234375,
+      "requested_bits": 600,
+      "security_bits_helib": 135.301317068
+    },
+    {
+      "classification": "SECURITY_ENVELOPE_FAIL",
+      "columns": 3,
+      "ctxt_prime_bits": 810.396730150,
+      "full_prime_bits": 1089.706998393,
+      "observed_load_1m": 20.354980469,
+      "requested_bits": 800,
+      "security_bits_helib": 95.308912136
+    },
+    {
+      "classification": "SECURITY_ENVELOPE_FAIL",
+      "columns": 3,
+      "ctxt_prime_bits": 1018.348858850,
+      "full_prime_bits": 1365.712527863,
+      "observed_load_1m": 19.913085938,
+      "requested_bits": 1000,
+      "security_bits_helib": 71.836296486
+    }
+  ],
+  "security_floor_bits": 128.0,
+  "status": "PASS_ENVELOPE_EXISTS_CIRCUIT_CAPACITY_UNKNOWN",
+  "stopping_rule": {
+    "consecutive_fails_required": 2,
+    "consecutive_fails_seen": 2,
+    "stopped_after_requested_bits": 1000,
+    "triggered": true
+  }
+}

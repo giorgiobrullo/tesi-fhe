@@ -1,0 +1,854 @@
+{
+  "schema": "wide-native-independent-check.v1",
+  "evidence_valid": true,
+  "all_supplied_runs_succeeded": true,
+  "complete_three_key_gate": true,
+  "timing_summary": {
+    "complete_pilot_keys": 1,
+    "by_size": [
+      {
+        "n": 224,
+        "key_index": 0,
+        "pairs": [
+          {
+            "scene": "last",
+            "index": 2,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.5000321567923474,
+            "reduction_percent": 49.996784320765265,
+            "sampled_activity": {
+              "guard_intervals": [
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 3,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.48580369500535026,
+            "reduction_percent": 51.41963049946497,
+            "sampled_activity": {
+              "guard_intervals": [
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "last",
+            "index": 4,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.5079367575485233,
+            "reduction_percent": 49.20632424514767,
+            "sampled_activity": {
+              "guard_intervals": [
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 5,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.48850302585050703,
+            "reduction_percent": 51.1496974149493,
+            "sampled_activity": {
+              "guard_intervals": [
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          }
+        ],
+        "seconds": {
+          "M3": [
+            5.400644958,
+            5.359800167,
+            5.543824333,
+            5.26822225
+          ],
+          "A126_3": [
+            10.800595291,
+            11.032851792,
+            10.914398792,
+            10.784420917
+          ]
+        },
+        "median_seconds": {
+          "M3": 5.3802225625,
+          "A126_3": 10.8574970415
+        },
+        "geometric_paired_ratio": 0.4954888798491758,
+        "geometric_paired_reduction_percent": 50.45111201508242,
+        "median_paired_reduction_percent": 50.57324086785728
+      },
+      {
+        "n": 225,
+        "key_index": 0,
+        "pairs": [
+          {
+            "scene": "last",
+            "index": 2,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.44544908343136375,
+            "reduction_percent": 55.45509165686362,
+            "sampled_activity": {
+              "guard_intervals": [
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                73,
+                74,
+                75,
+                76
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 3,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.496183633014704,
+            "reduction_percent": 50.3816366985296,
+            "sampled_activity": {
+              "guard_intervals": [
+                76,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                83,
+                84
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "last",
+            "index": 4,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.49249409278557016,
+            "reduction_percent": 50.75059072144299,
+            "sampled_activity": {
+              "guard_intervals": [
+                84,
+                85,
+                86,
+                87,
+                88,
+                89,
+                90,
+                91,
+                92
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 5,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.5128508449957823,
+            "reduction_percent": 48.714915500421775,
+            "sampled_activity": {
+              "guard_intervals": [
+                92,
+                93,
+                94,
+                95,
+                96,
+                97,
+                98,
+                99,
+                100
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          }
+        ],
+        "seconds": {
+          "M3": [
+            5.533251584,
+            5.367378708,
+            5.410991125,
+            5.596337166
+          ],
+          "A126_3": [
+            12.4217375,
+            10.817323166,
+            10.986915791,
+            10.912212041
+          ]
+        },
+        "median_seconds": {
+          "M3": 5.4721213545000005,
+          "A126_3": 10.949563915999999
+        },
+        "geometric_paired_ratio": 0.48608044677648965,
+        "geometric_paired_reduction_percent": 51.39195532235104,
+        "median_paired_reduction_percent": 50.5661137099863
+      },
+      {
+        "n": 256,
+        "key_index": 0,
+        "pairs": [
+          {
+            "scene": "last",
+            "index": 2,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.5473279717405634,
+            "reduction_percent": 45.26720282594366,
+            "sampled_activity": {
+              "guard_intervals": [
+                119,
+                120,
+                121,
+                122,
+                123,
+                124,
+                125,
+                126,
+                127,
+                128
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 3,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.46515814883725276,
+            "reduction_percent": 53.48418511627473,
+            "sampled_activity": {
+              "guard_intervals": [
+                128,
+                129,
+                130,
+                131,
+                132,
+                133,
+                134,
+                135,
+                136,
+                137
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "last",
+            "index": 4,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.46286142718773166,
+            "reduction_percent": 53.71385728122684,
+            "sampled_activity": {
+              "guard_intervals": [
+                138,
+                139,
+                140,
+                141,
+                142,
+                143,
+                144,
+                145,
+                146,
+                147
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 5,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.47076205565509543,
+            "reduction_percent": 52.92379443449045,
+            "sampled_activity": {
+              "guard_intervals": [
+                147,
+                148,
+                149,
+                150,
+                151,
+                152,
+                153,
+                154,
+                155,
+                156
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          }
+        ],
+        "seconds": {
+          "M3": [
+            6.889493125,
+            5.923908125,
+            5.897184834,
+            6.019087125
+          ],
+          "A126_3": [
+            12.587504167,
+            12.735256041,
+            12.7407135,
+            12.785837458
+          ]
+        },
+        "median_seconds": {
+          "M3": 5.971497625,
+          "A126_3": 12.737984770499999
+        },
+        "geometric_paired_ratio": 0.48531663700350164,
+        "geometric_paired_reduction_percent": 51.46833629964984,
+        "median_paired_reduction_percent": 53.203989775382595
+      },
+      {
+        "n": 512,
+        "key_index": 0,
+        "pairs": [
+          {
+            "scene": "last",
+            "index": 2,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.4722078257761781,
+            "reduction_percent": 52.77921742238219,
+            "sampled_activity": {
+              "guard_intervals": [
+                194,
+                195,
+                196,
+                197,
+                198,
+                199,
+                200,
+                201,
+                202,
+                203,
+                204,
+                205,
+                206,
+                207,
+                208,
+                209,
+                210,
+                211,
+                212
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 3,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.4609023207834584,
+            "reduction_percent": 53.909767921654165,
+            "sampled_activity": {
+              "guard_intervals": [
+                212,
+                213,
+                214,
+                215,
+                216,
+                217,
+                218,
+                219,
+                220,
+                221,
+                222,
+                223,
+                224,
+                225,
+                226,
+                227,
+                228,
+                229,
+                230,
+                231
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "last",
+            "index": 4,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.472341072786208,
+            "reduction_percent": 52.765892721379196,
+            "sampled_activity": {
+              "guard_intervals": [
+                231,
+                232,
+                233,
+                234,
+                235,
+                236,
+                237,
+                238,
+                239,
+                240,
+                241,
+                242,
+                243,
+                244,
+                245,
+                246,
+                247,
+                248,
+                249,
+                250
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 5,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.5107057128406519,
+            "reduction_percent": 48.92942871593481,
+            "sampled_activity": {
+              "guard_intervals": [
+                251,
+                252,
+                253,
+                254,
+                255,
+                256,
+                257,
+                258,
+                259,
+                260,
+                261,
+                262,
+                263,
+                264,
+                265,
+                266,
+                267,
+                268,
+                269,
+                270
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          }
+        ],
+        "seconds": {
+          "M3": [
+            12.145723458,
+            12.02100625,
+            12.697990916,
+            13.37395375
+          ],
+          "A126_3": [
+            25.721139708,
+            26.08146175,
+            26.883097083,
+            26.187202167
+          ]
+        },
+        "median_seconds": {
+          "M3": 12.421857187,
+          "A126_3": 26.1343319585
+        },
+        "geometric_paired_ratio": 0.47867652073858447,
+        "geometric_paired_reduction_percent": 52.132347926141556,
+        "median_paired_reduction_percent": 52.77255507188069
+      },
+      {
+        "n": 1024,
+        "key_index": 0,
+        "pairs": [
+          {
+            "scene": "last",
+            "index": 2,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.4782999248903125,
+            "reduction_percent": 52.17000751096875,
+            "sampled_activity": {
+              "guard_intervals": [
+                346,
+                347,
+                348,
+                349,
+                350,
+                351,
+                352,
+                353,
+                354,
+                355,
+                356,
+                357,
+                358,
+                359,
+                360,
+                361,
+                362,
+                363,
+                364,
+                365,
+                366,
+                367,
+                368,
+                369,
+                370,
+                371,
+                372,
+                373,
+                374,
+                375,
+                376,
+                377,
+                378,
+                379,
+                380,
+                381
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 3,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.46303972293844525,
+            "reduction_percent": 53.69602770615547,
+            "sampled_activity": {
+              "guard_intervals": [
+                382,
+                383,
+                384,
+                385,
+                386,
+                387,
+                388,
+                389,
+                390,
+                391,
+                392,
+                393,
+                394,
+                395,
+                396,
+                397,
+                398,
+                399,
+                400,
+                401,
+                402,
+                403,
+                404,
+                405,
+                406,
+                407,
+                408,
+                409,
+                410,
+                411,
+                412,
+                413,
+                414,
+                415,
+                416,
+                417,
+                418
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "last",
+            "index": 4,
+            "order": [
+              "M3",
+              "A126_3"
+            ],
+            "ratio_M3_over_A126_3": 0.4866579116955654,
+            "reduction_percent": 51.33420883044346,
+            "sampled_activity": {
+              "guard_intervals": [
+                419,
+                420,
+                421,
+                422,
+                423,
+                424,
+                425,
+                426,
+                427,
+                428,
+                429,
+                430,
+                431,
+                432,
+                433,
+                434,
+                435,
+                436,
+                437,
+                438,
+                439,
+                440,
+                441,
+                442,
+                443,
+                444,
+                445,
+                446,
+                447,
+                448,
+                449,
+                450,
+                451,
+                452,
+                453,
+                454
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          },
+          {
+            "scene": "first",
+            "index": 5,
+            "order": [
+              "A126_3",
+              "M3"
+            ],
+            "ratio_M3_over_A126_3": 0.4745197608719622,
+            "reduction_percent": 52.54802391280378,
+            "sampled_activity": {
+              "guard_intervals": [
+                455,
+                456,
+                457,
+                458,
+                459,
+                460,
+                461,
+                462,
+                463,
+                464,
+                465,
+                466,
+                467,
+                468,
+                469,
+                470,
+                471,
+                472,
+                473,
+                474,
+                475,
+                476,
+                477,
+                478,
+                479,
+                480,
+                481,
+                482,
+                483,
+                484,
+                485,
+                486,
+                487,
+                488,
+                489,
+                490
+              ],
+              "intervals_cover_recorded_clock_window": true,
+              "demo_activity_over_5_percent_overlap": false,
+              "other_cpu_over_100_percent_overlap": true,
+              "interpretation": "sampled activity flags; absence is not proof of continuous isolation; all blocks retained"
+            }
+          }
+        ],
+        "seconds": {
+          "M3": [
+            23.444260334,
+            23.458685292,
+            23.898647709,
+            22.858177625
+          ],
+          "A126_3": [
+            49.015814375,
+            50.662360333,
+            49.107693792,
+            48.171181708
+          ]
+        },
+        "median_seconds": {
+          "M3": 23.451472813,
+          "A126_3": 49.0617540835
+        },
+        "geometric_paired_ratio": 0.4755532601548315,
+        "geometric_paired_reduction_percent": 52.44467398451684,
+        "median_paired_reduction_percent": 52.359015711886265
+      }
+    ],
+    "confidence_interval": null,
+    "scope": "one independently generated pilot key, four paired observations per size, no pooling across sizes; correctness keys are not timing replicates",
+    "contention": "all observations retained, joined to sampled CPU receipts; no continuous or thermal qualification"
+  },
+  "not_established": [
+    "whole-circuit failure probability",
+    "all possible noisy depth/threshold histories",
+    "three-key latency replication",
+    "unchanged A126 support above128 or any unchanged three-digit older core",
+    "continuous CPU/thermal isolation or per-arm RSS",
+    "HTTP/camera qualification",
+    "mixed thresholds"
+  ]
+}

@@ -2,14 +2,16 @@
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Fonti verificate il 19 settembre 2026; raccordo aggiornato il 22 settembre.
+Le versioni consultate e i controlli di lettura sono nel [registro delle verifiche](versioni-e-verifiche.md).
 La costruzione selezionata è Head/PFKS con selettore corretto, anchor e pack4,
 a tre cifre LWE, descritta nel [runtime mantenuto](../../runtime/README.md).
 Le revisioni A28/A29/A33 restano tappe storiche con risultati propri. La rassegna
 confronta funzioni, rappresentazioni e modelli di fiducia prima dei tempi;
 non certifica la completezza del corpus o una priorità scientifica.
 
-## 1. Schemi crittografici impiegati
+<a id="1-schemi-crittografici-impiegati"></a>
+
+## Schemi crittografici impiegati
 
 | Schema | Sistemi | Ruolo |
 |---|---|---|
@@ -28,7 +30,9 @@ offrono altre costruzioni. Anche un selettore discreto può operare su score
 previamente ridotti di precisione. Le [schede dei sistemi](sistemi.md) precisano
 questo limite per Cong e Blind Top-k.
 
-## 2. Gestione della selezione del match (argmax/argmin)
+<a id="2-gestione-della-selezione-del-match-argmaxargmin"></a>
+
+## Selezione del match: argmax e argmin
 
 Il requisito della tesi è selezionare sotto cifratura il primo template a
 punteggio minimo, verificare la soglia di quel vincitore e restituire un codice
@@ -150,7 +154,9 @@ con le estrazioni Head corrette in quella istanza. La correzione e pack4 hanno
 verifiche proprie, distinte dalle prove storiche. I [limiti](../limiti.md)
 separano correttezza aritmetica, fallimento crittografico e accuratezza biometrica.
 
-## 3. Il setup con galleria in chiaro
+<a id="3-il-setup-con-galleria-in-chiaro"></a>
+
+## Il setup con galleria in chiaro
 
 Diversi sistemi del corpus cifrano anche la galleria (enc×enc). Il setup qui considerato
 mantiene invece la galleria in chiaro sul server e cifra soltanto la probe, riconducendo il

@@ -1,0 +1,18 @@
+{
+  "started_utc": "2026-10-04T21:40:18.157023+00:00",
+  "driver_pid": 45176,
+  "cargo_pid": 45177,
+  "args": [
+    "/opt/homebrew/bin/cargo",
+    "build",
+    "--offline",
+    "--release",
+    "--manifest-path",
+    "/workspace/research/tmp/current-tournament-dag-20261004/probe/Cargo.toml"
+  ],
+  "target_dir": "/workspace/research/tmp/current-tournament-dag-20261004/target",
+  "rustflags": "-C target-cpu=native",
+  "source_review_sha256": "0b560a148adab41292409b2f6356ff4fdfb2337e2e49e686fa13552be705650e",
+  "native_runs": 0,
+  "keys": 0
+}

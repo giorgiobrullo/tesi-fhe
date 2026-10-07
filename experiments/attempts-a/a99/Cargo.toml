@@ -1,0 +1,12 @@
+[package]
+name = "a99_chen_grouped_runtime"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+aligned-vec = "=0.6.4"
+tfhe = { version = "=0.11.3", features = ["integer"] }
+
+[profile.release]
+opt-level = 3

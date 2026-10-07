@@ -1,0 +1,814 @@
+--- A127/src/main.rs
++++ A137/src/main.rs
+@@ -1,25 +1,27 @@
+-//! A127: direct-window PFKS versus frozen convolution and scalar D2 controls.
++//! A137 snapshot-only successor of A127: direct-window PFKS versus frozen convolution and scalar D2 controls.
+ //!
+ //! The component receives an encrypted left/right control.  It deliberately
+ //! excludes score bridging, comparison, tournament composition, and open-set
+ //! threshold logic.  No runtime claim follows until the preregistered gate is
+ //! compiled and executed in three authorized clean, fresh-key processes.
+ //! The convolution/scalar datapaths are copied byte-for-byte from A120/A108.
+-//! A127 adds direct-window PFKS and coefficientwise modulus-switch support audit.
++//! A137 adds direct-window PFKS and coefficientwise modulus-switch support audit.
+ 
+ #![recursion_limit = "256"]
+ 
++mod observer;
++
++use dyn_stack::{GlobalPodBuffer, PodStack};
+ use serde_json::json;
+-use std::io::{self, Write};
+-use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_monic_monomial_mul_assign;
+-use tfhe::core_crypto::fft_impl::common::pbs_modulus_switch;
+-use dyn_stack::{GlobalPodBuffer, PodStack};
+ use sha2::{Digest, Sha256};
+ use std::env;
+ use std::fmt::Write as _;
++use std::io::{self, Write};
+ use std::mem::size_of;
+ use std::time::Instant;
+ use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_add_assign;
++use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_monic_monomial_mul_assign;
++use tfhe::core_crypto::fft_impl::common::pbs_modulus_switch;
+ use tfhe::core_crypto::fft_impl::fft64::math::fft::FftView;
+ use tfhe::core_crypto::fft_impl::fft64::math::polynomial::FourierPolynomial;
+ use tfhe::core_crypto::prelude::*;
+@@ -27,14 +29,12 @@
+ use tfhe::shortint::server_key::ShortintBootstrappingKey;
+ use tfhe::shortint::{ClientKey, ServerKey};
+ 
+-const ARTIFACT: &str = "A127";
+-const RUN_ACK_ENV: &str = "A127_RUN_FHE";
+-const RUN_ACK_VALUE: &str = "I_ACKNOWLEDGE_A127_DIRECT_WINDOW_PFKS_FHE";
+-const PREREG_ACK_ENV: &str = "A127_PREREGISTRATION_SHA256";
+-const PREREG_SHA256: &str =
+-    "2bbc55173731fd3f79b91e4bfa3dc3eed3ede835850634cab07b1a490acd27d4";
+-const PARAMS_FINGERPRINT: &str =
+-    "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1";
++const ARTIFACT: &str = "A137";
++const RUN_ACK_ENV: &str = "A137_RUN_FHE";
++const RUN_ACK_VALUE: &str = "I_ACKNOWLEDGE_A137_DIRECT_WINDOW_PFKS_FHE";
++const PREREG_ACK_ENV: &str = "A137_PREREGISTRATION_SHA256";
++const PREREG_SHA256: &str = "9c807249e563b91d62fc023353dd73478870bf5b2d506617eb605bca00b09d03";
++const PARAMS_FINGERPRINT: &str = "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1";
+ 
+ const POLYNOMIAL_SIZE: usize = 2_048;
+ const GLWE_SIZE: usize = 2;
+@@ -192,10 +192,7 @@
+         return Ok(Action::Plan);
+     }
+     if args.len() != 3 || args[0] != "--run-authorized" || args[1] != "--pfks" {
+-        return Err(
+-            "expected no arguments, or exactly: --run-authorized --pfks 24x1"
+-                .to_string(),
+-        );
++        return Err("expected no arguments, or exactly: --run-authorized --pfks 24x1".to_string());
+     }
+     let parameters = PfksParameters::parse(&args[2])
+         .ok_or_else(|| format!("unsupported preregistered PFKS parameter {:?}", args[2]))?;
+@@ -232,7 +229,9 @@
+ 
+ fn check_runtime_authorization() -> Result<(), String> {
+     if env::var(RUN_ACK_ENV).as_deref() != Ok(RUN_ACK_VALUE) {
+-        return Err(format!("missing exact authorization {RUN_ACK_ENV}={RUN_ACK_VALUE}"));
++        return Err(format!(
++            "missing exact authorization {RUN_ACK_ENV}={RUN_ACK_VALUE}"
++        ));
+     }
+     if env::var(PREREG_ACK_ENV).as_deref() != Ok(PREREG_SHA256) {
+         return Err(format!(
+@@ -414,11 +413,7 @@
+     for (left, right) in fourier_lhs.data.iter_mut().zip(fourier_rhs.data.iter()) {
+         *left *= *right;
+     }
+-    fft.backward_as_torus(
+-        output.as_mut_view(),
+-        fourier_lhs.as_view(),
+-        &mut *stack,
+-    );
++    fft.backward_as_torus(output.as_mut_view(), fourier_lhs.as_view(), &mut *stack);
+ }
+ 
+ fn spread_glwe(
+@@ -441,13 +436,7 @@
+         .iter_mut()
+         .zip(input.as_polynomial_list().iter())
+     {
+-        polynomial_fft_wrapping_mul(
+-            &mut output_poly,
+-            &input_poly,
+-            mask,
+-            fft,
+-            &mut *stack,
+-        );
++        polynomial_fft_wrapping_mul(&mut output_poly, &input_poly, mask, fft, &mut *stack);
+     }
+     (output, allocation_ns, multiply_started.elapsed().as_nanos())
+ }
+@@ -484,8 +473,7 @@
+             pfpksk.output_polynomial_size(),
+             modulus,
+         );
+-        metrics.constant_glwe_allocation_ns[left_term] =
+-            allocation_started.elapsed().as_nanos();
++        metrics.constant_glwe_allocation_ns[left_term] = allocation_started.elapsed().as_nanos();
+         let pfks_started = Instant::now();
+         private_functional_keyswitch_lwe_ciphertext_into_glwe_ciphertext(
+             pfpksk,
+@@ -508,8 +496,7 @@
+             pfpksk.output_polynomial_size(),
+             modulus,
+         );
+-        metrics.constant_glwe_allocation_ns[right_term] =
+-            allocation_started.elapsed().as_nanos();
++        metrics.constant_glwe_allocation_ns[right_term] = allocation_started.elapsed().as_nanos();
+         let pfks_started = Instant::now();
+         private_functional_keyswitch_lwe_ciphertext_into_glwe_ciphertext(
+             pfpksk,
+@@ -537,13 +524,9 @@
+         metrics.glwe_additions += 1;
+ 
+         let control_allocation_started = Instant::now();
+-        let mut small_control = LweCiphertext::new(
+-            0u64,
+-            ksk.output_key_lwe_dimension().to_lwe_size(),
+-            modulus,
+-        );
+-        metrics.control_lwe_allocation_ns[lane] =
+-            control_allocation_started.elapsed().as_nanos();
++        let mut small_control =
++            LweCiphertext::new(0u64, ksk.output_key_lwe_dimension().to_lwe_size(), modulus);
++        metrics.control_lwe_allocation_ns[lane] = control_allocation_started.elapsed().as_nanos();
+         let control_ks_started = Instant::now();
+         keyswitch_lwe_ciphertext(ksk, encrypted_control, &mut small_control);
+         metrics.control_ks_ns[lane] = control_ks_started.elapsed().as_nanos();
+@@ -555,19 +538,11 @@
+         metrics.blind_rotations += 1;
+ 
+         let output_allocation_started = Instant::now();
+-        let mut output = LweCiphertext::new(
+-            0u64,
+-            bsk.output_lwe_dimension().to_lwe_size(),
+-            modulus,
+-        );
+-        metrics.output_lwe_allocation_ns[lane] =
+-            output_allocation_started.elapsed().as_nanos();
++        let mut output =
++            LweCiphertext::new(0u64, bsk.output_lwe_dimension().to_lwe_size(), modulus);
++        metrics.output_lwe_allocation_ns[lane] = output_allocation_started.elapsed().as_nanos();
+         let extraction_started = Instant::now();
+-        extract_lwe_sample_from_glwe_ciphertext(
+-            &accumulator,
+-            &mut output,
+-            MonomialDegree(0),
+-        );
++        extract_lwe_sample_from_glwe_ciphertext(&accumulator, &mut output, MonomialDegree(0));
+         metrics.sample_extract_ns[lane] = extraction_started.elapsed().as_nanos();
+         metrics.sample_extractions += 1;
+         outputs.push(output);
+@@ -595,7 +570,7 @@
+     masks: &[Poly],
+     fft: FftView<'_>,
+     stack: &mut PodStack,
+-) -> ([Lwe; OUTPUTS], Lwe, SelectorMetrics) {
++) -> ([Lwe; OUTPUTS], Lwe, SelectorMetrics, observer::PackedTrace) {
+     assert_eq!(left_payloads.len(), OUTPUTS);
+     assert_eq!(right_payloads.len(), OUTPUTS);
+     assert_eq!(masks.len(), PACKED_TERMS);
+@@ -608,6 +583,7 @@
+     let total_started = Instant::now();
+     let mut metrics = SelectorMetrics::default();
+     let mut accumulator: Option<Glwe> = None;
++    let mut pfks_outputs = Vec::with_capacity(PACKED_TERMS);
+     let payloads = left_payloads.iter().chain(right_payloads.iter());
+     for (term_index, (payload, mask)) in payloads.zip(masks.iter()).enumerate() {
+         let allocation_started = Instant::now();
+@@ -617,8 +593,7 @@
+             pfpksk.output_polynomial_size(),
+             modulus,
+         );
+-        metrics.constant_glwe_allocation_ns[term_index] =
+-            allocation_started.elapsed().as_nanos();
++        metrics.constant_glwe_allocation_ns[term_index] = allocation_started.elapsed().as_nanos();
+         metrics.constant_glwe_allocations += 1;
+ 
+         let pfks_started = Instant::now();
+@@ -629,6 +604,7 @@
+         );
+         metrics.pfks_ns[term_index] = pfks_started.elapsed().as_nanos();
+         metrics.pfks_calls += 1;
++        pfks_outputs.push(constant_glwe.clone());
+ 
+         let (spread, spread_allocation_ns, spread_ns) =
+             spread_glwe(&constant_glwe, mask, fft, &mut *stack);
+@@ -660,11 +636,8 @@
+     let mut accumulator = accumulator.expect("the packed selector has eight terms");
+ 
+     let control_allocation_started = Instant::now();
+-    let mut small_control = LweCiphertext::new(
+-        0u64,
+-        ksk.output_key_lwe_dimension().to_lwe_size(),
+-        modulus,
+-    );
++    let mut small_control =
++        LweCiphertext::new(0u64, ksk.output_key_lwe_dimension().to_lwe_size(), modulus);
+     metrics.control_lwe_allocation_ns = control_allocation_started.elapsed().as_nanos();
+     metrics.small_lwe_allocations = 1;
+ 
+@@ -674,6 +647,7 @@
+     metrics.control_ks_calls = 1;
+ 
+     let blind_rotate_started = Instant::now();
++    let pre_br_accumulator = accumulator.clone();
+     blind_rotate_assign(&small_control, &mut accumulator, bsk);
+     metrics.blind_rotate_ns = blind_rotate_started.elapsed().as_nanos();
+     metrics.blind_rotations = 1;
+@@ -681,11 +655,8 @@
+     let mut outputs = Vec::with_capacity(OUTPUTS);
+     for lane in 0..OUTPUTS {
+         let allocation_started = Instant::now();
+-        let mut output = LweCiphertext::new(
+-            0u64,
+-            bsk.output_lwe_dimension().to_lwe_size(),
+-            modulus,
+-        );
++        let mut output =
++            LweCiphertext::new(0u64, bsk.output_lwe_dimension().to_lwe_size(), modulus);
+         metrics.output_lwe_allocation_ns[lane] = allocation_started.elapsed().as_nanos();
+         metrics.output_lwe_allocations += 1;
+ 
+@@ -703,7 +674,15 @@
+     let outputs: [Lwe; OUTPUTS] = outputs
+         .try_into()
+         .unwrap_or_else(|_| unreachable!("exactly four outputs are constructed"));
+-    (outputs, small_control, metrics)
++    (
++        outputs,
++        small_control,
++        metrics,
++        observer::PackedTrace {
++            pfks_outputs,
++            pre_br_accumulator,
++        },
++    )
+ }
+ 
+ fn hash_lwe(ciphertext: &Lwe) -> String {
+@@ -817,13 +796,14 @@
+     window_key: &LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>,
+     ksk: &LweKeyswitchKeyOwned<u64>,
+     bsk: &FourierLweBootstrapKeyOwned,
+-) -> ([Lwe; OUTPUTS], Lwe, DirectMetrics) {
++) -> ([Lwe; OUTPUTS], Lwe, DirectMetrics, observer::PackedTrace) {
+     assert_eq!(left.len(), OUTPUTS);
+     assert_eq!(right.len(), OUTPUTS);
+     let started = Instant::now();
+     let mut metrics = DirectMetrics::default();
+     let modulus = encrypted_control.ciphertext_modulus();
+     let mut accumulator: Option<Glwe> = None;
++    let mut pfks_outputs = Vec::with_capacity(PACKED_TERMS);
+     let build_started = Instant::now();
+     for (index, payload) in left.iter().chain(right).enumerate() {
+         let mut term = GlweCiphertext::new(
+@@ -834,13 +814,16 @@
+         );
+         let pfks_started = Instant::now();
+         private_functional_keyswitch_lwe_ciphertext_into_glwe_ciphertext(
+-            window_key,
+-            &mut term,
+-            payload,
++            window_key, &mut term, payload,
+         );
+         metrics.pfks_ns[index] = pfks_started.elapsed().as_nanos();
+         metrics.pfks_calls += 1;
+-        let branch = if index < OUTPUTS { LEFT_CONTROL } else { RIGHT_CONTROL };
++        pfks_outputs.push(term.clone());
++        let branch = if index < OUTPUTS {
++            LEFT_CONTROL
++        } else {
++            RIGHT_CONTROL
++        };
+         let center = (branch as usize + index % OUTPUTS) * BOX_SIZE;
+         let rotation_started = Instant::now();
+         for mut polynomial in term.as_mut_polynomial_list().iter_mut() {
+@@ -860,25 +843,40 @@
+     }
+     let mut accumulator = accumulator.expect("eight payloads fill the accumulator");
+     metrics.build_ns = build_started.elapsed().as_nanos();
+-    let mut control = LweCiphertext::new(0u64, ksk.output_key_lwe_dimension().to_lwe_size(), modulus);
++    let mut control =
++        LweCiphertext::new(0u64, ksk.output_key_lwe_dimension().to_lwe_size(), modulus);
+     let ks_started = Instant::now();
+     keyswitch_lwe_ciphertext(ksk, encrypted_control, &mut control);
+     metrics.control_ks_ns = ks_started.elapsed().as_nanos();
+     metrics.control_ks_calls = 1;
+     let br_started = Instant::now();
++    let pre_br_accumulator = accumulator.clone();
+     blind_rotate_assign(&control, &mut accumulator, bsk);
+     metrics.blind_rotate_ns = br_started.elapsed().as_nanos();
+     metrics.blind_rotations = 1;
+     let extract_started = Instant::now();
+     let outputs = std::array::from_fn(|lane| {
+-        let mut output = LweCiphertext::new(0u64, bsk.output_lwe_dimension().to_lwe_size(), modulus);
+-        extract_lwe_sample_from_glwe_ciphertext(&accumulator, &mut output, MonomialDegree(lane * BOX_SIZE));
++        let mut output =
++            LweCiphertext::new(0u64, bsk.output_lwe_dimension().to_lwe_size(), modulus);
++        extract_lwe_sample_from_glwe_ciphertext(
++            &accumulator,
++            &mut output,
++            MonomialDegree(lane * BOX_SIZE),
++        );
+         metrics.sample_extractions += 1;
+         output
+     });
+     metrics.extract_ns = extract_started.elapsed().as_nanos();
+     metrics.total_ns = started.elapsed().as_nanos();
+-    (outputs, control, metrics)
++    (
++        outputs,
++        control,
++        metrics,
++        observer::PackedTrace {
++            pfks_outputs,
++            pre_br_accumulator,
++        },
++    )
+ }
+ 
+ /// Exact effective phase used by the stock binary-key blind rotation. Rounding
+@@ -887,10 +885,18 @@
+     let size = PolynomialSize(POLYNOMIAL_SIZE);
+     let modulus = 2 * POLYNOMIAL_SIZE;
+     let body = pbs_modulus_switch(*control.get_body().data, size) % modulus;
+-    let mask = control.get_mask().as_ref().iter().zip(secret.as_ref()).fold(0usize, |sum, (&a, &s)| {
+-        assert!(s <= 1, "effective rotation audit assumes the pinned binary secret");
+-        (sum + pbs_modulus_switch(a, size) * s as usize) % modulus
+-    });
++    let mask = control
++        .get_mask()
++        .as_ref()
++        .iter()
++        .zip(secret.as_ref())
++        .fold(0usize, |sum, (&a, &s)| {
++            assert!(
++                s <= 1,
++                "effective rotation audit assumes the pinned binary secret"
++            );
++            (sum + pbs_modulus_switch(a, size) * s as usize) % modulus
++        });
+     (body + modulus - mask) % modulus
+ }
+ 
+@@ -918,16 +924,27 @@
+ }
+ 
+ fn arm_order(fixture: usize, offset: usize) -> [usize; 3] {
+-    const ORDERS: [[usize; 3]; 6] = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
++    const ORDERS: [[usize; 3]; 6] = [
++        [0, 1, 2],
++        [0, 2, 1],
++        [1, 0, 2],
++        [1, 2, 0],
++        [2, 0, 1],
++        [2, 1, 0],
++    ];
+     ORDERS[(fixture + 2 * offset) % ORDERS.len()]
+ }
+ 
+ fn run(parameters: PfksParameters) -> Result<(), String> {
+-    let order_offset: usize = env::var("A127_ORDER_OFFSET").unwrap_or_else(|_| "0".into())
+-        .parse().map_err(|_| "A127_ORDER_OFFSET must be 0, 1 or 2")?;
+-    if order_offset > 2 { return Err("A127_ORDER_OFFSET must be 0, 1 or 2".into()); }
++    let order_offset: usize = env::var("A137_ORDER_OFFSET")
++        .unwrap_or_else(|_| "0".into())
++        .parse()
++        .map_err(|_| "A137_ORDER_OFFSET must be 0, 1 or 2")?;
++    if order_offset > 2 {
++        return Err("A137_ORDER_OFFSET must be 0, 1 or 2".into());
++    }
+     if env::var("RAYON_NUM_THREADS").as_deref() != Ok("1") {
+-        return Err("A127 first gate requires RAYON_NUM_THREADS=1".into());
++        return Err("A137 first gate requires RAYON_NUM_THREADS=1".into());
+     }
+     let modulus = CiphertextModulus::<u64>::new_native();
+     let key_started = Instant::now();
+@@ -944,36 +961,59 @@
+         _ => return Err("requires pinned A44 classic BSK".into()),
+     };
+     assert_eq!(bsk.output_lwe_dimension(), big_secret.lwe_dimension());
+-    assert_eq!(server.key_switching_key.input_key_lwe_dimension(), big_secret.lwe_dimension());
++    assert_eq!(
++        server.key_switching_key.input_key_lwe_dimension(),
++        big_secret.lwe_dimension()
++    );
+     let mut seeder_box = new_seeder();
+     let seeder = seeder_box.as_mut();
+-    let mut generator = EncryptionRandomGenerator::<DefaultRandomGenerator>::new(seeder.seed(), seeder);
+-    let new_pfks_key = || LwePrivateFunctionalPackingKeyswitchKey::new(
+-        0u64, DecompositionBaseLog(parameters.base_log), DecompositionLevelCount(parameters.level_count),
+-        big_secret.lwe_dimension(), glwe_secret.glwe_dimension().to_glwe_size(), polynomial_size, modulus,
+-    );
++    let mut generator =
++        EncryptionRandomGenerator::<DefaultRandomGenerator>::new(seeder.seed(), seeder);
++    let new_pfks_key = || {
++        LwePrivateFunctionalPackingKeyswitchKey::new(
++            0u64,
++            DecompositionBaseLog(parameters.base_log),
++            DecompositionLevelCount(parameters.level_count),
++            big_secret.lwe_dimension(),
++            glwe_secret.glwe_dimension().to_glwe_size(),
++            polynomial_size,
++            modulus,
++        )
++    };
+     let mut constant_key = new_pfks_key();
+     let mut negative_identity = Polynomial::new(0u64, polynomial_size);
+     negative_identity[0] = u64::MAX;
+     let key_started = Instant::now();
+     par_generate_lwe_private_functional_packing_keyswitch_key(
+-        &big_secret, &glwe_secret, &mut constant_key, shortint_parameters.glwe_noise_distribution(),
+-        &mut generator, |value| value.wrapping_neg(), &negative_identity,
++        &big_secret,
++        &glwe_secret,
++        &mut constant_key,
++        shortint_parameters.glwe_noise_distribution(),
++        &mut generator,
++        |value| value.wrapping_neg(),
++        &negative_identity,
+     );
+     let constant_keygen_ns = key_started.elapsed().as_nanos();
+     let mut window_key = new_pfks_key();
+     let base_window = signed_cell_mask(polynomial_size, 0);
+     let key_started = Instant::now();
+     par_generate_lwe_private_functional_packing_keyswitch_key(
+-        &big_secret, &glwe_secret, &mut window_key, shortint_parameters.glwe_noise_distribution(),
+-        &mut generator, |value| value, &base_window,
++        &big_secret,
++        &glwe_secret,
++        &mut window_key,
++        shortint_parameters.glwe_noise_distribution(),
++        &mut generator,
++        |value| value,
++        &base_window,
+     );
+     let window_keygen_ns = key_started.elapsed().as_nanos();
+     let masks = packed_selector_masks(polynomial_size);
+     let (scalar_left, scalar_right) = a30_scalar_selector_masks(polynomial_size);
+     let fft = Fft::new(polynomial_size);
+     let fft_view = fft.as_view();
+-    let requirement = fft_view.forward_scratch().expect("FFT scratch")
++    let requirement = fft_view
++        .forward_scratch()
++        .expect("FFT scratch")
+         .and(fft_view.backward_scratch().expect("FFT scratch"));
+     let mut memory = GlobalPodBuffer::new(requirement);
+     let stack = PodStack::new(&mut memory);
+@@ -986,8 +1026,18 @@
+         "same_base_keys_and_inputs": true, "functional_keys_independently_encrypted": true,
+         "noise": "nonzero A44 Gaussian", "support_gate": "coefficientwise_modulus_switch_effective_degree",
+         "comparator_present": false, "tournament_present": false, "keys_ephemeral": true,
+-        "secret_material_persisted": false, "timing_scope": "diagnostic single observation per fixture"
++        "secret_key_bytes_persisted": false, "contains_secret_derived_observations": true,
++        "ciphertext_words_persisted": false, "phase_polynomial_words_persisted": false,
++        "timing_scope": "observer snapshots invalidate performance inference",
++        "main_source_sha256": observer::hash_bytes(include_bytes!("main.rs")),
++        "observer_source_sha256": observer::hash_bytes(include_bytes!("observer.rs")),
++        "lockfile_sha256": observer::hash_bytes(include_bytes!("../Cargo.lock")),
++        "key_family_ids": {"constant": observer::hash_words(constant_key.as_ref()),
++                           "window": observer::hash_words(window_key.as_ref())},
++        "peak_live_counts_scope": "frozen datapath counters exclude retained observer clones",
++        "phase_trust": "local client observations; not execution attestation or independent secret-key proof"
+     }));
++    let mut observer_failures = 0;
+     let mut direct_passed = 0;
+     let mut convolution_passed = 0;
+     let mut scalar_passed = 0;
+@@ -995,13 +1045,29 @@
+     let mut phase_only_support_disagreements = 0;
+     for (fixture_index, fixture) in FIXTURES.into_iter().enumerate() {
+         let mut encrypt = |phase| {
+-            let mut ciphertext = LweCiphertext::new(0u64, big_secret.lwe_dimension().to_lwe_size(), modulus);
+-            encrypt_lwe_ciphertext(&big_secret, &mut ciphertext, Plaintext(phase),
+-                shortint_parameters.glwe_noise_distribution(), &mut generator);
++            let mut ciphertext =
++                LweCiphertext::new(0u64, big_secret.lwe_dimension().to_lwe_size(), modulus);
++            encrypt_lwe_ciphertext(
++                &big_secret,
++                &mut ciphertext,
++                Plaintext(phase),
++                shortint_parameters.glwe_noise_distribution(),
++                &mut generator,
++            );
+             ciphertext
+         };
+-        let left: Vec<Lwe> = fixture.left.iter().zip(PAYLOAD_DELTAS).map(|(&x, delta)| encrypt(x.wrapping_mul(delta))).collect();
+-        let right: Vec<Lwe> = fixture.right.iter().zip(PAYLOAD_DELTAS).map(|(&x, delta)| encrypt(x.wrapping_mul(delta))).collect();
++        let left: Vec<Lwe> = fixture
++            .left
++            .iter()
++            .zip(PAYLOAD_DELTAS)
++            .map(|(&x, delta)| encrypt(x.wrapping_mul(delta)))
++            .collect();
++        let right: Vec<Lwe> = fixture
++            .right
++            .iter()
++            .zip(PAYLOAD_DELTAS)
++            .map(|(&x, delta)| encrypt(x.wrapping_mul(delta)))
++            .collect();
+         let control = encrypt(fixture.control_phase());
+         let order = arm_order(fixture_index, order_offset);
+         let mut direct = None;
+@@ -1009,33 +1075,80 @@
+         let mut scalar = None;
+         for arm in order {
+             match arm {
+-                0 => direct = Some(direct_window_d2_select(&left, &right, &control, &window_key, &server.key_switching_key, bsk)),
+-                1 => convolution = Some(packed_d2_select(&left, &right, &control, &constant_key,
+-                    &server.key_switching_key, bsk, &masks, fft_view, &mut *stack)),
+-                2 => scalar = Some(scalar_d2_select_tuple(&left, &right, &control, &constant_key,
+-                    &server.key_switching_key, bsk, &scalar_left, &scalar_right, fft_view, &mut *stack)),
++                0 => {
++                    direct = Some(direct_window_d2_select(
++                        &left,
++                        &right,
++                        &control,
++                        &window_key,
++                        &server.key_switching_key,
++                        bsk,
++                    ))
++                }
++                1 => {
++                    convolution = Some(packed_d2_select(
++                        &left,
++                        &right,
++                        &control,
++                        &constant_key,
++                        &server.key_switching_key,
++                        bsk,
++                        &masks,
++                        fft_view,
++                        &mut *stack,
++                    ))
++                }
++                2 => {
++                    scalar = Some(scalar_d2_select_tuple(
++                        &left,
++                        &right,
++                        &control,
++                        &constant_key,
++                        &server.key_switching_key,
++                        bsk,
++                        &scalar_left,
++                        &scalar_right,
++                        fft_view,
++                        &mut *stack,
++                    ))
++                }
+                 _ => unreachable!(),
+             }
+         }
+-        let (direct_outputs, direct_control, direct_metrics) = direct.expect("direct arm timed");
+-        let (convolution_outputs, convolution_control, convolution_metrics) = convolution.expect("convolution arm timed");
++        let (direct_outputs, direct_control, direct_metrics, direct_trace) =
++            direct.expect("direct arm timed");
++        let (convolution_outputs, convolution_control, convolution_metrics, convolution_trace) =
++            convolution.expect("convolution arm timed");
+         let (scalar_outputs, scalar_controls, scalar_metrics) = scalar.expect("scalar arm timed");
+         // No secret-key diagnostic, hash, or result output ran until all three arm timers stopped.
+         let expected = fixture.expected();
+         let mut ingress_ok = true;
+-        for ((ciphertext, &value), delta) in left.iter().zip(&fixture.left).chain(right.iter().zip(&fixture.right))
+-            .zip(PAYLOAD_DELTAS.into_iter().chain(PAYLOAD_DELTAS)) {
++        for ((ciphertext, &value), delta) in left
++            .iter()
++            .zip(&fixture.left)
++            .chain(right.iter().zip(&fixture.right))
++            .zip(PAYLOAD_DELTAS.into_iter().chain(PAYLOAD_DELTAS))
++        {
+             let audit = phase_audit(&big_secret, ciphertext, value, delta);
+             ingress_ok &= audit.decode_pass && audit.half_slot_pass;
+         }
+         let input_control_audit = phase_audit(&big_secret, &control, fixture.control, SCORE_DELTA);
+         ingress_ok &= input_control_audit.decode_pass && input_control_audit.half_slot_pass;
+         let controls_equal = lwe_bitwise_equal(&direct_control, &convolution_control)
+-            && scalar_controls.iter().all(|c| lwe_bitwise_equal(&direct_control, c));
+-        let control_audit = phase_audit(&small_secret.as_view(), &direct_control, fixture.control, SCORE_DELTA);
+-        let control_ok = control_audit.decode_pass && control_audit.half_slot_pass && controls_equal;
++            && scalar_controls
++                .iter()
++                .all(|c| lwe_bitwise_equal(&direct_control, c));
++        let control_audit = phase_audit(
++            &small_secret.as_view(),
++            &direct_control,
++            fixture.control,
++            SCORE_DELTA,
++        );
++        let control_ok =
++            control_audit.decode_pass && control_audit.half_slot_pass && controls_equal;
+         let effective_degree = effective_rotation_degree(&direct_control, &small_secret.as_view());
+-        let effective_error = centered_degree_error(effective_degree, fixture.control as usize * BOX_SIZE);
++        let effective_error =
++            centered_degree_error(effective_degree, fixture.control as usize * BOX_SIZE);
+         let phase_degree = modulus_switch_degree(control_audit.phase);
+         let phase_error = centered_degree_error(phase_degree, fixture.control as usize * BOX_SIZE);
+         let support_ok = effective_error.abs() <= STRICT_RADIUS;
+@@ -1048,7 +1161,12 @@
+         for lane in 0..OUTPUTS {
+             let delta = PAYLOAD_DELTAS[lane];
+             let d = phase_audit(&big_secret, &direct_outputs[lane], expected[lane], delta);
+-            let c = phase_audit(&big_secret, &convolution_outputs[lane], expected[lane], delta);
++            let c = phase_audit(
++                &big_secret,
++                &convolution_outputs[lane],
++                expected[lane],
++                delta,
++            );
+             let s = phase_audit(&big_secret, &scalar_outputs[lane], expected[lane], delta);
+             direct_ok &= lane_pass(d, &direct_outputs[lane]) && d.decoded == s.decoded;
+             convolution_ok &= lane_pass(c, &convolution_outputs[lane]) && c.decoded == s.decoded;
+@@ -1061,13 +1179,52 @@
+                 "scalar": audit_json(s, &scalar_outputs[lane], delta), "diagnostics_after_all_arm_timers": true
+             }));
+         }
++        let direct_observer_ok = observer::observe_arm(
++            "direct_window",
++            true,
++            fixture,
++            &left,
++            &right,
++            &control,
++            &direct_control,
++            &direct_outputs,
++            &direct_trace,
++            &glwe_secret,
++            &small_secret.as_view(),
++            parameters,
++        );
++        let convolution_observer_ok = observer::observe_arm(
++            "convolution_a108",
++            false,
++            fixture,
++            &left,
++            &right,
++            &control,
++            &convolution_control,
++            &convolution_outputs,
++            &convolution_trace,
++            &glwe_secret,
++            &small_secret.as_view(),
++            parameters,
++        );
++        let observer_ok = direct_observer_ok && convolution_observer_ok;
++        observer_failures += usize::from(!observer_ok);
+         let prerequisites = ingress_ok && control_ok && scalar_ok && scalar_metrics.counters_pass();
+-        let direct_class = classify_case(support_ok, prerequisites && direct_metrics.counters_pass(), direct_ok);
+-        let convolution_class = classify_case(support_ok, prerequisites && convolution_metrics.counters_pass(), convolution_ok);
++        let direct_class = classify_case(
++            support_ok,
++            prerequisites && direct_metrics.counters_pass(),
++            direct_ok,
++        );
++        let convolution_class = classify_case(
++            support_ok,
++            prerequisites && convolution_metrics.counters_pass(),
++            convolution_ok,
++        );
+         direct_passed += usize::from(direct_class == "pass");
+         convolution_passed += usize::from(convolution_class == "pass");
+         scalar_passed += usize::from(scalar_ok && scalar_metrics.counters_pass());
+         emit(json!({
++            "observer_identity_pass": observer_ok,
+             "record": "case", "fixture": fixture.name, "fixture_index": fixture_index,
+             "contract_role": fixture.contract_role, "arm_order": order, "requested_control_error": fixture.requested_control_degree_error,
+             "actual_effective_rotation_degree": effective_degree, "actual_effective_rotation_error": effective_error,
+@@ -1093,10 +1250,11 @@
+             "scalar_counters_pass": scalar_metrics.counters_pass(), "performance_interpretation_allowed": false
+         }));
+     }
+-    let pass = direct_passed == FIXTURES.len();
++    let pass = direct_passed == FIXTURES.len() && observer_failures == 0;
+     emit(json!({
+         "record": "summary", "artifact": ARTIFACT, "process_id": std::process::id(),
+         "status": if pass {"PASS_DIRECT_SINGLE_KEY_COMPONENT"} else {"FAIL_DIRECT_COMPONENT"},
++        "observer_failures": observer_failures,
+         "fixture_cases": FIXTURES.len(), "direct_passed": direct_passed,
+         "convolution_passed": convolution_passed, "scalar_passed": scalar_passed,
+         "effective_support_failures": effective_support_failures,
+@@ -1105,7 +1263,14 @@
+         "comparator_present": false, "tournament_present": false, "p_fail_proven": false,
+         "runtime_frontier_promoted": false, "performance_interpretation_allowed": false
+     }));
+-    if pass { Ok(()) } else { Err(format!("direct arm passed {direct_passed}/{} cases", FIXTURES.len())) }
++    if pass {
++        Ok(())
++    } else {
++        Err(format!(
++            "direct arm passed {direct_passed}/{} cases",
++            FIXTURES.len()
++        ))
++    }
+ }
+ 
+ fn main() {
+@@ -1120,7 +1285,9 @@
+         Action::Run(parameters) => {
+             check_runtime_authorization().unwrap_or_else(|e| emit_invalid(&e));
+             if let Err(error) = run(parameters) {
+-                emit(json!({"record":"fatal", "artifact":ARTIFACT, "reason":error, "performance_interpretation_allowed":false}));
++                emit(
++                    json!({"record":"fatal", "artifact":ARTIFACT, "reason":error, "performance_interpretation_allowed":false}),
++                );
+                 std::process::exit(1);
+             }
+         }
+@@ -1136,9 +1303,15 @@
+         let masks = packed_selector_masks(PolynomialSize(POLYNOMIAL_SIZE));
+         for (index, expected) in masks.iter().enumerate() {
+             let mut window = signed_cell_mask(PolynomialSize(POLYNOMIAL_SIZE), 0);
+-            let branch = if index < OUTPUTS {LEFT_CONTROL} else {RIGHT_CONTROL};
+-            polynomial_wrapping_monic_monomial_mul_assign(&mut window,
+-                MonomialDegree((branch as usize + index % OUTPUTS) * BOX_SIZE));
++            let branch = if index < OUTPUTS {
++                LEFT_CONTROL
++            } else {
++                RIGHT_CONTROL
++            };
++            polynomial_wrapping_monic_monomial_mul_assign(
++                &mut window,
++                MonomialDegree((branch as usize + index % OUTPUTS) * BOX_SIZE),
++            );
+             assert_eq!(window.as_ref(), expected.as_ref());
+         }
+     }
+@@ -1147,40 +1320,51 @@
+     fn real_modulus_switch_rounding_is_not_rounding_the_phase() {
+         // Two half-degree mask coefficients round upward separately; their sum is exact.
+         let modulus = CiphertextModulus::new_native();
+-        let secret = LweSecretKey::from_container(vec![1u64,1]);
+-        let ct = LweCiphertext::from_container(vec![1u64<<51,1u64<<51,1u64<<52],modulus);
+-        assert_eq!(decrypt_lwe_ciphertext(&secret,&ct).0,0);
+-        assert_eq!(effective_rotation_degree(&ct,&secret.as_view()),4095);
+-        assert_eq!(modulus_switch_degree(0),0);
++        let secret = LweSecretKey::from_container(vec![1u64, 1]);
++        let ct = LweCiphertext::from_container(vec![1u64 << 51, 1u64 << 51, 1u64 << 52], modulus);
++        assert_eq!(decrypt_lwe_ciphertext(&secret, &ct).0, 0);
++        assert_eq!(effective_rotation_degree(&ct, &secret.as_view()), 4095);
++        assert_eq!(modulus_switch_degree(0), 0);
+     }
+ 
+     #[test]
+     fn three_process_orders_balance_all_six_permutations() {
+         let mut counts = std::collections::BTreeMap::new();
+         for offset in 0..3 {
+-            for fixture in 0..8 { *counts.entry(arm_order(fixture,offset)).or_insert(0) += 1; }
+-        }
+-        assert_eq!(counts.len(),6);
+-        assert!(counts.values().all(|&n|n==4));
++            for fixture in 0..8 {
++                *counts.entry(arm_order(fixture, offset)).or_insert(0) += 1;
++            }
++        }
++        assert_eq!(counts.len(), 6);
++        assert!(counts.values().all(|&n| n == 4));
+     }
+ 
+     #[test]
+     fn reference_masks_select_all_lanes_including_guard_edges() {
+         let masks = packed_selector_masks(PolynomialSize(POLYNOMIAL_SIZE));
+-        let payloads = [0u64,15,7,127,4,0,3,1];
++        let payloads = [0u64, 15, 7, 127, 4, 0, 3, 1];
+         for branch in 0..2 {
+-            let control = if branch==0 {LEFT_CONTROL} else {RIGHT_CONTROL};
++            let control = if branch == 0 {
++                LEFT_CONTROL
++            } else {
++                RIGHT_CONTROL
++            };
+             for error in -STRICT_RADIUS..=STRICT_RADIUS {
+                 for lane in 0..OUTPUTS {
+-                    let virtual_degree = (control as isize + lane as isize)*BOX_SIZE as isize + error;
+-                    let cycles=virtual_degree.div_euclid(POLYNOMIAL_SIZE as isize);
+-                    let index=virtual_degree.rem_euclid(POLYNOMIAL_SIZE as isize) as usize;
+-                    let mut value=0u64;
+-                    for (mask,payload) in masks.iter().zip(payloads) {
+-                        let coefficient=if cycles.rem_euclid(2)==0 {mask[index]} else {mask[index].wrapping_neg()};
+-                        value=value.wrapping_add(coefficient.wrapping_mul(payload));
++                    let virtual_degree =
++                        (control as isize + lane as isize) * BOX_SIZE as isize + error;
++                    let cycles = virtual_degree.div_euclid(POLYNOMIAL_SIZE as isize);
++                    let index = virtual_degree.rem_euclid(POLYNOMIAL_SIZE as isize) as usize;
++                    let mut value = 0u64;
++                    for (mask, payload) in masks.iter().zip(payloads) {
++                        let coefficient = if cycles.rem_euclid(2) == 0 {
++                            mask[index]
++                        } else {
++                            mask[index].wrapping_neg()
++                        };
++                        value = value.wrapping_add(coefficient.wrapping_mul(payload));
+                     }
+-                    assert_eq!(value,payloads[branch*4+lane]);
++                    assert_eq!(value, payloads[branch * 4 + lane]);
+                 }
+             }
+         }

@@ -1,6 +1,8 @@
 # Limiti e sviluppi futuri
 
-20 settembre 2026. I problemi che restano e l'evidenza necessaria per risolverli.
+Aggiornato il 5 ottobre 2026. Elenco unico delle domande aperte e delle prove
+necessarie, collegato al [percorso](percorso-sperimentale.md) e al
+[mappa degli esperimenti](../experiments/README.md).
 
 ## 1. Probabilità di fallimento del circuito composto
 
@@ -16,12 +18,32 @@ premesse su sampler, generatore casuale e calcolo floating point. Le
 vincolano vettori salvati, non la distribuzione su chiavi future.
 [Diagnosi e correzione del selettore](selector-repair-20260920.md).
 
+La [mappa del rumore](validazione/RUMORE_COMPOSTO.md) raccoglie i passaggi,
+le premesse e i budget da giustificare. Le identità e i limiti condizionati
+dei singoli modelli vanno distinti dalla garanzia numerica della baseline
+mantenuta, ancora aperta. Un budget sufficiente non chiuso non dimostra,
+da solo, un ID finale errato.
+
 ## 2. Accuratezza biometrica e validità degli input
 
 Quanto incidono embedding, quantizzazione, soglie e fusione sugli errori
 open-set? Servono dati indipendenti, impostori e condizioni di acquisizione
 definite; TFHE e CKKS vanno confrontati sulla stessa regola e sugli stessi dati.
 La correttezza aritmetica su scene sintetiche non misura questi errori.
+
+La [prova del 2 ottobre](validazione/BIOMETRIA_VGGFACE2_20261002.md) e il
+[confronto della preparazione UI](validazione/BIOMETRIA_UI_20261002.md)
+forniscono un primo controllo circoscritto, con iscrizione a tre foto,
+falsi accessi e denominatori espliciti. Il confronto UI usa una coorte
+già consultata: non chiude la generalizzazione a nuove gallerie o webcam
+e non serve a scegliere una soglia su quegli stessi errori.
+
+La [prova Georgia Tech del 5 ottobre](risultati/selettore-e-generalizzazione.md#georgia-tech)
+aggiunge 50 persone, con 20 iscritti e 30 sconosciuti. In ciascuna delle due
+condizioni riconosce 20/20 iscritti e accetta 1/30 sconosciuti. Le condizioni
+usano le stesse persone: non sono due campioni indipendenti. È una verifica
+biometrica in chiaro; non qualifica webcam, latenza FHE o un tasso di falsi
+accessi dell'1%. Rimangono necessarie sessioni e popolazioni indipendenti.
 
 Come attestare che un probe ammesso provenga dall'acquisizione autorizzata?
 Prove di intervallo e norma verificano predicati aritmetici, non origine,
@@ -56,6 +78,12 @@ richiedono misure distinte dal core.
 | Un produttore Tetris con meno conversioni è vantaggioso? | Correttezza delle interfacce e costo di tutte le conversioni, prima sul componente e poi sulla query. |
 | Il circuito custom è utile su GPU? | Prototipo CUDA compilato, correttezza FHE e tempi comprensivi di conversioni e trasferimenti. |
 
+La specializzazione terminale [raw9](risultati/selettore-e-generalizzazione.md#raw9)
+è stata provata: lo stadio finale migliora, ma il beneficio sulla query
+completa resta inconclusivo. Il [profilo PFKS degli ID](risultati/selettore-e-generalizzazione.md#pfks-id)
+ha invece ridotto la priorità di una cache: quel lavoro è già poco costoso,
+e non è stata implementata una cache da cui dedurre un guadagno.
+
 Precedenti: [DAG](../experiments/26_torneo_dag/evidence/POST_SCREEN_INTERPRETATION.md),
 [Tetris](../experiments/25_tetris/README.md), [CPU](../experiments/19_runtime_cpu/README.md)
 e [servizio](../experiments/22_demo_composita/README.md).
@@ -63,7 +91,7 @@ e [servizio](../experiments/22_demo_composita/README.md).
 ## 6. Filoni alternativi
 
 Common-mask/Joint4, BGV e LFBS richiedono di risolvere ostacoli di formato,
-rumore, conversione o scaling. Il caso BGV N8 corretto non è competitivo;
+rumore, conversione o scaling. Il caso BGV N8 corretto non dimostra un vantaggio di latenza;
 Joint4 N16 non dimostra scaling a N127. Una nuova prova deve cambiare una
 premessa concreta delle costruzioni già studiate. Il CKKS ottimizzato resta
 un valutatore con contratto distinto. Gli esiti negativi non dimostrano
@@ -71,3 +99,8 @@ l'impossibilità di un'intera famiglia di metodi.
 
 Precedenti: [CKKS](../experiments/23_ckks_ottimizzazioni/README.md),
 [common-mask e BGV](../experiments/24_frontiere_common_mask_bgv/README.md).
+
+Le analisi di [riuso del GLWE](risultati/selettore-e-generalizzazione.md#glwe) e
+[CBS](risultati/selettore-e-generalizzazione.md#cbs) richiedono una rappresentazione
+compatibile del vincitore e dei suoi dati. Il mancato innesto diretto è un
+limite delle proposte esaminate; non sono nuovi prototipi FHE falliti.

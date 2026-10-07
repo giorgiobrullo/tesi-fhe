@@ -1,0 +1,19 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 6,
+      "data": {
+        "all_outputs_correct": true,
+        "all_support_correct": true,
+        "arm": "fresh-key",
+        "cmnr_br_calls": 4,
+        "graph_compatibility": "OPEN",
+        "ks32_calls": 4,
+        "marginals": 8,
+        "tails": "OPEN",
+        "type": "summary"
+      }
+    }
+  ]
+}

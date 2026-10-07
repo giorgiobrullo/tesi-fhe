@@ -1,0 +1,5511 @@
+{
+  "status": "PASS_STATIC_FUSED_REFRESH_CANDIDATE_OPEN_FHE_AND_NOISE_TAILS",
+  "scope": "Clear A50 byte selection; actual source-derived negacyclic coefficients and unchanged A53 first operations. Not Rust execution, FHE, p_fail certification, or latency.",
+  "source_contract": {
+    "contributions": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1,
+      8,
+      -4,
+      -2
+    ],
+    "refreshes": [
+      3,
+      7
+    ],
+    "group_or_slots": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "local_first_slots": [
+      0,
+      4,
+      3,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "schedule_search": {
+    "schedules": 256,
+    "passing_schedules": 127,
+    "minimum_refreshes_for_unchanged_recurrence": 2,
+    "minimum_schedules": [
+      [
+        0,
+        7
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "summary": [
+      {
+        "refreshes": [],
+        "canonical": false,
+        "max_l1": 16,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "canonical": false,
+        "max_l1": 15,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          7
+        ],
+        "canonical": true,
+        "max_l1": 17,
+        "pass": false
+      },
+      {
+        "refreshes": [
+          0,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      },
+      {
+        "refreshes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "canonical": true,
+        "max_l1": 15,
+        "pass": true
+      }
+    ]
+  },
+  "selected_schedules": {
+    "baseline": {
+      "refreshes": [
+        3,
+        7
+      ],
+      "fused_level4": false,
+      "rows": [
+        {
+          "level": 0,
+          "bit": 7,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 1,
+          "bit": 6,
+          "states_before": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 4,
+          "linear_candidate_l1": 5,
+          "refresh": false,
+          "states_after": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 2,
+          "bit": 5,
+          "states_before": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 6,
+          "linear_candidate_l1": 7,
+          "refresh": false,
+          "states_after": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 3,
+          "bit": 4,
+          "states_before": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 8,
+          "linear_candidate_l1": 9,
+          "refresh": true,
+          "states_after": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 4,
+          "bit": 3,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 5,
+          "bit": 2,
+          "states_before": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1,
+            7,
+            8,
+            9
+          ],
+          "input_l1": 4,
+          "linear_candidate_l1": 5,
+          "refresh": false,
+          "states_after": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 6,
+          "bit": 1,
+          "states_before": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 6,
+          "linear_candidate_l1": 7,
+          "refresh": false,
+          "states_after": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 7,
+          "bit": 0,
+          "states_before": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 8,
+          "linear_candidate_l1": 9,
+          "refresh": true,
+          "states_after": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        }
+      ],
+      "semantic_errors": [],
+      "final_canonical": true,
+      "nominal_max_pbs_input_l1": 15,
+      "final_candidate_l1": 1,
+      "noise_inputs_above_15": [],
+      "conditional_unchanged_scan_gate": true,
+      "noise_note": "Distinct atoms can be correlated; L1 uses triangle inequality, not independence. All raw per-atom tail premises remain open."
+    },
+    "naive_level6": {
+      "refreshes": [
+        6
+      ],
+      "fused_level4": false,
+      "rows": [
+        {
+          "level": 0,
+          "bit": 7,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 1,
+          "bit": 6,
+          "states_before": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 4,
+          "linear_candidate_l1": 5,
+          "refresh": false,
+          "states_after": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 2,
+          "bit": 5,
+          "states_before": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 6,
+          "linear_candidate_l1": 7,
+          "refresh": false,
+          "states_after": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 3,
+          "bit": 4,
+          "states_before": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 8,
+          "linear_candidate_l1": 9,
+          "refresh": false,
+          "states_after": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 4,
+          "bit": 3,
+          "states_before": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 10,
+          "linear_candidate_l1": 11,
+          "refresh": false,
+          "states_after": [
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 5,
+          "bit": 2,
+          "states_before": [
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "input_l1": 12,
+          "linear_candidate_l1": 13,
+          "refresh": false,
+          "states_after": [
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 6,
+          "bit": 1,
+          "states_before": [
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -10,
+            -9,
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 14,
+          "linear_candidate_l1": 15,
+          "refresh": true,
+          "states_after": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 7,
+          "bit": 0,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        }
+      ],
+      "semantic_errors": [],
+      "final_canonical": false,
+      "nominal_max_pbs_input_l1": 15,
+      "final_candidate_l1": 3,
+      "noise_inputs_above_15": [],
+      "conditional_unchanged_scan_gate": false,
+      "noise_note": "Distinct atoms can be correlated; L1 uses triangle inequality, not independence. All raw per-atom tail premises remain open."
+    },
+    "repair_final_only": {
+      "refreshes": [
+        7
+      ],
+      "fused_level4": false,
+      "rows": [
+        {
+          "level": 0,
+          "bit": 7,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 1,
+          "bit": 6,
+          "states_before": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 4,
+          "linear_candidate_l1": 5,
+          "refresh": false,
+          "states_after": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 2,
+          "bit": 5,
+          "states_before": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 6,
+          "linear_candidate_l1": 7,
+          "refresh": false,
+          "states_after": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 3,
+          "bit": 4,
+          "states_before": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 8,
+          "linear_candidate_l1": 9,
+          "refresh": false,
+          "states_after": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 4,
+          "bit": 3,
+          "states_before": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 10,
+          "linear_candidate_l1": 11,
+          "refresh": false,
+          "states_after": [
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 5,
+          "bit": 2,
+          "states_before": [
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "input_l1": 12,
+          "linear_candidate_l1": 13,
+          "refresh": false,
+          "states_after": [
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 6,
+          "bit": 1,
+          "states_before": [
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -10,
+            -9,
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 14,
+          "linear_candidate_l1": 15,
+          "refresh": false,
+          "states_after": [
+            [
+              -7,
+              false
+            ],
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 7,
+          "bit": 0,
+          "states_before": [
+            [
+              -7,
+              false
+            ],
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -9,
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 16,
+          "linear_candidate_l1": 17,
+          "refresh": true,
+          "states_after": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        }
+      ],
+      "semantic_errors": [],
+      "final_canonical": true,
+      "nominal_max_pbs_input_l1": 17,
+      "final_candidate_l1": 1,
+      "noise_inputs_above_15": [
+        [
+          "zero_or_fusion:7",
+          16
+        ],
+        [
+          "refresh:7",
+          17
+        ]
+      ],
+      "conditional_unchanged_scan_gate": false,
+      "noise_note": "Distinct atoms can be correlated; L1 uses triangle inequality, not independence. All raw per-atom tail premises remain open."
+    },
+    "repair_level6_and_final": {
+      "refreshes": [
+        6,
+        7
+      ],
+      "fused_level4": false,
+      "rows": [
+        {
+          "level": 0,
+          "bit": 7,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 1,
+          "bit": 6,
+          "states_before": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 4,
+          "linear_candidate_l1": 5,
+          "refresh": false,
+          "states_after": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 2,
+          "bit": 5,
+          "states_before": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 6,
+          "linear_candidate_l1": 7,
+          "refresh": false,
+          "states_after": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 3,
+          "bit": 4,
+          "states_before": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 8,
+          "linear_candidate_l1": 9,
+          "refresh": false,
+          "states_after": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 4,
+          "bit": 3,
+          "states_before": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 10,
+          "linear_candidate_l1": 11,
+          "refresh": false,
+          "states_after": [
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 5,
+          "bit": 2,
+          "states_before": [
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "input_l1": 12,
+          "linear_candidate_l1": 13,
+          "refresh": false,
+          "states_after": [
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 6,
+          "bit": 1,
+          "states_before": [
+            [
+              -6,
+              false
+            ],
+            [
+              -5,
+              false
+            ],
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -10,
+            -9,
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 14,
+          "linear_candidate_l1": 15,
+          "refresh": true,
+          "states_after": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 7,
+          "bit": 0,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": true,
+          "states_after": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        }
+      ],
+      "semantic_errors": [],
+      "final_canonical": true,
+      "nominal_max_pbs_input_l1": 15,
+      "final_candidate_l1": 1,
+      "noise_inputs_above_15": [],
+      "conditional_unchanged_scan_gate": true,
+      "noise_note": "Distinct atoms can be correlated; L1 uses triangle inequality, not independence. All raw per-atom tail premises remain open."
+    },
+    "repair_fused_level4_final": {
+      "refreshes": [
+        7
+      ],
+      "fused_level4": true,
+      "rows": [
+        {
+          "level": 0,
+          "bit": 7,
+          "states_before": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 2,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 1,
+          "bit": 6,
+          "states_before": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 4,
+          "linear_candidate_l1": 5,
+          "refresh": false,
+          "states_after": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 2,
+          "bit": 5,
+          "states_before": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 6,
+          "linear_candidate_l1": 7,
+          "refresh": false,
+          "states_after": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 3,
+          "bit": 4,
+          "states_before": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 8,
+          "linear_candidate_l1": 9,
+          "refresh": false,
+          "states_after": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 4,
+          "bit": 3,
+          "states_before": [
+            [
+              -4,
+              false
+            ],
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "input_l1": 15,
+          "linear_candidate_l1": 3,
+          "refresh": false,
+          "states_after": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 5,
+          "bit": 2,
+          "states_before": [
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -1,
+            0,
+            1,
+            7,
+            8,
+            9
+          ],
+          "input_l1": 4,
+          "linear_candidate_l1": 5,
+          "refresh": false,
+          "states_after": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 6,
+          "bit": 1,
+          "states_before": [
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 6,
+          "linear_candidate_l1": 7,
+          "refresh": false,
+          "states_after": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        },
+        {
+          "level": 7,
+          "bit": 0,
+          "states_before": [
+            [
+              -3,
+              false
+            ],
+            [
+              -2,
+              false
+            ],
+            [
+              -1,
+              false
+            ],
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ],
+          "pbs_inputs": [
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            0,
+            1
+          ],
+          "input_l1": 8,
+          "linear_candidate_l1": 9,
+          "refresh": true,
+          "states_after": [
+            [
+              0,
+              false
+            ],
+            [
+              1,
+              true
+            ]
+          ]
+        }
+      ],
+      "semantic_errors": [],
+      "final_canonical": true,
+      "nominal_max_pbs_input_l1": 15,
+      "final_candidate_l1": 1,
+      "noise_inputs_above_15": [],
+      "conditional_unchanged_scan_gate": true,
+      "noise_note": "Distinct atoms can be correlated; L1 uses triangle inequality, not independence. All raw per-atom tail premises remain open."
+    }
+  },
+  "naive_level6_counterexample": {
+    "initial": [
+      false,
+      true
+    ],
+    "suffixes": [
+      0,
+      0
+    ],
+    "rows": [
+      {
+        "level": 0,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          -1,
+          1
+        ]
+      },
+      {
+        "level": 1,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          -2,
+          1
+        ]
+      },
+      {
+        "level": 2,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          -3,
+          1
+        ]
+      },
+      {
+        "level": 3,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          -4,
+          1
+        ]
+      },
+      {
+        "level": 4,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          -5,
+          1
+        ]
+      },
+      {
+        "level": 5,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          -6,
+          1
+        ]
+      },
+      {
+        "level": 6,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          0,
+          1
+        ]
+      },
+      {
+        "level": 7,
+        "bits": [
+          0,
+          0
+        ],
+        "zero": [
+          0,
+          1
+        ],
+        "any": 1,
+        "states": [
+          -1,
+          1
+        ]
+      }
+    ],
+    "actual": [
+      -1,
+      1
+    ],
+    "expected": [
+      0,
+      1
+    ],
+    "pass": false,
+    "concrete_scores": [
+      256,
+      0
+    ],
+    "threshold": 1023,
+    "scan_group": {
+      "states": [
+        -1,
+        1
+      ],
+      "sum": 0,
+      "flag": 0,
+      "local": 0
+    },
+    "expected_code": 2,
+    "actual_single_group_code": 0
+  },
+  "naive_fusion_input_collision": {
+    "tuples": [
+      {
+        "state": 0,
+        "bit": 0,
+        "fresh_candidate": 0,
+        "zero": 0
+      },
+      {
+        "state": 1,
+        "bit": 1,
+        "fresh_candidate": 1,
+        "zero": 0
+      }
+    ],
+    "conclusion": "No unary LUT or multiple samples on this unchanged input can recover the fresh candidate."
+  },
+  "fusion_search": [
+    {
+      "input_l1": 15,
+      "tuple_collision": false,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 14,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 13,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 12,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 11,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 10,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 9,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 10,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 11,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 12,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 13,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 14,
+      "tuple_collision": true,
+      "feasible_slot_aligned_sample_degrees": []
+    },
+    {
+      "input_l1": 15,
+      "tuple_collision": false,
+      "feasible_slot_aligned_sample_degrees": [
+        768
+      ]
+    }
+  ],
+  "checks": {
+    "negacyclic_point_checks": 5461,
+    "composed_clear_gallery_checks": 648,
+    "source_cross_check": "A50 bodies coefficient-identical"
+  },
+  "fusion_body": {
+    "sha256_u64_le": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+    "bytes": 16384,
+    "sample_degrees": [
+      0,
+      768
+    ],
+    "input_domain": [
+      -4,
+      7
+    ],
+    "open_rotation_radius": 64
+  },
+  "projected_counts": [
+    {
+      "n": 64,
+      "old_br": 1713,
+      "new_br": 1649,
+      "old_ks": 1521,
+      "new_ks": 1457,
+      "old_and_new_marginals": 1985
+    },
+    {
+      "n": 127,
+      "old_br": 3390,
+      "new_br": 3263,
+      "old_ks": 3009,
+      "new_ks": 2882,
+      "old_and_new_marginals": 3930
+    },
+    {
+      "n": 128,
+      "old_br": 3415,
+      "new_br": 3287,
+      "old_ks": 3031,
+      "new_ks": 2903,
+      "old_and_new_marginals": 3959
+    }
+  ],
+  "open_obligations": [
+    "Pin and compile an isolated Rust fusion wrapper.",
+    "Actual KS/PBS error for input c+6*b3 at raw nominal L1=15.",
+    "Joint correlated output-tail premises for samples0/768 and downstream reuse.",
+    "Fresh-key noisy margin/component and complete exact-ID semantic gates.",
+    "Runtime BR/KS/marginal accounting and paired latency without concurrent load."
+  ]
+}

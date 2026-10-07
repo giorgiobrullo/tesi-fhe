@@ -1,0 +1,114 @@
+{
+  "status": "SOURCE_AND_EXACT_ALGEBRA_ONLY",
+  "source_pins": 17,
+  "scheme": "shared zero-candidate selection/addition, NOT CenteredMeanNoiseReduction",
+  "viable_representation_adapter": true,
+  "estimator_budget_for_a132_established": false,
+  "examples": {
+    "valid_adapter": {
+      "choice": {
+        "status": "SatisfyingBound",
+        "candidate": 0,
+        "measure": 9.432984739678413e+17
+      },
+      "mask_is_zero": true,
+      "expected_added_lane_errors": [
+        1,
+        -2,
+        3,
+        -4
+      ],
+      "actual_addresses": [
+        0,
+        128,
+        256,
+        384
+      ]
+    },
+    "invalid_per_lane_merge": {
+      "selected_indices": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "native_decoded_messages": [
+        0,
+        2,
+        2,
+        5
+      ],
+      "expected_messages": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "invalid_copied_zero_body": {
+      "native_decoded_messages": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "expected_messages": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "bound_miss": {
+      "choice": {
+        "status": "BestNotSatisfyingBound",
+        "candidate": null,
+        "measure": 4.961586522733171e+18
+      },
+      "checked_adapter_refuses": true,
+      "stock_convenience_helper_discards_status_outside_crate_tests": true
+    },
+    "satisfying_estimator_not_deterministic_correctness": {
+      "choice": {
+        "status": "SatisfyingBound",
+        "candidate": null,
+        "measure": 1.1038670292296623e+18
+      },
+      "actual_addresses": [
+        225,
+        32,
+        128,
+        128
+      ],
+      "identity_output_messages": [
+        2,
+        0,
+        1,
+        1
+      ],
+      "expected_messages": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "chosen_binary_keys_not_random_samples": true
+    },
+    "variance_floor": {
+      "bound": 1152921504606846976
+    },
+    "pool": {
+      "lanes": 4,
+      "bytes": 9405120
+    },
+    "scope": "Exact chosen algebra/rounding and source-ported estimator; no keygen, encryption, library execution or probability"
+  },
+  "next_gate": "New A132 execution successor: source/typecheck in a clear window, stock fresh-zero API smoke, then paired no-CMNR/CM-zero-reduction one-key N4 C1 with every corrected BR input observed",
+  "cargo": false,
+  "typecheck": false,
+  "library_execution": false,
+  "fhe_execution": false,
+  "sampled_noisy_counterexample": false,
+  "catalog_probability_transferred": false,
+  "performance_claim": false
+}

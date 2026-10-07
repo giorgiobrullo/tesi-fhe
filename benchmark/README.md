@@ -5,22 +5,59 @@ confronti di latenza e generatori di figure. La sintesi delle conclusioni
 è in [findings.md](../findings.md); le istruzioni comuni sono nella
 [guida alla riproducibilità](../docs/riproducibilita.md).
 
+Per seguire tutte le fasi, incluse le prove senza miglioramento, usare il
+[percorso sperimentale](../docs/percorso-sperimentale.md) e la
+[mappa dei materiali](../experiments/README.md). La lettura dei
+[risultati negativi](../docs/risultati/alternative.md) spiega le piste scartate;
+ogni campagna specifica i programmi inclusi e gli eventuali input esterni.
+
 Ci sono tre domande distinte: il modello riconosce la persona giusta?
 Il circuito cifrato restituisce lo stesso esito del calcolo in chiaro?
 Quanto tempo impiega? Le misure biometriche, i controlli di correttezza
 e i tempi rispondono rispettivamente a queste domande. Rigenerare una
 figura dai CSV ripresenta le misure salvate, senza ripetere il benchmark.
 
+I percorsi personali nei materiali archiviati sono sostituiti con
+[segnaposto documentati](../docs/riproducibilita.md#provenienza-dei-dati-inclusi).
+Le mappe verificano le copie pubblicate; le ricevute dei run conservano gli hash originali.
+
 ## Scegliere il percorso
 
 | Obiettivo | Punto di ingresso | Cosa misura |
 |---|---|---|
 | Confrontare le tecniche biometriche | [verifica.py](verifica.py), [identificazione_1n.py](identificazione_1n.py) | Accuratezza in chiaro, con protocolli distinti |
-| Leggere le campagne exact-ID storiche | [Risultati A33](results/fhe_digiface_exact_primary_a33_2026-09-02.md), [A29/A33 appaiato](results/fhe_digiface_exact_paired_a29_a33_2026-09-02.md) | Concordanza FHE/clear e latenza nelle condizioni riportate |
+| Trovare una campagna su servizio, costo o generalizzazione | [Indice delle campagne e dei materiali](../experiments/README.md#campagne-di-ottobre) | Confronto TFHE 1.7/1.8.1, profili, alternative del circuito e biometria; ogni riga collega rapporto, programmi e dati |
+| Leggere le campagne exact-ID A29–A33 | [Risultati A33](results/fhe_digiface_exact_primary_a33_2026-09-02.md), [A29/A33 appaiato](results/fhe_digiface_exact_paired_a29_a33_2026-09-02.md) | Concordanza FHE/clear e latenza nelle condizioni riportate |
 | Studiare il servizio corrente | [Runtime mantenuto](../runtime/README.md) | Motore corretto usato dalle demo attuali |
-| Consultare il confronto storico del servizio composito | [Esperimento 22](../experiments/22_demo_composita/README.md) | Backend e richieste complete con immagini nelle campagne precedenti |
+| Consultare il servizio composito della campagna 22 | [Esperimento 22](../experiments/22_demo_composita/README.md) | Backend e richieste complete con immagini nelle campagne precedenti |
 | Rigenerare le due figure correnti del 20 settembre | [Comando unico](figure_current.py), [istruzioni](../docs/riproducibilita.md#entrambe-le-figure-del-20-settembre) | Ricalcolo dai CSV pubblici e PNG/SVG/PDF, senza archivio privato o FHE |
-| Rigenerare il grafico comune storico del 9 settembre | [Guida del grafico](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md), [generatore](figure_common_benchmark.py) | Figura storica dai dati inclusi, senza nuove esecuzioni FHE |
+| Rigenerare il grafico comune del 9 settembre | [Guida del grafico](../output/figures/progressione-fhe/benchmark-comune-matplotlib-20260909/LEGGIMI.md), [generatore](figure_common_benchmark.py) | Figura della campagna dai dati inclusi, senza nuove esecuzioni FHE |
+
+La [prova della pipeline binaria del 4 ottobre](../docs/validazione/PIPELINE_BINARIA_20261004.md)
+conserva anche un risultato negativo: quattro casi corretti, poi un pareggio
+con soglie diverse produce ID2 invece di0. I [cinque casi eseguiti](binary-pipeline-20261004/samples.csv)
+sono controlli di correttezza, senza tempi o frequenze di errore stimate.
+
+## Generatori delle figure
+
+Per le figure del 20 settembre usare [figure_current.py](figure_current.py):
+`figure_current_progression.py` e `figure_current_ckks.py` sono i suoi moduli.
+Il comando e i controlli sui dati sono nella [guida di rigenerazione](../docs/riproducibilita.md#entrambe-le-figure-del-20-settembre).
+Gli altri programmi conservano scopi diversi:
+
+| Programma | Input e operazione | Output in `results/` |
+|---|---|---|
+| [figure_email.py](figure_email.py) | Tre figure della precedente email; non la progressione corrente. | `accuratezza_tecniche`, `costo_fhe`, `compressione_tradeoff` |
+| [figure_percorso.py](figure_percorso.py) | Curve dei prototipi e punto Docker del 2 settembre, con risposta a una LWE. | `percorso` |
+| [figura_architettura.py](figura_architettura.py) | Schema del prototipo Docker a una LWE. | `architettura` |
+| [figure_multiframe.py](figure_multiframe.py) | Rendering dei dati salvati in `multiframe.csv`. | `multiframe` |
+| [figura_quant_accuratezza.py](figura_quant_accuratezza.py) | Nuovo calcolo biometrico da cache di embedding: PCA, split e metriche. | `quant_accuratezza` |
+| [figure_exact_id_improvements.py](figure_exact_id_improvements.py) | Ricalcolo A28–A62 dagli originali verificati tramite hash. | `exact_id_improvements_2026-09-02` |
+
+Questi sei programmi producono PNG/SVG e possono sostituire file omonimi;
+alcuni eseguono il lavoro anche quando vengono importati. Per ripeterli
+conservando i risultati inclusi, usare una copia di lavoro. Il comando
+corrente richiede invece una directory di destinazione nuova.
 
 ## Biometria in chiaro
 

@@ -1,0 +1,88 @@
+{
+  "schema": "a171-private-offset0-post-replay-review-v1",
+  "status": "PASS_FIRST_OFFSET0_COMPONENT_ONLY",
+  "gate_rules_changed": false,
+  "retry": false,
+  "validation_sha256": "c0e2d4f51eb428eaa7e7bad3fe2f32f0d4e4c1f5e5e4c2eaa6026174635fcf5c",
+  "raw_sha256": "716103483d25ce86d3f2ebe3992b694cd5668bd5ce25ad4fd9f49fe5f74a9e5e",
+  "envelope_manifest_sha256": "4b7aa7267fd8ddb4a4331f472e549057053d8f8fe83c8946f6e81a5da64f2c5c",
+  "candidate_manifest_sha256": "60d9faf3f2af7591935c261804a71cd0f257a0aaa22ecd68ea3fcc60c62f1b7c",
+  "record_counts": {
+    "meta": 1,
+    "lane": 32,
+    "pfks_witness": 128,
+    "accumulator_witness": 16,
+    "noise_lane": 64,
+    "d1_difference_pfks": 32,
+    "d1_accumulator": 8,
+    "d1_noise_lane": 32,
+    "case": 8,
+    "summary": 1
+  },
+  "outputs_by_arm": {
+    "direct": {
+      "lanes": 32,
+      "native_pass": 32,
+      "strict_margin_pass": 32,
+      "nontrivial_pass": 32
+    },
+    "scalar": {
+      "lanes": 32,
+      "native_pass": 32,
+      "strict_margin_pass": 32,
+      "nontrivial_pass": 32
+    },
+    "convolution": {
+      "lanes": 32,
+      "native_pass": 32,
+      "strict_margin_pass": 32,
+      "nontrivial_pass": 32
+    },
+    "direct_d1": {
+      "lanes": 32,
+      "native_pass": 32,
+      "strict_margin_pass": 32,
+      "nontrivial_pass": 32
+    }
+  },
+  "original_control_strict_inputs": 8,
+  "original_ingress_total": 72,
+  "post_ks_control_native_strict_cases": 8,
+  "coefficientwise_ms_words_checked": 6880,
+  "effective_support_pass_cases": 8,
+  "full_modular_subtraction_word_equalities": 65568,
+  "d1_reported_counter_totals": {
+    "br": 8,
+    "glwe_additions": 24,
+    "ks": 8,
+    "lwe_addbacks": 32,
+    "lwe_subtractions": 32,
+    "pfks": 32,
+    "polynomial_permutations": 64,
+    "rotations": 32,
+    "samples": 32
+  },
+  "d2_reported_counter_totals": {
+    "pfks": 64,
+    "ks": 8,
+    "br": 8,
+    "samples": 32
+  },
+  "full_four_arm_source_matched_counter_totals": {
+    "br": 56,
+    "ks": 56,
+    "pfks": 224,
+    "samples": 128
+  },
+  "old_control_projection_counts_scope": "192PFKS/48KS/48BR/96samples covers only the three original arms, not the actual four-arm run.",
+  "difference_native_diagnostic_failures": 0,
+  "difference_half_slot_diagnostic_failures": 0,
+  "difference_native_is_not_prerequisite": true,
+  "observer_failures": 0,
+  "declared_fresh_keysets": 1,
+  "current_key_all_four_arm_cases": 8,
+  "three_process_preregistration_complete": false,
+  "later_offsets_authorized_by_this_result": false,
+  "no_formal_tail_or_timing_or_full_id_claim": true,
+  "next_gate": "Only a separate root decision and fresh workload clearance may authorize reviewed one-shot offset1 and offset2 successors; preserve offset0 launcher and output. After each process terminal, independently replay identities/outcomes. A 24-case aggregate must verify all24 four-arm permutations and six distinct functional-key hashes; hash distinctness does not attest independent sampling or key membership."
+}

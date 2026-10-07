@@ -1,0 +1,268 @@
+{
+  "schema": "current-core-profile-public.v1",
+  "date": "2026-10-04",
+  "passed": true,
+  "correct_calls": 72,
+  "environment": {
+    "cpu": "Apple M4 Max",
+    "rayon_threads": 16,
+    "tfhe_rs": "1.8.1",
+    "rustc": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+    "gallery_size": 120,
+    "embedding_dimensions": 512,
+    "common_threshold": 273,
+    "host": {
+      "platform": "macOS-27.2-arm64-arm-64bit",
+      "machine": "arm64",
+      "python": "3.12.15 (main, Sep 30 2026, 22:04:19) [Clang 21.0.0 (clang-2100.3.34.2)]"
+    }
+  },
+  "results": {
+    "scenes": {
+      "einstein": {
+        "arms": {
+          "off": {
+            "block_server_median_ms": [
+              1926.25,
+              1945.45,
+              1929.45,
+              1897.0500000000002
+            ],
+            "block_http_median_ms": [
+              1926.8726665,
+              1946.009979,
+              1929.991625,
+              1897.5863955
+            ]
+          },
+          "on": {
+            "block_server_median_ms": [
+              2001.8000000000002,
+              1931.45,
+              1993.9499999999998,
+              1896.9
+            ],
+            "block_http_median_ms": [
+              2002.385625,
+              1932.0570205,
+              1994.4996244999998,
+              1897.4304164999999
+            ]
+          }
+        },
+        "on_over_off_block_ratios": [
+          1.0392212848799482,
+          0.9928037215040222,
+          1.0334292155795692,
+          0.99992092986479
+        ],
+        "median_block_ratio": 1.0166750727221796,
+        "on_profile_wall_median_ns": {
+          "scoring_wall_ns": 6208208.5,
+          "extraction_wall_ns": 801302437.5,
+          "tournament_wall_ns": 1072901833.5,
+          "final_wall_ns": 44599750.0,
+          "evaluate_wall_ns": 1924306562.5
+        }
+      },
+      "curie": {
+        "arms": {
+          "off": {
+            "block_server_median_ms": [
+              1928.85,
+              1942.15,
+              1933.65,
+              1825.55
+            ],
+            "block_http_median_ms": [
+              1929.471834,
+              1942.7092914999998,
+              1934.1912085,
+              1826.0856455
+            ]
+          },
+          "on": {
+            "block_server_median_ms": [
+              1907.5,
+              1946.85,
+              1907.4,
+              2057.5
+            ],
+            "block_http_median_ms": [
+              1908.094896,
+              1947.406187,
+              1908.024979,
+              2058.115458
+            ]
+          }
+        },
+        "on_over_off_block_ratios": [
+          0.9889312284521866,
+          1.0024199984553201,
+          0.9864246373438833,
+          1.1270575990797294
+        ],
+        "median_block_ratio": 0.9956756134537534,
+        "on_profile_wall_median_ns": {
+          "scoring_wall_ns": 6378500.0,
+          "extraction_wall_ns": 794860583.5,
+          "tournament_wall_ns": 1092856520.5,
+          "final_wall_ns": 44089729.0,
+          "evaluate_wall_ns": 1919199583.5
+        }
+      },
+      "turing": {
+        "arms": {
+          "off": {
+            "block_server_median_ms": [
+              1903.65,
+              1903.65,
+              1956.8,
+              1850.9499999999998
+            ],
+            "block_http_median_ms": [
+              1904.2867085,
+              1904.250437,
+              1957.357229,
+              1851.5393955
+            ]
+          },
+          "on": {
+            "block_server_median_ms": [
+              1993.4,
+              1968.9499999999998,
+              1924.3000000000002,
+              2023.75
+            ],
+            "block_http_median_ms": [
+              1993.984854,
+              1969.550854,
+              1924.8928329999999,
+              2024.4121455
+            ]
+          }
+        },
+        "on_over_off_block_ratios": [
+          1.0471462716360675,
+          1.0343025240984423,
+          0.983391251022077,
+          1.0933574650854967
+        ],
+        "median_block_ratio": 1.040724397867255,
+        "on_profile_wall_median_ns": {
+          "scoring_wall_ns": 6426749.5,
+          "extraction_wall_ns": 820228146.0,
+          "tournament_wall_ns": 1093720833.5,
+          "final_wall_ns": 44233375.0,
+          "evaluate_wall_ns": 1968672771.5
+        }
+      }
+    },
+    "warmup_calls": 24,
+    "measured_calls": 48,
+    "on_measured_profiles": 24,
+    "owned_service_processes": 8,
+    "key_families": 1,
+    "fixed_scene_vectors": 3,
+    "on_profile_wall_median_ns": {
+      "scoring_wall_ns": 6346708.0,
+      "extraction_wall_ns": 805403937.5,
+      "tournament_wall_ns": 1087256000.0,
+      "final_wall_ns": 44294250.0,
+      "evaluate_wall_ns": 1928047333.5
+    },
+    "on_unassigned_wall_median_ns": 486647.0,
+    "levels_included_in_tournament": true,
+    "level_records": [
+      {
+        "candidates": 120,
+        "profile_count": 24,
+        "wall_median_ns": 464654437.5
+      },
+      {
+        "candidates": 60,
+        "profile_count": 24,
+        "wall_median_ns": 250615458.5
+      },
+      {
+        "candidates": 30,
+        "profile_count": 24,
+        "wall_median_ns": 131413520.5
+      },
+      {
+        "candidates": 15,
+        "profile_count": 24,
+        "wall_median_ns": 95884167.0
+      },
+      {
+        "candidates": 8,
+        "profile_count": 24,
+        "wall_median_ns": 53261187.5
+      },
+      {
+        "candidates": 4,
+        "profile_count": 24,
+        "wall_median_ns": 45289979.0
+      },
+      {
+        "candidates": 2,
+        "profile_count": 24,
+        "wall_median_ns": 44310166.5
+      }
+    ],
+    "estimand": "Per scene: on/off ratio of two-request medians within each block, then median of four block ratios.",
+    "limits": "One key family and host, three fixed precomputed queries. Compares the profiling flag within one patched copy, not the whole patch versus the maintained runtime. No independent-family replication, confidence interval, runtime optimization, browser latency or rare-error guarantee. Levels are nested in tournament; missing level records do not imply zero work."
+  },
+  "median_per_query_stage_fraction_percent": {
+    "scoring_wall_ns": 0.3226378577663158,
+    "extraction_wall_ns": 41.43980717216276,
+    "tournament_wall_ns": 55.89987405810399,
+    "final_wall_ns": 2.2814850099063335
+  },
+  "counts": {
+    "br": 1111,
+    "initial_samples": 120,
+    "ks": 1080,
+    "marginals": 1709,
+    "pfks": 509
+  },
+  "profile_mode": "both",
+  "narrow_id_active": true,
+  "tail_cutoff": 0,
+  "profile_coverage": {
+    "all_on_profiles": 36,
+    "measured_on_profiles": 24,
+    "level_count_per_measured_profile": 7,
+    "level_candidates": [
+      120,
+      60,
+      30,
+      15,
+      8,
+      4,
+      2
+    ]
+  },
+  "identity": {
+    "binary_sha256": "46c028647bca1b06d0b00f9fd514b7418d6d92b6e0deb01dc08f4fb8700bbcbf",
+    "circuit_sha256": "931a6adafa69c2c3efba71b735ec3915b3effd95774d09d05feee49f998cfeb7",
+    "server_key_sha256": "38866fc742bcd9cd40b5f06f8c63458b9b298d2fdc6244621cc41a5f1b3a58d2"
+  },
+  "sources": {
+    "raw_samples_sha256": "9d7c33e5c5349a580b297f6e70fde08b213e0d69e4f2b0191af3f57c9b1dfb1f",
+    "complete_sha256": "915aced854983582525c7714e90ce88b317526e04e15bdbc1dcc0fdc33d5498b",
+    "raw_events_sha256": "1cd29be4c7662d2819a520e60d2c1ec23569c6e0287b1e884397cbb4dd91ed2e",
+    "driver_sha256": "248e8f8f049460307c0d010d0e0ee5a87f2f59ef6d7d5dfded68c40b4b729268",
+    "prelaunch_sha256": "6b95ac9417f89cef3c44371926ac620a431c489c36f98a04d3a39d70affb825a",
+    "build_receipt_sha256": "f2dbb4dfed0b24da3fdd9edee284d02d5fbb50abd9ac4cb10ce9197d0eea797b",
+    "keygen_receipt_sha256": "310bf5cd35aa3ca709d65722d9d26f2e7a13037f492dae8d85049ef72b240c00"
+  },
+  "helper_driver_sha256": "0984f94a95b4bd0c1fcb5d799ad6f0c71453ab6a461e4796b2e107df6ec413ef",
+  "samples_sha256": "821fe8673f41e3229f097f5e5aee529eb7cf44b2fa396b2220312f0d27beeeec",
+  "fraction_estimator": "Median of stage_wall_ns/evaluate_wall_ns within each of the 24 measured ON requests, times 100. Marginal medians are not additive.",
+  "timers": "X-Tempo-Ms: existing service boundary. http_elapsed_ns: local HTTP. stage durations: coordinator wall time inside evaluate. Levels are included in tournament.",
+  "load": "Desktop background load uncontrolled; prelaunch observed 19 processes above 2% of one CPU. No samples excluded.",
+  "native_changes": "Only HTTP routes in a disposable copy expose existing core hooks. Maintained runtime unchanged. Fresh source-bound key family; same bin/key/input for ON/OFF.",
+  "private_archive": "tmp/current-core-profile-20261004: raw HTTP headers, encrypted outputs and normal decrypted IDs retained locally; not included in public data.",
+  "independent_review_sha256": "df935daa7d924bbae3b4a231833129a1352392b3d8ec44e8f7e15ce2def361d0"
+}

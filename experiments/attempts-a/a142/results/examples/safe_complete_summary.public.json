@@ -1,0 +1,21 @@
+{
+  "status": "SYNTHETIC_REPLAY",
+  "trace_integrity_pass": true,
+  "a138_functional_gate_pass": true,
+  "positive_arm_failures": [
+    0,
+    0
+  ],
+  "wrong_scale_negatives_detected_by_key": [
+    4
+  ],
+  "conditional_joint_safe_region_pass": true,
+  "native_msb_outputs_pass": true,
+  "joint_witness_pass": true,
+  "cases_checked": 24,
+  "events_checked": 1384,
+  "independent_ciphertext_or_execution_attestation": false,
+  "ms_address_recomputed_from_coefficients": false,
+  "formal_failure_bound": false,
+  "service_validated": false
+}

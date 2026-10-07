@@ -1,0 +1,13 @@
+{
+  "status": "PASS_STATIC_IDEAL_ROW_LAW",
+  "created_utc": "2026-09-05T01:34:28.691210+00:00",
+  "tests": 7,
+  "test_seconds": 0.03,
+  "source_pins": 8,
+  "native_ks_function_0113_170_byte_equal": true,
+  "native_ks_function_sha256": "f633faf1460f20905b1dd7a87f9ea7894e543ee99f1b9b34871d9bc5bcb6c45b",
+  "ruff": "pass",
+  "actual_fhe": false,
+  "actual_a44_p_fail": null,
+  "randomness_model": "ideal independent row masks after specified conditioning; CSPRNG premise unproved"
+}

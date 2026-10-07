@@ -1,0 +1,11 @@
+{
+  "cargo_run": false,
+  "fhe_run": false,
+  "mixed_scale_words_checked": 1016,
+  "next": "exclusive workload window; offline compile then three noisy processes",
+  "preregistration_sha256": "2bbc55173731fd3f79b91e4bfa3dc3eed3ede835850634cab07b1a490acd27d4",
+  "rustc_run": false,
+  "source_pins": 13,
+  "status": "PASS_STATIC_SOURCE_DIFFERENTIAL_GATE",
+  "unchanged_reference_functions": 7
+}

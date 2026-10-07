@@ -1,0 +1,22 @@
+{
+  "started_utc": "2026-10-04T21:42:50.638890+00:00",
+  "driver_pid": 47903,
+  "native_pid": 47904,
+  "binary_path": "/workspace/research/tmp/current-tournament-dag-20261004/target/release/current_tournament_dag_probe_20261004",
+  "binary": {
+    "bytes": 2078112,
+    "sha256": "8cd0208fd15619827d9a7f16f53469ec7ffeca7d19f00446c5a65c1f84fa30d4"
+  },
+  "preregistered_key_families": 1,
+  "frozen_envelopes_read": false,
+  "source_review_sha256": "0b560a148adab41292409b2f6356ff4fdfb2337e2e49e686fa13552be705650e",
+  "raw_path": "/workspace/research/tmp/current-tournament-dag-20261004/root/NATIVE.ndjson",
+  "finished_utc": "2026-10-04T21:42:51.547606+00:00",
+  "exit_code": 101,
+  "wall_seconds": 0.90865450000274,
+  "native_exit_observed": true,
+  "raw": {
+    "bytes": 535,
+    "sha256": "fdf124c8338823d89501b558c7594efd90842738846aba1475503ffdc33ab13d"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "schema": "public-br-scratch-cost.summary.v1",
+  "date": "2026-10-04",
+  "machine": "Apple M4 Max",
+  "desktop_load": "uncontrolled",
+  "metadata": {
+    "blocks": 4,
+    "compiler_identity": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+    "declared_release_profile": "opt3-cgu1-no-lto",
+    "expected_measured_rows": 16,
+    "expected_warmup_rows": 4,
+    "fft_plan": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }",
+    "fft_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+    "fft_size": 1024,
+    "glwe_size": 2,
+    "measured_cycles_per_worker_per_arm_per_block": 8192,
+    "orders": [
+      [
+        "fresh",
+        "reuse"
+      ],
+      [
+        "reuse",
+        "fresh"
+      ],
+      [
+        "fresh",
+        "reuse"
+      ],
+      [
+        "reuse",
+        "fresh"
+      ]
+    ],
+    "package_version": "0.1.0",
+    "polynomial_size": 2048,
+    "rayon": "1.12.0",
+    "scalar": "u64",
+    "schema": "current-br-scratch-cost.metadata.v1",
+    "scope": "public scratch allocation/zeroing/free versus reuse; no FHE, query savings or error bound",
+    "scratch_unaligned_bytes_required": 163967,
+    "serde_json": "1.0.150",
+    "target_arch": "aarch64",
+    "target_os": "macos",
+    "tfhe": "1.8.1",
+    "warmup_cycles_per_worker_per_arm": 256,
+    "worker_configurations": [
+      1,
+      16
+    ]
+  },
+  "build": {
+    "started_utc": "2026-10-04T10:50:58.251926+00:00",
+    "finished_utc": "2026-10-04T10:51:00.831475+00:00",
+    "returncode": 0,
+    "elapsed_s": 2.57939791699755,
+    "compiler_identity": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+    "build_settings": {
+      "profile": "release",
+      "opt_level": 3,
+      "codegen_units": 1,
+      "lto": false,
+      "locked": true,
+      "offline": true,
+      "rustflags": null
+    },
+    "source_build_sha256": "b2729d85e12e2d510bcda825e19a2e39118eba9b2303e2951f2c54e73a36b819",
+    "binary_path": "/workspace/research/tmp/current-br-scratch-cost-20261004/bin/scratch-cost",
+    "binary_sha256": "9bfd6edbd4ed73f006f2248ed56a9f0a587951697720cff15f4e4582f0cc5b38"
+  },
+  "run": {
+    "started_utc": "2026-10-04T10:52:28.407402+00:00",
+    "finished_utc": "2026-10-04T10:52:29.420613+00:00",
+    "pid": 95120,
+    "exit_code": 0,
+    "elapsed_s": 1.0132210419978946,
+    "binary_sha256": "9bfd6edbd4ed73f006f2248ed56a9f0a587951697720cff15f4e4582f0cc5b38",
+    "raw_sha256": "1c56e591c7277c1ab4a5451b59f5a15ca6e50353b52e562d812a44c0bb62c1d7",
+    "keys": 0,
+    "FHE_queries": 0
+  },
+  "groups": [
+    {
+      "workers": 1,
+      "arm": "fresh",
+      "measured_blocks": 4,
+      "median_of_block_worker_medians_ns_per_cycle": 913.3733520507812,
+      "block_worker_medians_ns_per_cycle": [
+        1198.979736328125,
+        989.8834228515625,
+        831.6751708984375,
+        836.86328125
+      ],
+      "median_batch_wall_ns_per_total_cycle": 915.1026611328125,
+      "block_batch_wall_ns_per_total_cycle": [
+        1201.22265625,
+        991.8466796875,
+        833.4705810546875,
+        838.358642578125
+      ]
+    },
+    {
+      "workers": 1,
+      "arm": "reuse",
+      "measured_blocks": 4,
+      "median_of_block_worker_medians_ns_per_cycle": 1.9327392578125,
+      "block_worker_medians_ns_per_cycle": [
+        1.739501953125,
+        1.8157958984375,
+        2.629638671875,
+        2.0496826171875
+      ],
+      "median_batch_wall_ns_per_total_cycle": 3.52984619140625,
+      "block_batch_wall_ns_per_total_cycle": [
+        4.1248779296875,
+        3.0924072265625,
+        3.5858154296875,
+        3.473876953125
+      ]
+    },
+    {
+      "workers": 16,
+      "arm": "fresh",
+      "measured_blocks": 4,
+      "median_of_block_worker_medians_ns_per_cycle": 20713.890075683594,
+      "block_worker_medians_ns_per_cycle": [
+        20994.73065185547,
+        20711.22235107422,
+        20716.55780029297,
+        20350.006103515625
+      ],
+      "median_batch_wall_ns_per_total_cycle": 1308.3438835144043,
+      "block_batch_wall_ns_per_total_cycle": [
+        1321.6400146484375,
+        1314.2525329589844,
+        1302.4352340698242,
+        1285.6461181640625
+      ]
+    },
+    {
+      "workers": 16,
+      "arm": "reuse",
+      "measured_blocks": 4,
+      "median_of_block_worker_medians_ns_per_cycle": 2.09808349609375,
+      "block_worker_medians_ns_per_cycle": [
+        1.9810791015625,
+        2.37274169921875,
+        2.1209716796875,
+        2.0751953125
+      ],
+      "median_batch_wall_ns_per_total_cycle": 2.2907257080078125,
+      "block_batch_wall_ns_per_total_cycle": [
+        2.3692398071289062,
+        2.2500381469726562,
+        2.3314132690429688,
+        1.9222946166992188
+      ]
+    }
+  ],
+  "raw_records": 21,
+  "warmup_batches": 4,
+  "measured_batches": 16,
+  "FHE_queries": 0,
+  "keys_generated": 0,
+  "worker_statistic": "median of four block medians of private-worker loop ns/cycle",
+  "batch_statistic": "median of four batch-wall/total-cycle values; aggregate inverse throughput, not individual latency",
+  "object_counts": "logical source/schedule counts, not an instrumented allocator trace",
+  "decision": "Low priority for a scratch-reuse FHE prototype; no measured query speedup or formal savings bound.",
+  "limits": [
+    "one process execution",
+    "dense allocation loop unlike real BR work",
+    "no generated-assembly proof",
+    "no full-buffer writes in reuse",
+    "no multiplication by BR count",
+    "does not reject all scratch-reuse implementations"
+  ],
+  "published_hashes": {
+    "Cargo.lock": "67eeae1f724fdd8f08be31b589a242d8475ed505d55a58dad7aa354b8aa25c39",
+    "Cargo.toml": "d6405d1842f69fbc5ed88b262f78b5386faa69107d60f5aa5f00f8411f56740c",
+    "INDEPENDENT_REVIEW.md": "5d0d2d61516dd523f74580f4157cb2667ad1e443ecaa45de2858cfee1b8e59f6",
+    "PROTOCOL.md": "1179575e99c30ea68c452c2f7cf5ec90f1fda73c533cd74cd4082046fc9c7df4",
+    "raw.jsonl": "1c56e591c7277c1ab4a5451b59f5a15ca6e50353b52e562d812a44c0bb62c1d7",
+    "samples.csv": "b4d7a182fb8b1faf55422a95b8e4228cdb478f52b16f169233f133074399eb15",
+    "src/main.rs": "719eb03596cd95cb8ceffbcd482034c8df0306eb2b6b9d96539fc5dd16121bff"
+  },
+  "local_prebuild_input_hashes": {
+    "Cargo.toml": "d6405d1842f69fbc5ed88b262f78b5386faa69107d60f5aa5f00f8411f56740c",
+    "Cargo.lock": "67eeae1f724fdd8f08be31b589a242d8475ed505d55a58dad7aa354b8aa25c39",
+    "src/main.rs": "719eb03596cd95cb8ceffbcd482034c8df0306eb2b6b9d96539fc5dd16121bff",
+    "PROTOCOL.md": "b13839768c63932cc23c953b2f13d5a2cbe9827449f7563635e4f163ef74d4e3"
+  },
+  "local_prebuild_input_hashes_scope": "Relative to the research helper folder before build. PROTOCOL.md is the original local preparation record, not this publication protocol."
+}

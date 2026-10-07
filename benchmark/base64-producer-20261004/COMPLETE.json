@@ -1,0 +1,12 @@
+{
+  "completed_cases": 4,
+  "key_families": 1,
+  "max_cases": 9,
+  "passed": false,
+  "record": "complete",
+  "schema": "base64-producer-probe.v1",
+  "status": "PRODUCER_REJECTED",
+  "stop_first_semantic_divergence": true,
+  "timing": false,
+  "unexecuted_cases": 5
+}

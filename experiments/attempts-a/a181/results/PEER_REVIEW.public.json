@@ -1,0 +1,18 @@
+{
+  "schema": "a181.source-peer-review.v1",
+  "scope": "Read-only source review; no compilation, tests, actual logs or process probes by reviewers",
+  "root_findings_corrected": [
+    "Replace fixed whole-trace32768 buffer with bounded complete-row streaming for terminal capture",
+    "Persist failed terminal match but return before capture ACK and consuming reap"
+  ],
+  "frontier_review": "C/IPC barrier separation, actual live/terminal/retained phases, full identity/sequence/related-index/deadline and unchanged unqualified scope: no material issue",
+  "findings_review": "Protocol/common-record projection and launcher progression: no further material issue after corrections",
+  "findings_corrections": [
+    "Hash raw/lifecycle from exact captured bytes used for parsing",
+    "Capture each predecessor envelope once and compare its same-byte hash",
+    "Reject dangling negative/interrupted marker symlinks",
+    "Require awareUTCprepared<=started<=reaped<=terminal"
+  ],
+  "limitations": "Source/record consistency only; no OS truth, native behavior, CPU units, settlement or normalization qualification",
+  "frontier_final_spot_check": "Nonblocking worker event pipe, <=512byte static frame bound and final receive deadline check reviewed clear; primary barrier order unchanged"
+}

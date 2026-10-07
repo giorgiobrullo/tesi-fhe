@@ -1,0 +1,13 @@
+# Ricetta dei dati e dipendenze
+
+La [ricetta JSON](RECIPE.json) è un'estrazione esplicita dei soli metadati dal manifest originale, identificato dal suo hash. Include configurazione, seed, versioni dei pacchetti, hash dei due modelli e provenienza dell'archivio Georgia Tech. Non è una copia del manifest delle immagini né contiene embedding.
+
+La fonte registrata è l'archivio `gt_db.zip` del sito dell'autore Ara Nefian: 50 persone, 15 JPEG ciascuna. La campagna ne registra SHA-256 `2c4e379ef7c3cc5580eb409673a1e6eb75c5e5a7efd9bf3beb1de8059e835cbf`. Il pacchetto non scarica o redistribuisce le immagini. Una replica richiede una copia autorizzata di questo archivio, i 100 ritratti del catalogo della demo e i pesi indicati, tutti ai pin originali.
+
+L'ordinamento è deterministico: SHA-256 di `seed:identity:nome` per le persone e `seed:photo:cartella/nome` per le foto, seed `varco-gt-transfer-20261005-v1`. Le prime 20 persone sono iscritte con tre foto; le altre 30 restano sconosciute. Ogni persona ha una foto per la condizione primaria e altre tre per la secondaria, disgiunte da quelle d'iscrizione. Gli ID 1–100 seguono il catalogo; 101–120 seguono le 20 persone iscritte. Il runner conserva la definizione esatta e crea il manifest prima dell'inferenza.
+
+Per le foto Georgia Tech si usa il `readPhotos` della demo: Chrome headless, lato massimo 1280 e JPEG 0,9; i 100 preset mantengono il loro percorso originale. Seguono ResNet100/glintr100, detector buffalo_s 160×160 con soglia 0,5, CPU con quattro thread intra e uno inter, scala 0,04098006, qmax 3 e soglia inclusiva 273. I pacchetti Python esatti e gli hash dei modelli sono in RECIPE.json; Node/Chrome fanno parte del codec originale, con eseguibile Chrome indicato nel sorgente. Le ricevute non fissano una versione esatta di Node o Chrome: resta un limite del binding dell'ambiente originale.
+
+Le sette dipendenze condivise nel [manifesto del pacchetto](../PROVENANCE.json) corrispondono ancora byte per byte al manifest congelato. Per un nuovo ambiente occorre ricollocare i percorsi assoluti nei due programmi, predisporre acquisizione e file necessari e produrre un nuovo manifest. Questa sarebbe una nuova campagna: i vecchi risultati non attestano l'esecuzione di sorgenti adattati.
+
+Foto, codifiche JPEG, manifest individuale, vettori, risultati individuali e pesi restano fuori da questo pacchetto. Si possono verificare i conteggi pubblicati dal riepilogo e dalle review conservate; non si può ricalcolare qui l'oracolo per persona senza i materiali esclusi. Nessun programma di inferenza o codec è stato eseguito durante il recupero.

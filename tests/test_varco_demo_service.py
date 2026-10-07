@@ -66,6 +66,10 @@ class ExactDemoConfigurationTest(unittest.TestCase):
         self.assertIn("varco_demo serve $PORTA $DIM $SOGLIA", dockerfile)
 
 
+@unittest.skipUnless(
+    os.environ.get("RUN_HISTORICAL_FHE_TESTS") == "1",
+    "historical native FHE suite is opt-in; see tests/README.md",
+)
 class VarcoDemoServiceTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:

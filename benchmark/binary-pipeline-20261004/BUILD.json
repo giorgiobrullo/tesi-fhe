@@ -1,0 +1,10 @@
+{
+  "started_utc": "2026-10-04T13:20:38.740139+00:00",
+  "finished_utc": "2026-10-04T13:20:58.202750+00:00",
+  "pid": 7719,
+  "returncode": 0,
+  "process_elapsed_s_not_benchmark": 19.46253758399689,
+  "source_build_sha256": "b0285dbdd648d8688c3768180d2e6eeca84cea1ebdf2ea991131ef1164974282",
+  "binary_path": "/workspace/research/tmp/current-binary-pipeline-20261004/bin/binary-pipeline-probe",
+  "binary_sha256": "fc366eb91f3827d9acc58c3c7ae3bc56e84457ce2eb880ae7f72f864ac890586"
+}

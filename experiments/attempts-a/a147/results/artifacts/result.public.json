@@ -1,0 +1,31 @@
+{
+  "status": "SOURCE_AND_EXACT_SYNTHETIC_ONLY",
+  "source_pins": 12,
+  "synthetic_row_contraction": {
+    "modular": 18446744073709551605,
+    "centered": -11,
+    "lifted": -11,
+    "wrap_quotient": 0,
+    "lift_basis": "centered measured row-functional values"
+  },
+  "synthetic_observed_aggregate": 18446744073709551605,
+  "mutated_output_aggregate": 18446744073709551604,
+  "coherent_wrong_function_counterexample": {
+    "prediction_equals_residual": true,
+    "true_row_eta": 2,
+    "mislabeled_row_eta_centered": 144115188075855874,
+    "conclusion": "closure does not authenticate functional-key plaintext or noise calibration"
+  },
+  "a137_first_gate_cost_model": {
+    "row_levels": 2049,
+    "one_target_scalar_products_per_key_row": 4096,
+    "one_target_total_scalar_products": 8392704,
+    "not_measured_seconds_or_peak_memory": true
+  },
+  "client_row_data": "synthetic values only saved here; actual samples stay client memory",
+  "linked_rust_test": "NOT_RUN",
+  "fresh_key_measurements": "NOT_RUN",
+  "tails": "OPEN",
+  "covariance": "NOT_ASSUMED",
+  "source_sha256": "50faebb3d5e685af27fc7dce20522e559366db311c97e37487c6216dd70c0fd3"
+}

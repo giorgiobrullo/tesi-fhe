@@ -1,0 +1,35 @@
+{
+  "schema": "a130.a129-read-only-review.v1",
+  "status": "NO_MATERIAL_CORRECTION_IDENTIFIED_IN_STATIC_REVIEW",
+  "sources": [
+    {
+      "path": "tmp/a129-durable-sweep-driver/driver.py",
+      "sha256": "e44ba49ab4d8ef8ded43d504462199d835dd57c2fd134d4bcafa620c32745928"
+    },
+    {
+      "path": "tmp/a129-durable-sweep-driver/README.md",
+      "sha256": "c04386ff043030afac6422768afffab23d83900e1e904eb484bbf0f9afebc8ed"
+    },
+    {
+      "path": "tmp/a129-durable-sweep-driver/test_driver.py",
+      "sha256": "79544db25e8ac9cebce23cd342f920e70e2c40b6213b7d444316e09a70098c64"
+    },
+    {
+      "path": "tmp/a129-durable-sweep-driver/source-pins.json",
+      "sha256": "7bd3d07244d947cedd94c3914465e41692bb872348e01c8554bed160fd66dd6f"
+    }
+  ],
+  "checked": [
+    "Exclusive new files and fsynced event journal preserve rejected guards and prelaunch metadata.",
+    "Handled interruptions and timeout kill/reap only the retained owned child.",
+    "Deferred handlers cover the Popen ownership-assignment interval.",
+    "Child-exit metadata/raw hashes are persisted in finally before propagating failure.",
+    "Nonzero exit, malformed raw output, absent/failed post guard, and contaminated guard stop without retry.",
+    "Selected subset success is distinct from full 21-cell scaling completeness."
+  ],
+  "limits": [
+    "Read-only inspection; did not run A129, tests, subprocesses, process probes or signals.",
+    "README already discloses that process checks/advisory lock do not reserve host and pre/post guards cannot exclude within-cell contention.",
+    "SIGKILL/power loss/disk failure/repeated reporting signals can leave uncertain terminal files; missing terminal does not establish process termination."
+  ]
+}

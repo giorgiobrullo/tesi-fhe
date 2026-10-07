@@ -1,0 +1,21 @@
+{
+  "schema": "fcma_exact_oracle_v1",
+  "status": "PASS",
+  "input_sha256": "db1592b552a2ff65b1285e4a6c120ed749d1e76fa7bc7dfd480764b7f25297cf",
+  "rows_checked": 8192,
+  "finite_values_checked": 131072,
+  "component_checks": 65536,
+  "comparison_failures": 0,
+  "zero_sign_equivalences": 189,
+  "error_count": 0,
+  "unique_rows": 8192,
+  "fpcr": 0,
+  "fpcr_final": 0,
+  "fpcr_rejected_mask": 29360131,
+  "primary_source_sha256": "428f60728d89512826a40714a4d63bf299d848430e5e1579a49d69f0fb505f29",
+  "errors": [],
+  "errors_limit": 8,
+  "actual_first_used_for_final": true,
+  "zero_semantics": "+0/-0 numerically equivalent; no zero-sign bit claim",
+  "scope": "public same-operand graph only; no FFT/FHE/full-BR/performance claim"
+}

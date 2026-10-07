@@ -1,0 +1,229 @@
+--- A137/src/main.rs
++++ A171/candidate/src/main.rs
+@@ -1,14 +1,15 @@
+-//! A137 snapshot-only successor of A127: direct-window PFKS versus frozen convolution and scalar D2 controls.
++//! A171 D1 successor: same-window difference PFKS plus exact original-left add-back.
+ //!
+ //! The component receives an encrypted left/right control.  It deliberately
+ //! excludes score bridging, comparison, tournament composition, and open-set
+ //! threshold logic.  No runtime claim follows until the preregistered gate is
+ //! compiled and executed in three authorized clean, fresh-key processes.
+ //! The convolution/scalar datapaths are copied byte-for-byte from A120/A108.
+-//! A137 adds direct-window PFKS and coefficientwise modulus-switch support audit.
++//! D2/scalar/convolution server functions and observer are frozen A137 controls.
+ 
+ #![recursion_limit = "256"]
+ 
++mod d1;
+ mod observer;
+ 
+ use dyn_stack::{GlobalPodBuffer, PodStack};
+@@ -29,11 +30,11 @@
+ use tfhe::shortint::server_key::ShortintBootstrappingKey;
+ use tfhe::shortint::{ClientKey, ServerKey};
+ 
+-const ARTIFACT: &str = "A137";
+-const RUN_ACK_ENV: &str = "A137_RUN_FHE";
+-const RUN_ACK_VALUE: &str = "I_ACKNOWLEDGE_A137_DIRECT_WINDOW_PFKS_FHE";
+-const PREREG_ACK_ENV: &str = "A137_PREREGISTRATION_SHA256";
+-const PREREG_SHA256: &str = "9c807249e563b91d62fc023353dd73478870bf5b2d506617eb605bca00b09d03";
++const ARTIFACT: &str = "A171";
++const RUN_ACK_ENV: &str = "A171_RUN_FHE";
++const RUN_ACK_VALUE: &str = "I_ACKNOWLEDGE_A171_DIRECT_WINDOW_PFKS_FHE";
++const PREREG_ACK_ENV: &str = "A171_PREREGISTRATION_SHA256";
++const PREREG_SHA256: &str = "d7d0566ce494c3eece3fe1c862a0dcb2bfa6e838a489d39fa82ba3e5183611ee";
+ const PARAMS_FINGERPRINT: &str = "b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1";
+ 
+ const POLYNOMIAL_SIZE: usize = 2_048;
+@@ -936,15 +937,15 @@
+ }
+ 
+ fn run(parameters: PfksParameters) -> Result<(), String> {
+-    let order_offset: usize = env::var("A137_ORDER_OFFSET")
++    let order_offset: usize = env::var("A171_ORDER_OFFSET")
+         .unwrap_or_else(|_| "0".into())
+         .parse()
+-        .map_err(|_| "A137_ORDER_OFFSET must be 0, 1 or 2")?;
++        .map_err(|_| "A171_ORDER_OFFSET must be 0, 1 or 2")?;
+     if order_offset > 2 {
+-        return Err("A137_ORDER_OFFSET must be 0, 1 or 2".into());
++        return Err("A171_ORDER_OFFSET must be 0, 1 or 2".into());
+     }
+     if env::var("RAYON_NUM_THREADS").as_deref() != Ok("1") {
+-        return Err("A137 first gate requires RAYON_NUM_THREADS=1".into());
++        return Err("A171 first gate requires RAYON_NUM_THREADS=1".into());
+     }
+     let modulus = CiphertextModulus::<u64>::new_native();
+     let key_started = Instant::now();
+@@ -1027,10 +1028,12 @@
+         "noise": "nonzero A44 Gaussian", "support_gate": "coefficientwise_modulus_switch_effective_degree",
+         "comparator_present": false, "tournament_present": false, "keys_ephemeral": true,
+         "secret_key_bytes_persisted": false, "contains_secret_derived_observations": true,
+-        "ciphertext_words_persisted": false, "phase_polynomial_words_persisted": false,
++        "ciphertext_words_persisted": true, "phase_polynomial_words_persisted": false,
+         "timing_scope": "observer snapshots invalidate performance inference",
+         "main_source_sha256": observer::hash_bytes(include_bytes!("main.rs")),
+         "observer_source_sha256": observer::hash_bytes(include_bytes!("observer.rs")),
++        "d1_source_sha256": observer::hash_bytes(include_bytes!("d1.rs")),
++        "d1_shares_actual_window_key": true,
+         "lockfile_sha256": observer::hash_bytes(include_bytes!("../Cargo.lock")),
+         "key_family_ids": {"constant": observer::hash_words(constant_key.as_ref()),
+                            "window": observer::hash_words(window_key.as_ref())},
+@@ -1039,6 +1042,7 @@
+     }));
+     let mut observer_failures = 0;
+     let mut direct_passed = 0;
++    let mut d1_passed = 0;
+     let mut convolution_passed = 0;
+     let mut scalar_passed = 0;
+     let mut effective_support_failures = 0;
+@@ -1069,8 +1073,9 @@
+             .map(|(&x, delta)| encrypt(x.wrapping_mul(delta)))
+             .collect();
+         let control = encrypt(fixture.control_phase());
+-        let order = arm_order(fixture_index, order_offset);
++        let order = d1::arm_order(fixture_index, order_offset);
+         let mut direct = None;
++        let mut difference_arm = None;
+         let mut convolution = None;
+         let mut scalar = None;
+         for arm in order {
+@@ -1112,6 +1117,16 @@
+                         &mut *stack,
+                     ))
+                 }
++                3 => {
++                    difference_arm = Some(d1::select(
++                        &left,
++                        &right,
++                        &control,
++                        &window_key,
++                        &server.key_switching_key,
++                        bsk,
++                    ));
++                }
+                 _ => unreachable!(),
+             }
+         }
+@@ -1120,7 +1135,9 @@
+         let (convolution_outputs, convolution_control, convolution_metrics, convolution_trace) =
+             convolution.expect("convolution arm timed");
+         let (scalar_outputs, scalar_controls, scalar_metrics) = scalar.expect("scalar arm timed");
+-        // No secret-key diagnostic, hash, or result output ran until all three arm timers stopped.
++        let (d1_outputs, d1_control, d1_metrics, d1_trace) =
++            difference_arm.expect("D1 arm executed");
++        // All four server arms complete before client diagnostics; timing is invalid.
+         let expected = fixture.expected();
+         let mut ingress_ok = true;
+         for ((ciphertext, &value), delta) in left
+@@ -1156,6 +1173,7 @@
+         effective_support_failures += usize::from(!support_ok);
+         phase_only_support_disagreements += usize::from(support_ok != phase_support_ok);
+         let mut direct_ok = true;
++        let mut d1_ok = true;
+         let mut convolution_ok = true;
+         let mut scalar_ok = true;
+         for lane in 0..OUTPUTS {
+@@ -1168,6 +1186,8 @@
+                 delta,
+             );
+             let s = phase_audit(&big_secret, &scalar_outputs[lane], expected[lane], delta);
++            let delta_audit = phase_audit(&big_secret, &d1_outputs[lane], expected[lane], delta);
++            d1_ok &= lane_pass(delta_audit, &d1_outputs[lane]) && delta_audit.decoded == s.decoded;
+             direct_ok &= lane_pass(d, &direct_outputs[lane]) && d.decoded == s.decoded;
+             convolution_ok &= lane_pass(c, &convolution_outputs[lane]) && c.decoded == s.decoded;
+             scalar_ok &= lane_pass(s, &scalar_outputs[lane]);
+@@ -1175,6 +1195,7 @@
+                 "record": "lane", "fixture": fixture.name, "lane": lane, "lane_name": LANE_NAMES[lane],
+                 "delta_log": if lane == 3 {56} else {59}, "expected": expected[lane],
+                 "direct": audit_json(d, &direct_outputs[lane], delta),
++                "direct_d1": audit_json(delta_audit, &d1_outputs[lane], delta),
+                 "convolution": audit_json(c, &convolution_outputs[lane], delta),
+                 "scalar": audit_json(s, &scalar_outputs[lane], delta), "diagnostics_after_all_arm_timers": true
+             }));
+@@ -1207,7 +1228,20 @@
+             &small_secret.as_view(),
+             parameters,
+         );
+-        let observer_ok = direct_observer_ok && convolution_observer_ok;
++        let d1_control_equal = lwe_bitwise_equal(&d1_control, &direct_control);
++        let d1_observer_ok = d1::observe(
++            fixture,
++            &left,
++            &right,
++            &control,
++            &d1_control,
++            &d1_outputs,
++            &d1_trace,
++            &glwe_secret,
++            &small_secret.as_view(),
++            parameters,
++        );
++        let observer_ok = direct_observer_ok && convolution_observer_ok && d1_observer_ok;
+         observer_failures += usize::from(!observer_ok);
+         let prerequisites = ingress_ok && control_ok && scalar_ok && scalar_metrics.counters_pass();
+         let direct_class = classify_case(
+@@ -1220,6 +1254,16 @@
+             prerequisites && convolution_metrics.counters_pass(),
+             convolution_ok,
+         );
++        let d1_class = classify_case(
++            support_ok,
++            prerequisites
++                && direct_class == "pass"
++                && d1_control_equal
++                && d1_metrics.pass()
++                && d1_observer_ok,
++            d1_ok,
++        );
++        d1_passed += usize::from(d1_class == "pass");
+         direct_passed += usize::from(direct_class == "pass");
+         convolution_passed += usize::from(convolution_class == "pass");
+         scalar_passed += usize::from(scalar_ok && scalar_metrics.counters_pass());
+@@ -1234,6 +1278,8 @@
+             "control_phase_audit": audit_json(control_audit, &direct_control, SCORE_DELTA),
+             "scalar_ok": scalar_ok, "prerequisites_ok": prerequisites,
+             "direct_class": direct_class, "convolution_class": convolution_class,
++            "d1_class":d1_class,"d1_ok":d1_ok,"d1_control_bitwise_equal":d1_control_equal,
++            "d1_observer_pass":d1_observer_ok,"d1_counters":d1_metrics.json(),
+             "direct_total_ns": direct_metrics.total_ns, "direct_build_ns": direct_metrics.build_ns,
+             "direct_pfks_ns": direct_metrics.pfks_ns, "direct_rotation_ns": direct_metrics.rotations_ns,
+             "direct_control_ks_ns": direct_metrics.control_ks_ns, "direct_blind_rotate_ns": direct_metrics.blind_rotate_ns,
+@@ -1250,12 +1296,14 @@
+             "scalar_counters_pass": scalar_metrics.counters_pass(), "performance_interpretation_allowed": false
+         }));
+     }
+-    let pass = direct_passed == FIXTURES.len() && observer_failures == 0;
++    let pass =
++        direct_passed == FIXTURES.len() && d1_passed == FIXTURES.len() && observer_failures == 0;
+     emit(json!({
+         "record": "summary", "artifact": ARTIFACT, "process_id": std::process::id(),
+-        "status": if pass {"PASS_DIRECT_SINGLE_KEY_COMPONENT"} else {"FAIL_DIRECT_COMPONENT"},
++        "status": if pass {"PASS_D1_SINGLE_KEY_COMPONENT"} else {"FAIL_D1_COMPONENT"},
+         "observer_failures": observer_failures,
+-        "fixture_cases": FIXTURES.len(), "direct_passed": direct_passed,
++        "fixture_cases": FIXTURES.len(), "direct_passed": direct_passed,"d1_passed":d1_passed,
++        "primitives_per_fixture":{"pfks":28,"ks":7,"br":7,"samples":16},
+         "convolution_passed": convolution_passed, "scalar_passed": scalar_passed,
+         "effective_support_failures": effective_support_failures,
+         "phase_only_support_disagreements": phase_only_support_disagreements,
+@@ -1267,7 +1315,7 @@
+         Ok(())
+     } else {
+         Err(format!(
+-            "direct arm passed {direct_passed}/{} cases",
++            "D1 arm passed {d1_passed}/{} cases; D2 direct passed {direct_passed}",
+             FIXTURES.len()
+         ))
+     }
+@@ -1278,8 +1326,9 @@
+     match action {
+         Action::Plan => emit(json!({
+             "record": "plan", "artifact": ARTIFACT, "status": "NO_FHE", "preregistration_sha256": PREREG_SHA256,
+-            "arms": ["direct_window", "convolution_a108", "scalar_d2"], "pfks": "24x1",
++            "arms": ["direct_window", "convolution_a108", "scalar_d2", "direct_d1"], "pfks": "24x1",
+             "fixtures": 8, "fresh_processes": 3, "support": [-63,63], "requested_offsets": [-48,0,48],
++            "d1_counters":{"pfks":4,"ks":1,"br":1,"extract":4,"glwe_add":3,"lwe_sub":4,"lwe_addback":4},
+             "direct_counters": {"pfks":8,"monomial_rotations":8,"polynomial_permutations":16,"glwe_add":7,"ks":1,"br":1,"extract":4}
+         })),
+         Action::Run(parameters) => {

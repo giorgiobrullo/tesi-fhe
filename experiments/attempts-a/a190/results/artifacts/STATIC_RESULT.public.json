@@ -1,0 +1,29 @@
+{
+  "schema": "a190-static-readiness-result-v1",
+  "status": "SOURCE_AND_SYNTHETIC_CHECKS_PASS_NO_BUILD_OR_RUNTIME",
+  "tests": {
+    "count": 13,
+    "seconds": 3.4,
+    "log": "artifacts/tests-r3.log"
+  },
+  "affine_counterfeit_cases": 9,
+  "clear_active_byte_combinations": 4096,
+  "synthetic_complete_records": 8,
+  "synthetic_semantic_checks": 1820,
+  "synthetic_support_checks": 336,
+  "per_cm_chain_traces": 428,
+  "upstream_source_pins": 58,
+  "ruff": "PASS",
+  "rustfmt": "PASS",
+  "cargo_invocations": 0,
+  "typechecked": false,
+  "native_executed": false,
+  "fhe_executed": false,
+  "actual_p_fail": null,
+  "speed_claim": false,
+  "input_origin": "36_SHARED_PREPARATION_PBS_NOT_U8_EXTRACTION_CORRECTIONS",
+  "stock_variance_justified": false,
+  "key_membership_attested": false,
+  "semantic_checks_are_independent_noise_marginals": false,
+  "first_only": true
+}

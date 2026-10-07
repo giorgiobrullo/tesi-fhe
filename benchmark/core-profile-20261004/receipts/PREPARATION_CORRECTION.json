@@ -1,0 +1,9 @@
+{
+  "reason": "Correct actual configured metadata Both/narrow=true; initial synthetic fixtures followed the unconfigured enum default. Original preparation unchanged. Use verified Homebrew Python3.12.",
+  "files": {
+    "profile_http.py": "248e8f8f049460307c0d010d0e0ee5a87f2f59ef6d7d5dfded68c40b4b729268",
+    "test_profile_http.py": "e08ee3229f0d04cf372b97ea79c56ab6811ac6c23a63055eda798b01d76bf45a",
+    "spec.json": "5e5e3074847853c47ac8a187b0419e0886e6803310d4a28c8e23877996820d78",
+    "PROTOCOL.md": "136b23de974be7b8c4866728fe644697df4fb3c033b9b79bc97248156497bdbd"
+  }
+}

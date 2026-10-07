@@ -1,0 +1,6 @@
+{"d":512,"g4":false,"key_families":1,"kind":"start","n":120,"private_payload_logging":false,"profiling":false,"rounds":4,"threads":16}
+{"fixed_family":"1.8.1/v0_11/M1C3/small859/GLWE1/N2048","keygen_encrypt_ns":619096833,"kind":"keys_ready","serialized_keys":0}
+
+thread '<unnamed>' (4706483) panicked at src/main.rs:90:42:
+called `Result::unwrap()` on an `Err` value: "mixed execution plan: InvalidTemplateCoordinate { index: 3, coordinate: 19, value: 4 }"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

@@ -1,0 +1,25 @@
+{
+  "status": "STATIC_ONLY_PASS",
+  "rust_compiled": false,
+  "fhe_run": false,
+  "n4_clear_rounds": 2048,
+  "group_tail_cases": 161,
+  "source_pins": 25,
+  "n4_ledger": {
+    "packing": 3,
+    "cm_ks": 2,
+    "cm_pbs": 3,
+    "ordinary_ks": 9,
+    "ordinary_pbs": 7,
+    "extraction": 8
+  },
+  "n127_one_round_ledger": {
+    "packing": 65,
+    "cm_ks": 81,
+    "cm_pbs": 113,
+    "ordinary_ks": 132,
+    "ordinary_pbs": 130,
+    "extraction": 131
+  },
+  "source_sha256": "b5ff55e933d51e6927ee8a9b9ec47c5db1ce76a5800bd91c8ca296c8b9cc74a4"
+}

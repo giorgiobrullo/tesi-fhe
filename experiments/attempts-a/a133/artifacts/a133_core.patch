@@ -1,0 +1,56 @@
+--- frozen_A126/private_argmin.rs
++++ A133/private_argmin.rs
+@@ -276,6 +276,8 @@
+     pub candidates_by_level: Vec<Vec<Lwe>>,
+     /// A126 diagnostic-only encrypted checkpoints. Scale is 2^59 throughout.
+     pub a126_fusion_inputs: Vec<Lwe>,
++    /// A133: exact post-KS ciphertext consumed by this fusion's blind rotation.
++    pub a133_fusion_post_ks: Vec<Lwe>,
+     pub a126_fresh_candidates: Vec<Lwe>,
+     pub a126_zero_candidates: Vec<Lwe>,
+     pub group_prefixes: Vec<Lwe>,
+@@ -3235,7 +3237,7 @@
+         output
+     };
+ 
+-    let apply_a126_fusion = |input: &Lwe| -> (Lwe, Lwe) {
++    let apply_a126_fusion = |input: &Lwe| -> (Lwe, Lwe, Lwe) {
+         let mut switched = LweCiphertext::new(0u64, small_size, modulus);
+         keyswitch_lwe_ciphertext(key_switching_key, input, &mut switched);
+         let mut rotated = a126_fusion_accumulator
+@@ -3248,7 +3250,7 @@
+         extract_lwe_sample_from_glwe_ciphertext(&rotated, &mut candidate, MonomialDegree(0));
+         extract_lwe_sample_from_glwe_ciphertext(&rotated, &mut zero_candidate, MonomialDegree(768));
+         pbs_count.fetch_add(1, Ordering::Relaxed);
+-        (candidate, zero_candidate)
++        (candidate, zero_candidate, switched)
+     };
+     let apply_selector_pbs = |input: &Lwe, accumulator: &Glwe| -> (Lwe, Lwe) {
+         let mut switched = LweCiphertext::new(0u64, small_size, modulus);
+@@ -3601,20 +3603,21 @@
+                     encoded
+                 })
+                 .collect();
+-            let pairs: Vec<(Lwe, Lwe)> = inputs.par_iter().map(apply_a126_fusion).collect();
++            let pairs: Vec<(Lwe, Lwe, Lwe)> = inputs.par_iter().map(apply_a126_fusion).collect();
+             if let Some(trace) = trace.as_deref_mut() {
+                 trace.a126_fusion_inputs = inputs;
++                trace.a133_fusion_post_ks = pairs.iter().map(|(_, _, switched)| switched.clone()).collect();
+                 trace.a126_fresh_candidates = pairs
+                     .iter()
+-                    .map(|(candidate, _)| candidate.clone())
++                    .map(|(candidate, _, _)| candidate.clone())
+                     .collect();
+-                trace.a126_zero_candidates = pairs.iter().map(|(_, zero)| zero.clone()).collect();
++                trace.a126_zero_candidates = pairs.iter().map(|(_, zero, _)| zero.clone()).collect();
+             }
+             candidates = pairs
+                 .iter()
+-                .map(|(candidate, _)| candidate.clone())
++                .map(|(candidate, _, _)| candidate.clone())
+                 .collect();
+-            pairs.into_iter().map(|(_, zero)| zero).collect()
++            pairs.into_iter().map(|(_, zero, _)| zero).collect()
+         } else {
+             let weighted_bits: Vec<Lwe> = bits
+                 .par_iter()

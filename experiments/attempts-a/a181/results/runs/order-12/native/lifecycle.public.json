@@ -1,0 +1,32 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 12,
+      "data": {
+        "kind": "work_complete",
+        "seq": 11,
+        "pid": 5672,
+        "ppid": 5671,
+        "birth_abs": 12193353702180,
+        "abs": 12193545852002
+      }
+    },
+    {
+      "source_line": 27,
+      "data": {
+        "kind": "summary",
+        "seq": 26,
+        "case": "order-12",
+        "fixture_pass": true,
+        "stages": 4,
+        "descendants": 0,
+        "expected_refusal": false,
+        "single_pid_coverage_supported": true,
+        "collector_qualified": false,
+        "cpu_units_justified": false,
+        "settled_accounting_proven": false
+      }
+    }
+  ]
+}

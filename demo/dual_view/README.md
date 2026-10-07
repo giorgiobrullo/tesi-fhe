@@ -32,7 +32,7 @@ che espone soltanto consentito/negato. Il registro non conosce quell'esito.
 
 ## Prerequisiti
 
-Servono Python 3.12, uv, rustup con Rust/Cargo 1.98.0 e una
+Servono Python 3.12, uv, rustup con Rust/Cargo 1.98.1 e una
 catena di compilazione C/C++ per le dipendenze native. Su macOS occorrono i
 Command Line Tools. Modelli, chiavi e file di esecuzione occupano spazio
 aggiuntivo rispetto ai sorgenti e vengono preparati nei passaggi seguenti.
@@ -57,13 +57,13 @@ compilatore Rust:
 
 ```sh
 uv sync --locked --python 3.12
-rustup toolchain install 1.98.0 --profile minimal
-rustup run 1.98.0 rustc --version
+rustup toolchain install 1.98.1 --profile minimal
+rustup run 1.98.1 rustc --version
 ```
 
 Compilare `varco_demo_composite_v9` seguendo
 [le istruzioni di compilazione](../../BUILD_AND_RUN.md#compilazione).
-I comandi usano `rustup run 1.98.0` per selezionare il toolchain installato,
+I comandi usano `rustup run 1.98.1` per selezionare il toolchain installato,
 senza cambiare il compilatore predefinito del computer.
 Il runtime incluso seleziona `public_parallel`, senza G4. Eseguire la
 compilazione dalla radice della consegna, come indicato nella guida.
@@ -90,9 +90,10 @@ PY
 ### 3. Generare le chiavi
 
 Generare una coppia `client.key`/`server.key` in una directory nuova.
-Le chiavi sono legate all’identità del runtime: dopo questo aggiornamento
-ricompilare il binario e generare una nuova coppia. Il comando rifiuta di
-sovrascrivere file di chiave già presenti; ai successivi avvii riutilizzare
+Le chiavi sono legate all’identità del runtime: se questa cambia,
+ricompilare il binario e generare una nuova coppia in una directory distinta.
+Il comando rifiuta di sovrascrivere file di chiave già presenti;
+ai successivi avvii riutilizzare
 la coppia generata, senza ripetere questo passaggio:
 
 ```sh
@@ -124,10 +125,13 @@ Le richieste dirette del browser a quella porta sono rifiutate.
 .venv/bin/python -B -m demo.dual_view.launch stop
 ```
 
-`stop` arresta i servizi avviati dal launcher. Foto, template, chiavi,
-registro e log restano nella cartella ignorata `.local/`.
-Non eliminare questa cartella se si vogliono conservare gli iscritti.
-La directory di stato può essere scelta con `--state-root` prima del comando.
+`stop` arresta i servizi avviati dal launcher. Foto, template, registro e log
+restano nella cartella ignorata `demo/dual_view/.local/`, relativa alla radice
+del repository. Non eliminarla se si vogliono conservare gli iscritti.
+La directory di stato può essere scelta con `--state-root` prima di `start`,
+`status` o `stop`; usare lo stesso percorso per tutti e tre i comandi.
+Le chiavi restano nella directory passata con `--keys`, che nell'esempio
+è `demo/dual_view/.local/keys/`: `--state-root` non le sposta.
 
 ## Ambito
 

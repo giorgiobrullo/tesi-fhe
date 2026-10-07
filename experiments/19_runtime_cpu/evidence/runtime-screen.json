@@ -1,0 +1,725 @@
+{
+  "schema": "fast-options-campaign-result.v1",
+  "pass": true,
+  "key_index": 0,
+  "reference": "default",
+  "fresh_inputs": 45,
+  "complete_outputs": 225,
+  "correctness_outputs": 45,
+  "warmup_outputs": 60,
+  "measured_outputs": 120,
+  "comparisons": [
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "default_self",
+      "reference": "default",
+      "paired_ratios": [
+        1.007521759816308,
+        1.0058541446396096,
+        1.0378160385650947,
+        0.989041432703119
+      ],
+      "mean_log_ratio": 0.009857543918194094,
+      "geometric_ratio": 1.0099062895432964,
+      "geometric_reduction_percent": -0.990628954329642,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9782629114666872,
+        1.0425732200457032
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "owned",
+      "reference": "default",
+      "paired_ratios": [
+        0.9880388413245308,
+        1.0074548707423583,
+        1.1059887444815018,
+        1.064001670792928
+      ],
+      "mean_log_ratio": 0.03954265977074181,
+      "geometric_ratio": 1.0403348783857482,
+      "geometric_reduction_percent": -4.033487838574823,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9585513082949781,
+        1.1290962203275516
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "cache",
+      "reference": "default",
+      "paired_ratios": [
+        1.1069106886751365,
+        0.9601711960448898,
+        1.0236832364788275,
+        1.1250665243936948
+      ],
+      "mean_log_ratio": 0.05054464916275162,
+      "geometric_ratio": 1.051843826252756,
+      "geometric_reduction_percent": -5.184382625275608,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9358217028633982,
+        1.1822502421570102
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 9,
+      "name": "aligned_last_64_-1",
+      "n": 64,
+      "category": "aligned",
+      "candidate": "both",
+      "reference": "default",
+      "paired_ratios": [
+        1.0179723404723469,
+        0.9865057371991361,
+        0.9881586552473763,
+        1.0346368244687225
+      ],
+      "mean_log_ratio": 0.0065912671222701676,
+      "geometric_ratio": 1.0066130373282058,
+      "geometric_reduction_percent": -0.661303732820584,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9699673531312234,
+        1.0446432074730192
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "default_self",
+      "reference": "default",
+      "paired_ratios": [
+        1.0020865203371476,
+        1.0057140865039864,
+        1.0837641970582939,
+        1.0155852336968318
+      ],
+      "mean_log_ratio": 0.02592188745844198,
+      "geometric_ratio": 1.0262607815045155,
+      "geometric_reduction_percent": -2.6260781504515496,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        0.9679186586553044,
+        1.08811952557816
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 3,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "owned",
+      "reference": "default",
+      "paired_ratios": [
+        0.9627039431191194,
+        0.9632138317581711,
+        1.0844037926254586,
+        1.0007372191606019
+      ],
+      "mean_log_ratio": 0.0015695232496249873,
+      "geometric_ratio": 1.0015707555958882,
+      "geometric_reduction_percent": -0.15707555958881514,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9161916082344568,
+        1.0949063159375831
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 3,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "cache",
+      "reference": "default",
+      "paired_ratios": [
+        0.951576186599783,
+        0.9698385113501071,
+        1.0254269805289202,
+        1.0595970118337283
+      ],
+      "mean_log_ratio": 0.0006841301493919318,
+      "geometric_ratio": 1.0006843642197978,
+      "geometric_reduction_percent": -0.0684364219797784,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9247378587434836,
+        1.0828681742895467
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 3,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 10,
+      "name": "general_last_64_273",
+      "n": 64,
+      "category": "general",
+      "candidate": "both",
+      "reference": "default",
+      "paired_ratios": [
+        1.0050684880194984,
+        1.01996711926126,
+        1.0347034245417315,
+        1.0252806956165195
+      ],
+      "mean_log_ratio": 0.020976835257864073,
+      "geometric_ratio": 1.0211983955660333,
+      "geometric_reduction_percent": -2.1198395566033312,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        1.0016318218147635,
+        1.0411471963991767
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 3,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "default_self",
+      "reference": "default",
+      "paired_ratios": [
+        0.9928078818137489,
+        1.0570901762035445,
+        1.0420534415047047,
+        0.9418702510731715
+      ],
+      "mean_log_ratio": 0.007401847071261957,
+      "geometric_ratio": 1.007429308454468,
+      "geometric_reduction_percent": -0.7429308454468098,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9270168715956556,
+        1.0948169797450364
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "owned",
+      "reference": "default",
+      "paired_ratios": [
+        1.011273970592396,
+        1.0157202739234144,
+        1.0089719499317666,
+        0.9462186189609436
+      ],
+      "mean_log_ratio": -0.004885203476609356,
+      "geometric_ratio": 0.9951267097225324,
+      "geometric_reduction_percent": 0.48732902774676345,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9431523604381332,
+        1.049965212347206
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "cache",
+      "reference": "default",
+      "paired_ratios": [
+        1.0009584310458295,
+        1.0121037844862226,
+        1.0403302311649465,
+        1.0042710807424244
+      ],
+      "mean_log_ratio": 0.014197317443537742,
+      "geometric_ratio": 1.0142985779967468,
+      "geometric_reduction_percent": -1.429857799674683,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        0.9864123617534751,
+        1.042973147150544
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 11,
+      "name": "mixed_last_64_273",
+      "n": 64,
+      "category": "mixed",
+      "candidate": "both",
+      "reference": "default",
+      "paired_ratios": [
+        0.9954765740466343,
+        1.0111986854411927,
+        1.0359898043938538,
+        0.9445005126535895
+      ],
+      "mean_log_ratio": -0.0037847474958559047,
+      "geometric_ratio": 0.996222405633839,
+      "geometric_reduction_percent": 0.37775943661609857,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9360577674352254,
+        1.0602540954349284
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "default_self",
+      "reference": "default",
+      "paired_ratios": [
+        0.9025159898560726,
+        0.9117790348701326,
+        0.8896684976527934,
+        1.0199312605664117
+      ],
+      "mean_log_ratio": -0.07302440074900857,
+      "geometric_ratio": 0.9295781473459994,
+      "geometric_reduction_percent": 7.042185265400058,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.8413722218999448,
+        1.0270312110755428
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "owned",
+      "reference": "default",
+      "paired_ratios": [
+        0.9060381963694147,
+        0.9225578555201157,
+        0.923839181780796,
+        0.9503455684651474
+      ],
+      "mean_log_ratio": -0.07735646898360476,
+      "geometric_ratio": 0.9255598614109359,
+      "geometric_reduction_percent": 7.444013858906406,
+      "wins": 4,
+      "descriptive_within_key_interval95": [
+        0.8969654418427514,
+        0.9550658443374163
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "cache",
+      "reference": "default",
+      "paired_ratios": [
+        0.948408176724308,
+        0.932513447475653,
+        0.8957333287081379,
+        1.035828646331635
+      ],
+      "mean_log_ratio": -0.049438203391047875,
+      "geometric_ratio": 0.9517639721051905,
+      "geometric_reduction_percent": 4.823602789480952,
+      "wins": 3,
+      "descriptive_within_key_interval95": [
+        0.8633027695427172,
+        1.049289647335745
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 12,
+      "name": "aligned_last_128_-1",
+      "n": 128,
+      "category": "aligned",
+      "candidate": "both",
+      "reference": "default",
+      "paired_ratios": [
+        0.9325268951983811,
+        0.9603872368333967,
+        1.0699419982146106,
+        1.0382740312747907
+      ],
+      "mean_log_ratio": -0.0012779502659378411,
+      "geometric_ratio": 0.9987228659647654,
+      "geometric_reduction_percent": 0.12771340352345506,
+      "wins": 2,
+      "descriptive_within_key_interval95": [
+        0.9012768696528459,
+        1.1067047170366993
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "default_self",
+      "reference": "default",
+      "paired_ratios": [
+        1.0344221218224001,
+        1.0423412283841056,
+        0.9941845248457697,
+        1.0734324775477226
+      ],
+      "mean_log_ratio": 0.035085321174506155,
+      "geometric_ratio": 1.0357080728591288,
+      "geometric_reduction_percent": -3.5708072859128803,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.9849108376761255,
+        1.0891251991059014
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "owned",
+      "reference": "default",
+      "paired_ratios": [
+        1.0386085845622894,
+        1.0202235454322715,
+        1.1613102620032172,
+        1.0342451765663188
+      ],
+      "mean_log_ratio": 0.06028111247701303,
+      "geometric_ratio": 1.0621350840064785,
+      "geometric_reduction_percent": -6.213508400647849,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        0.9654226310842458,
+        1.168535831204277
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "cache",
+      "reference": "default",
+      "paired_ratios": [
+        1.1512035885131835,
+        1.0606068225975678,
+        1.1701656601133967,
+        1.108481767689571
+      ],
+      "mean_log_ratio": 0.11494646077154601,
+      "geometric_ratio": 1.1218133749415355,
+      "geometric_reduction_percent": -12.181337494153555,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        1.0463856281179786,
+        1.2026782616091396
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 13,
+      "name": "general_last_128_273",
+      "n": 128,
+      "category": "general",
+      "candidate": "both",
+      "reference": "default",
+      "paired_ratios": [
+        1.0361555151021715,
+        1.0478384516149999,
+        1.0022753962580508,
+        1.2933604202773914
+      ],
+      "mean_log_ratio": 0.08544082204848553,
+      "geometric_ratio": 1.0891971029834775,
+      "geometric_reduction_percent": -8.919710298347749,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        0.9054988036134358,
+        1.310162227065804
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "default_self",
+      "reference": "default",
+      "paired_ratios": [
+        1.0229254537203603,
+        1.0199498594161,
+        1.0306682561579703,
+        1.0389062224873373
+      ],
+      "mean_log_ratio": 0.02769897938223772,
+      "geometric_ratio": 1.0280861627057427,
+      "geometric_reduction_percent": -2.808616270574271,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        1.0146725161389436,
+        1.041677133395702
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "owned",
+      "reference": "default",
+      "paired_ratios": [
+        1.1642468234800847,
+        0.9048302748519181,
+        1.0596258589627077,
+        1.0758648044159287
+      ],
+      "mean_log_ratio": 0.04577679249751819,
+      "geometric_ratio": 1.04684072217427,
+      "geometric_reduction_percent": -4.684072217426993,
+      "wins": 1,
+      "descriptive_within_key_interval95": [
+        0.8849358222787276,
+        1.238367201341726
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "cache",
+      "reference": "default",
+      "paired_ratios": [
+        1.1133592921335065,
+        1.0672772472484944,
+        1.1151593074594084,
+        1.0561882029065628
+      ],
+      "mean_log_ratio": 0.08403906855124771,
+      "geometric_ratio": 1.0876713867240653,
+      "geometric_reduction_percent": -8.767138672406528,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        1.039913283456127,
+        1.137622784821521
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    },
+    {
+      "scene": 14,
+      "name": "mixed_last_128_273",
+      "n": 128,
+      "category": "mixed",
+      "candidate": "both",
+      "reference": "default",
+      "paired_ratios": [
+        1.0465284273245032,
+        1.0344565794499216,
+        1.0408036652625026,
+        1.0295170185639966
+      ],
+      "mean_log_ratio": 0.03710940489793744,
+      "geometric_ratio": 1.0378065557477165,
+      "geometric_reduction_percent": -3.780655574771652,
+      "wins": 0,
+      "descriptive_within_key_interval95": [
+        1.0260753465941936,
+        1.0496718888412215
+      ],
+      "load_flagged_blocks": 4,
+      "load_unknown_blocks": 4,
+      "all_ciphertext_equal": true
+    }
+  ],
+  "load_samples": 205,
+  "load_scope": "Repeated process/load samples throughout evaluation; all flagged and unknown blocks retained; not continuous isolation proof",
+  "load_attribution": "Final summaries use samples within one sampling interval of the block; raw block entries are provisional at block completion",
+  "timing_scope": "keys.evaluate from pre-encrypted 512-vector through encrypted scores/tournament to three-digit exact 0/ID; public views/planning, key setup, input loading, hashing, decryption, model and HTTP excluded",
+  "formal_failure_bound": null,
+  "service_validation": false,
+  "variants": [
+    {
+      "label": "default",
+      "binary_sha256": "9e4b5378e77ce6eceef64a1ce0d7b1b6695a18cde6636dec313158a814b710df",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": true,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "default_self",
+      "binary_sha256": "9e4b5378e77ce6eceef64a1ce0d7b1b6695a18cde6636dec313158a814b710df",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": true,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "owned",
+      "binary_sha256": "735636c800e5f1d3e8ef459802ee2afd11ac88790420281205028cf74ad2e794",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": true,
+      "expected_ready_metadata": {
+        "runtime_features": [
+          "opt-owned-pfks"
+        ],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [
+          "opt-owned-pfks"
+        ],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "cache",
+      "binary_sha256": "2cfe7e7e083438a3d1774288b24e46b4e05d91cc4db3c55509c0ea12444642b8",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": true,
+      "expected_ready_metadata": {
+        "runtime_features": [
+          "opt-lut-cache"
+        ],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [
+          "opt-lut-cache"
+        ],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "both",
+      "binary_sha256": "4ef5d7cdc5a6681244aa5cc608c41330a2ea7304ec57f23577c65e088a6f0327",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": true,
+      "expected_ready_metadata": {
+        "runtime_features": [
+          "opt-lut-cache",
+          "opt-owned-pfks"
+        ],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [
+          "opt-lut-cache",
+          "opt-owned-pfks"
+        ],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    }
+  ]
+}

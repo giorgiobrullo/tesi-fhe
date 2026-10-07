@@ -1,0 +1,8 @@
+{
+  "status": "CHECK_AND_RELEASE_PASS",
+  "binary": "archive:/tmp/a149-padding-coefficient-gate/target-a149-only/release/a149_padding_coefficient_gate",
+  "binary_sha256": "d26b91f49d9e6b235e96a2ab921675661210e4579270ac6e4c70798c4ba62995",
+  "source_manifest_sha256": "44e951512b3be9be8da1a47c219394ebc1ca46614048874998f75f20be45f9d3",
+  "completed_at_utc": "2026-09-05T07:08:25.984795+00:00",
+  "actual_fhe": false
+}

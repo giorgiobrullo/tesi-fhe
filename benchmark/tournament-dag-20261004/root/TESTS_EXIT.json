@@ -1,0 +1,26 @@
+{
+  "started_utc": "2026-10-04T21:36:11.606174+00:00",
+  "driver_pid": 40024,
+  "cargo_pid": 40025,
+  "args": [
+    "/opt/homebrew/bin/cargo",
+    "test",
+    "--offline",
+    "--release",
+    "--manifest-path",
+    "/workspace/research/tmp/current-tournament-dag-20261004/runtime/core/Cargo.toml",
+    "--lib",
+    "dag_scheduler::tests",
+    "--",
+    "--test-threads=1"
+  ],
+  "target_dir": "/workspace/research/tmp/current-tournament-dag-20261004/target",
+  "rustflags": "-C target-cpu=native",
+  "source_review_sha256": "0b560a148adab41292409b2f6356ff4fdfb2337e2e49e686fa13552be705650e",
+  "native_runs": 0,
+  "keys": 0,
+  "finished_utc": "2026-10-04T21:39:31.937026+00:00",
+  "exit_code": 0,
+  "wall_seconds": 200.33022987499135,
+  "cargo_exit_observed": true
+}

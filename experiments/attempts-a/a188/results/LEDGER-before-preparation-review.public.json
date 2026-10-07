@@ -1,0 +1,115 @@
+{
+  "status": "STATIC_FEEDBACK_INTERFACE_AND_LEDGER",
+  "galleries": {
+    "4": {
+      "one_c1_round": {
+        "packing": 3,
+        "cm_ks": 2,
+        "cm_pbs": 3,
+        "ordinary_ks": 9,
+        "ordinary_pbs": 7,
+        "extraction": 8
+      },
+      "persistent_cm_eight_rounds": {
+        "packing": 17,
+        "cm_ks": 16,
+        "cm_pbs": 17,
+        "ordinary_ks": 44,
+        "ordinary_pbs": 28,
+        "extraction": 36
+      },
+      "repeated_ordinary_feedback_eight_rounds": {
+        "packing": 24,
+        "cm_ks": 16,
+        "cm_pbs": 24,
+        "ordinary_ks": 72,
+        "ordinary_pbs": 56,
+        "extraction": 64
+      },
+      "extra_calls_if_wrapped": {
+        "packing": 7,
+        "cm_ks": 0,
+        "cm_pbs": 7,
+        "ordinary_ks": 28,
+        "ordinary_pbs": 28,
+        "extraction": 28
+      },
+      "separate_fixture_preparation_ordinary_pbs": 36
+    },
+    "127": {
+      "one_c1_round": {
+        "packing": 65,
+        "cm_ks": 81,
+        "cm_pbs": 113,
+        "ordinary_ks": 132,
+        "ordinary_pbs": 130,
+        "extraction": 131
+      },
+      "persistent_cm_eight_rounds": {
+        "packing": 296,
+        "cm_ks": 648,
+        "cm_pbs": 680,
+        "ordinary_ks": 167,
+        "ordinary_pbs": 151,
+        "extraction": 159
+      },
+      "repeated_ordinary_feedback_eight_rounds": {
+        "packing": 520,
+        "cm_ks": 648,
+        "cm_pbs": 904,
+        "ordinary_ks": 1056,
+        "ordinary_pbs": 1040,
+        "extraction": 1048
+      },
+      "extra_calls_if_wrapped": {
+        "packing": 224,
+        "cm_ks": 0,
+        "cm_pbs": 224,
+        "ordinary_ks": 889,
+        "ordinary_pbs": 889,
+        "extraction": 889
+      },
+      "separate_fixture_preparation_ordinary_pbs": 1143
+    },
+    "128": {
+      "one_c1_round": {
+        "packing": 65,
+        "cm_ks": 81,
+        "cm_pbs": 113,
+        "ordinary_ks": 133,
+        "ordinary_pbs": 131,
+        "extraction": 132
+      },
+      "persistent_cm_eight_rounds": {
+        "packing": 296,
+        "cm_ks": 648,
+        "cm_pbs": 680,
+        "ordinary_ks": 168,
+        "ordinary_pbs": 152,
+        "extraction": 160
+      },
+      "repeated_ordinary_feedback_eight_rounds": {
+        "packing": 520,
+        "cm_ks": 648,
+        "cm_pbs": 904,
+        "ordinary_ks": 1064,
+        "ordinary_pbs": 1048,
+        "extraction": 1056
+      },
+      "extra_calls_if_wrapped": {
+        "packing": 224,
+        "cm_ks": 0,
+        "cm_pbs": 224,
+        "ordinary_ks": 896,
+        "ordinary_pbs": 896,
+        "extraction": 896
+      },
+      "separate_fixture_preparation_ordinary_pbs": 1152
+    }
+  },
+  "actual_fhe": false,
+  "ciphertext_feedback_validated": false,
+  "input_variance_attested": false,
+  "timing_claim": false,
+  "full_exact_id_validated": false
+}

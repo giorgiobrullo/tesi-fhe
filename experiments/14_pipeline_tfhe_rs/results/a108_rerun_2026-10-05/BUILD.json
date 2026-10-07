@@ -1,0 +1,21 @@
+{
+  "started": "2026-10-05T19:01:59.245336+00:00",
+  "ended": "2026-10-05T19:04:22.230806+00:00",
+  "elapsed_seconds": 142.98477975,
+  "exit_code": 0,
+  "binary_sha256": "79d5c6bad53e375fe649cdd6c762f377697a2afb3f37e0899788bb7d16c6c0f2",
+  "compiler": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)",
+  "original_report_compiler": "rustc 1.97.1",
+  "tfhe_version": "0.11.3",
+  "source_sha256": "d0f31b2f67e346989066a4d6fe3f126b9f73d64a2ea3429da8c7fae1033240fa",
+  "lock_sha256": "6a2b140a057ade3ee94e21294e6e2a73d6397b02c1951df5cba3a37e78e8ed7f",
+  "build_options": [
+    "--release",
+    "--locked",
+    "--offline",
+    "-j",
+    "1"
+  ],
+  "original_report_binary_sha256": "bf9a8a03256ed7a733d37580069581e2df5e8ba163817367f937d7c461127cc6",
+  "description": "New build of byte-identical source and lock; not the original September binary."
+}

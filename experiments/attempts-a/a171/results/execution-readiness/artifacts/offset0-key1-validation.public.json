@@ -1,0 +1,208 @@
+{
+  "status": "PASS_BOUND_A171_RECORDS",
+  "component_gate_pass": true,
+  "records": 322,
+  "arithmetic": {
+    "status": "PASS_D1_RECORD_ARITHMETIC",
+    "expected_exit_code": 0,
+    "cases": [
+      {
+        "fixture": "left_zero_vs_clipped_max",
+        "d1_class": "pass"
+      },
+      {
+        "fixture": "right_zero_vs_clipped_max",
+        "d1_class": "pass"
+      },
+      {
+        "fixture": "accept_threshold_left",
+        "d1_class": "pass"
+      },
+      {
+        "fixture": "accept_threshold_right",
+        "d1_class": "pass"
+      },
+      {
+        "fixture": "reject_sentinel_tie_left",
+        "d1_class": "pass"
+      },
+      {
+        "fixture": "reject_clipped_left",
+        "d1_class": "pass"
+      },
+      {
+        "fixture": "score_tie_left",
+        "d1_class": "pass"
+      },
+      {
+        "fixture": "right_low_nibble_boundary",
+        "d1_class": "pass"
+      }
+    ],
+    "control_projection": {
+      "structure_pass": true,
+      "direct_component_pass": true,
+      "convolution_component_pass": true,
+      "scalar_reference_pass": true,
+      "cases": [
+        {
+          "fixture": "left_zero_vs_clipped_max",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        },
+        {
+          "fixture": "right_zero_vs_clipped_max",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        },
+        {
+          "fixture": "accept_threshold_left",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        },
+        {
+          "fixture": "accept_threshold_right",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        },
+        {
+          "fixture": "reject_sentinel_tie_left",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        },
+        {
+          "fixture": "reject_clipped_left",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        },
+        {
+          "fixture": "score_tie_left",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        },
+        {
+          "fixture": "right_low_nibble_boundary",
+          "direct_class": "pass",
+          "convolution_class": "pass",
+          "support_ok": true,
+          "scalar_ok": true
+        }
+      ],
+      "summary": {
+        "direct_passed": 8,
+        "convolution_passed": 8,
+        "scalar_passed": 8,
+        "effective_support_failures": 0
+      },
+      "key_family_ids": {
+        "constant": "a483db1e11031ceabfb013b315b47e73675afce63d2e77ebe37f6fce562696cd",
+        "window": "d1b0367a9fc69fbc32af4878594a786ea16b481a508b54af46b8eadb9eab124b"
+      },
+      "source_bound_counts_one_process": {
+        "PFKS": 192,
+        "ordinary_KS": 48,
+        "BR": 48,
+        "sample_extractions": 96
+      }
+    },
+    "d1_passed": 8,
+    "records": 322,
+    "source_primitive_counts": {
+      "PFKS": 224,
+      "KS": 56,
+      "BR": 56,
+      "samples": 128
+    },
+    "launch_envelope_independently_verified": false,
+    "secret_membership_attested": false,
+    "primitive_row_errors_independently_measured": false,
+    "actual_p_fail": null,
+    "performance_claim": false
+  },
+  "launch_binding": {
+    "child_pid": 48730,
+    "exit_code": 0,
+    "started_at_utc": "2026-09-05T06:26:13.681924+00:00",
+    "exited_at_utc": "2026-09-05T06:26:16.915517+00:00",
+    "binary_sha256": "03405436a6d9412ac42b31bc0c556d8b99c97500ce148a8444bdc79650ec2cc5",
+    "source_binding": {
+      "source_sha256": "44613def7387d3a24f9d5633664e76c4376247870d3b0a3e7e8ab41c1bd54022",
+      "artifact_manifest_sha256": "60d9faf3f2af7591935c261804a71cd0f257a0aaa22ecd68ea3fcc60c62f1b7c",
+      "artifact_files_sha256": {
+        "A137_TO_A171.patch": "03b65aea51d21777653ddbe925bd7fbfb3f307e0469cdd4c697d1f17a2898c2c",
+        "CONTROL_ORACLE.patch": "edd2ff4d0c8a5e03e7f90f7b8e13ba9020e6985eceecee32aa698693af7c8c29",
+        "COUNTEREXAMPLES.json": "37ae59746e0525eb70c8d43d5c2e88909f9b7e85fcfa74a90ff289b86dd02724",
+        "DEVELOPMENT_CORRECTIONS.md": "5b570d52a04f113549fed5c859427c84bcbb0e0105d5bca16214ccf8acb65791",
+        "EXECUTION_PLAN.json": "3652ef7399a1cc21e6a8f40717b04164dd5cb1913add5d90fc20b230f67d197c",
+        "PEER_REVIEW.json": "79e1db5ab1aef379996892f94f5d67a64bf0e2252ab60706a4d2dd1082bd2d98",
+        "PREREGISTRATION.json": "d7d0566ce494c3eece3fe1c862a0dcb2bfa6e838a489d39fa82ba3e5183611ee",
+        "README.md": "f2c9693059ad687f16524b70141b7bdf7ab7c2325440f4a45ca132cc69031012",
+        "RUFF.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+        "SOURCE_PINS.json": "eafab4d2f72ef66a6e89a4365acc79dfd7a54f5480e8661f5b5782f0c03d1ba4",
+        "SOURCE_SHA256SUMS": "44613def7387d3a24f9d5633664e76c4376247870d3b0a3e7e8ab41c1bd54022",
+        "STATIC_READINESS.json": "f8f6dd86e650b8ed7ad210da240d0117c65cbf4f0b04c17508a720ce561c037f",
+        "STATIC_TESTS.log": "832c14ac01649c9d18b1d608378b28ac084e009880fb9bfc87a54d847fbd5fe6",
+        "candidate/.cargo/config.toml": "e3da2897611462391010c80517e81a47bef91b94ce83433a21c0459247199fc9",
+        "candidate/Cargo.lock": "103a4003434082866dd849730305b5313e758670a3abe07a69ebb4012296f059",
+        "candidate/Cargo.toml": "0407c30e6d3005f7bafeac8637554b92aa7a433bf9cb5fc18135516bdaa8847f",
+        "candidate/src/d1.rs": "b95320020ab7c59b864579081958c1dbe9992b97eba17bd0e10cc213c5ebb38e",
+        "candidate/src/main.rs": "340297d43d0eda092bb9b4ba9dd16b54563abcb17b8aceaa6945cfb6c884b662",
+        "candidate/src/observer.rs": "5c0e8b07ec2d1ddadb443a6cb564061ea2329dd99a8daa1fa401539c22561797",
+        "control_arithmetic.py": "741f7e5892edadd09a9c7721a81aa4eff6fcec7187d5a0ec677be488e8e31da0",
+        "control_oracle.py": "52a2126d8c6a49fbd1eed5233401369d2d3b11741a453d9259cd36c1e912ed04",
+        "d1_body.rs.in": "ce0f53f1b60a9d1a26c366a84d2810316f04b8f5a21a761458651576cfe3b5e2",
+        "materialize.py": "0bbd7ba0bb74e1814e788875ef0cdd57da2e43c16b2a71d91a4db6dc967d576c",
+        "replay.py": "d1b51f2a87f82edc1c30611b313fdfe3e4a49af8e2b6af84f87f0f7466c4c918",
+        "source_audit.py": "0392aacbfa5b16629a6036ce7abe2db67ca81ab2b6703cead86085f4ef2d2dd3",
+        "test_gate.py": "1d781ec68a88fb68f91456650bc4bb7aa6a9524bb8829cdfe360993c432fcfe4"
+      },
+      "replay_sha256": "d1b51f2a87f82edc1c30611b313fdfe3e4a49af8e2b6af84f87f0f7466c4c918",
+      "execution_manifest_sha256": "4b7aa7267fd8ddb4a4331f472e549057053d8f8fe83c8946f6e81a5da64f2c5c",
+      "execution_files_sha256": {
+        "CHECK_HISTORY.json": "2f32d451f31e40cb0658f7f9f9cbf9e37e4e609ade8741face84eff5740d8f1c",
+        "PEER_REVIEW.json": "7e0e1352860f09a8fc00b17e187ef0a3e80cd4898a8647605631ee334168fe7d",
+        "PLAN.json": "d58468c66ada02a6c4238b53a8c474e2d11c36d5add101acc9ab225479a85656",
+        "READINESS.json": "99f30ae67cb95f07aeb8937d55f74699f2ee8729530fc93be09acbdf862c42b9",
+        "README.md": "11c08c1abbd72c944f2eef721423ca67c939b86663055c3b71fea8cc324c6773",
+        "SOURCE_VERIFICATION.json": "e654ee47f7cfddf0f417c9e312459cf2566e8bfcbf92b53470b4af3b138a9de4",
+        "STATIC_RESULT.json": "db24d7d41a290c2f4fb6aa95dd4a26cd2c2b5e3d97a4f0927552d337e2957578",
+        "STATIC_TESTS.log": "6e563171c95680806050b381225f5c0cea6c9760218519598afd0a3f67384eb5",
+        "binding.py": "169e9ccf2896d0251bfb0634c8d097bf942d9d1a36e3209d07156b32270d2b53",
+        "run_gate.py": "c7958b4f5b02a6bb3c98257c7f3e7a2c628f161b92a6823e2ee848958d6378de",
+        "test_execution.py": "4b48546cd1e41a692022f48ae4b19affd4c19a0fcdb9367b4bcc65c4596e0350",
+        "verify.py": "dea386bda24734cb5137e3653996486b43978c4d90fa1dcbe60ae7264afb90d8"
+      }
+    },
+    "files_sha256": {
+      "preflight.json": "82c0b4b6730de58d59cd8824dce3d4e7eb9b4e6e03f51762b4fdc59dbb77c67f",
+      "prepared.json": "699c326ea4104ee5f9031f986b8299c83a8796748fd18a2f6066e0a31d05d3d0",
+      "child.json": "6155d60935de2efc79b6d87fe6b90872b24958b273a77750c8a549bff6e76f3b",
+      "wait-complete.json": "46ac90e4361101ec5ca9be4d04fe1a6b8f106c9bb0a9da0733f6feb7cb8ca2ae",
+      "exit.json": "3b7556e0fc2a5fe4dcb890c80b49e4d380ff7ad87d86c39b5a09b459a7427ee6",
+      "stdout.jsonl": "716103483d25ce86d3f2ebe3992b694cd5668bd5ce25ad4fd9f49fe5f74a9e5e",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "operating_system_threads_attested": false,
+    "benchmark_isolation_attested": false,
+    "key_membership_or_freshness_attested": false
+  },
+  "launch_envelope_independently_verified": true,
+  "next_offsets_authorized": false,
+  "full_three_process_gate_complete": false,
+  "actual_p_fail": null,
+  "performance_claim": false
+}

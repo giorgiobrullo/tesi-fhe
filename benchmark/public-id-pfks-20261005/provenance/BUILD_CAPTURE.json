@@ -1,0 +1,33 @@
+{
+  "action": "BUILD",
+  "started_utc": "2026-10-05T06:27:05.875132+00:00",
+  "cwd": "/workspace/research/tmp/current-first-level-pfks-profile-20261005/workspace",
+  "command": [
+    "cargo",
+    "build",
+    "--release",
+    "--offline",
+    "--locked",
+    "--features",
+    "opt-owned-pfks,opt-lut-cache",
+    "--bin",
+    "first_level_pfks_profile"
+  ],
+  "explicit_environment": {
+    "RUSTFLAGS": "",
+    "CARGO_TARGET_DIR": "/workspace/research/tmp/current-final-threshold-stage-20261005/target",
+    "RAYON_NUM_THREADS": "16"
+  },
+  "stdout": "/workspace/research/tmp/current-first-level-pfks-profile-20261005/root/BUILD.stdout.log",
+  "stderr": "/workspace/research/tmp/current-first-level-pfks-profile-20261005/root/BUILD.stderr.log",
+  "observer_pid": 14314,
+  "process_control": false,
+  "VARCO_PROFILE_PHASES": "absent",
+  "status": "terminal",
+  "retry": false,
+  "pid": 14323,
+  "exit_code": 0,
+  "finished_utc": "2026-10-05T06:27:17.524326+00:00",
+  "observer_wall_seconds": 11.649149499979103,
+  "wall_semantics": "process observation only; not a pipeline performance benchmark"
+}

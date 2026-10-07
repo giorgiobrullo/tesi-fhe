@@ -42,12 +42,12 @@ La versione con barriera viene quindi mantenuta.
 
 | Campagna / confronto | Tempo del candidato rispetto al controllo | Vittorie |
 |---|---:|---:|
-| Prima: DAG D / core P | 3,060286% più lento | 2/48 |
-| Prima: D / barriera B | 4,261630% più lento | 4/48 |
-| Prima: B / P, esplorativo | 1,152240% più veloce | 31/48 |
-| Diagnosi: coda dei nodi pronti D / P | 0,897554% più lento | 17/50 |
-| Diagnosi: continuazione diretta I / P | 1,691943% più lento | 19/50 |
-| Diagnosi: parallelismo interno limitato W / P | 2,619876% più lento | 13/50 |
+| Prima: DAG D / core P | 3,06% più lento | 2/48 |
+| Prima: D / barriera B | 4,26% più lento | 4/48 |
+| Prima: B / P, esplorativo | 1,15% più veloce | 31/48 |
+| Diagnosi: coda dei nodi pronti D / P | 0,90% più lento | 17/50 |
+| Diagnosi: continuazione diretta I / P | 1,69% più lento | 19/50 |
+| Diagnosi: parallelismo interno limitato W / P | 2,62% più lento | 13/50 |
 
 La prima campagna passa 357 output e 1071 fasi; la diagnosi passa 560 output,
 1680 fasi e 455 uguaglianze complete. I meccanismi sono effettivamente usati:
@@ -67,7 +67,7 @@ giustificato fra orologio monotono e orologio UTC. Le durate monotone rimangono
 l'estimatore; la correzione elimina soltanto quel confronto tra orologi e
 supera 13 test. La prova parziale non entra nel successivo controllo completo.
 Un confronto separato fra due binari D produce 80 output e 30 coppie misurate,
-con quello ricompilato 0,375990% più lento; non viene sommato allo screening.
+con quello ricompilato 0,38% più lento; non viene sommato allo screening.
 
 [Risultati](RESULTS.json), [594 coppie di tempi](timing-pairs.csv) e
 [interpretazione dei meccanismi](evidence/POST_SCREEN_INTERPRETATION.md).

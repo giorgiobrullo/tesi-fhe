@@ -2,7 +2,7 @@
   "binding": "four string lengths then parameter id, parameter fingerprint, variant id and this canonical JSON byte digest",
   "core_id_contract": "head-pfks-refresh4-12-w127-pack4-b22-mean2-three-id-winner-threshold.v3",
   "core_package": "selector_four_core_20260920",
-  "core_source_sha256": "b089a235004e6b607fd1f3d4b1884d3b685a01efaac6d1d7dc212ff0afd8fe38",
+  "core_source_sha256": "1108779f0d70674561ff8ed08d5f8c8c8b8d3361a2a297d11184b02c1074c3b7",
   "decision": "first minimum true score, inclusive comparison to that winner own threshold; reject0; preserve left-stable ties and no alternate passing candidate",
   "g4_key_binding": "v9 sidecar bound to base server envelope SHA256",
   "g4_required": false,
@@ -21,7 +21,7 @@
     "minimum_size": 1,
     "thresholds": "any signed i64 per template, including values outside the validated common score domain; derive uniform/mixed execution from exact templates"
   },
-  "http_contract": "exact-open-set-id-v9-composite-tfhe17-base15-three-lwe",
+  "http_contract": "exact-open-set-id-v9-composite-tfhe181-base15-three-lwe",
   "http_limits_bytes": {
     "enrollment": 8192,
     "g4_key": 301989888,
@@ -47,11 +47,11 @@
     "mode": 5
   },
   "parameters": {
-    "fingerprint_sha256": "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61",
-    "id": "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+    "fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+    "id": "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
     "modulus_switching": "Standard",
     "preset": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
-    "tfhe_rs": "1.7.0"
+    "tfhe_rs": "1.8.1"
   },
   "public_modes": [
     "uniform sentinel",
@@ -103,7 +103,7 @@
     "scheme": "ordinary-centered-refresh4-12-then-centered-selection",
     "selection_radius_degrees": 127
   },
-  "service_source_sha256": "2985a74d522d2d7a85e29872980b0982e498fea02633f363eb1a055cb52f4283",
+  "service_source_sha256": "0f50488c4c8d0fd7343d330ee26f104ac53610d432c9d6039b29ae250050218d",
   "source_digest_scope": "non-generated source leaves and BUILD_SELECTION.json; generated bindings closed by SOURCE_PINS.json",
   "state_binding": [
     "installed evaluation key SHA256",
@@ -113,6 +113,6 @@
     "input and output native profile",
     "parameter and circuit identities"
   ],
-  "variant_id": "head-selector-refresh4-12-w127-pack4-b22-mean2-tfhe17-base15-p16-public_parallel-v9",
+  "variant_id": "head-selector-refresh4-12-w127-pack4-b22-mean2-tfhe181-base15-p16-public_parallel-v9",
   "wire_version": 9
 }

@@ -34,11 +34,11 @@
     "mode": 5
   },
   "parameters": {
-    "fingerprint_sha256": "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61",
-    "id": "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
+    "fingerprint_sha256": "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda",
+    "id": "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64",
     "modulus_switching": "Standard",
     "preset": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
-    "tfhe_rs": "1.7.0"
+    "tfhe_rs": "1.8.1"
   },
   "public_modes": [
     "uniform sentinel",

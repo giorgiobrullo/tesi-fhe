@@ -84,6 +84,11 @@ Questo non invalida il risultato contro il precedente riferimento diverso.
 Correttezza dei casi provati, velocità e probabilità formale di errore
 restano affermazioni distinte.
 
+<a id="misure-salvate-integrazione-del-6-ottobre-2026"></a>
+
+Le [56 coppie G4](evidence/g4-confirmation-pairs.json) permettono
+di leggere la conferma per scena e famiglia, insieme al riepilogo sopra.
+
 ## Sorgenti e compilazione
 
 I workspace sono [selector-parallel](sources/selector-parallel/Cargo.toml),
@@ -104,7 +109,6 @@ di input e misure; per l'applicazione integrata partire dal pacchetto 22.
 
 ## Provenienza
 
-[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
-dai documenti storici e dalle copie redatte. I digest degli esperimenti
-identificano le esecuzioni originali; questa pubblicazione non aggiunge
-una nuova compilazione nativa o una nuova prova FHE.
+La [provenienza dei sorgenti e delle misure](PROVENANCE.json) lega i file
+alle fonti originali e dichiara le selezioni dei dati. Le impronte delle
+copie pubbliche sono distinte da quelle degli originali.

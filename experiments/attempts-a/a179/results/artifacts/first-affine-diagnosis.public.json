@@ -1,0 +1,758 @@
+{
+  "status": "FIRST_A149_NEGATIVE_AFFINE_DIAGNOSIS",
+  "actual_fhe_rerun": false,
+  "counterfactual_runtime": false,
+  "records": 355,
+  "coefficient_events": 346,
+  "coefficient_closure_failures": 0,
+  "reports": [
+    {
+      "arm": "canonical_shared",
+      "native_decode_pass": false,
+      "final_flags_pass": true,
+      "flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected_flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "native_failure_count": 4,
+      "native_failures": [
+        {
+          "field": "low51",
+          "lane": 2,
+          "log_scale": 51,
+          "signed_error": 1127524730929152,
+          "affine_terms": [
+            {
+              "symbol": "ingress/2/low.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/2/low.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 73837215481856,
+              "signed_contribution": 73837215481856
+            },
+            {
+              "symbol": "ingress/2/low.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/2/low.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 1053687515447296,
+              "signed_contribution": 1053687515447296
+            }
+          ]
+        },
+        {
+          "field": "low51",
+          "lane": 3,
+          "log_scale": 51,
+          "signed_error": -1345198948876288,
+          "affine_terms": [
+            {
+              "symbol": "ingress/3/low.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/low.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -1333840899473408,
+              "signed_contribution": -1333840899473408
+            },
+            {
+              "symbol": "ingress/3/low.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/low.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -11358049402880,
+              "signed_contribution": -11358049402880
+            }
+          ]
+        },
+        {
+          "field": "middle51",
+          "lane": 0,
+          "log_scale": 51,
+          "affine_terms": [
+            {
+              "symbol": "ingress/0/middle.low3/address_jump",
+              "multiplier": 1
+            },
+            {
+              "symbol": "ingress/0/middle.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -512848954392576,
+              "signed_contribution": -512848954392576
+            },
+            {
+              "symbol": "ingress/0/middle.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/0/middle.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -1469342091575296,
+              "signed_contribution": -1469342091575296
+            }
+          ]
+        },
+        {
+          "field": "middle51",
+          "lane": 3,
+          "log_scale": 51,
+          "affine_terms": [
+            {
+              "symbol": "ingress/3/middle.low3/address_jump",
+              "multiplier": 1
+            },
+            {
+              "symbol": "ingress/3/middle.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 225205530132480,
+              "signed_contribution": 225205530132480
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -1091159504977920,
+              "signed_contribution": -1091159504977920
+            }
+          ]
+        }
+      ],
+      "wrong_lut_value_count": 16,
+      "first_wrong_lut_stage": "ingress/0/middle.low3",
+      "first_wrong_lut_report": {
+        "stage": "ingress/0/middle.low3",
+        "input_affine_error_terms": {
+          "input/full/0": 16,
+          "ingress/0/low.low3/address_jump": -32,
+          "ingress/0/low.low3/pbs_error": -32,
+          "ingress/0/low.msb54/address_jump": -32,
+          "ingress/0/low.msb54/pbs_error": -32,
+          "ingress/0/middle.msb54/address_jump": -512,
+          "ingress/0/middle.msb54/pbs_error": -512
+        },
+        "input_affine_error": "<LARGE_DIAGNOSTIC_INTEGER>",
+        "observed_ms_displacement": -3,
+        "actual_ms_address": 1962,
+        "nominal_address": 1792,
+        "signed_address_displacement": 170,
+        "pbs_error_at_actual_address": "-512848954392576",
+        "conditional_region_pass": false,
+        "domain": {
+          "address_intervals": [
+            [
+              1664,
+              1919
+            ]
+          ],
+          "modulus_bits": 64,
+          "endpoint_convention": "both endpoints included",
+          "condition": "signed_mod_q(input_affine_error + KS_phase_increment) lies in these intervals; MS displacement fixed as recorded"
+        }
+      },
+      "first_input_affine_terms_by_absolute_contribution": [
+        {
+          "symbol": "ingress/0/middle.msb54/pbs_error",
+          "multiplier": -512,
+          "signed_symbol_error": -1469342091575296
+        },
+        {
+          "symbol": "ingress/0/low.msb54/pbs_error",
+          "multiplier": -32,
+          "signed_symbol_error": -966535011106816
+        },
+        {
+          "symbol": "ingress/0/low.low3/pbs_error",
+          "multiplier": -32,
+          "signed_symbol_error": 805269462319104
+        },
+        {
+          "symbol": "input/full/0",
+          "multiplier": 16,
+          "signed_symbol_error": -2616186,
+          "signed_contribution": -41858976
+        },
+        {
+          "symbol": "ingress/0/low.low3/address_jump",
+          "multiplier": -32,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "ingress/0/low.msb54/address_jump",
+          "multiplier": -32,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "ingress/0/middle.msb54/address_jump",
+          "multiplier": -512,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        }
+      ],
+      "native_msb_outputs_pass": true
+    },
+    {
+      "arm": "canonical_separate",
+      "native_decode_pass": false,
+      "final_flags_pass": false,
+      "flags": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "expected_flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "native_failure_count": 2,
+      "native_failures": [
+        {
+          "field": "low51",
+          "lane": 0,
+          "log_scale": 51,
+          "signed_error": -1127752654651392,
+          "affine_terms": [
+            {
+              "symbol": "ingress/0/low.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/0/low.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -161217643544576,
+              "signed_contribution": -161217643544576
+            },
+            {
+              "symbol": "ingress/0/low.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/0/low.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -966535011106816,
+              "signed_contribution": -966535011106816
+            }
+          ]
+        },
+        {
+          "field": "middle51",
+          "lane": 3,
+          "log_scale": 51,
+          "signed_error": 1180496945610752,
+          "affine_terms": [
+            {
+              "symbol": "ingress/3/middle.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/middle.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 469460877705216,
+              "signed_contribution": 469460877705216
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 711036067905536,
+              "signed_contribution": 711036067905536
+            }
+          ]
+        }
+      ],
+      "wrong_lut_value_count": 14,
+      "first_wrong_lut_stage": "middle_round.mask/2",
+      "first_wrong_lut_report": {
+        "stage": "middle_round.mask/2",
+        "input_affine_error_terms": {
+          "ingress/2/middle.low3/address_jump": 256,
+          "ingress/2/middle.low3/pbs_error": 256,
+          "ingress/2/middle.msb54/address_jump": 256,
+          "ingress/2/middle.msb54/pbs_error": 256,
+          "a34.candidate/2/address_jump": 16,
+          "a34.candidate/2/pbs_error": 16
+        },
+        "input_affine_error": "<LARGE_DIAGNOSTIC_INTEGER>",
+        "observed_ms_displacement": 6,
+        "actual_ms_address": 4035,
+        "nominal_address": 3968,
+        "signed_address_displacement": 67,
+        "pbs_error_at_actual_address": "-<LARGE_DIAGNOSTIC_INTEGER>",
+        "conditional_region_pass": false,
+        "domain": {
+          "address_intervals": [
+            [
+              3904,
+              4031
+            ]
+          ],
+          "modulus_bits": 64,
+          "endpoint_convention": "both endpoints included",
+          "condition": "signed_mod_q(input_affine_error + KS_phase_increment) lies in these intervals; MS displacement fixed as recorded"
+        }
+      },
+      "first_input_affine_terms_by_absolute_contribution": [
+        {
+          "symbol": "ingress/2/middle.low3/pbs_error",
+          "multiplier": 256,
+          "signed_symbol_error": 997376235929600
+        },
+        {
+          "symbol": "ingress/2/middle.msb54/pbs_error",
+          "multiplier": 256,
+          "signed_symbol_error": 28997065900032,
+          "signed_contribution": 7423248870408192
+        },
+        {
+          "symbol": "a34.candidate/2/pbs_error",
+          "multiplier": 16,
+          "signed_symbol_error": -252378888536064,
+          "signed_contribution": -4038062216577024
+        },
+        {
+          "symbol": "ingress/2/middle.low3/address_jump",
+          "multiplier": 256,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "ingress/2/middle.msb54/address_jump",
+          "multiplier": 256,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "a34.candidate/2/address_jump",
+          "multiplier": 16,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        }
+      ],
+      "native_msb_outputs_pass": true
+    },
+    {
+      "arm": "padding_shared",
+      "native_decode_pass": false,
+      "final_flags_pass": true,
+      "flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "expected_flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "native_failure_count": 4,
+      "native_failures": [
+        {
+          "field": "low51",
+          "lane": 2,
+          "log_scale": 51,
+          "signed_error": 1127524730929152,
+          "affine_terms": [
+            {
+              "symbol": "ingress/2/low.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/2/low.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 73837215481856,
+              "signed_contribution": 73837215481856
+            },
+            {
+              "symbol": "ingress/2/low.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/2/low.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 1053687515447296,
+              "signed_contribution": 1053687515447296
+            }
+          ]
+        },
+        {
+          "field": "low51",
+          "lane": 3,
+          "log_scale": 51,
+          "signed_error": -1345198948876288,
+          "affine_terms": [
+            {
+              "symbol": "ingress/3/low.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/low.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -1333840899473408,
+              "signed_contribution": -1333840899473408
+            },
+            {
+              "symbol": "ingress/3/low.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/low.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -11358049402880,
+              "signed_contribution": -11358049402880
+            }
+          ]
+        },
+        {
+          "field": "middle51",
+          "lane": 0,
+          "log_scale": 51,
+          "affine_terms": [
+            {
+              "symbol": "ingress/0/middle.low3/address_jump",
+              "multiplier": 1
+            },
+            {
+              "symbol": "ingress/0/middle.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -512848954392576,
+              "signed_contribution": -512848954392576
+            },
+            {
+              "symbol": "ingress/0/middle.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/0/middle.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -1469342091575296,
+              "signed_contribution": -1469342091575296
+            }
+          ]
+        },
+        {
+          "field": "middle51",
+          "lane": 3,
+          "log_scale": 51,
+          "affine_terms": [
+            {
+              "symbol": "ingress/3/middle.low3/address_jump",
+              "multiplier": 1
+            },
+            {
+              "symbol": "ingress/3/middle.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 225205530132480,
+              "signed_contribution": 225205530132480
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -1091159504977920,
+              "signed_contribution": -1091159504977920
+            }
+          ]
+        }
+      ],
+      "wrong_lut_value_count": 16,
+      "first_wrong_lut_stage": "ingress/0/middle.low3",
+      "first_wrong_lut_report": {
+        "stage": "ingress/0/middle.low3",
+        "input_affine_error_terms": {
+          "input/full/0": 16,
+          "ingress/0/low.low3/address_jump": -32,
+          "ingress/0/low.low3/pbs_error": -32,
+          "ingress/0/low.msb54/address_jump": -32,
+          "ingress/0/low.msb54/pbs_error": -32,
+          "ingress/0/middle.msb54/address_jump": -512,
+          "ingress/0/middle.msb54/pbs_error": -512
+        },
+        "input_affine_error": "<LARGE_DIAGNOSTIC_INTEGER>",
+        "observed_ms_displacement": -3,
+        "actual_ms_address": 1962,
+        "nominal_address": 1792,
+        "signed_address_displacement": 170,
+        "pbs_error_at_actual_address": "-512848954392576",
+        "conditional_region_pass": false,
+        "domain": {
+          "address_intervals": [
+            [
+              1664,
+              1919
+            ]
+          ],
+          "modulus_bits": 64,
+          "endpoint_convention": "both endpoints included",
+          "condition": "signed_mod_q(input_affine_error + KS_phase_increment) lies in these intervals; MS displacement fixed as recorded"
+        }
+      },
+      "first_input_affine_terms_by_absolute_contribution": [
+        {
+          "symbol": "ingress/0/middle.msb54/pbs_error",
+          "multiplier": -512,
+          "signed_symbol_error": -1469342091575296
+        },
+        {
+          "symbol": "ingress/0/low.msb54/pbs_error",
+          "multiplier": -32,
+          "signed_symbol_error": -966535011106816
+        },
+        {
+          "symbol": "ingress/0/low.low3/pbs_error",
+          "multiplier": -32,
+          "signed_symbol_error": 805269462319104
+        },
+        {
+          "symbol": "input/full/0",
+          "multiplier": 16,
+          "signed_symbol_error": -2616186,
+          "signed_contribution": -41858976
+        },
+        {
+          "symbol": "ingress/0/low.low3/address_jump",
+          "multiplier": -32,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "ingress/0/low.msb54/address_jump",
+          "multiplier": -32,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "ingress/0/middle.msb54/address_jump",
+          "multiplier": -512,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        }
+      ],
+      "native_msb_outputs_pass": true
+    },
+    {
+      "arm": "padding_separate",
+      "native_decode_pass": false,
+      "final_flags_pass": false,
+      "flags": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "expected_flags": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "native_failure_count": 2,
+      "native_failures": [
+        {
+          "field": "low51",
+          "lane": 0,
+          "log_scale": 51,
+          "signed_error": -1127752654651392,
+          "affine_terms": [
+            {
+              "symbol": "ingress/0/low.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/0/low.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -161217643544576,
+              "signed_contribution": -161217643544576
+            },
+            {
+              "symbol": "ingress/0/low.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/0/low.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": -966535011106816,
+              "signed_contribution": -966535011106816
+            }
+          ]
+        },
+        {
+          "field": "middle51",
+          "lane": 3,
+          "log_scale": 51,
+          "signed_error": 1180496945610752,
+          "affine_terms": [
+            {
+              "symbol": "ingress/3/middle.low3/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/middle.low3/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 469460877705216,
+              "signed_contribution": 469460877705216
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/address_jump",
+              "multiplier": 1,
+              "signed_symbol_error": 0,
+              "signed_contribution": 0
+            },
+            {
+              "symbol": "ingress/3/middle.msb54/pbs_error",
+              "multiplier": 1,
+              "signed_symbol_error": 711036067905536,
+              "signed_contribution": 711036067905536
+            }
+          ]
+        }
+      ],
+      "wrong_lut_value_count": 8,
+      "first_wrong_lut_stage": "middle_round.mask/2",
+      "first_wrong_lut_report": {
+        "stage": "middle_round.mask/2",
+        "input_affine_error_terms": {
+          "ingress/2/middle.low3/address_jump": 256,
+          "ingress/2/middle.low3/pbs_error": 256,
+          "ingress/2/middle.msb54/address_jump": 256,
+          "ingress/2/middle.msb54/pbs_error": 256,
+          "a34.candidate/2/address_jump": 1,
+          "a34.candidate/2/pbs_error": 1
+        },
+        "input_affine_error": "<LARGE_DIAGNOSTIC_INTEGER>",
+        "observed_ms_displacement": 5,
+        "actual_ms_address": 4033,
+        "nominal_address": 3968,
+        "signed_address_displacement": 65,
+        "pbs_error_at_actual_address": "-325243973402624",
+        "conditional_region_pass": false,
+        "domain": {
+          "address_intervals": [
+            [
+              3904,
+              4031
+            ]
+          ],
+          "modulus_bits": 64,
+          "endpoint_convention": "both endpoints included",
+          "condition": "signed_mod_q(input_affine_error + KS_phase_increment) lies in these intervals; MS displacement fixed as recorded"
+        }
+      },
+      "first_input_affine_terms_by_absolute_contribution": [
+        {
+          "symbol": "ingress/2/middle.low3/pbs_error",
+          "multiplier": 256,
+          "signed_symbol_error": 997376235929600
+        },
+        {
+          "symbol": "ingress/2/middle.msb54/pbs_error",
+          "multiplier": 256,
+          "signed_symbol_error": 28997065900032,
+          "signed_contribution": 7423248870408192
+        },
+        {
+          "symbol": "a34.candidate/2/pbs_error",
+          "multiplier": 1,
+          "signed_symbol_error": 126368809484288,
+          "signed_contribution": 126368809484288
+        },
+        {
+          "symbol": "ingress/2/middle.low3/address_jump",
+          "multiplier": 256,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "ingress/2/middle.msb54/address_jump",
+          "multiplier": 256,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        },
+        {
+          "symbol": "a34.candidate/2/address_jump",
+          "multiplier": 1,
+          "signed_symbol_error": 0,
+          "signed_contribution": 0
+        }
+      ],
+      "native_msb_outputs_pass": true
+    }
+  ],
+  "input_sha256": {
+    "archive:/tmp/a179-a149-first-runtime-launcher/runs/first-padding-coefficients/stdout.jsonl": "a28d303203e1f04d24ddf3ed9784320a474821a7d57b20dc0d7a17fdd585b107",
+    "archive:/tmp/a179-a149-first-runtime-launcher/artifacts/first-validation.json": "2909be7579a391ba9053e567f20a392c63e1f1724b12e44265c813aef046fb62",
+    "archive:/tmp/a149-padding-coefficient-gate/graph.py": "b85a78c379f0dfe6e47623c91231110daded759e525d9fed818699fd8b833fd5",
+    "archive:/tmp/a179-a149-first-runtime-launcher/artifacts/diagnose-first.py": "03244e0c68a1a0628c6b379ed26344a90701a35440e4f47a4a5c1f5d72d8ba05"
+  },
+  "inference_scope": "Exact decomposition under frozen observed graph/client aggregates; no independent key membership, causal noise law, replacement implementation or failure bound",
+  "full_exact_id": false,
+  "sampled_noise_improvement": false,
+  "next_test": "Change the low/middle digit ingress or consumer precision premise before a new frozen first-key gate; retain both shared-512 and separate-scale failures"
+}

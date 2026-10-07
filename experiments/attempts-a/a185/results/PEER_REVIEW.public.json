@@ -1,0 +1,8 @@
+{
+  "schema": "a185-peer-review-v1",
+  "reviewer": "audit_noise_runtime",
+  "scope": "read-only exact helper definition and visible scope/API review",
+  "result": "No material source issue found",
+  "verified": "whole upstream helper including cycle parity/signs unchanged; included diagnostic scope provides prelude traits/entities; retained loop only imports local equivalent",
+  "tests_or_compile_or_runtime_by_reviewer": false
+}

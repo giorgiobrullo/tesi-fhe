@@ -1,0 +1,50 @@
+{
+  "status": "LOCAL_SOURCE_STATIC_AUDIT_ONLY",
+  "source_pins": 18,
+  "numeric_A44_profile_equal": true,
+  "numeric_profile": {
+    "symbol": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+    "bootstrap": "classic_ks_pbs",
+    "lwe_dimension": "859",
+    "glwe_dimension": "1",
+    "polynomial_size": "2048",
+    "lwe_noise": "gaussian_stddev_2.3088161607134664e-6",
+    "glwe_noise": "gaussian_stddev_2.845267479601915e-15",
+    "pbs_base_log": "23",
+    "pbs_level": "1",
+    "ks_base_log": "3",
+    "ks_level": "5",
+    "message_modulus": "2",
+    "carry_modulus": "8",
+    "max_noise_level": "15",
+    "log2_p_fail": "-64.088",
+    "encryption_key_choice": "Big"
+  },
+  "protocol_version_fingerprints_equal": false,
+  "graph_equivalence_proved_by_this_check": false,
+  "a124_guard_classification_preserved": {
+    "PRE_POST_GUARD_VALIDATED": 8,
+    "POST_CELL_CPU_ABOVE_THRESHOLD": 12,
+    "MISSING_DRIVER_METADATA": 1
+  },
+  "a124_within_cell_evidence_recovered": false,
+  "os_collector_implemented": false,
+  "eligible_timing_binary_identified": false,
+  "execution_authorized": false,
+  "new_fhe_or_runtime_measurements": 0,
+  "light_tests": 13,
+  "test_seconds": 0.002,
+  "ruff": "PASS",
+  "plan_modes": [
+    "pilot",
+    "initial"
+  ],
+  "synthetic_counter_frames": 2,
+  "primary_pairs": 120,
+  "primary_warmup_pairs": 24,
+  "primary_key_blocks": 6,
+  "reserve_key_blocks": 2,
+  "maximum_planned_evaluations": 384,
+  "eligible_timed_binary": null,
+  "os_cpu_collector_implemented": false
+}

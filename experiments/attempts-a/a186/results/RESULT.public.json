@@ -1,0 +1,17 @@
+{
+  "status": "PASS_BOUNDED_CLEAR_COMPARATOR_D1_DESIGN",
+  "tests": 9,
+  "elapsed_seconds": 0.141,
+  "reachable_difference_combinations": 8649,
+  "ternary_patterns": 27,
+  "integer_lattice_preimage_endpoint_checks": 40960,
+  "original_fixtures": 8,
+  "conditional_selector_degrees_per_fixture": 127,
+  "matched_d1_d2_tuple_lanes_checked": 8128,
+  "source_fixture_binding": true,
+  "actual_prior_supplied_selector": "PASS_BOUND_A171_THREE_PROCESS_COMPONENT",
+  "new_comparator_executed": false,
+  "actual_upstream_score_bridge": false,
+  "full_exact_id": false,
+  "actual_p_fail": null
+}

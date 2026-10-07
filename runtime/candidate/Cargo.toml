@@ -6,7 +6,7 @@ autobins = false
 
 [dependencies]
 pfks_core = { package = "selector_four_core_20260920", path = "../core", default-features = false }
-tfhe = { version = "=1.7.0", features = ["integer"] }
+tfhe = { version = "=1.8.1", features = ["integer"] }
 rayon = "1"
 bincode = "1"
 sha2 = "0.10"

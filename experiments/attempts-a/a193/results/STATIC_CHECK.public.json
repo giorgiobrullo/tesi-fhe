@@ -1,0 +1,18 @@
+{
+  "status": "SOURCE_READY_NATIVE_UNEXECUTED",
+  "source_id": "1bc24c801e63c78d04228b6e77d0d15b3a09926581914e765f0e1f127812e3c8",
+  "unchanged_original_files": 6,
+  "upstream_pins_verified": 14,
+  "synthetic_and_model_tests_passed": 20,
+  "native_protocol_and_envelope_tests": 12,
+  "original_pure_model_tests": 8,
+  "reported_final_test_duration_seconds": 0.065,
+  "identity_header_generated_and_verified": true,
+  "python_noargs_plan_passed": true,
+  "compiled": false,
+  "native_executed": false,
+  "actual_records_read": false,
+  "selected_unit": null,
+  "normalized_occupancy": null,
+  "settlement_proven": false
+}

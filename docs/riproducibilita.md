@@ -8,9 +8,9 @@ storiche e si legge in [PACK4_VALIDATION.md](validazione/PACK4_VALIDATION.md).
 
 ## Ambiente e piattaforme
 
-Usare Python 3.12 con uv. La campagna del nuovo runtime usa Rust/Cargo 1.98.0
-su macOS ARM64; i comandi Rust sotto selezionano quella versione con
-`rustup run 1.98.0`, dopo l'installazione descritta nella
+Usare Python 3.12 con uv. Le campagne di settembre usano Rust/Cargo 1.98.0
+su macOS ARM64. Per nuove build usare la patch 1.98.1: i comandi sotto
+la selezionano con `rustup run 1.98.1`, dopo l'installazione descritta nella
 [guida della demo](../demo/dual_view/README.md#avvio-locale).
 Le revisioni storiche conservano le proprie versioni del compilatore.
 Dalla radice, `uv sync --locked --python 3.12` crea l'ambiente `.venv`.
@@ -55,6 +55,36 @@ L'[indice degli esperimenti](../experiments/README.md) presenta il percorso
 dai primi prototipi all'implementazione usata dalla demo. Ogni esperimento
 descrive la domanda, il metodo, i risultati e le condizioni del confronto.
 
+La stessa mappa comprende campagne e tentativi privi di cartella numerata.
+Per ciascuno distingue il rapporto, i dati e i programmi inclusi, con le
+dipendenze esterne necessarie a una nuova esecuzione. La trattazione dei
+[tentativi e risultati negativi](risultati/alternative.md) spiega cosa è
+stato provato e quali conclusioni sono sopravvissute alle correzioni.
+
+I [materiali dei tentativi A](../experiments/attempts-a/README.md) includono
+i programmi e gli input pubblici verificati. Il ricostruttore
+ricrea i percorsi originali in una cartella nuova, senza moltiplicare le
+copie identiche nella repository:
+
+```sh
+python3 tools/restore_attempt.py --list
+python3 tools/restore_attempt.py --id A108 --check
+mkdir -p .local
+python3 tools/restore_attempt.py --id A108 --output .local/a108-source
+```
+
+`--check` verifica i file senza scrivere; `--output` li verifica prima di
+copiare e registra la ricostruzione. Il comando non avvia i programmi.
+Le versioni di libreria, i prerequisiti di esecuzione e gli eventuali
+asset esterni restano quelli della singola prova.
+
+Per le campagne di benchmark, il manifesto unico `PROVENANCE.json`
+contiene inventario dei file, origini e mappa dei sorgenti. Il secondo
+[strumento di ricostruzione](../tools/README.md#ricostruire-una-campagna-di-benchmark)
+verifica e materializza quel layout. Un manifesto di sole dipendenze,
+come quello biometrico Georgia Tech, consente la verifica ma non una
+ricostruzione completa.
+
 Il [runtime mantenuto](../runtime/README.md) contiene il servizio modulare
 e la libreria Rust da cui partire per il riuso. Il
 [pacchetto 22](../experiments/22_demo_composita/README.md) conserva la versione
@@ -70,10 +100,26 @@ fissano le dipendenze Rust; le tabelle LUT incluse sono dati pubblici usati
 dal circuito. Le chiavi vanno generate per la propria esecuzione.
 
 L'[esperimento 24](../experiments/24_frontiere_common_mask_bgv/README.md)
-fornisce risultati e sorgenti parziali common-mask/BGV: le dipendenze mancanti
-sono elencate nel suo README. Per provare un servizio completo usare il runtime mantenuto.
+include i sorgenti common-mask/BGV, i riferimenti necessari e gli input
+pubblici. La chiusura delle dipendenze locali è stata controllata; i comandi
+e le librerie esterne sono nel suo README. La verifica dei file non aggiunge
+una nuova esecuzione alle campagne riportate.
 
 ## Provenienza dei dati inclusi
+
+Le copie pubblicate normalizzano i percorsi personali: `/workspace/research`
+indica l'archivio di ricerca, `/workspace/maintained` il checkout mantenuto,
+`/opt/cargo` e `/opt/models` le cache di librerie e modelli.
+`/opt/tool-cache`, `/workspace/legacy-benchmark` e `/workspace/redacted-home`
+sono gli altri segnaposto locali. Questi percorsi non sono installazioni fornite
+dalla repository: vanno adattati prima di eseguire i driver archiviati.
+Il [registro delle impronte](provenienza-dati.json) documenta le sostituzioni
+e distingue i byte precedenti da quelli distribuiti. Risultati numerici,
+verdetti e hash delle esecuzioni originali restano invariati; le copie ripulite
+non costituiscono nuove esecuzioni né sorgenti byte-identici agli originali.
+I controlli dei driver sulle dipendenze distribuite usano le nuove impronte;
+il registro elenca i riferimenti aggiornati. Gli hash nelle ricevute storiche
+continuano a identificare i byte usati nelle esecuzioni documentate.
 
 Le misure FHE si riferiscono alle revisioni identificate nei rapporti.
 L’aggiornamento che elimina la dipendenza dalle note locali cambia il client
@@ -97,6 +143,10 @@ I manifest `PROVENANCE.json` dei pacchetti 16–26 indicano le impronte dei
 file distribuiti e distinguono i sorgenti invariati dalle evidenze redatte.
 
 ## Eseguire i test della demo
+
+I comandi di questa sezione verificano la demo a due pagine e il runtime.
+Per la pagina unica, seguire i [test della demo web](../demo/web/README.md#verificare-le-modifiche-alla-demo-web),
+che usano il suo ambiente dedicato e comprendono anche l'interfaccia JavaScript.
 
 Dalla radice, dopo avere installato l'ambiente Python:
 
@@ -137,7 +187,7 @@ quelli ordinari del core controllano domini, LUT, conteggi e pareggi. Dalla
 radice, mantenendo gli output di compilazione fuori dai sorgenti:
 
 ```sh
-rustup run 1.98.0 cargo test --release --locked \
+rustup run 1.98.1 cargo test --release --locked \
   --manifest-path runtime/candidate/Cargo.toml --target-dir .local/target-service \
   -p composite_camera_service_20260908 -p selector_four_core_20260920 \
   -- --test-threads=1
@@ -149,7 +199,7 @@ con soglie miste. Usa 16 thread e la politica FFT del servizio. Eseguirla
 isolatamente, senza altre build o benchmark:
 
 ```sh
-rustup run 1.98.0 cargo test --release --locked \
+rustup run 1.98.1 cargo test --release --locked \
   --manifest-path runtime/candidate/Cargo.toml --target-dir .local/target-service \
   -p selector_four_core_20260920 --lib \
   service_smoke_tests::fresh_key_public_parallel_preserves_exact_ids_without_benchmarking \
@@ -166,8 +216,29 @@ ricompilare e ripetere le verifiche pertinenti seguendo la
 
 ## Grafici correnti e rigenerazione storica
 
+### Quale risultato descrive quale versione
+
+| Evidenza | Versione e carico | Cosa misura |
+|---|---|---|
+| [Pipeline binaria del 4 ottobre](validazione/PIPELINE_BINARIA_20261004.md) | Prototipo Head55 + due PBS, nuova famiglia; common e Mixed N2 | Quattro casi corretti, quinto atteso0/ID2, sesto omesso; proposta respinta, tempi esclusi |
+| [Comparatore binario del 4 ottobre](validazione/COMPARATORE_BINARIO_20261004.md) | Helper 1.8.1, una fresca famiglia; due cifre55, output binario59 | Otto casi completati e 24 ternari reference corretti; Head, torneo e tempi esclusi |
+| [Comparatore compresso del 4 ottobre](validazione/COMPARATORE_COMPRESSO_20261004.md) | Helper 1.8.1, una nuova famiglia; encoding55 e riferimento59 | Correttezza del solo primitivo: stop al primo errore centrato dopo sei casi; nessuna latenza |
+| [Buffer temporaneo del 4 ottobre](validazione/SCRATCH_BR_20261004.md) | Helper separato 1.8.1, M4 Max, 1/16 worker; nessuna chiave o query | Allocazione/azzeramento/rilascio contro riuso su memoria pubblica; non è un tempo FHE |
+| [Progressione corretta del 20 settembre](../output/figures/progressione-fhe/selettori-corretti-20260920/LEGGIMI.md) | Dieci stadi, TFHE-rs 1.7, N127/D512/T4 nel tratto completo | Core cifrato; 30 misure per stadio, mediana e quartili |
+| [Confronto CKKS/TFHE](../output/figures/ckks-tfhe/selettore-corretto-20260920/LEGGIMI.md) | CKKS balanced-v3 e TFHE CPU corretto 1.7, N128 e soglia generale nell'esempio riassuntivo | Core delle due costruzioni, mediane dei blocchi; uscite e contratti distinti |
+| [Demo dopo SSE](validazione/CONTROLLO_GENERALE_20261002.md#risultati-cosa-rimane-valido) | Demo 1.7 con anchor e pack4, galleria N120 | Tre osservazioni click→risultato con foto già caricata; non il solo core |
+| [Migrazione 1.8.1](validazione/TFHE_181_MIGRATION.md) | Runtime aggiornato e pilot N120 separato | Gate funzionali e screening temporale breve; non sostituisce i tempi 1.7 |
+| [Confronto 1.7/1.8.1 del 4 ottobre](validazione/TEMPI_181_20261004.md) | Stesso Rust 1.98.1, M4 Max/16 thread, N120; tre famiglie per versione | 144 misure del servizio HTTP FHE; preparazione della foto e demo escluse |
+| [Demo 1.8.1 del 4 ottobre](validazione/DEMO_SSE_20261004.md) | Applicazione reale, M4 Max/16 thread, N120, una foto per richiesta | Tre osservazioni POST→SSE con elaborazione foto e FHE; cattura e rendering esclusi |
+| [Diagnosi del merge del 4 ottobre](validazione/PROFILO_MERGE_20261004.md) | Copia 1.8.1, M4 Max/16 thread, N120; un nodo del primo livello, una nuova famiglia | Tre osservazioni dei passaggi sequenziali del worker dopo un warmup; nessun rapporto con campagne precedenti |
+| [Profilazione del 4 ottobre](validazione/PROFILO_RUNTIME_20261004.md) | Copia 1.8.1, M4 Max/16 thread, N120; stesso binario, chiave e query per on/off | 48 misure e 24 warmup; fasi cifrate e livelli del torneo, senza foto o demo |
+| [Foto originali](validazione/BIOMETRIA_VGGFACE2_20261002.md) e [preparazione UI](validazione/BIOMETRIA_UI_20261002.md) | Estrattore corrente, N120/T273, iscrizione a tre foto | Qualità della decisione in chiaro e sensibilità appaiata; FHE e timer esclusi |
+
+N, soglia, preparazione e inizio/fine del timer fanno parte del risultato.
+Non c'è un unico «finale» che possa ereditare tutte queste misure.
+
 Le due nuove campagne del 20 settembre, CSV e figure sono nel
-[percorso corrente](percorso-sperimentale-20260920.md). I loro audit
+[percorso corrente](percorso-sperimentale.md). I loro audit
 completi richiedono i cifrati e le chiavi conservati localmente, esclusi
 dalla consegna. La rigenerazione delle figure usa invece soltanto i dati
 pubblici e non richiede quell'archivio.

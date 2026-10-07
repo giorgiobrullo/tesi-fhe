@@ -1,0 +1,45 @@
+{
+  "evidence_kind": "SYNTHETIC_ONLY",
+  "cases": [
+    {
+      "case": "order-12",
+      "status": "RAW_LIFECYCLE_CONSISTENT",
+      "lifecycle_records": 16,
+      "raw_records": 14,
+      "collector_qualified": false,
+      "settled_accounting_proven": false
+    },
+    {
+      "case": "order-21",
+      "status": "RAW_LIFECYCLE_CONSISTENT",
+      "lifecycle_records": 16,
+      "raw_records": 14,
+      "collector_qualified": false,
+      "settled_accounting_proven": false
+    },
+    {
+      "case": "wrong-birth",
+      "status": "EXPECTED_REFUSAL_OBSERVED",
+      "lifecycle_records": 12,
+      "raw_records": 3,
+      "collector_qualified": false,
+      "settled_accounting_proven": false
+    },
+    {
+      "case": "early-reap",
+      "status": "EXPECTED_REFUSAL_OBSERVED",
+      "lifecycle_records": 12,
+      "raw_records": 3,
+      "collector_qualified": false,
+      "settled_accounting_proven": false
+    },
+    {
+      "case": "descendant",
+      "status": "UNSUPPORTED_DESCENDANT_OBSERVED",
+      "lifecycle_records": 13,
+      "raw_records": 14,
+      "collector_qualified": false,
+      "settled_accounting_proven": false
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "status": "SYNTHETIC_VALIDATOR_PASS_BEFORE_ACTUAL_LOGS",
+  "tests_run": 18,
+  "test_output": "test_binary_source_and_plan_binding (test_validate.ReplayTests) ... ok\ntest_boundary_and_exhaustive_plan_cardinality_without_large_run (test_validate.ReplayTests) ... ok\ntest_coherent_phase_change_still_fails_linear_input_closure (test_validate.ReplayTests) ... ok\ntest_complete_smoke_and_independent_counts (test_validate.ReplayTests) ... ok\ntest_native_or_consumer_summary_cannot_hide_failure (test_validate.ReplayTests) ... ok\ntest_native_pass_can_coexist_with_consumer_failure_and_exit_zero (test_validate.ReplayTests) ... ok\ntest_negative_detection_is_recomputed_not_just_positive_total (test_validate.ReplayTests) ... ok\ntest_pair_provenance_null_and_original_low_are_distinct (test_validate.ReplayTests) ... ok\ntest_phase_error_expected_scale_and_key_domain_mutations (test_validate.ReplayTests) ... ok\ntest_report_write_is_private_and_exclusive (test_validate.ReplayTests) ... ok\ntest_scalar_lut_negative_wrap_and_open_half_slot_edges (test_validate.ReplayTests) ... ok\ntest_scalar_observer_cannot_claim_actual_pbs_or_margin_certificate (test_validate.ReplayTests) ... ok\ntest_strict_json_duplicate_keys_nan_and_terminal_line (test_validate.ReplayTests) ... ok\ntest_truncation_duplication_reordering_and_extra_records_rejected (test_validate.ReplayTests) ... ok\ntest_complete_owned_launch_chain (test_envelope.EnvelopeTests) ... ok\ntest_pid_start_source_and_exit_mutations_rejected (test_envelope.EnvelopeTests) ... ok\ntest_request_and_status_cannot_drift_between_records (test_envelope.EnvelopeTests) ... ok\ntest_valid_controls_failure_is_preserved_as_nonzero (test_envelope.EnvelopeTests) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 1.206s\n\nOK\n",
+  "scenarios": {
+    "ideal": {
+      "status": "PASS_RECORD_CONSISTENCY",
+      "summary": {
+        "status": "DIAGNOSTIC_COMPLETE",
+        "cases": 28,
+        "failures_baseline_shift_single": [
+          0,
+          0,
+          0
+        ],
+        "native_decode_failures_baseline_shift_single": [
+          0,
+          0,
+          0
+        ],
+        "consumer_scalar_phase_failures_baseline_shift_single": [
+          0,
+          0,
+          0
+        ],
+        "both_candidates_native_decode_pass": true,
+        "both_candidates_consumer_scalar_phase_pass": true,
+        "both_candidates_all_checks_pass": true,
+        "negative_detections_drop_rescale": [
+          16,
+          16
+        ],
+        "controls_valid": true,
+        "p_fail_certified": false,
+        "whole_exact_id_validated": false,
+        "latency_claim_allowed": false
+      },
+      "expected_exit_code": 0,
+      "records": {
+        "plan": 1,
+        "provenance": 1,
+        "keyset": 1,
+        "weighted_p16_margin": 896,
+        "weighted_bit": 896,
+        "case": 112,
+        "negative_missing_rescale": 28,
+        "summary": 1
+      },
+      "ledger": {
+        "score_cases": 28,
+        "arm_cases": 112,
+        "consumer_rows": 3136,
+        "weighted_rows": 896,
+        "margin_rows": 896,
+        "negative_rows": 28,
+        "total_rows": 10672,
+        "traced_pbs_per_score": 38,
+        "traced_ks_per_score": 32,
+        "source_frozen_extra_pbs_per_score": 14,
+        "source_frozen_extra_ks_per_score": 16,
+        "source_total_pbs_per_score": 52,
+        "source_total_ks_per_score": 48
+      }
+    },
+    "native_pass_consumer_fail": {
+      "status": "PASS_RECORD_CONSISTENCY",
+      "summary": {
+        "status": "DIAGNOSTIC_COMPLETE",
+        "cases": 28,
+        "failures_baseline_shift_single": [
+          0,
+          0,
+          12
+        ],
+        "native_decode_failures_baseline_shift_single": [
+          0,
+          0,
+          0
+        ],
+        "consumer_scalar_phase_failures_baseline_shift_single": [
+          0,
+          0,
+          12
+        ],
+        "both_candidates_native_decode_pass": true,
+        "both_candidates_consumer_scalar_phase_pass": false,
+        "both_candidates_all_checks_pass": false,
+        "negative_detections_drop_rescale": [
+          16,
+          16
+        ],
+        "controls_valid": true,
+        "p_fail_certified": false,
+        "whole_exact_id_validated": false,
+        "latency_claim_allowed": false
+      },
+      "expected_exit_code": 0,
+      "records": {
+        "plan": 1,
+        "provenance": 1,
+        "keyset": 1,
+        "weighted_p16_margin": 896,
+        "weighted_bit": 896,
+        "case": 112,
+        "negative_missing_rescale": 28,
+        "summary": 1
+      },
+      "ledger": {
+        "score_cases": 28,
+        "arm_cases": 112,
+        "consumer_rows": 3136,
+        "weighted_rows": 896,
+        "margin_rows": 896,
+        "negative_rows": 28,
+        "total_rows": 10672,
+        "traced_pbs_per_score": 38,
+        "traced_ks_per_score": 32,
+        "source_frozen_extra_pbs_per_score": 14,
+        "source_frozen_extra_ks_per_score": 16,
+        "source_total_pbs_per_score": 52,
+        "source_total_ks_per_score": 48
+      }
+    }
+  },
+  "actual_log_read": false,
+  "actual_fhe_execution": false,
+  "process_probes": false,
+  "source_candidate_count": 9,
+  "ruff_check_passed": true
+}

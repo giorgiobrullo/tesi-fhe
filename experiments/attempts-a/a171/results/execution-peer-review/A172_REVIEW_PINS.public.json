@@ -1,0 +1,38 @@
+{
+  "schema": "a172-independent-lifecycle-peer-review-v1",
+  "scope": "source-only; no tests or runtime logs",
+  "manifest_sha256": "3eec7af3ddf48329e933d66bb30551d59f55575f5be18e1f12af608fbe70a76e",
+  "source_id": "22a3793846ab667e19fffe14ab9681a446be5db7c25bfd23d48e580656729ab7",
+  "files": {
+    "fixture.c": "bb2fe5ed799861d63c1cd97756b465180011ef62836d25b57eb16d30891cfb50",
+    "replay.py": "5de34eee4d984cee7ccbff2f26c676a7c108085ffae7d7c72f7fa511e8231139",
+    "run.py": "f114d380b809c531cb84a7e6b1f1a1c2604e3bc9b2fde5a3dd533f23ddcc1a6d",
+    "README.md": "67ee27d65d63d313445ecef7024ca2bbabde11f877cf5a73379d9b299035f3a5",
+    "test_replay.py": "1f9821c8414213216b4b6852b3ec57fc828d792e72ee9db12b8ab075ae78e677",
+    "test_runner.py": "4b8c478500615a60a0ffaf7a8ce965a7f43c937a35d8276ef1f150e79a7e14c6"
+  },
+  "frozen_leaf_checks": {
+    "CHECK_HISTORY.md": true,
+    "PEER_REVIEW.md": true,
+    "PREREGISTRATION.json": true,
+    "READINESS.json": true,
+    "README.md": true,
+    "SOURCE_DIGEST.txt": true,
+    "SOURCE_MANIFEST.json": true,
+    "SOURCE_PINS.json": true,
+    "fixture.c": true,
+    "freeze.py": true,
+    "lint.log": true,
+    "replay.py": true,
+    "run.py": true,
+    "source_identity.h": true,
+    "synthetic-results.json": true,
+    "test_replay.py": true,
+    "test_runner.py": true,
+    "unit-tests.log": true
+  },
+  "leaf_count": 18,
+  "review_sha256": "c1845e38352ca0c2f98056118be6f4c368b24f7e734e834834d1a64acf86f26b",
+  "actual_runtime_inspected": false,
+  "tests_executed": false
+}

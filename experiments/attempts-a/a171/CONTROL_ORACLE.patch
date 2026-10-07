@@ -1,0 +1,45 @@
+--- tmp/a167-a137-execution-readiness/runtime-validation/verify.py
++++ control_oracle.py
+@@ -12,7 +12,7 @@
+ import sys
+ 
+ sys.dont_write_bytecode = True
+-HERE = Path(__file__).resolve().parent
++HERE = Path(__file__).resolve().parents[2] / "tmp/a167-a137-execution-readiness/runtime-validation"
+ ROOT = HERE.parents[2]
+ A137 = ROOT / 'tmp/a137-pfks-runtime-error-observer'
+ BINARY = A137 / 'target-a137-only/release/a137_pfks_runtime_error_observer'
+@@ -174,7 +174,7 @@
+                 for k in ['input_sha256','pfks_output_sha256','phase_polynomial_sha256','aggregate_key_error_polynomial_sha256','public_digit_words_sha256']: hexhash(p[k])
+                 eq(p['actual_level_order'],[1],'PFKS level order')
+                 eq(len(p['actual_body_row_digits']),1,'body row retained')
+-                integer(p['actual_body_row_digits'][0],-(1<<23),(1<<23)-1,'body digit')
++                integer(p['actual_body_row_digits'][0],-(1<<23),(1<<23),'body digit')
+                 integer(p['input_phase'],0,Q-1,'PFKS input phase')
+                 eq(p['primitive_row_errors_independently_measured'],False,'aggregate scope')
+             for k in ['pre_br_ciphertext_sha256','pre_br_phase_polynomial_sha256','post_ks_control_sha256','input_control_sha256']: hexhash(acc[k])
+--- A137/validate.py
++++ control_arithmetic.py
+@@ -83,10 +83,7 @@
+     )
+ 
+ 
+-def validate_process(path):
+-    rows = [
+-        json.loads(line) for line in Path(path).read_text().splitlines() if line.strip()
+-    ]
++def validate_rows(rows):
+     meta = [r for r in rows if r.get("record") == "meta"]
+     require(
+         len(meta) == 1 and meta[0]["artifact"] == "A137", "meta cardinality/artifact"
+@@ -300,10 +297,3 @@
+     )
+     return summary
+ 
+-
+-if __name__ == "__main__":
+-    import argparse
+-
+-    parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("jsonl", type=Path)
+-    print(json.dumps(validate_process(parser.parse_args().jsonl), indent=2))

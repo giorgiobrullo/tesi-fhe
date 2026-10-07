@@ -1,0 +1,120 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 1,
+      "data": {
+        "a98_port_source_sha256": "a750dc4eebef73238ae80fcfde90c8b0fa6995d150c5b9120a1adbb37f9dfce4",
+        "a98_r2b_raw_sha256": "bd4cfd5e7bdf2bffd4d0dfc6ac1fc3042536d9b5493b09945fe9325f3f46f9d1",
+        "a98_r2b_summary": {
+          "adapter_blind_rotation_total_s": 0.048295584,
+          "cases_expected": 14,
+          "cases_passed": 14,
+          "claim_boundary": "A98-R2B single-key component correctness smoke only; timings and all ideal-phase errors are diagnostic, and no patched-binary, p_fail, latency, composed-pipeline, or exact-ID claim follows.",
+          "consumed_output_gate": "degree_zero_extracted_lwe_and_decrypted_ramp_degree_equal_between_arms",
+          "consumed_sample_decode_matches_ideal_diagnostic": 14,
+          "direct_centered_degree_mismatch_cases": 10,
+          "fresh_keys": 1,
+          "full_glwe_correlation_model": "not_assumed",
+          "not_run": [
+            "R3_corrected_keyswitch",
+            "R4_composed_KS_to_PBS",
+            "R5_fresh_key_campaign",
+            "2048_mask_campaign",
+            "composed_p_fail",
+            "exact_ID_integration"
+          ],
+          "phase_error_cap": null,
+          "primary_adapter_equivalence_gate": "bitwise_reference_vs_adapter_pre_fft_and_post_blind_rotation",
+          "record": "summary",
+          "reference_blind_rotation_total_s": 0.048715042,
+          "stage": "A98_R2B",
+          "status": "PASS_COMPONENT_FHE_SMOKE_R2B",
+          "tie_one_cases": 8,
+          "tie_zero_cases": 6,
+          "total_wall_s": 0.534467667
+        },
+        "claim_boundary": "component-only; not an exact-ID or performance result",
+        "executable_path": "archive:/tmp/a112-head-start-r3-r4-preflight/r3-r4-runtime-gate/target/release/a112-head-start-r3-r4-runtime-gate",
+        "executable_sha256": "07d705c9b9b342a694dc6405d675ca05737affffb43926150e2ba0cc3647de00",
+        "head_start_patch_sha256": "d19b72f6257d3db93e3651d87779816be4f210f60bf274cea5799b50743368cc",
+        "immutable_parent_hashes": {
+          "API_AUDIT.md": "82d339170765c24dbf6128e3fa5b52682d8ff46d7ea92cd0bb84f87c45e8a12d",
+          "PREREGISTRATION.json": "041090dc27c08b6d858cd591d012ccbf36b3f63be66cc1bf803547a829940e3d",
+          "README.md": "1fa2fb8a170d6b55cf3e40e9711e63e215f7c7b3c54fa5a69c5bdaf0d05bd6b3",
+          "SOURCE_PINS.json": "ed714f87ce35f64de3dcaae047edcc9b12995d18aed4957417763f42235370cb",
+          "STATIC_REPORT.json": "d634e7a67c712060bddc3884d79ad72ecde4684c454b73bea2935397ec1de2ab",
+          "a112_static_model.py": "958f557a749e118ce09cb27ea666dcff18b03cfe616ba984c1706843d80f0315",
+          "src/lib.rs": "09908a40d3f078e07aaf210821353af83f6f6698b4aa8d1d2ca7532e299da93e",
+          "tests/test_static_model.py": "de452f2bb8b08a60d076685a43eee43bbc4561cd6c67598e7e9c11eba1d52187"
+        },
+        "protected_hashes": {
+          "a38": "156a35f3407a5914ea6712ad2c5e76f413f1f125bc275371e8fe6d4f7dcd4d37",
+          "meeting": "01e08d541287aa057441f3861e549408ec8bf1448f20ae6193fc1be8b1e87745",
+          "ritaratura_soglia": "e490b7431e3531b532d4a383e6d0d1231bb4537126ec2ec4e01eb9202f0db3ab"
+        },
+        "rayon_threads": 8,
+        "record": "provenance",
+        "root_clean_load_gate": "present_exact",
+        "stage": "A112_R3_R4",
+        "status": "PASS",
+        "tfhe_1_7_hashes": {
+          "crate_archive": "f341a7a6fe90bf813ecb2b098f04c0e5bca82436ddd1b256e6f1ec68be58da52",
+          "fft64_pbs": "21c8009e0999c78401dea57a1d7bcbe91c47b80b231357b42eab9552a20abd71",
+          "lazy_ms": "68b692b3e941b98a4a0290e67979733f82a0449e95856f7d1f821140159f562d",
+          "lwe_encryption": "9e360ca3da9d4a7ecd01cfe36396ae15b7ace6ba5b582d4c7df3e006a3969d0a",
+          "lwe_keyswitch": "4e21ac924972ca8884257aa5bb778f672c07b4c35be542b51e86583bfcd45913",
+          "sample_extraction": "981d3839cd83cb8c24b02fe48d945d61e23c9c0f2e714b554d9296eed304ec43"
+        },
+        "wrapper_api_audit_sha256": "c9f5f15c6a72b677367240460b8c4720ea72efa8df2fafd27cbed536dccca065",
+        "wrapper_build_report": {
+          "actual_build_record": {
+            "child_pid": 58623,
+            "command": [
+              "cargo",
+              "build",
+              "--release",
+              "--locked",
+              "--offline",
+              "-j",
+              "1"
+            ],
+            "cwd": "archive:/tmp/a112-head-start-r3-r4-preflight/r3-r4-runtime-gate",
+            "ended_at_utc": "2026-09-05T11:15:43.452592+00:00",
+            "exit_code": 0,
+            "started_at_utc": "2026-09-05T11:14:52.239179+00:00"
+          },
+          "build": {
+            "jobs": 1,
+            "locked": true,
+            "offline": true,
+            "release": true
+          },
+          "compiler": "rustc 1.98.0 (88d9e12ae 2026-08-18) (Homebrew)",
+          "executable_sha256": "07d705c9b9b342a694dc6405d675ca05737affffb43926150e2ba0cc3647de00",
+          "fhe_run_during_build": false,
+          "keygen_run_during_build": false,
+          "lock_sha256": "b2eb502fbbb7e5e95c888a648f9d7f175eed46abac8aac2d96ff4669184c031f",
+          "manifest_sha256": "f43c8a9d53183e13a38bae5f5510837113ce423bd85ea35f93ac61bedcaca247",
+          "schema": "a112.head-start-r3-r4.wrapper-build-report.v1",
+          "source_sha256": "ff02fc973206019d01a8ef780c79970e0d078445e9a564a646b37bf2c8598095",
+          "status": "PASS_OFFLINE_LOCKED_BUILD_NOT_RUN"
+        },
+        "wrapper_build_report_sha256": "d0d064a4805d39d240b9e649bd5de26de87cc8baaf5996abba619306b909d330",
+        "wrapper_lock_sha256": "b2eb502fbbb7e5e95c888a648f9d7f175eed46abac8aac2d96ff4669184c031f",
+        "wrapper_manifest_sha256": "f43c8a9d53183e13a38bae5f5510837113ce423bd85ea35f93ac61bedcaca247",
+        "wrapper_preregistration_sha256": "6e8a6568ee0d7a9c1d580d4984dbdfbb9dc64d560bf55a2664aedb3c2aca14cb",
+        "wrapper_readme_sha256": "de722b98fea199cb1c0565a487b15910b18020cb6b4363955e1c8558b9c69430",
+        "wrapper_source_pin_verification": {
+          "crate_archive_checked": true,
+          "frozen_inputs_checked": 14,
+          "selected_tfhe_sources_checked": 16,
+          "status": "PASS",
+          "tfhe_version": "1.7.0"
+        },
+        "wrapper_source_pins_sha256": "775f10ae4c326bd09c4ae3b618fb445bad8f9ac66c799daa9f6d8452a574a9f1",
+        "wrapper_source_sha256": "ff02fc973206019d01a8ef780c79970e0d078445e9a564a646b37bf2c8598095"
+      }
+    }
+  ]
+}

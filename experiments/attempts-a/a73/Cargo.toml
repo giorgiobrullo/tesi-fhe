@@ -1,0 +1,17 @@
+[package]
+name = "a73_a62_a66_paired"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+a62 = { package = "a62_a53_a44_integrated_prototype", path = "../a62-a53-a44-integrated-prototype" }
+a66 = { package = "a66_a62_latency_ready_prototype", path = "../a66-a62-latency-ready-prototype" }
+bincode = "1"
+libc = "0.2"
+rayon = "1"
+sha2 = "0.10"
+tfhe = { version = "0.11.3", features = ["integer"] }
+
+[profile.release]
+opt-level = 3
+

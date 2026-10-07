@@ -1,0 +1,6 @@
+{
+  "actual_timings": 0,
+  "final_tests": 9,
+  "initial_static_anchor": "One test used a Rustfmt-sensitive let-decode substring and failed before freeze; changed to the invariant decrypt-call anchor. No arithmetic, source-origin or runtime failure.",
+  "scope": "source/synthetic only"
+}

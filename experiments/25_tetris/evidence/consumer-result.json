@@ -1,0 +1,127 @@
+{
+  "boundary": "one retained family, nine fixed scenes; root inputs are each arm's actual selected children; no warmup exclusion or heldout performance inference",
+  "complete_outputs": 54,
+  "failures": 0,
+  "kind": "consumer_comparison",
+  "merges_per_arm": 9,
+  "pairs": [
+    {
+      "exact_endpoint_s": 0.871673375,
+      "label": "tie",
+      "number": 0,
+      "order": [
+        "exact",
+        "splitfft",
+        "splitfft_parallel6"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.16737275,
+      "splitfft_parallel6_endpoint_s": 0.057391083
+    },
+    {
+      "exact_endpoint_s": 0.873619792,
+      "label": "extremes",
+      "number": 1,
+      "order": [
+        "exact",
+        "splitfft_parallel6",
+        "splitfft"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.160758584,
+      "splitfft_parallel6_endpoint_s": 0.058266292
+    },
+    {
+      "exact_endpoint_s": 0.865840625,
+      "label": "high_dominates",
+      "number": 2,
+      "order": [
+        "splitfft",
+        "exact",
+        "splitfft_parallel6"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.161639916,
+      "splitfft_parallel6_endpoint_s": 0.058092042
+    },
+    {
+      "exact_endpoint_s": 0.86136875,
+      "label": "low_difference",
+      "number": 3,
+      "order": [
+        "splitfft",
+        "splitfft_parallel6",
+        "exact"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.160629416,
+      "splitfft_parallel6_endpoint_s": 0.057687208
+    },
+    {
+      "exact_endpoint_s": 0.861614709,
+      "label": "carry_left",
+      "number": 4,
+      "order": [
+        "splitfft_parallel6",
+        "exact",
+        "splitfft"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.163311875,
+      "splitfft_parallel6_endpoint_s": 0.05713075
+    },
+    {
+      "exact_endpoint_s": 0.853492125,
+      "label": "carry_right",
+      "number": 5,
+      "order": [
+        "splitfft_parallel6",
+        "splitfft",
+        "exact"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.163975333,
+      "splitfft_parallel6_endpoint_s": 0.057529666
+    },
+    {
+      "exact_endpoint_s": 0.851658208,
+      "label": "tree_left",
+      "number": 6,
+      "order": [
+        "exact",
+        "splitfft",
+        "splitfft_parallel6"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.159109458,
+      "splitfft_parallel6_endpoint_s": 0.057296916
+    },
+    {
+      "exact_endpoint_s": 0.851310917,
+      "label": "tree_right",
+      "number": 7,
+      "order": [
+        "exact",
+        "splitfft_parallel6",
+        "splitfft"
+      ],
+      "shared_input_words": true,
+      "splitfft_endpoint_s": 0.159908417,
+      "splitfft_parallel6_endpoint_s": 0.057070042
+    },
+    {
+      "exact_endpoint_s": 0.854161041,
+      "label": "tree_root",
+      "number": 8,
+      "order": [
+        "splitfft",
+        "exact",
+        "splitfft_parallel6"
+      ],
+      "shared_input_words": false,
+      "splitfft_endpoint_s": 0.160498167,
+      "splitfft_parallel6_endpoint_s": 0.057675458
+    }
+  ],
+  "schema": "tetris-setI-rank2-to1-exact-vs-splitfft.v1"
+}

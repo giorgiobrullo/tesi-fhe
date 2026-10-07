@@ -1,0 +1,18 @@
+{
+  "schema": "current-merge-profile-http.v1",
+  "python": "/opt/homebrew/bin/python3.12",
+  "output": "/workspace/research/tmp/current-merge-profile-20261004/results",
+  "fixtures": "/workspace/research/tmp/m4-thread-scaling-20260921/fixtures",
+  "runtime": "/workspace/research/tmp/current-merge-profile-20261004/runtimes/profile",
+  "binary": "/workspace/research/tmp/current-merge-profile-20261004/bin/merge-profile",
+  "build_receipt": "/workspace/research/tmp/current-merge-profile-20261004/logs/build.json",
+  "keydir": "/workspace/research/tmp/current-merge-profile-20261004/keys/family1",
+  "keygen_receipt": "/workspace/research/tmp/current-merge-profile-20261004/logs/keygen.json",
+  "key_origin": "fresh",
+  "compiler_identity": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)\nbinary: rustc\ncommit-hash: 48a229ceaefd4985c50990b14116b6d856af0985\ncommit-date: 2026-09-01\nhost: aarch64-apple-darwin\nrelease: 1.98.1\nLLVM version: 22.1.8",
+  "rayon_threads": 16,
+  "service_processes": 1,
+  "warmup_calls": 1,
+  "measured_calls": 3,
+  "stage_tolerance_ns": 250000
+}

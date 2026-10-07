@@ -2,13 +2,16 @@
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Aggiornamento mirato al 19 settembre 2026. Ogni scheda distingue funzione,
+Ogni scheda distingue funzione,
 output e modello di fiducia; i tempi esterni conservano la configurazione
 del lavoro che li riporta e non sono un confronto controllato con il runtime
 locale. Per la costruzione selezionata e il significato di esattezza vedere
-[contratto e schemi](contratto-e-schemi.md).
+[contratto e schemi](contratto-e-schemi.md). Le [versioni verificate](versioni-e-verifiche.md)
+specificano la base di lettura delle fonti.
 
-## 4. I sistemi
+<a id="4-i-sistemi"></a>
+
+## Sistemi per funzione e modello di fiducia
 
 **Erkin, Franz, Guajardo, Katzenbeisser, Lagendijk e Toft**, "Privacy-Preserving Face
 Recognition", PETS 2009.
@@ -108,6 +111,15 @@ tabelle conferma che 4,87 ms è il costo per singolo match, e che il tempo
 riassuntivo in conclusione non coincide con quello dell'introduzione.
 La [scheda dell'edizione pubblicata](testi-integrali/akbari-edizione-pubblicata.md)
 precisa metriche, pagine e condizioni; non trasferisce gli headline alla tesi.
+
+**Liu**, *Secure Face Recognition Using Fully Homomorphic Encryption and
+Convolutional Neural Networks*, [Informatica 48(18), 2024](https://doi.org/10.31449/inf.v48i18.6396).
+Il testo completo descrive verifica 1:1: l'UID inviato con la query recupera
+il solo template corrispondente. La CNN estrae le feature sul client prima
+della cifratura. Circuito del coseno, decisione finale e parametri non sono
+specificati abbastanza per riprodurre il calcolo; il testo usa inoltre
+due predicati opposti per la soglia. La [lettura con pagine e limiti](testi-integrali/liu-informatica.md)
+spiega perché non ne usiamo i tempi come baseline della selezione 1:N.
 
 **Lightweight / BSGS-Diagonal**, Gabrielle De Micheli et al., arXiv 2026,
 [arXiv v3, 29 maggio 2026](https://arxiv.org/html/2604.00546v3), estensione di **HyDia**, Sam Martin et al., PoPETs 2025,
@@ -248,6 +260,8 @@ ciphertext"). Calcola l'ordinamento/argmin tramite una delta-matrix di confronti
 (sign-bootstrapping, tecnica ripresa da Zuber-Sirdey PoPETs'21), con costo quadratico O(d²)
 (~(d²−d)/2 sign-bootstrap sul triangolo superiore). È un precedente diretto della configurazione qui studiata.
 
+**BioZKFHE.** Xin et al., [arXiv:2607.22065](https://arxiv.org/abs/2607.22065), luglio 2026; le metadata arXiv riportano TDSC early access. Il sistema cifra query e galleria in BGV e aggiunge prove verificabili e una commissione di decrittazione. La commissione recupera internamente tutti i punteggi e decide l'esito. È quindi pertinente all'identificazione biometrica 1:N, ma non realizza il nostro passaggio finale interamente omomorfo dal vettore dei punteggi al solo `0/ID`. Il costo del matching, quello delle prove e quello della decrittazione distribuita vanno riportati separatamente.
+
 **Primitive di confronto numerico CKKS.** La linea di
 [Cheon et al., ASIACRYPT 2019](https://eprint.iacr.org/2019/417) e
 [Cheon, Dongwoo Kim e Duhyeong Kim, ASIACRYPT 2020](https://eprint.iacr.org/2019/1234)
@@ -264,3 +278,23 @@ sullo zero e bound di decodifica: un piccolo errore numerico non garantisce
 da solo la decisione corretta. Questi comparatori numerici non esauriscono le
 possibilità della famiglia CKKS; le [costruzioni discrete e le conversioni](ckks-discreto.md)
 sono considerate separatamente.
+
+<a id="sistemi-e-indicizzazione-riesaminati-il-2-ottobre-2026"></a>
+
+## Indicizzazione prima del matching
+
+**Indicizzazione prima del matching.** [Stable Hash Generation](https://doi.org/10.1109/TBIOM.2021.3100639), Osorio-Roig et al., usa product quantisation e clustering per ricavare un codice e recuperare una lista ridotta di candidati. BFV calcola le distanze e il client decifra i punteggi per scegliere. L'esattezza del lookup del codice non garantisce il minimo sull'intera galleria: un errore di preselezione può escludere il candidato corretto.
+
+**HEBI**, [IJCB 2023](https://doi.org/10.1109/IJCB57857.2023.10448618),
+protegge l'indice con PEKS e calcola le distanze CKKS sui soli candidati
+del gruppo scelto. Una terza parte fidata conserva la chiave HE, decifra gli
+score e decide; il server conosce il gruppo selezionato. Il manoscritto
+accettato è stato letto integralmente. I 0,12 ms dell'abstract sono il costo
+PEKS per cluster: la tabella riporta circa 10 secondi complessivi per 533
+soggetti. La preselezione FRGCv2 ha accuracy 92,14% contro 99,71% della
+baseline, senza garantire il minimo globale. La [scheda del protocollo](testi-integrali/hebi.md)
+distingue costo, accuratezza e leakage dal contratto della tesi.
+
+**SFRA.** Wu et al., [JISA 94, 104208](https://doi.org/10.1016/j.jisa.2025.104208), novembre 2025, combina LSH, Twin Bloom Filters e un albero per la preselezione, poi usa il calcolo omomorfo della distanza e un accumulatore RSA per la verifica. Introduzione e frammenti editoriali sono stati esaminati; il fulltext non è stato ottenuto. Senza quel testo non attribuiamo al sistema una garanzia di minimo globale, un tie-breaking o un'uscita identica al contratto della tesi.
+
+Versioni, pagine e accesso sono nel [registro delle verifiche](versioni-e-verifiche.md).

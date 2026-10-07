@@ -1,0 +1,64 @@
+{
+  "status": "VALID_A191_FIRST_PASS",
+  "gate_pass": true,
+  "records": 48,
+  "keysets": 1,
+  "fixture_index": 7,
+  "comparator_pass": true,
+  "actual_support_pass": true,
+  "direct_class": "pass",
+  "d1_class": "pass",
+  "scalar_pass": true,
+  "comparator_native": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "comparator_addresses": [
+    2,
+    129,
+    2184,
+    62
+  ],
+  "selector_address": 1539,
+  "all_six_control_bytes_equal": true,
+  "source_id": "e80461985c83f508c1b49b8f4a60409b66f6385dd8a84fe484c2977489882c54",
+  "binary_sha256": "b92b7c89a8780bccd35a1e408f10187792adb83c8dc9e5197ab9e383e9ea3bd0",
+  "child_pid": 99882,
+  "ledger": {
+    "PFKS": 20,
+    "KS": 10,
+    "BR": 10,
+    "samples": 16,
+    "input_encryptions": 8
+  },
+  "actual_internal_br_receipts": false,
+  "independent_key_membership_attestation": false,
+  "whole_tournament_or_exact_id": false,
+  "score_to_limb_bridge": false,
+  "actual_p_fail": null,
+  "timing_claim": false,
+  "launch_envelope_verified": true,
+  "automatic_retry_or_expansion": false,
+  "launch_binding": {
+    "files_sha256": {
+      "preflight.json": "07a7fb1a1a35c333a7937e53df212147ad11cac805184b68d81a3ce843631827",
+      "prepared.json": "7d384b184cbf65233bc2372f771ba225e6072544563598fae168823ea9237a51",
+      "child.json": "8bcdee4b01ddc9a4628fca61a127c88060dd9a9fbbaeaed7fe576690952c9413",
+      "wait-complete.json": "405168ee5a6d75eabfa91f9159aa35602eda15048db2cfd8dbe9e083c6e645b5",
+      "exit.json": "78d89637351a1a703be5dbe5e58d307eb20b304ca9be07dff7958b26bc1234b7",
+      "stdout.jsonl": "295fce0d510c7b6989fb67458c91276306c46c3c07224e85730b655f0501e961",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "child_pid": 99882,
+    "driver_pid": 99881,
+    "binary_sha256": "b92b7c89a8780bccd35a1e408f10187792adb83c8dc9e5197ab9e383e9ea3bd0",
+    "exit_code": 0,
+    "source_id": "e80461985c83f508c1b49b8f4a60409b66f6385dd8a84fe484c2977489882c54",
+    "artifact_sha256": "df1d562dc16f273f92cf2abd7fcc10352399a70b66df590c34f123ebd5e111cc",
+    "started_at_utc": "2026-09-05T10:19:49.173095+00:00",
+    "exited_at_utc": "2026-09-05T10:19:51.648545+00:00"
+  },
+  "local_direct_child_record_binding": true
+}

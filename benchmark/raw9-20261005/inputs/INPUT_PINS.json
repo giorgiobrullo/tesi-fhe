@@ -1,0 +1,35 @@
+{
+  "origin_binding_archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/root/SOURCE_BINDING.json",
+  "origin_binding_sha256": "aed7ea6b7192fe9f638201afaf6802e9aabe04376c17c0882c59b58349bef32d",
+  "inputs": [
+    {
+      "workspace_path": "core/fixtures/curie.json",
+      "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/curie.json",
+      "bytes": 2100,
+      "sha256": "a69a253fd5d8f998b9e017335123d41add577f1872cabdff0c349971fc2cf616",
+      "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+    },
+    {
+      "workspace_path": "core/fixtures/einstein.json",
+      "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/einstein.json",
+      "bytes": 2092,
+      "sha256": "2f4c48262685673af1de0ab97c77b0e3a9f60aca876a2fcea4c7d2ab7ca7ad6a",
+      "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+    },
+    {
+      "workspace_path": "core/fixtures/gallery.json",
+      "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/gallery.json",
+      "bytes": 154052,
+      "sha256": "6ad678a67bc755c30b1e25afc336079d31a9ee410a8a16b73043a6e1c98a86fe",
+      "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+    },
+    {
+      "workspace_path": "core/fixtures/turing.json",
+      "archive_relative": "tmp/current-final-threshold-fullquery-probe-20261005/workspace/core/fixtures/turing.json",
+      "bytes": 2116,
+      "sha256": "19ecbebc1afcd692baf66efb0950a8387687372e4ca7c56b86ecca5b3226bc5e",
+      "reason": "fixture vettoriale esclusa; pin letto dal SOURCE_BINDING congelato, nessun contenuto copiato"
+    }
+  ],
+  "content_copied": false
+}

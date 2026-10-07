@@ -1,0 +1,13 @@
+{
+  "schema": "a169-static-result-v1",
+  "status": "PASS",
+  "tests": 15,
+  "failures": 0,
+  "errors": 0,
+  "seconds": 0.10043595899999999,
+  "completed_at_utc": "2026-09-05T05:13:49.426999+00:00",
+  "scope": "exact clear/source/synthetic runner only",
+  "negacyclic_degree_checks": 8192,
+  "crypto_or_cargo_or_process_probes": false,
+  "test_output": "test_01_unchanged_crypto_b1_fixtures_and_observers (test_static.StaticGate) ... ok\ntest_02_exhaustive_negacyclic_single_luts (test_static.StaticGate) ... ok\ntest_03_centered_actual_small_bit_maps_to_native_and_consumed_weights (test_static.StaticGate) ... ok\ntest_04_omit_public_centering_has_boundary_input_not_center (test_static.StaticGate) ... ok\ntest_05_native_success_does_not_imply_consumer_or_noise_law (test_static.StaticGate) ... ok\ntest_06_b2_can_still_fail_after_perfect_low_direct_outputs (test_static.StaticGate) ... ok\ntest_07_exact_six_arm_ledger (test_static.StaticGate) ... ok\ntest_08_new_gate_can_pass_while_prior_b1_gate_fails (test_static.StaticGate) ... ok\ntest_09_all_new_gate_predicates_are_required (test_static.StaticGate) ... ok\ntest_10_wrong_retained_input_scale_replacement_or_feedback_rejected (test_static.StaticGate) ... ok\ntest_11_pair_or_consumer_gate_cannot_be_weakened (test_static.StaticGate) ... ok\ntest_12_fixed_plan_has_no_child_or_source_access (test_static.StaticGate) ... ok\ntest_13_missing_ack_refuses_before_work (test_static.StaticGate) ... ok\ntest_14_private_evidence_exclusive (test_static.StaticGate) ... ok\ntest_15_complete_source_digest_and_isolated_target (test_static.StaticGate) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 0.100s\n\nOK\n"
+}

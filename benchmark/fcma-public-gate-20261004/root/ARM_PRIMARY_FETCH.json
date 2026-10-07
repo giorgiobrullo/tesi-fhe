@@ -1,0 +1,11 @@
+{
+  "url": "https://documentation-service.arm.com/static/60df1943677cf7536a55ddef",
+  "observed_utc": "2026-10-04T17:25:07.976529+00:00",
+  "scope": "official Arm register primary source; no browserUI",
+  "limit_bytes": 10000000,
+  "http_status": 200,
+  "bytes": 8935128,
+  "content_type": "application/pdf",
+  "status": "downloaded",
+  "sha256": "a6eca120622b9bbce6ba7b8991ed6f5dbb4c1a4af600f832420e352ef83b0570"
+}

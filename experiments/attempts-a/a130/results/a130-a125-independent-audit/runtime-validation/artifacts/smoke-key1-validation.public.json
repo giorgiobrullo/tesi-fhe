@@ -1,0 +1,119 @@
+{
+  "status": "PASS_RECORD_CONSISTENCY",
+  "summary": {
+    "status": "DIAGNOSTIC_COMPLETE",
+    "cases": 28,
+    "failures_baseline_shift_single": [
+      0,
+      0,
+      2
+    ],
+    "native_decode_failures_baseline_shift_single": [
+      0,
+      0,
+      0
+    ],
+    "consumer_scalar_phase_failures_baseline_shift_single": [
+      0,
+      0,
+      2
+    ],
+    "both_candidates_native_decode_pass": true,
+    "both_candidates_consumer_scalar_phase_pass": false,
+    "both_candidates_all_checks_pass": false,
+    "negative_detections_drop_rescale": [
+      11,
+      16
+    ],
+    "controls_valid": true,
+    "p_fail_certified": false,
+    "whole_exact_id_validated": false,
+    "latency_claim_allowed": false
+  },
+  "expected_exit_code": 0,
+  "records": {
+    "plan": 1,
+    "provenance": 1,
+    "keyset": 1,
+    "weighted_p16_margin": 896,
+    "weighted_bit": 896,
+    "case": 112,
+    "negative_missing_rescale": 28,
+    "summary": 1
+  },
+  "ledger": {
+    "score_cases": 28,
+    "arm_cases": 112,
+    "consumer_rows": 3136,
+    "weighted_rows": 896,
+    "margin_rows": 896,
+    "negative_rows": 28,
+    "total_rows": 10672,
+    "traced_pbs_per_score": 38,
+    "traced_ks_per_score": 32,
+    "source_frozen_extra_pbs_per_score": 14,
+    "source_frozen_extra_ks_per_score": 16,
+    "source_total_pbs_per_score": 52,
+    "source_total_ks_per_score": 48
+  },
+  "candidate_failed_cases": [
+    {
+      "keyset": 0,
+      "scene": "dense_nonzero",
+      "x": 16,
+      "arm": "single_full_reuse_x256",
+      "native_pass": true,
+      "consumer_scalar_pass": false
+    },
+    {
+      "keyset": 0,
+      "scene": "dense_nonzero",
+      "x": 17,
+      "arm": "single_full_reuse_x256",
+      "native_pass": true,
+      "consumer_scalar_pass": false
+    }
+  ],
+  "outside_open_half_slot_baseline_shift_single_negative": [
+    0,
+    0,
+    2,
+    43
+  ],
+  "reported_frozen_control_failures": [
+    0,
+    0
+  ],
+  "downstream_consumer_is_scalar_ideal_candidate_ks_zero_ms": true,
+  "actual_composed_consumer_pbs_validated": false,
+  "full_exact_id_validated": false,
+  "coefficientwise_ms_or_ks_error_bound_established": false,
+  "ciphertext_bytes_or_secret_membership_attested": false,
+  "key_freshness_independently_attested": false,
+  "benchmark_or_pfail_claim": false,
+  "launch_binding": {
+    "stage": "smoke",
+    "keysets": 1,
+    "binary_sha256": "9e072b3ab66268f63f480d8ae3585b9ceffd8a2e51d923eebfdf98b80aae4d04",
+    "exit_code": 0,
+    "driver_pid": 87464,
+    "child_pid": 87481,
+    "prepared_at_utc": "2026-09-05T04:02:13.423042+00:00",
+    "started_at_utc": "2026-09-05T04:02:13.423365+00:00",
+    "exited_at_utc": "2026-09-05T04:02:33.507286+00:00",
+    "run_id": "smoke-key1",
+    "requested_rayon_threads": 1,
+    "operating_system_threads_attested": false,
+    "complete_exit_bound": true,
+    "benchmark_guard_or_isolation_attested": false,
+    "files_sha256": {
+      "prepared.json": "cb8189437538b08f001419eff2286ecf4e4aa7f6eae2442c3dfc271998cea506",
+      "child.json": "4ce09923c4e7c12dceed0d3668aa4b52c4ef76d0ec387da5f40f51b3082dd66c",
+      "exit.json": "11ffc8eea97e70d0075cb33e572222913d9f57646e2df1387e6968bc70f559bb",
+      "stdout.jsonl": "a9e9b672263a5db285d3e6276c362c6dfbc767a8838d645830d67b53bbbcb3a1",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "candidate_manifest_sha256": "da67d218c1b65635888d4ef26fa9f1852e9618bc031ae9a2e9b84c721ca60923",
+    "source_file_count": 9
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "initial_tests": {
+    "count": 19,
+    "status": "3 synthetic/static setup errors: one expected separator newline and two /var symlink test-temp paths; no candidate algebra failure"
+  },
+  "after_corrections": {
+    "count": 21,
+    "status": "PASS",
+    "seconds": 1.097
+  },
+  "review_fixes": [
+    "exact captured envelope/clearance/stderr byte hashes",
+    "rename physical_counts to reported_algorithm_counts, separate stock output and diagnostic extractions"
+  ],
+  "no_native_execution": true
+}

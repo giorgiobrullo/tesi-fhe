@@ -1,0 +1,127 @@
+{
+  "status": "STATIC_PASS_UNCOMPILED_NO_FHE",
+  "source_pins": 11,
+  "tests": 8,
+  "score_centers_both_arms": 8192,
+  "nibble_address_checks_both_arms": 4064,
+  "actual_a34_n4_category_states": 2401,
+  "composed_n4_score_fixtures_both_arms": 480,
+  "helper_counterexample": {
+    "first": {
+      "digit": 4,
+      "rotation": 1152,
+      "extraction_degree": 0,
+      "required": 13835058055282163712
+    },
+    "second": {
+      "digit": 0,
+      "rotation": 128,
+      "extraction_degree": 1024,
+      "required": 18437736874454810624
+    },
+    "conflict": true
+  },
+  "original_msb_only_counterexample": {
+    "input_digit": 0,
+    "small_msb_error": 1688849860263936,
+    "native_msb_decodes_zero": true,
+    "fold_error": 864691128455135232,
+    "shared_decoded": 8186,
+    "independent_decoded": 1,
+    "scope": "Deterministic injected error, no cryptographic probability or observed FHE failure."
+  },
+  "joint_composed_counterexample": {
+    "expected_flags": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "input_low_error": -288230376151711744,
+    "small_msb_error": 844424930131968,
+    "other_pbs_errors": 0,
+    "coefficientwise_ms_extra_displacement": 0,
+    "original_nibble_and_msb_native_decode_pass": true,
+    "arms": {
+      "shared512": {
+        "decoded_digits": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            8185,
+            0,
+            0
+          ],
+          [
+            15,
+            15,
+            0
+          ],
+          [
+            0,
+            0,
+            4
+          ]
+        ],
+        "final_flags": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "low_trace": {
+          "msb": 844424930131968,
+          "fold": 432345564227567616,
+          "remainder": 17726168133330272256,
+          "low": 18430981475013754880
+        }
+      },
+      "independent_scale": {
+        "decoded_digits": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            15,
+            15,
+            0
+          ],
+          [
+            0,
+            0,
+            4
+          ]
+        ],
+        "final_flags": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "low_trace": {
+          "msb": 844424930131968,
+          "fold": 0,
+          "remainder": 18158513697557839872,
+          "low": 0
+        }
+      }
+    },
+    "scope": "Constructed joint error vector; no occurrence probability or real FHE evidence."
+  },
+  "first_n4_runtime_br_ks_per_fixture": [
+    55,
+    63,
+    55
+  ],
+  "next_gate": "Compile isolated source, then eight N4 fixtures with actual noisy packed inputs and both adapters; no service or tail claim."
+}

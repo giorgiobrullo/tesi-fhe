@@ -1,0 +1,5 @@
+[build]
+target-dir = "target-a187-only"
+
+[net]
+offline = true

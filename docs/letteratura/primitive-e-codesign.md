@@ -2,14 +2,21 @@
 
 [Indice della rassegna](../../letteratura.md) · [Fonti](fonti.md) · [Repository](../../README.md)
 
-Fonti verificate al **19 settembre 2026**; raccordo aggiornato il 22 settembre.
-Il riferimento è il [runtime Head/PFKS mantenuto](../../runtime/README.md),
-con selettore corretto, anchor e pack4 adottato il 20 settembre. La rassegna
-non aggiunge prove crittografiche o misure; le sezioni A28/A29/A33
-ricostruiscono passaggi storici con evidenza propria. Per le alternative si veda
-anche [CKKS numerico, discreto e scheme switching](ckks-discreto.md).
+Le fonti collegano estrazione, confronto e selezione del
+[runtime Head/PFKS](../../runtime/README.md) alle tecniche pubblicate.
+Il selettore corretto, anchor e pack4 adottato il 20 settembre hanno
+prove locali proprie, come le revisioni A28/A29/A33 che li precedono.
+Le alternative CKKS sono nella [scheda dedicata](ckks-discreto.md);
+[versioni e letture](versioni-e-verifiche.md) delimitano le conclusioni
+bibliografiche rispetto a prove crittografiche e misure.
 
-## 5. Primitive e protocolli complementari
+## Prodotti scalari
+
+**SMOOTHIE.** [Pottier et al.](https://eprint.iacr.org/2025/1267) ottimizzano moltiplicazioni scalari e prodotti scalari TFHE con una variante del metodo a bucket di Pippenger. Il lavoro riduce estrazioni e propagazioni dei riporti su ciphertext radix mediante bucket merging, offset e bucket doubling. È prior art per il calcolo dei punteggi, ma il nostro accumulo su LWE usa già operazioni lineari: il vantaggio misurato sul radix non può essere applicato direttamente al nostro runtime. La revisione letta è dell'8 giugno 2026, distinta dai risultati del poster di marzo.
+
+<a id="5-primitive-e-protocolli-complementari"></a>
+
+## Estrazione, multi-output e selezione
 
 **Segno TFHE ad alta precisione.** Liu, Micciancio e Polyakov,
 [Large-Precision Homomorphic Sign Evaluation using FHEW/TFHE Bootstrapping](https://eprint.iacr.org/2021/1337.pdf),
@@ -93,7 +100,7 @@ far corrispondere 18 valori logici a una lookup da 16 valori. Dense encoding, LU
 La proposta A34 della rassegna iniziale riguardava la codifica exact-ID e la
 composizione nearest-ID completa. La sua menzione non è uno stato aggiornato
 dei lavori: le revisioni implementate e i relativi conteggi sono nella
-[ricostruzione storica](../risultati/storico.md).
+[ricostruzione storica](../risultati/prototipi-e-correzioni.md).
 
 L'implementazione A28 usa questa combinazione: un canale modulo 16 e il canale completo
 condividono lo stesso GLWE senza sovrapposizione dei supporti; `b0..b3` vengono estratti al margine
@@ -164,13 +171,16 @@ e riuso multi-output continuano invece nella famiglia A92/A99/A102/A104 senza
 materializzare la LUT arbitraria esponenziale. Il limite riguarda questo
 mapping letterale e non esclude costruzioni specializzate su domini più piccoli.
 
-## Dal percorso storico al runtime Head/PFKS
+<a id="dal-percorso-storico-al-runtime-headpfks"></a>
 
-Il [core selezionato](../../runtime/README.md) usa TFHE-rs 1.7, Head con
+## Integrazione nel runtime Head/PFKS
+
+Il [core selezionato](../../runtime/README.md) usa TFHE-rs 1.8.1, Head con
 correzione media, PFKS direct-window, refresh del controllo e gruppi fino a
 quattro payload. Restituisce tre cifre cifrate in base 15. La [qualifica pack4](../validazione/PACK4_VALIDATION.md)
 e il [contratto geometrico](../../runtime/REPAIR.md) documentano la revisione
-adottata. Questa integrazione ha una genealogia distinta dalla sola
+adottata sulla versione 1.7; il [pilot 1.8.1](../validazione/TFHE_181_MIGRATION.md)
+qualifica separatamente l’aggiornamento della libreria. Questa integrazione ha una genealogia distinta dalla sola
 estrazione multi-output di A29. Le fonti seguenti chiariscono quali idee sono riprese
 dalla letteratura e quali adattamenti richiedono evidenza locale.
 
@@ -223,7 +233,9 @@ contati nel percorso che il consumatore utilizza davvero.
 
 ## Common-mask e famiglie di LUT alternative
 
-**Common-mask.** Bergerat, Bonte, Curtis, Orfila, Paillier e Tap,
+### Common-mask
+
+Bergerat, Bonte, Curtis, Orfila, Paillier e Tap,
 [Sharing the Mask: TFHE Bootstrapping on Packed Messages](https://eprint.iacr.org/2025/2112),
 TCHES 2025(4), 925–971, formalizzano maschera condivisa, molteplici corpi e
 segreti matriciali, con LUT distinte e operazioni lineari private. Il modello
@@ -234,7 +246,9 @@ e il [successivo pilot Joint4](../../experiments/24_frontiere_common_mask_bgv/RE
 sono evidenze diverse; nessuna autorizza a trasferire un guadagno all'intera
 demo o a N127 senza le conversioni e le prove corrispondenti.
 
-**Tetris.** Wang et al.,
+### Tetris
+
+Wang et al.,
 [Tetris: Versatile TFHE LUT and Its Application to FHE Instruction Set Architecture](https://eprint.iacr.org/2025/1623),
 ePrint 2025/1623, ricevuto il 9 settembre 2025 e classificato preprint,
 propongono LUT GLWE, circuit bootstrap in batch e parametri adattivi.
@@ -249,30 +263,147 @@ il consumatore locale supera i controlli, ma il produttore comprensivo delle
 conversioni è più lento nel pilot. Il risultato esclude quella costruzione
 dalla demo, senza chiudere ogni variante della famiglia.
 
-**Full-domain functional bootstrapping.** Kluczniak e Schild,
+### Full-domain functional bootstrapping
+
+Kluczniak e Schild,
 [FDFB: Full Domain Functional Bootstrapping Towards Practical Fully Homomorphic Encryption](https://eprint.iacr.org/2021/1135),
 TCHES 2023, ePrint 2021/1135 rivisto il 3 gennaio 2023, trattano funzioni
 sull'intero dominio e conversioni fra rappresentazioni aritmetiche e booleane.
 Hwang, Lee, Min e Song,
 [Efficient Full Domain Functional Bootstrapping from Recursive LUT Decomposition](https://sacworkshop.org/SAC25/preproceedings/sac2025-2-paper18.pdf),
-preproceedings SAC 2025, decompongono la LUT in parti negacicliche e una parte
-full-domain ridotta, usando Extended Bootstrapping e TFHE-go. “Full-domain”,
+preproceedings SAC 2025 e [ePrint 2025/1255](https://eprint.iacr.org/2025/1255),
+decompongono una LUT generale in parti negacicliche più piccole e una parte
+full-domain ridotta. Extended Bootstrapping permette di usare chiavi con
+una dimensione dell'anello condivisa. La [scheda integrale](testi-integrali/fdfb-ricorsivo.md)
+spiega i passaggi e distingue i due confronti temporali del paper: il
+massimo 3,41× cambia anche l'uso di EBS, mentre 1,91× usa EBS su entrambi
+i metodi. La valutazione è in TFHE-go; un beneficio nel nostro selettore
+richiede adattamento e misure del circuito composto. “Full-domain”,
 “precisione elevata” e “multi-output” sono proprietà distinte. Il costo di
 un FDFB non può essere contato come quello di un PBS negaciclico ordinario.
 
-**RevoLUT.** Azogagh, Birba, Killijian, Larose-Gervais e Gambs,
+### Decomposizione di LUT grandi
+
+Belaïd, Bon e Rivain,
+[Decomposition of Large Look-Up Tables for Fast Homomorphic Evaluation](https://www.nicolasbon.com/assets/pdf/26HLUT.pdf),
+TCHES 2026(3), decompongono LUT su più cifre in piccoli campi primi usando
+PBS ordinari e riusando intermedi fra più uscite (§§3–5, pp. 5–24 del PDF
+autore). Il costo dipende anche dalle norme delle combinazioni lineari e
+dai parametri scelti, non solo dal numero di PBS. La figura 8 confronta
+target d'errore diversi per WoP-PBS e gli altri metodi (§6, pp. 26–27).
+È un precedente per il disegno delle LUT, senza un risparmio dimostrato
+nella pipeline locale; versione letta e obblighi di adattamento sono nella
+[scheda](testi-integrali/lut-decomposition.md).
+
+<a id="lut-riferimento-aggiuntivo-del-5-ottobre-2026"></a>
+
+### LUT: compromesso fra memoria e tempo
+
+Narisada, Okada, Fukushima e Nishide,
+[Time-Memory Trade-off Algorithms for Homomorphically Evaluating Look-up Table in TFHE](https://eprint.iacr.org/2024/1114),
+propongono il riuso di piccole sottotabelle. La variante LHE usa un albero
+CMux e ciphertext GSW; adattarla richiede di collegare gli input e
+contabilizzare le conversioni dalla rappresentazione LWE.
+
+La lettura è **parziale**: pp. 1–3 e parte di p. 4, introduzione e
+preliminari, con limiti dichiarati per il packing verticale. Le sezioni
+dell’algoritmo e dei benchmark non sono state ottenute dal reader; il
+download da terminale è fallito. I guadagni dell’abstract non sono quindi
+usati per stimare il tempo della nostra pipeline o proporre un port.
+Metadati ePrint: revisione 9 settembre 2024, pubblicazione WAHC 2024;
+identità col PDF editoriale non verificata.
+
+### RevoLUT
+
+Azogagh, Birba, Killijian, Larose-Gervais e Gambs,
 [RevoLUT: Rust Efficient Versatile Oblivious Look-Up-Tables](https://eprint.iacr.org/2024/1935),
 ePrint 2024/1935, revisione 20 aprile 2025, trattano LUT cifrate come array
 per accesso, ordinamento e permutazione. Il ruolo è quello di libreria di
 strutture dati cifrate, distinto da FDFB e dalla costruzione biometrica completa.
 
-## Portata della verifica delle fonti del 19 settembre
+## Bootstrapping esteso e ammortizzato
 
-Sono ora disponibili i PDF completi di Head Start, Tetris, compensazione
+<a id="sorted-bootstrapping-compatibilità-verificata-il-5-ottobre-2026"></a>
+
+### Sorted Extended Bootstrapping
+
+[Bergerat et al., ASIACRYPT 2025](https://eprint.iacr.org/2025/2214), riordinano la blind rotation di Extended Bootstrapping per evitare prodotti non necessari. Il Companion Modulus Switch favorisce questi casi e richiede una propria analisi del rumore. Questa famiglia agisce dentro il bootstrap; è diversa dalla compensazione della media e dal packing del selettore. Il codice sperimentale degli autori è disponibile, ma non è stato integrato o misurato nella pipeline della tesi.
+
+Il [codice degli autori](https://github.com/zama-ai/tfhe-rs/blob/e1f5d36224ca88991b49e38fa6791ab18a9f63d1/tfhe/src/core_crypto/fft_impl/fft64/crypto/bootstrap.rs#L1493-L1510)
+chiarisce quando si attiva il metodo. Il fattore di estensione **G** indica
+quanto la LUT è più grande del polinomio della chiave di bootstrap.
+Con G=1, gli entry point Sorted richiamano il bootstrap ordinario.
+Head e i normalizzatori correnti hanno entrambi LUT e chiave con dimensione
+polinomiale 2048: ricadono in questo caso. Il packing di tre o quattro
+cifre dentro la stessa LUT non cambia G.
+
+L'[artifact](https://github.com/zama-ai/tfhe-rs/blob/e1f5d36224ca88991b49e38fa6791ab18a9f63d1/README.md)
+usa TFHE-rs 0.8.0-alpha.2. Il suo helper riceve l'LWE originale; l'API
+corrente 1.8.1 riceve coefficienti già sottoposti a modulus switch.
+Inoltre, il Companion Modulus Switch modifica alcune rotazioni di ±1 e
+richiede un budget del rumore proprio.
+
+Quindi questa versione non offre una sostituzione diretta per accelerare
+la pipeline attuale. G>1 richiederebbe una configurazione diversa, con
+formato, chiavi e rumore da verificare. È una conclusione sulla compatibilità
+del codice: nessun port o benchmark locale è stato eseguito e nessun
+risparmio è attribuito alla baseline.
+
+<a id="bootstrap-di-un-lotto-di-messaggi--fonte-aggiunta-il-5-ottobre"></a>
+
+### Bootstrap di un lotto di messaggi
+
+Guimarães e Pereira, [Fast amortized bootstrapping with small keys and polynomial noise overhead](https://eprint.iacr.org/2025/686)
+(CCS 2025), raggruppano molti ciphertext LWE in un RLWE, eseguono il bootstrap
+del lotto e ricavano di nuovo uscite LWE. La costruzione descritta usa segreti
+sparsi e operazioni fra polinomi. Nel nostro selettore il packing porta invece
+più cifre di score, ID e soglia attraverso una stessa rotazione controllata.
+
+La tabella introduttiva separa tempo totale e tempo per messaggio, su lotti
+da 2.048 o 8.192 messaggi. Per la query da 120 candidati servono il costo del
+lotto effettivo e un raccordo di chiavi, conversioni, LUT e uscite. Il
+[README degli autori](https://github.com/antoniocgj/Fast-Amortized-Bootstrapping)
+lega i risultati a una macchina x86 con AVX-512 e VAES; elenca anche parametri
+con chiavi arbitrarie, senza dimostrare qui il raccordo alla nostra configurazione.
+
+Lettura parziale: consultate pp. 1–8 del preprint e il README. La tabella 5
+sui lotti più piccoli, le prove e i metodi sperimentali non sono stati restituiti;
+il PDF completo non è stato scaricato. È una fonte da approfondire, senza
+un miglioramento di tempo o una garanzia di correttezza trasferiti alla baseline.
+
+
+Nel [codice degli autori al commit `8938ab5`](https://github.com/antoniocgj/Fast-Amortized-Bootstrapping/blob/8938ab5bd42a80c93ed5ee4caef36efbb01bf7ef/src/sparse_amortized_bootstrap.c),
+`sab_rlwe_to_lwe_bootstrap` riceve un RLWE già preparato e una LUT condivisa,
+e scrive `in_N` ciphertext LWE, uno per coefficiente del polinomio di ingresso.
+La routine non espone un numero di messaggi richiesto: il lotto segue `in_N`,
+anche quando interessano soltanto 120 uscite. La generazione di chiavi con
+coefficienti arbitrari mantiene sparsità e vincoli sulle distanze fra
+coefficienti nonzero. Servono chiavi dedicate e conversioni verso gli ingressi
+e i consumatori della pipeline attuale.
+
+Il [benchmark allo stesso commit](https://github.com/antoniocgj/Fast-Amortized-Bootstrapping/blob/8938ab5bd42a80c93ed5ee4caef36efbb01bf7ef/main.c#L133)
+cifra direttamente tutti i coefficienti di un polinomio: non misura il
+raggruppamento dei ciphertext LWE prodotti dalla nostra pipeline. Le funzioni
+richiamate da `main` usano lotti da 2.048 a 8.192 messaggi; il test LWE da 1.024
+è presente, ma non richiamato da `main`. Il parametro `msg_prec` include il bit
+di padding: per esempio, `msg_prec = 3` ammette valori da 0 a 3, cioè due bit
+di messaggio. Il tempo misura una chiamata completa alla routine RLWE, compresi
+estrazione, repacking e key switching finale. Esclude generazione delle chiavi,
+cifratura iniziale, preparazione della LUT e verifica dei risultati. Il timer
+riporta la media di tre applicazioni consecutive della stessa LUT sullo stesso
+ciphertext, non il tempo per messaggio né tre query indipendenti. È una lettura
+statica di header, bootstrap, chiamante e timer; costi del raccordo, sicurezza
+dei parametri e tempi sul Mac restano da verificare. Nessun codice degli autori
+è stato eseguito.
+
+<a id="portata-della-verifica-delle-fonti-del-19-settembre"></a>
+
+## Ipotesi delle primitive e verifica del rumore
+
+Sono disponibili i PDF completi di Head Start, Tetris, compensazione
 media, Sharing the Mask, Chen, RevHomTrace, FDFB e RevoLUT. La
 [lettura mirata delle otto fonti](testi-integrali/tfhe.md) documenta pagine,
-versioni e condizioni. Supera i precedenti limiti d'accesso; non certifica
-tutte le prove né replica i benchmark.
+versioni e condizioni; non certifica tutte le prove né replica i benchmark.
 
 Per l'integrazione locale emergono condizioni precise: Head assume
 indipendenza fra cifrati bootstrappati e ammette cifre intermedie non canoniche;
@@ -289,4 +420,12 @@ Il PDF SAC 2025 già consultato resta una versione preproceedings. Il 22 settemb
 sono stati verificati metadati e abstract dell'[edizione pubblicata](https://doi.org/10.1007/978-3-032-10536-3_25)
 (LNCS 16207, 2026, pp. 679–699); il capitolo integrale finale non è stato
 confrontato. Le verifiche storiche conservano il loro perimetro. Riferimenti
-nelle [fonti](fonti.md) e nel [file BibTeX](aggiornamento-20260919.bib).
+nelle [fonti](fonti.md) e nel [file BibTeX](bibliografia.bib).
+
+<a id="primitive-e-verifica-del-rumore-aggiornamento-del-2-ottobre-2026"></a>
+
+**Verifica delle code del rumore.** [Ballandras, Orfila e Tap](https://eprint.iacr.org/2026/610), preprint di marzo 2026, usano importance splitting per stimare eventi troppo rari da osservare con test ordinari. Il lavoro controlla KS e modulus switch separatamente e usa altre verifiche per la blind rotation. È un metodo per verificare sperimentalmente i modelli; non sostituisce l'analisi della composizione del torneo, delle dipendenze introdotte dal riuso o della probabilità totale d'errore.
+
+La [mappa del rumore composto](../validazione/RUMORE_COMPOSTO.md) collega questi obblighi ai passaggi del runtime. Le code del paper Head Start assumono indipendenza nel modello delle estrazioni: il riuso nel torneo locale richiede una giustificazione propria.
+
+Versioni, pagine e accesso sono nel [registro delle verifiche](versioni-e-verifiche.md).

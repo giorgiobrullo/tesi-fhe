@@ -1,0 +1,73 @@
+{
+  "schema": "binary-head-stage-publication.v1",
+  "status": "STAGE_REJECTED",
+  "key_families": 1,
+  "same_family_as_G": false,
+  "planned_stages": 3,
+  "completed_stages": 1,
+  "unexecuted_stages": 2,
+  "expected": [
+    [
+      0,
+      3,
+      14
+    ],
+    [
+      0,
+      3,
+      14
+    ]
+  ],
+  "decoded": [
+    [
+      0,
+      3,
+      13
+    ],
+    [
+      0,
+      3,
+      15
+    ]
+  ],
+  "canonical": true,
+  "passed": false,
+  "comparisons_executed": 0,
+  "selector_executed": false,
+  "final_predicate_executed": false,
+  "claim": "Current scoring-plus-Head producer fails before comparison in H; no exact internal cause or historical G-family attribution.",
+  "timing_result": false,
+  "failure_rate_estimate": null,
+  "maintained_runtime_changes": 0,
+  "local_archive": "/workspace/research/tmp/current-binary-stage-20261004",
+  "binary_sha256": "13b3062c8facd098d66dc9ead406f525254ddb40328cc363c2bac202194bf98a",
+  "source_build_sha256": "e03894002a68e7b36c62e36b888796b7a07fdb675584ea6b2d319c1b7aebe168",
+  "native_exit": 101,
+  "driver_exit": 0,
+  "copied_file_origins": {
+    "rows.jsonl": "run01/rows.jsonl",
+    "COMPLETE.json": "run01/COMPLETE.json",
+    "PROTOCOL.md": "PROTOCOL.md",
+    "PROBE_PROTOCOL.md": "PROBE_PROTOCOL.md",
+    "RESULT_REVIEW.md": "root/RESULT_REVIEW.md",
+    "SOURCE_BUILD.json": "SOURCE_BUILD.json",
+    "BUILD.json": "BUILD.json",
+    "RUN.json": "RUN.json"
+  },
+  "file_sha256": {
+    "BUILD.json": "b2660f12202468e5f09c860bb9204e2bb5728e566486a3f81bf079bce763098a",
+    "COMPLETE.json": "747cc902751dbf76964bacab5863824c90832e5b172f5c2c831fbc70619155c0",
+    "PROBE_PROTOCOL.md": "d45d8d6f792047cd18f30dd78fadaa3c90fa48401da9339ae746cfb75fe4ae2e",
+    "PROTOCOL.md": "c23f036f3b28f3610f2e951c6c352bc3202f046301f53b7c2a7a215793a2aecb",
+    "RESULT_REVIEW.md": "4ce6cd4c89b2cf250c9c83f5585ecb179ef2dcb247827e9c6d2894291b4592a0",
+    "RUN.json": "4f06ac396124c1d14bbb580880ef4c4993cd663557dc88f14844b81bd2bbfc70",
+    "SOURCE_BUILD.json": "e03894002a68e7b36c62e36b888796b7a07fdb675584ea6b2d319c1b7aebe168",
+    "rows.jsonl": "d04905b0600b168527b69a8425bb22ef6a6d790499590fa712f3996d317a49eb",
+    "stages.csv": "b19328b89edc64586c297349a5a476cb4f9c0242565e9a0692dff22ce2c28379"
+  },
+  "excluded_artifacts": [
+    "keys",
+    "ciphertext envelopes",
+    "binaries"
+  ]
+}

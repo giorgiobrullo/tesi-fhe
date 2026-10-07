@@ -1,0 +1,12 @@
+{
+  "completed_stages": 1,
+  "key_families": 1,
+  "max_stages": 3,
+  "passed": false,
+  "record": "complete",
+  "schema": "head-equal-score-stage-probe.v1",
+  "status": "STAGE_REJECTED",
+  "stop_first_semantic_divergence": true,
+  "timing": false,
+  "unexecuted_stages": 2
+}

@@ -1,0 +1,1428 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling version_check v0.9.5
+   Compiling typenum v1.20.1
+   Compiling libc v0.2.189
+   Compiling serde v1.0.229
+   Compiling autocfg v1.5.1
+   Compiling bytemuck v1.25.2
+   Compiling cfg-if v1.0.4
+   Compiling crossbeam-utils v0.8.22
+   Compiling crossbeam-epoch v0.9.20
+   Compiling paste v1.0.15
+   Compiling crossbeam-deque v0.8.7
+   Compiling libm v0.2.16
+   Compiling rayon-core v1.13.0
+   Compiling find-msvc-tools v0.1.11
+   Compiling generic-array v0.14.7
+   Compiling pulp v0.22.3
+   Compiling shlex v2.0.1
+   Compiling num-traits v0.2.19
+   Compiling cc v1.4.4
+   Compiling hybrid-array v0.4.15
+   Compiling inout v0.2.2
+   Compiling crypto-common v0.2.2
+   Compiling pulp-wasm-simd-flag v0.1.1
+   Compiling either v1.18.0
+   Compiling reborrow v0.5.5
+   Compiling blake3 v1.8.7
+   Compiling heck v0.5.0
+   Compiling cpubits v0.1.1
+   Compiling dyn-stack-macros v0.1.3
+   Compiling zmij v1.0.21
+   Compiling serde_json v1.0.150
+   Compiling tfhe v1.8.1
+   Compiling arrayvec v0.7.8
+   Compiling constant_time_eq v0.4.2
+   Compiling cpufeatures v0.2.17
+   Compiling cipher v0.5.2
+   Compiling cpufeatures v0.3.0
+   Compiling getrandom v0.2.17
+   Compiling keccak v0.1.6
+   Compiling dyn-stack v0.13.2
+   Compiling syn v3.0.4
+   Compiling syn v2.0.119
+   Compiling aes v0.9.3
+   Compiling rand_core v0.6.4
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling itertools v0.15.0
+   Compiling itoa v1.0.18
+   Compiling digest v0.10.7
+   Compiling memchr v2.8.2
+   Compiling sha3 v0.10.9
+   Compiling sha2 v0.10.9
+   Compiling rayon v1.12.0
+   Compiling serde_derive v1.0.229
+   Compiling equator-macro v0.4.2
+   Compiling tfhe-versionable-derive v0.8.0
+   Compiling strum_macros v0.27.2
+   Compiling equator v0.4.2
+   Compiling strum v0.27.2
+   Compiling num-complex v0.4.6
+   Compiling aligned-vec v0.6.4
+   Compiling bincode v1.3.3
+   Compiling tfhe-versionable v0.8.0
+   Compiling tfhe-safe-serialize v0.1.1
+   Compiling tfhe-csprng v0.10.0
+   Compiling tfhe-fft v0.10.1
+   Compiling tfhe-ntt v0.7.1
+   Compiling selector_four_core_20260920 v0.1.0 (/workspace/research/tmp/current-tournament-dag-20261004/runtime/core)
+warning: unused imports: `PfksBridgeOutput` and `pfks_score_bridge`
+  --> core/src/private_argmin/legacy/mod.rs:38:18
+   |
+38 | pub use bridge::{pfks_score_bridge, PfksBridgeOutput};
+   |                  ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `a41_aligned_operation_counts`
+  --> core/src/private_argmin/legacy/mod.rs:42:5
+   |
+42 |     a41_aligned_operation_counts, a44_aligned_operation_counts, a62_aligned_operation_counts,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `cauchy_score_domain` and `clear_private_argmin`
+  --> core/src/private_argmin.rs:14:18
+   |
+14 | pub use domain::{cauchy_score_domain, clear_private_argmin, plan_private_argmin_execution};
+   |                  ^^^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `cauchy_score_domain_with_limit`
+  --> core/src/private_argmin.rs:15:25
+   |
+15 | pub(crate) use domain::{cauchy_score_domain_with_limit, plan_private_argmin_execution_with_limit};
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `legacy::*`
+  --> core/src/private_argmin.rs:16:9
+   |
+16 | pub use legacy::*;
+   |         ^^^^^^^^^
+
+warning: unused imports: `a44_parameter_fingerprint_sha256` and `validate_a44_parameter_binding_text`
+  --> core/src/private_argmin.rs:18:5
+   |
+18 |     a44_parameter_fingerprint_sha256, validate_a44_parameter_binding,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+19 |     validate_a44_parameter_binding_text,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `ClientKey`
+  --> core/src/lib.rs:30:46
+   |
+30 |     blind_rotate_assign, pbs_modulus_switch, ClientKey, ServerKey, ShortintBootstrappingKey,
+   |                                              ^^^^^^^^^
+
+warning: unused import: `tfhe::core_crypto::prelude`
+ --> core/src/public_digits.rs:6:5
+  |
+6 | use tfhe::core_crypto::prelude::*;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unreachable pattern
+ --> core/src/comparator.rs:8:9
+  |
+7 |         ShortintBootstrappingKey::Classic(key) => key,
+  |         -------------------------------------- matches all the relevant values
+8 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+  |         ^ no value can reach this
+  |
+  = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable pattern
+   --> core/src/comparator.rs:111:9
+    |
+110 |         ShortintBootstrappingKey::Classic(key) => key,
+    |         -------------------------------------- matches all the relevant values
+111 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+    |         ^ no value can reach this
+
+warning: unreachable pattern
+ --> core/src/h_untraced.rs:7:9
+  |
+6 |         ShortintBootstrappingKey::Classic(key) => key,
+  |         -------------------------------------- matches all the relevant values
+7 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+  |         ^ no value can reach this
+
+warning: unreachable pattern
+ --> core/src/m_untraced.rs:9:9
+  |
+8 |         ShortintBootstrappingKey::Classic(key) => key,
+  |         -------------------------------------- matches all the relevant values
+9 |         _ => panic!("A191 requires the pinned classic Fourier BSK"),
+  |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/input.rs:46:9
+   |
+45 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+46 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/legacy/aligned.rs:41:9
+   |
+40 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+41 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/legacy/bridge.rs:54:9
+   |
+53 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+54 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/legacy/general.rs:39:9
+   |
+38 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+39 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/legacy/scan.rs:18:13
+   |
+17 |             ShortintBootstrappingKey::Classic(key) => key.polynomial_size().0,
+   |             -------------------------------------- matches all the relevant values
+18 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |             ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/legacy/scan.rs:71:13
+   |
+70 |             ShortintBootstrappingKey::Classic(key) => key,
+   |             -------------------------------------- matches all the relevant values
+71 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |             ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/legacy/scan.rs:87:13
+   |
+86 |             ShortintBootstrappingKey::Classic(key) => key,
+   |             -------------------------------------- matches all the relevant values
+87 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |             ^ no value can reach this
+
+warning: unreachable pattern
+   --> core/src/private_argmin/legacy/scan.rs:106:13
+    |
+105 |             ShortintBootstrappingKey::Classic(key) => key,
+    |             -------------------------------------- matches all the relevant values
+106 |             _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+    |             ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/legacy/tests/fhe.rs:15:9
+   |
+14 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+15 |         _ => panic!("il test A29 richiede il BSK Classic"),
+   |         ^ no value can reach this
+
+warning: unreachable pattern
+  --> core/src/private_argmin/parameters.rs:73:9
+   |
+72 |         ShortintBootstrappingKey::Classic(key) => key,
+   |         -------------------------------------- matches all the relevant values
+73 |         _ => return Err(PrivateArgminError::UnsupportedBootstrappingKey),
+   |         ^ no value can reach this
+
+warning: constant `BOX_SIZE` is never used
+  --> core/src/lib.rs:45:7
+   |
+45 | const BOX_SIZE: usize = 128;
+   |       ^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: constant `STRICT_RADIUS` is never used
+  --> core/src/lib.rs:46:7
+   |
+46 | const STRICT_RADIUS: isize = 63;
+   |       ^^^^^^^^^^^^^
+
+warning: constant `OUTPUTS` is never used
+  --> core/src/lib.rs:47:7
+   |
+47 | const OUTPUTS: usize = 5;
+   |       ^^^^^^^
+
+warning: constant `LEFT_CONTROL` is never used
+  --> core/src/lib.rs:48:7
+   |
+48 | const LEFT_CONTROL: u64 = 4;
+   |       ^^^^^^^^^^^^
+
+warning: constant `RIGHT_CONTROL` is never used
+  --> core/src/lib.rs:49:7
+   |
+49 | const RIGHT_CONTROL: u64 = 12;
+   |       ^^^^^^^^^^^^^
+
+warning: constant `TORUS_PER_BLIND_ROTATION_DEGREE` is never used
+  --> core/src/lib.rs:51:7
+   |
+51 | const TORUS_PER_BLIND_ROTATION_DEGREE: u64 = 1 << 52;
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `PAYLOAD_DELTAS` is never used
+  --> core/src/lib.rs:52:7
+   |
+52 | const PAYLOAD_DELTAS: [u64; OUTPUTS] = [SCORE_DELTA; OUTPUTS];
+   |       ^^^^^^^^^^^^^^
+
+warning: constant `SOURCE` is never used
+  --> core/src/lib.rs:53:7
+   |
+53 | const SOURCE: &str = include_str!("../../SOURCE_DIGEST.txt");
+   |       ^^^^^^
+
+warning: constant `SCHEMA` is never used
+  --> core/src/lib.rs:54:7
+   |
+54 | const SCHEMA: &str = "head-pfks-split32-b22-mean-center.v1";
+   |       ^^^^^^
+
+warning: constant `GROUPS` is never used
+  --> core/src/lib.rs:55:7
+   |
+55 | const GROUPS: [&[usize];2]=[&[0,1,2],&[3,4]];
+   |       ^^^^^^
+
+warning: constant `OFFSETS` is never used
+  --> core/src/lib.rs:56:7
+   |
+56 | const OFFSETS: [&[usize];2]=[&[0,41,82],&[0,41]];
+   |       ^^^^^^^
+
+warning: struct `PfksParameters` is never constructed
+  --> core/src/lib.rs:62:8
+   |
+62 | struct PfksParameters {
+   |        ^^^^^^^^^^^^^^
+
+warning: enum `Origin` is never used
+  --> core/src/lib.rs:68:6
+   |
+68 | enum Origin { Leaf(usize), Merge(usize), Sentinel }
+   |      ^^^^^^
+
+warning: methods `nontrivial` and `json` are never used
+  --> core/src/lib.rs:71:8
+   |
+70 | impl Origin {
+   | ----------- methods in this implementation
+71 |     fn nontrivial(self) -> [bool;5] {
+   |        ^^^^^^^^^^
+...
+78 |     fn json(self) -> serde_json::Value {
+   |        ^^^^
+
+warning: struct `Fixture` is never constructed
+  --> core/src/lib.rs:87:8
+   |
+87 | struct Fixture {
+   |        ^^^^^^^
+
+warning: associated function `new` is never used
+   --> core/src/lib.rs:102:8
+    |
+101 | impl Fixture {
+    | ------------ associated function in this implementation
+102 |     fn new(index:usize,name:String,left:[u64;5],right:[u64;5],origins:[Origin;2]) -> Self {
+    |        ^^^
+
+warning: constant `A62_WIRE_OUTPUT_LWES` is never used
+  --> core/src/a53_scan.rs:25:11
+   |
+25 | pub const A62_WIRE_OUTPUT_LWES: usize = 2;
+   |           ^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `A62_ROOT_DELTA_LOG` is never used
+  --> core/src/a53_scan.rs:26:11
+   |
+26 | pub const A62_ROOT_DELTA_LOG: u32 = BOOL_DELTA_LOG;
+   |           ^^^^^^^^^^^^^^^^^^
+
+warning: constant `A53_CONTRACT_ID` is never used
+  --> core/src/a53_scan.rs:31:11
+   |
+31 | pub const A53_CONTRACT_ID: &str = "a62-exact-open-set-id-base15-two-p16-roots-v1";
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `A53_CONTRACT_DESCRIPTION` is never used
+  --> core/src/a53_scan.rs:32:11
+   |
+32 | pub const A53_CONTRACT_DESCRIPTION: &str =
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: constant `LOW_CODE_SLOT_LUT` is never used
+  --> core/src/a53_scan.rs:91:11
+   |
+91 | pub const LOW_CODE_SLOT_LUT: [u16; P16] = DIGIT_IDENTITY_SLOT_LUT;
+   |           ^^^^^^^^^^^^^^^^^
+
+warning: constant `HIGH_CODE_SLOT_LUT` is never used
+  --> core/src/a53_scan.rs:92:11
+   |
+92 | pub const HIGH_CODE_SLOT_LUT: [u16; P16] = [
+   |           ^^^^^^^^^^^^^^^^^^
+
+warning: constant `A53_N127_FULL_COUNTS` is never used
+   --> core/src/a53_scan.rs:223:11
+    |
+223 | pub const A53_N127_FULL_COUNTS: PrimitiveCounts = PrimitiveCounts {
+    |           ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `residue_body_to_torus` is never used
+   --> core/src/a53_scan.rs:616:8
+    |
+616 | pub fn residue_body_to_torus(body: &[u16], scale: OutputScale) -> Vec<u64> {
+    |        ^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `RoundedMaskCoefficient` is never constructed
+   --> core/src/a98.rs:143:12
+    |
+143 | pub struct RoundedMaskCoefficient {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `round_mask_coefficient` is never used
+   --> core/src/a98.rs:149:8
+    |
+149 | pub fn round_mask_coefficient(
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `halve_wrapped_rounding_correction` is never used
+   --> core/src/a98.rs:167:8
+    |
+167 | pub fn halve_wrapped_rounding_correction(correction: u64) -> u64 {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method `value` is never used
+   --> core/src/a98.rs:188:12
+    |
+180 | impl HeadStartDecompositionTerm {
+    | ------------------------------- method in this implementation
+...
+188 |     pub fn value(&self) -> u64 {
+    |            ^^^^^
+
+warning: methods `base_log` and `level_count` are never used
+   --> core/src/a98.rs:248:12
+    |
+213 | impl HeadStartDecompositionIter {
+    | ------------------------------- methods in this implementation
+...
+248 |     pub fn base_log(&self) -> DecompositionBaseLog {
+    |            ^^^^^^^^
+...
+253 |     pub fn level_count(&self) -> DecompositionLevelCount {
+    |            ^^^^^^^^^^^
+
+warning: constant `GLWE_DIMENSION` is never used
+  --> core/src/a112.rs:20:11
+   |
+20 | pub const GLWE_DIMENSION: usize = 1;
+   |           ^^^^^^^^^^^^^^
+
+warning: constant `POLYNOMIAL_SIZE` is never used
+  --> core/src/a112.rs:21:11
+   |
+21 | pub const POLYNOMIAL_SIZE: usize = 2048;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `PBS_BASE_LOG` is never used
+  --> core/src/a112.rs:24:11
+   |
+24 | pub const PBS_BASE_LOG: usize = 23;
+   |           ^^^^^^^^^^^^
+
+warning: constant `PBS_LEVEL_COUNT` is never used
+  --> core/src/a112.rs:25:11
+   |
+25 | pub const PBS_LEVEL_COUNT: usize = 1;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `PBS_LOG_MODULUS` is never used
+  --> core/src/a112.rs:26:11
+   |
+26 | pub const PBS_LOG_MODULUS: usize = 12;
+   |           ^^^^^^^^^^^^^^^
+
+warning: constant `TORUS_BITS` is never used
+  --> core/src/a112.rs:28:7
+   |
+28 | const TORUS_BITS: usize = u64::BITS as usize;
+   |       ^^^^^^^^^^
+
+warning: variants `InvalidReferenceState`, `InvalidSecretLength`, `NonBinarySecret`, and `InvalidMaskLength` are never constructed
+  --> core/src/a112.rs:39:5
+   |
+31 | pub enum A112Error {
+   |          --------- variants in this enum
+...
+39 |     InvalidReferenceState { state: u64 },
+   |     ^^^^^^^^^^^^^^^^^^^^^
+40 |     InvalidSecretLength { actual: usize },
+   |     ^^^^^^^^^^^^^^^^^^^
+41 |     NonBinarySecret { index: usize, value: u64 },
+   |     ^^^^^^^^^^^^^^^
+42 |     InvalidMaskLength { actual: usize },
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = note: `A112Error` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: struct `ReferencePatchTerm` is never constructed
+  --> core/src/a112.rs:47:12
+   |
+47 | pub struct ReferencePatchTerm {
+   |            ^^^^^^^^^^^^^^^^^^
+
+warning: method `value` is never used
+  --> core/src/a112.rs:53:12
+   |
+51 | impl ReferencePatchTerm {
+   | ----------------------- method in this implementation
+52 |     #[must_use]
+53 |     pub fn value(&self) -> u64 {
+   |            ^^^^^
+
+warning: struct `ReferencePatchIter` is never constructed
+  --> core/src/a112.rs:60:12
+   |
+60 | pub struct ReferencePatchIter {
+   |            ^^^^^^^^^^^^^^^^^^
+
+warning: associated function `new` is never used
+  --> core/src/a112.rs:67:12
+   |
+66 | impl ReferencePatchIter {
+   | ----------------------- associated function in this implementation
+67 |     pub fn new(state: u64) -> Result<Self, A112Error> {
+   |            ^^^
+
+warning: function `reference_patch_corrected_keyswitch` is never used
+   --> core/src/a112.rs:153:8
+    |
+153 | pub fn reference_patch_corrected_keyswitch(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reference_lifted_round` is never used
+   --> core/src/a112.rs:224:4
+    |
+224 | fn reference_lifted_round(value: u64) -> u64 {
+    |    ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reference_head_start_correction` is never used
+   --> core/src/a112.rs:229:4
+    |
+229 | fn reference_head_start_correction(mask: &[u64]) -> u64 {
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `reference_head_start_modulus_switch` is never used
+   --> core/src/a112.rs:244:8
+    |
+244 | pub fn reference_head_start_modulus_switch(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ComposedOutput` is never constructed
+   --> core/src/a112.rs:264:12
+    |
+264 | pub struct ComposedOutput {
+    |            ^^^^^^^^^^^^^^
+
+warning: function `validate_pbs_geometry` is never used
+   --> core/src/a112.rs:269:4
+    |
+269 | fn validate_pbs_geometry(
+    |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `run_reference_composed` is never used
+   --> core/src/a112.rs:302:8
+    |
+302 | pub fn run_reference_composed(
+    |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `run_a112_composed` is never used
+   --> core/src/a112.rs:325:8
+    |
+325 | pub fn run_a112_composed(
+    |        ^^^^^^^^^^^^^^^^^
+
+warning: function `assemble_key_consistent_large_lwe` is never used
+   --> core/src/a112.rs:351:8
+    |
+351 | pub fn assemble_key_consistent_large_lwe(
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: type alias `Lwe` is never used
+ --> core/src/wide.rs:3:10
+  |
+3 | pub type Lwe = LweCiphertextOwned<u64>;
+  |          ^^^
+
+warning: type alias `Glwe` is never used
+ --> core/src/wide.rs:4:6
+  |
+4 | type Glwe = GlweCiphertextOwned<u64>;
+  |      ^^^^
+
+warning: constant `N` is never used
+ --> core/src/wide.rs:5:7
+  |
+5 | const N: usize = 2048;
+  |       ^
+
+warning: constant `DELTA` is never used
+ --> core/src/wide.rs:6:7
+  |
+6 | const DELTA: u64 = 1 << 58;
+  |       ^^^^^
+
+warning: struct `Counts` is never constructed
+  --> core/src/wide.rs:14:12
+   |
+14 | pub struct Counts {
+   |            ^^^^^^
+
+warning: struct `Step` is never constructed
+  --> core/src/wide.rs:21:12
+   |
+21 | pub struct Step {
+   |            ^^^^
+
+warning: function `scalar` is never used
+  --> core/src/wide.rs:35:8
+   |
+35 | pub fn scalar(input: &Lwe, scalar: u64) -> Lwe {
+   |        ^^^^^^
+
+warning: function `add` is never used
+  --> core/src/wide.rs:43:8
+   |
+43 | pub fn add(a: &Lwe, b: &Lwe) -> Lwe {
+   |        ^^^
+
+warning: function `dirty_accumulator` is never used
+  --> core/src/wide.rs:49:4
+   |
+49 | fn dirty_accumulator(t: usize) -> (Glwe, u64) {
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: struct `Switch` is never constructed
+  --> core/src/wide.rs:73:8
+   |
+73 | struct Switch {
+   |        ^^^^^^
+
+warning: function `bootstrap` is never used
+  --> core/src/wide.rs:92:4
+   |
+92 | fn bootstrap(
+   |    ^^^^^^^^^
+
+warning: function `split_normalizer_pair` is never used
+   --> core/src/wide.rs:147:4
+    |
+147 | fn split_normalizer_pair(
+    |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `Result` is never constructed
+   --> core/src/wide.rs:189:12
+    |
+189 | pub struct Result {
+    |            ^^^^^^
+
+warning: function `ingress` is never used
+   --> core/src/wide.rs:196:8
+    |
+196 | pub fn ingress(input51: &Lwe, head_keys: &Keys<'_>, norm_keys: &Keys<'_>) -> Result {
+    |        ^^^^^^^
+
+warning: constant `N` is never used
+ --> core/src/head_witness.rs:6:7
+  |
+6 | const N: usize = 2048;
+  |       ^
+
+warning: function `wh` is never used
+ --> core/src/head_witness.rs:8:4
+  |
+8 | fn wh(words: &[u64]) -> String {
+  |    ^^
+
+warning: function `phase` is never used
+  --> core/src/head_witness.rs:15:4
+   |
+15 | fn phase(ct: &Lwe, secret: &[u64]) -> u64 {
+   |    ^^^^^
+
+warning: function `decode` is never used
+  --> core/src/head_witness.rs:24:4
+   |
+24 | fn decode(value: u64, log: u32) -> u64 {
+   |    ^^^^^^
+
+warning: function `close` is never used
+  --> core/src/head_witness.rs:27:4
+   |
+27 | fn close(value: u64, target: u64, log: u32) -> bool {
+   |    ^^^^^
+
+warning: function `at` is never used
+  --> core/src/head_witness.rs:30:4
+   |
+30 | fn at(body: &[u64], degree: usize) -> u64 {
+   |    ^^
+
+warning: function `node` is never used
+  --> core/src/head_witness.rs:38:4
+   |
+38 | fn node(ct: &Lwe, secret: &[u64]) -> Value {
+   |    ^^^^
+
+warning: function `witness` is never used
+  --> core/src/head_witness.rs:50:4
+   |
+50 | fn witness(step: &wide::Step, logs: &[u32], big: &[u64], small: &[u64]) -> Value {
+   |    ^^^^^^^
+
+warning: function `observe` is never used
+   --> core/src/head_witness.rs:103:8
+    |
+103 | pub fn observe(
+    |        ^^^^^^^
+
+warning: struct `Bridge` is never constructed
+ --> core/src/hybrid.rs:5:19
+  |
+5 | pub(super) struct Bridge {
+  |                   ^^^^^^
+
+warning: function `bridge` is never used
+  --> core/src/hybrid.rs:15:15
+   |
+15 | pub(super) fn bridge(
+   |               ^^^^^^
+
+warning: struct `Stage` is never constructed
+  --> core/src/comparator.rs:44:19
+   |
+44 | pub(super) struct Stage {
+   |                   ^^^^^
+
+warning: function `pbs` is never used
+   --> core/src/comparator.rs:108:4
+    |
+108 | fn pbs(name: &'static str, input: Lwe, final_control: bool, sk: &ServerKey) -> Stage {
+    |    ^^^
+
+warning: function `evaluate` is never used
+   --> core/src/comparator.rs:158:15
+    |
+158 | pub(super) fn evaluate(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> Vec<Stage> {
+    |               ^^^^^^^^
+
+warning: function `lwe` is never used
+   --> core/src/comparator.rs:184:15
+    |
+184 | pub(super) fn lwe(ct: &Lwe, secret: &LweSecretKeyView<'_, u64>) -> serde_json::Value {
+    |               ^^^
+
+warning: function `switched` is never used
+   --> core/src/comparator.rs:198:15
+    |
+198 | pub(super) fn switched(
+    |               ^^^^^^^^
+
+warning: function `observe` is never used
+   --> core/src/comparator.rs:269:15
+    |
+269 | pub(super) fn observe(
+    |               ^^^^^^^
+
+warning: function `prefix` is never used
+   --> core/src/comparator.rs:314:15
+    |
+314 | pub(super) fn prefix(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> (Vec<Stage>, Lwe) {
+    |               ^^^^^^
+
+warning: constant `POLICY` is never used
+ --> core/src/mean_center.rs:4:18
+  |
+4 | pub(super) const POLICY: &str = "MEAN_ONLY_INTEGER_CENTER";
+  |                  ^^^^^^
+
+warning: fields `original`, `stock_correction`, and `mean_correction` are never read
+  --> core/src/mean_center.rs:9:9
+   |
+ 8 | pub(super) struct Centered {
+   |                   -------- fields in this struct
+ 9 |     pub original: Lwe,
+   |         ^^^^^^^^
+10 |     pub corrected: Lwe,
+11 |     pub stock_correction: u64,
+   |         ^^^^^^^^^^^^^^^^
+12 |     pub mean_correction: u64,
+   |         ^^^^^^^^^^^^^^^
+
+warning: function `observe` is never used
+  --> core/src/mean_center.rs:29:15
+   |
+29 | pub(super) fn observe(
+   |               ^^^^^^^
+
+warning: function `at` is never used
+ --> core/src/d1.rs:5:4
+  |
+5 | fn at(poly: &[u64], degree: isize) -> u64 {
+  |    ^^
+
+warning: function `glwe_phase` is never used
+  --> core/src/d1.rs:15:4
+   |
+15 | fn glwe_phase(secret: &GlweSecretKeyOwned<u64>, ct: &Glwe) -> Vec<u64> {
+   |    ^^^^^^^^^^
+
+warning: struct `InputObservation` is never constructed
+  --> core/src/d1.rs:21:8
+   |
+21 | struct InputObservation {
+   |        ^^^^^^^^^^^^^^^^
+
+warning: function `input_observation` is never used
+  --> core/src/d1.rs:31:4
+   |
+31 | fn input_observation(
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: function `input_json` is never used
+  --> core/src/d1.rs:89:4
+   |
+89 | fn input_json(ct: &Lwe, message: u64, input: &InputObservation) -> serde_json::Value {
+   |    ^^^^^^^^^^
+
+warning: struct `Metrics` is never constructed
+  --> core/src/d1.rs:97:19
+   |
+97 | pub(super) struct Metrics {
+   |                   ^^^^^^^
+
+warning: methods `pass` and `json` are never used
+   --> core/src/d1.rs:114:12
+    |
+113 | impl Metrics {
+    | ------------ methods in this implementation
+114 |     pub fn pass(&self) -> bool {
+    |            ^^^^
+...
+120 |     pub fn json(&self) -> serde_json::Value {
+    |            ^^^^
+
+warning: struct `Trace` is never constructed
+   --> core/src/d1.rs:131:19
+    |
+131 | pub(super) struct Trace {
+    |                   ^^^^^
+
+warning: struct `Selection` is never constructed
+   --> core/src/d1.rs:144:19
+    |
+144 | pub(super) struct Selection {
+    |                   ^^^^^^^^^
+
+warning: function `select` is never used
+   --> core/src/d1.rs:161:15
+    |
+161 | pub(super) fn select(
+    |               ^^^^^^
+
+warning: function `full_input_json` is never used
+ --> core/src/split32_observer.rs:1:4
+  |
+1 | fn full_input_json(ct: &Lwe,message: u64,input: &InputObservation,big: &LweSecretKeyView<'_,u64>) -> serde_json::Value {
+  |    ^^^^^^^^^^^^^^^
+
+warning: function `glwe_json` is never used
+  --> core/src/split32_observer.rs:11:4
+   |
+11 | fn glwe_json(ct: &Glwe,phase: &[u64]) -> serde_json::Value {
+   |    ^^^^^^^^^
+
+warning: struct `Observation` is never constructed
+  --> core/src/split32_observer.rs:18:19
+   |
+18 | pub(super) struct Observation {
+   |                   ^^^^^^^^^^^
+
+warning: function `observe` is never used
+  --> core/src/split32_observer.rs:30:15
+   |
+30 | pub(super) fn observe(
+   |               ^^^^^^^
+
+warning: function `signed_cell_mask` is never used
+ --> core/src/helpers.rs:4:15
+  |
+4 | pub(super) fn signed_cell_mask(polynomial_size: PolynomialSize, virtual_center: usize) -> Poly {
+  |               ^^^^^^^^^^^^^^^^
+
+warning: function `hash_lwe` is never used
+  --> core/src/helpers.rs:27:15
+   |
+27 | pub(super) fn hash_lwe(ciphertext: &Lwe) -> String {
+   |               ^^^^^^^^
+
+warning: function `modulus_switch_degree` is never used
+  --> core/src/helpers.rs:35:15
+   |
+35 | pub(super) fn modulus_switch_degree(phase: u64) -> usize {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `centered_degree_error` is never used
+  --> core/src/helpers.rs:40:15
+   |
+40 | pub(super) fn centered_degree_error(observed: usize, expected: usize) -> isize {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `effective_rotation_degree` is never used
+  --> core/src/helpers.rs:50:15
+   |
+50 | pub(super) fn effective_rotation_degree(control: &Lwe, secret: &LweSecretKeyView<'_, u64>) -> usize {
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `emit` is never used
+  --> core/src/helpers.rs:69:15
+   |
+69 | pub(super) fn emit(value: serde_json::Value) {
+   |               ^^^^
+
+warning: function `nontrivial` is never used
+  --> core/src/helpers.rs:74:15
+   |
+74 | pub(super) fn nontrivial(ciphertext: &Lwe) -> bool {
+   |               ^^^^^^^^^^
+
+warning: function `pbs` is never used
+ --> core/src/h_untraced.rs:4:4
+  |
+4 | fn pbs(input: Lwe, final_control: bool, sk: &ServerKey) -> Lwe {
+  |    ^^^
+
+warning: function `compare` is never used
+  --> core/src/h_untraced.rs:40:4
+   |
+40 | fn compare(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> Lwe {
+   |    ^^^^^^^
+
+warning: function `select` is never used
+  --> core/src/h_untraced.rs:62:4
+   |
+62 | fn select(
+   |    ^^^^^^
+
+warning: methods `json`, `merge`, and `check` are never used
+   --> core/src/h_untraced.rs:151:12
+    |
+150 | impl Counts {
+    | ----------- methods in this implementation
+151 |     pub fn json(&self) -> serde_json::Value {
+    |            ^^^^
+...
+160 |     fn merge(&mut self, m: &hd1::Metrics) {
+    |        ^^^^^
+...
+169 |     pub fn check(&self) {
+    |            ^^^^^
+
+warning: struct `Output` is never constructed
+   --> core/src/h_untraced.rs:177:19
+    |
+177 | pub(super) struct Output { pub digits: [Lwe;2], pub counts: Counts }
+    |                   ^^^^^^
+
+warning: struct `Bridge` is never constructed
+   --> core/src/h_untraced.rs:178:19
+    |
+178 | pub(super) struct Bridge { pub tuples: Vec<[Lwe;OUTPUTS]>, pub counts: Counts }
+    |                   ^^^^^^
+
+warning: struct `TupleOutput` is never constructed
+   --> core/src/h_untraced.rs:179:19
+    |
+179 | pub(super) struct TupleOutput { pub tuple: [Lwe;OUTPUTS], pub counts: Counts }
+    |                   ^^^^^^^^^^^
+
+warning: struct `Diagnostic` is never constructed
+   --> core/src/h_untraced.rs:180:19
+    |
+180 | pub(super) struct Diagnostic { pub leaves: Vec<[Lwe;OUTPUTS]>, pub selected: TupleOutput }
+    |                   ^^^^^^^^^^
+
+warning: function `checked_domain` is never used
+   --> core/src/h_untraced.rs:182:4
+    |
+182 | fn checked_domain(templates: &[private_argmin::TemplateView<'_>]) -> private_argmin::ScoreDomain {
+    |    ^^^^^^^^^^^^^^
+
+warning: function `hybrid_bridge` is never used
+   --> core/src/h_untraced.rs:188:15
+    |
+188 | pub(super) fn hybrid_bridge(
+    |               ^^^^^^^^^^^^^
+
+warning: function `tree` is never used
+   --> core/src/h_untraced.rs:207:4
+    |
+207 | fn tree<F>(mut bridge: Bridge, bsk: &FourierLweBootstrapKeyOwned, modulus: CiphertextModulus<u64>, parallel: bool, merge: F) -> Tup...
+    |    ^^^^
+
+warning: function `reduce` is never used
+   --> core/src/h_untraced.rs:223:15
+    |
+223 | pub(super) fn reduce(
+    |               ^^^^^^
+
+warning: function `reduce_traced` is never used
+   --> core/src/h_untraced.rs:236:15
+    |
+236 | pub(super) fn reduce_traced(
+    |               ^^^^^^^^^^^^^
+
+warning: function `wire` is never used
+   --> core/src/h_untraced.rs:248:15
+    |
+248 | pub(super) fn wire(selected: TupleOutput) -> Output {
+    |               ^^^^
+
+warning: function `hybrid_endpoint` is never used
+   --> core/src/h_untraced.rs:256:15
+    |
+256 | pub(super) fn hybrid_endpoint(
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `diagnostic` is never used
+   --> core/src/h_untraced.rs:265:15
+    |
+265 | pub(super) fn diagnostic(
+    |               ^^^^^^^^^^
+
+warning: function `pbs` is never used
+ --> core/src/m_untraced.rs:6:4
+  |
+6 | fn pbs(input: Lwe, final_control: bool, sk: &ServerKey) -> Lwe {
+  |    ^^^
+
+warning: function `compare` is never used
+  --> core/src/m_untraced.rs:42:4
+   |
+42 | fn compare(left: &[Lwe], right: &[Lwe], sk: &ServerKey) -> Lwe {
+   |    ^^^^^^^
+
+warning: function `select` is never used
+  --> core/src/m_untraced.rs:64:15
+   |
+64 | pub(super) fn select(
+   |               ^^^^^^
+
+warning: function `add_merge` is never used
+   --> core/src/m_untraced.rs:120:4
+    |
+120 | fn add_merge(counts:&mut Counts,metrics:&d1::Metrics) {
+    |    ^^^^^^^^^
+
+warning: function `check` is never used
+   --> core/src/m_untraced.rs:133:15
+    |
+133 | pub(super) fn check(counts: &Counts, n: usize, mode: ThresholdMode) {
+    |               ^^^^^
+
+warning: function `reached` is never used
+   --> core/src/m_untraced.rs:146:15
+    |
+146 | pub(super) fn reached(n: usize, merges: usize) -> Counts {
+    |               ^^^^^^^
+
+warning: function `reduce` is never used
+   --> core/src/m_untraced.rs:161:4
+    |
+161 | fn reduce(server:&ServerKey,window:&LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>,mut bridge:Bridge,parallel:bool,mode:Threshol...
+    |    ^^^^^^
+
+warning: function `diagnostic` is never used
+   --> core/src/m_untraced.rs:190:15
+    |
+190 | pub(super) fn diagnostic(server:&ServerKey,window:&LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>,bridge:Bridge,parallel:bool,mo...
+    |               ^^^^^^^^^^
+
+warning: function `public_rejection` is never used
+   --> core/src/m_untraced.rs:196:15
+    |
+196 | pub(super) fn public_rejection(modulus: CiphertextModulus<u64>) -> Output {
+    |               ^^^^^^^^^^^^^^^^
+
+warning: function `endpoint` is never used
+   --> core/src/m_untraced.rs:202:15
+    |
+202 | pub(super) fn endpoint(server:&ServerKey,window:&LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>,packed:&Glwe,
+    |               ^^^^^^^^
+
+warning: struct `Diagnostic` is never constructed
+  --> core/src/wide_id.rs:25:19
+   |
+25 | pub(super) struct Diagnostic {
+   |                   ^^^^^^^^^^
+
+warning: function `diagnostic` is never used
+   --> core/src/wide_id.rs:362:15
+    |
+362 | pub(super) fn diagnostic(
+    |               ^^^^^^^^^^
+
+warning: constant `PAYLOAD_DELTAS` is never used
+  --> core/src/mixed.rs:10:7
+   |
+10 | const PAYLOAD_DELTAS: [u64; OUTPUTS] = [SCORE_DELTA; OUTPUTS];
+   |       ^^^^^^^^^^^^^^
+
+warning: function `evaluate` is never used
+   --> core/src/mixed.rs:529:8
+    |
+529 | pub fn evaluate(
+    |        ^^^^^^^^
+
+warning: function `at` is never used
+ --> core/src/hd1.rs:5:4
+  |
+5 | fn at(poly: &[u64], degree: isize) -> u64 {
+  |    ^^
+
+warning: function `glwe_phase` is never used
+  --> core/src/hd1.rs:15:4
+   |
+15 | fn glwe_phase(secret: &GlweSecretKeyOwned<u64>, ct: &Glwe) -> Vec<u64> {
+   |    ^^^^^^^^^^
+
+warning: struct `InputObservation` is never constructed
+  --> core/src/hd1.rs:21:8
+   |
+21 | struct InputObservation {
+   |        ^^^^^^^^^^^^^^^^
+
+warning: function `input_observation` is never used
+  --> core/src/hd1.rs:31:4
+   |
+31 | fn input_observation(
+   |    ^^^^^^^^^^^^^^^^^
+
+warning: struct `Metrics` is never constructed
+  --> core/src/hd1.rs:91:19
+   |
+91 | pub(super) struct Metrics {
+   |                   ^^^^^^^
+
+warning: methods `pass` and `json` are never used
+   --> core/src/hd1.rs:104:12
+    |
+103 | impl Metrics {
+    | ------------ methods in this implementation
+104 |     pub fn pass(&self) -> bool {
+    |            ^^^^
+...
+115 |     pub fn json(&self) -> serde_json::Value {
+    |            ^^^^
+
+warning: struct `Trace` is never constructed
+   --> core/src/hd1.rs:124:19
+    |
+124 | pub(super) struct Trace {
+    |                   ^^^^^
+
+warning: function `select` is never used
+   --> core/src/hd1.rs:131:15
+    |
+131 | pub(super) fn select(
+    |               ^^^^^^
+
+warning: function `trace_ingress` is never used
+   --> core/src/split.rs:154:15
+    |
+154 | pub(super) fn trace_ingress(
+    |               ^^^^^^^^^^^^^
+
+warning: constant `ROWS` is never used
+ --> core/src/key_envelope.rs:7:7
+  |
+7 | const ROWS: usize = 2049;
+  |       ^^^^
+
+warning: constant `N` is never used
+ --> core/src/key_envelope.rs:8:7
+  |
+8 | const N: usize = 2048;
+  |       ^
+
+warning: constant `ATOMS` is never used
+ --> core/src/key_envelope.rs:9:7
+  |
+9 | const ATOMS: usize = ROWS * N;
+  |       ^^^^^
+
+warning: constant `KEY_BYTES` is never used
+  --> core/src/key_envelope.rs:10:7
+   |
+10 | const KEY_BYTES: usize = 67_141_632;
+   |       ^^^^^^^^^
+
+warning: enum `Reason` is never used
+  --> core/src/key_envelope.rs:13:6
+   |
+13 | enum Reason { Geometry, BinarySecret, KeyHash, Coverage, Decryption, Internal }
+   |      ^^^^^^
+
+warning: method `public` is never used
+  --> core/src/key_envelope.rs:16:8
+   |
+15 | impl Reason {
+   | ----------- method in this implementation
+16 |     fn public(self) -> &'static str {
+   |        ^^^^^^
+
+warning: struct `Progress` is never constructed
+  --> core/src/key_envelope.rs:29:8
+   |
+29 | struct Progress {
+   |        ^^^^^^^^
+
+warning: function `scan` is never used
+  --> core/src/key_envelope.rs:39:4
+   |
+39 | fn scan(
+   |    ^^^^
+
+warning: function `observe` is never used
+  --> core/src/key_envelope.rs:87:15
+   |
+87 | pub(super) fn observe(
+   |               ^^^^^^^
+
+warning: function `diversify_template` is never used
+ --> core/src/template_permutation.rs:3:8
+  |
+3 | pub fn diversify_template(template: &mut [i64], identity: usize) {
+  |        ^^^^^^^^^^^^^^^^^^
+
+warning: function `hash_bytes` is never used
+ --> core/src/observer.rs:4:15
+  |
+4 | pub(super) fn hash_bytes(bytes: &[u8]) -> String {
+  |               ^^^^^^^^^^
+
+warning: struct `PrivateArgminTwoLweOutput` is never constructed
+   --> core/src/private_argmin/contracts.rs:142:12
+    |
+142 | pub struct PrivateArgminTwoLweOutput {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `A44PrivateArgminTwoLweOutput` is never constructed
+   --> core/src/private_argmin/contracts.rs:152:12
+    |
+152 | pub struct A44PrivateArgminTwoLweOutput {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `A62PrivateArgminOutput` is never constructed
+   --> core/src/private_argmin/contracts.rs:162:12
+    |
+162 | pub struct A62PrivateArgminOutput {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `sparse_codes`, `sparse_signed_flags`, `sparse_pair_flags`, `sparse_any_b9_zero`, `aligned_b8_zero_candidates`, and `aligned_any_b8_zero` are never read
+   --> core/src/private_argmin/contracts.rs:188:9
+    |
+177 | pub struct PrivateArgminTrace {
+    |            ------------------ fields in this struct
+...
+188 |     pub sparse_codes: Vec<Lwe>,
+    |         ^^^^^^^^^^^^
+189 |     /// Indicatori signed di peso alternato 1/3 estratti dalla stessa rotazione dei codici.
+190 |     pub sparse_signed_flags: Vec<Lwe>,
+    |         ^^^^^^^^^^^^^^^^^^^
+191 |     /// Indicatori Booleani per le coppie adiacenti, incluso l'eventuale tail dispari.
+192 |     pub sparse_pair_flags: Vec<Lwe>,
+    |         ^^^^^^^^^^^^^^^^^
+193 |     pub sparse_any_b9_zero: Option<Lwe>,
+    |         ^^^^^^^^^^^^^^^^^^
+194 |     pub aligned_b8_zero_candidates: Vec<Lwe>,
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+195 |     pub aligned_any_b8_zero: Option<Lwe>,
+    |         ^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `PrivateArgminTrace` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: variants `TwoLweRequiresAlignedUniformFastPath` and `A62RequiresAlignedUniformFastPath` are never constructed
+   --> core/src/private_argmin/contracts.rs:294:5
+    |
+251 | pub enum PrivateArgminError {
+    |          ------------------ variants in this enum
+...
+294 |     TwoLweRequiresAlignedUniformFastPath,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+295 |     A62RequiresAlignedUniformFastPath,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `PrivateArgminError` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: variant `TwoP16Digits` is never constructed
+  --> core/src/private_argmin/legacy/mod.rs:79:5
+   |
+77 | enum AlignedWireFormat {
+   |      ----------------- variant in this enum
+78 |     SingleCode,
+79 |     TwoP16Digits,
+   |     ^^^^^^^^^^^^
+   |
+   = note: `AlignedWireFormat` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `low_nibble` and `high_nibble` are never read
+  --> core/src/private_argmin/legacy/mod.rs:84:5
+   |
+83 | struct AlignedPrivateArgminOutput {
+   |        -------------------------- fields in this struct
+84 |     low_nibble: Lwe,
+   |     ^^^^^^^^^^
+85 |     high_nibble: Lwe,
+   |     ^^^^^^^^^^^
+
+warning: function `private_argmin_two_lwe` is never used
+  --> core/src/private_argmin/legacy/api.rs:28:8
+   |
+28 | pub fn private_argmin_two_lwe(
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_two_lwe_a44` is never used
+  --> core/src/private_argmin/legacy/api.rs:40:8
+   |
+40 | pub fn private_argmin_two_lwe_a44(
+   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a62` is never used
+  --> core/src/private_argmin/legacy/api.rs:60:8
+   |
+60 | pub fn private_argmin_a62(
+   |        ^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a126` is never used
+   --> core/src/private_argmin/legacy/api.rs:175:8
+    |
+175 | pub fn private_argmin_a126(
+    |        ^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a126_impl` is never used
+   --> core/src/private_argmin/legacy/api.rs:221:4
+    |
+221 | fn private_argmin_a126_impl(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_two_lwe_impl` is never used
+   --> core/src/private_argmin/legacy/api.rs:250:4
+    |
+250 | fn private_argmin_two_lwe_impl(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `private_argmin_a62_impl` is never used
+   --> core/src/private_argmin/legacy/api.rs:279:4
+    |
+279 | fn private_argmin_a62_impl(
+    |    ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `PfksBridgeOutput` is never constructed
+ --> core/src/private_argmin/legacy/bridge.rs:5:12
+  |
+5 | pub struct PfksBridgeOutput {
+  |            ^^^^^^^^^^^^^^^^
+
+warning: function `pfks_score_bridge` is never used
+  --> core/src/private_argmin/legacy/bridge.rs:39:8
+   |
+39 | pub fn pfks_score_bridge(
+   |        ^^^^^^^^^^^^^^^^^
+
+warning: function `head_pfks_score_prefix` is never used
+  --> core/src/private_argmin/score.rs:11:8
+   |
+11 | pub fn head_pfks_score_prefix(
+   |        ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `configure_level` is never used
+   --> core/src/multibit.rs:178:15
+    |
+178 | pub(super) fn configure_level(ready_merges: usize, parallel: bool) {
+    |               ^^^^^^^^^^^^^^^
+
+warning: function `maybe_pbs` is never used
+   --> core/src/multibit.rs:193:15
+    |
+193 | pub(super) fn maybe_pbs(input: &Lwe, final_control: bool) -> Option<Lwe> {
+    |               ^^^^^^^^^
+
+warning: function `record_consumer` is never used
+   --> core/src/multibit.rs:248:15
+    |
+248 | pub(super) fn record_consumer(
+    |               ^^^^^^^^^^^^^^^
+
+warning: constant `TWO` is never used
+  --> core/src/g4_dynamic.rs:19:7
+   |
+19 | const TWO: [&[usize]; 2] = [&[0, 1, 2], &[3, 4]];
+   |       ^^^
+
+warning: function `glwe_observation` is never used
+   --> core/src/g4_dynamic.rs:115:4
+    |
+115 | fn glwe_observation(ciphertext: &Glwe, secret: &GlweSecretKeyOwned<u64>) -> Value {
+    |    ^^^^^^^^^^^^^^^^
+
+warning: function `standard_address` is never used
+   --> core/src/g4_dynamic.rs:122:4
+    |
+122 | fn standard_address(input: &Lwe, secret: &LweSecretKeyOwned<u64>) -> usize {
+    |    ^^^^^^^^^^^^^^^^
+
+warning: function `pack_pfks` is never used
+   --> core/src/g4_dynamic.rs:167:4
+    |
+167 | fn pack_pfks(left: &[Lwe; 9], right: &[Lwe; 9], groups: &[&[usize]], window: &LwePrivateFunctionalPackingKeyswitchKeyOwned<u64>) ->...
+    |    ^^^^^^^^^
+
+warning: function `extract_add_back` is never used
+   --> core/src/g4_dynamic.rs:186:4
+    |
+186 | fn extract_add_back(accumulators: &[Glwe], left: &[Lwe; 9], groups: &[&[usize]]) -> [Lwe; 9] {
+    |    ^^^^^^^^^^^^^^^^
+
+warning: function `run` is never used
+   --> core/src/g4_dynamic.rs:202:15
+    |
+202 | pub(crate) fn run(
+    |               ^^^
+
+warning: `selector_four_core_20260920` (lib test) generated 203 warnings (run `cargo fix --lib -p selector_four_core_20260920 --tests` to apply 7 suggestions)
+    Finished `release` profile [optimized] target(s) in 3m 19s
+     Running unittests src/lib.rs (target/release/deps/selector_four_core_20260920-2766f73d86d24658)
+
+running 2 tests
+test dag_scheduler::tests::n120_keeps_original_pairs_ready_counts_and_promotion_clone ... ok
+test dag_scheduler::tests::reentrant_policy_restores_after_return_and_unwind ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 87 filtered out; finished in 0.00s
+

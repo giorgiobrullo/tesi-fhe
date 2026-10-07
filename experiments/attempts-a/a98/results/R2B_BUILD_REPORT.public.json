@@ -1,0 +1,49 @@
+{
+  "schema": "a98.head-start-exact-adapter.r2b-build-gate.v1",
+  "created_utc": "2026-09-03T02:46:59Z",
+  "status": "PASS_COMPILE_TEST_RELEASE_NO_KEYGEN_NO_FHE",
+  "authorization_consumed": "offline lockfile generation, one-job type-check, Rust tests, release build, and unauthorized-start fail-closed check only",
+  "isolated_target": "/tmp/a98-r2b-target.90ljld",
+  "toolchain": {
+    "rustc": "1.97.1 (8bab26f4f 2026-07-14)",
+    "cargo": "1.97.1 (c980f4866 2026-06-30)",
+    "cargo_build_jobs": 1,
+    "offline": true,
+    "locked_after_generation": true
+  },
+  "checks": {
+    "cargo_generate_lockfile": "PASS",
+    "cargo_check": "PASS",
+    "cargo_test": "PASS 4/4",
+    "cargo_build_release": "PASS",
+    "no_argument_fail_closed": "PASS exit 2 INVALID before key generation"
+  },
+  "frozen_inputs": {
+    "preregistration_sha256": "a4b7e4f22dd259aca00504a33225cfafd8eaf8346e1759ad0a66bbf4a01825fb",
+    "source_sha256": "964dd1d8c467a350ec6e2de9e1b9b7b0b3fe20f31998b2e19eb455ee04da0a54",
+    "manifest_sha256": "2b5d204f7c76988935b59d8beb0df2d6ef632c01637add2c8890953f932aef4c",
+    "lockfile_sha256": "e487fbb5c0e474bdc69d2b353dfdb7a15bc2e5920cb58dd26aa1c99ac0de5e89",
+    "lockfile_bytes": 17040,
+    "release_binary_sha256": "4c98e721ee7febc1d4259b426554b1ea7ecd449479afd3cb399dc1fdd9810cc1",
+    "release_binary_bytes": 1216992
+  },
+  "load_observations": {
+    "before_build_one_minute": 23.12,
+    "after_build_one_minute": 76.79,
+    "runtime_started": false
+  },
+  "execution": {
+    "keygen_invocations": 0,
+    "fhe_invocations": 0,
+    "blind_rotations": 0,
+    "original_r2_binary_invocations": 0,
+    "r2b_authorized_runtime_invocations": 0
+  },
+  "protected_hashes": {
+    "experiments/14_pipeline_tfhe_rs/results/ritaratura_soglia.txt": "e490b7431e3531b532d4a383e6d0d1231bb4537126ec2ec4e01eb9202f0db3ab",
+    "ultimo-meeting-transcription.md": "01e08d541287aa057441f3861e549408ec8bf1448f20ae6193fc1be8b1e87745",
+    "tmp/a38-combined-prototype/README.md": "156a35f3407a5914ea6712ad2c5e76f413f1f125bc275371e8fe6d4f7dcd4d37"
+  },
+  "next_gate": "One authorized R2B component smoke only after a fresh one-minute load at or below 24 and A99 inactive, with the frozen source, manifest, lockfile, executable and preregistration hashes supplied through the fail-closed environment.",
+  "claim_boundary": "Compilation and pure Rust tests only. No ciphertext correctness, noise sample, latency, p_fail, composed pipeline, or exact-ID result follows."
+}

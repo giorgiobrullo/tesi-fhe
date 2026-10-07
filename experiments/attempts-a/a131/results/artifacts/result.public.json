@@ -1,0 +1,514 @@
+{
+  "connected_joint_margins": [
+    {
+      "b3": 0,
+      "c": -4,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -64,
+        576
+      ],
+      "t": -4
+    },
+    {
+      "b3": 1,
+      "c": -4,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -64,
+        576
+      ],
+      "t": 2
+    },
+    {
+      "b3": 0,
+      "c": -3,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -192,
+        448
+      ],
+      "t": -3
+    },
+    {
+      "b3": 1,
+      "c": -3,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -192,
+        448
+      ],
+      "t": 3
+    },
+    {
+      "b3": 0,
+      "c": -2,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -320,
+        320
+      ],
+      "t": -2
+    },
+    {
+      "b3": 1,
+      "c": -2,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -320,
+        320
+      ],
+      "t": 4
+    },
+    {
+      "b3": 0,
+      "c": -1,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -448,
+        192
+      ],
+      "t": -1
+    },
+    {
+      "b3": 1,
+      "c": -1,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -448,
+        192
+      ],
+      "t": 5
+    },
+    {
+      "b3": 0,
+      "c": 0,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -576,
+        64
+      ],
+      "t": 0
+    },
+    {
+      "b3": 1,
+      "c": 0,
+      "expected_raw_torus": [
+        0,
+        0
+      ],
+      "safe_connected_interval": [
+        -576,
+        64
+      ],
+      "t": 6
+    },
+    {
+      "b3": 0,
+      "c": 1,
+      "expected_raw_torus": [
+        576460752303423488,
+        576460752303423488
+      ],
+      "safe_connected_interval": [
+        -63,
+        63
+      ],
+      "t": 1
+    },
+    {
+      "b3": 1,
+      "c": 1,
+      "expected_raw_torus": [
+        576460752303423488,
+        0
+      ],
+      "safe_connected_interval": [
+        -63,
+        63
+      ],
+      "t": 7
+    }
+  ],
+  "counterexample": {
+    "address": 192,
+    "b3": 0,
+    "body_torus": 864691128455135104,
+    "c": 1,
+    "coefficientwise_rounding_correction_torus": 288230376151711744,
+    "dimension": 859,
+    "displacement": 64,
+    "exact_identity_mod_q": true,
+    "expected_raw_outputs_torus": [
+      576460752303423488,
+      576460752303423488
+    ],
+    "not_a_probability_estimate": true,
+    "raw_ideal_outputs_torus": [
+      0,
+      0
+    ],
+    "scope": "synthetic post-KS small ciphertext; not a real generated key, KSK output or distribution sample",
+    "status": "COUNTEREXAMPLE_TO_PHASE_ERROR_ONLY_DETERMINISTIC_PREMISE"
+  },
+  "exact_raw_torus_word_checks_in_connected_intervals": 13328,
+  "fhe_validated": false,
+  "missing_premises": [
+    "Runtime binding of pinned source/body to actual executable, ciphertext IDs and call topology.",
+    "Correct initial candidates and positive b3 plaintexts and signed phase errors with shared IDs.",
+    "Actual small switched ciphertext, signed KS error (including remainders and row noise), and coefficientwise address.",
+    "Each raw sample error relative to the ideal value at the ACTUAL address, preserving shared BR producer.",
+    "Deterministic error bounds or justified raw joint/marginal tails for the concrete A44 custom LUT graph; no unit-tail substitution.",
+    "Every later OR, weighted-bit consumer, final refresh, A53 raw/post-offset event and terminal root obligation.",
+    "Current A126 diagnostic logs absolute big-input/sample errors but discards small secret and does not expose KS/MS witness."
+  ],
+  "noise_tail_certified": false,
+  "parameters": {
+    "N": 2048,
+    "delta": 576460752303423488,
+    "ks_base_log": 3,
+    "ks_levels": 5,
+    "q": 18446744073709551616,
+    "rotation_quantum": 4503599627370496,
+    "small_dimension": 859
+  },
+  "probability_claim": null,
+  "provenance": [
+    {
+      "coefficient_l1_only_not_a_tail_bound": 15,
+      "gallery_case": "N_ge_2_distinct_or_root",
+      "independence_assumed": false,
+      "input_bound_with_no_supplied_tails": null,
+      "input_error_expression": {
+        "b3:positive_raw": 6,
+        "initial_candidate:raw": 1,
+        "or:0:root_raw": -1,
+        "or:1:root_raw": -1,
+        "or:2:root_raw": -1,
+        "or:3:root_raw": -1,
+        "zero:0:raw": 1,
+        "zero:1:raw": 1,
+        "zero:2:raw": 1,
+        "zero:3:raw": 1
+      },
+      "raw_outputs": [
+        {
+          "degree": 0,
+          "origin": "fusion:sample0:raw",
+          "public_offset_torus": 0,
+          "shared_producer": "fusion:BR",
+          "status": "OPEN_RAW_MARGINAL"
+        },
+        {
+          "degree": 768,
+          "origin": "fusion:sample768:raw",
+          "public_offset_torus": 0,
+          "shared_producer": "fusion:BR",
+          "status": "OPEN_RAW_MARGINAL"
+        }
+      ],
+      "remaining_selection": [
+        {
+          "consumer": "zero_pbs:5",
+          "error_expression": {
+            "bit:5:weighted_raw": 1,
+            "fusion:sample0:raw": 1,
+            "fusion:sample768:raw": 1,
+            "or:4:root_raw": -1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        },
+        {
+          "consumer": "zero_pbs:6",
+          "error_expression": {
+            "bit:6:weighted_raw": -1,
+            "fusion:sample0:raw": 1,
+            "fusion:sample768:raw": 1,
+            "or:4:root_raw": -1,
+            "or:5:root_raw": -1,
+            "zero:5:raw": 1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        },
+        {
+          "consumer": "zero_pbs:7",
+          "error_expression": {
+            "bit:7:weighted_raw": -1,
+            "fusion:sample0:raw": 1,
+            "fusion:sample768:raw": 1,
+            "or:4:root_raw": -1,
+            "or:5:root_raw": -1,
+            "or:6:root_raw": -1,
+            "zero:5:raw": 1,
+            "zero:6:raw": 1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        },
+        {
+          "consumer": "final_level7_refresh",
+          "error_expression": {
+            "fusion:sample0:raw": 1,
+            "fusion:sample768:raw": 1,
+            "or:4:root_raw": -1,
+            "or:5:root_raw": -1,
+            "or:6:root_raw": -1,
+            "or:7:root_raw": -1,
+            "zero:5:raw": 1,
+            "zero:6:raw": 1,
+            "zero:7:raw": 1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        }
+      ],
+      "update_error_expression": {
+        "fusion:sample0:raw": 1,
+        "fusion:sample768:raw": 1,
+        "or:4:root_raw": -1
+      }
+    },
+    {
+      "coefficient_l1_only_not_a_tail_bound": 7,
+      "gallery_case": "N1_forwarding",
+      "independence_assumed": false,
+      "input_bound_with_no_supplied_tails": null,
+      "input_error_expression": {
+        "b3:positive_raw": 6,
+        "initial_candidate:raw": 1
+      },
+      "raw_outputs": [
+        {
+          "degree": 0,
+          "origin": "fusion:sample0:raw",
+          "public_offset_torus": 0,
+          "shared_producer": "fusion:BR",
+          "status": "OPEN_RAW_MARGINAL"
+        },
+        {
+          "degree": 768,
+          "origin": "fusion:sample768:raw",
+          "public_offset_torus": 0,
+          "shared_producer": "fusion:BR",
+          "status": "OPEN_RAW_MARGINAL"
+        }
+      ],
+      "remaining_selection": [
+        {
+          "consumer": "zero_pbs:5",
+          "error_expression": {
+            "bit:5:weighted_raw": 1,
+            "fusion:sample0:raw": 1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        },
+        {
+          "consumer": "zero_pbs:6",
+          "error_expression": {
+            "bit:6:weighted_raw": -1,
+            "fusion:sample0:raw": 1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        },
+        {
+          "consumer": "zero_pbs:7",
+          "error_expression": {
+            "bit:7:weighted_raw": -1,
+            "fusion:sample0:raw": 1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        },
+        {
+          "consumer": "final_level7_refresh",
+          "error_expression": {
+            "fusion:sample0:raw": 1
+          },
+          "status": "OPEN_KS_MS_AND_RAW_PBS"
+        }
+      ],
+      "update_error_expression": {
+        "fusion:sample0:raw": 1
+      }
+    }
+  ],
+  "runtime_attested": false,
+  "sample_conditional_interval_checks": {
+    "hypothetical_inactive_radius_321U_minus1": {
+      "interval": [
+        -320,
+        320
+      ],
+      "required_safe_interval": [
+        -320,
+        320
+      ],
+      "status": "CONDITIONALLY_SAFE"
+    },
+    "hypothetical_live_radius_64U": {
+      "interval": [
+        -64,
+        64
+      ],
+      "required_safe_interval": [
+        -63,
+        63
+      ],
+      "status": "NOT_CERTIFIED"
+    },
+    "hypothetical_live_radius_64U_minus1": {
+      "interval": [
+        -63,
+        63
+      ],
+      "required_safe_interval": [
+        -63,
+        63
+      ],
+      "status": "CONDITIONALLY_SAFE"
+    },
+    "unknown_tails": {
+      "status": "OPEN_MISSING_ERROR_PREMISES"
+    }
+  },
+  "scan_obligations": [
+    {
+      "consumer": "group_or",
+      "expression": {
+        "final_refresh:0:raw": 1,
+        "final_refresh:1:raw": 1,
+        "final_refresh:2:raw": 1,
+        "final_refresh:3:raw": 1
+      },
+      "requires": "canonical Boolean plaintexts; sum reachability; KS/MS; raw output"
+    },
+    {
+      "consumer": "local_first",
+      "expression": {
+        "final_refresh:0:raw": 4,
+        "final_refresh:1:raw": 2,
+        "final_refresh:2:raw": 1,
+        "group_flag:raw": 1
+      },
+      "requires": "actual group length and forwarding; KS/MS; raw output"
+    },
+    {
+      "consumer": "selector",
+      "expression": {
+        "local_first:raw": 1,
+        "prefix_or:raw": -4
+      },
+      "requires": "source-specific body, degree0/1024 joint address, distinct raw samples"
+    },
+    {
+      "consumer": "selector_public_offsets",
+      "expression": {
+        "selector_sample:raw": 1
+      },
+      "requires": "A93 raw reachable sets then explicit source public offsets; error unchanged"
+    },
+    {
+      "consumer": "prefix_or_and_digit_reduction",
+      "expression": "sum actual producer IDs, <=15",
+      "requires": "Boolean/digit reachability separately; preserve forwarded aliases; each KS/MS/raw output"
+    },
+    {
+      "consumer": "terminal",
+      "expression": "separate low and high root phase errors",
+      "requires": "both p16 roots decode within strict Delta/2; code=low+15*high; no one-LWE claim"
+    }
+  ],
+  "schema": "a131.a126-deterministic-margin.v1",
+  "scope": "source-pinned integer arithmetic; no compilation, FHE, key generation or timing",
+  "sources": [
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/private_argmin.rs",
+      "sha256": "6e4e83c8c3cd6133fd5df519c4aa1011c1ca9c826e0d4302cbbd6913d3bb1782"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/bin/a126_refresh_schedule_gate.rs",
+      "sha256": "7392c415bac199b5e4a531eeebe61cee772bbde917e500883597a9ab1f2d960b"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/artifacts/fused_candidate_zero_body.u64le",
+      "sha256": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/a53_scan.rs",
+      "sha256": "81752a5da894797faeecda02c4fff3ad5aba93efde60a400dd1c36304e4940a5"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/a53_scan/fhe.rs",
+      "sha256": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/gate.py",
+      "sha256": "e438bbc7129e56ecc15b84e919a0bfc557a1ce5db942d1f105dc3585e2c75f89"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/artifacts/result.json",
+      "sha256": "cb2c36d6634055390403d206a4317cba3655a51e62863f9bb40fab5c26c09349"
+    },
+    {
+      "path": "tmp/a66-a62-latency-ready-prototype/src/private_argmin.rs",
+      "sha256": "92289e44e9c26c3190ac61c16c50e0e338bc9399d19fbf9231dacd50a6c3102b"
+    },
+    {
+      "path": "tmp/a93-a84-a79-raw-projection-correction/a93_projection.py",
+      "sha256": "6eac7ae321cf41753e094b299b4c311d60642de2ecb09122dc69127abdcc3fdc"
+    },
+    {
+      "path": "tmp/a93-a84-a79-raw-projection-correction/artifacts/a93_corrected_a79_accumulators.json",
+      "sha256": "af6d26dde66e8a3e77bc0b5ddd9768e7cb79581065bb7a862e264dfb5f36d26e"
+    },
+    {
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/fft_impl/common.rs",
+      "sha256": "64768c9574e1d932610c3859dfab0a6736f023d0982457b00d6c422b92c33ac5"
+    },
+    {
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/fft_impl/fft64/crypto/bootstrap.rs",
+      "sha256": "7b39fd3c98c7958bea756109cdf8354677790071a3d17acec6d963d15efaeebe"
+    },
+    {
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/algorithms/lwe_keyswitch.rs",
+      "sha256": "6ed0aeb7f98369093a8980c4443e168859a56c9c50ee936f33f2952b4d1edfc4"
+    },
+    {
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/commons/math/decomposition/decomposer.rs",
+      "sha256": "e264a1767508953bb84111227eca216f68475d50f5fdd1762e0c004197d9eea0"
+    },
+    {
+      "path": "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-0.11.3/src/core_crypto/commons/math/decomposition/iter.rs",
+      "sha256": "410c1f8906e0d1e6e709e89e2c07649e0cf7e85534ffca4ffb55d3994c9819f1"
+    }
+  ],
+  "status": "PASS_STATIC_IDENTITIES_AND_COUNTEREXAMPLE_OPEN_RUNTIME_AND_TAILS",
+  "universal_connected_integer_margin": [
+    -63,
+    63
+  ]
+}

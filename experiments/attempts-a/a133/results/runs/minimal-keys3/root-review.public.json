@@ -1,0 +1,115 @@
+{
+  "status": "ALL_MINIMAL_WITNESS_GATES_PASS",
+  "run_id": "minimal-keys3",
+  "keysets": 3,
+  "record_counts": {
+    "case_start": 6,
+    "fusion_witness": 72,
+    "run_start": 1,
+    "summary": 1,
+    "plan": 1,
+    "case_result": 6,
+    "key_block": 3
+  },
+  "expected_record_counts": {
+    "plan": 1,
+    "run_start": 1,
+    "key_block": 3,
+    "case_start": 6,
+    "fusion_witness": 72,
+    "case_result": 6,
+    "summary": 1
+  },
+  "gates": {
+    "correctness": true,
+    "input_prerequisites": true,
+    "identities": true,
+    "actual_joint_lut": true,
+    "connected_margins": true,
+    "raw_nearest_cells": true,
+    "raw_expected_decodes": true,
+    "ledger": true,
+    "record_counts": true,
+    "source_and_binary": true,
+    "process_exit": true
+  },
+  "summary": {
+    "cases": 6,
+    "contains_secret_derived_observations": true,
+    "correctness_or_count_failures": 0,
+    "fusion_witnesses": 72,
+    "joint_connected_margin_escapes": 0,
+    "key_blocks": 3,
+    "noise_tail_status": "OPEN",
+    "observer_identity_failures": 0,
+    "raw_nearest_cell_escapes": 0,
+    "record": "summary",
+    "runtime_execution_attested": false,
+    "scope": "fused event and immediate update; no full-trace or service promotion",
+    "secret_key_bytes_persisted": false,
+    "status": "DIAGNOSTIC_COMPLETE",
+    "timed": false
+  },
+  "observed_counts": [
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    },
+    {
+      "n": 12,
+      "observed_baseline_br": 319,
+      "observed_candidate_br": 307,
+      "structural_candidate_ks": 271,
+      "structural_candidate_output_marginals": 370
+    }
+  ],
+  "expected_codes": [
+    11,
+    2,
+    11,
+    2,
+    11,
+    2
+  ],
+  "validation_sha256": "b36c35ae88d541bd2246828784054d7d04d6d52b43bcebe92f273fcc7c477089",
+  "envelope_sha256": {
+    "prepared.json": "516074819a86ac091b0fa9d40ad35cf9f29aeade5ded51f69eac73c92f05fddc",
+    "child.json": "931300b13ea51919820877d41ae58b862ffb364b20fb59769c15d1fdbd1887c2",
+    "exit.json": "14c0078bdcf3aa82e51bf4e7c2c9e9e27a81f4a8fd9a8ce6a897e251f8803635",
+    "preflight.json": "a254044e0fdba1ed79b3dab0771890c85903d1c179f13f09ec780a90aa3cf116"
+  },
+  "actual_downstream_full_trace_validated": false,
+  "formal_p_fail": null,
+  "paired_runtime": false
+}

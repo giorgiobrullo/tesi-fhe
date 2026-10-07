@@ -1,0 +1,36 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 18,
+      "data": {
+        "adapter_blind_rotation_total_s": 0.048295584,
+        "cases_expected": 14,
+        "cases_passed": 14,
+        "claim_boundary": "A98-R2B single-key component correctness smoke only; timings and all ideal-phase errors are diagnostic, and no patched-binary, p_fail, latency, composed-pipeline, or exact-ID claim follows.",
+        "consumed_output_gate": "degree_zero_extracted_lwe_and_decrypted_ramp_degree_equal_between_arms",
+        "consumed_sample_decode_matches_ideal_diagnostic": 14,
+        "direct_centered_degree_mismatch_cases": 10,
+        "fresh_keys": 1,
+        "full_glwe_correlation_model": "not_assumed",
+        "not_run": [
+          "R3_corrected_keyswitch",
+          "R4_composed_KS_to_PBS",
+          "R5_fresh_key_campaign",
+          "2048_mask_campaign",
+          "composed_p_fail",
+          "exact_ID_integration"
+        ],
+        "phase_error_cap": null,
+        "primary_adapter_equivalence_gate": "bitwise_reference_vs_adapter_pre_fft_and_post_blind_rotation",
+        "record": "summary",
+        "reference_blind_rotation_total_s": 0.048715042,
+        "stage": "A98_R2B",
+        "status": "PASS_COMPONENT_FHE_SMOKE_R2B",
+        "tie_one_cases": 8,
+        "tie_zero_cases": 6,
+        "total_wall_s": 0.534467667
+      }
+    }
+  ]
+}

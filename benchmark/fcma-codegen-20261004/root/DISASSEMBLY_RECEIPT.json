@@ -1,0 +1,21 @@
+{
+  "observed_utc": "2026-10-04T17:10:43.043247+00:00",
+  "binary_sha256": "a7276e4bccee81362779aaee551b2a559733cece450494b2e60f545d93dfc668",
+  "commands": [
+    [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/llvm-objdump",
+      "--disassemble-symbols=_neon_update",
+      "--no-show-raw-insn",
+      "-d",
+      "/workspace/research/tmp/current-fcma-codegen-20261004/bin/codegen-probe"
+    ],
+    [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/llvm-objdump",
+      "--disassemble-symbols=_fcma_update",
+      "--no-show-raw-insn",
+      "-d",
+      "/workspace/research/tmp/current-fcma-codegen-20261004/bin/codegen-probe"
+    ]
+  ],
+  "target_invoked": false
+}

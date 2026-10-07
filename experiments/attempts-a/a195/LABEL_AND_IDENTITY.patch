@@ -1,0 +1,1335 @@
+--- A192/.cargo/config.toml
++++ A195/.cargo/config.toml
+@@ -1,5 +1,5 @@
+ [build]
+-target-dir = "target-a192-only"
++target-dir = "target-a195-only"
+ 
+ [net]
+ offline = true
+--- A192/PREREGISTRATION.json
++++ A195/PREREGISTRATION.json
+@@ -1,6 +1,6 @@
+ {
+-  "schema": "a192.fixed_staged_n4.prereg.v1",
+-  "frozen_before_any_a192_runtime": true,
++  "schema": "a195.fixed_staged_n4.prereg.v1",
++  "frozen_before_any_a195_runtime": true,
+   "fixtures": [
+     {
+       "id": 0,
+@@ -169,7 +169,7 @@
+     "n4-smoke": {
+       "plan": {
+         "record": "stage_plan",
+-        "schema": "a192.precision_expansion.v1",
++        "schema": "a195.precision_expansion.v1",
+         "execution_requested": false,
+         "stage": "n4-smoke",
+         "keysets": 3,
+@@ -192,10 +192,10 @@
+       "all_complete_negative_prefixes": [
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
++          "schema": "a195.precision_expansion.v1",
+           "stage": "n4-smoke",
+           "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 1,
+           "planned_components": 6,
+           "generated_keysets": 1,
+@@ -216,10 +216,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
++          "schema": "a195.precision_expansion.v1",
+           "stage": "n4-smoke",
+           "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 2,
+           "planned_components": 6,
+           "generated_keysets": 1,
+@@ -240,10 +240,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
++          "schema": "a195.precision_expansion.v1",
+           "stage": "n4-smoke",
+           "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 3,
+           "planned_components": 6,
+           "generated_keysets": 2,
+@@ -264,10 +264,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
++          "schema": "a195.precision_expansion.v1",
+           "stage": "n4-smoke",
+           "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 4,
+           "planned_components": 6,
+           "generated_keysets": 2,
+@@ -288,10 +288,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
++          "schema": "a195.precision_expansion.v1",
+           "stage": "n4-smoke",
+           "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 5,
+           "planned_components": 6,
+           "generated_keysets": 3,
+@@ -312,10 +312,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
++          "schema": "a195.precision_expansion.v1",
+           "stage": "n4-smoke",
+           "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 6,
+           "planned_components": 6,
+           "generated_keysets": 3,
+@@ -339,7 +339,7 @@
+     "n4-full": {
+       "plan": {
+         "record": "stage_plan",
+-        "schema": "a192.precision_expansion.v1",
++        "schema": "a195.precision_expansion.v1",
+         "execution_requested": false,
+         "stage": "n4-full",
+         "keysets": 3,
+@@ -376,10 +376,10 @@
+       "all_complete_negative_prefixes": [
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 1,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -400,10 +400,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 2,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -424,10 +424,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 3,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -448,10 +448,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 4,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -472,10 +472,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 5,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -496,10 +496,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 6,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -520,10 +520,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 7,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -544,10 +544,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 8,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -568,10 +568,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 9,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -592,10 +592,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 10,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -616,10 +616,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 11,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -640,10 +640,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 12,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -664,10 +664,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 13,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -688,10 +688,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 14,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -712,10 +712,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 15,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -736,10 +736,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 16,
+           "planned_components": 48,
+           "generated_keysets": 1,
+@@ -760,10 +760,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 17,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -784,10 +784,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 18,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -808,10 +808,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 19,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -832,10 +832,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 20,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -856,10 +856,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 21,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -880,10 +880,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 22,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -904,10 +904,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 23,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -928,10 +928,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 24,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -952,10 +952,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 25,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -976,10 +976,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 26,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -1000,10 +1000,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 27,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -1024,10 +1024,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 28,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -1048,10 +1048,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 29,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -1072,10 +1072,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 30,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -1096,10 +1096,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 31,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -1120,10 +1120,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 32,
+           "planned_components": 48,
+           "generated_keysets": 2,
+@@ -1144,10 +1144,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 33,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1168,10 +1168,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 34,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1192,10 +1192,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 35,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1216,10 +1216,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 36,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1240,10 +1240,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 37,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1264,10 +1264,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 38,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1288,10 +1288,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 39,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1312,10 +1312,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 40,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1336,10 +1336,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 41,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1360,10 +1360,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 42,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1384,10 +1384,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 43,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1408,10 +1408,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 44,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1432,10 +1432,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 45,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1456,10 +1456,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 46,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1480,10 +1480,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 47,
+           "planned_components": 48,
+           "generated_keysets": 3,
+@@ -1504,10 +1504,10 @@
+         },
+         {
+           "record": "stage_summary",
+-          "schema": "a192.precision_expansion.v1",
+-          "stage": "n4-full",
+-          "gate_pass": false,
+-          "status": "A192_PREFIX_NEGATIVE",
++          "schema": "a195.precision_expansion.v1",
++          "stage": "n4-full",
++          "gate_pass": false,
++          "status": "A195_PREFIX_NEGATIVE",
+           "completed_components": 48,
+           "planned_components": 48,
+           "generated_keysets": 3,
+--- A192/REFERENCE.json
++++ A195/REFERENCE.json
+@@ -1,8 +1,8 @@
+ {
+-  "schema": "a192.nominal_schedule.v1",
++  "schema": "a195.nominal_schedule.v1",
+   "fixtures": [
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         255,
+         256,
+@@ -1258,7 +1258,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         15,
+         16,
+@@ -2514,7 +2514,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         7,
+         8,
+@@ -3770,7 +3770,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         127,
+         128,
+@@ -5026,7 +5026,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         511,
+         512,
+@@ -6282,7 +6282,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         767,
+         768,
+@@ -7538,7 +7538,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         1023,
+         1024,
+@@ -8794,7 +8794,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         1023,
+         1023,
+@@ -10050,7 +10050,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         0,
+         0,
+@@ -11306,7 +11306,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         4095,
+         4094,
+@@ -12562,7 +12562,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         0,
+         1,
+@@ -13818,7 +13818,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         256,
+         255,
+@@ -15074,7 +15074,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         128,
+         128,
+@@ -16330,7 +16330,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         2047,
+         2048,
+@@ -17586,7 +17586,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         1024,
+         1024,
+@@ -18842,7 +18842,7 @@
+       ]
+     },
+     {
+-      "schema": "a192.nominal_reference.v1",
++      "schema": "a195.nominal_reference.v1",
+       "scores": [
+         4095,
+         0,
+--- A192/component.py
++++ A195/component.py
+@@ -1,4 +1,4 @@
+-"""Independent A192 raw replay. No executable/PID attestation without a launch envelope."""
++"""Independent A195 raw replay. No executable/PID attestation without a launch envelope."""
+ 
+ import hashlib
+ import json
+@@ -8,7 +8,7 @@
+ 
+ sys.dont_write_bytecode = True
+ if not __debug__:
+-    raise RuntimeError("A192 replay requires assertions enabled")
++    raise RuntimeError("A195 replay requires assertions enabled")
+ import precision_model as m  # noqa: E402
+ from graph import Graph  # noqa: E402
+ import coefficients  # noqa: E402
+@@ -172,7 +172,7 @@
+             )
+         )
+         eq(result["br"], 71)
+-    return dict(schema="a192.nominal_reference.v1", scores=scores, arms=arms)
++    return dict(schema="a195.nominal_reference.v1", scores=scores, arms=arms)
+ 
+ 
+ def output_predicates(outputs, log, scores):
+@@ -226,7 +226,7 @@
+         plan,
+         dict(
+             record="plan",
+-            schema="a192.precision_n4.v1",
++            schema="a195.precision_n4.v1",
+             execution_requested=True,
+             fixture_index=fixture_index,
+             keyset=keyset,
+@@ -427,7 +427,7 @@
+         records[-1],
+         dict(
+             record="summary",
+-            status="A192_COMPONENT_PASS" if gate else "A192_COMPONENT_NEGATIVE",
++            status="A195_COMPONENT_PASS" if gate else "A195_COMPONENT_NEGATIVE",
+             gate_pass=gate,
+             old_a149_functional_pass=reports[0]["old_a149_functional_pass"],
+             new_joint_gate_pass=reports[1]["new_or_control_joint_pass"],
+@@ -451,7 +451,7 @@
+     )
+     eq(exit_code, 0 if gate else 1, "complete gate/actual exit linkage")
+     return dict(
+-        status="VALID_A192_FIRST_PASS" if gate else "VALID_A192_COMPONENT_NEGATIVE",
++        status="VALID_A195_FIRST_PASS" if gate else "VALID_A195_COMPONENT_NEGATIVE",
+         records=211,
+         events=205,
+         gate_pass=gate,
+--- A192/replay.py
++++ A195/replay.py
+@@ -1,11 +1,11 @@
+-"""A192 fixed staged expansion, exact prefix replay; no executable launches."""
++"""A195 fixed staged expansion, exact prefix replay; no executable launches."""
+ 
+ from pathlib import Path
+ import sys
+ 
+ sys.dont_write_bytecode = True
+ if not __debug__:
+-    raise RuntimeError("A192 requires Python assertions enabled")
++    raise RuntimeError("A195 requires Python assertions enabled")
+ import component as c  # noqa: E402 -- disable bytecode and enforce assertions first
+ 
+ HERE = Path(__file__).resolve().parent
+@@ -26,12 +26,15 @@
+ 
+ def reference():
+     return dict(
+-        schema="a192.nominal_schedule.v1",
++        schema="a195.nominal_schedule.v1",
+         fixtures=[c.nominal_reference(r["scores"]) for r in fixtures()],
+     )
+ 
+ 
+ def source_check():
++    import origin
++
++    origin.verify()
+     for manifest in ("SOURCE_ORIGINS.json", "SOURCE_PINS.json"):
+         for path, expected in parse((HERE / manifest).read_bytes())["files"].items():
+             eq(sha(path), expected, "upstream pin " + path)
+@@ -66,7 +69,7 @@
+     total = 3 * n
+     return dict(
+         record="stage_plan",
+-        schema="a192.precision_expansion.v1",
++        schema="a195.precision_expansion.v1",
+         execution_requested=execute,
+         stage=stage,
+         keysets=3,
+@@ -89,10 +92,10 @@
+     n = STAGES[stage]
+     return dict(
+         record="stage_summary",
+-        schema="a192.precision_expansion.v1",
++        schema="a195.precision_expansion.v1",
+         stage=stage,
+         gate_pass=gate,
+-        status="A192_STAGE_PASS" if gate else "A192_PREFIX_NEGATIVE",
++        status="A195_STAGE_PASS" if gate else "A195_PREFIX_NEGATIVE",
+         completed_components=completed,
+         planned_components=3 * n,
+         generated_keysets=(completed + n - 1) // n,
+@@ -194,8 +197,8 @@
+     eq(records[-1], summary(stage, count, gate))
+     eq(exit_code, 0 if gate else 1, "stage outcome/exit")
+     return dict(
+-        schema="a192.stage_replay.v1",
+-        status="VALID_A192_STAGE_PASS" if gate else "VALID_A192_PREFIX_NEGATIVE",
++        schema="a195.stage_replay.v1",
++        status="VALID_A195_STAGE_PASS" if gate else "VALID_A195_PREFIX_NEGATIVE",
+         stage=stage,
+         gate_pass=gate,
+         records=len(records),
+--- A192/run_gate.py
++++ A195/run_gate.py
+@@ -1,4 +1,4 @@
+-"""One fixed A192 first fixture, with saved root clearance and terminal checkpoint."""
++"""One fixed A195 first fixture, with saved root clearance and terminal checkpoint."""
+ 
+ import argparse
+ from datetime import datetime, timezone
+@@ -11,7 +11,7 @@
+ HERE = Path(__file__).resolve().parent
+ ROOT = HERE.parents[1]
+ SOURCE = HERE
+-BINARY = SOURCE / "target-a192-only/release/a149_padding_coefficient_gate"
++BINARY = SOURCE / "target-a195-only/release/a149_padding_coefficient_gate"
+ 
+ 
+ def run_path(stage):
+@@ -22,8 +22,8 @@
+ def environment():
+     return {
+         "RAYON_NUM_THREADS": "1",
+-        "A192_RUN_ACK": "A192_FIXED_N4_AUTHORIZED",
+-        "A192_SOURCE_SHA256": (HERE / "SOURCE_DIGEST.txt").read_text().strip(),
++        "A195_RUN_ACK": "A195_FIXED_N4_AUTHORIZED",
++        "A195_SOURCE_SHA256": (HERE / "SOURCE_DIGEST.txt").read_text().strip(),
+     }
+ 
+ 
+@@ -184,7 +184,7 @@
+         "--expected-binary-sha256=" + args.binary_sha256,
+     ]
+     prepared = dict(
+-        schema="a192.stage_envelope.v1",
++        schema="a195.stage_envelope.v1",
+         stage=args.stage,
+         predecessor=predecessor,
+         driver_pid=os.getpid(),
+--- A192/src/gate.rs
++++ A195/src/gate.rs
+@@ -1,6 +1,6 @@
+ fn main() {
+-    if let Err(error) = run192() {
+-        eprintln!("A192_ERROR: {error}");
++    if let Err(error) = run195() {
++        eprintln!("A195_ERROR: {error}");
+         std::process::exit(1);
+     }
+ }
+@@ -13,7 +13,7 @@
+     format!("{:x}", hash.finalize())
+ }
+ 
+-fn run192() -> Result<(), String> {
++fn run195() -> Result<(), String> {
+     let args: Vec<_> = std::env::args().skip(1).collect();
+     let execute = args.iter().any(|x| x == "--run");
+     let stage = args
+@@ -58,7 +58,7 @@
+     let total_components = 3 * fixture_count;
+     println!(
+         "{}",
+-        json!({"record":"stage_plan","schema":"a192.precision_expansion.v1",
++        json!({"record":"stage_plan","schema":"a195.precision_expansion.v1",
+         "execution_requested":execute,"stage":stage,"keysets":3,"fixture_indices":(0..fixture_count).collect::<Vec<_>>(),
+         "planned_components":total_components,"component_records":211,"raw_records_if_pass":2+211*total_components,
+         "pbs_if_pass":205*total_components,"ks_if_pass":205*total_components,"input_encryptions_if_pass":total_components,
+@@ -69,18 +69,18 @@
+         return Ok(());
+     }
+     let source_id = include_str!("../SOURCE_DIGEST.txt").trim();
+-    if std::env::var("A192_RUN_ACK").as_deref() != Ok("A192_FIXED_N4_AUTHORIZED")
+-        || std::env::var("A192_SOURCE_SHA256").as_deref() != Ok(source_id)
++    if std::env::var("A195_RUN_ACK").as_deref() != Ok("A195_FIXED_N4_AUTHORIZED")
++        || std::env::var("A195_SOURCE_SHA256").as_deref() != Ok(source_id)
+         || std::env::var("RAYON_NUM_THREADS").as_deref() != Ok("1")
+     {
+-        return Err("requires actual A192 source/authorization/thread environment".into());
++        return Err("requires actual A195 source/authorization/thread environment".into());
+     }
+     let binary = std::env::current_exe().map_err(|e| e.to_string())?;
+     if !binary
+         .components()
+-        .any(|x| x.as_os_str() == "target-a192-only")
++        .any(|x| x.as_os_str() == "target-a195-only")
+     {
+-        return Err("requires isolated target-a192-only".into());
++        return Err("requires isolated target-a195-only".into());
+     }
+     let binary_hash = format!(
+         "{:x}",
+@@ -124,7 +124,7 @@
+             let reference = &reference["fixtures"][fixture_index];
+             println!(
+                 "{}",
+-                json!({"record":"plan","schema":"a192.precision_n4.v1","execution_requested":true,
++                json!({"record":"plan","schema":"a195.precision_n4.v1","execution_requested":true,
+         "fixture_index":fixture_index,"keyset":keyset,"control_required":fixture_index==0,"scores":scores,"keysets":1,"arms":arms,"pbs_ks_per_arm":counts,
+         "pbs":205,"ks":205,"input_glwe_encryptions":1,"public_glwe_products":4,
+         "input_sample_extractions":8,"pbs_output_sample_extractions":205,"total_sample_extractions":213,
+@@ -134,7 +134,7 @@
+             let (full, low) = include!("input_construction.rs");
+             println!(
+                 "{}",
+-                json!({"record":"provenance","schema":"a192.precision_n4.v1","source_id":source_id,
++                json!({"record":"provenance","schema":"a195.precision_n4.v1","source_id":source_id,
+         "binary_sha256":binary_hash,"child_pid":std::process::id(),"reference_sha256":format!("{:x}",Sha256::digest(include_bytes!("../REFERENCE.json"))),
+         "params":"V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+         "parameter_fingerprint":"b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1",
+@@ -207,7 +207,7 @@
+                         small_secret.as_ref(),
+                         small_phase,
+                         address,
+-                        0,
++                        keyset,
+                     );
+                     let degrees_match_stock = event.switched.as_ref().iter().all(|x| {
+                         switch_word(*x) as usize
+@@ -310,7 +310,7 @@
+                 && event_count == 205;
+             println!(
+                 "{}",
+-                json!({"record":"summary","status":if gate {"A192_COMPONENT_PASS"} else {"A192_COMPONENT_NEGATIVE"},
++                json!({"record":"summary","status":if gate {"A195_COMPONENT_PASS"} else {"A195_COMPONENT_NEGATIVE"},
+         "gate_pass":gate,"old_a149_functional_pass":cases[0]["old_a149_functional_pass"],"new_joint_gate_pass":cases[1]["joint_gate_pass"],
+         "wrong_scale_detected":cases[2]["wrong_scale_detected"],"coefficient_events":event_count,"pbs":205,"ks":205,
+         "input_glwe_encryptions":1,"public_glwe_products":4,"input_sample_extractions":8,"pbs_output_sample_extractions":205,
+@@ -326,8 +326,8 @@
+     }
+     println!(
+         "{}",
+-        json!({"record":"stage_summary","schema":"a192.precision_expansion.v1",
+-        "stage":stage,"gate_pass":gate_all,"status":if gate_all {"A192_STAGE_PASS"} else {"A192_PREFIX_NEGATIVE"},
++        json!({"record":"stage_summary","schema":"a195.precision_expansion.v1",
++        "stage":stage,"gate_pass":gate_all,"status":if gate_all {"A195_STAGE_PASS"} else {"A195_PREFIX_NEGATIVE"},
+         "completed_components":completed,"planned_components":total_components,"generated_keysets":(completed+fixture_count-1)/fixture_count,
+         "pbs":205*completed,"ks":205*completed,"input_glwe_encryptions":completed,"public_glwe_products":4*completed,
+         "input_sample_extractions":8*completed,"pbs_output_sample_extractions":205*completed,"total_sample_extractions":213*completed,
+--- A192/synthetic.py
++++ A195/synthetic.py
+@@ -13,7 +13,7 @@
+     rows = [
+         dict(
+             record="plan",
+-            schema="a192.precision_n4.v1",
++            schema="a195.precision_n4.v1",
+             execution_requested=True,
+             fixture_index=fixture_index,
+             keyset=keyset,
+@@ -37,7 +37,7 @@
+         ),
+         dict(
+             record="provenance",
+-            schema="a192.precision_n4.v1",
++            schema="a195.precision_n4.v1",
+             source_id="SYNTHETIC_SOURCE",
+             binary_sha256=BINARY,
+             child_pid=123,
+@@ -147,7 +147,7 @@
+     rows.append(
+         dict(
+             record="summary",
+-            status="A192_COMPONENT_PASS" if gate else "A192_COMPONENT_NEGATIVE",
++            status="A195_COMPONENT_PASS" if gate else "A195_COMPONENT_NEGATIVE",
+             gate_pass=gate,
+             old_a149_functional_pass=cases[0]["old_a149_functional_pass"],
+             new_joint_gate_pass=cases[1]["joint_gate_pass"],
+--- A192/test_envelope.py
++++ A195/test_envelope.py
+@@ -24,8 +24,8 @@
+         self.artifact = "a" * 64
+         self.env = {
+             "RAYON_NUM_THREADS": "1",
+-            "A192_RUN_ACK": "A192_FIXED_N4_AUTHORIZED",
+-            "A192_SOURCE_SHA256": b.digest(self.source),
++            "A195_RUN_ACK": "A195_FIXED_N4_AUTHORIZED",
++            "A195_SOURCE_SHA256": b.digest(self.source),
+         }
+         self.patches = [
+             patch.object(b, "run_path", return_value=self.run),
+@@ -60,7 +60,7 @@
+         )
+         self.save("preflight.json", clearance)
+         p = dict(
+-            schema="a192.stage_envelope.v1",
++            schema="a195.stage_envelope.v1",
+             stage="n4-smoke",
+             predecessor={"kind": "SYNTHETIC"},
+             driver_pid=777,
+--- A192/verify.py
++++ A195/verify.py
+@@ -1,4 +1,4 @@
+-"""A192 completed private direct-child envelope plus frozen arithmetic replay."""
++"""A195 completed private direct-child envelope plus frozen arithmetic replay."""
+ 
+ import argparse
+ from datetime import datetime, timezone
+@@ -43,7 +43,7 @@
+     hashes = {name: r.sha_bytes(raw) for name, raw in data.items()}
+     clearance, p, c, w, e = [r.parse(data[name]) for name in names[:5]]
+     artifact = b.source_check()
+-    r.eq(p["schema"], "a192.stage_envelope.v1")
++    r.eq(p["schema"], "a195.stage_envelope.v1")
+     r.eq(p["stage"], stage)
+     r.eq(
+         p["predecessor"],
+@@ -123,7 +123,7 @@
+     expected_stderr = (
+         b""
+         if w["exit_code"] == 0
+-        else b"A192_ERROR: fixed expansion stopped at first complete negative; no retry\n"
++        else b"A195_ERROR: fixed expansion stopped at first complete negative; no retry\n"
+     )
+     r.eq(data["stderr.log"], expected_stderr, "exact complete diagnostic stderr")
+     return records, dict(
+@@ -180,7 +180,7 @@
+     fresh = verify(prior, "n4-smoke")
+     r.eq(saved, fresh, "saved predecessor equals exact fresh replay")
+     return dict(
+-        kind="bound_A192_smoke_pass",
++        kind="bound_A195_smoke_pass",
+         report_sha256=r.sha_bytes(captured),
+         source_id=fresh["source_id"],
+         raw_sha256=fresh["launch_binding"]["files_sha256"]["stdout.jsonl"],
+@@ -220,7 +220,7 @@
+         OSError,
+     ) as error:
+         result = dict(
+-            status="INVALID_OR_INCOMPLETE_A192_EVIDENCE",
++            status="INVALID_OR_INCOMPLETE_A195_EVIDENCE",
+             error=str(error),
+             gate_pass=False,
+         )

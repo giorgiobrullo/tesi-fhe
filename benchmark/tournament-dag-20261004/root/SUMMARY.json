@@ -1,0 +1,100 @@
+{
+  "observed_utc": "2026-10-04T21:51:41.181017+00:00",
+  "raw_sha256": "d1c0acb063aa4df7393f194953475558e601e234221bffed7b7b6f9754f54938",
+  "correct_calls": 30,
+  "cryptographic_path_calls": 28,
+  "public_allreject_calls": 2,
+  "timed_queries": 16,
+  "timed_pairs": 8,
+  "admissions_before_keygen": 5,
+  "fresh_families_used_for_valid_campaign": 1,
+  "earlier_invalid_campaign_families": 1,
+  "all_pairs_matched_counters": true,
+  "geomean_ratio": 1.091629083525934,
+  "time_change_percent": 9.16290835259339,
+  "runtime_gate_pass": false,
+  "gate": "ratio<0.97 and each family<=1.01",
+  "families": {
+    "uniform": {
+      "paired_geomean_ratio": 1.0665163008731764,
+      "time_change_percent": 6.651630087317639,
+      "barrier_mean_seconds": 1.72959669825,
+      "dag_mean_seconds": 1.846972198,
+      "pairs": 4
+    },
+    "mixed": {
+      "paired_geomean_ratio": 1.117333185647553,
+      "time_change_percent": 11.7333185647553,
+      "barrier_mean_seconds": 1.8212435105,
+      "dag_mean_seconds": 2.04141944775,
+      "pairs": 4
+    }
+  },
+  "pairs": [
+    {
+      "family": "uniform",
+      "round": 0,
+      "barrier_ns": 1807813542,
+      "dag_ns": 1849237542,
+      "ratio": 1.0229138675187555,
+      "matched_counters": true
+    },
+    {
+      "family": "uniform",
+      "round": 1,
+      "barrier_ns": 1701726958,
+      "dag_ns": 1751066666,
+      "ratio": 1.028993903967995,
+      "matched_counters": true
+    },
+    {
+      "family": "uniform",
+      "round": 2,
+      "barrier_ns": 1696584334,
+      "dag_ns": 2018946500,
+      "ratio": 1.190006567631079,
+      "matched_counters": true
+    },
+    {
+      "family": "uniform",
+      "round": 3,
+      "barrier_ns": 1712261959,
+      "dag_ns": 1768638084,
+      "ratio": 1.0329249415976776,
+      "matched_counters": true
+    },
+    {
+      "family": "mixed",
+      "round": 0,
+      "barrier_ns": 1820505750,
+      "dag_ns": 1868466167,
+      "ratio": 1.0263445567255143,
+      "matched_counters": true
+    },
+    {
+      "family": "mixed",
+      "round": 1,
+      "barrier_ns": 1787115084,
+      "dag_ns": 2337323958,
+      "ratio": 1.3078754574487157,
+      "matched_counters": true
+    },
+    {
+      "family": "mixed",
+      "round": 2,
+      "barrier_ns": 1771492541,
+      "dag_ns": 1973899250,
+      "ratio": 1.1142577257964306,
+      "matched_counters": true
+    },
+    {
+      "family": "mixed",
+      "round": 3,
+      "barrier_ns": 1905860667,
+      "dag_ns": 1985988416,
+      "ratio": 1.042042815819337,
+      "matched_counters": true
+    }
+  ],
+  "scope": "One admitted fresh-key synthetic N120 D512 campaign on localM4Max/pool16; no formalp_fail or genericdemo gain; earlierinputfailure retained separately"
+}

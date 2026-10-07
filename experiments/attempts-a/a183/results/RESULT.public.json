@@ -1,0 +1,70 @@
+{
+  "status": "PASS_BOUNDED_SCALAR_PRECISION_PREMISE",
+  "actual_fhe": false,
+  "typechecked": false,
+  "new_keysets": 0,
+  "observed_old_gate_preserved": true,
+  "observed_affine_audit_sha256": "7c562e7ace064e4b8078beece4ff1f0ec30fe0919ade4679ee1c62c0f42ffc61",
+  "tests": {
+    "count": 18,
+    "passed": 18,
+    "seconds": 0.747,
+    "ruff": "PASS",
+    "all_single_scores": 4096,
+    "two_entry_active_digit_cases": 1024,
+    "fixed_gallery_cases": 90
+  },
+  "primary_premise": {
+    "consumer_digit_log": 54,
+    "correction_sidecar_log": 51,
+    "four_pbs_per_nibble": true,
+    "new_independent_error_law_assumed": false,
+    "joint_feedback_preimages_required": true,
+    "native_high_top_final_required": true,
+    "old_sidecar_native_stays_diagnostic": true
+  },
+  "component_ledger": [
+    {
+      "n": 4,
+      "br": 71,
+      "ks": 71,
+      "refresh_each_round": 0,
+      "old_shared_br": 55,
+      "old_separate_br": 63
+    },
+    {
+      "n": 127,
+      "br": 2301,
+      "ks": 2301,
+      "refresh_each_round": 8,
+      "old_shared_br": 1777,
+      "old_separate_br": 2031
+    },
+    {
+      "n": 128,
+      "br": 2319,
+      "ks": 2319,
+      "refresh_each_round": 8,
+      "old_shared_br": 1791,
+      "old_separate_br": 2047
+    }
+  ],
+  "scope": [
+    "scalar rounding plus supplied KS/MS/output perturbations; no real coefficientwise switch",
+    "preimage conjunction stronger than final correctness",
+    "uniform1023 survivor flags only; no A53 or heterogeneous threshold exact-ID",
+    "amplitude-dependent actual PBS error law and joint tails unproved"
+  ],
+  "negative_results": [
+    "public upscale cancels exactly at consumed input",
+    "coefficientwise right shift is not native inverse scalar",
+    "uncentered refresh loses sentinel16",
+    "digitlog58 aliases required domain",
+    "unsafe feedback and high-native-only conditions fail full model gate"
+  ],
+  "root_review": {
+    "math": "clear",
+    "requested_input_alignment_fixes": "implemented and regression-tested",
+    "scalar_model_scope": "explicit"
+  }
+}

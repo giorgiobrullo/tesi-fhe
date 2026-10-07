@@ -1,0 +1,8 @@
+{
+  "schema": "archived-input-recipe.v1",
+  "input_kind": "none: metadata-only capability invocation",
+  "dependency": "pulp = 0.22.3 with std, pinned by Cargo.lock; Rust 1.98.1 aarch64-apple-darwin",
+  "key_material": "none; no FHE/key dependency in these probes",
+  "source_identity": "original SOURCE_BUILD and MANIFEST pin the code and receipt chain",
+  "scope": "code generation/capability gate"
+}

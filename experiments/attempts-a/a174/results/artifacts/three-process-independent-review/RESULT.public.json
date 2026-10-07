@@ -1,0 +1,50 @@
+{
+  "status": "INDEPENDENT_SAVED_AGGREGATE_REPLAY_PASS",
+  "saved_report_sha256": "736b43188a111b846385b72e34952d4f248334f0ea5e22e9e5b9261ca65033e9",
+  "execution_manifest_sha256": "616b83ec196d7ede915344d18c872656dc9373328b6d8d0fdac733f2152d1bd5",
+  "records": 966,
+  "record_types": {
+    "meta": 3,
+    "lane": 96,
+    "pfks_witness": 384,
+    "accumulator_witness": 48,
+    "noise_lane": 192,
+    "d1_difference_pfks": 96,
+    "d1_accumulator": 24,
+    "d1_noise_lane": 96,
+    "case": 24,
+    "summary": 3
+  },
+  "processes": [
+    {
+      "offset": 0,
+      "child_pid": 48730,
+      "exit_code": 0,
+      "postchecks_complete": true
+    },
+    {
+      "offset": 1,
+      "child_pid": 81037,
+      "exit_code": 0,
+      "postchecks_complete": true
+    },
+    {
+      "offset": 2,
+      "child_pid": 81855,
+      "exit_code": 0,
+      "postchecks_complete": true
+    }
+  ],
+  "four_arm_permutations": 24,
+  "distinct_functional_key_hashes": 6,
+  "primitive_counts": {
+    "PFKS": 672,
+    "KS": 168,
+    "BR": 168,
+    "samples": 384
+  },
+  "all_four_arm_cases_per_arm": 24,
+  "support_failures": 0,
+  "fresh_replay_equals_saved": true,
+  "scope": "sampled PFKS component only; no comparator/full-ID/tail/runtime/independence claim"
+}

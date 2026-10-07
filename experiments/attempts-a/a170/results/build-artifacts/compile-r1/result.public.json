@@ -1,0 +1,44 @@
+{
+  "status": "NATIVE_COMPILE_AND_SAFE_CLI_PASS",
+  "binary": "archive:/tmp/a170-darwin-cpu-collector/build-artifacts/compile-r1/a170-collector",
+  "binary_sha256": "add8ffa5d127d3643300b7923e15d374ffe33c878c8cadaefe82e74b7a954aa0",
+  "source_sha256": "0fb9c57004674d83bdbf0b996b8cded4277bc9a556cb237b6e3cf3aa6bc754cc",
+  "gates": [
+    {
+      "label": "noargs",
+      "args": [],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "A170 SOURCE-ONLY raw collector plan. No probes were made.\n--collect PID BIRTH_ABS SAMPLES INTERVAL_MS OUTPUT_ABSOLUTE\nrequires A170_ACK=A170_ROOT_RAW_QUALIFICATION. Units, ownership,\nfinal-accounting and runtime qualification remain OPEN.\n",
+      "stderr": ""
+    },
+    {
+      "label": "unknown",
+      "args": [
+        "--unknown"
+      ],
+      "expected_exit_code": 64,
+      "exit_code": 64,
+      "stdout": "",
+      "stderr": "Exact explicit qualification arguments required.\n"
+    },
+    {
+      "label": "missing_ack",
+      "args": [
+        "--collect",
+        "1",
+        "1",
+        "12",
+        "2000",
+        "archive:/tmp/a170-darwin-cpu-collector/build-artifacts/compile-r1/must-not-exist.jsonl"
+      ],
+      "expected_exit_code": 64,
+      "exit_code": 64,
+      "stdout": "",
+      "stderr": "Exact explicit qualification arguments required.\n"
+    }
+  ],
+  "actual_sampling": false,
+  "collector_qualified": false,
+  "completed_at_utc": "2026-09-05T06:09:21.159588+00:00"
+}

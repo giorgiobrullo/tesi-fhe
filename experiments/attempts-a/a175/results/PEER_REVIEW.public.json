@@ -1,0 +1,20 @@
+{
+  "schema": "a175-bounded-source-peer-reviews-v1",
+  "noise_review": {
+    "reviewer": "/root/audit_noise_runtime",
+    "scope": ["retained_br.rs", "actual_consumer.rs", "diagnostic insertion"],
+    "result": "No material algebra/API issue found in source review; no typechecking claim.",
+    "details": "Stock native loop orientation, raw-zero branch, mask order, external-product order, actual consumed receipt, KS remainder sign/inferred aggregate, target-one output and shared fresh candidate provenance are consistent. Owned scratch differences require actual full stock byte equality.",
+    "tests_or_native_execution": false
+  },
+  "frontier_review": {
+    "reviewer": "/root/audit_frontier",
+    "scope": ["model.py", "replay.py original-module import and complete schedule"],
+    "result": "No material arithmetic/schedule/import/rebinding defect found.",
+    "details": "Exact28states per arm, signed weight mapping, retained producer relation, actual coefficientwise receipt, separate output gates, original16104-row replay and17703-row final conjunction agree. Native candidate decode uses the half-open rounded cell. Separate launch envelope remains required.",
+    "tests_or_native_execution": false
+  },
+  "post_review_addition": "Necessary same-hash/key-domain client phase/dot consistency check and dedicated mutation test; no cryptographic source change.",
+  "remaining_gates": ["selected-bin typecheck", "release build", "private source/binary/PID/UTC/log/exit launch envelope", "first real one-key28-score gate"],
+  "actual_runtime_evidence": false
+}

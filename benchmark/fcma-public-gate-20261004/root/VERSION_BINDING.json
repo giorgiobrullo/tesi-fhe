@@ -1,0 +1,11 @@
+{
+  "observed_utc": "2026-10-04T17:43:32.111780+00:00",
+  "maintained_lock_path": "/workspace/maintained/runtime/Cargo.lock",
+  "maintained_lock_sha256": "34579017e5e1b1871532156e1596ebc2924f5a807bbf691c8410e3aade0152d7",
+  "versions": {
+    "pulp": "0.22.3",
+    "tfhe": "1.8.1",
+    "tfhe-fft": "0.10.1"
+  },
+  "interpretation": "public probe pinnedPulp matches maintained1.8.1 dependency; no version promotion or maintained file edit"
+}

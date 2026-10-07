@@ -1,0 +1,10 @@
+{
+  "started_utc": "2026-10-04T13:46:34.009420+00:00",
+  "finished_utc": "2026-10-04T13:46:54.099952+00:00",
+  "pid": 10263,
+  "returncode": 0,
+  "process_elapsed_s_not_benchmark": 20.090473457996268,
+  "source_build_sha256": "e03894002a68e7b36c62e36b888796b7a07fdb675584ea6b2d319c1b7aebe168",
+  "binary_path": "/workspace/research/tmp/current-binary-stage-20261004/bin/binary-stage-probe",
+  "binary_sha256": "13b3062c8facd098d66dc9ead406f525254ddb40328cc363c2bac202194bf98a"
+}

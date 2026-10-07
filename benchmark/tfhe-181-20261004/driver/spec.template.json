@@ -1,0 +1,69 @@
+{
+  "schema": "current-build-paired-http.v1",
+  "output": "/workspace/research/tmp/current-build-timing-20261004/results",
+  "fixtures": "/ABSOLUTE/FROZEN_N120_FIXTURES",
+  "family_count": 3,
+  "blocks": 4,
+  "measured_reps": 2,
+  "warmups_total": 3,
+  "rayon_threads": 16,
+  "compiler_identity": "REPLACE_WITH_IDENTICAL_COMPLETE_RUSTC_VERSION",
+  "arms": [
+    {
+      "name": "baseline",
+      "runtime": "/workspace/research/tmp/current-build-timing-20261004/runtimes/baseline",
+      "binary": "/workspace/research/tmp/current-build-timing-20261004/bin/baseline",
+      "build_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/build-baseline.json"
+    },
+    {
+      "name": "candidate",
+      "runtime": "/workspace/research/tmp/current-build-timing-20261004/runtimes/candidate",
+      "binary": "/workspace/research/tmp/current-build-timing-20261004/bin/candidate",
+      "build_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/build-candidate.json"
+    }
+  ],
+  "families": [
+    {
+      "id": "family1",
+      "origin": "fresh",
+      "arms": [
+        {
+          "keydir": "/workspace/research/tmp/current-build-timing-20261004/keys/family1/baseline",
+          "keygen_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/keygen-family1-baseline.json"
+        },
+        {
+          "keydir": "/workspace/research/tmp/current-build-timing-20261004/keys/family1/candidate",
+          "keygen_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/keygen-family1-candidate.json"
+        }
+      ]
+    },
+    {
+      "id": "family2",
+      "origin": "fresh",
+      "arms": [
+        {
+          "keydir": "/workspace/research/tmp/current-build-timing-20261004/keys/family2/baseline",
+          "keygen_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/keygen-family2-baseline.json"
+        },
+        {
+          "keydir": "/workspace/research/tmp/current-build-timing-20261004/keys/family2/candidate",
+          "keygen_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/keygen-family2-candidate.json"
+        }
+      ]
+    },
+    {
+      "id": "family3",
+      "origin": "fresh",
+      "arms": [
+        {
+          "keydir": "/workspace/research/tmp/current-build-timing-20261004/keys/family3/baseline",
+          "keygen_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/keygen-family3-baseline.json"
+        },
+        {
+          "keydir": "/workspace/research/tmp/current-build-timing-20261004/keys/family3/candidate",
+          "keygen_receipt": "/workspace/research/tmp/current-build-timing-20261004/logs/keygen-family3-candidate.json"
+        }
+      ]
+    }
+  ]
+}

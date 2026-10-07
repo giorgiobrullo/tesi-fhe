@@ -1,0 +1,142 @@
+[
+  {
+    "name": "U-left-inclusive",
+    "score_left": 15,
+    "score_right": 16,
+    "tau_left": 15,
+    "tau_right": 15,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 17
+  },
+  {
+    "name": "U-right-inclusive",
+    "score_left": 256,
+    "score_right": 255,
+    "tau_left": 255,
+    "tau_right": 255,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 83
+  },
+  {
+    "name": "U-left-reject",
+    "score_left": 16,
+    "score_right": 17,
+    "tau_left": 15,
+    "tau_right": 15,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 0
+  },
+  {
+    "name": "U-right-reject",
+    "score_left": 257,
+    "score_right": 256,
+    "tau_left": 255,
+    "tau_right": 255,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 0
+  },
+  {
+    "name": "U-tie-inclusive",
+    "score_left": 255,
+    "score_right": 255,
+    "tau_left": 255,
+    "tau_right": 255,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 17
+  },
+  {
+    "name": "U-tie-reject",
+    "score_left": 256,
+    "score_right": 256,
+    "tau_left": 255,
+    "tau_right": 255,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 0
+  },
+  {
+    "name": "U-zero-inclusive",
+    "score_left": 0,
+    "score_right": 1,
+    "tau_left": 0,
+    "tau_right": 0,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 17
+  },
+  {
+    "name": "M-losing-pass",
+    "score_left": 15,
+    "score_right": 16,
+    "tau_left": 14,
+    "tau_right": 16,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 0
+  },
+  {
+    "name": "M-tied-later-pass",
+    "score_left": 255,
+    "score_right": 255,
+    "tau_left": 254,
+    "tau_right": 255,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 0
+  },
+  {
+    "name": "M-left-inclusive",
+    "score_left": 256,
+    "score_right": 257,
+    "tau_left": 256,
+    "tau_right": 4095,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 17
+  },
+  {
+    "name": "M-right-inclusive",
+    "score_left": 16,
+    "score_right": 15,
+    "tau_left": 0,
+    "tau_right": 15,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 83
+  },
+  {
+    "name": "M-below-domain-ID0",
+    "score_left": 0,
+    "score_right": 1,
+    "tau_left": 0,
+    "tau_right": 1,
+    "id_left": 0,
+    "id_right": 83,
+    "expected": 0
+  },
+  {
+    "name": "M-right-reject-loser-pass",
+    "score_left": 257,
+    "score_right": 256,
+    "tau_left": 4095,
+    "tau_right": 255,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 0
+  },
+  {
+    "name": "M-high-inclusive",
+    "score_left": 4094,
+    "score_right": 4095,
+    "tau_left": 4094,
+    "tau_right": 4095,
+    "id_left": 17,
+    "id_right": 83,
+    "expected": 17
+  }
+]

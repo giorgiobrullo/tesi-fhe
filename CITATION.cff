@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: >-
+  Se usi questi programmi o risultati, cita la repository e indica
+  il commit o la versione del pacchetto sperimentale utilizzato.
+type: software
+title: "Tesi-FHE: identificazione facciale con query cifrata"
+authors:
+  - family-names: Brullo
+    given-names: Giorgio
+repository-code: "https://github.com/giorgiobrullo/tesi-fhe"
+abstract: >-
+  Software e materiali sperimentali per lo studio dell'identificazione
+  facciale con query cifrata: rappresentazioni biometriche, decisione
+  esatta 0/ID, prototipi FHE, risultati e tentativi scartati.
+keywords:
+  - fully homomorphic encryption
+  - face identification
+  - TFHE

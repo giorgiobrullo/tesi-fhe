@@ -1,0 +1,21 @@
+{
+  "schema": "a192.fixed_n4_fixtures.v1",
+  "fixtures": [
+    {"id": 0, "name": "original_discriminator", "scores": [255,256,254,4095]},
+    {"id": 1, "name": "low_carry15", "scores": [15,16,14,4095]},
+    {"id": 2, "name": "low_carry7", "scores": [7,8,6,4095]},
+    {"id": 3, "name": "middle_carry127", "scores": [127,128,126,4095]},
+    {"id": 4, "name": "top_carry511", "scores": [511,512,510,4095]},
+    {"id": 5, "name": "top_carry767", "scores": [767,768,766,4095]},
+    {"id": 6, "name": "threshold_carry1023", "scores": [1023,1024,1022,4095]},
+    {"id": 7, "name": "accepted_threshold_tie", "scores": [1023,1023,1024,4095]},
+    {"id": 8, "name": "all_zero", "scores": [0,0,0,0]},
+    {"id": 9, "name": "all_reject_extremes", "scores": [4095,4094,1024,2048]},
+    {"id": 10, "name": "zero_minimum", "scores": [0,1,2,4095]},
+    {"id": 11, "name": "low_and_middle_ties", "scores": [256,255,256,255]},
+    {"id": 12, "name": "middle_ties", "scores": [128,128,127,127]},
+    {"id": 13, "name": "rejected_top_carries", "scores": [2047,2048,3071,3072]},
+    {"id": 14, "name": "all_rejected_threshold", "scores": [1024,1024,1024,1024]},
+    {"id": 15, "name": "zero_maximum_tie", "scores": [4095,0,4095,0]}
+  ]
+}

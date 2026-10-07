@@ -1,0 +1,47 @@
+# Gate Docker isolato dello snapshot A33. Il contesto e' la radice del repository, ma il crate
+# compilato proviene esclusivamente dalla copia congelata sotto tmp/a33-aligned-sparse-2026-09-02.
+FROM rust:1-bookworm AS build
+WORKDIR /src
+
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/Cargo.toml ./Cargo.toml
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/Cargo.lock ./Cargo.lock
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/lib.rs ./src/lib.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs ./src/private_argmin.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs ./src/bin/varco_demo.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/a33_full_validation.rs ./src/bin/a33_full_validation.rs
+COPY tmp/a33-aligned-sparse-2026-09-02/source/experiments/14_pipeline_tfhe_rs/src/bin/a33_sparse_residual_trace.rs ./src/bin/a33_sparse_residual_trace.rs
+RUN cargo build --locked --release --bin varco_demo
+
+COPY tmp/a33-docker-gate-2026-09-02/Dockerfile.server ./gate/Dockerfile.server
+COPY tmp/a33-docker-gate-2026-09-02/docker-compose.e2e.yml ./gate/docker-compose.e2e.yml
+COPY tmp/a33-docker-gate-2026-09-02/run_gate.py ./gate/run_gate.py
+COPY tmp/a33-docker-gate-2026-09-02/frozen-inputs.sha256 ./gate/frozen-inputs.sha256
+COPY tmp/a33-aligned-sparse-2026-09-02/README.md ./snapshot/README.md
+COPY tmp/a33-aligned-sparse-2026-09-02/inputs-before.sha256 ./snapshot/inputs-before.sha256
+COPY tmp/a33-aligned-sparse-2026-09-02/binaries.sha256 ./snapshot/binaries.sha256
+COPY tmp/a33-aligned-sparse-2026-09-02/source/benchmark/demo_e2e.py ./gate/frozen_demo_e2e.py
+RUN sha256sum \
+      Cargo.toml \
+      Cargo.lock \
+      src/bin/varco_demo.rs \
+      src/bin/a33_full_validation.rs \
+      src/bin/a33_sparse_residual_trace.rs \
+      src/lib.rs \
+      src/private_argmin.rs \
+      gate/Dockerfile.server \
+      gate/docker-compose.e2e.yml \
+      gate/run_gate.py \
+      gate/frozen-inputs.sha256 \
+      gate/frozen_demo_e2e.py \
+      snapshot/README.md \
+      snapshot/inputs-before.sha256 \
+      snapshot/binaries.sha256 \
+      target/release/varco_demo \
+      > /src/build-provenance.sha256
+
+FROM debian:bookworm-slim
+COPY --from=build /src/target/release/varco_demo /usr/local/bin/varco_demo
+COPY --from=build /src/build-provenance.sha256 /usr/local/share/tesi-fhe/build-provenance.sha256
+ENV DIM=512 SOGLIA=4 PORTA=9000
+EXPOSE 9000
+CMD ["/bin/sh", "-c", "exec /usr/local/bin/varco_demo serve $PORTA $DIM $SOGLIA"]

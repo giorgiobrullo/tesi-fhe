@@ -1,0 +1,14 @@
+{
+  "status": "PASS_SOURCE_STATIC_SYNTHETIC_ONLY",
+  "tests": 25,
+  "test_wall_seconds": 1.883,
+  "test_log_sha256": "6e563171c95680806050b381225f5c0cea6c9760218519598afd0a3f67384eb5",
+  "ruff": "PASS",
+  "noargs_launcher": "PLAN_ONLY_NO_CHILD",
+  "noargs_verifier": "PLAN_ONLY_READ_ONLY_VERIFIER",
+  "simulated_child_only": true,
+  "actual_process_probe": false,
+  "native_build_or_binary_execution": false,
+  "real_fhe_run": false,
+  "actual_a171_logs_inspected": false
+}

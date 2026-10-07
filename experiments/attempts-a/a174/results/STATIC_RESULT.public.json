@@ -1,0 +1,13 @@
+{
+  "status": "PASS_SOURCE_STATIC_SYNTHETIC_ONLY",
+  "tests": 44,
+  "test_wall_seconds": 1.847,
+  "test_log_sha256": "028827d3804cb96de55e75306b0fd47fff9079fc7d31b19d7f010990dac4e900",
+  "ruff": "PASS",
+  "safe_launcher_plan": true,
+  "safe_verifier_plan": true,
+  "actual_later_process_launched": false,
+  "actual_later_output_inspected": false,
+  "crypto_or_process_probe": false,
+  "source_audit_sha256": "0a39a864bcaef570010eb3f4a70b9265a38b36b60bd039ae6e1c1f8d131375fd"
+}

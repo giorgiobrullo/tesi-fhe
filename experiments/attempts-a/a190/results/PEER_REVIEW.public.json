@@ -1,0 +1,33 @@
+{
+  "schema": "a190-source-peer-review-v1",
+  "execution_performed_by_reviewers": false,
+  "reviews": [
+    {
+      "reviewer": "audit_findings",
+      "scope": "persistent recurrence, exact U8 ordinary slice, shared prepared input interface",
+      "outcome": "no material source defect found",
+      "limits": "no compile, execution or complete replay review"
+    },
+    {
+      "reviewer": "audit_findings",
+      "scope": "private launcher and terminal record binding",
+      "outcome": "no material lifecycle or false-promotion defect found; explicit cwd and saved status distinctions incorporated",
+      "limits": "no native execution or actual logs"
+    },
+    {
+      "reviewer": "root",
+      "scope": "weights, input origin and affine phase consistency",
+      "outcome": "positive b2 weight and fresh-preparation/no-U8-extraction boundary confirmed; missing same-key phase identities identified and corrected before freeze",
+      "corrections": [
+        "ordinary weighted input, zero sum, candidate recurrence, OR sum phase identities",
+        "CM update_big_sum, z_input, update_input, root pair sum and any_big_sum phase identities",
+        "actual root/egress lane extractions and pre-KS any_big_sum retained",
+        "nine coherent all-alias phase/mask-dot counterfeit regressions reject"
+      ],
+      "limits": "source review only; final compile and fresh-key gate remain pending"
+    }
+  ],
+  "key_membership_attested": false,
+  "primitive_call_membership_attested": false,
+  "actual_runtime_evidence_inherited": false
+}

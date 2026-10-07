@@ -1,0 +1,9 @@
+{
+  "schema": "a186-review-status-v1",
+  "root_design_review": "Accepted sign composition and requested exact raw preimages/actual coefficientwise support, IDDelta56 passthrough and absent upstream bridge scope; these are materialized",
+  "independent_final_arithmetic_review_complete": false,
+  "requested_reviewer": "audit_noise_runtime",
+  "reviewer_response": "Available after source freeze; do not hold freeze solely for reviewer",
+  "source_freeze_does_not_authorize_runtime": true,
+  "actual_runtime": false
+}

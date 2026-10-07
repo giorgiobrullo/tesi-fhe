@@ -1,0 +1,16 @@
+{
+  "schema": "a171.peer-review.v1",
+  "reviewer": "/root/audit_noise_runtime",
+  "mode": "read-only source, no tests/builds/runtime logs",
+  "producer_review": "No material sign, add-back, actual-MS, window, API-shape or count defect found. Same actual window key and correlated difference/left error retained.",
+  "replay_review": "Found missing native integer bounds on raw correction and per-term contributions; other read-through found no material sign/weight/control-projection issue.",
+  "canonical_domain_correction": "Exact u64/int phase and exact u64/i64 contribution checks added before arithmetic. Three +2^64 mutation cases reject in final 13-test suite.",
+  "remaining_evidence_limits": [
+    "No Rust type/API check or FHE run",
+    "No independent durable launch envelope yet",
+    "Client phases/secret-weighted aggregates are not key-membership attestation",
+    "PFKS row aggregate error is inferred, not independently row-measured",
+    "No noise probability, variance dominance or timing claim"
+  ],
+  "post_correction_read_only_review": "Reviewer confirmed native phase/per-term u64/i64 fix closes the +Q gap; no further material D1 arithmetic, control/source projection or scope issue found. Reviewer did not execute tests or inspect runtime data."
+}

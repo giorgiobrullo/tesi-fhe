@@ -1,0 +1,21 @@
+{
+  "actual_a44_p_fail": null,
+  "actual_post_ks_freshness_proved": false,
+  "artifact_sha256": {
+    "body-dependence-and-bias.json": "9395a9ddaeb27b881da16fe567320333b325c5eef985129fdd6d1c4fe2b211d8",
+    "conditional-native-bounds.json": "6e6f4b6ef05df7ab5b7c66ee19286f7ff57e2b6db601f8b5551695e0bb505112",
+    "uniform-marginals-correlation-counterexample.json": "e1f2ad09acdf9bdbb0fdb89423aff322060f092295974eeca1bc96d6a18cf25b"
+  },
+  "exact_tiny_law_bound_comparisons": 126,
+  "ideal_randomness_model": true,
+  "network": false,
+  "numeric_conditional_upper_bounds": {},
+  "phase_noise_budget_for_actual_a44_proved": false,
+  "process_inspection_or_signals": false,
+  "rust_build_or_fhe": false,
+  "source_pins": 8,
+  "staging_note": "Initial Ruff check found ambiguous one-letter names and one unused import; corrected before any math test failure.",
+  "status": "STATIC_FRESH_MASK_LAW_AND_RIGOROUS_CONDITIONAL_BOUND_PASS",
+  "test_output": "test_body_residue_dependence_and_lattice_bias (test_law.FreshMask) ... ok\ntest_exact_convolution_and_bit_variance (test_law.FreshMask) ... ok\ntest_full_native_mask_enumeration_matches_residue_law (test_law.FreshMask) ... ok\ntest_lift_wrap_is_not_failure_or_variance_identity (test_law.FreshMask) ... ok\ntest_native_size_bound_is_nontrivial_and_exactly_rounded (test_law.FreshMask) ... ok\ntest_rigorous_bounds_cover_exact_tiny_noise_laws (test_law.FreshMask) ... ok\ntest_same_phase_marginal_but_dependence_changes_law (test_law.FreshMask) ... ok\ntest_source_geometry_and_old_ms_identity (test_law.FreshMask) ... ok\ntest_uniform_marginals_do_not_supply_joint_freshness (test_law.FreshMask) ... ok\ntest_weight_cap_and_independent_phase_budget (test_law.FreshMask) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.220s\n\nOK\n",
+  "tests_run": 10
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "a171-independent-execution-peer-review-v1",
+  "scope": "source-only; no tests or runtime logs",
+  "files": {
+    "tmp/a171-pfks-d1-runtime-gate/execution-readiness/MANIFEST.json": "4b7aa7267fd8ddb4a4331f472e549057053d8f8fe83c8946f6e81a5da64f2c5c",
+    "tmp/a171-pfks-d1-runtime-gate/execution-readiness/binding.py": "169e9ccf2896d0251bfb0634c8d097bf942d9d1a36e3209d07156b32270d2b53",
+    "tmp/a171-pfks-d1-runtime-gate/execution-readiness/run_gate.py": "c7958b4f5b02a6bb3c98257c7f3e7a2c628f161b92a6823e2ee848958d6378de",
+    "tmp/a171-pfks-d1-runtime-gate/execution-readiness/verify.py": "dea386bda24734cb5137e3653996486b43978c4d90fa1dcbe60ae7264afb90d8",
+    "tmp/a171-pfks-d1-runtime-gate/execution-readiness/test_execution.py": "4b48546cd1e41a692022f48ae4b19affd4c19a0fcdb9367b4bcc65c4596e0350",
+    "tmp/a173-bit2-consumer-region-audit/derive.py": "3c92f50e109f758f65402f47276ad14b9fb74616abebe00910804624a6101932",
+    "tmp/a173-bit2-consumer-region-audit/README.md": "dc4c19ef83b944556d8c22981fc0bb683bb84426ec42384e4f36bc752fa9dd31",
+    "tmp/a173-bit2-consumer-region-audit/RESULT.json": "eda93ef7416fd703c27a70b926b60cd5737b785913829a68d76e155cc7c00909",
+    "tmp/a173-bit2-consumer-region-audit/SOURCE_PINS.json": "2460ce590289c2b454d4c0016b5d06c5014f5c1dd7c4999bb149e51c10c8ea03",
+    "tmp/a173-bit2-consumer-region-audit/MANIFEST.json": "3600dec6e840c1b7609fdc03b880b1fb60ef1c29f1cdb2578eb53585c2018f00"
+  },
+  "a171_execution_frozen_leaf_checks": {
+    "CHECK_HISTORY.json": true,
+    "PEER_REVIEW.json": true,
+    "PLAN.json": true,
+    "READINESS.json": true,
+    "README.md": true,
+    "SOURCE_VERIFICATION.json": true,
+    "STATIC_RESULT.json": true,
+    "STATIC_TESTS.log": true,
+    "binding.py": true,
+    "run_gate.py": true,
+    "test_execution.py": true,
+    "verify.py": true
+  },
+  "a171_execution_leaf_count": 12,
+  "actual_runtime_inspected": false,
+  "tests_executed": false
+}

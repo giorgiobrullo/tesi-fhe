@@ -1,0 +1,113 @@
+{
+  "status": "PRESERVED_FIRST_NEGATIVE_AFFINE_IDENTITIES_CHECKED",
+  "pins": 21,
+  "records": 355,
+  "coefficient_events": 346,
+  "coefficient_closure_failures": 0,
+  "arms": [
+    {
+      "arm": "canonical_shared",
+      "original_gate_pass": false,
+      "native_failure_count": 4,
+      "native_failure_fields": [
+        [
+          "low51",
+          2
+        ],
+        [
+          "low51",
+          3
+        ],
+        [
+          "middle51",
+          0
+        ],
+        [
+          "middle51",
+          3
+        ]
+      ],
+      "first_wrong_lut_stage": "ingress/0/middle.low3",
+      "first_input_affine_identity_checked": true,
+      "native_failure_affine_identities_checked": true,
+      "exact_public_upscale_same_consumed_input": null,
+      "all_native_msb_outputs_pass": true,
+      "final_flags_pass": true
+    },
+    {
+      "arm": "canonical_separate",
+      "original_gate_pass": false,
+      "native_failure_count": 2,
+      "native_failure_fields": [
+        [
+          "low51",
+          0
+        ],
+        [
+          "middle51",
+          3
+        ]
+      ],
+      "first_wrong_lut_stage": "middle_round.mask/2",
+      "first_input_affine_identity_checked": true,
+      "native_failure_affine_identities_checked": true,
+      "exact_public_upscale_same_consumed_input": true,
+      "all_native_msb_outputs_pass": true,
+      "final_flags_pass": false
+    },
+    {
+      "arm": "padding_shared",
+      "original_gate_pass": false,
+      "native_failure_count": 4,
+      "native_failure_fields": [
+        [
+          "low51",
+          2
+        ],
+        [
+          "low51",
+          3
+        ],
+        [
+          "middle51",
+          0
+        ],
+        [
+          "middle51",
+          3
+        ]
+      ],
+      "first_wrong_lut_stage": "ingress/0/middle.low3",
+      "first_input_affine_identity_checked": true,
+      "native_failure_affine_identities_checked": true,
+      "exact_public_upscale_same_consumed_input": null,
+      "all_native_msb_outputs_pass": true,
+      "final_flags_pass": true
+    },
+    {
+      "arm": "padding_separate",
+      "original_gate_pass": false,
+      "native_failure_count": 2,
+      "native_failure_fields": [
+        [
+          "low51",
+          0
+        ],
+        [
+          "middle51",
+          3
+        ]
+      ],
+      "first_wrong_lut_stage": "middle_round.mask/2",
+      "first_input_affine_identity_checked": true,
+      "native_failure_affine_identities_checked": true,
+      "exact_public_upscale_same_consumed_input": true,
+      "all_native_msb_outputs_pass": true,
+      "final_flags_pass": false
+    }
+  ],
+  "old_result_reinterpreted": false,
+  "new_error_law_inferred": false,
+  "new_runtime_counterfactual": false,
+  "secret_membership_independently_attested": false
+}

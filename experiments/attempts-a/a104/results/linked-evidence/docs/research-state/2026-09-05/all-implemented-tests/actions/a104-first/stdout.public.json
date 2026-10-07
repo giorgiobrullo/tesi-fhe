@@ -1,0 +1,27 @@
+{
+  "schema": "saved-controlled-pass-public-result.v1",
+  "records": [
+    {
+      "source_line": 670,
+      "data": {
+        "record": "RESULT",
+        "status": "PASS_SAMPLED_COMPONENT_ARMS_REPORTED_SEPARATELY",
+        "auto_parameter_sets": "23x1|10x4|8x5|7x6",
+        "fresh_keysets_per_parameter_set": 1,
+        "trials_per_keyset": 1,
+        "wall_s": 0.641942,
+        "cross_arm_pairing": true,
+        "cross_parameter_pairing": false,
+        "causal_cross_parameter_comparison_allowed": false,
+        "tie_first_decision_encrypted": false,
+        "reject0_and_id_payloads_exercised": true,
+        "encrypted_control_br_included": false,
+        "root_fhe_included": false,
+        "full_selector_proven": false,
+        "full_tournament_proven": false,
+        "composed_pfail_proven": false,
+        "runtime_frontier_promoted": false
+      }
+    }
+  ]
+}

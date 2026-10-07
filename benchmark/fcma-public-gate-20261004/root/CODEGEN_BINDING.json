@@ -1,0 +1,103 @@
+{
+  "binary_sha256": "0ef735eec45191d0236c2f51978a3fe7572f95d995d40ead71ce82525f0dd485",
+  "same_hot_loop_static_counts_as_Z": true,
+  "wrappers": {
+    "NEON": {
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/llvm-objdump",
+        "--disassemble-symbols=_neon_update",
+        "--no-show-raw-insn",
+        "-d",
+        "/workspace/research/tmp/current-fcma-public-gate-20261004/bin/public-gate"
+      ],
+      "loops": [
+        {
+          "start": "0x100003500",
+          "end": "0x100003534",
+          "static_instructions": 14,
+          "floating_opcodes": [
+            "fmul.2d",
+            "fmla.2d"
+          ]
+        },
+        {
+          "start": "0x100003548",
+          "end": "0x10000357c",
+          "static_instructions": 14,
+          "floating_opcodes": [
+            "fmul.2d",
+            "fmla.2d"
+          ]
+        },
+        {
+          "start": "0x100003584",
+          "end": "0x1000035bc",
+          "static_instructions": 15,
+          "floating_opcodes": [
+            "fmla.2d",
+            "fmla.2d"
+          ]
+        },
+        {
+          "start": "0x1000035d0",
+          "end": "0x100003608",
+          "static_instructions": 15,
+          "floating_opcodes": [
+            "fmla.2d",
+            "fmla.2d"
+          ]
+        }
+      ],
+      "assembly_sha256": "3926aba2b070827ba6fcff8359b3b1c43b9f7bdabcf25eb782c1888c76961436"
+    },
+    "FCMA": {
+      "command": [
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/llvm-objdump",
+        "--disassemble-symbols=_fcma_update",
+        "--no-show-raw-insn",
+        "-d",
+        "/workspace/research/tmp/current-fcma-public-gate-20261004/bin/public-gate"
+      ],
+      "loops": [
+        {
+          "start": "0x1000033a4",
+          "end": "0x1000033c4",
+          "static_instructions": 9,
+          "floating_opcodes": [
+            "fcmla.2d",
+            "fcmla.2d"
+          ]
+        },
+        {
+          "start": "0x1000033d4",
+          "end": "0x1000033f4",
+          "static_instructions": 9,
+          "floating_opcodes": [
+            "fcmla.2d",
+            "fcmla.2d"
+          ]
+        },
+        {
+          "start": "0x1000033fc",
+          "end": "0x10000341c",
+          "static_instructions": 9,
+          "floating_opcodes": [
+            "fcmla.2d",
+            "fcmla.2d"
+          ]
+        },
+        {
+          "start": "0x10000342c",
+          "end": "0x10000344c",
+          "static_instructions": 9,
+          "floating_opcodes": [
+            "fcmla.2d",
+            "fcmla.2d"
+          ]
+        }
+      ],
+      "assembly_sha256": "dfbf56f8fae114ad6db2b7e5edc7aba598fa310f6740f22515e915ca593ca851"
+    }
+  },
+  "scope": "read-only symbols; no arithmetic/timing"
+}

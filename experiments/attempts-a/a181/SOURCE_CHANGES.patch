@@ -1,0 +1,1456 @@
+--- frozen-a178/collector.c
++++ a181/collector.c
+@@ -1,8 +1,9 @@
+-/* A178 raw observer, not a qualified CPU-attribution monitor. No process launch,
++/* A181 raw observer, not a qualified CPU-attribution monitor. No process launch,
+  * signal, reap, tree discovery or tick-to-CPU-nanosecond conversion. */
+ #define _DARWIN_C_SOURCE 1
+ #include "arm_clock.h"
+ #include "source_identity.h"
++#include "ipc.h"
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <inttypes.h>
+@@ -60,153 +61,211 @@
+         a->pbi_start_tvusec == b->pbi_start_tvusec;
+ }
+ 
++static FILE *f;
++static mach_timebase_info_data_t tb;
++static mach_port_t host;
++static uint64_t pid, birth, parent, written, protocol_seq;
++static bool have_final, have_live_identity;
++static struct rusage_info_v0 retained;
++static struct proc_bsdinfo live_identity;
++
++static bool sample(const char *stage) {
++    uint64_t seq = written;
++    host_basic_info_data_t c0 = {0}, c1 = {0};
++    host_cpu_load_info_data_t cpu = {0};
++    struct rusage_info_v0 r0 = {0}, r1 = {0};
++    struct proc_bsdinfo bsd = {0};
++    mach_msg_type_number_t nc0 = HOST_BASIC_INFO_COUNT;
++    mach_msg_type_number_t nc1 = HOST_BASIC_INFO_COUNT;
++    mach_msg_type_number_t nh = HOST_CPU_LOAD_INFO_COUNT;
++    int rrc0 = 0, rrc1 = 0, re0 = 0, re1 = 0, brc = 0, be = 0;
++    uint64_t begin = a170_arm_clock();
++    uint64_t continuous = mach_continuous_time();
++    uint64_t uptime_ns = clock_gettime_nsec_np(CLOCK_UPTIME_RAW);
++    kern_return_t crc0 = host_info(host, HOST_BASIC_INFO, (host_info_t)&c0, &nc0);
++    kern_return_t hrc = host_statistics(host, HOST_CPU_LOAD_INFO,
++                                        (host_info_t)&cpu, &nh);
++    bool carried = have_final;
++    if (carried) { r0 = retained; r1 = retained; }
++    else {
++        errno = 0;
++        rrc0 = proc_pid_rusage((int)pid, RUSAGE_INFO_V0, (rusage_info_t *)&r0);
++        re0 = errno;
++        errno = 0;
++        brc = proc_pidinfo((int)pid, PROC_PIDTBSDINFO, 0, &bsd, sizeof(bsd));
++        be = errno;
++        errno = 0;
++        rrc1 = proc_pid_rusage((int)pid, RUSAGE_INFO_V0, (rusage_info_t *)&r1);
++        re1 = errno;
++    }
++    kern_return_t crc1 = host_info(host, HOST_BASIC_INFO, (host_info_t)&c1, &nc1);
++    uint64_t end = a170_arm_clock();
++    bool prior_live = have_live_identity;
++    bool bsd_available = brc == (int)sizeof(bsd) && bsd.pbi_pid == pid;
++    bool bsd_conflict = brc > 0 && (!bsd_available ||
++        (prior_live && !same_bsd_identity(&bsd, &live_identity)));
++    bool live_pair = r0.ri_proc_exit_abstime == 0 && r1.ri_proc_exit_abstime == 0;
++    bool stable_terminal_pair = r0.ri_proc_exit_abstime != 0 && same_usage(&r0, &r1);
++    bool live_identity_ok = !carried && live_pair && bsd_available && !bsd_conflict;
++    bool terminal_identity_ok = !carried && prior_live && stable_terminal_pair && !bsd_conflict;
++    bool identity_ok = !strcmp(stage, "live") ? live_identity_ok :
++        !strcmp(stage, "terminal") ? terminal_identity_ok : carried;
++    bool raw_ok = crc0 == KERN_SUCCESS && crc1 == KERN_SUCCESS &&
++        hrc == KERN_SUCCESS && nc0 == HOST_BASIC_INFO_COUNT &&
++        nc1 == HOST_BASIC_INFO_COUNT && nh == HOST_CPU_LOAD_INFO_COUNT &&
++        c0.logical_cpu > 0 && c0.logical_cpu == c1.logical_cpu &&
++        rrc0 == 0 && rrc1 == 0 && r0.ri_proc_start_abstime == birth &&
++        r1.ri_proc_start_abstime == birth &&
++        r1.ri_user_time >= r0.ri_user_time &&
++        r1.ri_system_time >= r0.ri_system_time &&
++        identity_ok;
++    const char *identity_mode = !raw_ok ? "refused" : carried ? "retained_terminal" :
++        live_identity_ok ? "live_bsd" : "stable_terminal_rusage";
++    if (raw_ok && live_identity_ok) {
++        live_identity = bsd; have_live_identity = true;
++    }
++    /* A successfully read exit marker is retained. It is NOT proof that all
++     * task/thread accounting has settled or that the parent reaped it. */
++    if (raw_ok && terminal_identity_ok) {
++        retained = r1; have_final = true;
++    }
++    fprintf(f, "{\"kind\":\"snapshot\",\"seq\":%" PRIu64
++               ",\"acquisition_stage\":\"%s\""
++               ",\"begin_abs\":%" PRIu64 ",\"end_abs\":%" PRIu64
++               ",\"continuous_abs\":%" PRIu64 ",\"uptime_ns\":%" PRIu64
++               ",\"capacity_before\":%d,\"capacity_after\":%d,"
++               "\"host_rc\":[%d,%d,%d],\"host_counts\":[%u,%u,%u],"
++               "\"expected_host_counts\":[%u,%u,%u],"
++               "\"host_ticks\":[%u,%u,%u,%u],\"rusage_rc\":[%d,%d],"
++               "\"rusage_errno\":[%d,%d],\"bsd_bytes\":%d,"
++               "\"expected_bsd_bytes\":%zu,\"bsd_errno\":%d,"
++               "\"bsd_pid\":%u,\"ppid\":%u,\"bsd_birth\":[%" PRIu64
++               ",%" PRIu64 "],\"carried_final\":%s,\"prior_live_identity\":%s,"
++               "\"bsd_identity_available\":%s,\"bsd_positive_conflict\":%s,"
++               "\"stable_terminal_pair\":%s,\"identity_mode\":\"%s\",\"first\":",
++            seq, stage, begin, end, continuous, uptime_ns, c0.logical_cpu, c1.logical_cpu,
++            crc0, hrc, crc1, nc0, nh, nc1, HOST_BASIC_INFO_COUNT,
++            HOST_CPU_LOAD_INFO_COUNT, HOST_BASIC_INFO_COUNT,
++            cpu.cpu_ticks[CPU_STATE_USER], cpu.cpu_ticks[CPU_STATE_SYSTEM],
++            cpu.cpu_ticks[CPU_STATE_IDLE], cpu.cpu_ticks[CPU_STATE_NICE],
++            rrc0, rrc1, re0, re1, brc, sizeof(bsd), be,
++            bsd.pbi_pid, bsd.pbi_ppid, bsd.pbi_start_tvsec,
++            bsd.pbi_start_tvusec, carried ? "true" : "false",
++            prior_live ? "true" : "false", bsd_available ? "true" : "false",
++            bsd_conflict ? "true" : "false", stable_terminal_pair ? "true" : "false",
++            identity_mode);
++    usage(f, &r0); fputs(",\"last\":", f); usage(f, &r1);
++    fprintf(f, ",\"raw_ok\":%s}\n", raw_ok ? "true" : "false");
++    ++written;
++    return sync_row(f) && raw_ok;
++}
++
++static bool protocol_row(const char *direction, const struct ipc_message *m,
++                         uint64_t begin, uint64_t end) {
++    fprintf(f, "{\"kind\":\"protocol\",\"seq\":%" PRIu64 ",", protocol_seq++);
++    ipc_fields(f, direction, m, begin, end);
++    return sync_row(f);
++}
++static bool fail(const char *step, bool eof) {
++    fprintf(f, "{\"kind\":\"protocol_failure\",\"step\":\"%s\",\"eof\":%s,"
++               "\"abs\":%" PRIu64 ",\"qualified\":false}\n", step, eof ? "true" : "false", a170_arm_clock());
++    sync_row(f); return false;
++}
++static bool reply(int fd, uint64_t kind, uint64_t sequence, uint64_t related, bool status) {
++    struct ipc_message m = {0};
++    m.kind = kind; m.sequence = sequence; m.parent_pid = parent; m.worker_pid = pid;
++    m.collector_pid = (uint64_t)getpid(); m.birth_abs = birth; m.related_seq = related;
++    m.status = status ? 1 : 0;
++    uint64_t end;
++    if (!ipc_send(fd, &m, tb, &end)) return fail("reply_write", false);
++    return protocol_row("send", &m, m.sent_abs, end);
++}
++static bool request(int fd, uint64_t kind, uint64_t sequence, uint64_t related) {
++    struct ipc_message m; uint64_t begin, end; bool eof;
++    bool received = ipc_receive(fd, &m, tb, &begin, &end, &eof);
++    if (!protocol_row("receive", &m, begin, end)) return false;
++    if (!received || !ipc_matches(&m, kind, sequence, parent, pid, (uint64_t)getpid(), birth, related) ||
++        m.status != 1 || m.sent_abs > end) return fail("request_identity_sequence_deadline", eof);
++    return true;
++}
++static bool interval(void) {
++    struct timespec delay = {2, 0};
++    return nanosleep(&delay, NULL) == 0;
++}
++static bool collect(int requests, int replies) {
++    bool first = sample("live");
++    if (!reply(replies, IPC_READY, 0, 0, first)) return false;
++    if (!first) return false;
++    bool paused = false;
++    while (written < 12) {
++        if (!interval()) return fail("live_interval_interrupted", false);
++        int ready = ipc_available(requests);
++        if (ready < 0) return fail("pause_poll", false);
++        bool pause_requested = ready == 1;
++        if (pause_requested && !request(requests, IPC_PAUSE, 0, 0)) return false;
++        // Even after PAUSE arrives, finish the next scheduled LIVE acquisition.
++        // The worker is still held alive. A terminal read here is a refusal.
++        if (!sample("live")) return false;
++        if (pause_requested) {
++            if (!reply(replies, IPC_PAUSED, 1, written - 1, true)) return false;
++            paused = true; break;
++        }
++    }
++    if (!paused) return fail("live_budget_exhausted", false);
++    uint64_t last_live = written - 1;
++    // No acquisition occurs between the PAUSED acknowledgement and receipt of
++    // the new CAPTURE frame sent after the parent's WNOWAIT and fresh reads.
++    if (!request(requests, IPC_CAPTURE, 1, last_live)) return false;
++    if (ipc_available(requests) != 0) return fail("duplicate_or_closed_capture_channel", false);
++    if (!sample("terminal")) return false;
++    if (!reply(replies, IPC_TERMINAL, 2, written - 1, true)) return false;
++    for (unsigned i = 0; i < 2; ++i) {
++        if (!interval()) return fail("retained_interval_interrupted", false);
++        if (ipc_available(requests) != 0) return fail("unexpected_postcapture_request_or_eof", false);
++        if (!sample("retained")) return false;
++    }
++    return true;
++}
++
+ int main(int argc, char **argv) {
+     if (argc == 1) {
+-        puts("A178 SOURCE-ONLY raw collector plan. No probes were made.\n"
+-             "--collect PID BIRTH_ABS SAMPLES INTERVAL_MS OUTPUT_ABSOLUTE\n"
+-             "requires A178_COLLECTOR_ACK=A178_ROOT_RAW_QUALIFICATION. Units, ownership,\n"
+-             "final-accounting and runtime qualification remain OPEN.");
++        puts("A181 SOURCE-ONLY two-barrier collector plan; no native calls.\n"
++             "--collect PID BIRTH_ABS PARENT_PID REQUEST_FD REPLY_FD OUTPUT_ABSOLUTE\n"
++             "Requires A181_COLLECTOR_ACK=A181_ROOT_RAW_QUALIFICATION; remains unqualified.");
+         return 0;
+     }
+-    uint64_t pid, birth, count, interval;
+-    const char *ack = getenv("A178_COLLECTOR_ACK");
+-    if (argc != 7 || strcmp(argv[1], "--collect") || !ack ||
+-        strcmp(ack, "A178_ROOT_RAW_QUALIFICATION") ||
+-        !decimal(argv[2], &pid) || pid == 0 || pid > INT_MAX ||
+-        !decimal(argv[3], &birth) || birth == 0 ||
+-        !decimal(argv[4], &count) || count < 2 || count > 120 ||
+-        !decimal(argv[5], &interval) || interval < 100 || interval > 2500 ||
+-        argv[6][0] != '/') {
+-        fputs("Exact explicit qualification arguments required.\n", stderr);
+-        return 64;
+-    }
++    uint64_t requests, replies;
++    const char *ack = getenv("A181_COLLECTOR_ACK");
++    if (argc != 8 || strcmp(argv[1], "--collect") || !ack ||
++        strcmp(ack, "A181_ROOT_RAW_QUALIFICATION") || !decimal(argv[2], &pid) || pid == 0 || pid > INT_MAX ||
++        !decimal(argv[3], &birth) || birth == 0 || !decimal(argv[4], &parent) || parent == 0 || parent > INT_MAX ||
++        !decimal(argv[5], &requests) || requests < 3 || requests > INT_MAX ||
++        !decimal(argv[6], &replies) || replies < 3 || replies > INT_MAX || requests == replies || argv[7][0] != '/') return 64;
++    if ((uint64_t)getppid() != parent || pid == parent || pid == (uint64_t)getpid() ||
++        !ipc_pipe_end((int)requests, false) || !ipc_pipe_end((int)replies, true)) return 65;
+     umask(0077);
+-    int fd = open(argv[6], O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+-    if (fd < 0) { perror("exclusive output"); return 73; }
+-    FILE *f = fdopen(fd, "w");
++    int fd = open(argv[7], O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
++    if (fd < 0) return 73;
++    f = fdopen(fd, "w");
+     if (!f) { close(fd); return 74; }
+-    mach_timebase_info_data_t tb = {0};
+-    kern_return_t tbrc = mach_timebase_info(&tb);
+-    if (tbrc != KERN_SUCCESS || !tb.numer || !tb.denom) {
+-        fprintf(f, "{\"kind\":\"setup_failure\",\"api_rc\":%d}\n", tbrc);
+-        sync_row(f); fclose(f); return 1;
+-    }
+-    mach_port_t host = mach_host_self();
+-    fprintf(f, "{\"kind\":\"start\",\"schema\":\"a178.raw.v1\","
+-               "\"source_id\":\"%s\","
+-               "\"pid\":%" PRIu64 ",\"expected_birth_abs\":%" PRIu64
+-               ",\"collector_pid\":%d,\"samples\":%" PRIu64
+-               ",\"interval_ms\":%" PRIu64 ",\"numer\":%u,\"denom\":%u,"
+-               "\"clock\":\"mach_absolute_time\",\"host_unit\":\"raw_u32_ticks\","
+-               "\"process_unit\":\"raw_rusage_info_v0\","
++    if (mach_timebase_info(&tb) != KERN_SUCCESS || !tb.numer || !tb.denom) {
++        fail("timebase", false); fclose(f); return 1;
++    }
++    host = mach_host_self();
++    fprintf(f, "{\"kind\":\"start\",\"schema\":\"a181.raw.v1\",\"source_id\":\"%s\","
++               "\"pid\":%" PRIu64 ",\"expected_birth_abs\":%" PRIu64 ",\"parent_pid\":%" PRIu64
++               ",\"collector_pid\":%d,\"live_budget\":12,\"retained_suffix\":2,\"interval_ms\":2000,"
++               "\"numer\":%u,\"denom\":%u,\"clock\":\"mach_absolute_time\","
++               "\"host_unit\":\"raw_u32_ticks\",\"process_unit\":\"raw_rusage_info_v0\","
+                "\"qualified\":false,\"membership_attested\":false}\n",
+-            A178_SOURCE_ID, pid, birth, getpid(), count, interval, tb.numer, tb.denom);
+-    if (!sync_row(f)) { fclose(f); return 74; }
+-    bool complete = true, have_final = false, have_live_identity = false;
+-    struct rusage_info_v0 retained = {0};
+-    struct proc_bsdinfo live_identity = {0};
+-    uint64_t written = 0;
+-    for (uint64_t seq = 0; seq < count; ++seq) {
+-        host_basic_info_data_t c0 = {0}, c1 = {0};
+-        host_cpu_load_info_data_t cpu = {0};
+-        struct rusage_info_v0 r0 = {0}, r1 = {0};
+-        struct proc_bsdinfo bsd = {0};
+-        mach_msg_type_number_t nc0 = HOST_BASIC_INFO_COUNT;
+-        mach_msg_type_number_t nc1 = HOST_BASIC_INFO_COUNT;
+-        mach_msg_type_number_t nh = HOST_CPU_LOAD_INFO_COUNT;
+-        int rrc0 = 0, rrc1 = 0, re0 = 0, re1 = 0, brc = 0, be = 0;
+-        uint64_t begin = a170_arm_clock();
+-        uint64_t continuous = mach_continuous_time();
+-        uint64_t uptime_ns = clock_gettime_nsec_np(CLOCK_UPTIME_RAW);
+-        kern_return_t crc0 = host_info(host, HOST_BASIC_INFO, (host_info_t)&c0, &nc0);
+-        kern_return_t hrc = host_statistics(host, HOST_CPU_LOAD_INFO,
+-                                            (host_info_t)&cpu, &nh);
+-        bool carried = have_final;
+-        if (carried) { r0 = retained; r1 = retained; }
+-        else {
+-            errno = 0;
+-            rrc0 = proc_pid_rusage((int)pid, RUSAGE_INFO_V0, (rusage_info_t *)&r0);
+-            re0 = errno;
+-            errno = 0;
+-            brc = proc_pidinfo((int)pid, PROC_PIDTBSDINFO, 0, &bsd, sizeof(bsd));
+-            be = errno;
+-            errno = 0;
+-            rrc1 = proc_pid_rusage((int)pid, RUSAGE_INFO_V0, (rusage_info_t *)&r1);
+-            re1 = errno;
+-        }
+-        kern_return_t crc1 = host_info(host, HOST_BASIC_INFO, (host_info_t)&c1, &nc1);
+-        uint64_t end = a170_arm_clock();
+-        bool prior_live = have_live_identity;
+-        bool bsd_available = brc == (int)sizeof(bsd) && bsd.pbi_pid == pid;
+-        bool bsd_conflict = brc > 0 && (!bsd_available ||
+-            (prior_live && !same_bsd_identity(&bsd, &live_identity)));
+-        bool live_pair = r0.ri_proc_exit_abstime == 0 && r1.ri_proc_exit_abstime == 0;
+-        bool stable_terminal_pair = r0.ri_proc_exit_abstime != 0 && same_usage(&r0, &r1);
+-        bool live_identity_ok = !carried && live_pair && bsd_available && !bsd_conflict;
+-        bool terminal_identity_ok = !carried && prior_live && stable_terminal_pair && !bsd_conflict;
+-        bool identity_ok = carried || live_identity_ok || terminal_identity_ok;
+-        bool raw_ok = crc0 == KERN_SUCCESS && crc1 == KERN_SUCCESS &&
+-            hrc == KERN_SUCCESS && nc0 == HOST_BASIC_INFO_COUNT &&
+-            nc1 == HOST_BASIC_INFO_COUNT && nh == HOST_CPU_LOAD_INFO_COUNT &&
+-            c0.logical_cpu > 0 && c0.logical_cpu == c1.logical_cpu &&
+-            rrc0 == 0 && rrc1 == 0 && r0.ri_proc_start_abstime == birth &&
+-            r1.ri_proc_start_abstime == birth &&
+-            r1.ri_user_time >= r0.ri_user_time &&
+-            r1.ri_system_time >= r0.ri_system_time &&
+-            identity_ok;
+-        const char *identity_mode = !raw_ok ? "refused" : carried ? "retained_terminal" :
+-            live_identity_ok ? "live_bsd" : "stable_terminal_rusage";
+-        if (raw_ok && live_identity_ok) {
+-            live_identity = bsd; have_live_identity = true;
+-        }
+-        /* A successfully read exit marker is retained. It is NOT proof that all
+-         * task/thread accounting has settled or that the parent reaped it. */
+-        if (raw_ok && terminal_identity_ok) {
+-            retained = r1; have_final = true;
+-        }
+-        fprintf(f, "{\"kind\":\"snapshot\",\"seq\":%" PRIu64
+-                   ",\"begin_abs\":%" PRIu64 ",\"end_abs\":%" PRIu64
+-                   ",\"continuous_abs\":%" PRIu64 ",\"uptime_ns\":%" PRIu64
+-                   ",\"capacity_before\":%d,\"capacity_after\":%d,"
+-                   "\"host_rc\":[%d,%d,%d],\"host_counts\":[%u,%u,%u],"
+-                   "\"expected_host_counts\":[%u,%u,%u],"
+-                   "\"host_ticks\":[%u,%u,%u,%u],\"rusage_rc\":[%d,%d],"
+-                   "\"rusage_errno\":[%d,%d],\"bsd_bytes\":%d,"
+-                   "\"expected_bsd_bytes\":%zu,\"bsd_errno\":%d,"
+-                   "\"bsd_pid\":%u,\"ppid\":%u,\"bsd_birth\":[%" PRIu64
+-                   ",%" PRIu64 "],\"carried_final\":%s,\"prior_live_identity\":%s,"
+-                   "\"bsd_identity_available\":%s,\"bsd_positive_conflict\":%s,"
+-                   "\"stable_terminal_pair\":%s,\"identity_mode\":\"%s\",\"first\":",
+-                seq, begin, end, continuous, uptime_ns, c0.logical_cpu, c1.logical_cpu,
+-                crc0, hrc, crc1, nc0, nh, nc1, HOST_BASIC_INFO_COUNT,
+-                HOST_CPU_LOAD_INFO_COUNT, HOST_BASIC_INFO_COUNT,
+-                cpu.cpu_ticks[CPU_STATE_USER], cpu.cpu_ticks[CPU_STATE_SYSTEM],
+-                cpu.cpu_ticks[CPU_STATE_IDLE], cpu.cpu_ticks[CPU_STATE_NICE],
+-                rrc0, rrc1, re0, re1, brc, sizeof(bsd), be,
+-                bsd.pbi_pid, bsd.pbi_ppid, bsd.pbi_start_tvsec,
+-                bsd.pbi_start_tvusec, carried ? "true" : "false",
+-                prior_live ? "true" : "false", bsd_available ? "true" : "false",
+-                bsd_conflict ? "true" : "false", stable_terminal_pair ? "true" : "false",
+-                identity_mode);
+-        usage(f, &r0); fputs(",\"last\":", f); usage(f, &r1);
+-        fprintf(f, ",\"raw_ok\":%s}\n", raw_ok ? "true" : "false");
+-        ++written;
+-        if (!sync_row(f)) { complete = false; break; }
+-        if (!raw_ok) { complete = false; break; }
+-        if (seq + 1 < count) {
+-            struct timespec delay = {(time_t)(interval / 1000),
+-                                     (long)((interval % 1000) * 1000000)};
+-            /* No retry on interrupted sleep; an incomplete terminal is explicit. */
+-            if (nanosleep(&delay, NULL) != 0) { complete = false; break; }
+-        }
+-    }
++            A181_SOURCE_ID, pid, birth, parent, getpid(), tb.numer, tb.denom);
++    bool complete = sync_row(f) && collect((int)requests, (int)replies);
+     fprintf(f, "{\"kind\":\"end\",\"samples_written\":%" PRIu64
+                ",\"sampling_complete\":%s,\"final_counter_observed\":%s,"
+                "\"qualified\":false,\"exit_reaped_attested\":false}\n",
+-            written, complete && written == count ? "true" : "false",
+-            have_final ? "true" : "false");
++            written, complete ? "true" : "false", have_final ? "true" : "false");
+     bool saved = sync_row(f);
+-    mach_port_deallocate(mach_task_self(), host);
+-    fclose(f);
+-    return complete && written == count && saved ? 0 : 1;
+-}
++    mach_port_deallocate(mach_task_self(), host); fclose(f);
++    close((int)requests); close((int)replies);
++    return complete && saved ? 0 : 1;
++}
+--- frozen-a178/fixture.c
++++ a181/fixture.c
+@@ -1,7 +1,8 @@
+-/* A178: future bounded native fixture. No normalized CPU attribution. */
++/* A181: future bounded native fixture. No normalized CPU attribution. */
+ #define _DARWIN_C_SOURCE 1
+ #include "arm_clock.h"
+ #include "source_identity.h"
++#include "ipc.h"
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <inttypes.h>
+@@ -24,6 +25,8 @@
+ static FILE *logfile;
+ static uint64_t seq;
+ static const char *case_name;
++static int collector_requests = -1, collector_replies = -1;
++static uint64_t collector_identity, worker_identity, worker_birth, last_live_seq;
+ static uint64_t ns_to_ticks(uint64_t ns) {
+     return (uint64_t)(((__uint128_t)ns * tb.denom + tb.numer - 1) / tb.numer);
+ }
+@@ -56,8 +59,10 @@
+     uint64_t magic, kind, pid, ppid, birth, begin, end, stage, threads;
+     uint64_t iterations[2], checksums[2], thread_begin[2], thread_end[2];
+     uint64_t grandchild_pid, grandchild_birth, grandchild_status;
++    struct ipc_message control;
+ };
+-#define MAGIC UINT64_C(0x4131373249504331)
++#define MAGIC UINT64_C(0x4131383145565431)
++_Static_assert(sizeof(struct event) <= 512, "bounded worker event frame");
+ static bool send_event(int fd, struct event *e) {
+     e->magic = MAGIC;
+     const char *p = (const char *)e;
+@@ -82,7 +87,7 @@
+         if (n <= 0) return false;
+         left -= (size_t)n; p += n;
+     }
+-    return left == 0 && e->magic == MAGIC;
++    return left == 0 && e->magic == MAGIC && a170_arm_clock() <= deadline;
+ }
+ struct work { uint64_t deadline, begin, end, iterations, checksum; };
+ static void *busy(void *arg) {
+@@ -106,10 +111,18 @@
+     if (proc_pid_rusage(getpid(), RUSAGE_INFO_V0, (rusage_info_t *)&r) != 0) return 11;
+     e.end = a170_arm_clock(); e.birth = r.ri_proc_start_abstime;
+     if (!send_event(events, &e)) return 12;
+-    char token;
+-    ssize_t n = read(control, &token, 1);
+-    if (n == 0) return 0; /* Deliberate refused/early-reap negative: no CPU work. */
+-    if (n != 1 || token != 'G') return 13;
++    struct ipc_message go;
++    uint64_t go_begin, go_end; bool eof;
++    bool received = ipc_receive(control, &go, tb, &go_begin, &go_end, &eof);
++    if (!received && eof) return 0; /* Deliberate refused/early-reap negative; no work. */
++    if (!received || !ipc_matches(&go, IPC_GO, 0, (uint64_t)getppid(), (uint64_t)getpid(),
++                                 go.collector_pid, r.ri_proc_start_abstime, 0) || go.status != 1 ||
++        go.collector_pid == 0 || go.collector_pid == (uint64_t)getpid() ||
++        go.collector_pid == (uint64_t)getppid() || go.sent_abs > go_end) return 13;
++    if (ipc_available(control) != 0) return 27;
++    memset(&e, 0, sizeof(e)); e.kind = 6; e.pid = (uint64_t)getpid();
++    e.begin = go_begin; e.end = go_end; e.control = go;
++    if (!send_event(events, &e)) return 22;
+     if (descendant) {
+         int identity[2];
+         if (pipe(identity)) return 14;
+@@ -132,9 +145,7 @@
+         e.grandchild_pid = (uint64_t)gc; e.grandchild_birth = gb;
+         e.grandchild_status = (uint64_t)status;
+         if (!send_event(events, &e)) return 17;
+-        return 0; /* This negative is always unsupported for the single-PID ledger. */
+-    }
+-    for (uint64_t stage = 0; stage < 4; ++stage) {
++    } else for (uint64_t stage = 0; stage < 4; ++stage) {
+         unsigned threads = stage % 2 == 0 ? 0 :
+             (stage == 1 ? (reversed ? 2 : 1) : (reversed ? 1 : 2));
+         memset(&e, 0, sizeof(e)); e.kind = 2; e.pid = (uint64_t)getpid();
+@@ -158,39 +169,91 @@
+         e.end = a170_arm_clock();
+         if (!send_event(events, &e)) return 21;
+     }
++    // The worker remains alive until the collector has paused. It cannot exit
++    // merely because the last work stage finished.
++    memset(&e, 0, sizeof(e)); e.kind = 4; e.pid = (uint64_t)getpid();
++    e.ppid = (uint64_t)getppid(); e.birth = r.ri_proc_start_abstime;
++    e.begin = a170_arm_clock(); e.end = e.begin;
++    if (!send_event(events, &e)) return 23;
++    struct ipc_message release; uint64_t release_begin, release_end;
++    if (!ipc_receive(control, &release, tb, &release_begin, &release_end, &eof)) return eof ? 0 : 24;
++    if (!ipc_matches(&release, IPC_EXIT, 1, go.parent_pid, go.worker_pid, go.collector_pid,
++                     go.birth_abs, 0) || release.status != 1 || release.sent_abs < e.end ||
++        release.sent_abs > release_end) return 25;
++    if (ipc_available(control) != 0) return 28;
++    memset(&e, 0, sizeof(e)); e.kind = 5; e.pid = (uint64_t)getpid();
++    e.begin = release_begin; e.end = release_end; e.control = release;
++    if (!send_event(events, &e)) return 26;
+     return 0;
++}
++
++static bool parent_send(int fd, uint64_t kind, uint64_t sequence, uint64_t related,
++                        const char *record, struct ipc_message *copy) {
++    struct ipc_message m = {0};
++    m.kind = kind; m.sequence = sequence; m.parent_pid = (uint64_t)getpid();
++    m.worker_pid = worker_identity; m.collector_pid = collector_identity;
++    m.birth_abs = worker_birth; m.related_seq = related; m.status = 1;
++    uint64_t end;
++    bool sent = ipc_send(fd, &m, tb, &end);
++    prefix(record); ipc_fields(logfile, "send", &m, m.sent_abs, end);
++    if (copy) *copy = m;
++    return durable() && sent;
++}
++static bool parent_reply(uint64_t kind, uint64_t sequence, uint64_t related,
++                         bool any_related, bool *status) {
++    struct ipc_message m; uint64_t begin, end; bool eof;
++    bool received = ipc_receive(collector_replies, &m, tb, &begin, &end, &eof);
++    prefix("protocol"); ipc_fields(logfile, "receive", &m, begin, end);
++    bool valid = durable() && received && m.status <= 1 &&
++        ipc_matches(&m, kind, sequence, (uint64_t)getpid(), worker_identity, collector_identity,
++                    worker_birth, any_related ? m.related_seq : related) && m.sent_abs <= end;
++    if (valid && kind == IPC_PAUSED) {
++        valid = 1 <= m.related_seq && m.related_seq <= 11;
++        last_live_seq = m.related_seq;
++    }
++    *status = m.status == 1;
++    return valid;
++}
++static bool worker_receipt(int events, uint64_t kind, const struct ipc_message *sent,
++                           const char *record) {
++    struct event e;
++    if (!receive_event(events, &e) || e.kind != kind || e.pid != worker_identity ||
++        memcmp(&e.control, sent, sizeof(*sent)) || e.begin > e.end || sent->sent_abs > e.end) return false;
++    prefix(record); ipc_fields(logfile, "receive", &e.control, e.begin, e.end);
++    return durable();
+ }
+ 
+ static bool observe_collector_final(const char *path, uint64_t birth,
+                                     struct rusage_info_v0 *result, uint64_t *snapshot) {
+     uint64_t deadline = a170_arm_clock() + ns_to_ticks(UINT64_C(5000000000));
+-    char text[32768];
++    char line[8192]; /* Bound a single emitted row, not the whole growing trace. */
+     do {
+         int fd = open(path, O_RDWR | O_NOFOLLOW);
+         if (fd >= 0) {
+-            ssize_t n = read(fd, text, sizeof(text) - 1);
+-            if (n > 0) {
+-                text[n] = 0;
+-                char *line = text;
+-                for (char *next; (next = strchr(line, '\n')); line = next + 1) {
+-                    *next = 0;
+-                    char *last = strstr(line, "\"last\":{");
+-                    int used = 0; uint64_t number = 0;
+-                    if (last && sscanf(line, "{\"kind\":\"snapshot\",\"seq\":%" SCNu64 ",", &number) == 1 &&
+-                        sscanf(last, "\"last\":{\"user_raw\":%" SCNu64 ",\"system_raw\":%" SCNu64
+-                                     ",\"birth_abs\":%" SCNu64 ",\"exit_abs\":%" SCNu64
+-                                     "},\"raw_ok\":true}%n", &result->ri_user_time,
+-                                     &result->ri_system_time, &result->ri_proc_start_abstime,
+-                                     &result->ri_proc_exit_abstime, &used) == 4 &&
+-                        used > 0 && last[used] == 0 && result->ri_proc_start_abstime == birth &&
+-                        result->ri_proc_exit_abstime != 0) {
+-                        *snapshot = number;
+-                        bool committed = fsync(fd) == 0; close(fd);
+-                        return committed;
+-                    }
++            FILE *input = fdopen(fd, "r+");
++            if (!input) { close(fd); return false; }
++            unsigned lines = 0;
++            while (lines++ < 64 && fgets(line, sizeof(line), input)) {
++                char *newline = strchr(line, '\n');
++                if (!newline) break; /* Partial/oversized row is never consumed. */
++                *newline = 0;
++                char *last = strstr(line, "\"last\":{");
++                int used = 0; uint64_t number = 0;
++                if (last && strstr(line, "\"acquisition_stage\":\"terminal\",") &&
++                    sscanf(line, "{\"kind\":\"snapshot\",\"seq\":%" SCNu64 ",", &number) == 1 &&
++                    sscanf(last, "\"last\":{\"user_raw\":%" SCNu64 ",\"system_raw\":%" SCNu64
++                                 ",\"birth_abs\":%" SCNu64 ",\"exit_abs\":%" SCNu64
++                                 "},\"raw_ok\":true}%n", &result->ri_user_time,
++                                 &result->ri_system_time, &result->ri_proc_start_abstime,
++                                 &result->ri_proc_exit_abstime, &used) == 4 &&
++                    used > 0 && last[used] == 0 && result->ri_proc_start_abstime == birth &&
++                    result->ri_proc_exit_abstime != 0) {
++                    *snapshot = number;
++                    bool committed = fsync(fd) == 0; fclose(input);
++                    return committed;
+                 }
+             }
+-            close(fd);
++            fclose(input);
+         }
+         if (!pause_ms(20)) break;
+     } while (a170_arm_clock() < deadline);
+@@ -236,9 +299,15 @@
+     bool stable = observations && reads[0].ri_user_time == reads[1].ri_user_time &&
+         reads[0].ri_system_time == reads[1].ri_system_time &&
+         reads[0].ri_proc_exit_abstime == reads[1].ri_proc_exit_abstime;
++    if (rawpath) {
++        bool terminal_ok = false;
++        if (!stable || !parent_send(collector_requests, IPC_CAPTURE, 1, last_live_seq, "protocol", NULL) ||
++            !parent_reply(IPC_TERMINAL, 2, last_live_seq + 1, false, &terminal_ok) || !terminal_ok)
++            return false;
++    }
+     struct rusage_info_v0 captured = {0}; uint64_t snapshot = 0;
+     bool captured_ok = rawpath && observe_collector_final(rawpath, birth, &captured, &snapshot);
+-    bool matches = captured_ok && captured.ri_user_time == reads[1].ri_user_time &&
++    bool matches = captured_ok && snapshot == last_live_seq + 1 && captured.ri_user_time == reads[1].ri_user_time &&
+         captured.ri_system_time == reads[1].ri_system_time &&
+         captured.ri_proc_exit_abstime == reads[1].ri_proc_exit_abstime;
+     prefix("collector_final_capture");
+@@ -248,6 +317,8 @@
+             matches ? "true" : "false", snapshot, a170_arm_clock());
+     usage(&captured); fputs("}\n", logfile);
+     if (!durable()) return false;
++    /* Persist the negative capture, but never acknowledge/reap it. */
++    if (!stable || (rawpath && !matches)) return false;
+     prefix("capture_ack");
+     fprintf(logfile, "\"pid\":%d,\"birth_matches\":%s,\"stable_observed\":%s,"
+                     "\"settled_accounting_proven\":false}\n", child,
+@@ -314,14 +385,14 @@
+ 
+ int main(int argc, char **argv) {
+     if (argc == 1) {
+-        puts("A178 SOURCE-ONLY lifecycle plan; no native probes.\n"
++        puts("A181 SOURCE-ONLY lifecycle plan; no native probes.\n"
+              "--run {order-12|order-21|wrong-birth|early-reap|descendant} COLLECTOR_ABS NEW_DIR_ABS\n"
+-             "Requires A178_ACK=A178_ROOT_TINY_LIFECYCLE. Raw units remain unqualified.");
++             "Requires A181_ACK=A181_ROOT_TINY_LIFECYCLE. Raw units remain unqualified.");
+         return 0;
+     }
+-    const char *ack = getenv("A178_ACK");
++    const char *ack = getenv("A181_ACK");
+     if (argc != 5 || strcmp(argv[1], "--run") || !ack ||
+-        strcmp(ack, "A178_ROOT_TINY_LIFECYCLE") || argv[3][0] != '/' || argv[4][0] != '/') return 64;
++        strcmp(ack, "A181_ROOT_TINY_LIFECYCLE") || argv[3][0] != '/' || argv[4][0] != '/') return 64;
+     case_name = argv[2];
+     bool reversed = !strcmp(case_name, "order-21"), wrong = !strcmp(case_name, "wrong-birth"),
+         early = !strcmp(case_name, "early-reap"), descendant = !strcmp(case_name, "descendant");
+@@ -337,16 +408,17 @@
+     if (lfd < 0 || !(logfile = fdopen(lfd, "w"))) return 73;
+     if (mach_timebase_info(&tb) != KERN_SUCCESS || !tb.numer || !tb.denom) return 1;
+     prefix("start");
+-    fprintf(logfile, "\"schema\":\"a178.lifecycle.v1\",\"case\":\"%s\",\"parent_pid\":%d,"
++    fprintf(logfile, "\"schema\":\"a181.lifecycle.v1\",\"case\":\"%s\",\"parent_pid\":%d,"
+                     "\"source_id\":\"%s\",\"clock\":\"mach_absolute_time\","
+                     "\"numer\":%u,\"denom\":%u,\"collector_qualified\":false}\n",
+-            case_name, getpid(), A178_SOURCE_ID, tb.numer, tb.denom);
++            case_name, getpid(), A181_SOURCE_ID, tb.numer, tb.denom);
+     if (!durable()) return 74;
+-    int control[2], events[2];
+-    if (pipe(control) || pipe(events)) return 1;
++    int control[2], events[2], requests[2], replies[2];
++    if (!ipc_pipe(control) || !ipc_pipe(events) || !ipc_pipe(requests) || !ipc_pipe(replies)) return 1;
+     pid_t child = fork();
+     if (child == 0) {
+         close(control[1]); close(events[0]); close(lfd);
++        close(requests[0]); close(requests[1]); close(replies[0]); close(replies[1]);
+         _exit(worker(control[0], events[1], reversed, descendant));
+     }
+     close(control[0]); close(events[1]);
+@@ -361,30 +433,48 @@
+                     ",\"begin_abs\":%" PRIu64 ",\"end_abs\":%" PRIu64 "}\n",
+             child, ready.ppid, ready.birth, ready.begin, ready.end);
+     if (!durable()) { close(control[1]); return 74; }
++    worker_identity = (uint64_t)child; worker_birth = ready.birth + (wrong ? 1 : 0);
+     bool life_ok = true;
+-    if (early) { close(control[1]); life_ok = capture_and_reap(child, ready.birth, NULL); }
+-    char pidtext[32], birthtext[32];
++    if (early) {
++        close(control[1]);
++        prefix("control_closed_without_go"); fprintf(logfile, "\"pid\":%d,\"abs\":%" PRIu64 "}\n", child, a170_arm_clock());
++        if (!durable()) return 74;
++        life_ok = capture_and_reap(child, ready.birth, NULL);
++    }
++    char pidtext[32], birthtext[32], parenttext[32], requesttext[32], replytext[32];
+     snprintf(pidtext, sizeof(pidtext), "%d", child);
+     snprintf(birthtext, sizeof(birthtext), "%" PRIu64, ready.birth + (wrong ? 1 : 0));
++    snprintf(parenttext, sizeof(parenttext), "%d", getpid());
++    snprintf(requesttext, sizeof(requesttext), "%d", requests[0]);
++    snprintf(replytext, sizeof(replytext), "%d", replies[1]);
+     uint64_t fork_begin = a170_arm_clock();
+     pid_t collector = fork();
+     if (collector == 0) {
+         if (!early) close(control[1]);
+         close(events[0]); close(lfd);
++        close(requests[1]); close(replies[0]);
+         int out = open(outpath, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+         int err = open(errpath, O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+         if (out < 0 || err < 0 || dup2(out, STDOUT_FILENO) < 0 || dup2(err, STDERR_FILENO) < 0) _exit(126);
+         close(out); close(err);
+-        if (setenv("A178_COLLECTOR_ACK", "A178_ROOT_RAW_QUALIFICATION", 1)) _exit(126);
+-        execl(argv[3], argv[3], "--collect", pidtext, birthtext, "12", "2000", rawpath, (char *)NULL);
++        if (setenv("A181_COLLECTOR_ACK", "A181_ROOT_RAW_QUALIFICATION", 1)) _exit(126);
++        execl(argv[3], argv[3], "--collect", pidtext, birthtext, parenttext, requesttext, replytext, rawpath, (char *)NULL);
+         _exit(127);
+     }
+     uint64_t fork_end = a170_arm_clock();
++    close(requests[0]); close(replies[1]);
++    collector_requests = requests[1]; collector_replies = replies[0];
++    collector_identity = (uint64_t)collector;
+     prefix("collector_started");
+     fprintf(logfile, "\"pid\":%d,\"observed_pid\":%d,\"supplied_birth_abs\":%s,"
+                     "\"begin_abs\":%" PRIu64 ",\"end_abs\":%" PRIu64 "}\n",
+             collector, child, birthtext, fork_begin, fork_end);
+     if (!durable() || collector < 0) { if (!early) close(control[1]); return 1; }
++    bool ready_ok = false;
++    if (!parent_reply(IPC_READY, 0, 0, false, &ready_ok)) {
++        if (!early) close(control[1]);
++        failure("collector_ready", child, collector); return 1;
++    }
+     bool raw_ok = false;
+     bool first = first_snapshot(rawpath, &raw_ok);
+     prefix("first_snapshot_seen");
+@@ -393,9 +483,10 @@
+     if (!durable()) { if (!early) close(control[1]); return 74; }
+     unsigned stage_count = 0, descendant_count = 0;
+     if (!early) {
+-        bool go = first && raw_ok && !wrong;
+-        if (go && write(control[1], "G", 1) != 1) go = false;
+-        close(control[1]);
++        bool go = first && raw_ok && ready_ok && !wrong;
++        struct ipc_message go_message;
++        if (go && (!parent_send(control[1], IPC_GO, 0, 0, "worker_control", &go_message) ||
++                   !worker_receipt(events[0], 6, &go_message, "worker_go_received"))) go = false;
+         if (go) {
+             unsigned expected = descendant ? 1 : 4;
+             for (unsigned i = 0; i < expected; ++i) {
+@@ -423,6 +514,30 @@
+                 } else { failure("worker_schema", child, collector); return 1; }
+                 if (!durable()) return 74;
+             }
++            struct event complete;
++            if (!receive_event(events[0], &complete) || complete.kind != 4 || complete.pid != worker_identity ||
++                complete.ppid != (uint64_t)getpid() || complete.birth != ready.birth || complete.begin != complete.end) {
++                close(control[1]); failure("work_complete", child, collector); return 1;
++            }
++            prefix("work_complete");
++            fprintf(logfile, "\"pid\":%d,\"ppid\":%d,\"birth_abs\":%" PRIu64 ",\"abs\":%" PRIu64 "}\n",
++                    child, getpid(), ready.birth, complete.end);
++            bool paused_ok = false;
++            if (!durable() || !parent_send(collector_requests, IPC_PAUSE, 0, 0, "protocol", NULL) ||
++                !parent_reply(IPC_PAUSED, 1, 0, true, &paused_ok) || !paused_ok) {
++                close(control[1]); failure("collector_pause", child, collector); return 1;
++            }
++            struct ipc_message exit_message;
++            if (!parent_send(control[1], IPC_EXIT, 1, 0, "worker_control", &exit_message) ||
++                !worker_receipt(events[0], 5, &exit_message, "worker_exit_received")) {
++                close(control[1]); failure("worker_exit_release", child, collector); return 1;
++            }
++            close(control[1]);
++        } else {
++            close(control[1]);
++            prefix("control_closed_without_go");
++            fprintf(logfile, "\"pid\":%d,\"abs\":%" PRIu64 "}\n", child, a170_arm_clock());
++            if (!durable()) return 74;
+         }
+         life_ok = capture_and_reap(child, ready.birth, wrong ? NULL : rawpath);
+     }
+@@ -433,8 +548,15 @@
+     fprintf(logfile, "\"pid\":%d,\"reaped\":%s,\"status\":%d,\"abs\":%" PRIu64 "}\n",
+             collector, collector_done ? "true" : "false", status, a170_arm_clock());
+     if (!durable()) return 74;
++    struct ipc_message extra;
++    ssize_t remaining = collector_done ? read(collector_replies, &extra, sizeof(extra)) : -1;
++    prefix("collector_reply_eof");
++    fprintf(logfile, "\"pid\":%d,\"eof\":%s,\"abs\":%" PRIu64 "}\n",
++            collector, remaining == 0 ? "true" : "false", a170_arm_clock());
++    if (!durable()) return 74;
++    close(collector_requests); close(collector_replies);
+     bool refused = wrong || early;
+-    bool pass = first && life_ok && collector_done && WIFEXITED(status) &&
++    bool pass = first && ready_ok == !refused && life_ok && collector_done && remaining == 0 && WIFEXITED(status) &&
+         WEXITSTATUS(status) == (refused ? 1 : 0) && raw_ok == !refused &&
+         stage_count == (refused || descendant ? 0 : 4) && descendant_count == (descendant ? 1 : 0);
+     prefix("summary");
+--- frozen-a178/raw_check.py
++++ a181/raw_check.py
+@@ -8,7 +8,7 @@
+ import re
+ import stat
+ 
+-SCHEMA = "a178.raw.v1"
++SCHEMA = "a181.raw.v1"
+ U64 = (1 << 64) - 1
+ 
+ 
+@@ -53,13 +53,25 @@
+     return out
+ 
+ 
+-def load(path, lines=False):
++def read_private(path):
++    for part in (path.absolute(), *path.absolute().parents):
++        need(not part.is_symlink(), "symlink evidence path")
+     info = path.lstat()
+     need(
+-        stat.S_ISREG(info.st_mode) and stat.S_IMODE(info.st_mode) == 0o600,
++        stat.S_ISREG(info.st_mode)
++        and stat.S_IMODE(info.st_mode) == 0o600
++        and info.st_uid == os.getuid()
++        and info.st_nlink == 1,
+         "private regular 0600 evidence required",
+     )
+-    raw = path.read_text()
++    need(
++        stat.S_IMODE(path.parent.stat().st_mode) == 0o700, "private evidence directory"
++    )
++    return path.read_bytes()
++
++
++def parse_bytes(data, lines=False):
++    raw = data.decode("utf-8")
+     decoder = dict(
+         object_pairs_hook=pairs,
+         parse_constant=lambda _: (_ for _ in ()).throw(ValueError("nonfinite")),
+@@ -68,6 +80,10 @@
+         need(raw.endswith("\n"), "truncated record")
+         return [json.loads(line, **decoder) for line in raw.splitlines()]
+     return json.loads(raw, **decoder)
++
++
++def load(path, lines=False):
++    return parse_bytes(read_private(path), lines)
+ 
+ 
+ def raw_usage(row, birth, end):
+@@ -111,11 +127,14 @@
+ 
+ 
+ def replay(rows, markers=None):
++    import protocol
++
++    protocol.raw_protocol(rows)
+     need(type(rows) is list and len(rows) >= 4, "missing start/snapshots/end")
+     start, terminal = rows[0], rows[-1]
+     fields(
+         start,
+-        "kind schema source_id pid expected_birth_abs collector_pid samples interval_ms "
++        "kind schema source_id pid expected_birth_abs collector_pid parent_pid live_budget retained_suffix interval_ms "
+         "numer denom clock host_unit process_unit qualified membership_attested",
+     )
+     for key, value in {
+@@ -136,14 +155,19 @@
+     pid = integer(start["pid"], 1, (1 << 31) - 1)
+     need(integer(start["collector_pid"], 1) != pid, "collector is not owned workload")
+     birth = integer(start["expected_birth_abs"], 1)
+-    count = integer(start["samples"], 2, 120)
+-    integer(start["interval_ms"], 100, 2500)
++    integer(start["parent_pid"], 1, (1 << 31) - 1)
++    same(start["live_budget"], 12)
++    same(start["retained_suffix"], 2)
++    same(start["interval_ms"], 2000)
+     scale = Fraction(
+         integer(start["numer"], 1, (1 << 32) - 1),
+         integer(start["denom"], 1, (1 << 32) - 1),
+     )
+-    snaps = rows[1:-1]
+-    need(len(snaps) == count, "missing sampling coverage")
++    snaps = [r for r in rows if r["kind"] == "snapshot"]
++    count = len(snaps)
++    need(5 <= count <= 15, "bounded live/terminal/retained coverage")
++    stages = [r["acquisition_stage"] for r in snaps]
++    same(stages, ["live"] * (count - 3) + ["terminal", "retained", "retained"])
+     previous = None
+     final = None
+     bsd_birth = None
+@@ -157,7 +181,7 @@
+     for seq, row in enumerate(snaps):
+         fields(
+             row,
+-            "kind seq begin_abs end_abs continuous_abs uptime_ns capacity_before "
++            "kind seq acquisition_stage begin_abs end_abs continuous_abs uptime_ns capacity_before "
+             "capacity_after host_rc host_counts expected_host_counts host_ticks "
+             "rusage_rc rusage_errno bsd_bytes expected_bsd_bytes bsd_errno bsd_pid ppid "
+             "bsd_birth carried_final prior_live_identity bsd_identity_available "
+@@ -199,6 +223,14 @@
+         same(row["expected_bsd_bytes"], 136)
+         integer(row["bsd_errno"], high=(1 << 31) - 1)
+         same(row["carried_final"], final is not None)
++        same(
++            row["acquisition_stage"],
++            "retained"
++            if final is not None
++            else "terminal"
++            if seq == count - 3
++            else "live",
++        )
+         for name in ("first", "last"):
+             raw_usage(row[name], birth, end)
+         first, last = row["first"], row["last"]
+@@ -226,6 +258,7 @@
+         else:
+             need(not conflict, "positive BSD identity conflicts with live predecessor")
+             if first["exit_abs"] == 0 and last["exit_abs"] == 0:
++                same(row["acquisition_stage"], "live")
+                 same(row["identity_mode"], "live_bsd")
+                 need(available, "live read requires complete matching BSD identity")
+                 integer(row["ppid"], 1, (1 << 31) - 1)
+@@ -235,6 +268,7 @@
+                 same(wb, bsd_birth)
+                 live_identity = observed_bsd
+             else:
++                same(row["acquisition_stage"], "terminal")
+                 same(row["identity_mode"], "stable_terminal_rusage")
+                 need(
+                     live_identity is not None, "terminal read lacks prior live identity"
+@@ -247,8 +281,10 @@
+         if previous:
+             need(previous["end_abs"] < begin, "overlapping/reordered snapshots")
+             dt = (begin - previous["begin_abs"]) * scale
+-            if not 1_500_000_000 <= dt <= 2_500_000_000:
+-                issues.add("FRAME_OUTSIDE_A157_1_5_TO_2_5_SECONDS")
++            if row["acquisition_stage"] == "terminal":
++                issues.add("CONTROLLED_PARENT_BARRIER_GAP")
++            elif not 1_500_000_000 <= dt <= 2_500_000_000:
++                issues.add("FRAME_OUTSIDE_A181_1_5_TO_2_5_SECONDS")
+             old_ticks = previous["host_ticks"]
+             need(
+                 all(a <= b for a, b in zip(old_ticks, ticks)),
+@@ -260,6 +296,7 @@
+             delta_ticks = [b - a for a, b in zip(old_ticks, ticks)]
+             frames.append(
+                 {
++                    "controlled_barrier_gap": row["acquisition_stage"] == "terminal",
+                     "left_seq": seq - 1,
+                     "right_seq": seq,
+                     "elapsed_ns_rational": ratio(dt),
+@@ -337,7 +374,7 @@
+                 }
+             )
+     return {
+-        "schema": "a178.raw-replay.v1",
++        "schema": "a181.raw-replay.v1",
+         "record_consistent": True,
+         "snapshots": count,
+         "frames": frames,
+--- frozen-a178/run.py
++++ a181/run.py
+@@ -2,6 +2,7 @@
+ 
+ import argparse
+ import datetime as dt
++import hashlib
+ import json
+ import os
+ from pathlib import Path
+@@ -26,6 +27,11 @@
+         handle.write("\n")
+         handle.flush()
+         os.fsync(handle.fileno())
++    fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
++    try:
++        os.fsync(fd)
++    finally:
++        os.close(fd)
+ 
+ 
+ def terminal_checks(binary, expected, collector, collector_expected, source_id):
+@@ -49,6 +55,109 @@
+     return checks, errors
+ 
+ 
++def require_predecessors(case, run_dir, source, binary, collector, bhash, chash):
++    replay.eq(run_dir, HERE / "runs" / case)
++    statuses = {
++        "order-12": "RAW_LIFECYCLE_CONSISTENT",
++        "order-21": "RAW_LIFECYCLE_CONSISTENT",
++        "wrong-birth": "EXPECTED_REFUSAL_OBSERVED",
++        "early-reap": "EXPECTED_REFUSAL_OBSERVED",
++    }
++    for prior in replay.CASES[: replay.CASES.index(case)]:
++        path = HERE / "runs" / prior
++        for name in ("validation-rejected.json", "interrupted.json"):
++            marker = path / name
++            replay.need(
++                not marker.is_symlink() and not marker.exists(),
++                "first negative or ambiguous marker stops progression",
++            )
++        captured = {
++            name: replay.raw_check.read_private(path / name)
++            for name in (
++                "validation.json",
++                "exit.json",
++                "child.json",
++                "parent-reaped.json",
++                "launch.json",
++            )
++        }
++        parsed = {
++            name: replay.raw_check.parse_bytes(data) for name, data in captured.items()
++        }
++        result, terminal, child, reaped, launch = (
++            parsed[name]
++            for name in (
++                "validation.json",
++                "exit.json",
++                "child.json",
++                "parent-reaped.json",
++                "launch.json",
++            )
++        )
++        stamps = []
++        for record, field in (
++            (launch, "prepared_utc"),
++            (child, "started_utc"),
++            (reaped, "ended_utc"),
++            (terminal, "ended_utc"),
++        ):
++            value = record[field]
++            replay.need(type(value) is str, "UTC timestamp type")
++            stamp = dt.datetime.fromisoformat(value)
++            replay.need(
++                stamp.tzinfo is not None and stamp.utcoffset() == dt.timedelta(0),
++                "aware UTC timestamp",
++            )
++            stamps.append(stamp)
++        replay.need(
++            stamps == sorted(stamps), "prepared/start/reaped/terminal chronology"
++        )
++        for record in (result, terminal, child, reaped, launch):
++            replay.eq(record["source_id"], source)
++        replay.eq(result["status"], statuses[prior])
++        replay.eq(result["case"], prior)
++        replay.eq(result["collector_qualified"], False)
++        for record in (terminal, reaped):
++            replay.eq(record["exit_code"], 0)
++            replay.eq(record["pid"], child["pid"])
++        replay.integer(child["pid"], 1)
++        for field in (
++            "fixture_binary_unchanged",
++            "collector_binary_unchanged",
++            "source_unchanged",
++        ):
++            replay.eq(terminal[field], True)
++        replay.eq(terminal["errors"], [])
++        replay.eq(
++            launch["command"],
++            [str(binary), "--run", prior, str(collector), str(path / "native")],
++        )
++        replay.eq(child["command"], launch["command"])
++        for record in (launch, terminal):
++            replay.eq(record["binary_sha256"], bhash)
++            replay.eq(record["collector_binary_sha256"], chash)
++        replay.eq(result["fixture_binary_sha256"], bhash)
++        replay.eq(result["collector_binary_sha256"], chash)
++        replay.eq(result["parent_pid"], child["pid"])
++        replay.eq(result["parent_exit_code"], 0)
++        for filename, field in [
++            ("launch.json", "launch_sha256"),
++            ("child.json", "child_sha256"),
++            ("exit.json", "exit_sha256"),
++            ("parent-reaped.json", "parent_reaped_sha256"),
++        ]:
++            replay.eq(hashlib.sha256(captured[filename]).hexdigest(), result[field])
++        life_bytes = replay.raw_check.read_private(path / "native/lifecycle.jsonl")
++        raw_bytes = replay.raw_check.read_private(path / "native/raw.jsonl")
++        replay.eq(hashlib.sha256(life_bytes).hexdigest(), result["lifecycle_sha256"])
++        replay.eq(hashlib.sha256(raw_bytes).hexdigest(), result["raw_sha256"])
++        rows = replay.raw_check.parse_bytes(life_bytes, True)
++        raw = replay.raw_check.parse_bytes(raw_bytes, True)
++        replay.eq(rows[0]["parent_pid"], child["pid"])
++        fresh = replay.verify(rows, raw, prior, source)
++        replay.eq({k: result[k] for k in fresh}, fresh)
++
++
+ def main():
+     if len(sys.argv) == 1:
+         print(
+@@ -71,10 +180,10 @@
+     parser.add_argument("--run-dir", type=Path, required=True)
+     args = parser.parse_args()
+     replay.need(
+-        os.environ.get("A178_ACK") == "A178_ROOT_TINY_LIFECYCLE", "explicit root ACK"
+-    )
+-    replay.need(
+-        os.environ.get("A178_ROOT_EXCLUSIVE") == "1",
++        os.environ.get("A181_ACK") == "A181_ROOT_TINY_LIFECYCLE", "explicit root ACK"
++    )
++    replay.need(
++        os.environ.get("A181_ROOT_EXCLUSIVE") == "1",
+         "root owns this new native workload",
+     )
+     replay.need(
+@@ -100,6 +209,16 @@
+         and not args.run_dir.parent.is_symlink(),
+         "trusted existing run parent",
+     )
++    require_predecessors(
++        args.run,
++        args.run_dir,
++        source,
++        args.binary,
++        args.collector_binary,
++        args.binary_sha256,
++        args.collector_sha256,
++    )
++    os.umask(0o077)
+     args.run_dir.mkdir(mode=0o700)
+     native = args.run_dir / "native"
+     command = [
+@@ -110,7 +229,7 @@
+         str(native),
+     ]
+     launch = dict(
+-        schema="a178.launch.v1",
++        schema="a181.launch.v1",
+         case=args.run,
+         command=command,
+         source_id=source,
+@@ -135,12 +254,12 @@
+                 stdout=out,
+                 stderr=err,
+                 cwd=HERE,
+-                env=dict(os.environ, A178_ACK="A178_ROOT_TINY_LIFECYCLE"),
++                env=dict(os.environ, A181_ACK="A181_ROOT_TINY_LIFECYCLE"),
+             )
+             save(
+                 args.run_dir / "child.json",
+                 dict(
+-                    schema="a178.child.v1",
++                    schema="a181.child.v1",
+                     pid=child.pid,
+                     started_utc=now(),
+                     command=command,
+@@ -151,7 +270,7 @@
+             save(
+                 args.run_dir / "parent-reaped.json",
+                 dict(
+-                    schema="a178.parent-reaped.v1",
++                    schema="a181.parent-reaped.v1",
+                     pid=child.pid,
+                     ended_utc=now(),
+                     exit_code=code,
+@@ -162,7 +281,7 @@
+         save(
+             args.run_dir / "interrupted.json",
+             dict(
+-                schema="a178.interrupted.v1",
++                schema="a181.interrupted.v1",
+                 utc=now(),
+                 pid=child.pid if child else None,
+                 error=repr(exc),
+@@ -181,7 +300,7 @@
+         source,
+     )
+     terminal = dict(
+-        schema="a178.exit.v1",
++        schema="a181.exit.v1",
+         pid=child.pid,
+         ended_utc=now(),
+         exit_code=code,
+@@ -196,8 +315,10 @@
+     result = None
+     try:
+         replay.need(code == 0 and not errors, "native fixture or binding gate failed")
+-        records = replay.raw_check.load(native / "lifecycle.jsonl", True)
+-        raw = replay.raw_check.load(native / "raw.jsonl", True)
++        life_bytes = replay.raw_check.read_private(native / "lifecycle.jsonl")
++        raw_bytes = replay.raw_check.read_private(native / "raw.jsonl")
++        records = replay.raw_check.parse_bytes(life_bytes, True)
++        raw = replay.raw_check.parse_bytes(raw_bytes, True)
+         replay.eq(records[0]["parent_pid"], child.pid)
+         result = replay.verify(records, raw, args.run, source)
+         result.update(
+@@ -205,8 +326,8 @@
+             collector_binary_sha256=args.collector_sha256,
+             parent_pid=child.pid,
+             parent_exit_code=code,
+-            lifecycle_sha256=replay.sha(native / "lifecycle.jsonl"),
+-            raw_sha256=replay.sha(native / "raw.jsonl"),
++            lifecycle_sha256=hashlib.sha256(life_bytes).hexdigest(),
++            raw_sha256=hashlib.sha256(raw_bytes).hexdigest(),
+             source_id=source,
+             launch_sha256=replay.sha(args.run_dir / "launch.json"),
+             child_sha256=replay.sha(args.run_dir / "child.json"),
+@@ -220,7 +341,7 @@
+             dict(status="REJECTED", error=repr(exc), collector_qualified=False),
+         )
+         print(
+-            "A178 runtime evidence rejected; preserve first failure and stop dispatch."
++            "A181 runtime evidence rejected; preserve first failure and stop dispatch."
+         )
+         return 1
+     print(json.dumps({k: result[k] for k in ("case", "status", "collector_qualified")}))
+--- frozen-a178/test_runner.py
++++ a181/test_runner.py
+@@ -72,12 +72,13 @@
+                 patch("sys.argv", argv),
+                 patch.dict(
+                     run.os.environ,
+-                    A178_ACK="A178_ROOT_TINY_LIFECYCLE",
+-                    A178_ROOT_EXCLUSIVE="1",
++                    A181_ACK="A181_ROOT_TINY_LIFECYCLE",
++                    A181_ROOT_EXCLUSIVE="1",
+                 ),
+                 patch.object(run.replay, "source_check", return_value="b" * 64),
+                 patch.object(run.replay, "sha", return_value=("a" * 64)),
+                 patch.object(run.subprocess, "Popen", return_value=child),
++                patch.object(run, "require_predecessors", return_value=None),
+                 patch.object(
+                     run, "terminal_checks", side_effect=RuntimeError("postwait")
+                 ),
+@@ -91,3 +92,163 @@
+ 
+ if __name__ == "__main__":
+     unittest.main()
++
++
++class Progression(unittest.TestCase):
++    def prepared(self, base):
++        from synthetic import fixture, SID
++
++        parent = base / "runs"
++        parent.mkdir(mode=0o700)
++        target = parent / "order-12"
++        target.mkdir(mode=0o700)
++        native = target / "native"
++        native.mkdir(mode=0o700)
++        rows, raw = fixture()
++        command = [
++            str(base / "fixture"),
++            "--run",
++            "order-12",
++            str(base / "collector"),
++            str(native),
++        ]
++        metadata = {
++            "launch.json": dict(
++                source_id=SID,
++                command=command,
++                binary_sha256="b" * 64,
++                collector_binary_sha256="c" * 64,
++            ),
++            "child.json": dict(source_id=SID, pid=99, command=command),
++            "parent-reaped.json": dict(source_id=SID, pid=99, exit_code=0),
++            "exit.json": dict(
++                source_id=SID,
++                pid=99,
++                exit_code=0,
++                binary_sha256="b" * 64,
++                collector_binary_sha256="c" * 64,
++                fixture_binary_unchanged=True,
++                collector_binary_unchanged=True,
++                source_unchanged=True,
++                errors=[],
++            ),
++        }
++        for i, (name, value) in enumerate(metadata.items()):
++            field = (
++                "prepared_utc"
++                if name == "launch.json"
++                else "started_utc"
++                if name == "child.json"
++                else "ended_utc"
++            )
++            value[field] = f"2026-09-05T00:00:0{i}+00:00"
++            run.save(target / name, value)
++        for name, value in [("lifecycle.jsonl", rows), ("raw.jsonl", raw)]:
++            path = native / name
++            path.write_text("".join(json.dumps(x) + "\n" for x in value))
++            path.chmod(0o600)
++        result = run.replay.verify(rows, raw, "order-12", SID)
++        result.update(
++            source_id=SID,
++            fixture_binary_sha256="b" * 64,
++            collector_binary_sha256="c" * 64,
++            parent_pid=99,
++            parent_exit_code=0,
++            lifecycle_sha256=run.replay.sha(native / "lifecycle.jsonl"),
++            raw_sha256=run.replay.sha(native / "raw.jsonl"),
++        )
++        for filename, field in [
++            ("launch.json", "launch_sha256"),
++            ("child.json", "child_sha256"),
++            ("exit.json", "exit_sha256"),
++            ("parent-reaped.json", "parent_reaped_sha256"),
++        ]:
++            result[field] = run.replay.sha(target / filename)
++        run.save(target / "validation.json", result)
++        return target, SID
++
++    def test_complete_predecessor_replayed_and_negative_stops(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            base = Path(temporary).resolve()
++            target, sid = self.prepared(base)
++            with patch.object(run, "HERE", base):
++                run.require_predecessors(
++                    "order-21",
++                    base / "runs/order-21",
++                    sid,
++                    base / "fixture",
++                    base / "collector",
++                    "b" * 64,
++                    "c" * 64,
++                )
++                run.save(target / "validation-rejected.json", {"status": "REJECTED"})
++                with self.assertRaises(ValueError):
++                    run.require_predecessors(
++                        "order-21",
++                        base / "runs/order-21",
++                        sid,
++                        base / "fixture",
++                        base / "collector",
++                        "b" * 64,
++                        "c" * 64,
++                    )
++
++    def test_predecessor_changed_phase_bytes_cannot_inherit_report(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            base = Path(temporary).resolve()
++            target, sid = self.prepared(base)
++            path = target / "native/raw.jsonl"
++            path.write_bytes(path.read_bytes() + b"{}\n")
++            with patch.object(run, "HERE", base), self.assertRaises(ValueError):
++                run.require_predecessors(
++                    "order-21",
++                    base / "runs/order-21",
++                    sid,
++                    base / "fixture",
++                    base / "collector",
++                    "b" * 64,
++                    "c" * 64,
++                )
++
++    def test_completed_raw_hashes_have_no_second_read(self):
++        source = (Path(run.__file__)).read_text()
++        self.assertIn("hashlib.sha256(life_bytes).hexdigest()", source)
++        self.assertIn("hashlib.sha256(raw_bytes).hexdigest()", source)
++        self.assertNotIn('replay.sha(native / "lifecycle.jsonl")', source)
++        self.assertNotIn('replay.sha(native / "raw.jsonl")', source)
++
++    def test_dangling_negative_marker_is_not_ignored(self):
++        with tempfile.TemporaryDirectory() as temporary:
++            base = Path(temporary).resolve()
++            target, sid = self.prepared(base)
++            (target / "validation-rejected.json").symlink_to(target / "absent")
++            with patch.object(run, "HERE", base), self.assertRaises(ValueError):
++                run.require_predecessors(
++                    "order-21",
++                    base / "runs/order-21",
++                    sid,
++                    base / "fixture",
++                    base / "collector",
++                    "b" * 64,
++                    "c" * 64,
++                )
++
++    def test_predecessor_utc_requires_aware_order(self):
++        for value in ("2026-09-05T00:00:00", "2026-09-04T00:00:00+00:00"):
++            with tempfile.TemporaryDirectory() as temporary:
++                base = Path(temporary).resolve()
++                target, sid = self.prepared(base)
++                path = target / "exit.json"
++                data = json.loads(path.read_text())
++                data["ended_utc"] = value
++                path.write_text(json.dumps(data) + "\n")
++                with patch.object(run, "HERE", base), self.assertRaises(ValueError):
++                    run.require_predecessors(
++                        "order-21",
++                        base / "runs/order-21",
++                        sid,
++                        base / "fixture",
++                        base / "collector",
++                        "b" * 64,
++                        "c" * 64,
++                    )
+--- frozen-a178/replay.py
++++ a181/lifecycle_core.py
+@@ -1,4 +1,4 @@
+-"""A178 exact lifecycle consistency. No CPU-unit or settlement qualification."""
++"""A181 exact lifecycle consistency. No CPU-unit or settlement qualification."""
+ 
+ import hashlib
+ import importlib.util
+@@ -7,7 +7,7 @@
+ from pathlib import Path
+ 
+ HERE = Path(__file__).resolve().parent
+-spec = importlib.util.spec_from_file_location("a178_raw_check", HERE / "raw_check.py")
++spec = importlib.util.spec_from_file_location("a181_raw_check", HERE / "raw_check.py")
+ raw_check = importlib.util.module_from_spec(spec)
+ spec.loader.exec_module(raw_check)
+ need, eq, integer, fields = (
+@@ -61,7 +61,7 @@
+         start,
+         "kind seq schema case parent_pid source_id clock numer denom collector_qualified",
+     )
+-    eq(start["schema"], "a178.lifecycle.v1")
++    eq(start["schema"], "a181.lifecycle.v1")
+     eq(start["case"], expected_case)
+     eq(start["source_id"], source_id)
+     eq(start["clock"], "mach_absolute_time")
+@@ -93,12 +93,12 @@
+     raw_start = raw[0]
+     fields(
+         raw_start,
+-        "kind schema source_id pid expected_birth_abs collector_pid samples interval_ms numer denom "
++        "kind schema source_id pid expected_birth_abs collector_pid parent_pid live_budget retained_suffix interval_ms numer denom "
+         "clock host_unit process_unit qualified membership_attested",
+     )
+     for key, value in dict(
+         kind="start",
+-        schema="a178.raw.v1",
++        schema="a181.raw.v1",
+         source_id=source_id,
+         clock="mach_absolute_time",
+         host_unit="raw_u32_ticks",
+@@ -112,7 +112,10 @@
+     eq(raw_start["expected_birth_abs"], cstart["supplied_birth_abs"])
+     eq(raw_start["numer"], start["numer"])
+     eq(raw_start["denom"], start["denom"])
+-    eq(raw_start["samples"], 12)
++    eq(raw_start["parent_pid"], parent)
++    eq(raw_start["live_budget"], 12)
++    eq(raw_start["retained_suffix"], 2)
++    snapshots = [r for r in raw if r["kind"] == "snapshot"]
+     eq(raw_start["interval_ms"], 2000)
+     need(
+         clo <= raw[1]["begin_abs"] <= raw[1]["end_abs"] <= seen["abs"],
+@@ -168,8 +171,8 @@
+         eq(final["snapshot_seq"], 0)
+         eq(usage(final), dict(user_raw=0, system_raw=0, birth_abs=0, exit_abs=0))
+     else:
+-        raw_seq = integer(final["snapshot_seq"], 0, 11)
+-        captured = raw[1 + raw_seq]
++        raw_seq = integer(final["snapshot_seq"], 2, 12)
++        captured = snapshots[raw_seq]
+         eq(captured["seq"], raw_seq)
+         eq(captured["raw_ok"], True)
+         eq(usage(final), captured["last"])
+@@ -262,16 +265,17 @@
+         eq(row["status"], 0)
+         eq(row["single_pid_coverage_supported"], False)
+     if refused:
+-        eq(len(raw), 3)
++        eq(len(raw), 4)
+         snap = raw[1]
+         fields(
+             snap,
+-            "kind seq begin_abs end_abs continuous_abs uptime_ns capacity_before "
++            "kind seq acquisition_stage begin_abs end_abs continuous_abs uptime_ns capacity_before "
+             "capacity_after host_rc host_counts expected_host_counts host_ticks rusage_rc "
+             "rusage_errno bsd_bytes expected_bsd_bytes bsd_errno bsd_pid ppid bsd_birth "
+             "carried_final prior_live_identity bsd_identity_available bsd_positive_conflict "
+             "stable_terminal_pair identity_mode first last raw_ok",
+         )
++        eq(snap["acquisition_stage"], "live")
+         eq(snap["host_rc"], [0, 0, 0])
+         eq(snap["host_counts"], [12, 4, 12])
+         eq(snap["expected_host_counts"], [12, 4, 12])
+@@ -333,7 +337,7 @@
+         eq(raw_result["retained_terminal_usage"], parent_reads[1])
+         terminal_seq = raw_result["first_terminal_snapshot_seq"]
+         need(terminal_seq is not None, "actual stable terminal transition")
+-        terminal_snapshot = raw[1 + terminal_seq]
++        terminal_snapshot = snapshots[terminal_seq]
+         need(
+             whi
+             <= terminal_snapshot["begin_abs"]
+@@ -342,7 +346,7 @@
+             "whole terminal acquisition after WNOWAIT and before child reap",
+         )
+         if expected_case.startswith("order-"):
+-            need(not raw_result["coverage_issues"], "observed clock/coverage concern")
++            eq(raw_result["coverage_issues"], ["CONTROLLED_PARENT_BARRIER_GAP"])
+     done = by_kind["collector_reaped"][0]
+     fields(done, "kind seq pid reaped status abs")
+     eq(done["pid"], collector_pid)
+@@ -350,7 +354,8 @@
+     eq(done["status"], 256 if refused else 0)
+     need(rhi <= integer(done["abs"]), "collector terminal after child reap")
+     need(
+-        raw[-2]["end_abs"] <= done["abs"], "collector terminal after final raw snapshot"
++        snapshots[-1]["end_abs"] <= done["abs"],
++        "collector terminal after final raw snapshot",
+     )
+     summary = lifecycle[-1]
+     fields(
+@@ -371,7 +376,7 @@
+     ).items():
+         eq(summary[key], value)
+     return dict(
+-        schema="a178.replay.v1",
++        schema="a181.replay.v1",
+         case=expected_case,
+         status="UNSUPPORTED_DESCENDANT_OBSERVED"
+         if expected_case == "descendant"
+@@ -410,6 +415,6 @@
+     eq((HERE / "SOURCE_DIGEST.txt").read_text(), source_id + "\n")
+     eq(
+         (HERE / "source_identity.h").read_text(),
+-        '#define A178_SOURCE_ID "' + source_id + '"\n',
++        '#define A181_SOURCE_ID "' + source_id + '"\n',
+     )
+     return source_id

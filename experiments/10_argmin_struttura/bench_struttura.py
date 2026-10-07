@@ -8,7 +8,7 @@ from concrete import fhe
 DIM = 64           # dimensione embedding (bit ~8, accuratezza ~87% da F23)
 Q = 2              # quantizzazione +/-2
 import pathlib as _pl
-# era hardcodato su /home/cursedadmin (home server Linux): ora relativo al repo,
+# era hardcodato su /workspace/redacted-home (home server Linux): ora relativo al repo,
 # cosi' gira anche sul Mac con tools/ldfix nel PATH (vedi tools/README.md)
 CSV = str(_pl.Path(__file__).resolve().parent / "risultati_mac.csv")
 

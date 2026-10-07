@@ -1,0 +1,48 @@
+{
+  "a133_raw_noise_bound": "OPEN",
+  "exact_alias_cancellation": {
+    "mean_torus": "0",
+    "status": "EXACT_ALGEBRAIC_VARIANCE",
+    "variance": "0"
+  },
+  "linked_rust_library_execution": "NOT_RUN",
+  "p_fail_claimed": false,
+  "python_source_formula_port": {
+    "132_bits_meaning": "security/noise calibration, not a p_fail exponent",
+    "a44_glwe_sigma_squared": 8.095547030480233e-30,
+    "a44_small_sigma_squared": 5.330632063971671e-12,
+    "ks_additive_variance": 3.796940575434039e-07,
+    "minimal_glwe_key_calibration_variance": 8.095547030480155e-30,
+    "minimal_small_key_calibration_variance": 5.330632063971644e-12,
+    "ms_additive_variance": 2.1383166313171404e-06,
+    "ms_total_variance": 2.518010688860544e-06,
+    "p_fail_claimed": false,
+    "pbs_marginal_model_variance": 9.272486499600777e-10,
+    "raw_a133_bound": "OPEN",
+    "scope": "Python port of source formulas; Rust library harness NOT_RUN",
+    "variance_unit": "normalized original torus"
+  },
+  "same_marginals_different_joint_laws": {
+    "fully_anticorrelated": {
+      "mean_or_bias_certified": false,
+      "status": "CONDITIONAL_ON_SUPPLIED_COVARIANCE",
+      "tail_certified": false,
+      "variance": "0"
+    },
+    "fully_correlated": {
+      "mean_or_bias_certified": false,
+      "status": "CONDITIONAL_ON_SUPPLIED_COVARIANCE",
+      "tail_certified": false,
+      "variance": "4"
+    },
+    "no_covariance_premise": {
+      "covariance_not_assumed_zero": true,
+      "mean_or_bias_certified": false,
+      "missing_marginal_variances": 2,
+      "status": "OPEN"
+    },
+    "uncorrelated_library_result_if_assumed": 2
+  },
+  "source_pins": 29,
+  "status": "PASS_STATIC_MODEL_INTEROPERABILITY"
+}

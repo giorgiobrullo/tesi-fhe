@@ -1,0 +1,33 @@
+{
+  "actual_fhe_execution": false,
+  "actual_sampler_p_fail": null,
+  "cargo_invoked": false,
+  "cases": [
+    {
+      "name": "zero_error",
+      "p1_selected_consumer_gate_pass": true
+    },
+    {
+      "name": "lower_endpoint",
+      "p1_selected_consumer_gate_pass": true
+    },
+    {
+      "name": "upper_first_bad",
+      "p1_selected_consumer_gate_pass": false
+    }
+  ],
+  "fixed_key_p_fail": null,
+  "inherited_runtime_success": false,
+  "next_gate": "Root exclusive offline selected-bin check/release then one new fresh-key P1 run; inspect independent P0+P1 replay before expansion.",
+  "origin_pins": 20,
+  "pipeline_p_fail": null,
+  "ruff_check_pass": true,
+  "rustfmt_parse_only": true,
+  "source_files": 21,
+  "source_sha256": "91738324d837f89cadbc2d20b59390bae3349bb0a4548a7d180ba12693cd2138",
+  "status": "SOURCE_AND_SYNTHETIC_READY_NO_BUILD_OR_FHE",
+  "tests_run": 14,
+  "typecheck": false,
+  "unit_tests_log_sha256": "a9bb4aace468264c1bb295a39c4df4d2355f11ef3cbc0e0a57e7caab36e54c53",
+  "upstream_pins": 25
+}

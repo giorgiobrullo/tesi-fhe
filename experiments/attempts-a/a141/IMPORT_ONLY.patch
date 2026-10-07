@@ -1,0 +1,11 @@
+--- /workspace/research/tmp/a141-noise-simulator-crosscheck/src/main.rs
++++ /workspace/research/tmp/a141-noise-simulator-import-fix/src/main.rs
+@@ -7,7 +7,7 @@
+     minimal_lwe_variance_for_132_bits_security_gaussian,
+ };
+ use tfhe::core_crypto::prelude::*;
+-use tfhe::shortint::parameters::V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64 as A44;
++use tfhe::shortint::parameters::v0_11::classic::gaussian::V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64 as A44;
+ 
+ fn ks(variance: f64, sigma: f64) -> NoiseSimulationLwe {
+     let modulus = NoiseSimulationModulus::from_ciphertext_modulus(A44.ciphertext_modulus);

@@ -1,0 +1,41 @@
+# Gate Docker isolato dello snapshot A38. Il contesto e' la radice del repository, ma il crate
+# compilato proviene esclusivamente dalla copia congelata sotto tmp/a38-combined-prototype.
+FROM rust:1-bookworm AS build
+WORKDIR /src
+
+COPY tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.toml ./Cargo.toml
+COPY tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/Cargo.lock ./Cargo.lock
+COPY tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/lib.rs ./src/lib.rs
+COPY tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/private_argmin.rs ./src/private_argmin.rs
+COPY tmp/a38-combined-prototype/source/experiments/14_pipeline_tfhe_rs/src/bin/varco_demo.rs ./src/bin/varco_demo.rs
+RUN cargo build --locked --release --bin varco_demo
+
+COPY tmp/a55-a38-docker-gate-design/Dockerfile.server ./gate/Dockerfile.server
+COPY tmp/a55-a38-docker-gate-design/docker-compose.e2e.yml ./gate/docker-compose.e2e.yml
+COPY tmp/a55-a38-docker-gate-design/run_gate.py ./gate/run_gate.py
+COPY tmp/a55-a38-docker-gate-design/frozen-inputs.sha256 ./gate/frozen-inputs.sha256
+COPY tmp/a55-a38-docker-gate-design/a38-identity.json ./gate/a38-identity.json
+COPY tmp/a38-combined-prototype/README.md ./snapshot/README.md
+COPY tmp/a38-combined-prototype/source/benchmark/demo_e2e.py ./gate/frozen_demo_e2e.py
+RUN sha256sum \
+      Cargo.toml \
+      Cargo.lock \
+      src/bin/varco_demo.rs \
+      src/lib.rs \
+      src/private_argmin.rs \
+      gate/Dockerfile.server \
+      gate/docker-compose.e2e.yml \
+      gate/run_gate.py \
+      gate/frozen-inputs.sha256 \
+      gate/a38-identity.json \
+      gate/frozen_demo_e2e.py \
+      snapshot/README.md \
+      target/release/varco_demo \
+      > /src/build-provenance.sha256
+
+FROM debian:bookworm-slim
+COPY --from=build /src/target/release/varco_demo /usr/local/bin/varco_demo
+COPY --from=build /src/build-provenance.sha256 /usr/local/share/tesi-fhe/build-provenance.sha256
+ENV DIM=512 SOGLIA=4 PORTA=9000
+EXPOSE 9000
+CMD ["/bin/sh", "-c", "exec /usr/local/bin/varco_demo serve $PORTA $DIM $SOGLIA"]

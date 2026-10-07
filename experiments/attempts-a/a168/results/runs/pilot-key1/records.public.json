@@ -1,0 +1,22 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 15,
+      "data": {
+        "actual_p_fail": null,
+        "all_correct": true,
+        "confidence_interval": null,
+        "evaluations": 12,
+        "guard_status": "UNQUALIFIED_NO_ALIGNED_OS_COLLECTOR",
+        "measured_pairs": 4,
+        "pairs": 6,
+        "pairs_pass": 6,
+        "record": "summary",
+        "speedup_promotion_allowed": false,
+        "status": "PILOT_COMPLETE",
+        "warmup_pairs": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+--- /workspace/research/tmp/a52-canonical-high-lane-prototype/src/lib.rs
++++ /workspace/research/tmp/a52-canonical-high-lane-repair/src/lib.rs
+@@ -6,6 +6,7 @@
+ 
+ use sha2::{Digest, Sha256};
+ use std::fmt::{Display, Formatter};
++use tfhe::core_crypto::fft_impl::common::pbs_modulus_switch;
+ use tfhe::core_crypto::prelude::*;
+ use tfhe::shortint::server_key::ShortintBootstrappingKey;
+ use tfhe::shortint::ServerKey;
+@@ -307,6 +308,26 @@
+     server_key: &ServerKey,
+     canonical_score: &Lwe,
+ ) -> Result<Lwe, A52Error> {
++    canonical_high_digit_with_trace(binding, server_key, canonical_score)
++        .map(|(output, _trace)| output)
++}
++
++/// Retains the actual ordinary-KS output consumed by the unchanged stock PBS.
++/// Degrees are replayed with the same cached public function used inside that PBS;
++/// they are not a second MS/PBS invocation or a phase-only approximation.
++pub struct A52HighTrace {
++    pub shifted: Lwe,
++    pub switched: Lwe,
++    pub accumulator_body: Vec<u64>,
++    pub mask_degrees: Vec<usize>,
++    pub body_degree: usize,
++}
++
++pub fn canonical_high_digit_with_trace(
++    binding: A52Binding<'_>,
++    server_key: &ServerKey,
++    canonical_score: &Lwe,
++) -> Result<(Lwe, A52HighTrace), A52Error> {
+     validate_a52_server_key(binding, server_key)?;
+     if !canonical_score.ciphertext_modulus().is_native_modulus()
+         || canonical_score.ciphertext_modulus() != server_key.ciphertext_modulus
+@@ -347,7 +368,22 @@
+         modulus,
+     );
+     programmable_bootstrap_lwe_ciphertext(&switched, &mut output, &accumulator, bootstrap_key);
+-    Ok(output)
++    let mask_degrees = switched
++        .get_mask()
++        .as_ref()
++        .iter()
++        .map(|&word| pbs_modulus_switch(word, PolynomialSize(POLYNOMIAL_SIZE)))
++        .collect();
++    let body_degree =
++        pbs_modulus_switch(*switched.get_body().data, PolynomialSize(POLYNOMIAL_SIZE));
++    let trace = A52HighTrace {
++        shifted,
++        switched,
++        accumulator_body: accumulator.get_body().as_ref().to_vec(),
++        mask_degrees,
++        body_degree,
++    };
++    Ok((output, trace))
+ }
+ 
+ pub fn native_pbs_modulus_switch_clear(phase: u64) -> usize {
+@@ -460,4 +496,62 @@
+             }
+         );
+     }
+-}
++
++    #[test]
++    fn exact_phase_does_not_imply_exact_coefficientwise_rotation() {
++        // A legal 879-mask binary-secret example with only the first two bits set.
++        // It is not asserted to be the old run's KSK output or a typical sample.
++        let mask_word = 1u64 << 51;
++        let body = HIGH_PRE_PBS_OFFSET_TORUS.wrapping_add(2 * mask_word);
++        let round = |word| pbs_modulus_switch(word, PolynomialSize(POLYNOMIAL_SIZE));
++        let phase = body.wrapping_sub(2 * mask_word);
++        let actual_degree =
++            (round(body) + BLIND_ROTATION_MODULUS - 2 * round(mask_word)) % BLIND_ROTATION_MODULUS;
++        assert_eq!(phase, HIGH_PRE_PBS_OFFSET_TORUS);
++        assert_eq!(round(phase), 4_032);
++        assert_eq!(actual_degree, 4_031);
++        assert_eq!(clear_canonical_high_digit(0, 0), Ok(0));
++        assert_eq!(
++            negacyclic_accumulator_code(actual_degree).rem_euclid(32),
++            17
++        );
++    }
++
++    #[test]
++    fn public_shift_cannot_enlarge_both_adjacent_boundary_margins() {
++        assert_eq!(clear_canonical_high_digit(255, 0), Ok(0));
++        assert_eq!(clear_canonical_high_digit(256, 0), Ok(1));
++        assert_ne!(
++            clear_canonical_high_digit(255, HIGH_OPEN_MARGIN_TORUS as i64),
++            Ok(0),
++        );
++        assert_ne!(
++            clear_canonical_high_digit(256, -(HIGH_OPEN_MARGIN_TORUS as i64) - 1),
++            Ok(1),
++        );
++    }
++
++    #[test]
++    fn independent_accumulator_codes_equal_the_actual_stock_lut() {
++        let actual = generate_programmable_bootstrap_glwe_lut(
++            PolynomialSize(POLYNOMIAL_SIZE),
++            GlweSize(2),
++            P16_MODULUS,
++            CiphertextModulus::new_native(),
++            1u64 << P16_DELTA_LOG,
++            |digit| digit,
++        );
++        for degree in 0..BLIND_ROTATION_MODULUS {
++            let word = actual.get_body().as_ref()[degree % POLYNOMIAL_SIZE];
++            let expected = if degree < POLYNOMIAL_SIZE {
++                word
++            } else {
++                word.wrapping_neg()
++            };
++            assert_eq!(
++                (negacyclic_accumulator_code(degree) as u64).wrapping_mul(1u64 << 59),
++                expected,
++            );
++        }
++    }
++}
+--- /workspace/research/tmp/a52-canonical-high-lane-prototype/src/bin/a52_canonical_high_lane_prototype.rs
++++ /workspace/research/tmp/a52-canonical-high-lane-repair/src/bin/a52_canonical_high_lane_prototype.rs
+@@ -3,15 +3,20 @@
+ //! Without `--run`, this executable performs only clear/static assertions and prints a plan.  A
+ //! future explicit `--run` generates one ephemeral key in memory, encrypts a fresh four-lane GLWE
+ //! for every selected boundary, performs the public-template convolution, extracts degree 2047,
+-//! and evaluates the one-KS/one-PBS A52 component.  It never serializes keys or ciphertexts.
++//! and evaluates the one-KS/one-PBS A52 component. The separate diagnostic successor emits
++//! client-local ciphertext/phase records before the original acceptance assertions.
++
++#[path = "../diagnostics.rs"]
++mod diagnostics;
+ 
+ use a52_canonical_high_lane_prototype::{
+-    a52_parameter_and_layout_fingerprint_sha256, canonical_high_digit, clear_canonical_high_digit,
+-    validate_a52_binding_text, validate_a52_server_key, validate_a52_static_layout, A52_BINDING,
+-    A52_PARAMETER_AND_LAYOUT_FINGERPRINT_SHA256, A52_PARAMS_ID, A52_PER_TEMPLATE_COUNTS,
+-    CANONICAL_HIGH_LANE_END, CANONICAL_HIGH_LANE_OFFSET, CANONICAL_HIGH_SAMPLE_DEGREE,
+-    CANONICAL_SCORE_DELTA_LOG, FULL_DELTA_LOG, FULL_LANE_OFFSET, LOW_DELTA_LOG, LOW_LANE_OFFSET,
+-    MID_DELTA_LOG, MID_LANE_OFFSET, P16_DELTA_LOG, POLYNOMIAL_SIZE, PROBE_DIM, SCORE_DOMAIN_SIZE,
++    a52_parameter_and_layout_fingerprint_sha256, canonical_high_digit_with_trace,
++    clear_canonical_high_digit, validate_a52_binding_text, validate_a52_server_key,
++    validate_a52_static_layout, A52_BINDING, A52_PARAMETER_AND_LAYOUT_FINGERPRINT_SHA256,
++    A52_PARAMS_ID, A52_PER_TEMPLATE_COUNTS, CANONICAL_HIGH_LANE_END, CANONICAL_HIGH_LANE_OFFSET,
++    CANONICAL_HIGH_SAMPLE_DEGREE, CANONICAL_SCORE_DELTA_LOG, FULL_DELTA_LOG, FULL_LANE_OFFSET,
++    LOW_DELTA_LOG, LOW_LANE_OFFSET, MID_DELTA_LOG, MID_LANE_OFFSET, P16_DELTA_LOG, POLYNOMIAL_SIZE,
++    PROBE_DIM, SCORE_DOMAIN_SIZE,
+ };
+ use std::time::Instant;
+ use tfhe::core_crypto::algorithms::polynomial_algorithms::polynomial_wrapping_add_mul_assign;
+@@ -257,7 +262,7 @@
+     let cases = selected_cases(&arguments);
+     if !arguments.run {
+         println!(
+-            "PLAN,variant=a52_canonical_high_lane,compiled=false,fhe_validated=false,cases_if_run={},lane_offset={},sample_degree={},input_delta_log={},output_delta_log={},per_template_BR={},per_template_KS={},per_template_marginals={},params_id={},fingerprint_sha256={},keys_generated=false",
++            "PLAN,variant=a52_actual_ks_ms_diagnostic,crypto_repair_claim=false,cases_if_run={},lane_offset={},sample_degree={},input_delta_log={},output_delta_log={},per_template_BR={},per_template_KS={},per_template_marginals={},params_id={},fingerprint_sha256={},keys_generated=false",
+             cases.len(),
+             CANONICAL_HIGH_LANE_OFFSET,
+             CANONICAL_HIGH_SAMPLE_DEGREE,
+@@ -272,11 +277,18 @@
+         return;
+     }
+ 
++    assert_eq!(
++        std::env::var("A52_DIAGNOSTIC_PRIVATE_ACK").as_deref(),
++        Ok("CLIENT_LOCAL_PHASE_LOGS"),
++        "A52 diagnostic requires explicit private client-local log acknowledgement",
++    );
++    diagnostics::source_record();
++
+     let key_started = Instant::now();
+     let client_key = ClientKey::new(PARAMS);
+     let server_key = ServerKey::new(&client_key);
+     validate_a52_server_key(A52_BINDING, &server_key).expect("A52 server-key binding");
+-    let (glwe_secret_key, _small_secret_key, client_params) = client_key.into_raw_parts();
++    let (glwe_secret_key, small_secret_key, client_params) = client_key.into_raw_parts();
+     let big_secret_key = glwe_secret_key.as_lwe_secret_key();
+     let modulus = CiphertextModulus::<u64>::new_native();
+     let mut seeder_box = new_seeder();
+@@ -305,11 +317,24 @@
+         );
+         let score = extract_normalized_canonical_score(&packed_probe, &template, execution_lower);
+         let decoded_score = decode_lwe(&big_secret_key, &score, CANONICAL_SCORE_DELTA_LOG, 0x1fff);
++        println!(
++            "{{\"record\":\"INPUT\",\"case_index\":{},\"score\":{},\"active_coordinate\":{},\"decoded_score\":{},\"score_gate_pass\":{}}}",
++            case_index, translated_score, active_coordinate, decoded_score, decoded_score == translated_score,
++        );
+         assert_eq!(decoded_score, translated_score, "A52 score-lane boundary");
+ 
+         let started = Instant::now();
+-        let high = canonical_high_digit(A52_BINDING, &server_key, &score)
++        let (high, trace) = canonical_high_digit_with_trace(A52_BINDING, &server_key, &score)
+             .expect("A52 high-digit evaluation rejected valid input");
++        diagnostics::record_high(
++            case_index,
++            translated_score,
++            &score,
++            &high,
++            &trace,
++            &big_secret_key,
++            &small_secret_key,
++        );
+         let decoded_high = decode_lwe(&big_secret_key, &high, P16_DELTA_LOG, 0x1f);
+         assert_eq!(decoded_high, translated_score >> 8, "A52 high digit");
+         println!(

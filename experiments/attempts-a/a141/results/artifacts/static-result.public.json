@@ -1,0 +1,66 @@
+{
+  "a133_raw_noise_bound": "OPEN",
+  "exact_alias_cancellation": {
+    "centered_constant_error_torus": "0",
+    "centered_modular_variance": "0",
+    "lifted_constant_error_torus": "0",
+    "lifted_linear_variance": "0",
+    "status": "EXACT_CONSTANT_VARIANCE_ZERO"
+  },
+  "linked_rust_library_execution": "NOT_RUN",
+  "p_fail_claimed": false,
+  "python_source_formula_port": {
+    "132_bits_meaning": "security/noise calibration, not a p_fail exponent",
+    "a44_glwe_sigma_squared": 8.095547030480233e-30,
+    "a44_small_sigma_squared": 5.330632063971671e-12,
+    "ks_additive_variance": 3.796940575434039e-07,
+    "minimal_glwe_key_calibration_variance": 8.095547030480155e-30,
+    "minimal_small_key_calibration_variance": 5.330632063971644e-12,
+    "ms_additive_variance": 2.1383166313171404e-06,
+    "ms_total_variance": 2.518010688860544e-06,
+    "p_fail_claimed": false,
+    "pbs_marginal_model_variance": 9.272486499600777e-10,
+    "raw_a133_bound": "OPEN",
+    "scope": "Python port of source formulas; Rust library harness NOT_RUN",
+    "variance_unit": "normalized original torus"
+  },
+  "same_marginals_different_joint_laws": {
+    "fully_anticorrelated": {
+      "centered_modular_variance_status": "OPEN_REQUIRES_NO_WRAP_OR_DISTRIBUTION_PREMISE",
+      "lifted_linear_variance": "0",
+      "mean_or_bias_certified": false,
+      "random_variable": "unwrapped offset + sum(coefficients * atom_lifts)",
+      "status": "CONDITIONAL_LIFTED_LINEAR_VARIANCE",
+      "tail_certified": false,
+      "variance_scope": "unwrapped linear combination of specified atom lifts"
+    },
+    "fully_correlated": {
+      "centered_modular_variance_status": "OPEN_REQUIRES_NO_WRAP_OR_DISTRIBUTION_PREMISE",
+      "lifted_linear_variance": "4",
+      "mean_or_bias_certified": false,
+      "random_variable": "unwrapped offset + sum(coefficients * atom_lifts)",
+      "status": "CONDITIONAL_LIFTED_LINEAR_VARIANCE",
+      "tail_certified": false,
+      "variance_scope": "unwrapped linear combination of specified atom lifts"
+    },
+    "no_covariance_premise": {
+      "covariance_not_assumed_zero": true,
+      "mean_or_bias_certified": false,
+      "missing_marginal_variances": 2,
+      "status": "OPEN",
+      "variance_scope": "unwrapped linear combination of specified atom lifts"
+    },
+    "uncorrelated_library_result_if_assumed": 2
+  },
+  "source_pins": 29,
+  "status": "PASS_STATIC_MODEL_INTEROPERABILITY",
+  "variance_scope": "unwrapped/lifted linear variance only; not centered modular variance",
+  "wrap_counterexample": {
+    "atom_law": "e = +/- q/4 equiprobably, coefficient 3",
+    "atom_lift_variance_q_squared": "1/16",
+    "centered_modular_variance_q_squared": "1/16",
+    "lifted_sum_variance_q_squared": "9/16",
+    "mean": "0",
+    "transfer_without_extra_premises": false
+  }
+}

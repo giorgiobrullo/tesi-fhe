@@ -1,0 +1,96 @@
+--- A164/candidate/src/main.rs
++++ A166/candidate/src/main.rs (IDs normalized)
+@@ -1,4 +1,5 @@
+-//! A158 P0: actual first low KS and returned Standard MS; zero BR. Client-local only.
++//! A164 P1: frozen P0 prefix plus one BR consuming its retained Standard MS object.
++mod consumer;
+ mod observe;
+ use observe::*;
+ use std::fs;
+@@ -51,7 +52,7 @@
+         ]),
+     );
+ 
+-    // Same normal setup as the frozen Standard harness. This creates a BSK, unused by P0.
++    // Same normal setup as the frozen Standard harness. P1 consumes its existing BSK.
+     let client = ClientKey::new(PARAMS);
+     let server = ServerKey::new(&client);
+     assert_eq!(server.message_modulus.0, 2);
+@@ -119,6 +120,10 @@
+     ]);
+     // Separate key record exists before the query and phase observations.
+     save(&directory, "key-binding.json", bindings.clone());
++    // A164 P1 addition: public BSK digest before the query; no raw key serialization.
++    let p1_binding = consumer::key_binding(bsk, &bindings, &hash(&keyset_bytes));
++    save(&directory, "p1-key-binding.json", p1_binding.clone());
++    let mut counts = consumer::Counts::default();
+ 
+     let mut probe = vec![0i64; 512];
+     for (i, value) in [(0, 1), (1, -2), (255, 2), (511, -1)] {
+@@ -211,11 +216,13 @@
+ 
+     let mut post = LweCiphertext::new(0u64, LweSize(860), modulus);
+     keyswitch_lwe_ciphertext(ksk, &input, &mut post);
++    counts.ks += 1;
+     let mut centered = post.clone();
+     lwe_ciphertext_plaintext_add_assign(&mut centered, Plaintext(1u64 << 62));
+     let log_modulus = bsk.polynomial_size().to_blind_rotation_input_modulus_log();
+     assert_eq!(log_modulus.0, 12);
+     let switched = configuration.lwe_ciphertext_modulus_switch::<usize, _>(&centered, log_modulus);
++    counts.ms += 1;
+     let (returned, correction, returned_log) = switched.as_view().into_raw_parts();
+     let degrees: Vec<u64> = switched.mask().map(|x| x as u64).collect();
+     let body_degree = switched.body() as u64;
+@@ -313,7 +320,7 @@
+         ("conditional_lut_address_pass", lut_ok.to_string()),
+     ]);
+     // Preserve full evidence before assertions, including an unexpected phase or address.
+-    save(&directory, "trace.json", record);
++    save(&directory, "trace.json", record.clone());
+     assert_eq!(
+         low_phase,
+         (1029u64.wrapping_mul(1u64 << 60)).wrapping_add(low_noise as u64)
+@@ -328,24 +335,32 @@
+         native_ok && lut_ok,
+         "selected P0 prefix gate failed; preserve this run"
+     );
+-    save(
++    let p0_completed = object(&[
++        ("status", text("P0_NATIVE_AND_CONDITIONAL_ADDRESS_PASS")),
++        ("ordinary_ks", "1".into()),
++        ("configured_ms", "1".into()),
++        ("blind_rotations", "0".into()),
++        ("actual_sampler_p_fail", "null".into()),
++        ("independent_replay_pending", "true".into()),
++    ]);
++    save(&directory, "p0-completed.json", p0_completed.clone());
++    consumer::consume_p1(
+         &directory,
+-        "completed.json",
+-        object(&[
+-            ("status", text("P0_NATIVE_AND_CONDITIONAL_ADDRESS_PASS")),
+-            ("ordinary_ks", "1".into()),
+-            ("configured_ms", "1".into()),
+-            ("blind_rotations", "0".into()),
+-            ("actual_sampler_p_fail", "null".into()),
+-            ("independent_replay_pending", "true".into()),
+-        ]),
++        &switched,
++        bsk,
++        &big,
++        &p1_binding,
++        &record,
++        &p0_completed,
++        address as usize,
++        &mut counts,
+     );
+ }
+ 
+ fn main() {
+     let args: Vec<_> = std::env::args().skip(1).collect();
+     if args.is_empty() {
+-        println!("A164 P0 plan only: one template, 1 KS, 1 actual Standard MS, 0 BR; no keygen.");
++        println!("A164 P1 plan only: one template, 1 KS, 1 retained Standard MS, 1 BR; no keygen.");
+         return;
+     }
+     assert_eq!(args.len(), 3, "use the private launcher");

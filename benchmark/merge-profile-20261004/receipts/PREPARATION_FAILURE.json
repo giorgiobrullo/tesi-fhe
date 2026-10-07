@@ -1,0 +1,5 @@
+{
+  "tool_chunk": "8a79bf",
+  "exit_code": 1,
+  "cause": "Root textual presence assertion expected adjacent payload/group equality; final validator interposes type checks. No source bug or native query; all four copies completed before the assertion. Replaced by reading exact validator and meaningful offline tests."
+}

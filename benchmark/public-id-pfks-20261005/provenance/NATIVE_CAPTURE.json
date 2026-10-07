@@ -1,0 +1,25 @@
+{
+  "action": "NATIVE",
+  "started_utc": "2026-10-05T06:28:00.881645+00:00",
+  "cwd": "/workspace/research/tmp/current-first-level-pfks-profile-20261005/workspace",
+  "command": [
+    "/workspace/research/tmp/current-final-threshold-stage-20261005/target/release/first_level_pfks_profile"
+  ],
+  "explicit_environment": {
+    "RUSTFLAGS": "",
+    "CARGO_TARGET_DIR": "/workspace/research/tmp/current-final-threshold-stage-20261005/target",
+    "RAYON_NUM_THREADS": "16"
+  },
+  "stdout": "/workspace/research/tmp/current-first-level-pfks-profile-20261005/root/NATIVE.stdout.log",
+  "stderr": "/workspace/research/tmp/current-first-level-pfks-profile-20261005/root/NATIVE.stderr.log",
+  "observer_pid": 15322,
+  "process_control": false,
+  "VARCO_PROFILE_PHASES": "absent",
+  "status": "terminal",
+  "retry": false,
+  "pid": 15323,
+  "exit_code": 0,
+  "finished_utc": "2026-10-05T06:28:21.559838+00:00",
+  "observer_wall_seconds": 20.678103832993656,
+  "wall_semantics": "process observation only; not a pipeline performance benchmark"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "a192.source_peer_review.v1",
+  "reviews": [
+    {
+      "reviewer": "/root/audit_findings",
+      "mode": "read-only source, no tests/native/log execution",
+      "scope": "N4 fixture12-bit domain, tied-minimum uniform1023 oracle, unchanged precision/input expressions, finite fixture0 control, component arithmetic/replay, exact prefix and205KS/BR plus211-row ledger",
+      "result": "No material issue found; fixture15 label clarified to zero_maximum_tie without changing its scores"
+    },
+    {
+      "reviewer": "/root",
+      "mode": "read-only source progression/envelope review",
+      "scope": "stage/complete-negative prefixes, fixed and cross-component key/phase binding, raw PID/argv/UTC/source/binary identity, private captured-byte hashes and immediate wait checkpoint",
+      "result": "Clear after adding prelaunch and replay requirement that full clearance observation UTC is at least smoke termination UTC",
+      "correction_regression": "Reject prior terminal between clearance and preparation; accept changing only observation to terminal instant; check source prelaunch placement",
+      "correction_tests": "17 tests PASS6.692s"
+    }
+  ],
+  "noise_agent_review_performed": false,
+  "native_typecheck_or_fhe_performed": false,
+  "no_runtime_success_claim": true
+}

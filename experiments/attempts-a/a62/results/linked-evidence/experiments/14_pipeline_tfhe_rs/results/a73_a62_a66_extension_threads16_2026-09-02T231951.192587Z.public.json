@@ -1,0 +1,23 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 80,
+      "data": {
+        "record": "summary",
+        "status": "PASS",
+        "stage": "extension",
+        "threads": 16,
+        "measured_pairs": 60,
+        "excluded_warmup_pairs": 12,
+        "total_pairs": 72,
+        "passed_pairs": 72,
+        "failed_pairs": 0,
+        "key_blocks": 3,
+        "keys_ephemeral": true,
+        "secret_material_persisted": false,
+        "promotion_allowed": false
+      }
+    }
+  ]
+}

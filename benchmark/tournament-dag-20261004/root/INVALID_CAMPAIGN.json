@@ -1,0 +1,36 @@
+{
+  "closed_utc": "2026-10-04T21:46:22.459332+00:00",
+  "status": "INPUT_ADMISSION_FAILURE",
+  "fresh_key_families_generated": 1,
+  "encrypted_queries": 1,
+  "evaluate_calls": 0,
+  "timed_queries": 0,
+  "decoded_checks": 0,
+  "reason": "public synthetic coordinate4 exceeded admitted\u00b13",
+  "preserved": {
+    "/workspace/research/tmp/current-tournament-dag-20261004/probe/src/main.rs": {
+      "bytes": 6539,
+      "sha256": "f7db084f76b1e45812d1c030dd370101a6cbe4bda27cbfe3ff6f18585c8761ee"
+    },
+    "/workspace/research/tmp/current-tournament-dag-20261004/probe/Cargo.toml": {
+      "bytes": 372,
+      "sha256": "63d2689b360e3b2ee1a7aa04ebc08901b7e6039ab0ea773e00f77e118897f0ea"
+    },
+    "/workspace/research/tmp/current-tournament-dag-20261004/root/NATIVE.ndjson": {
+      "bytes": 535,
+      "sha256": "fdf124c8338823d89501b558c7594efd90842738846aba1475503ffdc33ab13d"
+    },
+    "/workspace/research/tmp/current-tournament-dag-20261004/root/NATIVE_START.json": {
+      "bytes": 648,
+      "sha256": "cf83ac76245f63bc114b293c244e9a3307290ca92fae0af4d8e566460c844708"
+    },
+    "/workspace/research/tmp/current-tournament-dag-20261004/root/NATIVE_EXIT.json": {
+      "bytes": 905,
+      "sha256": "c8945ead5fb80b99e63785ea61d5bde85bca5a16cbd7f156db373aecfc0fb660"
+    },
+    "/workspace/research/tmp/current-tournament-dag-20261004/target/release/current_tournament_dag_probe_20261004": {
+      "bytes": 2078112,
+      "sha256": "8cd0208fd15619827d9a7f16f53469ec7ffeca7d19f00446c5a65c1f84fa30d4"
+    }
+  }
+}

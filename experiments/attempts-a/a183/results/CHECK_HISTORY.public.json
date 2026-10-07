@@ -1,0 +1,23 @@
+{
+  "final_tests": {
+    "command": "python3 -m unittest -q test_model.py",
+    "cwd": "archive:/tmp/a183-a149-precision-premise-audit",
+    "count": 18,
+    "passed": 18,
+    "seconds": 0.747
+  },
+  "final_lint": "ruff check model.py test_model.py analyze.py: PASS",
+  "earlier_checks": [
+    {
+      "tests": 16,
+      "passed": 16,
+      "seconds": 0.747
+    },
+    {
+      "wrong_cwd_invocation": "ModuleNotFoundError: test_model; no arithmetic tests executed; corrected cwd used thereafter"
+    }
+  ],
+  "native_builds": 0,
+  "crypto_runs": 0,
+  "network_calls": 0
+}

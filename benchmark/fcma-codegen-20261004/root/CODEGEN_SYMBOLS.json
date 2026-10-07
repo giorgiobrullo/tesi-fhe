@@ -1,0 +1,20 @@
+{
+  "observed_utc": "2026-10-04T17:10:29.923103+00:00",
+  "binary_sha256": "a7276e4bccee81362779aaee551b2a559733cece450494b2e60f545d93dfc668",
+  "nm_command": [
+    "/usr/bin/nm",
+    "-n",
+    "/workspace/research/tmp/current-fcma-codegen-20261004/bin/codegen-probe"
+  ],
+  "selected_symbols": [
+    "0000000100000888 t __RINvNtCsedRpiqSkYaQ_4core3ptr9drop_glueINtNtNtNtB4_4iter8adapters4skip4SkipNtNtCskP2HG43Jt7g_3std3env4ArgsEECsa22tAUpy5bK_26current_fcma_codegen_probe",
+    "0000000100000920 t __RINvNtNtCskP2HG43Jt7g_3std3sys9backtrace28___rust_begin_short_backtraceFENtNtB6_7process8ExitCodeB19_ECsa22tAUpy5bK_26current_fcma_codegen_probe",
+    "0000000100000934 t __RINvYNtNtCskP2HG43Jt7g_3std3env4ArgsNtNtNtNtCsedRpiqSkYaQ_4core4iter6traits8iterator8Iterator8try_foldINtNtNtBG_3num7nonzero7NonZerojENCNvXs_NvBy_10advance_byB3_NtB2f_13SpecAdvanceBy15spec_advance_by0INtNtBG_6option6OptionB1C_EECsa22tAUpy5bK_26current_fcma_codegen_probe",
+    "0000000100000998 t __RNCINvNtCskP2HG43Jt7g_3std2rt10lang_startNtNtB6_7process8ExitCodeE0Csa22tAUpy5bK_26current_fcma_codegen_probe",
+    "00000001000009b4 t __RNSNvYNCINvNtCskP2HG43Jt7g_3std2rt10lang_startNtNtBb_7process8ExitCodeE0INtNtNtCsedRpiqSkYaQ_4core3ops8function6FnOnceuE9call_once6vtableCsa22tAUpy5bK_26current_fcma_codegen_probe",
+    "00000001000009d0 t __RNvCsa22tAUpy5bK_26current_fcma_codegen_probe4main",
+    "0000000100000c98 T _fcma_update",
+    "0000000100000de8 T _neon_update"
+  ],
+  "selection_scope": "exported wrappers and names current_fcma_codegen/vectorize; not whole assembly"
+}

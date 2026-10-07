@@ -2,7 +2,7 @@
 
 [Indice della rassegna](../../letteratura.md) · [Primitive TFHE](primitive-e-codesign.md) · [Fonti](fonti.md)
 
-Fonti verificate il **19 settembre 2026**; raccordo aggiornato il 22 settembre.
+Le versioni consultate e le date dei controlli sono nel [registro delle verifiche](versioni-e-verifiche.md).
 Il runtime mantenuto usa Head/PFKS con selettore corretto, anchor e pack4.
 Questa scheda descrive alternative scientifiche, senza attribuirne le
 funzionalità o i tempi al servizio locale. Il [confronto numerico del 20 settembre](../../output/figures/ckks-tfhe/selettore-corretto-20260920/LEGGIMI.md)
@@ -103,9 +103,17 @@ di questi lavori e non chiude il confronto con CKKS discreto. Le alternative
 restano ammissibili senza che la loro presenza obblighi a cambiare il core
 TFHE prima di avere un adattatore e un confronto coerente.
 
+<a id="sicurezza-dei-protocolli-revisione-del-2-ottobre-2026"></a>
+
+## Sicurezza della funzione e del protocollo
+
+**Sicurezza della funzione e del protocollo.** [Hwang et al., ASIACRYPT 2025](https://eprint.iacr.org/2025/382), formalizzano DPHE e prove di buona formazione per protocolli CKKS con riceventi malevoli. La funzionalità ammette una perturbazione dell'uscita: questo non è equivalente a un risultato discreto esatto. La nuova revisione [*On the (In)security of Approximate Computation Protocols from CKKS*](https://eprint.iacr.org/2025/395), PDF del 29 settembre 2026, analizza congiuntamente rumore e funzionalità ideale, propone collaborative sampling e distingue liberal security. Le metadata dichiarano ASIACRYPT 2026; al 2 ottobre citiamo la revisione accessibile, non un finale di proceedings già verificato. Il vecchio titolo non va usato come se descrivesse la nuova versione.
+
+Versioni, pagine e accesso sono nel [registro delle verifiche](versioni-e-verifiche.md).
+
 ## Versioni e portata della verifica
 
-I PDF completi dei cinque lavori su CKKS discreto sono ora disponibili.
+Sono disponibili i PDF completi dei cinque lavori su CKKS discreto.
 La [lettura mirata dei testi](testi-integrali/ckks.md) identifica versioni,
 pagine, algoritmi, condizioni d'errore e assetti sperimentali; comprende
 anche Lee et al. e l'edizione pubblicata USENIX di Mazzone et al.
@@ -122,5 +130,5 @@ Questa lettura non è una certificazione completa delle dimostrazioni né
 una replica delle implementazioni. Le condizioni teoriche, le approssimazioni
 del modello e gli errori empirici sono distinti nelle schede. I riferimenti
 `main/latest` di OpenFHE rimangono mobili: una futura replica richiede
-versione e commit fissati. La [bibliografia](aggiornamento-20260919.bib)
+versione e commit fissati. La [bibliografia](bibliografia.bib)
 registra le versioni effettivamente consultate.

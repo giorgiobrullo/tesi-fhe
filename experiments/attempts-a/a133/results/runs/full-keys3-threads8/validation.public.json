@@ -1,0 +1,38 @@
+{
+  "status": "CONSISTENT_CLIENT_DIAGNOSTIC_OPEN_ATTESTATION_AND_TAILS",
+  "events": 1050,
+  "summary": {
+    "cases": 27,
+    "contains_secret_derived_observations": true,
+    "correctness_or_count_failures": 0,
+    "fusion_witnesses": 1050,
+    "joint_connected_margin_escapes": 0,
+    "key_blocks": 3,
+    "noise_tail_status": "OPEN",
+    "observer_identity_failures": 0,
+    "raw_nearest_cell_escapes": 0,
+    "record": "summary",
+    "runtime_execution_attested": false,
+    "scope": "fused event and immediate update; no full-trace or service promotion",
+    "secret_key_bytes_persisted": false,
+    "status": "DIAGNOSTIC_COMPLETE",
+    "timed": false
+  },
+  "log_sha256": "06634e059b2b019953fb8a4b47e539bdc0c6561e530bc7f85f2df197ed85446c",
+  "independent_binary_sha256": "7a5d726f53b1030cc73214e4bb7f299e8dd971ae3dda8017bc628bae5ad33a0a",
+  "source": {
+    "core_sha256": "7492b2b3b46e05a913f91489977e082fbb0ac4153287ba559b09931b3d37d3b5",
+    "observer_sha256": "155fa041d0d6d5545fe461e445498a702a21f353ef79040ff782653070ed5c36",
+    "harness_sha256": "58da4d69b5fedee1c5dc3c9643ec574be085c02e4394ec4126e6f8171e9ddaa7",
+    "body_sha256": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7",
+    "upstream_pin_manifest_sha256": "0f0bdea8fbf3e5cd16214643e74a9dc2159b32427be3f2eef7c9fcfaa008efe7"
+  },
+  "phase_observations_trust": "local client observer; secret not persisted",
+  "not_verified": [
+    "independent secret-phase attestation",
+    "per-row KSK noise measurements/tails",
+    "all3930 marginals",
+    "full runtime call attestation",
+    "service promotion"
+  ]
+}

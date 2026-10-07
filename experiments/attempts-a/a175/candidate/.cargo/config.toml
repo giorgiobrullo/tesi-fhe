@@ -1,0 +1,5 @@
+[build]
+target-dir = "target-a175-actual-consumer-only"
+
+[net]
+offline = true

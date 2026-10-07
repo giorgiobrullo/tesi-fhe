@@ -1,0 +1,44 @@
+[package]
+name = "pipeline_tfhe_rs"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+diagnostic-trace = []
+
+[dependencies]
+tfhe = { version = "0.11", features = ["integer"] }
+rayon = "1"
+bincode = "1"
+dyn-stack = "0.11"
+aligned-vec = "0.6"
+sha2 = "0.10"
+
+[profile.release]
+opt-level = 3
+
+[[bin]]
+name = "a33_sparse_residual_trace"
+path = "src/bin/a33_sparse_residual_trace.rs"
+required-features = ["diagnostic-trace"]
+
+[[bin]]
+name = "a33_full_validation"
+path = "src/bin/a33_full_validation.rs"
+required-features = ["diagnostic-trace"]
+
+[[bin]]
+name = "a34_scan_output_prototype"
+path = "src/bin/a34_scan_output_prototype.rs"
+required-features = ["diagnostic-trace"]
+
+[[bin]]
+name = "a34_two_nibble_scan_output_prototype"
+path = "src/bin/a34_two_nibble_scan_output_prototype.rs"
+required-features = ["diagnostic-trace"]
+
+[[bin]]
+name = "a39_two_lwe_output_prototype"
+path = "src/bin/a39_two_lwe_output_prototype.rs"
+required-features = ["diagnostic-trace"]

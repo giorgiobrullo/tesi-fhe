@@ -1,0 +1,287 @@
+{
+  "schema": "research-package.v2",
+  "path_base": "files paths are relative to this package; source_layout and shared_files canonical paths are relative to repository root",
+  "source_layout": {
+    "schema": "research-source-dependencies.v1",
+    "files": [
+      {
+        "canonical": "runtime/config.json",
+        "sha256": "5a6ae46bc188c88b6585ee258532008912bbf0aa41fe2b76caff0e3747ed2a58",
+        "bytes": 5535,
+        "mapping": "existing_repository_dependency",
+        "role": "source_or_config"
+      },
+      {
+        "canonical": "demo/web/gallery/catalogue.json",
+        "sha256": "6c8aa96b893ce9a57cf216aa9801395e6802c4ef1a7c6db8665c9c0a0b38b454",
+        "bytes": 85032,
+        "mapping": "existing_repository_dependency",
+        "role": "catalogue_metadata"
+      },
+      {
+        "canonical": "demo/dual_view/static/shared.js",
+        "sha256": "90da50d762d3c303c19dd9caf0f4ffb630655f79aa5dc59bd4dad60cea219115",
+        "bytes": 7943,
+        "mapping": "existing_repository_dependency",
+        "role": "source_or_config"
+      },
+      {
+        "canonical": "benchmark/demo-sse-20261004/source/demo/dual_view/enrollment.py",
+        "sha256": "134e7ffc3c12c03282365c8cbb7916ec354562cadf3c2ff4350eb204780481c8",
+        "bytes": 5605,
+        "mapping": "copied_frozen_source",
+        "role": "source_or_config"
+      },
+      {
+        "canonical": "runtime/client/embedding.py",
+        "sha256": "83d149ea683cb16961a08df9440f27b138d8a375b22f691d19be0bd5a504a27a",
+        "bytes": 2899,
+        "mapping": "existing_repository_dependency",
+        "role": "source_or_config"
+      },
+      {
+        "canonical": "experiments/08_cnn/embedding.py",
+        "sha256": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+        "bytes": 6880,
+        "mapping": "existing_repository_dependency",
+        "role": "source_or_config"
+      },
+      {
+        "canonical": "demo/web/engines.py",
+        "sha256": "a19fb793e6961343214f5aab4c0b881e2bc7a789f2e1149c8da14faf0282e6a6",
+        "bytes": 17191,
+        "mapping": "existing_repository_dependency",
+        "role": "source_or_config"
+      }
+    ],
+    "frozen_runner": "source/run_gt.py",
+    "frozen_codec": "source/encode_gt.mjs",
+    "note": "Runner paths use documented neutral publication placeholders. Historical bindings identify the original run; current pins verify the distributed copies. Images and weights are not included.",
+    "publication_note": "The frozen enrollment helper and web requirements are retained with the measured sources; their byte identities are unchanged and independent of the live demo files."
+  },
+  "files": [
+    {
+      "path": "PROTOCOL.md",
+      "bytes": 4808,
+      "sha256": "f79306e05dd0d5045b48d98060614c7992df2e3ca64df123d9e8551fd06868c9",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/GT_PROTOCOL.md",
+          "destination": "benchmark/biometrics-gt-20261005/PROTOCOL.md",
+          "original_sha256": "f79306e05dd0d5045b48d98060614c7992df2e3ca64df123d9e8551fd06868c9",
+          "copy_sha256": "f79306e05dd0d5045b48d98060614c7992df2e3ca64df123d9e8551fd06868c9",
+          "bytes": 4808,
+          "role": "frozen_protocol"
+        }
+      ]
+    },
+    {
+      "path": "README.md",
+      "bytes": 2560,
+      "sha256": "0c04f8b68dbd7882fd24308b41d74a0b574cff745c81d770a9f319307747f38d",
+      "privacy_redaction": {
+        "before_public_sha256": "a21d9646f07c2b1cbdc85f20b83858aef8bc92b05526e0c1dc4c02bbbe5b3899",
+        "before_public_bytes": 2457,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "inputs/README.md",
+      "bytes": 2626,
+      "sha256": "1f667e4bc1e260321fc874b730405375fba181f1bd44f0a1b7eee21605911a53"
+    },
+    {
+      "path": "inputs/RECIPE.json",
+      "bytes": 7889,
+      "sha256": "3b016d801627ceba80354bda0aafdf1b96a63bd989ce64d66c2276a7e39839e5",
+      "privacy_redaction": {
+        "before_public_sha256": "84efa8948595b24e04ac27ae8b2f3e6761cd24c744406be14bb9a11d39d443b1",
+        "before_public_bytes": 7933,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "provenance/CODEC_TERMINAL.json",
+      "bytes": 331,
+      "sha256": "43988e83d23ac15507e0dab12d3eadde896c3d053b5ffd80f6605945621587b0",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/GT_CODEC_TERMINAL.json",
+          "destination": "benchmark/biometrics-gt-20261005/provenance/CODEC_TERMINAL.json",
+          "original_sha256": "43988e83d23ac15507e0dab12d3eadde896c3d053b5ffd80f6605945621587b0",
+          "copy_sha256": "43988e83d23ac15507e0dab12d3eadde896c3d053b5ffd80f6605945621587b0",
+          "bytes": 331,
+          "role": "terminal_receipt"
+        }
+      ]
+    },
+    {
+      "path": "provenance/INFERENCE_TERMINAL.json",
+      "bytes": 412,
+      "sha256": "f766e22e10c5de4e7e34ff33aee32c58be9e18c3c40a4c03a666d42253b3d2fe",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/GT_INFERENCE_TERMINAL.json",
+          "destination": "benchmark/biometrics-gt-20261005/provenance/INFERENCE_TERMINAL.json",
+          "original_sha256": "f766e22e10c5de4e7e34ff33aee32c58be9e18c3c40a4c03a666d42253b3d2fe",
+          "copy_sha256": "f766e22e10c5de4e7e34ff33aee32c58be9e18c3c40a4c03a666d42253b3d2fe",
+          "bytes": 412,
+          "role": "terminal_receipt"
+        }
+      ]
+    },
+    {
+      "path": "results/RESULT.md",
+      "bytes": 3384,
+      "sha256": "c8789bdf77f943cd1601b0968349ea7c3da669f0f482262b0aa5e8bc9df1197f",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/RESULT.md",
+          "destination": "benchmark/biometrics-gt-20261005/results/RESULT.md",
+          "original_sha256": "c8789bdf77f943cd1601b0968349ea7c3da669f0f482262b0aa5e8bc9df1197f",
+          "copy_sha256": "c8789bdf77f943cd1601b0968349ea7c3da669f0f482262b0aa5e8bc9df1197f",
+          "bytes": 3384,
+          "role": "frozen_result"
+        }
+      ]
+    },
+    {
+      "path": "results/RESULT_REVIEW.md",
+      "bytes": 4945,
+      "sha256": "2cb0860fcf4ecd70362c99a38cfdc2f7df110271432bdaa5783f140d6dd714bf",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/RESULT_REVIEW.md",
+          "destination": "benchmark/biometrics-gt-20261005/results/RESULT_REVIEW.md",
+          "original_sha256": "2cb0860fcf4ecd70362c99a38cfdc2f7df110271432bdaa5783f140d6dd714bf",
+          "copy_sha256": "2cb0860fcf4ecd70362c99a38cfdc2f7df110271432bdaa5783f140d6dd714bf",
+          "bytes": 4945,
+          "role": "frozen_review"
+        }
+      ]
+    },
+    {
+      "path": "results/SUMMARY.json",
+      "bytes": 1228,
+      "sha256": "ac632fcc4da87b3aaf062e7b02eb6fe0380d6760939238f61eb1746b89843737",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/GT_SUMMARY.json",
+          "destination": "benchmark/biometrics-gt-20261005/results/SUMMARY.json",
+          "original_sha256": "ac632fcc4da87b3aaf062e7b02eb6fe0380d6760939238f61eb1746b89843737",
+          "copy_sha256": "ac632fcc4da87b3aaf062e7b02eb6fe0380d6760939238f61eb1746b89843737",
+          "bytes": 1228,
+          "role": "saved_aggregate_counts"
+        }
+      ]
+    },
+    {
+      "path": "review/SOURCE_REVIEW.md",
+      "bytes": 2175,
+      "sha256": "3c74f76f01df7d804e04543c819170edec434d71be6489eb27b6ae8326a061df",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/GT_SOURCE_REVIEW.md",
+          "destination": "benchmark/biometrics-gt-20261005/review/SOURCE_REVIEW.md",
+          "original_sha256": "99e7db7862930bff7161112ffe4ce5f961dfe2197ea94672ee2404a7012c9e0f",
+          "copy_sha256": "3c74f76f01df7d804e04543c819170edec434d71be6489eb27b6ae8326a061df",
+          "bytes": 2175,
+          "role": "frozen_review",
+          "privacy_redaction": {
+            "before_public_sha256": "99e7db7862930bff7161112ffe4ce5f961dfe2197ea94672ee2404a7012c9e0f",
+            "before_public_bytes": 2195,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "99e7db7862930bff7161112ffe4ce5f961dfe2197ea94672ee2404a7012c9e0f",
+        "before_public_bytes": 2195,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "source/encode_gt.mjs",
+      "bytes": 8290,
+      "sha256": "92d9a7ec2b74a57a950d9b6484c91c80030c86ff04a9ec98ecea9fcc9a850c38",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/encode_gt.mjs",
+          "destination": "benchmark/biometrics-gt-20261005/source/encode_gt.mjs",
+          "original_sha256": "6bbf98f006b70d8870726cff5b948c6fd1eeed73f4c69af35e7dc79a67589e18",
+          "copy_sha256": "92d9a7ec2b74a57a950d9b6484c91c80030c86ff04a9ec98ecea9fcc9a850c38",
+          "bytes": 8290,
+          "role": "frozen_source",
+          "privacy_redaction": {
+            "before_public_sha256": "6bbf98f006b70d8870726cff5b948c6fd1eeed73f4c69af35e7dc79a67589e18",
+            "before_public_bytes": 8334,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "6bbf98f006b70d8870726cff5b948c6fd1eeed73f4c69af35e7dc79a67589e18",
+        "before_public_bytes": 8334,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    },
+    {
+      "path": "source/run_gt.py",
+      "bytes": 14116,
+      "sha256": "f237374c3bea948394e0395054d8553dd1a957443a85701aa0ffa0f471c7967f",
+      "origins": [
+        {
+          "archive_relative": "tmp/validation-closure-20261005/biometrics-v4/run_gt.py",
+          "destination": "benchmark/biometrics-gt-20261005/source/run_gt.py",
+          "original_sha256": "10610073ef0168b3f199e68d40431be06cd3870966bad1aabc5d13c35dabd20f",
+          "copy_sha256": "f237374c3bea948394e0395054d8553dd1a957443a85701aa0ffa0f471c7967f",
+          "bytes": 14116,
+          "role": "frozen_source",
+          "privacy_redaction": {
+            "before_public_sha256": "10610073ef0168b3f199e68d40431be06cd3870966bad1aabc5d13c35dabd20f",
+            "before_public_bytes": 14224,
+            "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+          }
+        }
+      ],
+      "privacy_redaction": {
+        "before_public_sha256": "10610073ef0168b3f199e68d40431be06cd3870966bad1aabc5d13c35dabd20f",
+        "before_public_bytes": 14224,
+        "transformation": "Public-copy metadata updated during personal-metadata cleanup. The prior public-file digest and byte count are retained here; historical execution/source identities are not rewritten."
+      }
+    }
+  ],
+  "shared_files": [],
+  "evidence_metadata": {
+    "schema": "research-evidence-copy.v1",
+    "copy_policy": "Frozen runner/codec, protocol, review, aggregate summary and terminal receipts. inputs/RECIPE.json is a documented metadata-only extraction, not a copy of the image manifest. No photos, embeddings, per-person raw records, model weights, browser profile, keys or ciphertexts.",
+    "derived_metadata": {
+      "path": "inputs/RECIPE.json",
+      "source_archive_relative": "tmp/validation-closure-20261005/biometrics-v4/GT_MANIFEST.json",
+      "source_sha256": "7e7f8fa066ac5fd1a6912de668ba1d70f54bf2543d4db66e1495c96c3ca70fef"
+    },
+    "new_scientific_executions": 0
+  },
+  "inventory_metadata": {
+    "schema": "research-package-inventory.v1",
+    "new_scientific_executions": 0
+  },
+  "administrative_consolidation": {
+    "previous_manifests": {
+      "PACKAGE_MANIFEST.json": {
+        "sha256": "45fe6d727203bd05b3e71eeb8b92e387e9cc5ebde4ae0892319115498295d181",
+        "bytes": 2256
+      },
+      "PROVENANCE.json": {
+        "sha256": "7f7adfb60b64c6a4c30c6f064ca81907e67d8d31e68d783389fcda7ddaf340a4",
+        "bytes": 4412
+      },
+      "SOURCE_MAP.json": {
+        "sha256": "633334c028180ce4230a5120be2d564a8cc2fcfccd97cc2559fcd3c48afed2a0",
+        "bytes": 2062
+      }
+    },
+    "field_relocations": [],
+    "scientific_files_changed": false
+  }
+}

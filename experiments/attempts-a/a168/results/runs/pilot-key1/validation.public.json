@@ -1,0 +1,61 @@
+{
+  "actual_p_fail": null,
+  "baseline_median_ns": "6449194500",
+  "binary_sha256": "5a826ef7d0ee795cf109f9f1f56b0fb99d235a02c5f2c6e4acbb1250c9cb5e66",
+  "confidence_interval": null,
+  "fused_median_ns": "6238245833",
+  "guard_status": "UNQUALIFIED_NO_ALIGNED_OS_COLLECTOR",
+  "independent_os_execution_attested": false,
+  "key_blocks": 1,
+  "launcher_checked_against_separate_frozen_manifest": true,
+  "launcher_sha256": "07e394ab70092dbdf0c2ee529584ec99dee3e0fd1d16419d01e062b4cde35c0a",
+  "measured_pairs": 4,
+  "median_paired_fractional_reduction": "<LARGE_DIAGNOSTIC_INTEGER>/<LARGE_DIAGNOSTIC_INTEGER>",
+  "missing_controlled_trial_gate": "qualified continuous within-arm host/owned CPU collector with source-backed units, ownership, lifecycle and common monotonic interval alignment",
+  "no_actual_crypto_replayed": true,
+  "pairs": 6,
+  "raw_measured_pairs": [
+    {
+      "baseline_ns": 6450431333,
+      "fused_ns": 6233198000,
+      "order": "AB",
+      "paired_fractional_reduction": "217233333/6450431333",
+      "sequence": 2
+    },
+    {
+      "baseline_ns": 6436920000,
+      "fused_ns": 6236762166,
+      "order": "BA",
+      "paired_fractional_reduction": "33359639/1072820000",
+      "sequence": 3
+    },
+    {
+      "baseline_ns": 6484115291,
+      "fused_ns": 6239729500,
+      "order": "BA",
+      "paired_fractional_reduction": "244385791/6484115291",
+      "sequence": 4
+    },
+    {
+      "baseline_ns": 6447957667,
+      "fused_ns": 6261937250,
+      "order": "AB",
+      "paired_fractional_reduction": "186020417/6447957667",
+      "sequence": 5
+    }
+  ],
+  "runtime_files_sha256": {
+    "child.json": "610af92925ee3029883b95cfe3e64bf29a8acda007f4d0e4858d03780e9b124b",
+    "exit.json": "eb8b564fcc39002ef7bcf6fb9423620c117aede4265e9cb2abbbe68868c83b7e",
+    "preflight.json": "9a29041d22ca284e8cee07c69dc05ff0de55afe813eda7e10aea9cc41a014e8f",
+    "prepared.json": "5f6939c9a07d69898c3a0de1e9fb6a415bb23fa1f091bd5afe4f52f333d9c825",
+    "records.jsonl": "a7cd155d5388f17a7bfd9e423369b1191d1419c6e40c7f7fa3f9a4469470aefd",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout.log": "60b34a031e8e8d31bc6e317b61e0a53c8f1b8eb47c90c46f5de038a9b1d8ba0e"
+  },
+  "same_input_key_membership_attested": false,
+  "source_sha256": "e53f298bc9307eae1ab252e836d930ef238d43c031b3392c6297308ae4e28e10",
+  "speedup_promotion_allowed": false,
+  "status": "PAIRED_PILOT_RECORD_CONSISTENCY_PASS_GUARD_UNQUALIFIED",
+  "untraced_graph_correctness_scope": "this new observed pilot only"
+}

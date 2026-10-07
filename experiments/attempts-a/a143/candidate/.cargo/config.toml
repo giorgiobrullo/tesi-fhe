@@ -1,0 +1,5 @@
+[build]
+target-dir = "target-a143-only"
+
+[net]
+offline = true

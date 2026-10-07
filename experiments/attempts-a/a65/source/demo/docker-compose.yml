@@ -1,0 +1,46 @@
+# I due ruoli del varco come due container separati: il probe e l'esito passano solo cifrati.
+#
+#   client  il terminale fidato: telecamera, modello in chiaro, CHIAVE SEGRETA, pagina web
+#   server  la macchina remota: galleria in chiaro, chiave di valutazione, calcola alla cieca
+#
+# La rete interna `varco` trasporta anche il setup e il controllo: chiave di valutazione, template
+# di enrollment in chiaro nel Mondo 1 e metadati di stato. Per ogni verifica, invece, attraversano
+# il confine soltanto probe cifrato ed esito cifrato.
+#
+#   A65_DIGIFACE_ROOT=... A65_MODEL_CACHE=... docker compose -f demo/docker-compose.yml up --build
+#   poi http://localhost:18065
+#
+# Nota: il browser dà la telecamera solo su localhost o HTTPS; con questo compose la pagina è su
+# localhost, quindi funziona. Per usare il Mac come client (più veloce, niente build del modello):
+#   docker compose -f demo/docker-compose.yml up --build server
+#   uv run uvicorn demo.client.app:app --port 8000
+name: thesis-a65-a44-service
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: demo/server/Dockerfile
+    env_file: ./config.env   # generato insieme a config.json da demo/calibra.py
+    networks: [varco]
+    ports: ["127.0.0.1:9000:9000"]  # ispezione locale; gli endpoint di setup non sono autenticati
+
+  client:
+    build:
+      context: ..
+      dockerfile: demo/client/Dockerfile
+    depends_on: [server]
+    environment:
+      VARCO_SERVER: http://server:9000
+    volumes:
+      - "${A65_DIGIFACE_ROOT:?A65_DIGIFACE_ROOT required}:/app/datasets/digiface/estratto:ro"
+      - "${A65_MODEL_CACHE:?A65_MODEL_CACHE required}:/root/.insightface:ro"
+      - chiavi:/app/chiavi                                                # la chiave segreta resta qui
+    networks: [varco]
+    ports: ["127.0.0.1:18065:8000"]
+
+networks:
+  varco:
+
+volumes:
+  chiavi:

@@ -1,0 +1,1114 @@
+{
+  "schema": "confirmation-direct-context-analysis.v1",
+  "candidate": "combined16",
+  "context": "original_context8",
+  "primary_reference": "fixed_reference8",
+  "scenes": [
+    {
+      "scene": 9,
+      "geometric_ratio": 0.8268715740361295,
+      "interval95_over_key_means": [
+        0.6762173713389973,
+        1.0110899674096507
+      ],
+      "median_ns": {
+        "fixed_reference8": 1687847479.0,
+        "fixed_native8": 1671918104.0,
+        "fixed_cgu1_8": 1655117271.0,
+        "combined16": 1370082729.0,
+        "original_context8": 1665283437.0
+      }
+    },
+    {
+      "scene": 10,
+      "geometric_ratio": 0.8395927248359801,
+      "interval95_over_key_means": [
+        0.8083599521244118,
+        0.8720322447258183
+      ],
+      "median_ns": {
+        "fixed_reference8": 1683562583.0,
+        "fixed_native8": 1661125334.0,
+        "fixed_cgu1_8": 1665676208.5,
+        "combined16": 1372156042.0,
+        "original_context8": 1655813479.5
+      }
+    },
+    {
+      "scene": 11,
+      "geometric_ratio": 0.8689733851601532,
+      "interval95_over_key_means": [
+        0.6267044670327704,
+        1.2048976572512784
+      ],
+      "median_ns": {
+        "fixed_reference8": 1888676416.5,
+        "fixed_native8": 1918153250.0,
+        "fixed_cgu1_8": 1889528104.0,
+        "combined16": 1560564666.5,
+        "original_context8": 1824608208.0
+      }
+    },
+    {
+      "scene": 12,
+      "geometric_ratio": 0.8057089425791496,
+      "interval95_over_key_means": [
+        0.5553784337996532,
+        1.1688730794076736
+      ],
+      "median_ns": {
+        "fixed_reference8": 3201262458.5,
+        "fixed_native8": 3158594520.5,
+        "fixed_cgu1_8": 3150541062.0,
+        "combined16": 2440708708.5,
+        "original_context8": 3135886708.5
+      }
+    },
+    {
+      "scene": 13,
+      "geometric_ratio": 0.8169455234534791,
+      "interval95_over_key_means": [
+        0.6441454908367183,
+        1.0361013121798837
+      ],
+      "median_ns": {
+        "fixed_reference8": 3217929875.0,
+        "fixed_native8": 3188185083.5,
+        "fixed_cgu1_8": 3105334979.0,
+        "combined16": 2569054583.5,
+        "original_context8": 3080352291.5
+      }
+    },
+    {
+      "scene": 14,
+      "geometric_ratio": 0.8458425461681685,
+      "interval95_over_key_means": [
+        0.658838306057223,
+        1.0859259492512114
+      ],
+      "median_ns": {
+        "fixed_reference8": 3412746958.5,
+        "fixed_native8": 3567989666.5,
+        "fixed_cgu1_8": 3433457875.5,
+        "combined16": 2896516895.5,
+        "original_context8": 3393480146.0
+      }
+    }
+  ],
+  "geometric_ratio": 0.8337368592720403,
+  "geometric_reduction_percent": 16.626314072795967,
+  "interval95_over_key_means": [
+    0.7236176341363132,
+    0.9606138901499762
+  ],
+  "all_key_means_favor_candidate": true,
+  "stable_positive_interval": true,
+  "paired_measured_observations": 48,
+  "independent_key_families": 2,
+  "source_scope": "Source and executable identity carried from bound independent public replays; no binary or secret files opened.",
+  "context_scope": "Direct same-block candidate/context ratios. When context is the original adaptive source, its per-process FFT choices are unobserved and the contrast includes that numerical-policy difference.",
+  "interval_scope": "Equal six-scene mean log ratios per key, then equal key weight; df=1 Student-t, two-sided 95%, t=12.706204736. Retains all flagged/unknown pairs; descriptive small-sample inference, no automatic promotion.",
+  "formal_failure_bound": null,
+  "service_validation": false,
+  "pass": true,
+  "per_key": [
+    {
+      "key_index": 1,
+      "scenes": [
+        {
+          "scene": 9,
+          "inputs": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "paired_ratios": [
+            0.8369306220107235,
+            0.8796750943540572,
+            0.8325820462801128,
+            0.8124794331189817
+          ],
+          "mean_log_ratio": -0.1742762343817368,
+          "median_ns": {
+            "fixed_reference8": 1691896979.0,
+            "fixed_native8": 1665837812.5,
+            "fixed_cgu1_8": 1660134875.0,
+            "combined16": 1388692833.5,
+            "original_context8": 1665283437.0
+          },
+          "load": [
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8"
+            ],
+            [
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8"
+            ]
+          ]
+        },
+        {
+          "scene": 10,
+          "inputs": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "paired_ratios": [
+            0.8140584775214798,
+            0.8240571756496649,
+            0.835022572485335,
+            0.8765578058552588
+          ],
+          "mean_log_ratio": -0.17782189675200122,
+          "median_ns": {
+            "fixed_reference8": 1656392416.5,
+            "fixed_native8": 1659693375.5,
+            "fixed_cgu1_8": 1677180312.5,
+            "combined16": 1377312146.0,
+            "original_context8": 1660337000.5
+          },
+          "load": [
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8"
+            ],
+            [
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16"
+            ]
+          ]
+        },
+        {
+          "scene": 11,
+          "inputs": [
+            23,
+            24,
+            25,
+            26
+          ],
+          "paired_ratios": [
+            0.830691537228012,
+            0.9964169511793202,
+            0.9057569010339022,
+            0.8429817968065466
+          ],
+          "mean_log_ratio": -0.11472011892094769,
+          "median_ns": {
+            "fixed_reference8": 1938209458.5,
+            "fixed_native8": 1955633937.5,
+            "fixed_cgu1_8": 2070125062.5,
+            "combined16": 1632636083.5,
+            "original_context8": 1851657854.0
+          },
+          "load": [
+            {
+              "samples": 8,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 8,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16"
+            ],
+            [
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16"
+            ],
+            [
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8"
+            ]
+          ]
+        },
+        {
+          "scene": 12,
+          "inputs": [
+            29,
+            30,
+            31,
+            32
+          ],
+          "paired_ratios": [
+            0.8457840507645611,
+            0.9087831760367667,
+            0.7737444891579032,
+            0.7966448845096136
+          ],
+          "mean_log_ratio": -0.1867499491380287,
+          "median_ns": {
+            "fixed_reference8": 3208220479.0,
+            "fixed_native8": 3209653208.0,
+            "fixed_cgu1_8": 3299590437.5,
+            "combined16": 2606963124.5,
+            "original_context8": 3188843041.5
+          },
+          "load": [
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16"
+            ],
+            [
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8"
+            ],
+            [
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8"
+            ],
+            [
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8"
+            ]
+          ]
+        },
+        {
+          "scene": 13,
+          "inputs": [
+            35,
+            36,
+            37,
+            38
+          ],
+          "paired_ratios": [
+            0.8384806866824018,
+            0.8115153746065313,
+            0.8552484442637426,
+            0.8248618508615286
+          ],
+          "mean_log_ratio": -0.18347957794878403,
+          "median_ns": {
+            "fixed_reference8": 3196349646.0,
+            "fixed_native8": 3244079146.5,
+            "fixed_cgu1_8": 3125546708.5,
+            "combined16": 2604314146.0,
+            "original_context8": 3124719333.0
+          },
+          "load": [
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8"
+            ],
+            [
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8"
+            ],
+            [
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8"
+            ]
+          ]
+        },
+        {
+          "scene": 14,
+          "inputs": [
+            41,
+            42,
+            43,
+            44
+          ],
+          "paired_ratios": [
+            0.8562655176780734,
+            0.8491079107265094,
+            0.8373229958622096,
+            0.7772018773928832
+          ],
+          "mean_log_ratio": -0.18708607397338384,
+          "median_ns": {
+            "fixed_reference8": 3384323875.0,
+            "fixed_native8": 3578153791.5,
+            "fixed_cgu1_8": 3509476625.5,
+            "combined16": 2865995833.0,
+            "original_context8": 3463232708.0
+          },
+          "load": [
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 9,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8"
+            ],
+            [
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8"
+            ]
+          ]
+        }
+      ],
+      "load_flagged_blocks": 24,
+      "load_unknown_blocks": 24,
+      "mean_log_ratio": -0.17068897518581372
+    },
+    {
+      "key_index": 2,
+      "scenes": [
+        {
+          "scene": 9,
+          "inputs": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "paired_ratios": [
+            0.82541249305333,
+            0.8046864798207704,
+            0.7847364694875651,
+            0.8418442426302783
+          ],
+          "mean_log_ratio": -0.2059355403951907,
+          "median_ns": {
+            "fixed_reference8": 1687847479.0,
+            "fixed_native8": 1680628875.5,
+            "fixed_cgu1_8": 1650296396.0,
+            "combined16": 1358731625.5,
+            "original_context8": 1662215229.0
+          },
+          "load": [
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 6,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8"
+            ],
+            [
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16"
+            ]
+          ]
+        },
+        {
+          "scene": 10,
+          "inputs": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "paired_ratios": [
+            0.8246182824741679,
+            0.842385106613767,
+            0.8805508655322837,
+            0.8221281528151224
+          ],
+          "mean_log_ratio": -0.1718548154659102,
+          "median_ns": {
+            "fixed_reference8": 1716730333.0,
+            "fixed_native8": 1687149625.5,
+            "fixed_cgu1_8": 1665676208.5,
+            "combined16": 1371182563.0,
+            "original_context8": 1650214125.0
+          },
+          "load": [
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16"
+            ],
+            [
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16"
+            ],
+            [
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8"
+            ]
+          ]
+        },
+        {
+          "scene": 11,
+          "inputs": [
+            23,
+            24,
+            25,
+            26
+          ],
+          "paired_ratios": [
+            0.8340986263560447,
+            0.8755324556540689,
+            0.8329601263531482,
+            0.8457211492199113
+          ],
+          "mean_log_ratio": -0.16616544339728592,
+          "median_ns": {
+            "fixed_reference8": 1856793875.0,
+            "fixed_native8": 1877807562.5,
+            "fixed_cgu1_8": 1809412250.5,
+            "combined16": 1516702541.5,
+            "original_context8": 1790858791.5
+          },
+          "load": [
+            {
+              "samples": 8,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 7,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 8,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16"
+            ],
+            [
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8"
+            ],
+            [
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8"
+            ],
+            [
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8"
+            ]
+          ]
+        },
+        {
+          "scene": 12,
+          "inputs": [
+            29,
+            30,
+            31,
+            32
+          ],
+          "paired_ratios": [
+            0.7646941946665917,
+            0.7800783837683439,
+            0.7952667401495018,
+            0.7901408304278925
+          ],
+          "mean_log_ratio": -0.24531548109804216,
+          "median_ns": {
+            "fixed_reference8": 3091725438.0,
+            "fixed_native8": 3147746396.0,
+            "fixed_cgu1_8": 3091973729.0,
+            "combined16": 2398774000.0,
+            "original_context8": 3054858771.0
+          },
+          "load": [
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8"
+            ],
+            [
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8"
+            ],
+            [
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8"
+            ]
+          ]
+        },
+        {
+          "scene": 13,
+          "inputs": [
+            35,
+            36,
+            37,
+            38
+          ],
+          "paired_ratios": [
+            0.8294954221555763,
+            0.7165534350383481,
+            0.8654578963862717,
+            0.8034760413437235
+          ],
+          "mean_log_ratio": -0.2208861522607618,
+          "median_ns": {
+            "fixed_reference8": 3309915187.5,
+            "fixed_native8": 3176678667.0,
+            "fixed_cgu1_8": 3104855624.5,
+            "combined16": 2502327041.0,
+            "original_context8": 3068215937.0
+          },
+          "load": [
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_native8",
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8"
+            ],
+            [
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8"
+            ]
+          ]
+        },
+        {
+          "scene": 14,
+          "inputs": [
+            41,
+            42,
+            43,
+            44
+          ],
+          "paired_ratios": [
+            0.9347863436016258,
+            0.8334767891842945,
+            0.8525380061534628,
+            0.8336780985600711
+          ],
+          "mean_log_ratio": -0.1477580307026994,
+          "median_ns": {
+            "fixed_reference8": 3453193833.5,
+            "fixed_native8": 3547448728.5,
+            "fixed_cgu1_8": 3392213187.5,
+            "combined16": 2954699167.0,
+            "original_context8": 3393480146.0
+          },
+          "load": [
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 11,
+              "flagged": true,
+              "unknown": true
+            },
+            {
+              "samples": 10,
+              "flagged": true,
+              "unknown": true
+            }
+          ],
+          "order": [
+            [
+              "fixed_cgu1_8",
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8"
+            ],
+            [
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16",
+              "fixed_cgu1_8"
+            ],
+            [
+              "combined16",
+              "original_context8",
+              "fixed_reference8",
+              "fixed_native8",
+              "fixed_cgu1_8"
+            ],
+            [
+              "fixed_cgu1_8",
+              "fixed_native8",
+              "fixed_reference8",
+              "original_context8",
+              "combined16"
+            ]
+          ]
+        }
+      ],
+      "load_flagged_blocks": 24,
+      "load_unknown_blocks": 24,
+      "mean_log_ratio": -0.19298591055331504
+    }
+  ],
+  "variants": [
+    {
+      "label": "fixed_reference8",
+      "binary_sha256": "fd3be895f11fc80a6b86b872d1d91220a1b20792a3bebd5a75d1d4bc0f1fa4bb",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 8,
+      "require_ciphertext_equal": false,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "fixed_native8",
+      "binary_sha256": "39fd422f3b162465e7acb2134767e86fa33245f9a8de6ce13ca126b4d4cc9cfe",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "native_only",
+      "threads": 8,
+      "require_ciphertext_equal": false,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "fixed_cgu1_8",
+      "binary_sha256": "03698004aabcde9c56fc2d9d16c904781150e283492e9ab6be5cd091a49eba05",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 8,
+      "require_ciphertext_equal": false,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "combined16",
+      "binary_sha256": "9e4b5378e77ce6eceef64a1ce0d7b1b6695a18cde6636dec313158a814b710df",
+      "source_sha256": "d275695bfdea57a9376bd885ca8bb8cd1f1ed8fe60b871a98b2f4b0f67916161",
+      "protocol_arm": "baseline",
+      "threads": 16,
+      "require_ciphertext_equal": false,
+      "expected_ready_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      },
+      "expected_output_metadata": {
+        "runtime_features": [],
+        "fft_plan_policy": "user-provided-dif4-polynomial2048-base1024-v1",
+        "fft_plan_description": "Plan { base_algo: Dif4, base_size: 1024, fft_size: 1024 }"
+      }
+    },
+    {
+      "label": "original_context8",
+      "binary_sha256": "faf9a2095a6733c10f0be33731858f07968aeae3df513146ccb4ff0d4462fbc5",
+      "source_sha256": "dad1d4603086ca67a47f2363da751f18a02ac9599fde88dd5be5da646f797273",
+      "protocol_arm": "baseline",
+      "threads": 8,
+      "require_ciphertext_equal": false
+    }
+  ]
+}

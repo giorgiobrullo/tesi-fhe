@@ -1,0 +1,12 @@
+{
+  "status": "BOUNDED_RECORD_CONSISTENCY_PASS",
+  "suite": "stock",
+  "cm_events": 3,
+  "actual_key_membership_attested": false,
+  "execution_attested": false,
+  "coefficient_address_secret_aggregate_attested": false,
+  "sufficient_center_support_pass": true,
+  "noise_improvement_established": false,
+  "formal_failure_bound": false,
+  "client_local_key_sensitive": true
+}

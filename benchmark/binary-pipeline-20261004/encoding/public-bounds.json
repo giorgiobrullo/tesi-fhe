@@ -1,0 +1,33 @@
+{
+  "kind": "public-source-screen-only",
+  "gallery": "/workspace/research/tmp/m4-thread-scaling-20260921/fixtures/gallery.json",
+  "gallery_sha256": "6ad678a67bc755c30b1e25afc336079d31a9ee410a8a16b73043a6e1c98a86fe",
+  "gallery_size": 120,
+  "norm2_min": 589,
+  "norm2_max": 666,
+  "query_norm2_limit": 1024,
+  "threshold": 273,
+  "cauchy_domain": [
+    -987,
+    2318
+  ],
+  "aligned_candidate_lower": -750,
+  "aligned_fast_path": false,
+  "execution_domain": [
+    -987,
+    2318
+  ],
+  "constant_top_leaves": 0,
+  "constant_middle_leaves": 0,
+  "constant_low_leaves": 0,
+  "normalized_top_ranges": [
+    [
+      0,
+      12
+    ]
+  ],
+  "limitation": "No constant digit is certified by these Cauchy intervals. This does not rule out tighter public bounds or other algorithms.",
+  "crypto_operations": 0,
+  "key_loads": 0,
+  "native_benchmark_runs": 0
+}

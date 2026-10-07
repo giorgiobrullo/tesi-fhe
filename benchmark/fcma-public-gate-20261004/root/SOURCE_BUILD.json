@@ -1,0 +1,41 @@
+{
+  "observed_utc": "2026-10-04T17:35:36.146873+00:00",
+  "files": {
+    "probe/Cargo.toml": {
+      "bytes": 228,
+      "sha256": "3010be99def04ec4257692c353bc82505179cf1b390064089820683208bfb075"
+    },
+    "probe/Cargo.lock": {
+      "bytes": 2966,
+      "sha256": "d091029dccf1939dbb573d3a658f273bacd53b88ea0c95d83f296c5bd13dd729"
+    },
+    "probe/src/main.rs": {
+      "bytes": 11518,
+      "sha256": "7ef97bf24cae04b14407cb56f89a43cf770b2a28105a5caadc8f1458c0970f65"
+    },
+    "PROTOCOL.md": {
+      "bytes": 2583,
+      "sha256": "1c7da903db5fffd649523d65f32a211f3c8da0abf7063177c44c0d33fef1e579"
+    },
+    "root/EXACT_ORACLE.py": {
+      "bytes": 9324,
+      "sha256": "3e1c8bce11070ff5dca76000789d14ccdc72af8ffe507f46bb177ade8f28d1e0"
+    },
+    "root/ORACLE_SPEC.md": {
+      "bytes": 3806,
+      "sha256": "3e9e9578b619475ad9fed8a22b33687e18daa4512b8cdf73bcb64ebba3459133"
+    },
+    "root/SOURCE_SCOPE.md": {
+      "bytes": 5999,
+      "sha256": "9030a83d10424482eaeef885020a5726bf0933b6276c917e7eeaf4b047f92692"
+    },
+    "root/PREBUILD_REVIEW.md": {
+      "bytes": 4844,
+      "sha256": "931f87b947aaea4dc4ceb3c53e8167d2b7da99daa6f24baab12716e67f105bd1"
+    },
+    "root/DRIVER.py": {
+      "bytes": 4348,
+      "sha256": "fdb506e9e03795d25a1fd2458130317287a3eb4fd1c789241c2c7b9fb9b74968"
+    }
+  }
+}

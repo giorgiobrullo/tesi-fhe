@@ -1,0 +1,6 @@
+[build]
+target-dir = "../target-a191-only"
+jobs = 1
+
+[net]
+offline = true

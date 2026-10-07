@@ -1,0 +1,49 @@
+--- comparator.cpp
++++ comparator.cpp
+@@ -7,6 +7,7 @@
+ #include <NTL/ZZ_pE.h>
+ #include <NTL/mat_ZZ_pE.h>
+ #include <helib/Ptxt.h>
++#include "a117_fast_univariate_poly.h"
+ 
+ using namespace he_cmp;
+ 
+@@ -354,30 +355,15 @@ void Comparator::create_poly()
+ 
+ 	if(m_type == UNI)
+ 	{
+-		// polynomial coefficient
+-		ZZ_p coef;
+-		coef.init(ZZ(p));
+-
+-		// field element
+-		ZZ_p field_elem;
+-		field_elem.init(ZZ(p));
+-
+-		// initialization of the univariate comparison polynomial
++		// A117 exact setup optimization. The returned coefficient at position j
++		// equals the upstream sum
++		//   sum_{a=1}^{(p-1)/2} a^(p-2-2j) mod p.
++		// The online polynomial and homomorphic evaluator remain unchanged.
++		const vector<long> coefficients =
++			a117::univariate_less_coefficients(p);
+ 		m_univar_less_poly = ZZX(INIT_MONO, 0, 0);
+-
+-		// loop over all odd coefficient indices
+-		for (long indx = 1; indx < p - 1; indx+=2)
+-		{ 
+-			// coefficient f_i = sum_a a^{p-1-indx} where a runs over [1,...,(p-1)/2]
+-			coef = 1;
+-			for(long a = 2; a <= ((p-1) >> 1); a++)
+-			{
+-			  field_elem = a;
+-			  coef += power(field_elem, p - 1 - indx);
+-			}
+-
+-			m_univar_less_poly += ZZX(INIT_MONO, (indx-1) >> 1, rep(coef));
+-		}
++		for (size_t index = 0; index < coefficients.size(); ++index)
++			SetCoeff(m_univar_less_poly, index, coefficients[index]);
+ 
+ 		/*
+ 		cout << "Less-than poly: ";

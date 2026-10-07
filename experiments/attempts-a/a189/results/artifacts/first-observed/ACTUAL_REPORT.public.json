@@ -1,0 +1,1309 @@
+{
+  "schema": "a189.observed-data-adapter.v1",
+  "status": "BOUND_ACTUAL_A181_CONDITIONAL_HYPOTHESES",
+  "adapter_manifest_sha256": "2ad3ff1abd1b62eef83875bff0e27052557eb59e3472634124b625877635efe2",
+  "sources": {
+    "a189_manifest": "96e3b5ad3bc50bc4e12c64d3f2afafe80741d7b13bfe14097a2d014be4821ca2",
+    "a181_source": "44ba04f2064d918ef70fc294ad3cbd719c7e1092ca789f53cc429f345c86259c",
+    "a181_artifact": "6aa8a81d9d477200ae2237239a0e20d46d4784b17631072bc0695e3e7752f447",
+    "calculator_sha256": "567471ca579ac093948f1040ce21f547547a822d755b0e4e1c11682b93abc9c3",
+    "pinned_inputs": {
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/mach/mach_time.h": "d690e304ea595ca216ed51e20aa9747e0b3bcb07446d996abe0080a231c7065f",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/mach/host_info.h": "2532a25449b6f079652219ee22e18d4c60c53ffa518e165eb2b62b4a6bc60389",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/mach/machine.h": "039d19b5b9a96a941760830bb05ae4cdda3ecfa35a9ea2aab697f341ccf56a3f",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/libproc.h": "246d87709fc6b9157ce5cf3c475656ac48e0e1ae8bbdc46cf45acd34294448cd",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/resource.h": "1067178025c5fd88c9a1b8206a07c2695ef94dd471fe2783f06c512995382961",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_timeval.h": "f723018fec267200e915777897515b5d7ed20901bcb294873f94b1d835f9ae45",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_time.h": "a3dceadf2c95133018af363187829ca072d85a93d69f9682a2e4fb993902f28d",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man/man3/clock_gettime.3": "d09d561f8939fa9c8ebb67733b81034747ffd7ab504049920d08e8b36c7242fc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man/man3/sysconf.3": "6d43d92654bdeeac5a67a86e87c5888f308a89aaceb8531e8ab1a63179c7f033",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man/man3/times.3": "2a8c70cd7950b19d0fad39268455b63982bfdf4f11d884631aae298669dc97bf",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man/man2/wait.2": "2178648ce5091cba439ca601216ec3f368ed64487f91385f68b65e7b5e5e5409",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man/man2/getrusage.2": "b4f4ed265c063282cb851254a5c903f9c1bc484f4e6bb720703c758583eff8b9",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Headers/kern/clock.h": "ac3ae2da2244f4340a6063b40e31908938249ad029e97ab9c0d5cc964f314346",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Headers/kern/processor.h": "e22bf7da121a3fa92f4a0d7fa5db009b98b351440aa913717f9e49ae17b85c39",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Kernel.framework/Headers/sys/resource.h": "91a9816bec606684bb891130055a2506b4cbb6b3e8d8e1f1ecdc83bc35109936",
+      "archive:/tmp/a170-darwin-cpu-collector/README.md": "7d99f8d62b9a7bd55bd22efead854d76454af21f2b83319e7497460b51a77bce",
+      "archive:/tmp/a170-darwin-cpu-collector/QUALIFICATION.md": "835746dcb7ab62d2f10f7229fad26da7cb31174f18861573c410ccaa93f2648b",
+      "archive:/tmp/a170-darwin-cpu-collector/SOURCE_PINS.json": "5db754b3b53657312dfebd36becd89074e9b9befcce2786b583c23748cd02ef2",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/PREREGISTRATION.json": "655c1c73cbf7002a5e74993ac4a827f00199f41932af5fdf368f7ab027803879",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/SOURCE_MANIFEST.json": "22a3793846ab667e19fffe14ab9681a446be5db7c25bfd23d48e580656729ab7",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/PREREGISTRATION.json": "d26e0991b71378e4606df8b45514234d97c76a56e03bdf4084eeffb4ad82c75b",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/SOURCE_MANIFEST.json": "cb6751653f95f006d50eacbd3a31add0b54fb36e5673348b3771b81cbbae78ee",
+      "archive:/tmp/a181-native-parent-handshake-gate/arm_clock.h": "2296a45e2c4d7044a157483d0d6b0acc553dc58ee5f0d7b91a7cc3cf486f6c66",
+      "archive:/tmp/a181-native-parent-handshake-gate/collector.c": "3476a4a24e7707db11ec44f57062a9267caad6b8d98c480235366a933cc3739d",
+      "archive:/tmp/a181-native-parent-handshake-gate/fixture.c": "e96bee9f22ba8302ee6f0b402324127973f2bc428a69473ae08a3ca3a95dc725",
+      "archive:/tmp/a181-native-parent-handshake-gate/README.md": "5d59c16ecd3d48259f201bcc9d67c721e7691e285675e30a9c67e9d1a9f1698a",
+      "archive:/tmp/a181-native-parent-handshake-gate/PREREGISTRATION.json": "38209d3e941bdc907739396c49fb6719802f326cb1e62c7f2154760a155475b1",
+      "archive:/tmp/a181-native-parent-handshake-gate/SOURCE_MANIFEST.json": "44ba04f2064d918ef70fc294ad3cbd719c7e1092ca789f53cc429f345c86259c",
+      "archive:/tmp/a181-native-parent-handshake-gate/SOURCE_DIGEST.txt": "74d6c066e2b7eac5a847aa5ae1c0ac20cf3e755078d78070166f259a046d8d98",
+      "archive:/tmp/a181-native-parent-handshake-gate/raw_check.py": "882d0813229ed34a7c814280f4ac83afc6ce592c6d7df5f4151fcaaa99b1ae12",
+      "archive:/tmp/a181-native-parent-handshake-gate/run.py": "e53eb9ce9f198537197ab5247b3938562d05ec92f14656517b5ae7464ee729dd",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/poll.h": "dc10a7ff3e8952c80305a099fa247a572f636b5b8f9f6b82f7e6b7d999fc6af3",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h": "9d621c730d1d96b600893b0e3e4c45822a24d565e7b6b166973c41a6a2eb02e7",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types.h": "863c4f07045775002b63b7e616742d9f746e4a02da4441442d8fe1138bbd0ff9",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/fcntl.h": "9aca8ca87031ab7b670617e5af8b15a0cad8f34f7ab3bdb5dd799eb153b3ad0e",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/proc_info.h": "e427fa96b348537b21552b9de71e01039410bcad2cedee5584c5e5fddafd70fc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/signal.h": "319fbc4555c1d39c95d8a5e3034956bfe8e0e1bd9142df95ab71ad3ac8bb1f54",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/wait.h": "b77f7dd6f592eba8b0d51c15c7b975472fdad50c12ea296f74f062cbf98dcbf7",
+      "archive:/tmp/a170-darwin-cpu-collector/SOURCE_MANIFEST.json": "0fb9c57004674d83bdbf0b996b8cded4277bc9a556cb237b6e3cf3aa6bc754cc",
+      "archive:/tmp/a170-darwin-cpu-collector/arm_clock.h": "2296a45e2c4d7044a157483d0d6b0acc553dc58ee5f0d7b91a7cc3cf486f6c66",
+      "archive:/tmp/a170-darwin-cpu-collector/check.py": "71e2f8e4b19ff38deb75c39e5ab4887ac9fb95150899ce1807fd24c3225c09e4",
+      "archive:/tmp/a170-darwin-cpu-collector/collector.c": "3b031f7a80cfddbdd93df2bb8440a27660707f2e04b9cfbbe6ef1b44f1f9eaa3",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/ARTIFACT_MANIFEST.json": "3eec7af3ddf48329e933d66bb30551d59f55575f5be18e1f12af608fbe70a76e",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/SOURCE_PINS.json": "70f32883bdd69d8396b46e6cb3101945b964235a2efc1904d66faca6ec4a53f9",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/fixture.c": "bb2fe5ed799861d63c1cd97756b465180011ef62836d25b57eb16d30891cfb50",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/replay.py": "5de34eee4d984cee7ccbff2f26c676a7c108085ffae7d7c72f7fa511e8231139",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/run.py": "f114d380b809c531cb84a7e6b1f1a1c2604e3bc9b2fde5a3dd533f23ddcc1a6d",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/test_replay.py": "1f9821c8414213216b4b6852b3ec57fc828d792e72ee9db12b8ab075ae78e677",
+      "archive:/tmp/a172-darwin-collector-lifecycle-fixture/test_runner.py": "4b8c478500615a60a0ffaf7a8ce965a7f43c937a35d8276ef1f150e79a7e14c6",
+      "archive:/tmp/a177-native-lifecycle-independent-audit/ARTIFACT_MANIFEST.json": "f2817c3a4b5b9954d68ed9c642a703e04c8502619a99b9b3b654970358b87f49",
+      "archive:/tmp/a177-native-lifecycle-independent-audit/DIAGNOSIS.json": "800d2dda6959b65e4cb842bc25f22e6c985801eb361f941118274287584c1c79",
+      "archive:/tmp/a177-native-lifecycle-independent-audit/DIAGNOSIS.md": "66f354ca2c570b0da70b34b936f8589a3565bf185d741dfe3526a26047b668d4",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/ARTIFACT_MANIFEST.json": "578d28e9ff1dd40e09d5618a18af77282ce7437694c70af8d1764eacc3a6f662",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/SOURCE_DIGEST.txt": "37ef1cd5821d911eefe6ac38404027cef66502ce113430147d778ef8c4e39515",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/arm_clock.h": "2296a45e2c4d7044a157483d0d6b0acc553dc58ee5f0d7b91a7cc3cf486f6c66",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/collector.c": "ae99dc3c85198eb5b5452283485f6af521a977b4ee0d679418c212944eef71f4",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/fixture.c": "91e82d3cab91c8672a891fa1137fe018cafe749e3692ad8bc97cf02e09b90fd8",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/raw_check.py": "009948ebe0a3858873384f1d843da52a7d7ee4edfede1c7b7184e2cf0228186a",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/replay.py": "649a289cb092e363b183949ddc363b0511f32e09aa41200969b81978a19d0c81",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/run.py": "eca02372b1f45b0d064f43c8e1e7e3c35c398c0b18c6298ab99dbc93a040fd66",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/test_replay.py": "00928eab52709f63cd0c0cabbb05fc92d8b4d1bf1fbf23b30d139ddbe0df8938",
+      "archive:/tmp/a178-darwin-zombie-identity-successor/test_runner.py": "c494702a610b502c3d4e5392da1ce0d067c81d13601ae13198e865d6e554de02",
+      "archive:/tmp/a180-native-parent-handshake-design/DESIGN.md": "73596e4cee59fb40074cf1a6d9fd61df2e0b6ea460cb8665f09a97e0b4f7903e",
+      "archive:/tmp/a180-native-parent-handshake-design/MANIFEST.json": "35421db9a500c113abace166809bd7d01265a416933d64fad8596168bd8c808d",
+      "archive:/tmp/a180-native-parent-handshake-design/SOURCE_PINS.json": "c249067a646a80b848a01cd541811fc74c0e490c37c21309a1af0fb65c8c600c"
+    }
+  },
+  "case_bindings": [
+    {
+      "case": "order-12",
+      "status": "RAW_LIFECYCLE_CONSISTENT",
+      "files_sha256": {
+        "launch.json": "0c548133df8badf61786fdfe54f3c833d3e349b86315f2efbc59787a9615377e",
+        "child.json": "95f4a0ee0cdb56418ebd7eec3967b4decf798738b5c483964a5093d34dca9874",
+        "parent-reaped.json": "a37295e6a2534e447b421f6c7011f65eebd298d3ea3cf2407780e83498ff00ad",
+        "exit.json": "40deae9791dc03bd3111a9d54d36080a02d89a621e557d6e08553d2ec6b4700d",
+        "validation.json": "ef84ecaa99cf5b8c8c0a99321c4a7d888394b95cbd0a28151d3b082c2fe44a21",
+        "native/lifecycle.jsonl": "7fd71cdc0cf1d5cf03e9398fd024cd97c3083fd73e696372eb47bb8867e5d071",
+        "native/raw.jsonl": "9484a82017ea969ebf9eb6f15e0398899ca7f068b5e8d34859be536fdc110b8a",
+        "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "prepared_utc": "2026-09-05T08:53:07.333570+00:00",
+      "terminal_utc": "2026-09-05T08:53:19.440408+00:00",
+      "parent_pid": 5671,
+      "worker_pid": 5672,
+      "worker_birth_abs": 12193353702180,
+      "lifecycle_records": 27,
+      "raw_records": 15,
+      "collector_qualified": false
+    },
+    {
+      "case": "order-21",
+      "status": "RAW_LIFECYCLE_CONSISTENT",
+      "files_sha256": {
+        "launch.json": "cd1f212b2fc86289cfc151eca881a419505abdfc7992da6a9710925f349eea13",
+        "child.json": "5bf441b9e1cea9393ee77e1816b7127883979748f9fdb5e4f4046340ddb5d084",
+        "parent-reaped.json": "98abb70ecf6a90751d1ca97d94848e699824c88d85adc4ce8d9d3e95d802cc87",
+        "exit.json": "1bff969c67f74850a5e20598b41c6f65cd6d94a9b3bb782fe1a5e54cdf283a0f",
+        "validation.json": "538e0020bb3ebbb4451da6975a8f7f24d38b1ab3fd65fe31c33ba9049e23a999",
+        "native/lifecycle.jsonl": "0182fbef971f19b7591468fca87bc45e6eb0cd35f6a3ceccfda3c38fba32327e",
+        "native/raw.jsonl": "1c4deef5877271a540fa24c0a1b56e51f74ca01900f95902af6c2f429e6988a3",
+        "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "prepared_utc": "2026-09-05T08:54:17.731986+00:00",
+      "terminal_utc": "2026-09-05T08:54:29.855550+00:00",
+      "parent_pid": 6833,
+      "worker_pid": 6834,
+      "worker_birth_abs": 12195043263140,
+      "lifecycle_records": 27,
+      "raw_records": 15,
+      "collector_qualified": false
+    },
+    {
+      "case": "wrong-birth",
+      "status": "EXPECTED_REFUSAL_OBSERVED",
+      "files_sha256": {
+        "launch.json": "8eebb5ddfc944becfc475efb031116b33f2fa99a80024b079c966bfb8511aabf",
+        "child.json": "8e005bbc57080242b3d53a190d375dde38485b1c145b3b972a6259ec2bc784ea",
+        "parent-reaped.json": "c8e3137f9c368dda36d0c91a6c0cc5f5827dc4e6dc716b96389a6efbdbe71334",
+        "exit.json": "05f5f03fce615ea711bc9bc97204b2b0387a1d2d0cd6350de5df4044c0675111",
+        "validation.json": "1184dca20cde6991dabc4cf62b44e6eabc0ab222b502f7f01969c5a69275dacf",
+        "native/lifecycle.jsonl": "4d3b3e86ca1cc11ac768bf79f3a842ef39fc7f6d423cc148ba559bd0bcf6e3a8",
+        "native/raw.jsonl": "5a0786f0ac2a182a01d4880920d227e08ba0bcf281a829bcaa451d3cf3a32d14",
+        "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "prepared_utc": "2026-09-05T08:54:44.412077+00:00",
+      "terminal_utc": "2026-09-05T08:54:44.443299+00:00",
+      "parent_pid": 7312,
+      "worker_pid": 7313,
+      "worker_birth_abs": 12195683583504,
+      "lifecycle_records": 15,
+      "raw_records": 4,
+      "collector_qualified": false
+    },
+    {
+      "case": "early-reap",
+      "status": "EXPECTED_REFUSAL_OBSERVED",
+      "files_sha256": {
+        "launch.json": "2fe08d3f6970a7bd37ad735f299050f267fda8d7f36418e617bcaf5e8dd70356",
+        "child.json": "8a01e186bbfca1eb9cd1b1b98790b8560ef05fa17369eb059f30e82b7e6a45e6",
+        "parent-reaped.json": "f978aed0aa5dd9139039cb4386cc929fd385a736dde82d73b54af65936fdbe0c",
+        "exit.json": "2f8487a24ee7ad2c70603cce3b7c86bf3bd5737b64fdd190b3d129a220f37ed2",
+        "validation.json": "bbbdc6e0ecff040a384f93c13b487b3dd9cdf10425781331dceb4e5a617bc084",
+        "native/lifecycle.jsonl": "6922d680184ba3682bbf701714f7f00aa496373113ef9b1b413ef190e78c77a1",
+        "native/raw.jsonl": "814f4735b15d5582c69ad3b730c0829a494d4b39b63981e832b9d156efa9372b",
+        "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "prepared_utc": "2026-09-05T08:54:58.723344+00:00",
+      "terminal_utc": "2026-09-05T08:54:58.819439+00:00",
+      "parent_pid": 7545,
+      "worker_pid": 7546,
+      "worker_birth_abs": 12196027051912,
+      "lifecycle_records": 15,
+      "raw_records": 4,
+      "collector_qualified": false
+    },
+    {
+      "case": "descendant",
+      "status": "UNSUPPORTED_DESCENDANT_OBSERVED",
+      "files_sha256": {
+        "launch.json": "5df830f4c0909c7b034dbaeab7c968eab8a4b5565f31a8c7e1c26b2c95227bb2",
+        "child.json": "dde58345941d4e7bb5d13eefa2b9d5c924b2fe05b7f2aa37432dd8a0e7e39615",
+        "parent-reaped.json": "1e4b21d04e815a35191c81370ca7c65f47c1d4b0ac77798836221fc3a3df4d1c",
+        "exit.json": "6f93bd0e21b03933d3c17f98bb0dc3ac13f8fc065640bb0351ea31125761fe5c",
+        "validation.json": "26e181e15e7c6535cdad9da85d4abb5cd7ee65c641601856a63aa05ae300485f",
+        "native/lifecycle.jsonl": "45c0295ec56e0176209d34d41f2ddcfc7e9974de7b5e1cb29f12c28cb8c5b955",
+        "native/raw.jsonl": "50ffa2068856cc4195a3a430020a7f3e558fdbe8d16eb655276c3be7c827c309",
+        "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "native/collector.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "prepared_utc": "2026-09-05T08:55:12.288783+00:00",
+      "terminal_utc": "2026-09-05T08:55:18.377264+00:00",
+      "parent_pid": 7772,
+      "worker_pid": 7773,
+      "worker_birth_abs": 12196352616455,
+      "lifecycle_records": 24,
+      "raw_records": 12,
+      "collector_qualified": false
+    }
+  ],
+  "results": {
+    "order-12": {
+      "schema": "a189.unit-hypothesis-diagnostic.v1",
+      "case": "order-12",
+      "interpretation": "COUNTERFACTUAL_UNIT_HYPOTHESES_NOT_CALIBRATION",
+      "host_frames": [
+        {
+          "left_seq": 0,
+          "right_seq": 1,
+          "whole_raw_delta_user_system_idle_nice": [
+            236,
+            195,
+            2766,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              6030641000,
+              3
+            ],
+            [
+              2010273375,
+              1
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -194374000,
+                  1
+                ],
+                [
+                  -580256000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                580256000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -28967374000,
+                  1
+                ],
+                [
+                  -86899256000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                86899256000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 1,
+          "right_seq": 2,
+          "whole_raw_delta_user_system_idle_nice": [
+            350,
+            152,
+            2703,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              6031300625,
+              3
+            ],
+            [
+              6031508375,
+              3
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -354134000,
+                  3
+                ],
+                [
+                  -350810000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                350810000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -86889134000,
+                  3
+                ],
+                [
+                  -86885810000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                86885810000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 2,
+          "right_seq": 3,
+          "whole_raw_delta_user_system_idle_nice": [
+            208,
+            249,
+            2735,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              2005264625,
+              1
+            ],
+            [
+              6015914000,
+              3
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -494624000,
+                  3
+                ],
+                [
+                  -164234000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                164234000,
+                1
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -86678624000,
+                  3
+                ],
+                [
+                  -28892234000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                28892234000,
+                1
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 3,
+          "right_seq": 4,
+          "whole_raw_delta_user_system_idle_nice": [
+            579,
+            160,
+            2454,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              2003380750,
+              1
+            ],
+            [
+              6010258375,
+              3
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -374134000,
+                  3
+                ],
+                [
+                  -124092000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                124092000,
+                1
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -86585134000,
+                  3
+                ],
+                [
+                  -28861092000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                28861092000,
+                1
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 4,
+          "right_seq": 5,
+          "whole_raw_delta_user_system_idle_nice": [
+            1,
+            1,
+            37,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              75108125,
+              3
+            ],
+            [
+              75174500,
+              3
+            ]
+          ],
+          "controlled_pause_gap": true,
+          "is_scheduled_frame": false,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -32792000,
+                  3
+                ],
+                [
+                  -31730000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                31730000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -1085792000,
+                  3
+                ],
+                [
+                  -1084730000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                1084730000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 5,
+          "right_seq": 6,
+          "whole_raw_delta_user_system_idle_nice": [
+            216,
+            192,
+            2781,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              6002083375,
+              3
+            ],
+            [
+              6002199625,
+              3
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -365194000,
+                  3
+                ],
+                [
+                  -363334000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                363334000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -86468194000,
+                  3
+                ],
+                [
+                  -86466334000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                86466334000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 6,
+          "right_seq": 7,
+          "whole_raw_delta_user_system_idle_nice": [
+            239,
+            195,
+            2758,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              6015720875,
+              3
+            ],
+            [
+              2005283375,
+              1
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -164534000,
+                  1
+                ],
+                [
+                  -491534000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                491534000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -28892534000,
+                  1
+                ],
+                [
+                  -86675534000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                86675534000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        }
+      ],
+      "process_lifetime": {
+        "hypotheses": {
+          "raw_nanoseconds": {
+            "scale_ns_per_raw_unit": [
+              1,
+              1
+            ],
+            "signed_lifetime_difference_ns": {
+              "user_raw": [
+                -5829936887,
+                1
+              ],
+              "system_raw": [
+                -16066902,
+                1
+              ]
+            },
+            "qualified": false
+          },
+          "raw_mach_ticks": {
+            "scale_ns_per_raw_unit": [
+              125,
+              3
+            ],
+            "signed_lifetime_difference_ns": {
+              "user_raw": [
+                375,
+                1
+              ],
+              "system_raw": [
+                1250,
+                3
+              ]
+            },
+            "qualified": false
+          }
+        },
+        "reference": "wait4 timeval seconds+microseconds",
+        "same_lifetime_and_accounting_scope_attested": false,
+        "reference_precision_error_ns": null,
+        "final_accounting_settled": false
+      },
+      "process_cpu_scale_justified": false,
+      "host_cpu_scale_justified": false,
+      "counter_errors_justified": false,
+      "settlement_proven": false,
+      "exclusive_tree_coverage_proven": false,
+      "collector_qualified": false,
+      "normalized_occupancy": null,
+      "selected_scale": null
+    },
+    "order-21": {
+      "schema": "a189.unit-hypothesis-diagnostic.v1",
+      "case": "order-21",
+      "interpretation": "COUNTERFACTUAL_UNIT_HYPOTHESES_NOT_CALIBRATION",
+      "host_frames": [
+        {
+          "left_seq": 0,
+          "right_seq": 1,
+          "whole_raw_delta_user_system_idle_nice": [
+            246,
+            198,
+            2753,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              6025532875,
+              3
+            ],
+            [
+              6025617625,
+              3
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -499882000,
+                  3
+                ],
+                [
+                  -498526000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                498526000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -86818882000,
+                  3
+                ],
+                [
+                  -86817526000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                86817526000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 1,
+          "right_seq": 2,
+          "whole_raw_delta_user_system_idle_nice": [
+            691,
+            164,
+            2343,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              2005121250,
+              1
+            ],
+            [
+              2005160125,
+              1
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -102562000,
+                  1
+                ],
+                [
+                  -101940000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                101940000,
+                1
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -28884562000,
+                  1
+                ],
+                [
+                  -28883940000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                28883940000,
+                1
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 2,
+          "right_seq": 3,
+          "whole_raw_delta_user_system_idle_nice": [
+            450,
+            268,
+            2484,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              2009406500,
+              1
+            ],
+            [
+              2009446000,
+              1
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -131136000,
+                  1
+                ],
+                [
+                  -130504000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                130504000,
+                1
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -28949136000,
+                  1
+                ],
+                [
+                  -28948504000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                28948504000,
+                1
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 3,
+          "right_seq": 4,
+          "whole_raw_delta_user_system_idle_nice": [
+            473,
+            212,
+            2516,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              2008863875,
+              1
+            ],
+            [
+              6026712250,
+              3
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -397396000,
+                  3
+                ],
+                [
+                  -131822000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                131822000,
+                1
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -86824396000,
+                  3
+                ],
+                [
+                  -28940822000,
+                  1
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                28940822000,
+                1
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 4,
+          "right_seq": 5,
+          "whole_raw_delta_user_system_idle_nice": [
+            5,
+            1,
+            41,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              91375000,
+              3
+            ],
+            [
+              91448375,
+              3
+            ]
+          ],
+          "controlled_pause_gap": true,
+          "is_scheduled_frame": false,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -53174000,
+                  3
+                ],
+                [
+                  -52000000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                52000000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -1322174000,
+                  3
+                ],
+                [
+                  -1321000000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                1321000000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 5,
+          "right_seq": 6,
+          "whole_raw_delta_user_system_idle_nice": [
+            286,
+            230,
+            2678,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              6012698750,
+              3
+            ],
+            [
+              2004260500,
+              1
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -128168000,
+                  1
+                ],
+                [
+                  -383180000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                383180000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -28874168000,
+                  1
+                ],
+                [
+                  -86621180000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                86621180000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        },
+        {
+          "left_seq": 6,
+          "right_seq": 7,
+          "whole_raw_delta_user_system_idle_nice": [
+            199,
+            205,
+            2791,
+            0
+          ],
+          "elapsed_ns_interval": [
+            [
+              6031797250,
+              3
+            ],
+            [
+              6031979750,
+              3
+            ]
+          ],
+          "controlled_pause_gap": false,
+          "is_scheduled_frame": true,
+          "hypotheses": {
+            "ten_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                10000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -661676000,
+                  3
+                ],
+                [
+                  -658756000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                658756000,
+                3
+              ],
+              "qualified": false
+            },
+            "one_ms_per_tick": {
+              "scale_ns_per_raw_tick": [
+                1000000,
+                1
+              ],
+              "signed_capacity_residual_ns_interval": [
+                [
+                  -86926676000,
+                  3
+                ],
+                [
+                  -86923756000,
+                  3
+                ]
+              ],
+              "zero_error_ideal_contains_zero": false,
+              "minimum_additive_counter_error_needed_ns": [
+                86923756000,
+                3
+              ],
+              "qualified": false
+            }
+          },
+          "counter_error_bound_ns": null,
+          "normalized_busy_fraction": null
+        }
+      ],
+      "process_lifetime": {
+        "hypotheses": {
+          "raw_nanoseconds": {
+            "scale_ns_per_raw_unit": [
+              1,
+              1
+            ],
+            "signed_lifetime_difference_ns": {
+              "user_raw": [
+                -5814780587,
+                1
+              ],
+              "system_raw": [
+                -27099604,
+                1
+              ]
+            },
+            "qualified": false
+          },
+          "raw_mach_ticks": {
+            "scale_ns_per_raw_unit": [
+              125,
+              3
+            ],
+            "signed_lifetime_difference_ns": {
+              "user_raw": [
+                625,
+                3
+              ],
+              "system_raw": [
+                500,
+                1
+              ]
+            },
+            "qualified": false
+          }
+        },
+        "reference": "wait4 timeval seconds+microseconds",
+        "same_lifetime_and_accounting_scope_attested": false,
+        "reference_precision_error_ns": null,
+        "final_accounting_settled": false
+      },
+      "process_cpu_scale_justified": false,
+      "host_cpu_scale_justified": false,
+      "counter_errors_justified": false,
+      "settlement_proven": false,
+      "exclusive_tree_coverage_proven": false,
+      "collector_qualified": false,
+      "normalized_occupancy": null,
+      "selected_scale": null
+    }
+  },
+  "actual_record_consistency": true,
+  "os_membership_attested": false,
+  "actual_cpu_units_justified": false,
+  "counter_errors_justified": false,
+  "settlement_proven": false,
+  "normalized_occupancy": null,
+  "selected_scale": null,
+  "collector_qualified": false
+}

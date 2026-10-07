@@ -1,0 +1,42 @@
+{
+  "status": "PRODUCER_REJECTED",
+  "completed_cases": 4,
+  "passed_cases": 3,
+  "failed_cases": 1,
+  "unexecuted_cases": 5,
+  "key_families": 1,
+  "real_prefix_executed": false,
+  "comparisons_executed": 0,
+  "timing": false,
+  "failure": {
+    "case_index": 3,
+    "normalized_score": 4095,
+    "expected": [
+      63,
+      63
+    ],
+    "decoded": [
+      63,
+      62
+    ],
+    "canonical": true
+  },
+  "actual_counts_per_score": {
+    "br": 3,
+    "ks": 2,
+    "samples": 3,
+    "gadget_levels": 4
+  },
+  "scope": "one prototype, parameter family and ciphertext; no internal cause, baseline failure, failure rate, latency or gain inferred",
+  "artifacts": {
+    "SOURCE_BUILD.json": "7aa5fdebae78774281a61b41e22328988e0bc44316b55c5f9e28dc0b4107549e",
+    "BUILD.json": "f1111f472d6c3430f2f3d80f11fbb3003ab714c9b2034a2fef6119ee09ff9243",
+    "RUN.json": "5f7beb5e5fd4d44d3911580b5906d548ad9c876fd96b96dbca4215a0eba0bf9b",
+    "run01/rows.jsonl": "1d78a2ac162f640adc7e9dbfb833a868b17abf73c0f9a283f402f9a0036f7eea",
+    "run01/COMPLETE.json": "a18c238f23697b980f34d224190d150e264f33f6c9dd7c96d47c6250f103d2ec",
+    "samples.csv": "ef1b8b065c83520a2201352f6100388fa124f09874de1586482f0f4c21377628",
+    "root/RESULT_REVIEW.md": "9cbff552a3570b4589a637b0c255ae1a9c5b3c74825cd9515026b9caf64d4423",
+    "POSTRUN.json": "111b925a61448dfc669de39fc4442a9046966e111dfa7a3d91f60af872b09169"
+  },
+  "binary_sha256": "01dc1f7f5e98a08910be5493e646b827a66982514ccb18c80b4477eb5bf7ce2a"
+}

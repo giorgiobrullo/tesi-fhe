@@ -1,0 +1,15 @@
+[package]
+name = "a124_a66_thread_sweep"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+a66 = { package = "a66_a62_latency_ready_prototype", path = "../a66-a62-latency-ready-prototype" }
+bincode = "1"
+libc = "0.2"
+rayon = "1"
+sha2 = "0.10"
+tfhe = { version = "0.11.3", features = ["integer"] }
+
+[profile.release]
+opt-level = 3

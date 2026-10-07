@@ -36,10 +36,6 @@ confronti del torneo. CGU1 indica un'impostazione del compilatore, non un
 limite a un solo thread. Il piano FFT fisso rende ripetibile la scelta
 numerica; la sua adozione da sola non dimostra un'accelerazione.
 
-Ci sono **due riferimenti distinti**: il confronto principale mantiene la
-FFT già fissa e cambia compilazione/thread; l'altro parte dal vecchio piano
-adattivo. I risultati sotto indicano a quale riferimento si riferiscono.
-
 ## Metodo e risultati
 
 Il [runner a FFT fissa](source/runtime-fixed-fft/README.md) installa il piano
@@ -48,15 +44,16 @@ conserva la scelta del piano a runtime. Le opzioni `opt-owned-pfks` e
 `opt-lut-cache` confrontano rispettivamente spostamento degli intermedi PFKS
 invece della copia e riuso dei corpi immutabili delle LUT.
 
-La conferma su due nuove famiglie misura **18,368730% di riduzione** per
-CGU1/16 thread rispetto a FFT fissa/8 thread. Il confronto distinto con il
-vecchio riferimento adattivo/8 thread dà **16,63%**. Questi effetti non si
-sommano. Native e CGU1/8 non confermano un vantaggio; PGO è **1,53% più lento**
-nello screening separato. Copie/cache non vengono selezionate.
+La conferma su due nuove famiglie seleziona CGU1 con 16 thread e FFT fissa.
 
-Il primo confronto cambia insieme compilazione e numero di thread, a FFT
-già fissa. Il secondo include anche il passaggio dal piano adattivo a quello
-fisso: nessuna delle due percentuali misura il vantaggio isolato della FFT.
+| Riferimento | Cosa cambia | Riduzione del tempo |
+|---|---|---:|
+| FFT fissa, 8 thread | Compilazione e numero di thread | 18,37% |
+| Piano adattivo, 8 thread | Compilazione, thread e piano FFT | 16,63% |
+
+Sono confronti distinti: le percentuali non si sommano e non isolano
+l'effetto della FFT. Native e CGU1/8 non confermano un vantaggio; PGO è
+**1,53% più lento** nello screening separato. Copie/cache non vengono selezionate.
 
 L'intervallo finale usa due medie per chiave, non 48 chiavi indipendenti.
 Tutte le coppie conservano segnalazioni di carico esterno e contabilità
@@ -64,6 +61,15 @@ parzialmente incerta. Sedici thread software non dimostrano affinità a
 specifici core fisici. La FFT fissa consente confronti dei ciphertext tra
 processi, ma i piani adattivi precedenti non erano registrati: non si
 attribuisce retroattivamente ogni differenza alla FFT. [Risultati completi](RESULTS.json).
+
+<a id="misure-salvate-integrazione-del-6-ottobre-2026"></a>
+
+Le [misure della prima famiglia](evidence/confirmation-key1.json)
+e della [seconda](evidence/confirmation-key2.json) documentano la
+conferma; gli screening [runtime](evidence/runtime-screen.json) e
+[PGO](evidence/pgo-heldout.json) conservano anche le varianti non
+selezionate. L'[analisi del contesto CPU](evidence/context-analysis.json)
+riporta le condizioni osservate.
 
 ## Compilazione e uso
 
@@ -89,7 +95,6 @@ configurazione attualmente adottate vedere il [runtime mantenuto](../../runtime/
 
 ## Provenienza
 
-[Provenienza e impronte dei file](PROVENANCE.json) distingue i byte pubblicati
-dai documenti storici e dalle copie redatte. I digest degli esperimenti
-identificano le esecuzioni originali; questa pubblicazione non aggiunge
-una nuova compilazione nativa o una nuova prova FHE.
+La [provenienza dei sorgenti e delle misure](PROVENANCE.json) lega i file
+alle fonti originali e dichiara le selezioni dei dati. Le impronte delle
+copie pubbliche sono distinte da quelle degli originali.

@@ -1,0 +1,434 @@
+{
+  "warning_count": 58,
+  "classes": {
+    "-Wsign-compare": 54,
+    "-Wunused-variable": 1,
+    "-Wreorder-ctor": 1,
+    "-Wunused-parameter": 2
+  },
+  "exact_warnings": [
+    {
+      "path": "/tmp/a117-existing-tests-source-r1/code/tools.h",
+      "line": 22,
+      "column": 29,
+      "message": "comparison of integers of different signs: 'long' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 172,
+      "column": 15,
+      "message": "comparison of integers of different signs: 'long' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 407,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'long' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 409,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'long' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 417,
+      "column": 24,
+      "message": "comparison of integers of different signs: 'long' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 421,
+      "column": 27,
+      "message": "comparison of integers of different signs: 'long' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 616,
+      "column": 7,
+      "message": "unused variable 'nslots'",
+      "class": "-Wunused-variable"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 628,
+      "column": 28,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 646,
+      "column": 165,
+      "message": "field 'm_type' will be initialized after field 'm_slotDeg'",
+      "class": "-Wreorder-ctor"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 696,
+      "column": 47,
+      "message": "unused parameter 'start'",
+      "class": "-Wunused-parameter"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 718,
+      "column": 55,
+      "message": "unused parameter 'start'",
+      "class": "-Wunused-parameter"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 754,
+      "column": 12,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 773,
+      "column": 12,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1295,
+      "column": 34,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1308,
+      "column": 34,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1317,
+      "column": 30,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1325,
+      "column": 30,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1356,
+      "column": 34,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1365,
+      "column": 30,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1499,
+      "column": 33,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1512,
+      "column": 33,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1521,
+      "column": 29,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1551,
+      "column": 29,
+      "message": "comparison of integers of different signs: 'long' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1665,
+      "column": 104,
+      "message": "comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1665,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1807,
+      "column": 31,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1823,
+      "column": 16,
+      "message": "comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1869,
+      "column": 16,
+      "message": "comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 1921,
+      "column": 28,
+      "message": "comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2094,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2114,
+      "column": 21,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2130,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2155,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2166,
+      "column": 21,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2172,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2222,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2224,
+      "column": 24,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2307,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2339,
+      "column": 25,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2346,
+      "column": 25,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2353,
+      "column": 25,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2420,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2503,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2524,
+      "column": 25,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2531,
+      "column": 25,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2540,
+      "column": 26,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2548,
+      "column": 27,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2617,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2629,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2704,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2724,
+      "column": 21,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2740,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2766,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2778,
+      "column": 20,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2784,
+      "column": 21,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2831,
+      "column": 22,
+      "message": "comparison of integers of different signs: 'int' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp",
+      "line": 2833,
+      "column": 23,
+      "message": "comparison of integers of different signs: 'int' and 'const unsigned long'",
+      "class": "-Wsign-compare"
+    },
+    {
+      "path": "/tmp/a117-existing-tests-source-r1/code/tools.h",
+      "line": 22,
+      "column": 29,
+      "message": "comparison of integers of different signs: 'long' and 'unsigned long'",
+      "class": "-Wsign-compare"
+    }
+  ],
+  "pins": {
+    "archive:/docs/research-state/2026-09-05/all-implemented-tests/actions/a117-build/stderr.log": "3a71a9d45ea6d295a1f797361245c059ebda477699d43f82f23ef0dc8d20f9f4",
+    "/tmp/a117-existing-tests-build-r1/a117_bgv_p8191_lt_gate": "df105c49cf654efa0cfd60c0325558de293f8db79c552d6fffae5152937a3fd9",
+    "/tmp/a117-existing-tests-build-r1/comparator_a117.cpp": "14caaa3938869a29774e8bfb639e3f3bb9ea43a3e654ae964eeb9b925795df15",
+    "archive:/tmp/a117-bgv-p8191-lt-gate/src/main.cpp": "498daa075fa51bf7d8dcc90bbd64ab4070e32ac59203e06f049d91f18dc35309",
+    "archive:/tmp/a117-bgv-p8191-lt-gate/src/a117_fast_univariate_poly.h": "f4df67c90bfd1556ad7d5f5ec83f4564b23c4262a169b999783b5ec8377c2489",
+    "archive:/tmp/a117-bgv-p8191-lt-gate/RUN_PLAN.md": "7fec6d92ca9667899655d900714ab2cdb41d8a191bfbee88a7be5189385d43c3",
+    "/tmp/a117-existing-tests-source-r1/code/comparator.cpp": "fcf21ec5ca4b712e330d04566575299352608b13f7bdb26290cbc4b07f278d6d",
+    "/tmp/a117-existing-tests-source-r1/code/comparator.h": "f39a2544e7cfdb9eb6d0ff7f1a4f176d184767d19dd948ac273119674d47c226",
+    "/tmp/a117-existing-tests-source-r1/code/tools.cpp": "7ffefa8782ae5b1ec4f241da26a9bb1dddf6e058846ac8637964ee42634fbf4e",
+    "/tmp/a117-existing-tests-source-r1/code/tools.h": "88c750444bccf93e2d8e02d4e42d0e263dac230d820f5f8e508ece43b68290cb"
+  },
+  "status": "PASS_INDEPENDENT_FIXED_PATH_WARNING_REVIEW",
+  "independent_review": {
+    "path": "archive:/docs/research-state/2026-09-05/remaining-code-baseline/bgv-warning-review.md",
+    "sha256": "6101cb92acc3ae2a7e51b9b5e1c5efdcdff8215352bf4deea72895efe2588f33"
+  }
+}

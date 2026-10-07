@@ -1,0 +1,1119 @@
+{
+  "schema": "a136-existing-full-grid-independent-review-v1",
+  "status": "PASS_SAVED_GRID_SCHEDULE_COUNTS_AND_DECISIONS",
+  "reviewed_at_utc": "2026-09-05T11:36:46.012674+00:00",
+  "source_pin_files_checked": 8,
+  "full_grid_sha256": "5fd3020698698dac33310811ff2871e21ade4ed197b80e72a53245ee23479a70",
+  "captured_result_sha256": "8574cac637822d1a3c97f21aa29c3c1ba2af4a8e44f0147f8f5d22457261d81e",
+  "captured_plan_sha256": "45fa8ed7d5ec7f5120724e38c442ec2113d35e1b389bd55e94b666aa0bee40d5",
+  "completed_cells": 28,
+  "arm_cells": 308,
+  "saved_outcome_records_checked": 337568,
+  "distinct_quantized_gallery_probe_profiles_per_cell": [
+    6
+  ],
+  "distinct_profile_cells": 168,
+  "checks": [
+    "exact registered seed/N/frame/arm ordering",
+    "all28 cell-completion rows equal aggregate; all308 individual summaries equal aggregate except registered paired fields",
+    "all337568 saved minimum/winner decisions, totals, ratios and paired baseline counts",
+    "500 tuning decisions per arm; exact maximum integer threshold for at most5 accepts",
+    "within-split cohort/image-index separation and recorded role order",
+    "domain width/bit/threshold arithmetic and saved minima within reported bounds; no declared norm violations"
+  ],
+  "limitations": [
+    "No embedding quantization or score-matrix recomputation; gallery/probe hashes and all-score bound declarations remain source-produced observations.",
+    "No independent verification that each saved winner is the true argmin of an unavailable full score row.",
+    "Overlapping split identities are not independent trials; no pooled statistical significance or population1percent-FPIR certification.",
+    "Reported source thread limit is not an independent runtime thread/occupancy attestation.",
+    "No FHE, selector-interface saving or speed claim."
+  ],
+  "descriptive_strata": [
+    {
+      "n": 64,
+      "probe_frames": 1,
+      "interpretation": "unweighted means and ranges of seven overlapping splits; no pooled confidence interval",
+      "profiles": [
+        {
+          "arm": "baseline_g3_p3",
+          "split_count": 7,
+          "mean_dir_percent": 96.42857142857143,
+          "dir_range_percent": [
+            93.75,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.9428571428571428,
+          "test_fpir_range_percent": [
+            0.2,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            3309,
+            3337
+          ],
+          "raw_bits": [
+            12
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 0,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 94.41964285714286,
+          "dir_range_percent": [
+            92.1875,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.8571428571428572,
+          "test_fpir_range_percent": [
+            0.0,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 9,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 94.41964285714286,
+          "dir_range_percent": [
+            92.1875,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.8571428571428572,
+          "test_fpir_range_percent": [
+            0.0,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 9,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 94.41964285714286,
+          "dir_range_percent": [
+            92.1875,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.8571428571428572,
+          "test_fpir_range_percent": [
+            0.0,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 9,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 94.41964285714286,
+          "dir_range_percent": [
+            92.1875,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.8571428571428572,
+          "test_fpir_range_percent": [
+            0.0,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 9,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 94.41964285714286,
+          "dir_range_percent": [
+            92.1875,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.8571428571428572,
+          "test_fpir_range_percent": [
+            0.0,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 9,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 95.75892857142857,
+          "dir_range_percent": [
+            93.75,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.7428571428571429,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            1793,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 1,
+          "split_paired_regressions_sum": 4,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 95.75892857142857,
+          "dir_range_percent": [
+            93.75,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.7428571428571429,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            1793,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 1,
+          "split_paired_regressions_sum": 4,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 95.08928571428571,
+          "dir_range_percent": [
+            92.1875,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.4,
+          "test_fpir_range_percent": [
+            0.0,
+            1.2
+          ],
+          "raw_domain_width_range": [
+            1443,
+            1475
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 6,
+          "gallery_rows_changed_by_cap_sum": 448
+        },
+        {
+          "arm": "g3_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 94.19642857142857,
+          "dir_range_percent": [
+            92.1875,
+            96.875
+          ],
+          "mean_test_fpir_percent": 0.8285714285714285,
+          "test_fpir_range_percent": [
+            0.0,
+            2.0
+          ],
+          "raw_domain_width_range": [
+            1043,
+            1075
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 10,
+          "gallery_rows_changed_by_cap_sum": 448
+        },
+        {
+          "arm": "g3_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 93.52678571428571,
+          "dir_range_percent": [
+            90.625,
+            96.875
+          ],
+          "mean_test_fpir_percent": 1.0,
+          "test_fpir_range_percent": [
+            0.4,
+            1.4000000000000001
+          ],
+          "raw_domain_width_range": [
+            753,
+            781
+          ],
+          "raw_bits": [
+            10
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 13,
+          "gallery_rows_changed_by_cap_sum": 448
+        }
+      ]
+    },
+    {
+      "n": 64,
+      "probe_frames": 3,
+      "interpretation": "unweighted means and ranges of seven overlapping splits; no pooled confidence interval",
+      "profiles": [
+        {
+          "arm": "baseline_g3_p3",
+          "split_count": 7,
+          "mean_dir_percent": 99.55357142857143,
+          "dir_range_percent": [
+            98.4375,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.0285714285714285,
+          "test_fpir_range_percent": [
+            0.6,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            3309,
+            3337
+          ],
+          "raw_bits": [
+            12
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 0,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 98.21428571428571,
+          "dir_range_percent": [
+            95.3125,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.457142857142857,
+          "test_fpir_range_percent": [
+            0.6,
+            2.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 6,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 98.21428571428571,
+          "dir_range_percent": [
+            95.3125,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.457142857142857,
+          "test_fpir_range_percent": [
+            0.6,
+            2.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 6,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 98.21428571428571,
+          "dir_range_percent": [
+            95.3125,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.457142857142857,
+          "test_fpir_range_percent": [
+            0.6,
+            2.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 6,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 98.21428571428571,
+          "dir_range_percent": [
+            95.3125,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.457142857142857,
+          "test_fpir_range_percent": [
+            0.6,
+            2.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 6,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 98.21428571428571,
+          "dir_range_percent": [
+            95.3125,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.457142857142857,
+          "test_fpir_range_percent": [
+            0.6,
+            2.6
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 6,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 99.10714285714286,
+          "dir_range_percent": [
+            98.4375,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.457142857142857,
+          "test_fpir_range_percent": [
+            0.8,
+            1.7999999999999998
+          ],
+          "raw_domain_width_range": [
+            1793,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 2,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 99.10714285714286,
+          "dir_range_percent": [
+            98.4375,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.457142857142857,
+          "test_fpir_range_percent": [
+            0.8,
+            1.7999999999999998
+          ],
+          "raw_domain_width_range": [
+            1793,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 2,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 99.10714285714286,
+          "dir_range_percent": [
+            98.4375,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.542857142857143,
+          "test_fpir_range_percent": [
+            0.8,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            1443,
+            1475
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 2,
+          "gallery_rows_changed_by_cap_sum": 448
+        },
+        {
+          "arm": "g3_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 98.66071428571429,
+          "dir_range_percent": [
+            95.3125,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.6,
+          "test_fpir_range_percent": [
+            1.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            1043,
+            1075
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 1,
+          "split_paired_regressions_sum": 5,
+          "gallery_rows_changed_by_cap_sum": 448
+        },
+        {
+          "arm": "g3_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 98.21428571428571,
+          "dir_range_percent": [
+            93.75,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.342857142857143,
+          "test_fpir_range_percent": [
+            0.4,
+            2.0
+          ],
+          "raw_domain_width_range": [
+            753,
+            781
+          ],
+          "raw_bits": [
+            10
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 6,
+          "gallery_rows_changed_by_cap_sum": 448
+        }
+      ]
+    },
+    {
+      "n": 128,
+      "probe_frames": 1,
+      "interpretation": "unweighted means and ranges of seven overlapping splits; no pooled confidence interval",
+      "profiles": [
+        {
+          "arm": "baseline_g3_p3",
+          "split_count": 7,
+          "mean_dir_percent": 95.20089285714286,
+          "dir_range_percent": [
+            93.75,
+            96.875
+          ],
+          "mean_test_fpir_percent": 0.8857142857142857,
+          "test_fpir_range_percent": [
+            0.2,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            3309,
+            3337
+          ],
+          "raw_bits": [
+            12
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 0,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 91.85267857142857,
+          "dir_range_percent": [
+            90.625,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.7714285714285715,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 30,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 91.85267857142857,
+          "dir_range_percent": [
+            90.625,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.7714285714285715,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 30,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 91.85267857142857,
+          "dir_range_percent": [
+            90.625,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.7714285714285715,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 30,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 91.85267857142857,
+          "dir_range_percent": [
+            90.625,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.7714285714285715,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 30,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 91.85267857142857,
+          "dir_range_percent": [
+            90.625,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.7714285714285715,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 30,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 93.52678571428571,
+          "dir_range_percent": [
+            92.1875,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.6571428571428571,
+          "test_fpir_range_percent": [
+            0.0,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            1803,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 15,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 93.52678571428571,
+          "dir_range_percent": [
+            92.1875,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.6571428571428571,
+          "test_fpir_range_percent": [
+            0.0,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            1803,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 15,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 93.41517857142857,
+          "dir_range_percent": [
+            92.1875,
+            95.3125
+          ],
+          "mean_test_fpir_percent": 0.6,
+          "test_fpir_range_percent": [
+            0.0,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            1443,
+            1477
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 16,
+          "gallery_rows_changed_by_cap_sum": 896
+        },
+        {
+          "arm": "g3_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 92.63392857142857,
+          "dir_range_percent": [
+            92.1875,
+            94.53125
+          ],
+          "mean_test_fpir_percent": 0.5142857142857142,
+          "test_fpir_range_percent": [
+            0.2,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            1043,
+            1077
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 23,
+          "gallery_rows_changed_by_cap_sum": 896
+        },
+        {
+          "arm": "g3_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 91.29464285714286,
+          "dir_range_percent": [
+            89.0625,
+            93.75
+          ],
+          "mean_test_fpir_percent": 0.6857142857142857,
+          "test_fpir_range_percent": [
+            0.0,
+            1.7999999999999998
+          ],
+          "raw_domain_width_range": [
+            759,
+            793
+          ],
+          "raw_bits": [
+            10
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 35,
+          "gallery_rows_changed_by_cap_sum": 896
+        }
+      ]
+    },
+    {
+      "n": 128,
+      "probe_frames": 3,
+      "interpretation": "unweighted means and ranges of seven overlapping splits; no pooled confidence interval",
+      "profiles": [
+        {
+          "arm": "baseline_g3_p3",
+          "split_count": 7,
+          "mean_dir_percent": 99.10714285714286,
+          "dir_range_percent": [
+            98.4375,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.0571428571428572,
+          "test_fpir_range_percent": [
+            0.2,
+            1.6
+          ],
+          "raw_domain_width_range": [
+            3309,
+            3337
+          ],
+          "raw_bits": [
+            12
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 0,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 97.20982142857143,
+          "dir_range_percent": [
+            95.3125,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.9714285714285715,
+          "test_fpir_range_percent": [
+            0.2,
+            2.8000000000000003
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 17,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 97.20982142857143,
+          "dir_range_percent": [
+            95.3125,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.9714285714285715,
+          "test_fpir_range_percent": [
+            0.2,
+            2.8000000000000003
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 17,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 97.20982142857143,
+          "dir_range_percent": [
+            95.3125,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.9714285714285715,
+          "test_fpir_range_percent": [
+            0.2,
+            2.8000000000000003
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 17,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 97.20982142857143,
+          "dir_range_percent": [
+            95.3125,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.9714285714285715,
+          "test_fpir_range_percent": [
+            0.2,
+            2.8000000000000003
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 17,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g1_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 97.20982142857143,
+          "dir_range_percent": [
+            95.3125,
+            98.4375
+          ],
+          "mean_test_fpir_percent": 0.9714285714285715,
+          "test_fpir_range_percent": [
+            0.2,
+            2.8000000000000003
+          ],
+          "raw_domain_width_range": [
+            381,
+            405
+          ],
+          "raw_bits": [
+            9
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 17,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_capNone",
+          "split_count": 7,
+          "mean_dir_percent": 98.77232142857143,
+          "dir_range_percent": [
+            97.65625,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.4857142857142858,
+          "test_fpir_range_percent": [
+            0.8,
+            2.4
+          ],
+          "raw_domain_width_range": [
+            1803,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 3,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap480",
+          "split_count": 7,
+          "mean_dir_percent": 98.77232142857143,
+          "dir_range_percent": [
+            97.65625,
+            100.0
+          ],
+          "mean_test_fpir_percent": 1.4857142857142858,
+          "test_fpir_range_percent": [
+            0.8,
+            2.4
+          ],
+          "raw_domain_width_range": [
+            1803,
+            1831
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 3,
+          "gallery_rows_changed_by_cap_sum": 0
+        },
+        {
+          "arm": "g3_p1_cap350",
+          "split_count": 7,
+          "mean_dir_percent": 98.32589285714286,
+          "dir_range_percent": [
+            96.09375,
+            99.21875
+          ],
+          "mean_test_fpir_percent": 1.5714285714285716,
+          "test_fpir_range_percent": [
+            0.6,
+            3.2
+          ],
+          "raw_domain_width_range": [
+            1443,
+            1477
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 7,
+          "gallery_rows_changed_by_cap_sum": 896
+        },
+        {
+          "arm": "g3_p1_cap250",
+          "split_count": 7,
+          "mean_dir_percent": 97.87946428571429,
+          "dir_range_percent": [
+            96.09375,
+            99.21875
+          ],
+          "mean_test_fpir_percent": 1.4857142857142858,
+          "test_fpir_range_percent": [
+            0.8,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            1043,
+            1077
+          ],
+          "raw_bits": [
+            11
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 11,
+          "gallery_rows_changed_by_cap_sum": 896
+        },
+        {
+          "arm": "g3_p1_cap180",
+          "split_count": 7,
+          "mean_dir_percent": 97.43303571428571,
+          "dir_range_percent": [
+            95.3125,
+            99.21875
+          ],
+          "mean_test_fpir_percent": 1.0857142857142856,
+          "test_fpir_range_percent": [
+            0.4,
+            2.1999999999999997
+          ],
+          "raw_domain_width_range": [
+            759,
+            793
+          ],
+          "raw_bits": [
+            10
+          ],
+          "split_paired_improvements_sum": 0,
+          "split_paired_regressions_sum": 15,
+          "gallery_rows_changed_by_cap_sum": 896
+        }
+      ]
+    }
+  ],
+  "execution_performed": false,
+  "new_tests_or_scoring_performed": false
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "archived-input-recipe.v1",
+  "source_receipt": "receipts/PREPARED.json",
+  "source_receipt_sha256": "cf0f2ae178a79b10b4a54c7a5ea0a7b49a8481eb67c5d459287d52e0514a4986",
+  "transformation": "selected metadata only",
+  "versions": {
+    "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "Pillow_imported": "12.3.0",
+    "packages": {
+      "fastapi": "0.141.1",
+      "uvicorn": "0.52.4",
+      "numpy": "1.26.4",
+      "Pillow": "12.3.0",
+      "insightface": "1.0.1",
+      "onnxruntime": "1.27.0"
+    }
+  },
+  "ports": {
+    "web": 8020,
+    "native": 9020
+  },
+  "plan": "One untimed warmup Einstein, then one measured single-photo query Einstein/Curie/Turing, serial same session; start before POST send, end first complete SSE event for the returned request_id. No browser/camera capture or startup in timer. Own launcher/native only; no build/keygen; desktop load uncontrolled.",
+  "binary_sha256": "5b157b37c74c995f624d049d400cb5c0c62cdf4b71e121ebc926c90d17fec546",
+  "keygen_receipt_sha256": "543016e5b2801e9dbf258a1af00edf9b106cdf1d18f436eb018ef9286acc3ec4",
+  "inputs_excluded": [
+    {
+      "workspace_path": "photos/albert-einstein.jpg",
+      "reason": "portrait image excluded; pin transcribed from original receipt",
+      "bytes": 86261,
+      "sha256": "bb688551ba543a965e3aa2d85c617f25667e19a5ede7b57ec3955089a7bccae3"
+    },
+    {
+      "workspace_path": "photos/marie-curie.jpg",
+      "reason": "portrait image excluded; pin transcribed from original receipt",
+      "bytes": 55463,
+      "sha256": "6c150322cc1067558915d1a0d50a419aef2104b86aa66739b555baff191b341e"
+    },
+    {
+      "workspace_path": "photos/alan-turing.jpg",
+      "reason": "portrait image excluded; pin transcribed from original receipt",
+      "bytes": 60297,
+      "sha256": "c1e54d06afde2476bedd2618508bb613f024c2890458cb60b51d7f85b133e02c"
+    },
+    {
+      "workspace_path": "models/glintr100.onnx",
+      "reason": "model weights excluded; pin transcribed from original receipt",
+      "bytes": 260665334,
+      "sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf"
+    },
+    {
+      "workspace_path": "models/det_500m.onnx",
+      "reason": "model weights excluded; pin transcribed from original receipt",
+      "bytes": 2524817,
+      "sha256": "5e4447f50245bbd7966bd6c0fa52938c61474a04ec7def48753668a9d8b4ea3a"
+    },
+    {
+      "workspace_path": "models/w600k_mbf.onnx",
+      "reason": "model weights excluded; pin transcribed from original receipt",
+      "bytes": 13616099,
+      "sha256": "9cc6e4a75f0e2bf0b1aed94578f144d15175f357bdc05e815e5c4a02b319eb4f"
+    }
+  ],
+  "native_source_map": "../tfhe-181-20261004/SOURCE_MAP.json (candidate arm)",
+  "external_dependencies": "Existing demo/gallery/embedding Python modules and transitive environment; PREPARED pins only the 14 listed source files, not the entire Python import closure. Native runtime is the candidate arm of the paired version campaign; fresh keys and enrolment required for a new run."
+}

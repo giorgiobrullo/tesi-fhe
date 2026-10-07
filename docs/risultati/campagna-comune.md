@@ -1,6 +1,6 @@
 # Campagna comune storica del 9 settembre
 
-La curva corrente è la [ricostruzione del 20 settembre](../percorso-sperimentale-20260920.md),
+La curva corrente è la [ricostruzione del 20 settembre](../percorso-sperimentale.md),
 con selettori corretti e nuove misure. I paragrafi seguenti conservano
 il risultato storico e non descrivono il nuovo circuito.
 
@@ -10,7 +10,9 @@ Risultati al 9 settembre 2026. Le percentuali si riferiscono ai singoli
 confronti e non si sommano. Le prove empiriche non stabiliscono un limite
 alla probabilità di fallimento del circuito.
 
-## F93 - Nuova campagna comune e precedente errore di Head generale
+<a id="f93---nuova-campagna-comune-e-precedente-errore-di-head-generale"></a>
+
+## F93 - Campagna comune e diagnosi dell'errore del selettore
 
 La campagna del 9 settembre rimisura i sorgenti recuperati in due sezioni:
 Concrete e TFHE iniziale su punteggi/primo argmin N8/D64; dieci versioni
@@ -37,7 +39,7 @@ stesso nodo. La correzione e le sue nuove misure sono trattate nel
 campagna restano quelli delle versioni storiche.
 
 Un tentativo precedente aveva prodotto un errore: fra 269 risultati, 268 erano
-corretti e Head generale restituiva ID75 invece di ID1 nel caso
+corretti e la versione denominata «Head generale» restituiva ID75 invece di ID1 nel caso
 `tie_first_last`. Il replay di chiave, input e binario invariati riproduce
 gli stessi ciphertext errati; è la ripetizione dello stesso errore, non
 un campione indipendente aggiuntivo. La causa non era risolta al momento della campagna. Questi tempi

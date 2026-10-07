@@ -1,0 +1,25 @@
+{
+  "action": "NATIVE",
+  "started_utc": "2026-10-05T05:15:57.787878+00:00",
+  "cwd": "/workspace/research/tmp/current-final-threshold-fullquery-probe-20261005/workspace",
+  "command": [
+    "/workspace/research/tmp/current-final-threshold-stage-20261005/target/release/raw_threshold_fullquery"
+  ],
+  "explicit_environment": {
+    "RUSTFLAGS": "",
+    "CARGO_TARGET_DIR": "/workspace/research/tmp/current-final-threshold-stage-20261005/target",
+    "RAYON_NUM_THREADS": "16"
+  },
+  "stdout": "/workspace/research/tmp/current-final-threshold-fullquery-probe-20261005/root/NATIVE.stdout.log",
+  "stderr": "/workspace/research/tmp/current-final-threshold-fullquery-probe-20261005/root/NATIVE.stderr.log",
+  "observer_pid": 38555,
+  "process_control": false,
+  "VARCO_PROFILE_PHASES": "absent",
+  "status": "terminal",
+  "retry": false,
+  "pid": 38556,
+  "exit_code": 0,
+  "finished_utc": "2026-10-05T05:17:27.711602+00:00",
+  "observer_wall_seconds": 89.92327670799568,
+  "wall_semantics": "process observation only; not a pipeline performance benchmark"
+}

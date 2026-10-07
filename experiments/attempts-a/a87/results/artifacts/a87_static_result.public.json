@@ -1,0 +1,667 @@
+{
+  "claim_boundary": {
+    "correlated_sample_p_fail_bounded": false,
+    "d1_cancellation_noise_bounded": false,
+    "dynamic_accumulator_noise_bounded": false,
+    "exact_clear_negacyclic_geometry": true,
+    "fft_rounding_bounded": false,
+    "fhe_executed": false,
+    "ledger_structural_not_observed": true,
+    "mixed_output_scales_clear_exact": true,
+    "pfks_constant_glwe_runtime_semantics_attested": false,
+    "promotion_to_a30_runtime_frontier_allowed": false,
+    "runtime_latency_measured": false,
+    "rust_compiled": false,
+    "tie_first_and_reject_composition_clear_exact": true
+  },
+  "construction": {
+    "control_encoding": "p16 centers left=4 right=12",
+    "d1": "for each output subtract right-left in LWE; k PFKS delta GLWEs times right-cell masks; one control BR; k samples; add left",
+    "d2": "2k PFKS constant GLWEs times signed cell masks; sum; one control BR; k samples",
+    "first_disjoint_cell_conflict": "k=9: left j=8 and right j=0 share virtual center 1536",
+    "gallery_scope": "exact-ID contract and ledger frozen to 1<=N<=127; N>127 is unproved",
+    "hidden_clear_geometry_conflict_found_for_k_le_8": false,
+    "packed_capacity": "1<=k<=8",
+    "ring": "Z/(2^64)[X]/(X^2048+1)",
+    "sample_degrees": "j*128 for j=0..k-1"
+  },
+  "fuzz": {
+    "d1_torus_words_checked": 18252,
+    "d2_torus_words_checked": 18252,
+    "k_histogram": {
+      "1": 534,
+      "2": 502,
+      "3": 516,
+      "4": 531,
+      "5": 488,
+      "6": 539,
+      "7": 520,
+      "8": 466
+    },
+    "status": "PASS_DETERMINISTIC_U64_FUZZ",
+    "trials": 4096
+  },
+  "geometry": {
+    "box_size": 128,
+    "controls": {
+      "left": 4,
+      "right": 12
+    },
+    "k9_disjoint_cell_collision": {
+      "left_output_index": 8,
+      "right_output_index": 0,
+      "scope": "maximal only for this disjoint-cell/sample-step construction",
+      "shared_virtual_center": 1536
+    },
+    "outside_certified_margin_counterexamples": [
+      {
+        "control": 4,
+        "error": -64,
+        "first_mismatching_output": 0,
+        "k": 1,
+        "variant": "D2"
+      },
+      {
+        "control": 4,
+        "error": 64,
+        "first_mismatching_output": 0,
+        "k": 1,
+        "variant": "D2"
+      },
+      {
+        "control": 12,
+        "error": -64,
+        "first_mismatching_output": 0,
+        "k": 1,
+        "variant": "D2"
+      },
+      {
+        "control": 12,
+        "error": 64,
+        "first_mismatching_output": 0,
+        "k": 1,
+        "variant": "D2"
+      },
+      {
+        "control": 12,
+        "error": -64,
+        "first_mismatching_output": 0,
+        "k": 1,
+        "variant": "D1"
+      },
+      {
+        "control": 12,
+        "error": 64,
+        "first_mismatching_output": 0,
+        "k": 1,
+        "variant": "D1"
+      },
+      {
+        "control": 4,
+        "error": -64,
+        "first_mismatching_output": 0,
+        "k": 2,
+        "variant": "D2"
+      },
+      {
+        "control": 4,
+        "error": 64,
+        "first_mismatching_output": 0,
+        "k": 2,
+        "variant": "D2"
+      }
+    ],
+    "p16_slots": 16,
+    "polynomial_size": 2048,
+    "rows": [
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 254,
+        "d2_exact_torus_word_checks": 254,
+        "k": 1,
+        "left_virtual_centers": [
+          512
+        ],
+        "mixed_delta_logs": [
+          59
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536
+        ],
+        "sample_degrees": [
+          0
+        ]
+      },
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 508,
+        "d2_exact_torus_word_checks": 508,
+        "k": 2,
+        "left_virtual_centers": [
+          512,
+          640
+        ],
+        "mixed_delta_logs": [
+          59,
+          59
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536,
+          1664
+        ],
+        "sample_degrees": [
+          0,
+          128
+        ]
+      },
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 762,
+        "d2_exact_torus_word_checks": 762,
+        "k": 3,
+        "left_virtual_centers": [
+          512,
+          640,
+          768
+        ],
+        "mixed_delta_logs": [
+          59,
+          59,
+          59
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536,
+          1664,
+          1792
+        ],
+        "sample_degrees": [
+          0,
+          128,
+          256
+        ]
+      },
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 1016,
+        "d2_exact_torus_word_checks": 1016,
+        "k": 4,
+        "left_virtual_centers": [
+          512,
+          640,
+          768,
+          896
+        ],
+        "mixed_delta_logs": [
+          59,
+          59,
+          59,
+          56
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536,
+          1664,
+          1792,
+          1920
+        ],
+        "sample_degrees": [
+          0,
+          128,
+          256,
+          384
+        ]
+      },
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 1270,
+        "d2_exact_torus_word_checks": 1270,
+        "k": 5,
+        "left_virtual_centers": [
+          512,
+          640,
+          768,
+          896,
+          1024
+        ],
+        "mixed_delta_logs": [
+          59,
+          59,
+          59,
+          56,
+          52
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536,
+          1664,
+          1792,
+          1920,
+          2048
+        ],
+        "sample_degrees": [
+          0,
+          128,
+          256,
+          384,
+          512
+        ]
+      },
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 1524,
+        "d2_exact_torus_word_checks": 1524,
+        "k": 6,
+        "left_virtual_centers": [
+          512,
+          640,
+          768,
+          896,
+          1024,
+          1152
+        ],
+        "mixed_delta_logs": [
+          59,
+          59,
+          59,
+          56,
+          52,
+          60
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536,
+          1664,
+          1792,
+          1920,
+          2048,
+          2176
+        ],
+        "sample_degrees": [
+          0,
+          128,
+          256,
+          384,
+          512,
+          640
+        ]
+      },
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 1778,
+        "d2_exact_torus_word_checks": 1778,
+        "k": 7,
+        "left_virtual_centers": [
+          512,
+          640,
+          768,
+          896,
+          1024,
+          1152,
+          1280
+        ],
+        "mixed_delta_logs": [
+          59,
+          59,
+          59,
+          56,
+          52,
+          60,
+          55
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536,
+          1664,
+          1792,
+          1920,
+          2048,
+          2176,
+          2304
+        ],
+        "sample_degrees": [
+          0,
+          128,
+          256,
+          384,
+          512,
+          640,
+          768
+        ]
+      },
+      {
+        "coefficients_per_cell": 127,
+        "d1_exact_torus_word_checks": 2032,
+        "d2_exact_torus_word_checks": 2032,
+        "k": 8,
+        "left_virtual_centers": [
+          512,
+          640,
+          768,
+          896,
+          1024,
+          1152,
+          1280,
+          1408
+        ],
+        "mixed_delta_logs": [
+          59,
+          59,
+          59,
+          56,
+          52,
+          60,
+          55,
+          57
+        ],
+        "pairwise_disjoint_after_negacyclic_fold": true,
+        "right_virtual_centers": [
+          1536,
+          1664,
+          1792,
+          1920,
+          2048,
+          2176,
+          2304,
+          2432
+        ],
+        "sample_degrees": [
+          0,
+          128,
+          256,
+          384,
+          512,
+          640,
+          768,
+          896
+        ]
+      }
+    ],
+    "status": "PASS_EXACT_CLEAR_NEGACYCLIC_GEOMETRY_K1_TO_K8",
+    "strict_radius": 63,
+    "total_d1_exact_torus_word_checks": 9144,
+    "total_d2_exact_torus_word_checks": 9144
+  },
+  "ledgers": {
+    "current_a30_scalar_d2_n127": {
+      "blind_rotations": 2664,
+      "classic_key_switches": 2283,
+      "dynamic_blind_rotations": 505,
+      "marginals": 3553,
+      "pfks_calls": 1010
+    },
+    "delta_packed_d2_vs_a62": {
+      "blind_rotations": -1104,
+      "classic_key_switches": -1104,
+      "marginals": -377,
+      "pfks_calls": 1010
+    },
+    "delta_packed_d2_vs_current_a30": {
+      "blind_rotations": -378,
+      "classic_key_switches": -378,
+      "glwe_additions": 378,
+      "logical_selector_accumulator_br_inputs": -378,
+      "marginals": 0,
+      "pfks_calls": 0
+    },
+    "packed_d1_n127": {
+      "bridge_blind_rotations": 1651,
+      "bridge_classic_key_switches": 1270,
+      "bridge_marginals": 2540,
+      "dynamic_blind_rotations": 127,
+      "dynamic_control_key_switches": 127,
+      "dynamic_output_marginals": 505,
+      "dynamic_sample_extractions": 505,
+      "gallery_size": 127,
+      "glwe_additions": 378,
+      "logical_selector_accumulator_br_inputs": 127,
+      "lwe_post_selection_additions": 505,
+      "lwe_preselection_subtractions": 505,
+      "pfks_calls": 505,
+      "pfks_variant": "D1",
+      "public_polynomial_multiplications": 505,
+      "refreshed_limbs": false,
+      "relation_blind_rotations": 508,
+      "root_keeps_score": false,
+      "total_blind_rotations": 2286,
+      "total_classic_key_switches": 1905,
+      "total_marginals": 3553,
+      "tournament_nodes": 127
+    },
+    "packed_d1_n2": {
+      "bridge_blind_rotations": 26,
+      "bridge_classic_key_switches": 20,
+      "bridge_marginals": 40,
+      "dynamic_blind_rotations": 2,
+      "dynamic_control_key_switches": 2,
+      "dynamic_output_marginals": 5,
+      "dynamic_sample_extractions": 5,
+      "gallery_size": 2,
+      "glwe_additions": 3,
+      "logical_selector_accumulator_br_inputs": 2,
+      "lwe_post_selection_additions": 5,
+      "lwe_preselection_subtractions": 5,
+      "pfks_calls": 5,
+      "pfks_variant": "D1",
+      "public_polynomial_multiplications": 5,
+      "refreshed_limbs": false,
+      "relation_blind_rotations": 8,
+      "root_keeps_score": false,
+      "total_blind_rotations": 36,
+      "total_classic_key_switches": 30,
+      "total_marginals": 53,
+      "tournament_nodes": 2
+    },
+    "packed_d2_n127": {
+      "bridge_blind_rotations": 1651,
+      "bridge_classic_key_switches": 1270,
+      "bridge_marginals": 2540,
+      "dynamic_blind_rotations": 127,
+      "dynamic_control_key_switches": 127,
+      "dynamic_output_marginals": 505,
+      "dynamic_sample_extractions": 505,
+      "gallery_size": 127,
+      "glwe_additions": 883,
+      "logical_selector_accumulator_br_inputs": 127,
+      "lwe_post_selection_additions": 0,
+      "lwe_preselection_subtractions": 0,
+      "pfks_calls": 1010,
+      "pfks_variant": "D2",
+      "public_polynomial_multiplications": 1010,
+      "refreshed_limbs": false,
+      "relation_blind_rotations": 508,
+      "root_keeps_score": false,
+      "total_blind_rotations": 2286,
+      "total_classic_key_switches": 1905,
+      "total_marginals": 3553,
+      "tournament_nodes": 127
+    },
+    "packed_d2_n2": {
+      "bridge_blind_rotations": 26,
+      "bridge_classic_key_switches": 20,
+      "bridge_marginals": 40,
+      "dynamic_blind_rotations": 2,
+      "dynamic_control_key_switches": 2,
+      "dynamic_output_marginals": 5,
+      "dynamic_sample_extractions": 5,
+      "gallery_size": 2,
+      "glwe_additions": 8,
+      "logical_selector_accumulator_br_inputs": 2,
+      "lwe_post_selection_additions": 0,
+      "lwe_preselection_subtractions": 0,
+      "pfks_calls": 10,
+      "pfks_variant": "D2",
+      "public_polynomial_multiplications": 10,
+      "refreshed_limbs": false,
+      "relation_blind_rotations": 8,
+      "root_keeps_score": false,
+      "total_blind_rotations": 36,
+      "total_classic_key_switches": 30,
+      "total_marginals": 53,
+      "tournament_nodes": 2
+    },
+    "packed_d2_refreshed_limbs_n127": {
+      "bridge_blind_rotations": 1905,
+      "bridge_classic_key_switches": 1524,
+      "bridge_marginals": 2794,
+      "dynamic_blind_rotations": 127,
+      "dynamic_control_key_switches": 127,
+      "dynamic_output_marginals": 505,
+      "dynamic_sample_extractions": 505,
+      "gallery_size": 127,
+      "glwe_additions": 883,
+      "logical_selector_accumulator_br_inputs": 127,
+      "lwe_post_selection_additions": 0,
+      "lwe_preselection_subtractions": 0,
+      "pfks_calls": 1010,
+      "pfks_variant": "D2",
+      "public_polynomial_multiplications": 1010,
+      "refreshed_limbs": true,
+      "relation_blind_rotations": 508,
+      "root_keeps_score": false,
+      "total_blind_rotations": 2540,
+      "total_classic_key_switches": 2159,
+      "total_marginals": 3807,
+      "tournament_nodes": 127
+    },
+    "packed_d2_root_keeps_score_n127": {
+      "bridge_blind_rotations": 1651,
+      "bridge_classic_key_switches": 1270,
+      "bridge_marginals": 2540,
+      "dynamic_blind_rotations": 127,
+      "dynamic_control_key_switches": 127,
+      "dynamic_output_marginals": 508,
+      "dynamic_sample_extractions": 508,
+      "gallery_size": 127,
+      "glwe_additions": 889,
+      "logical_selector_accumulator_br_inputs": 127,
+      "lwe_post_selection_additions": 0,
+      "lwe_preselection_subtractions": 0,
+      "pfks_calls": 1016,
+      "pfks_variant": "D2",
+      "public_polynomial_multiplications": 1016,
+      "refreshed_limbs": false,
+      "relation_blind_rotations": 508,
+      "root_keeps_score": true,
+      "total_blind_rotations": 2286,
+      "total_classic_key_switches": 1905,
+      "total_marginals": 3556,
+      "tournament_nodes": 127
+    },
+    "screening_break_even_not_latency_claim": {
+      "d1_max_cost_per_pfks_in_saved_kspbs_if_other_work_free": 2.1861386138613863,
+      "d2_max_cost_per_pfks_in_saved_kspbs_if_other_work_free": 1.0930693069306932,
+      "max_cost_per_logical_selector_accumulator_br_input_in_saved_kspbs": 8.692913385826772
+    },
+    "status": "PASS_INDEPENDENT_STRUCTURAL_LEDGER"
+  },
+  "next_gate": [
+    "implement isolated k=4 D2 Rust gate by extending the source-pinned A30 scaffold",
+    "decrypt all four mixed-scale outputs for controls 4/12 and boundary fixtures",
+    "measure PFKS, 8 public polynomial multiplies, 7 GLWE sums, one control KS/BR, four samples",
+    "record joint phase errors because the four samples share accumulator/control/PFKS provenance",
+    "test D1 separately; do not infer its noise from the clear cancellation identity"
+  ],
+  "schema": "a87.packed-dynamic-pfks-static.v2",
+  "source_pins": {
+    "a30_clear_model": {
+      "fragment_lines": {
+        "def bridge_key(": 91,
+        "def primitive_ledger(": 167,
+        "def tournament_code(": 133,
+        "def weighted_relation(": 118
+      },
+      "path": "tmp/a30-pfks-bridge-microbenchmark-design/model.py",
+      "sha256": "29c6945f12268364f308535184d137611d03d2448285fdde81bc7f0ea490ceca"
+    },
+    "a30_d2_scaffold": {
+      "fragment_lines": {
+        "blind_rotate_assign(&small_control, &mut accumulator, bsk);": 299,
+        "fn d2_select(": 225,
+        "fn spread_glwe(": 196,
+        "identity_polynomial[0] = u64::MAX;": 409,
+        "|value| value.wrapping_neg(),": 416
+      },
+      "path": "tmp/a30-pfks-bridge-microbenchmark-design/rust-d2-n2/src/main.rs",
+      "sha256": "c8a9728ddd3d6497cf16e295d8e27e7163636c535ff0c560a7b95676e2d68e83"
+    },
+    "a30_design": {
+      "fragment_lines": {
+        "D2, riferimento Cong": 120,
+        "N=127, root ID-only | 2664 | 2283 | 3553 | 1010 | 505": 193,
+        "dynamic outputs       = 4(N-1)+1 = 4N-3": 172
+      },
+      "path": "tmp/a30-pfks-bridge-microbenchmark-design/README.md",
+      "sha256": "9eac7a4e01505232a7912a1e38b5403e4bb99892564f9d28a754e931d9924ca9"
+    },
+    "a86_pfks_preflight": {
+      "fragment_lines": {
+        "\"promotion_allowed\": False": 268,
+        "D2_SPREAD_SQUARED_L2_NORM": 24,
+        "def packing_keyswitch_variance(": 136
+      },
+      "path": "tmp/a86-a30-pfks-parameter-preflight/a86_pfks_preflight.py",
+      "sha256": "15a2a73d725951dda0073f294d62bf2615cc21fe4ee4f85bca1c9cf4398e1dd6"
+    },
+    "cong_ppknn": {
+      "fragment_lines": {
+        "fn double_glwe_acc(": 262,
+        "pub fn lwe_to_glwe(": 212,
+        "pub(crate) fn polynomial_glwe_mul_with_fft(": 228
+      },
+      "path": "tmp/pdfs/ppknn/src/server.rs",
+      "sha256": "510ec3a18f30f7c038d31dc3837ee36cb8f31166360ea3fc9feae5f8c216eb5f"
+    },
+    "tfhe_pfks": {
+      "fragment_lines": {},
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/algorithms/lwe_private_functional_packing_keyswitch.rs",
+      "sha256": "a3f8aa8c0323b20f1d612f0adc3e565496d81f62200ef53483036298bff0a193"
+    },
+    "tfhe_pfks_keygen": {
+      "fragment_lines": {
+        "polynomial.as_ref(),": 113,
+        "pub fn generate_lwe_private_functional_packing_keyswitch_key<": 19,
+        "pub fn par_generate_lwe_private_functional_packing_keyswitch_key<": 136,
+        "slice_wrapping_add_scalar_mul_assign(": 111
+      },
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/algorithms/lwe_private_functional_packing_keyswitch_key_generation.rs",
+      "sha256": "954f35c38a50656179df086e51c720c14937361dd1bda25032de5c37044aba2a"
+    },
+    "tfhe_polynomial_ring": {
+      "fragment_lines": {
+        "pub fn polynomial_wrapping_mul<": 942
+      },
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/algorithms/polynomial_algorithms.rs",
+      "sha256": "ba7c6179f74af41e0aa7aff1b02e487876a69a1d564caca5737e8cd74c573acf"
+    },
+    "tfhe_sample_extraction": {
+      "fragment_lines": {},
+      "path": "cargo-registry/tfhe-0.11.3/src/core_crypto/algorithms/glwe_sample_extraction.rs",
+      "sha256": "981d3839cd83cb8c24b02fe48d945d61e23c9c0f2e714b554d9296eed304ec43"
+    }
+  },
+  "status": "GO_STATIC_GEOMETRY_NO_RUNTIME_PROMOTION",
+  "tie_reject_contract": {
+    "authorized_bridge_scores_checked": 1024,
+    "boundary_and_structured_composition_cases": 408,
+    "n127_cases_per_variant": 4,
+    "ragged_cases_per_size_per_variant": 3,
+    "ragged_gallery_sizes_checked": [
+      33,
+      63,
+      64,
+      65,
+      126
+    ],
+    "random_score_vectors": 256,
+    "random_variant_compositions": 512,
+    "sentinel_domain_scores_checked": 4096,
+    "source_a30_bridge_scores_compared": 4096,
+    "source_a30_weighted_relations_compared": 27,
+    "status": "PASS_TIE_FIRST_REJECT_COMPOSITION",
+    "total_variant_compositions": 920,
+    "weighted_relation_patterns_checked": 27
+  }
+}

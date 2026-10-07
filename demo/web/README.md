@@ -42,7 +42,8 @@ Agli avvii successivi riutilizzare questo ambiente. Se la directory esiste già,
 non ricrearla: eseguire soltanto l'installazione dei requisiti se serve un
 aggiornamento. Questa procedura usa le dipendenze della sola demo web;
 non installa Concrete o TenSEAL e può essere usata anche su Linux ARM.
-Il bootstrap completo `uv sync` della demo storica non copre quella piattaforma.
+Il bootstrap completo `uv sync`, descritto per la
+[demo a due pagine](../dual_view/README.md#prerequisiti), non copre quella piattaforma.
 
 ### 2. Preparare i modelli per le foto
 
@@ -74,9 +75,9 @@ Compilare il [runtime attuale](../../BUILD_AND_RUN.md) con la versione
 del compilatore indicata per il progetto:
 
 ```sh
-rustup toolchain install 1.98.0 --profile minimal
+rustup toolchain install 1.98.1 --profile minimal
 .local/venv-web/bin/python -B runtime/configure.py --check
-rustup run 1.98.0 cargo build --release --locked \
+rustup run 1.98.1 cargo build --release --locked \
   --manifest-path runtime/Cargo.toml --bin varco_demo_composite_v9 \
   --target-dir target-selector-pack4
 ```

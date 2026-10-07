@@ -1,0 +1,47 @@
+{
+  "status": "SOURCE_AND_EXACT_SYNTHETIC_ONLY",
+  "source_pins_passed": 20,
+  "bodies": [
+    {
+      "delta": 52,
+      "sha256": "5a83ab6ecc0b1ea85140843562e5f10cd254556cf0f9bd7aac3fd46391cb6d16"
+    },
+    {
+      "delta": 60,
+      "sha256": "56a8bba861ea2ecb7bfdab7f64f1b1a999f7161dda17718ed813d559cee716ff"
+    }
+  ],
+  "source_id": "cd54ba638f98a41d0ff47cd7cdd16f47fc8573db86b4951a4a2b5621562590a2",
+  "integer_witnesses": {
+    "double_rounding": {
+      "input_u64": 140737488355327,
+      "direct_representable_u64": 0,
+      "prerounded_u32": 32768,
+      "prerounded_decomposed_u32": 65536,
+      "extra_lifted_ideal_ks_error": -281474976710656
+    },
+    "scales": [
+      {
+        "delta_u64_log": 52,
+        "intermediate_u32_log": 20,
+        "u64_output_lut_log_unchanged": 52
+      },
+      {
+        "delta_u64_log": 59,
+        "intermediate_u32_log": 27,
+        "u64_output_lut_log_unchanged": 59
+      },
+      {
+        "delta_u64_log": 60,
+        "intermediate_u32_log": 28,
+        "u64_output_lut_log_unchanged": 60
+      }
+    ],
+    "scope": "Exact synthetic identities/counterexamples; no actual KS, PBS, noise tail or security claim"
+  },
+  "linked_library_run": "NOT_RUN",
+  "fresh_key_gate": "NOT_RUN",
+  "typecheck": "NOT_RUN",
+  "raw_tails": "OPEN",
+  "a62_stock_max5_compatibility": "OPEN"
+}

@@ -1,0 +1,44 @@
+{
+  "status": "BOUND_ACTUAL_A181_CONDITIONAL_HYPOTHESES",
+  "cases": [
+    {
+      "case": "order-12",
+      "status": "RAW_LIFECYCLE_CONSISTENT",
+      "lifecycle_records": 27,
+      "raw_records": 15
+    },
+    {
+      "case": "order-21",
+      "status": "RAW_LIFECYCLE_CONSISTENT",
+      "lifecycle_records": 27,
+      "raw_records": 15
+    },
+    {
+      "case": "wrong-birth",
+      "status": "EXPECTED_REFUSAL_OBSERVED",
+      "lifecycle_records": 15,
+      "raw_records": 4
+    },
+    {
+      "case": "early-reap",
+      "status": "EXPECTED_REFUSAL_OBSERVED",
+      "lifecycle_records": 15,
+      "raw_records": 4
+    },
+    {
+      "case": "descendant",
+      "status": "UNSUPPORTED_DESCENDANT_OBSERVED",
+      "lifecycle_records": 24,
+      "raw_records": 12
+    }
+  ],
+  "positive_calculations": [
+    "order-12",
+    "order-21"
+  ],
+  "collector_qualified": false,
+  "selected_scale": null,
+  "normalized_occupancy": null,
+  "settlement_proven": false,
+  "report_sha256": "678ad4e2049459ce3ecd7006c76bdbdf3c32eb91bbf0e512547d211d0c06ad9b"
+}

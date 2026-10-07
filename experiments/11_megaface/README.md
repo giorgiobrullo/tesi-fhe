@@ -22,6 +22,6 @@ una misura open-set standard a FPIR fissato. Per farlo servirebbero dati,
 loader, probe non iscritti e un protocollo di taratura separato.
 
 Le misure biometriche effettivamente svolte e i loro dataset sono nelle
-[schede storiche](../../docs/risultati/storico.md). La presenza di questa
+[schede storiche](../../docs/risultati/prototipi-e-correzioni.md). La presenza di questa
 cartella documenta una **direzione prevista**, non un risultato da citare
 nei grafici.

@@ -1,0 +1,9 @@
+{
+  "status": "PASS_SOURCE_AND_BOUNDED_SYNTHETIC_CHECKS",
+  "tests": 20,
+  "elapsed_seconds": 1.161,
+  "real_small_word_math_tests": 12,
+  "crypto_replay_and_payload_unchanged": true,
+  "compiled": false,
+  "actual_fhe": false
+}

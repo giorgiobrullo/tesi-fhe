@@ -1,0 +1,10 @@
+{
+  "actual_model_evaluations": 0,
+  "actual_p_fail": null,
+  "actual_producer_records_read": 0,
+  "ruff_check": "PASS",
+  "ruff_format": "UNCHANGED",
+  "source_pins": 89,
+  "status": "SYNTHETIC_AND_SOURCE_ONLY_PASS",
+  "tests": 9
+}

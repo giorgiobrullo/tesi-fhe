@@ -16,10 +16,10 @@ pub const GLWE_DIMENSION: usize = 1;
 pub const OUTPUT_LWE_WORDS: usize = 2049;
 pub const MAX_GALLERY: usize = pfks_core::service::MAX_GALLERY_SIZE;
 
-pub const A44_PARAMS_ID: &str = "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64";
+pub const A44_PARAMS_ID: &str = "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64";
 pub const A44_PARAMETER_FINGERPRINT_SHA256: &str =
-    "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61";
-pub const HTTP_CONTRACT: &str = "exact-open-set-id-v9-composite-tfhe17-base15-three-lwe";
+    "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda";
+pub const HTTP_CONTRACT: &str = "exact-open-set-id-v9-composite-tfhe181-base15-three-lwe";
 pub const VARIANT_ID: &str = include_str!("../../variant-id.txt");
 pub const CIRCUIT_SHA256: &str = include_str!("../../circuit.sha256");
 

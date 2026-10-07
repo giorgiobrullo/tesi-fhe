@@ -1,0 +1,65 @@
+{
+  "schema": "a133.sources.v1",
+  "sources": [
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/a53_scan/fhe.rs",
+      "sha256": "ad70a676fbce8e1f58b5d40a151d1ce186b0b90527c8cc50c3b9f9873cb85a99"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/a53_scan.rs",
+      "sha256": "81752a5da894797faeecda02c4fff3ad5aba93efde60a400dd1c36304e4940a5"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/bin/a126_refresh_schedule_gate.rs",
+      "sha256": "7392c415bac199b5e4a531eeebe61cee772bbde917e500883597a9ab1f2d960b"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/lib.rs",
+      "sha256": "0216c18f908e951530905a78f3b3fe6e9c380130328f8207d5fdec30f72f057a"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/src/private_argmin.rs",
+      "sha256": "6e4e83c8c3cd6133fd5df519c4aa1011c1ca9c826e0d4302cbbd6913d3bb1782"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/Cargo.toml",
+      "sha256": "129548997e5ba83febe5ec3610d0c7ec9d52193fc91da87ec087ae3deba691e5"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/Cargo.lock",
+      "sha256": "632b07994871c739c533fdae2ffb94f3f7b83721b7fe52b927ab1b90f73dd5d4"
+    },
+    {
+      "path": "tmp/a126-refresh-schedule-gate/artifacts/fused_candidate_zero_body.u64le",
+      "sha256": "29b7a3fbd99a04e9917b58251bc22d321d995b074c4f6a47c810a6eb991c26a7"
+    },
+    {
+      "path": "tmp/a131-a126-noise-margin/README.md",
+      "sha256": "0ba896418bc854d9dcb6f3a5eb14e241f4d3ee75c4bc46a7269b1390bd0c9c5b"
+    },
+    {
+      "path": "tmp/a131-a126-noise-margin/SHA256SUMS",
+      "sha256": "d93d7d413b61e48c0872322e6631d3a3716629aa01875562cadca22e39b69616"
+    },
+    {
+      "path": "tmp/a131-a126-noise-margin/SOURCE_PINS.json",
+      "sha256": "832cbc80a791f18349025c2b3818c10c43465c27cd310b94712cb7d0228d154c"
+    },
+    {
+      "path": "tmp/a131-a126-noise-margin/artifacts/result.json",
+      "sha256": "2838f6b40ff25c04ee271b562b952b4b2c205522b3a19fcfb7c2697a9dea7b8a"
+    },
+    {
+      "path": "tmp/a131-a126-noise-margin/artifacts/unit-tests.log",
+      "sha256": "369d3997e78d01b138f080a0d172f5098b8ecbd5d8f2829bf34881fd966c6e06"
+    },
+    {
+      "path": "tmp/a131-a126-noise-margin/gate.py",
+      "sha256": "5b8e952087499c9d3ea44a2a09f1eb018736f62f949ae67e40b9db4b48fa7c67"
+    },
+    {
+      "path": "tmp/a131-a126-noise-margin/test_gate.py",
+      "sha256": "d07cc07a3c24a9ce3a739df1d2122577800aad1162f1ee8878c4a6977e2d52df"
+    }
+  ]
+}

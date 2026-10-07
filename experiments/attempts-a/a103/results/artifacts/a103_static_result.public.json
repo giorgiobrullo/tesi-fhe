@@ -1,0 +1,41 @@
+{
+  "claim_boundary": {
+    "a99_speedup_claimed": false,
+    "ciphertext_noise_changed": false,
+    "end_to_end_speedup_claimed": false,
+    "exact_public_linear_map": true,
+    "runtime_measured": false,
+    "rust_port_exists": false
+  },
+  "exact_gate": {
+    "all_checks_pass": true,
+    "basis_coefficient_checks": 4194304,
+    "basis_vectors": 2048,
+    "n127_naive_word_updates": 66064384,
+    "n127_sliding_word_updates": 1072134,
+    "naive_word_updates_per_glwe": 520192,
+    "random_coefficient_checks": 65536,
+    "random_trials": 32,
+    "sliding_word_updates_per_glwe": 8442
+  },
+  "input_pins": {
+    "tmp/a92-chen-partial-trace-packing/a92_chen_partial_trace.py": "3c6c8e2cc39de5c03c027837a03c98a62b7dbd04b3b56171788e8cc6a81c814b",
+    "tmp/a99-chen-grouped-runtime/src/main.rs": "3c563d728be8b634c02d47802c0a2289675683d40c68139420688e1745bf342b"
+  },
+  "parameters": {
+    "glwe_components": 2,
+    "polynomial_modulus": "X^2048+1",
+    "radius": 63,
+    "selector_nodes_n127": 127,
+    "width": 127,
+    "word_modulus": "2^64"
+  },
+  "schema": "a103.width127-sliding-kernel.static.v1",
+  "status": "PASS_EXACT_CLEAR_RING_KERNEL_NO_RUNTIME_CLAIM",
+  "structural_reduction": {
+    "complexity_after": "O((k+1)*(N+width))",
+    "complexity_before": "O((k+1)*N*width)",
+    "word_update_ratio_naive_over_sliding": 61.61952144041696,
+    "word_updates_removed_n127": 64992250
+  }
+}

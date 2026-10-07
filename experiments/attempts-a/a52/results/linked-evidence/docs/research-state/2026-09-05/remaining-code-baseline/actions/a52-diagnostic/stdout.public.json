@@ -1,0 +1,24 @@
+{
+  "schema": "saved-controlled-pass-public-result.v1",
+  "records": [
+    {
+      "source_line": 4,
+      "data": {
+        "record": "HIGH_DIAGNOSTIC",
+        "case_index": 0,
+        "score": 0,
+        "expected_high": 0,
+        "actual_high": 17,
+        "ideal_at_actual_degree": 17,
+        "nominal_degree": 4032,
+        "coefficientwise_degree": 4020,
+        "coefficient_closure": true,
+        "actual_address_semantic_match": false,
+        "output_matches_actual_lut_decode": true,
+        "original_high_gate_pass": false,
+        "degree_scope": "same_cached_coefficient_function_on_retained_actual_PBS_input_not_phase_only",
+        "extra_crypto_calls": 0
+      }
+    }
+  ]
+}

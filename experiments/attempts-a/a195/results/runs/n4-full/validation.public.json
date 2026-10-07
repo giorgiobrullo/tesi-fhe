@@ -1,0 +1,4783 @@
+{
+  "schema": "a195.stage_replay.v1",
+  "status": "VALID_A195_STAGE_PASS",
+  "stage": "n4-full",
+  "gate_pass": true,
+  "records": 10130,
+  "completed_components": 48,
+  "planned_components": 48,
+  "generated_keysets": 3,
+  "key_hashes": [
+    [
+      "f9ba264cca02eff6f05e2a3ca895de31ce83cbab4a2e9abf860e6eb5dafbe521",
+      "0bcfe8673967999789f499f73933b98a30e87f4db9b8d62bf63dd974c7dc68f8"
+    ],
+    [
+      "b79fb443006457413bad22ca768c8f76700611dbf1e7003c02f4443586cb42b7",
+      "5d05952cb993d00ee155a27d5ceebd70e19b48af54ec5ece67c1a3c5518ab83a"
+    ],
+    [
+      "6195584df2a9de8b9753b6b35a9f142b073768e25bb7cfa40cdcbac8e513dbc4",
+      "de59485cc4fe3011ccbbec9383d42c2d82dc32a0758cc565e43b538e7a692d8f"
+    ]
+  ],
+  "events": 9840,
+  "pbs": 9840,
+  "ks": 9840,
+  "total_extractions": 10224,
+  "child_pid": 38833,
+  "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+  "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+  "reports": [
+    {
+      "keyset": 0,
+      "fixture_index": 0,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 1,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 2,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 3,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 4,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 5,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 6,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 7,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 8,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 9,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 10,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 11,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 12,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 13,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 14,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 0,
+      "fixture_index": 15,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 0,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 1,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 2,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 3,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 4,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 5,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 6,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 7,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 8,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 9,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 10,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 11,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 12,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 13,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 14,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 1,
+      "fixture_index": 15,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 0,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 1,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 2,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 3,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 4,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 5,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 6,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 7,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 8,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "expected_flags": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 9,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 10,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 11,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 12,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            1,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 13,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": false,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": true,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 14,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": false,
+          "new_or_control_joint_pass": false,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": false,
+          "low_native_pass": true,
+          "middle_native_pass": false,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": false,
+          "final_flags_pass": false,
+          "flags": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "expected_flags": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    },
+    {
+      "keyset": 2,
+      "fixture_index": 15,
+      "status": "VALID_A195_FIRST_PASS",
+      "records": 211,
+      "events": 205,
+      "gate_pass": true,
+      "reports": [
+        {
+          "arm": "old_padding_separate",
+          "old_a149_functional_pass": true,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": true,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "direct54_sidecar51",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": null,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "arm": "negative_consumer_x2",
+          "old_a149_functional_pass": null,
+          "new_or_control_joint_pass": true,
+          "wrong_scale_detected": false,
+          "coefficient_closure_pass": true,
+          "all_preimages_pass": true,
+          "low_native_pass": true,
+          "middle_native_pass": true,
+          "top_native_pass": true,
+          "old_sidecar_native_diagnostic": false,
+          "final_native_pass": true,
+          "final_flags_pass": true,
+          "flags": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "expected_flags": [
+            0,
+            1,
+            0,
+            1
+          ]
+        }
+      ],
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+      "child_pid": 38833,
+      "actual_secret_membership_attested": false,
+      "independent_execution_attestation": false,
+      "coefficientwise_formula_and_aggregate_consistency": true,
+      "actual_extra_crypto_ms_calls": 0,
+      "formal_tail": false,
+      "latency_claim": false,
+      "full_id": false
+    }
+  ],
+  "actual_secret_membership_attested": false,
+  "full_id": false,
+  "formal_tail": false,
+  "timing_claim": false,
+  "launch_binding": {
+    "files_sha256": {
+      "preflight.json": "1f47b2b79b0dfdaf993bc7b1e29c98c4223c684a36f8c962e048171f2f9b5e70",
+      "prepared.json": "6b82526d9171f6f96ce82ee5a5e111690fb578e04d9199b08a0f560a65f2c4ad",
+      "child.json": "b57fe1e11a6ecba6ddc91cbb8627308d9beeba31a987e3b66e7b5c4159c6a261",
+      "wait-complete.json": "f7dc7bbbf0517ce5d49d3cc27762237413e601bb5518fd5ba365d94901e6d328",
+      "exit.json": "efe172185ea63a7ba519a9966a09534806fcfceec85f0e9e278a9145a2397e0c",
+      "stdout.jsonl": "9464f7dca787487f939e7f42fc1c0ff796ceb0b49db6534c20aa75bd7594c6a5",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stage": "n4-full",
+    "predecessor": {
+      "kind": "bound_A195_smoke_pass",
+      "report_sha256": "756b87505bf45a8af6ff41a3cba0e6f201d4ce8d07e93a7f9aa6892acf6318cd",
+      "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+      "raw_sha256": "7b3962737861543e2db0dad54340253f2056aba191d6cf75b5ec573fef4231e1",
+      "key_hashes": [
+        [
+          "689d3a9ceca7f3f3a519b9e664815c8c90f38074259173ddec5f736261a4bed1",
+          "a3e736b5fae37542b5be99002c2e0042e9c9071e8a06899d3a85b72e52b96934"
+        ],
+        [
+          "43918d0cb44a12613518f5303a1d0e11f491c26ed066b17bf187842e1da74533",
+          "b8c118a60bd784e2db55de2e9ded4811f628a689ab932a84b6893dd5b114efa3"
+        ],
+        [
+          "3a328192f20b53285b7f556f523471a5a290b464843d40a12729ebc0414356ff",
+          "a87b70f94a41d3e0548fb1e75d0c8d446b58913fb63504b0b876097b4c1c426d"
+        ]
+      ],
+      "ended_at_utc": "2026-09-05T10:54:13.597167+00:00"
+    },
+    "child_pid": 38833,
+    "driver_pid": 38775,
+    "binary_sha256": "bb32ce5fd5b15d99be9d457ce6d1f010521b764703415843cd85b84731e15cd4",
+    "exit_code": 0,
+    "source_id": "19d4179b926b5c70a318abe335e87f7f05bee54178d7be2383479da38e13b6b6",
+    "artifact_sha256": "f86fb2373d1e2433fca0779b366e387005835687c3c42e05e5e7aa69b1c7e85e",
+    "started_at_utc": "2026-09-05T10:55:10.827288+00:00",
+    "exited_at_utc": "2026-09-05T10:57:28.804999+00:00"
+  },
+  "local_direct_child_record_binding": true
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 58,
+      "data": {
+        "record": "summary",
+        "artifact": "A108",
+        "status": "FAIL_COMPONENT_GATE_NO_PERFORMANCE_INTERPRETATION",
+        "pfks_parameter": "12x3",
+        "fresh_keysets_in_process": 1,
+        "fixture_cases": 8,
+        "failed_cases": 5,
+        "failed_output_lanes": 10,
+        "ingress_decode_failures": 0,
+        "switched_control_failures": 0,
+        "total_packed_payload_pfks": 64,
+        "total_packed_logical_glwe_public_mask_spreads": 64,
+        "total_packed_public_polynomial_multiplications": 64,
+        "total_packed_scalar_polynomial_fft_multiplications": 128,
+        "total_packed_glwe_additions": 56,
+        "total_packed_control_key_switches": 8,
+        "total_packed_blind_rotations": 8,
+        "total_packed_sample_extractions": 32,
+        "total_scalar_reference_payload_pfks": 64,
+        "total_scalar_reference_logical_glwe_public_mask_spreads": 64,
+        "total_scalar_reference_public_polynomial_multiplications": 64,
+        "total_scalar_reference_scalar_polynomial_fft_multiplications": 128,
+        "total_scalar_reference_glwe_additions": 32,
+        "total_scalar_reference_control_key_switches": 32,
+        "total_scalar_reference_blind_rotations": 32,
+        "total_scalar_reference_sample_extractions": 32,
+        "output_ciphertext_bitwise_equality_is_gate": false,
+        "packed_selector_total_ns": 384513249,
+        "scalar_reference_total_ns": 712469416,
+        "timing_decision_role": "diagnostic_until_multikey_causal_gate",
+        "correlated_output_p_fail_claim": false,
+        "scalar_d2_reference_present": true,
+        "comparator_present": false,
+        "tournament_present": false,
+        "threshold_logic_present": false,
+        "exact_id_pipeline_present": false,
+        "runtime_frontier_promoted": false
+      }
+    }
+  ]
+}

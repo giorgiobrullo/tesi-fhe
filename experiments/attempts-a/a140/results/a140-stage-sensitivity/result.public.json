@@ -1,0 +1,171 @@
+{
+  "status": "DESCRIPTIVE_STAGE_SENSITIVITY_ONLY",
+  "cells": [
+    {
+      "n": 64,
+      "threads": 16,
+      "measured_queries": 10,
+      "observed_wall_median_seconds": 2.4671873745,
+      "median_per_query_stage_fraction": {
+        "setup": 2.006016940762076e-05,
+        "score": 0.0011677297907986633,
+        "extract": 0.421981641145024,
+        "select": 0.52572292756355,
+        "scan": 0.04857856119741369,
+        "threshold": 1.6528192370904553e-08,
+        "output": 2.5540131323455642e-08
+      },
+      "scenario_models": {
+        "halve_scan_only": {
+          "assumed_fractional_stage_reductions": {
+            "scan": 0.5
+          },
+          "median_query_latency_reduction_pct": 2.4289280598706844,
+          "median_counterfactual_seconds": 2.406354666
+        },
+        "reduce_extraction_25pct": {
+          "assumed_fractional_stage_reductions": {
+            "extract": 0.25
+          },
+          "median_query_latency_reduction_pct": 10.549541028625601,
+          "median_counterfactual_seconds": 2.205311192125
+        },
+        "reduce_selection_25pct": {
+          "assumed_fractional_stage_reductions": {
+            "select": 0.25
+          },
+          "median_query_latency_reduction_pct": 13.14307318908875,
+          "median_counterfactual_seconds": 2.1434430879999997
+        },
+        "reduce_extraction_and_selection_10pct": {
+          "assumed_fractional_stage_reductions": {
+            "extract": 0.1,
+            "select": 0.1
+          },
+          "median_query_latency_reduction_pct": 9.501401759901766,
+          "median_counterfactual_seconds": 2.23293918695
+        },
+        "remove_score_only": {
+          "assumed_fractional_stage_reductions": {},
+          "median_query_latency_reduction_pct": 0.11677297907986632,
+          "median_counterfactual_seconds": 2.4644794995
+        }
+      },
+      "source": "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n64_threads16_2026-09-04T130912.627776Z.jsonl",
+      "source_sha256": "89a8c8fce6cce51147070bae3acfbefedf2395d86675993abe6cf0f392a96222"
+    },
+    {
+      "n": 127,
+      "threads": 16,
+      "measured_queries": 10,
+      "observed_wall_median_seconds": 4.2221641875,
+      "median_per_query_stage_fraction": {
+        "setup": 1.7007149912454495e-05,
+        "score": 0.001146444378075769,
+        "extract": 0.44961783215525575,
+        "select": 0.5000447383218161,
+        "scan": 0.04909086281920692,
+        "threshold": 0.0,
+        "output": 9.958038460140869e-09
+      },
+      "scenario_models": {
+        "halve_scan_only": {
+          "assumed_fractional_stage_reductions": {
+            "scan": 0.5
+          },
+          "median_query_latency_reduction_pct": 2.4545431409603458,
+          "median_counterfactual_seconds": 4.1150664374999995
+        },
+        "reduce_extraction_25pct": {
+          "assumed_fractional_stage_reductions": {
+            "extract": 0.25
+          },
+          "median_query_latency_reduction_pct": 11.240445803881395,
+          "median_counterfactual_seconds": 3.746300849
+        },
+        "reduce_selection_25pct": {
+          "assumed_fractional_stage_reductions": {
+            "select": 0.25
+          },
+          "median_query_latency_reduction_pct": 12.501118458045402,
+          "median_counterfactual_seconds": 3.6970652184999997
+        },
+        "reduce_extraction_and_selection_10pct": {
+          "assumed_fractional_stage_reductions": {
+            "extract": 0.1,
+            "select": 0.1
+          },
+          "median_query_latency_reduction_pct": 9.495978277692458,
+          "median_counterfactual_seconds": 3.8219077916999997
+        },
+        "remove_score_only": {
+          "assumed_fractional_stage_reductions": {},
+          "median_query_latency_reduction_pct": 0.11464443780757688,
+          "median_counterfactual_seconds": 4.217308020499999
+        }
+      },
+      "source": "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n127_threads16_2026-09-04T130912.627776Z.jsonl",
+      "source_sha256": "40caa14ad7a4d5a20f4ac250ec291922356286567a9ea13cb5e2f0ca4a224461"
+    },
+    {
+      "n": 128,
+      "threads": 16,
+      "measured_queries": 10,
+      "observed_wall_median_seconds": 4.3776445625000004,
+      "median_per_query_stage_fraction": {
+        "setup": 1.608848280322612e-05,
+        "score": 0.0012209495500002181,
+        "extract": 0.4536121636467678,
+        "select": 0.4963328283967702,
+        "scan": 0.04832780795129216,
+        "threshold": 8.98056758807343e-09,
+        "output": 9.620867199194921e-09
+      },
+      "scenario_models": {
+        "halve_scan_only": {
+          "assumed_fractional_stage_reductions": {
+            "scan": 0.5
+          },
+          "median_query_latency_reduction_pct": 2.4163903975646077,
+          "median_counterfactual_seconds": 4.270773375
+        },
+        "reduce_extraction_25pct": {
+          "assumed_fractional_stage_reductions": {
+            "extract": 0.25
+          },
+          "median_query_latency_reduction_pct": 11.340304091169195,
+          "median_counterfactual_seconds": 3.8792205886250004
+        },
+        "reduce_selection_25pct": {
+          "assumed_fractional_stage_reductions": {
+            "select": 0.25
+          },
+          "median_query_latency_reduction_pct": 12.408320709919254,
+          "median_counterfactual_seconds": 3.837527911625
+        },
+        "reduce_extraction_and_selection_10pct": {
+          "assumed_fractional_stage_reductions": {
+            "extract": 0.1,
+            "select": 0.1
+          },
+          "median_query_latency_reduction_pct": 9.502966112590286,
+          "median_counterfactual_seconds": 3.96095080005
+        },
+        "remove_score_only": {
+          "assumed_fractional_stage_reductions": {},
+          "median_query_latency_reduction_pct": 0.12209495500002182,
+          "median_counterfactual_seconds": 4.3721905625
+        }
+      },
+      "source": "experiments/14_pipeline_tfhe_rs/results/a124_a66_sweep_n128_threads16_2026-09-04T112556.842090Z.jsonl",
+      "source_sha256": "05b9b629605c5481e19365cfba3df95b315d17e51084d538c5dce5ff3e66ff89"
+    }
+  ],
+  "validation": "tmp/a128-a124-evidence-validation/artifacts/partial-validation-2026-09-05-r5.json",
+  "validation_sha256": "e31a96b2a0c5c0cfafbf87273785a80f6e9322a8d22134bba0b17904f8b23f08",
+  "model_assumption": "Only specified stage duration changes; all other stages and wall overhead fixed for each saved query",
+  "final_cpu_guard_metadata_available": false,
+  "causal_or_predictive_speedup_claim": false,
+  "pbs_count_to_runtime_conversion": false,
+  "new_benchmark_run": false
+}

@@ -32,10 +32,10 @@ pub const A53_CONTRACT_ID: &str = "a62-exact-open-set-id-base15-two-p16-roots-v1
 pub const A53_CONTRACT_DESCRIPTION: &str =
     "two p16 roots reconstruct 0=reject or i+1 for the first admitted exact global minimum";
 
-pub const A44_PARAMS_ID: &str = "tfhe-rs-1.7.0-v0_11-m1c3-classic-ks-pbs-gaussian-2m64";
+pub const A44_PARAMS_ID: &str = "tfhe-rs-1.8.1-v0_11-m1c3-classic-ks-pbs-gaussian-2m64";
 pub const A44_PARAMETER_FINGERPRINT_SHA256: &str =
-    "ff8b62d46dee3427a6f048490a171f5eb74158ffe9dad1b32c8bd8990dc2ac61";
-pub const A44_PARAMETER_CANONICAL: &str = "tfhe-rs=1.7.0;symbol=V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64;bootstrap=classic_ks_pbs;modulus_switch=standard;lwe_dimension=859;glwe_dimension=1;polynomial_size=2048;lwe_noise=gaussian_stddev_2.3088161607134664e-6;glwe_noise=gaussian_stddev_2.845267479601915e-15;pbs_base_log=23;pbs_level=1;ks_base_log=3;ks_level=5;message_modulus=2;carry_modulus=8;max_noise_level=15;log2_p_fail=-64.088;ciphertext_modulus=native;encryption_key_choice=Big";
+    "c75ae1d55835d669d8e03000c5426577fdcafa01bcd1b47bb0e2af65aa950fda";
+pub const A44_PARAMETER_CANONICAL: &str = "tfhe-rs=1.8.1;symbol=V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64;bootstrap=classic_ks_pbs;modulus_switch=standard;lwe_dimension=859;glwe_dimension=1;polynomial_size=2048;lwe_noise=gaussian_stddev_2.3088161607134664e-6;glwe_noise=gaussian_stddev_2.845267479601915e-15;pbs_base_log=23;pbs_level=1;ks_base_log=3;ks_level=5;message_modulus=2;carry_modulus=8;max_noise_level=15;log2_p_fail=-64.088;ciphertext_modulus=native;encryption_key_choice=Big";
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct SourceGuard {

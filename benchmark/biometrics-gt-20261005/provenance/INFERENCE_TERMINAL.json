@@ -1,0 +1,10 @@
+{
+  "observed_utc": "2026-10-05T11:15:25.277332+00:00",
+  "session_id": 84724,
+  "pid": 25478,
+  "exit_code": 0,
+  "summary_ended_utc": "2026-10-05T11:14:28.953264+00:00",
+  "queries": 100,
+  "summary_sha256": "ac632fcc4da87b3aaf062e7b02eb6fe0380d6760939238f61eb1746b89843737",
+  "output_note": "Repeated third-party face_align SimilarityTransform deprecation warnings; tool chunks truncated. No run repeated."
+}

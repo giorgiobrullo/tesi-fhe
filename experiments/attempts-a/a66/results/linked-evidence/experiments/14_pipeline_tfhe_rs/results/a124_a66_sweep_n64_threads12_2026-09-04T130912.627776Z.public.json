@@ -1,0 +1,24 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 20,
+      "data": {
+        "record": "summary",
+        "status": "PASS",
+        "stage": "sweep",
+        "gallery_size": 64,
+        "threads": 12,
+        "measured_queries": 10,
+        "excluded_warmup_queries": 4,
+        "total_queries": 14,
+        "passed_queries": 14,
+        "failed_queries": 0,
+        "key_blocks": 2,
+        "keys_ephemeral": true,
+        "secret_material_persisted": false,
+        "promotion_allowed": false
+      }
+    }
+  ]
+}

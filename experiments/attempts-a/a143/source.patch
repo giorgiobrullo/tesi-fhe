@@ -1,0 +1,137 @@
+--- A138/src/main.rs
++++ A143/src/main.rs
+@@ -12,6 +12,7 @@
+ type Lwe = LweCiphertextOwned<u64>;
+ type Glwe = GlweCiphertextOwned<u64>;
+ include!("a34_tables.rs");
++mod coefficient_observer;
+ 
+ fn scale(input: &Lwe, factor: u64) -> Lwe {
+     let mut out = input.clone();
+@@ -306,7 +307,7 @@
+ 
+ fn main() {
+     if let Err(error) = run() {
+-        eprintln!("A138_ERROR: {error}");
++        eprintln!("A143_ERROR: {error}");
+         std::process::exit(1);
+     }
+ }
+@@ -322,10 +323,18 @@
+         .unwrap_or("1")
+         .parse()
+         .map_err(|_| "invalid keysets")?;
++    let stage = args
++        .iter()
++        .find_map(|x| x.strip_prefix("--stage="))
++        .unwrap_or("smoke");
++    if !matches!(stage, "smoke" | "full") {
++        return Err("stage must be smoke or full".into());
++    }
+     for a in &args {
+         if a != "--run"
+             && !a.starts_with("--expected-binary-sha256=")
+             && !a.starts_with("--keysets=")
++            && !a.starts_with("--stage=")
+         {
+             return Err(format!("unknown argument {a}"));
+         }
+@@ -343,9 +352,23 @@
+         [128, 127, 127, 129],
+         [16, 16, 15, 15],
+     ];
++    let source_fixture_indices: Vec<usize> = if stage == "smoke" {
++        vec![2, 4]
++    } else {
++        (0..fixtures.len()).collect()
++    };
++    let fixtures: Vec<[u64; 4]> = source_fixture_indices
++        .iter()
++        .map(|i| fixtures[*i])
++        .collect();
++    let stage_id = if stage == "smoke" {
++        "coefficient_smoke_n4"
++    } else {
++        "coefficient_full_n4"
++    };
+     println!(
+         "{}",
+-        json!({"record":"plan","stage":"first_composed_n4","fixtures":fixtures,"keysets":keysets,"arms":["shared512","independent_scale","negative_wrong_consumer_scale"],"br_ks_per_fixture":[55,63,55],"output":"canonical survivor flags; A53/service not invoked","runtime_executed":false,"formal_bound":false})
++        json!({"record":"plan","stage":stage_id,"source_fixture_indices":source_fixture_indices,"full_fixture_count":8,"fixtures":fixtures,"keysets":keysets,"arms":["shared512","independent_scale","negative_wrong_consumer_scale"],"br_ks_per_fixture":[55,63,55],"output":"canonical survivor flags; A53/service not invoked","execution_requested":execute,"formal_bound":false,"key_sensitive_client_local_only":true,"timing_invalid":true})
+     );
+     if !execute {
+         return Ok(());
+@@ -353,9 +376,9 @@
+     let binary = std::env::current_exe().map_err(|e| e.to_string())?;
+     if !binary
+         .components()
+-        .any(|x| x.as_os_str() == "target-a138-only")
++        .any(|x| x.as_os_str() == "target-a143-only")
+     {
+-        return Err("requires isolated target-a138-only".into());
++        return Err("requires isolated target-a143-only".into());
+     }
+     let hash = format!(
+         "{:x}",
+@@ -366,11 +389,13 @@
+     }
+     println!(
+         "{}",
+-        json!({"record":"provenance","binary_sha256":hash,"source_sha256":format!("{:x}",Sha256::digest(include_bytes!("main.rs"))),"tables_sha256":format!("{:x}",Sha256::digest(include_bytes!("a34_tables.rs"))),"lock_sha256":format!("{:x}",Sha256::digest(include_bytes!("../Cargo.lock"))),"params":"V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64","parameter_fingerprint":"b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1","secret_keys_saved":false})
++        json!({"record":"provenance","binary_sha256":hash,"source_sha256":format!("{:x}",Sha256::digest(include_bytes!("main.rs"))),"observer_sha256":format!("{:x}",Sha256::digest(include_bytes!("coefficient_observer.rs"))),"tables_sha256":format!("{:x}",Sha256::digest(include_bytes!("a34_tables.rs"))),"lock_sha256":format!("{:x}",Sha256::digest(include_bytes!("../Cargo.lock"))),"params":"V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64","parameter_fingerprint":"b0033dc6668c8b949f5139cb0dfdb5367e35dce285121666b8262fa73ad367d1","raw_secret_key_bits_serialized":false,"key_sensitive_client_local_only":true})
+     );
+     let mut failures = [0usize; 2];
+     let mut negatives_by_key = vec![0usize; keysets];
+     let mut cases = 0usize;
++    let mut coefficient_events = 0usize;
++    let mut coefficient_failures = 0usize;
+     for keyset in 0..keysets {
+         let client = ClientKey::new(V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64);
+         let server = ServerKey::new(&client);
+@@ -504,6 +529,16 @@
+                         address -= switch_word(*a) as i64 * *s as i64;
+                     }
+                     let address = address.rem_euclid(4096) as usize;
++                    let coefficient_witness = coefficient_observer::observe(
++                        event.switched.as_ref(),
++                        small_secret.as_ref(),
++                        small_phase,
++                        address,
++                        keyset,
++                    );
++                    coefficient_events += 1;
++                    coefficient_failures +=
++                        usize::from(coefficient_witness["closure_pass"].as_bool() != Some(true));
+                     let raw = event.body[address % 2048];
+                     let raw = if address >= 2048 {
+                         raw.wrapping_neg()
+@@ -516,12 +551,12 @@
+                     }
+                     println!(
+                         "{}",
+-                        json!({"record":"event","keyset":keyset,"case":case,"arm":arm,"stage":event.name,"input_sha256":digest(&event.input),"small_sha256":digest(&event.switched),"output_sha256":digest(&event.output),"body_sha256":format!("{:x}",body_hash.finalize()),"big_phase_word":input_phase.to_string(),"small_phase_word":small_phase.to_string(),"ks_phase_increment":(small_phase.wrapping_sub(input_phase) as i64).to_string(),"actual_ms_address":address,"rounded_big_phase_address":switch_word(input_phase),"rounded_small_phase_address":switch_word(small_phase),"output_phase_word":output_phase.to_string(),"lut_word_at_actual_address":raw.to_string(),"output_error_at_actual_address":(output_phase.wrapping_sub(raw) as i64).to_string(),"client_only":true})
++                        json!({"record":"event","keyset":keyset,"case":case,"source_fixture_index":source_fixture_indices[case],"coefficient_observer":coefficient_witness,"arm":arm,"stage":event.name,"input_sha256":digest(&event.input),"small_sha256":digest(&event.switched),"output_sha256":digest(&event.output),"body_sha256":format!("{:x}",body_hash.finalize()),"big_phase_word":input_phase.to_string(),"small_phase_word":small_phase.to_string(),"ks_phase_increment":(small_phase.wrapping_sub(input_phase) as i64).to_string(),"actual_ms_address":address,"rounded_big_phase_address":switch_word(input_phase),"rounded_small_phase_address":switch_word(small_phase),"output_phase_word":output_phase.to_string(),"lut_word_at_actual_address":raw.to_string(),"output_error_at_actual_address":(output_phase.wrapping_sub(raw) as i64).to_string(),"client_only":true})
+                     );
+                 }
+                 println!(
+                     "{}",
+-                    json!({"record":"case","keyset":keyset,"case":case,"arm":arm,"scores":scores,"full_sha256":full.iter().map(digest).collect::<Vec<_>>(),"packed_low_sha256":low.iter().map(digest).collect::<Vec<_>>(),"input_full_errors":phase_errors(&full,52,0,4095),"input_packed_low_errors":phase_errors(&low,60,0,15),"low51":low_decoded,"middle51":middle_decoded,"top60":top_decoded,"low51_errors":phase_errors(&evaluation.low,51,0,15),"middle51_errors":phase_errors(&evaluation.middle,51,4,15),"top60_errors":phase_errors(&evaluation.top,60,8,15),"native_decode_pass":native,"composed_a34_a135_pass":consumer,"flags":flags,"expected_flags":expected,"pass":native&&consumer,"br":evaluation.events.len(),"ks":evaluation.events.len(),"not_a53_or_service":true})
++                    json!({"record":"case","keyset":keyset,"case":case,"source_fixture_index":source_fixture_indices[case],"arm":arm,"scores":scores,"full_sha256":full.iter().map(digest).collect::<Vec<_>>(),"packed_low_sha256":low.iter().map(digest).collect::<Vec<_>>(),"input_full_errors":phase_errors(&full,52,0,4095),"input_packed_low_errors":phase_errors(&low,60,0,15),"low51":low_decoded,"middle51":middle_decoded,"top60":top_decoded,"low51_errors":phase_errors(&evaluation.low,51,0,15),"middle51_errors":phase_errors(&evaluation.middle,51,4,15),"top60_errors":phase_errors(&evaluation.top,60,8,15),"native_decode_pass":native,"composed_a34_a135_pass":consumer,"flags":flags,"expected_flags":expected,"pass":native&&consumer,"br":evaluation.events.len(),"ks":evaluation.events.len(),"not_a53_or_service":true})
+                 );
+             }
+             cases += 1;
+@@ -529,10 +564,12 @@
+     }
+     let pass = failures == [0, 0]
+         && negatives_by_key.iter().all(|count| *count > 0)
+-        && cases == 8 * keysets;
++        && cases == fixtures.len() * keysets
++        && coefficient_events == fixtures.len() * keysets * (55 + 63 + 55)
++        && coefficient_failures == 0;
+     println!(
+         "{}",
+-        json!({"record":"summary","status":if pass {"BOUNDED_COMPOSED_GATE_PASS"} else {"GATE_FAIL"},"positive_arm_failures":failures,"wrong_scale_negatives_detected_by_key":negatives_by_key,"case_count":cases,"p_fail_certified":false,"a53_service_validated":false,"latency_claim_allowed":false})
++        json!({"record":"summary","status":if pass {if stage == "smoke" {"BOUNDED_COEFFICIENT_SMOKE_PASS"} else {"BOUNDED_COEFFICIENT_FULL_PASS"}} else {"GATE_FAIL"},"positive_arm_failures":failures,"wrong_scale_negatives_detected_by_key":negatives_by_key,"case_count":cases,"stage":stage_id,"source_fixture_indices":source_fixture_indices,"full_schedule_complete":stage=="full","coefficient_events":coefficient_events,"coefficient_failures":coefficient_failures,"timing_invalid":true,"key_sensitive_client_local_only":true,"p_fail_certified":false,"a53_service_validated":false,"latency_claim_allowed":false})
+     );
+     if !pass {
+         return Err("composed gate or negative control failed; retain all output".into());

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "PASS_STRUCTURAL_ONLY_NOT_MATCHED_RUNTIME",
+  "scope": "offline RTL replay, symbolic semantics, and cross-unit structural counts only",
+  "environment": {
+    "python": "3.12.11",
+    "z3": "4.13.0"
+  },
+  "official_rtl": {
+    "path": "tmp/a82-epfl-priority-structural-comparator/official_priority.v",
+    "sha256": "2b29f270d3f6db4cbf6307cb29d1a1192c82dd9ea08d9a8c7f8d02ef469b32f5",
+    "assignments": 978,
+    "diagnostic_patterns_passed": 258,
+    "priority_direction": "highest active RTL input index"
+  },
+  "reversed_exact_contract": {
+    "public_input_map": "A[127-i] = gallery_flag[i]",
+    "public_client_decode": "code = 0 if F=0 else 128-P",
+    "solver_result": "UNSAT_NO_COUNTEREXAMPLE",
+    "symbolic_boolean_inputs": 128,
+    "covered_assignments": "2^128",
+    "contract": "0 reject; otherwise first active gallery index plus one"
+  },
+  "a53_source": {
+    "path": "tmp/a53-radix15-group4-scan-model/a53_radix15_group4_scan_model.py",
+    "sha256": "a03c8753298e0959133b0c915b911172795bafba353d86b75c7cdfb38d31eb9f",
+    "blind_rotations": 136,
+    "classic_key_switches": 136,
+    "output_marginals": 168,
+    "encrypted_output_values": 2
+  },
+  "bolt_table_v_priority": {
+    "final_gate_nodes": 686,
+    "reported_runtime_ms_unmatched": 4221,
+    "encrypted_output_bits": 8
+  },
+  "cross_unit_arithmetic": {
+    "a53_br_over_bolt_gate_nodes": 0.19825072886297376,
+    "arithmetic_count_complement_percent": 80.17492711370262,
+    "bolt_gate_nodes_per_a53_br": 5.044117647058823
+  },
+  "verification": {
+    "unittest_passed": 9,
+    "unittest_failed": 0,
+    "ruff": "PASS"
+  },
+  "claim_boundary": {
+    "structural_ratio_only": true,
+    "matched_runtime": false,
+    "same_parameters": false,
+    "same_output_encoding": false,
+    "same_operation_unit": false,
+    "speedup_claim": false,
+    "cost_reduction_claim": false,
+    "public_decode_counted_as_fhe_work": false
+  }
+}

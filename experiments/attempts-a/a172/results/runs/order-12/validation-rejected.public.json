@@ -1,0 +1,5 @@
+{
+  "status": "REJECTED",
+  "error": "ValueError('native fixture or binding gate failed')",
+  "collector_qualified": false
+}

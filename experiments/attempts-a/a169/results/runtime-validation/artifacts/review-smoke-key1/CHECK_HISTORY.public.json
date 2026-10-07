@@ -1,0 +1,14 @@
+{
+  "frozen_validator_execution": "PASS_RECORD_CONSISTENCY on first call; rules and result unchanged",
+  "post_replay_review_attempts": [
+    {
+      "attempt": 1,
+      "outcome": "local report assertion failed before output",
+      "reason": "Supplementary report assumed four scalar candidates at bit2; frozen source uses candidates range(-((7-bit)%4),2), giving three at level5. The frozen validator already checked the exact correct domain."
+    },
+    {
+      "attempt": 2,
+      "action": "Supplementary report checks exact source-derived bit2/level5 candidates -1,0,1; no runtime or validator acceptance rule changed."
+    }
+  ]
+}

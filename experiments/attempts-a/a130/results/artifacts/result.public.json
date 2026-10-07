@@ -1,0 +1,240 @@
+{
+  "status": "STATIC_AUDIT_COMPLETE_NO_RUST_OR_FHE",
+  "checks": {
+    "centers": 4096,
+    "positive_arm_cases": 12288,
+    "drop_first_negative_detections": 2048,
+    "missing_scale_negative_detections": 2048
+  },
+  "downstream_margin_counterexample": {
+    "scope": "synthetic error; ideal downstream PBS/KS; no FHE/tail claim",
+    "a125_native_pass": [
+      true,
+      true
+    ],
+    "full_b0_correction_error": 1688849860263936,
+    "weighted_b0_error": 432345564227567616,
+    "weighted_b0_error_in_delta59": 0.75,
+    "weighted_b0_native_decode": 0,
+    "weighted_b0_decode_at_delta59": 1,
+    "expected_weighted_b0_at_delta59": 0,
+    "full_single_trace_x0": [
+      {
+        "bit": 0,
+        "residual": 0,
+        "shift": 0,
+        "correction": 1688849860263936,
+        "boolean": null
+      },
+      {
+        "bit": 1,
+        "residual": 18445055223849287680,
+        "shift": 16717361816799281152,
+        "correction": 0,
+        "boolean": null
+      },
+      {
+        "bit": 2,
+        "residual": 18445055223849287680,
+        "shift": 17582052945254416384,
+        "correction": 0,
+        "boolean": null
+      },
+      {
+        "bit": 3,
+        "residual": 18445055223849287680,
+        "shift": 18014398509481984000,
+        "correction": 0,
+        "boolean": 0
+      },
+      {
+        "bit": 4,
+        "residual": 18445055223849287680,
+        "shift": 18230571291595767808,
+        "correction": 0,
+        "boolean": 0
+      },
+      {
+        "bit": 5,
+        "residual": 18445055223849287680,
+        "shift": 18338657682652659712,
+        "correction": 0,
+        "boolean": 0
+      },
+      {
+        "bit": 6,
+        "residual": 18445055223849287680,
+        "shift": 18392700878181105664,
+        "correction": 0,
+        "boolean": 0
+      },
+      {
+        "bit": 7,
+        "residual": 18445055223849287680,
+        "shift": 18419722475945328640,
+        "correction": 0,
+        "boolean": null
+      }
+    ],
+    "levels": [
+      {
+        "level": 0,
+        "bit": 7,
+        "zero_input_torus": [
+          576460752303423488,
+          576460752303423488
+        ],
+        "zeros": [
+          1,
+          1
+        ],
+        "any_zero": 1,
+        "candidates": [
+          1,
+          1
+        ]
+      },
+      {
+        "level": 1,
+        "bit": 6,
+        "zero_input_torus": [
+          576460752303423488,
+          576460752303423488
+        ],
+        "zeros": [
+          1,
+          1
+        ],
+        "any_zero": 1,
+        "candidates": [
+          1,
+          1
+        ]
+      },
+      {
+        "level": 2,
+        "bit": 5,
+        "zero_input_torus": [
+          576460752303423488,
+          576460752303423488
+        ],
+        "zeros": [
+          1,
+          1
+        ],
+        "any_zero": 1,
+        "candidates": [
+          1,
+          1
+        ]
+      },
+      {
+        "level": 3,
+        "bit": 4,
+        "zero_input_torus": [
+          576460752303423488,
+          576460752303423488
+        ],
+        "zeros": [
+          1,
+          1
+        ],
+        "any_zero": 1,
+        "candidates": [
+          1,
+          1
+        ]
+      },
+      {
+        "level": 4,
+        "bit": 3,
+        "zero_input_torus": [
+          576460752303423488,
+          576460752303423488
+        ],
+        "zeros": [
+          1,
+          1
+        ],
+        "any_zero": 1,
+        "candidates": [
+          1,
+          1
+        ]
+      },
+      {
+        "level": 5,
+        "bit": 2,
+        "zero_input_torus": [
+          576460752303423488,
+          576460752303423488
+        ],
+        "zeros": [
+          1,
+          1
+        ],
+        "any_zero": 1,
+        "candidates": [
+          1,
+          1
+        ]
+      },
+      {
+        "level": 6,
+        "bit": 1,
+        "zero_input_torus": [
+          576460752303423488,
+          576460752303423488
+        ],
+        "zeros": [
+          1,
+          1
+        ],
+        "any_zero": 1,
+        "candidates": [
+          1,
+          1
+        ]
+      },
+      {
+        "level": 7,
+        "bit": 0,
+        "zero_input_torus": [
+          17870283321406128128,
+          144115188075855872
+        ],
+        "zeros": [
+          0,
+          0
+        ],
+        "any_zero": 0,
+        "candidates": [
+          1,
+          1
+        ]
+      }
+    ],
+    "final_candidates": [
+      1,
+      1
+    ],
+    "actual_id": 1,
+    "expected_id": 2
+  },
+  "case_low_digest_defect": {
+    "call_sites": "diagnostic.rs:627-630",
+    "case_record": "diagnostic.rs:667",
+    "actual_low_source": [
+      "packed low",
+      "256*full",
+      null,
+      null
+    ],
+    "logged_low_source": [
+      "packed low",
+      "packed low",
+      "packed low",
+      "packed low"
+    ]
+  }
+}

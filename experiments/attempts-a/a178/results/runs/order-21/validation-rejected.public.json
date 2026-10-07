@@ -1,0 +1,5 @@
+{
+  "status": "REJECTED",
+  "error": "ValueError('whole terminal acquisition after WNOWAIT and before child reap')",
+  "collector_qualified": false
+}

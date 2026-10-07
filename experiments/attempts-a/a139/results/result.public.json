@@ -1,0 +1,112 @@
+{
+  "status": "STATIC_PROFILE_IDENTIFIED",
+  "profiles": [
+    {
+      "symbol": "V0_11_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M64",
+      "definition_path": "src/shortint/parameters/v0_11/classic/gaussian/p_fail_2_minus_64/ks_pbs.rs",
+      "definition_line": 80,
+      "parameters": {
+        "lwe_dimension": 859,
+        "glwe_dimension": 1,
+        "polynomial_size": 2048,
+        "pbs_base_log": 23,
+        "pbs_level": 1,
+        "ks_base_log": 3,
+        "ks_level": 5,
+        "message_modulus": 2,
+        "carry_modulus": 8,
+        "max_noise_level": 15,
+        "lwe_noise_distribution": {
+          "constructor": "new_gaussian_from_std_dev",
+          "argument": "2.3088161607134664e-06"
+        },
+        "glwe_noise_distribution": {
+          "constructor": "new_gaussian_from_std_dev",
+          "argument": "2.845267479601915e-15"
+        },
+        "log2_p_fail": -64.088,
+        "modulus_switch": "Standard"
+      },
+      "ksk_scalar_bytes": 8,
+      "same_plaintext_shape_and_nominal_max15": true
+    },
+    {
+      "symbol": "V1_4_PARAM_MESSAGE_1_CARRY_3_KS_PBS_GAUSSIAN_2M128",
+      "definition_path": "src/shortint/parameters/v1_4/classic/gaussian/p_fail_2_minus_128/ks_pbs.rs",
+      "definition_line": 83,
+      "parameters": {
+        "lwe_dimension": 904,
+        "glwe_dimension": 1,
+        "polynomial_size": 2048,
+        "pbs_base_log": 23,
+        "pbs_level": 1,
+        "ks_base_log": 3,
+        "ks_level": 6,
+        "message_modulus": 2,
+        "carry_modulus": 8,
+        "max_noise_level": 15,
+        "lwe_noise_distribution": {
+          "constructor": "new_gaussian_from_std_dev",
+          "argument": "1.0621869847945622e-06"
+        },
+        "glwe_noise_distribution": {
+          "constructor": "new_gaussian_from_std_dev",
+          "argument": "2.845267479601915e-15"
+        },
+        "log2_p_fail": -128.103,
+        "modulus_switch": "CenteredMeanNoiseReduction"
+      },
+      "ksk_scalar_bytes": 8,
+      "same_plaintext_shape_and_nominal_max15": true
+    },
+    {
+      "symbol": "V1_7_PARAM_MESSAGE_2_CARRY_2_KS32_PBS_TUNIFORM_2M128",
+      "definition_path": "src/shortint/parameters/v1_7/ks32/tuniform/p_fail_2_minus_128/ks_pbs.rs",
+      "definition_line": 8,
+      "parameters": {
+        "lwe_dimension": 918,
+        "glwe_dimension": 1,
+        "polynomial_size": 2048,
+        "pbs_base_log": 23,
+        "pbs_level": 1,
+        "ks_base_log": 4,
+        "ks_level": 4,
+        "message_modulus": 4,
+        "carry_modulus": 4,
+        "max_noise_level": 5,
+        "lwe_noise_distribution": {
+          "constructor": "new_t_uniform",
+          "argument": "13"
+        },
+        "glwe_noise_distribution": {
+          "constructor": "new_t_uniform",
+          "argument": "17"
+        },
+        "log2_p_fail": -129.581,
+        "modulus_switch": "CenteredMeanNoiseReduction"
+      },
+      "ksk_scalar_bytes": 4,
+      "same_plaintext_shape_and_nominal_max15": false
+    }
+  ],
+  "nominal_catalog_log2_p_fail_change": -64.01500000000001,
+  "u3_standard_only_pbs_call_lines": [
+    1455,
+    2152,
+    2165,
+    2801,
+    3155
+  ],
+  "scope": "Cached source extraction and container arithmetic; not compiled, measured memory, speed, or composed failure certification",
+  "source_sha256": {
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/shortint/parameters/v0_11/classic/gaussian/p_fail_2_minus_64/ks_pbs.rs": "ccc97d408b187b4ab3bc2ca41c614324323eaac693039ea5ebec65e0866d131a",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/shortint/parameters/v1_4/classic/gaussian/p_fail_2_minus_128/ks_pbs.rs": "74e2d3c649df284cc25b49fd0291afba2310212955ccdba0f7fa756a8bb98a1a",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/shortint/parameters/v1_7/ks32/tuniform/p_fail_2_minus_128/ks_pbs.rs": "2dca55c80b38830b209dab5b3fedbae92502da4c9f5da53c1f63b5a5455689b1",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/shortint/parameters/v1_4/mod.rs": "670365e1e41dd6c0d31f2ff3d47b2714e2e2449405400b0c6c7c2f0a82e2212e",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/shortint/parameters/v1_7/classic/gaussian/p_fail_2_minus_128/ks_pbs.rs": "5aca9a912049c0e90bece3f84adbe585d4b7710dc91917279cf4a78e48b54524",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/entities/lwe_keyswitch_key.rs": "89fbabeb594381e9e27d1aa0dbea57bfbbe306a8a9d89df09e744da274079c72",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/fft_impl/fft64/crypto/bootstrap.rs": "2b789c4cc9959d01ee72a597c0de0316ac315ae3ede1ba128143f350c0b34b9b",
+    "<HOME>/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tfhe-1.7.0/src/core_crypto/fft_impl/fft64/crypto/ggsw.rs": "d2cf985c055b55627ce1e9714e404862a71e6aec7c8b459293c9bcbb67a1d956",
+    "archive:/tmp/u3-u2-runtime-gate/candidate/src/private_argmin.rs": "4561a4d3a134ba603cef0b458a686e33cc251435c8c2e33b75e0410f8687010c"
+  }
+}

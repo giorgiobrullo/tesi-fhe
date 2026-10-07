@@ -1,0 +1,444 @@
+{
+  "observed_utc": "2026-10-04T17:12:59.081415+00:00",
+  "binary_sha256": "a7276e4bccee81362779aaee551b2a559733cece450494b2e60f545d93dfc668",
+  "loops": {
+    "NEON": {
+      "First_mask": {
+        "start": "0x100000e2c",
+        "end": "0x100000e60",
+        "static_instructions": 14,
+        "instructions": [
+          {
+            "address": "0x100000e2c",
+            "instruction": "lsl\tx10, x8, #4"
+          },
+          {
+            "address": "0x100000e30",
+            "instruction": "ldr\tq1, [x4, x10]"
+          },
+          {
+            "address": "0x100000e34",
+            "instruction": "mov\td2, v1[1]"
+          },
+          {
+            "address": "0x100000e38",
+            "instruction": "mov.d\tv2[1], v1[0]"
+          },
+          {
+            "address": "0x100000e3c",
+            "instruction": "add\tx8, x8, #0x1"
+          },
+          {
+            "address": "0x100000e40",
+            "instruction": "ldp\td3, d4, [x9, #-0x8]"
+          },
+          {
+            "address": "0x100000e44",
+            "instruction": "dup.2d\tv4, v4[0]"
+          },
+          {
+            "address": "0x100000e48",
+            "instruction": "eor.16b\tv4, v4, v0"
+          },
+          {
+            "address": "0x100000e4c",
+            "instruction": "fmul.2d\tv2, v4, v2"
+          },
+          {
+            "address": "0x100000e50",
+            "instruction": "fmla.2d\tv2, v1, v3[0]"
+          },
+          {
+            "address": "0x100000e54",
+            "instruction": "str\tq2, [x0, x10]"
+          },
+          {
+            "address": "0x100000e58",
+            "instruction": "add\tx9, x9, #0x10"
+          },
+          {
+            "address": "0x100000e5c",
+            "instruction": "cmp\tx8, #0x400"
+          },
+          {
+            "address": "0x100000e60",
+            "instruction": "b.ne\t0x100000e2c <_neon_update+0x44>"
+          }
+        ]
+      },
+      "First_body": {
+        "start": "0x100000e74",
+        "end": "0x100000ea8",
+        "static_instructions": 14,
+        "instructions": [
+          {
+            "address": "0x100000e74",
+            "instruction": "lsl\tx11, x8, #4"
+          },
+          {
+            "address": "0x100000e78",
+            "instruction": "ldr\tq1, [x4, x11]"
+          },
+          {
+            "address": "0x100000e7c",
+            "instruction": "mov\td2, v1[1]"
+          },
+          {
+            "address": "0x100000e80",
+            "instruction": "mov.d\tv2[1], v1[0]"
+          },
+          {
+            "address": "0x100000e84",
+            "instruction": "add\tx8, x8, #0x1"
+          },
+          {
+            "address": "0x100000e88",
+            "instruction": "ldp\td3, d4, [x10, #-0x8]"
+          },
+          {
+            "address": "0x100000e8c",
+            "instruction": "dup.2d\tv4, v4[0]"
+          },
+          {
+            "address": "0x100000e90",
+            "instruction": "eor.16b\tv4, v4, v0"
+          },
+          {
+            "address": "0x100000e94",
+            "instruction": "fmul.2d\tv2, v4, v2"
+          },
+          {
+            "address": "0x100000e98",
+            "instruction": "fmla.2d\tv2, v1, v3[0]"
+          },
+          {
+            "address": "0x100000e9c",
+            "instruction": "str\tq2, [x9, x11]"
+          },
+          {
+            "address": "0x100000ea0",
+            "instruction": "add\tx10, x10, #0x10"
+          },
+          {
+            "address": "0x100000ea4",
+            "instruction": "cmp\tx8, #0x400"
+          },
+          {
+            "address": "0x100000ea8",
+            "instruction": "b.ne\t0x100000e74 <_neon_update+0x8c>"
+          }
+        ]
+      },
+      "MAC_mask": {
+        "start": "0x100000eb0",
+        "end": "0x100000ee8",
+        "static_instructions": 15,
+        "instructions": [
+          {
+            "address": "0x100000eb0",
+            "instruction": "lsl\tx10, x8, #4"
+          },
+          {
+            "address": "0x100000eb4",
+            "instruction": "ldr\tq1, [x4, x10]"
+          },
+          {
+            "address": "0x100000eb8",
+            "instruction": "ldr\tq2, [x0, x10]"
+          },
+          {
+            "address": "0x100000ebc",
+            "instruction": "mov\td3, v1[1]"
+          },
+          {
+            "address": "0x100000ec0",
+            "instruction": "mov.d\tv3[1], v1[0]"
+          },
+          {
+            "address": "0x100000ec4",
+            "instruction": "add\tx8, x8, #0x1"
+          },
+          {
+            "address": "0x100000ec8",
+            "instruction": "ldp\td4, d5, [x9, #-0x8]"
+          },
+          {
+            "address": "0x100000ecc",
+            "instruction": "dup.2d\tv5, v5[0]"
+          },
+          {
+            "address": "0x100000ed0",
+            "instruction": "eor.16b\tv5, v5, v0"
+          },
+          {
+            "address": "0x100000ed4",
+            "instruction": "fmla.2d\tv2, v3, v5"
+          },
+          {
+            "address": "0x100000ed8",
+            "instruction": "fmla.2d\tv2, v1, v4[0]"
+          },
+          {
+            "address": "0x100000edc",
+            "instruction": "str\tq2, [x0, x10]"
+          },
+          {
+            "address": "0x100000ee0",
+            "instruction": "add\tx9, x9, #0x10"
+          },
+          {
+            "address": "0x100000ee4",
+            "instruction": "cmp\tx8, #0x400"
+          },
+          {
+            "address": "0x100000ee8",
+            "instruction": "b.ne\t0x100000eb0 <_neon_update+0xc8>"
+          }
+        ]
+      },
+      "MAC_body": {
+        "start": "0x100000efc",
+        "end": "0x100000f34",
+        "static_instructions": 15,
+        "instructions": [
+          {
+            "address": "0x100000efc",
+            "instruction": "lsl\tx11, x8, #4"
+          },
+          {
+            "address": "0x100000f00",
+            "instruction": "ldr\tq1, [x4, x11]"
+          },
+          {
+            "address": "0x100000f04",
+            "instruction": "ldr\tq2, [x9, x11]"
+          },
+          {
+            "address": "0x100000f08",
+            "instruction": "mov\td3, v1[1]"
+          },
+          {
+            "address": "0x100000f0c",
+            "instruction": "mov.d\tv3[1], v1[0]"
+          },
+          {
+            "address": "0x100000f10",
+            "instruction": "add\tx8, x8, #0x1"
+          },
+          {
+            "address": "0x100000f14",
+            "instruction": "ldp\td4, d5, [x10, #-0x8]"
+          },
+          {
+            "address": "0x100000f18",
+            "instruction": "dup.2d\tv5, v5[0]"
+          },
+          {
+            "address": "0x100000f1c",
+            "instruction": "eor.16b\tv5, v5, v0"
+          },
+          {
+            "address": "0x100000f20",
+            "instruction": "fmla.2d\tv2, v3, v5"
+          },
+          {
+            "address": "0x100000f24",
+            "instruction": "fmla.2d\tv2, v1, v4[0]"
+          },
+          {
+            "address": "0x100000f28",
+            "instruction": "str\tq2, [x9, x11]"
+          },
+          {
+            "address": "0x100000f2c",
+            "instruction": "add\tx10, x10, #0x10"
+          },
+          {
+            "address": "0x100000f30",
+            "instruction": "cmp\tx8, #0x400"
+          },
+          {
+            "address": "0x100000f34",
+            "instruction": "b.ne\t0x100000efc <_neon_update+0x114>"
+          }
+        ]
+      }
+    },
+    "FCMA": {
+      "First_mask": {
+        "start": "0x100000cd0",
+        "end": "0x100000cf0",
+        "static_instructions": 9,
+        "instructions": [
+          {
+            "address": "0x100000cd0",
+            "instruction": "ldr\tq0, [x2, x8]"
+          },
+          {
+            "address": "0x100000cd4",
+            "instruction": "ldr\tq1, [x4, x8]"
+          },
+          {
+            "address": "0x100000cd8",
+            "instruction": "movi.2d\tv2, #0000000000000000"
+          },
+          {
+            "address": "0x100000cdc",
+            "instruction": "fcmla.2d\tv2, v0, v1, #0"
+          },
+          {
+            "address": "0x100000ce0",
+            "instruction": "fcmla.2d\tv2, v0, v1, #90"
+          },
+          {
+            "address": "0x100000ce4",
+            "instruction": "str\tq2, [x0, x8]"
+          },
+          {
+            "address": "0x100000ce8",
+            "instruction": "add\tx8, x8, #0x10"
+          },
+          {
+            "address": "0x100000cec",
+            "instruction": "cmp\tx8, #0x4, lsl #12       ; =0x4000"
+          },
+          {
+            "address": "0x100000cf0",
+            "instruction": "b.ne\t0x100000cd0 <_fcma_update+0x38>"
+          }
+        ]
+      },
+      "First_body": {
+        "start": "0x100000d00",
+        "end": "0x100000d20",
+        "static_instructions": 9,
+        "instructions": [
+          {
+            "address": "0x100000d00",
+            "instruction": "ldr\tq0, [x10, x8]"
+          },
+          {
+            "address": "0x100000d04",
+            "instruction": "ldr\tq1, [x4, x8]"
+          },
+          {
+            "address": "0x100000d08",
+            "instruction": "movi.2d\tv2, #0000000000000000"
+          },
+          {
+            "address": "0x100000d0c",
+            "instruction": "fcmla.2d\tv2, v0, v1, #0"
+          },
+          {
+            "address": "0x100000d10",
+            "instruction": "fcmla.2d\tv2, v0, v1, #90"
+          },
+          {
+            "address": "0x100000d14",
+            "instruction": "str\tq2, [x9, x8]"
+          },
+          {
+            "address": "0x100000d18",
+            "instruction": "add\tx8, x8, #0x10"
+          },
+          {
+            "address": "0x100000d1c",
+            "instruction": "cmp\tx8, #0x4, lsl #12       ; =0x4000"
+          },
+          {
+            "address": "0x100000d20",
+            "instruction": "b.ne\t0x100000d00 <_fcma_update+0x68>"
+          }
+        ]
+      },
+      "MAC_mask": {
+        "start": "0x100000d28",
+        "end": "0x100000d48",
+        "static_instructions": 9,
+        "instructions": [
+          {
+            "address": "0x100000d28",
+            "instruction": "ldr\tq0, [x0, x8]"
+          },
+          {
+            "address": "0x100000d2c",
+            "instruction": "ldr\tq1, [x2, x8]"
+          },
+          {
+            "address": "0x100000d30",
+            "instruction": "ldr\tq2, [x4, x8]"
+          },
+          {
+            "address": "0x100000d34",
+            "instruction": "fcmla.2d\tv0, v1, v2, #0"
+          },
+          {
+            "address": "0x100000d38",
+            "instruction": "fcmla.2d\tv0, v1, v2, #90"
+          },
+          {
+            "address": "0x100000d3c",
+            "instruction": "str\tq0, [x0, x8]"
+          },
+          {
+            "address": "0x100000d40",
+            "instruction": "add\tx8, x8, #0x10"
+          },
+          {
+            "address": "0x100000d44",
+            "instruction": "cmp\tx8, #0x4, lsl #12       ; =0x4000"
+          },
+          {
+            "address": "0x100000d48",
+            "instruction": "b.ne\t0x100000d28 <_fcma_update+0x90>"
+          }
+        ]
+      },
+      "MAC_body": {
+        "start": "0x100000d58",
+        "end": "0x100000d78",
+        "static_instructions": 9,
+        "instructions": [
+          {
+            "address": "0x100000d58",
+            "instruction": "ldr\tq0, [x9, x8]"
+          },
+          {
+            "address": "0x100000d5c",
+            "instruction": "ldr\tq1, [x10, x8]"
+          },
+          {
+            "address": "0x100000d60",
+            "instruction": "ldr\tq2, [x4, x8]"
+          },
+          {
+            "address": "0x100000d64",
+            "instruction": "fcmla.2d\tv0, v1, v2, #0"
+          },
+          {
+            "address": "0x100000d68",
+            "instruction": "fcmla.2d\tv0, v1, v2, #90"
+          },
+          {
+            "address": "0x100000d6c",
+            "instruction": "str\tq0, [x9, x8]"
+          },
+          {
+            "address": "0x100000d70",
+            "instruction": "add\tx8, x8, #0x10"
+          },
+          {
+            "address": "0x100000d74",
+            "instruction": "cmp\tx8, #0x4, lsl #12       ; =0x4000"
+          },
+          {
+            "address": "0x100000d78",
+            "instruction": "b.ne\t0x100000d58 <_fcma_update+0xc0>"
+          }
+        ]
+      }
+    }
+  },
+  "scope": "static one complex iteration body including indexing/load/store/branch; duplicated fixed output loops; not executed counts or time",
+  "target_arithmetic_invoked": false
+}

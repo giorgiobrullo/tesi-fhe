@@ -1,0 +1,68 @@
+{
+  "schema": "saved-terminal-summary-public-projection.v1",
+  "records": [
+    {
+      "source_line": 17,
+      "data": {
+        "actual_br_outside_center_boxes": 0,
+        "case": "stock_plain",
+        "chooser_invocations": 0,
+        "closure_pass": true,
+        "completed": true,
+        "event_count": 1,
+        "observed_pbs": 1,
+        "type": "cm_zero_pool_summary",
+        "unmet_bounds": 0,
+        "zero_additions": 0
+      }
+    },
+    {
+      "source_line": 20,
+      "data": {
+        "actual_br_outside_center_boxes": 0,
+        "case": "stock_shared_zero",
+        "chooser_invocations": 1,
+        "closure_pass": true,
+        "completed": true,
+        "event_count": 1,
+        "observed_pbs": 1,
+        "type": "cm_zero_pool_summary",
+        "unmet_bounds": 0,
+        "zero_additions": 1
+      }
+    },
+    {
+      "source_line": 23,
+      "data": {
+        "actual_br_outside_center_boxes": 0,
+        "case": "stock_forced_unmet",
+        "chooser_invocations": 1,
+        "closure_pass": true,
+        "completed": false,
+        "event_count": 1,
+        "observed_pbs": 0,
+        "type": "cm_zero_pool_summary",
+        "unmet_bounds": 1,
+        "zero_additions": 1
+      }
+    },
+    {
+      "source_line": 25,
+      "data": {
+        "bounded_diagnostic_gate_pass": true,
+        "forced_unmet_detected": true,
+        "formal_failure_claim": false,
+        "fresh_keys": 1,
+        "full_c1_requirement_satisfied": false,
+        "graph_negatives_pass": null,
+        "n4_pair_pass": null,
+        "noise_improvement_claim": false,
+        "service_claim": false,
+        "stock_pair_pass": true,
+        "suite": "stock",
+        "timing_claim": false,
+        "type": "summary"
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+case_index,kind,normalized_score,expected_high,expected_low,decoded_high,decoded_low,canonical,passed,br,ks,samples,gadget_levels
+0,direct_normalized,63,0,63,0,63,True,True,3,2,3,4
+1,direct_normalized,64,1,0,1,0,True,True,3,2,3,4
+2,direct_normalized,0,0,0,0,0,True,True,3,2,3,4
+3,direct_normalized,4095,63,63,63,62,True,False,3,2,3,4

@@ -1,0 +1,44 @@
+{
+  "schema": "saved-controlled-pass-public-result.v1",
+  "records": [
+    {
+      "source_line": 25,
+      "data": {
+        "record": "RESULT",
+        "param": "23x1",
+        "status": "PASS_SAMPLED_SINGLE_EVALAUTO_COMPONENT",
+        "measured_cases": 10,
+        "full_median_ns": 17125,
+        "pseudo_median_ns": 14354,
+        "input_max": 201895,
+        "full_incremental_max": 84994492591119,
+        "full_total_max": 84994492518821,
+        "pseudo_incremental_max": 86823370360254,
+        "pseudo_total_max": 86823370322553,
+        "input_decode_mismatches": 0,
+        "full_decode_mismatches": 0,
+        "pseudo_decode_mismatches": 0,
+        "cross_arm_decode_mismatches": 0,
+        "component_only": true,
+        "speedup_claimed": false,
+        "pfail_claimed": false,
+        "chen_packing_proven": false,
+        "grouped_trace_proven": false,
+        "selector_proven": false,
+        "promotion": false
+      }
+    },
+    {
+      "source_line": 26,
+      "data": {
+        "record": "FINAL",
+        "status": "PASS_SAMPLED_SINGLE_EVALAUTO_COMPONENTS",
+        "wall_ns": 22250084,
+        "component_only": true,
+        "speedup_claimed": false,
+        "pfail_claimed": false,
+        "composed_promotion": false
+      }
+    }
+  ]
+}

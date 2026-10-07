@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-04",
+  "version": "TFHE-rs1.8.1",
+  "host": "Apple M4 Max, macOS27.2 ARM64,16threads",
+  "compiler": "rustc1.98.1 Homebrew",
+  "gallery": {
+    "N": 120,
+    "D": 512,
+    "threshold": 273,
+    "prepared_on_startup": true
+  },
+  "python": {
+    "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "Pillow_imported": "12.3.0",
+    "packages": {
+      "fastapi": "0.141.1",
+      "uvicorn": "0.52.4",
+      "numpy": "1.26.4",
+      "Pillow": "12.3.0",
+      "insightface": "1.0.1",
+      "onnxruntime": "1.27.0"
+    }
+  },
+  "protocol": "Real unmodified demo launched with existing local models and a new private service instance. One warmup then one measured single-photo query each for Einstein/Curie/Turing, serial, same session. SSE established before POST; request JSON/base64 prepared outside timer. Start before HTTP POST send; stop at complete matching terminal SSE event delimiter. No polling in timed interval.",
+  "counts": {
+    "warmup": 1,
+    "measured": 3,
+    "correct": 4
+  },
+  "timer_exclusions": [
+    "startup, model load, initial gallery preparation",
+    "photo capture or browser file/base64 preparation",
+    "browser drawing/rendering",
+    "real webcam three-shot acquisition"
+  ],
+  "limits": [
+    "Three fixed enrollment-photo queries on one host and one previously generated1.8.1 key family; not an independent biometric test or a latency distribution.",
+    "Local HTTP includes photo upload, queue, decode/detection/embedding, temporary native gallery setup, encryption, FHE, decryption/reset, result serialization and SSE receipt.",
+    "Desktop background load uncontrolled. Native service/library comparison is a separate campaign; do not compute a version delta from this table."
+  ],
+  "source_unchanged": true,
+  "cleanup": {
+    "method": "owned_launcher_SIGTERM_graceful",
+    "launcher_returncode": -15,
+    "sse_thread_finished": true
+  },
+  "samples": [
+    {
+      "phase": "warmup",
+      "scene": "einstein",
+      "expected_id": 1,
+      "correct": true,
+      "post_to_sse_ms": 2141.170375,
+      "post_ack_ms": 9.485917,
+      "internal_total_ms": 2138.0057080095867,
+      "prepare_ms": 98.3178339956794,
+      "setup_span_ms": 163.046,
+      "encrypt_ms": 13.252,
+      "server_ms": 1831.7,
+      "decrypt_ms": 11.458,
+      "request_bytes": 115073
+    },
+    {
+      "phase": "measured",
+      "scene": "einstein",
+      "expected_id": 1,
+      "correct": true,
+      "post_to_sse_ms": 2102.525458,
+      "post_ack_ms": 8.187708,
+      "internal_total_ms": 2100.208791991463,
+      "prepare_ms": 102.70416601269972,
+      "setup_span_ms": 44.010999999999996,
+      "encrypt_ms": 12.089,
+      "server_ms": 1910.5,
+      "decrypt_ms": 10.869,
+      "request_bytes": 115073
+    },
+    {
+      "phase": "measured",
+      "scene": "curie",
+      "expected_id": 2,
+      "correct": true,
+      "post_to_sse_ms": 2103.803458,
+      "post_ack_ms": 7.864042,
+      "internal_total_ms": 2101.3726250093896,
+      "prepare_ms": 101.872833998641,
+      "setup_span_ms": 46.26900000000002,
+      "encrypt_ms": 12.361,
+      "server_ms": 1910.3,
+      "decrypt_ms": 11.101,
+      "request_bytes": 74009
+    },
+    {
+      "phase": "measured",
+      "scene": "turing",
+      "expected_id": 3,
+      "correct": true,
+      "post_to_sse_ms": 2237.939375,
+      "post_ack_ms": 8.692417,
+      "internal_total_ms": 2234.979209009907,
+      "prepare_ms": 106.49787499278318,
+      "setup_span_ms": 46.06600000000002,
+      "encrypt_ms": 12.55,
+      "server_ms": 2037.9,
+      "decrypt_ms": 11.518,
+      "request_bytes": 80453
+    }
+  ],
+  "evidence": {
+    "samples_sha256": "872ac25ab5a4a691bf87b9b6fbcd368630fbfa35e1a4d8ce2c49d271731e982b",
+    "complete_sha256": "284d16bbaed713ed953b9e777eaffcf818a23b3cce9c17824b817aab3d525a7b",
+    "prepared_sha256": "cf0f2ae178a79b10b4a54c7a5ea0a7b49a8481eb67c5d459287d52e0514a4986",
+    "driver_sha256": "6417a97747f8e4a6cbae5faeaa6f4193cdc7d56fef3dc940de13d01b9850e756",
+    "sse_events_sha256": "53b66693358859732a89b7151773d31e180d1e02b2251ffb37274c0e53f89e3c",
+    "binary_sha256": "5b157b37c74c995f624d049d400cb5c0c62cdf4b71e121ebc926c90d17fec546",
+    "keygen_receipt_sha256": "543016e5b2801e9dbf258a1af00edf9b106cdf1d18f436eb018ef9286acc3ec4",
+    "models": {
+      "/opt/models/models/antelopev2/antelopev2/glintr100.onnx": {
+        "bytes": 260665334,
+        "sha256": "4ab1d6435d639628a6f3e5008dd4f929edf4c4124b1a7169e1048f9fef534cdf"
+      },
+      "/opt/models/models/buffalo_s/det_500m.onnx": {
+        "bytes": 2524817,
+        "sha256": "5e4447f50245bbd7966bd6c0fa52938c61474a04ec7def48753668a9d8b4ea3a"
+      },
+      "/opt/models/models/buffalo_s/w600k_mbf.onnx": {
+        "bytes": 13616099,
+        "sha256": "9cc6e4a75f0e2bf0b1aed94578f144d15175f357bdc05e815e5c4a02b319eb4f"
+      }
+    },
+    "source_sha256": {
+      "demo/web/app.py": "594edc632deaf39c8941decf98dbb76eddba06fb4a47ce06e85bda38b48d595b",
+      "demo/web/engines.py": "a19fb793e6961343214f5aab4c0b881e2bc7a789f2e1149c8da14faf0282e6a6",
+      "demo/web/launch.py": "bd0bc542e8058f6f39de5d1b36774c28526a4d309894108b7dafddf00fca0e6f",
+      "demo/web/timeline.py": "8bb12985698423ad735a1a9f249e19a7c99fec556d691ea8f153852c7ea733b8",
+      "demo/web/events.py": "5cf8f03358e482502251a0f26fe8208edece81f667e84523069a59003c7efe35",
+      "demo/web/default_gallery.py": "d94fce7ca977dd21414e24598907ee6028a6a492c00f153d85f5dacae287bd06",
+      "demo/dual_view/enrollment.py": "134e7ffc3c12c03282365c8cbb7916ec354562cadf3c2ff4350eb204780481c8",
+      "demo/dual_view/client.py": "01c0cc86f7c17ec4b0b7d18e90cf5ac2c9de1903cac11f175cb5d48c83361b28",
+      "demo/dual_view/gallery.py": "71131bada0dd45c818a8dc9ed5309da1765f83f90fe1249ed8d4d63f72d44249",
+      "experiments/08_cnn/embedding.py": "80c0bf3b1b274c9efbd7d3ae33253c8d032bbf36aa8c4f0607ce787f94aea428",
+      "demo/web/requirements.txt": "5ccfb0ce25d40a76404db9df6ad9c8ec5721227ad22d3a46ae265cc21c6705d7",
+      "runtime/config.json": "5a6ae46bc188c88b6585ee258532008912bbf0aa41fe2b76caff0e3747ed2a58",
+      "runtime/CIRCUIT_CONTRACT.json": "96269130d3ed5fca499bf5ea04d901760400e2007992dc6feffbd832f739e367",
+      "demo/web/gallery/catalogue.json": "6c8aa96b893ce9a57cf216aa9801395e6802c4ef1a7c6db8665c9c0a0b38b454"
+    },
+    "local_archive": "tmp/current-demo-sse-20261004 in the research workspace; payloads excluded"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "observed_utc": "2026-10-04T17:09:35.312852+00:00",
+  "files": {
+    "probe/Cargo.toml": {
+      "sha256": "3010be99def04ec4257692c353bc82505179cf1b390064089820683208bfb075",
+      "bytes": 228
+    },
+    "probe/Cargo.lock": {
+      "sha256": "d091029dccf1939dbb573d3a658f273bacd53b88ea0c95d83f296c5bd13dd729",
+      "bytes": 2966
+    },
+    "probe/src/main.rs": {
+      "sha256": "420c3f98e5fa37fa538b1c9a671c030cf660658843973903ab1eadcadb9f2ae5",
+      "bytes": 3904
+    },
+    "root/REVIEW.md": {
+      "sha256": "7eaad85fde3d33acbe8f246b23bdd911661faf07cc6adcff7fb1f72562a8707d",
+      "bytes": 3859
+    },
+    "PROTOCOL.md": {
+      "sha256": "2d4a0960ca88e220e27f3d05f2970bcbe536393fc4ef7b13683587850a342d48",
+      "bytes": 1858
+    },
+    "root/FCMA_BOUND.md": {
+      "sha256": "cfae8a0681deb835760105825ce86f1247c908ed8abfe3f8e7f0dfdb6548a4d3",
+      "bytes": 4403
+    },
+    "root/HELPER_SOURCE.md": {
+      "sha256": "8b2d1749e477bab0efe841c95662d76a23edd0e5e6364b44c622b6f63174aa5a",
+      "bytes": 2865
+    },
+    "root/BUILD_DRIVER.py": {
+      "sha256": "1b141ce3184a9913b00078bea470ce6c9b34a7664b023e1fc1288ae5c89e3089",
+      "bytes": 3519
+    }
+  },
+  "native_execution_planned": "metadata only, after frozen image inspection"
+}

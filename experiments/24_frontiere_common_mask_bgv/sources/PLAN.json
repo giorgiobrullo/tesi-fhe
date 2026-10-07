@@ -1,0 +1,169 @@
+{
+  "C_actual_score_pairs_retained": false,
+  "actual_score_word_equality": [
+    "J",
+    "R"
+  ],
+  "all_clocks_before_block_observations": true,
+  "all_encryptions_before_preclock": true,
+  "arms": {
+    "C": {
+      "cm_br": 76,
+      "cm_ks": 72,
+      "extraction": 48,
+      "initial_score_samples": 32,
+      "ordinary_br": 279,
+      "ordinary_ks": 255,
+      "ordinary_marginals": 347,
+      "packing": 44
+    },
+    "J": {
+      "cm_br": 76,
+      "cm_ks": 72,
+      "extraction": 48,
+      "initial_score_samples": 32,
+      "ordinary_br": 167,
+      "ordinary_ks": 191,
+      "ordinary_marginals": 299,
+      "packing": 44
+    },
+    "R": {
+      "cm_br": 0,
+      "cm_ks": 0,
+      "extraction": 0,
+      "initial_score_samples": 32,
+      "ordinary_br": 303,
+      "ordinary_ks": 303,
+      "ordinary_marginals": 307,
+      "packing": 0
+    }
+  },
+  "build_native_owner": "root",
+  "complete_endpoints": 21,
+  "confidence_interval": false,
+  "continuous_cpu_attestation": false,
+  "domain": [
+    -1024,
+    1280
+  ],
+  "expected_id": 16,
+  "extra_prefixes": 2,
+  "fixture_id": "changing_actives_id16",
+  "formal_failure_bound": null,
+  "full_physical": {
+    "cm_br": 1064,
+    "cm_ks": 1008,
+    "extraction": 672,
+    "initial_score_samples": 672,
+    "ordinary_br": 5497,
+    "ordinary_ks": 5497,
+    "ordinary_marginals": 7181,
+    "packing": 616
+  },
+  "full_word_ingress_equalities": [
+    "J_traced_vs_serial",
+    "J_serial_vs_parallel"
+  ],
+  "ingress_ciphertexts": 144,
+  "key_resampling": false,
+  "keys": 1,
+  "measured_blocks": 4,
+  "measured_pair_precedence": {
+    "C_before_R": 2,
+    "J_before_C": 2,
+    "J_before_R": 2
+  },
+  "measured_position_frequencies": {
+    "C": [
+      1,
+      2,
+      1
+    ],
+    "J": [
+      1,
+      2,
+      1
+    ],
+    "R": [
+      2,
+      0,
+      2
+    ]
+  },
+  "n": 16,
+  "packed_encryptions": 6,
+  "parallel_jobs": [
+    "rows16",
+    "top_classifiers16",
+    "canonical_categories16",
+    "pair_levels8_4_2_1",
+    "initial_candidates16"
+  ],
+  "per_block_physical": {
+    "cm_br": 152,
+    "cm_ks": 144,
+    "extraction": 96,
+    "initial_score_samples": 96,
+    "ordinary_br": 749,
+    "ordinary_ks": 749,
+    "ordinary_marginals": 953,
+    "packing": 88
+  },
+  "preclock": [
+    "J_complete_parallel",
+    "C_complete",
+    "R_existing_parallel_diagnostic_complete",
+    "preserved_traced_Joint4_prefix_on_J_score_pairs",
+    "new_serial_Joint4_prefix_on_J_score_pairs"
+  ],
+  "preclock_physical": {
+    "cm_br": 152,
+    "cm_ks": 144,
+    "extraction": 96,
+    "initial_score_samples": 96,
+    "ordinary_br": 1003,
+    "ordinary_ks": 1003,
+    "ordinary_marginals": 1463,
+    "packing": 88
+  },
+  "public_template_distinctness": 16,
+  "root_preclock_and_ledger_accepted": true,
+  "schedule": [
+    [
+      "J",
+      "R",
+      "C"
+    ],
+    [
+      "C",
+      "R",
+      "J"
+    ],
+    [
+      "J",
+      "C",
+      "R"
+    ],
+    [
+      "R",
+      "C",
+      "J"
+    ],
+    [
+      "C",
+      "J",
+      "R"
+    ],
+    [
+      "R",
+      "J",
+      "C"
+    ]
+  ],
+  "schema": "cm-nibble-n16-timing.plan.v1",
+  "source_materialization_authorized": true,
+  "statistics_after_complete_pass_only": true,
+  "stop_after_first_completed_negative": true,
+  "threads": 8,
+  "warmup_blocks": 2
+}

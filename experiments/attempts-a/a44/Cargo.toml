@@ -1,0 +1,24 @@
+[package]
+name = "a44_p16_retune_prototype"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+diagnostic-trace = []
+
+[dependencies]
+tfhe = { version = "0.11", features = ["integer"] }
+rayon = "1"
+bincode = "1"
+dyn-stack = "0.11"
+aligned-vec = "0.6"
+sha2 = "0.10"
+
+[profile.release]
+opt-level = 3
+
+[[bin]]
+name = "a44_p16_retune_prototype"
+path = "src/bin/a44_p16_retune_prototype.rs"
+required-features = ["diagnostic-trace"]

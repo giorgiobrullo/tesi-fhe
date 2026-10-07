@@ -1,0 +1,400 @@
+{
+  "current_baseline": {
+    "certified_rotation_error_radius": 63,
+    "coefficient_halvings_n127": 10874880,
+    "eval_auto_total_n127": 1772,
+    "required_support_step": 128,
+    "retained_trace_stage_count": 7,
+    "smaller_radius_claimed": false
+  },
+  "date": "2026-09-03",
+  "exact_projection_audit": {
+    "exact_basis_checks": 18432,
+    "scope": "ideal exact phase arithmetic; ciphertext rounding and noise excluded",
+    "status": "PASS_EXACT_IDEAL_TRACE_PROJECTIONS",
+    "support_steps": [
+      {
+        "basis_checks": 2048,
+        "support_step": 1,
+        "trace_stages": []
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 2,
+        "trace_stages": [
+          10
+        ]
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 4,
+        "trace_stages": [
+          9,
+          10
+        ]
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 8,
+        "trace_stages": [
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 16,
+        "trace_stages": [
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 32,
+        "trace_stages": [
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 64,
+        "trace_stages": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 128,
+        "trace_stages": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "basis_checks": 2048,
+        "support_step": 256,
+        "trace_stages": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    ]
+  },
+  "exact_radius_geometry_audit": {
+    "criterion": "support_step > 2*radius",
+    "max_composable_radius": 127,
+    "minimality_witness_count": 127,
+    "minimality_witness_sha256": "3f2016a284812c0a3277cfb6dbf6132fdc6648cb779548504ac6dfaf6430b4cd",
+    "radius_128_status": "NO_GO: adjacent intended cells overlap",
+    "safe_radius_cases": 128,
+    "status": "PASS_ALL_INTEGER_RADII_0_TO_127"
+  },
+  "gates_before_using_a_smaller_radius_row": [
+    "derive the radius at the selector-control blind-rotation ingress, not from clear-message geometry",
+    "bind the exact control-LWE modulus-switch and decomposition implementation",
+    "include control-path encryption and key-switch noise, rounding, tie, and half-case semantics",
+    "validate every reachable control and fresh keys before changing the kernel",
+    "freeze a control-path failure probability or deterministic bound",
+    "benchmark the materialized implementation; structural counts are not timing"
+  ],
+  "interpretation": {
+    "conditional_only": true,
+    "current_a92_status_changed": false,
+    "formula": "S=least power of two >=2R+1; t=log2(S); EvalAuto_N127=883+127t",
+    "latency_claim": false,
+    "noise_claim": false,
+    "radius_reduction_claim": false
+  },
+  "promotion_to_runtime_frontier_allowed": false,
+  "schema": "a95.chen-radius-trace-sensitivity.v1",
+  "sensitivity_rows": [
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2
+      ],
+      "coefficient_halvings_n127": 7233536,
+      "eval_auto_nonroot": 7,
+      "eval_auto_root": 1,
+      "eval_auto_saved_vs_current_n127": 889,
+      "eval_auto_total_n127": 883,
+      "guard_coefficients_at_radius_max": 0,
+      "omitted_trace_stage_count": 8,
+      "radius_max": 0,
+      "radius_min": 0,
+      "required_support_step": 1,
+      "retained_trace_stage_count": 0,
+      "retained_trace_stages": [],
+      "robust_width_at_radius_max": 1,
+      "stock_full_ggsw_key_bytes": 196608,
+      "tfhepp_half_ggsw_key_bytes": 98304
+    },
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        9,
+        10
+      ],
+      "coefficient_halvings_n127": 8273920,
+      "eval_auto_nonroot": 9,
+      "eval_auto_root": 3,
+      "eval_auto_saved_vs_current_n127": 635,
+      "eval_auto_total_n127": 1137,
+      "guard_coefficients_at_radius_max": 1,
+      "omitted_trace_stage_count": 6,
+      "radius_max": 1,
+      "radius_min": 1,
+      "required_support_step": 4,
+      "retained_trace_stage_count": 2,
+      "retained_trace_stages": [
+        9,
+        10
+      ],
+      "robust_width_at_radius_max": 3,
+      "stock_full_ggsw_key_bytes": 327680,
+      "tfhepp_half_ggsw_key_bytes": 163840
+    },
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        8,
+        9,
+        10
+      ],
+      "coefficient_halvings_n127": 8794112,
+      "eval_auto_nonroot": 10,
+      "eval_auto_root": 4,
+      "eval_auto_saved_vs_current_n127": 508,
+      "eval_auto_total_n127": 1264,
+      "guard_coefficients_at_radius_max": 1,
+      "omitted_trace_stage_count": 5,
+      "radius_max": 3,
+      "radius_min": 2,
+      "required_support_step": 8,
+      "retained_trace_stage_count": 3,
+      "retained_trace_stages": [
+        8,
+        9,
+        10
+      ],
+      "robust_width_at_radius_max": 7,
+      "stock_full_ggsw_key_bytes": 393216,
+      "tfhepp_half_ggsw_key_bytes": 196608
+    },
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        7,
+        8,
+        9,
+        10
+      ],
+      "coefficient_halvings_n127": 9314304,
+      "eval_auto_nonroot": 11,
+      "eval_auto_root": 5,
+      "eval_auto_saved_vs_current_n127": 381,
+      "eval_auto_total_n127": 1391,
+      "guard_coefficients_at_radius_max": 1,
+      "omitted_trace_stage_count": 4,
+      "radius_max": 7,
+      "radius_min": 4,
+      "required_support_step": 16,
+      "retained_trace_stage_count": 4,
+      "retained_trace_stages": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "robust_width_at_radius_max": 15,
+      "stock_full_ggsw_key_bytes": 458752,
+      "tfhepp_half_ggsw_key_bytes": 229376
+    },
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "coefficient_halvings_n127": 9834496,
+      "eval_auto_nonroot": 12,
+      "eval_auto_root": 6,
+      "eval_auto_saved_vs_current_n127": 254,
+      "eval_auto_total_n127": 1518,
+      "guard_coefficients_at_radius_max": 1,
+      "omitted_trace_stage_count": 3,
+      "radius_max": 15,
+      "radius_min": 8,
+      "required_support_step": 32,
+      "retained_trace_stage_count": 5,
+      "retained_trace_stages": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "robust_width_at_radius_max": 31,
+      "stock_full_ggsw_key_bytes": 524288,
+      "tfhepp_half_ggsw_key_bytes": 262144
+    },
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "coefficient_halvings_n127": 10354688,
+      "eval_auto_nonroot": 13,
+      "eval_auto_root": 7,
+      "eval_auto_saved_vs_current_n127": 127,
+      "eval_auto_total_n127": 1645,
+      "guard_coefficients_at_radius_max": 1,
+      "omitted_trace_stage_count": 2,
+      "radius_max": 31,
+      "radius_min": 16,
+      "required_support_step": 64,
+      "retained_trace_stage_count": 6,
+      "retained_trace_stages": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "robust_width_at_radius_max": 63,
+      "stock_full_ggsw_key_bytes": 589824,
+      "tfhepp_half_ggsw_key_bytes": 294912
+    },
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "coefficient_halvings_n127": 10874880,
+      "eval_auto_nonroot": 14,
+      "eval_auto_root": 8,
+      "eval_auto_saved_vs_current_n127": 0,
+      "eval_auto_total_n127": 1772,
+      "guard_coefficients_at_radius_max": 1,
+      "omitted_trace_stage_count": 1,
+      "radius_max": 63,
+      "radius_min": 32,
+      "required_support_step": 128,
+      "retained_trace_stage_count": 7,
+      "retained_trace_stages": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "robust_width_at_radius_max": 127,
+      "stock_full_ggsw_key_bytes": 655360,
+      "tfhepp_half_ggsw_key_bytes": 327680
+    },
+    {
+      "automorphism_key_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "coefficient_halvings_n127": 11395072,
+      "eval_auto_nonroot": 15,
+      "eval_auto_root": 9,
+      "eval_auto_saved_vs_current_n127": -127,
+      "eval_auto_total_n127": 1899,
+      "guard_coefficients_at_radius_max": 1,
+      "omitted_trace_stage_count": 0,
+      "radius_max": 127,
+      "radius_min": 64,
+      "required_support_step": 256,
+      "retained_trace_stage_count": 8,
+      "retained_trace_stages": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "robust_width_at_radius_max": 255,
+      "stock_full_ggsw_key_bytes": 720896,
+      "tfhepp_half_ggsw_key_bytes": 360448
+    }
+  ],
+  "source_evidence": [
+    {
+      "path": "tmp/a92-chen-partial-trace-packing/a92_chen_partial_trace.py",
+      "sha256": "3c6c8e2cc39de5c03c027837a03c98a62b7dbd04b3b56171788e8cc6a81c814b"
+    },
+    {
+      "path": "tmp/a92-chen-partial-trace-packing/artifacts/a92_static_result.json",
+      "sha256": "85405bd3981c41c0d578a320d025dfec42a8e7e5f2cd14660527d3cd3f10cce0"
+    }
+  ],
+  "status": "PASS_STATIC_CONDITIONAL_SENSITIVITY_NO_RUNTIME_PROMOTION"
+}

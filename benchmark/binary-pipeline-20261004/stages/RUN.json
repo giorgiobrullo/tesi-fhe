@@ -1,0 +1,12 @@
+{
+  "started_utc": "2026-10-04T13:47:04.096468+00:00",
+  "finished_utc": "2026-10-04T13:47:05.956861+00:00",
+  "pid": 10315,
+  "returncode": 101,
+  "process_elapsed_s_not_benchmark": 1.860396458010655,
+  "binary_sha256": "13b3062c8facd098d66dc9ead406f525254ddb40328cc363c2bac202194bf98a",
+  "source_build_sha256": "e03894002a68e7b36c62e36b888796b7a07fdb675584ea6b2d319c1b7aebe168",
+  "raw_sha256": "d04905b0600b168527b69a8425bb22ef6a6d790499590fa712f3996d317a49eb",
+  "scientific_status": "STAGE_REJECTED",
+  "complete_sha256": "747cc902751dbf76964bacab5863824c90832e5b172f5c2c831fbc70619155c0"
+}

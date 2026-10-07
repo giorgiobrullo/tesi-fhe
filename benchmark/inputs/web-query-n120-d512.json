@@ -1,0 +1,75 @@
+{
+  "schema": "web-thread-scaling-fixtures.v1",
+  "gallery_size": 120,
+  "dimension": 512,
+  "configuration": {
+    "modello": "resnet100",
+    "scala": 0.04098006,
+    "q_max": 3
+  },
+  "probe_expected_ids": {
+    "einstein": 1,
+    "curie": 2,
+    "turing": 3
+  },
+  "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+  "platform": {
+    "sysname": "Darwin",
+    "release": "27.2.0",
+    "machine": "arm64"
+  },
+  "packages": {
+    "numpy": "1.26.4",
+    "Pillow": "12.2.0",
+    "insightface": "1.0.1",
+    "onnxruntime": "1.27.0",
+    "scikit-image": "0.26.0"
+  },
+  "pipeline": "prepare_gallery(EnrollmentProcessor); each probe independently reprocessed by the same web-query EnrollmentProcessor",
+  "oracle": "first argmin of norm(template)^2 - 2 dot(template,query), then inclusive winner threshold",
+  "scope": "Public same-source photographs; workload fixtures, not independent-photo biometric validation. No FHE, keys, server, network, or timing benchmark.",
+  "recipe_schema": "archived-input-recipe.v1",
+  "source_manifest": "tmp/m4-thread-scaling-20260921/fixtures/MANIFEST.json",
+  "source_manifest_sha256": "62f15e3e9e524c318c1914232127ce77f02e6c4de6002c64e3aff43440db117b",
+  "transformation": "selected metadata only; no vector content",
+  "private_or_excluded_inputs_included": false,
+  "input_files": [
+    {
+      "workspace_path": "fixtures/gallery.json",
+      "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/gallery.json",
+      "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+      "pin": {
+        "sha256": "6ad678a67bc755c30b1e25afc336079d31a9ee410a8a16b73043a6e1c98a86fe",
+        "bytes": 154052
+      }
+    },
+    {
+      "workspace_path": "fixtures/probes/einstein.json",
+      "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/probes/einstein.json",
+      "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+      "pin": {
+        "sha256": "2f4c48262685673af1de0ab97c77b0e3a9f60aca876a2fcea4c7d2ab7ca7ad6a",
+        "bytes": 2092
+      }
+    },
+    {
+      "workspace_path": "fixtures/probes/curie.json",
+      "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/probes/curie.json",
+      "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+      "pin": {
+        "sha256": "a69a253fd5d8f998b9e017335123d41add577f1872cabdff0c349971fc2cf616",
+        "bytes": 2100
+      }
+    },
+    {
+      "workspace_path": "fixtures/probes/turing.json",
+      "archive_relative": "tmp/m4-thread-scaling-20260921/fixtures/probes/turing.json",
+      "reason": "vector fixture excluded; identity transcribed from the frozen fixture manifest, without opening this input",
+      "pin": {
+        "sha256": "19ecbebc1afcd692baf66efb0950a8387687372e4ca7c56b86ecca5b3226bc5e",
+        "bytes": 2116
+      }
+    }
+  ],
+  "external_dependencies": "Cargo.lock pins package resolutions; package cache/toolchain, vector fixtures and newly generated key material are not included."
+}
