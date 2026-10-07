@@ -9,16 +9,16 @@ ancora cifrati.
 
 La ricerca segue due domande: quanto riconoscimento si conserva dopo la
 quantizzazione e quanto costa prendere la decisione sul dato cifrato.
-Comprende prototipi Concrete, TFHE-rs e CKKS, correzioni di errori e
-alternative che non hanno migliorato il risultato.
+Il percorso comprende la rappresentazione del volto, il calcolo della
+decisione in interi e il confronto fra circuiti Concrete, TFHE-rs e CKKS.
 
 ## Da dove iniziare
 
 Per una prima lettura, seguire questo ordine:
 
-1. [Percorso sperimentale](docs/percorso-sperimentale.md): la storia del lavoro,
-   dalle prime rappresentazioni del volto alla decisione cifrata, con le
-   correzioni e i tentativi scartati nel punto in cui sono avvenuti.
+1. [Percorso sperimentale](docs/percorso-sperimentale.md): dalla rappresentazione
+   del volto alla decisione cifrata, con le scelte del circuito e le prove
+   che le motivano.
 2. [Risultati](findings.md): le conclusioni, i numeri e le prove che li sostengono.
 3. [Letteratura](letteratura.md): il confronto con i lavori precedenti e la bibliografia.
 
@@ -73,7 +73,7 @@ TFHE-rs 1.7 su Apple M4 Max/16 thread. Sono tempi del core: embedding,
 cifratura e HTTP sono esclusi. Il pannello iniziale misura un compito diverso.
 [Dati e metodo](output/figures/progressione-fhe/selettori-corretti-20260920/LEGGIMI.md).
 
-**Applicazione con 120 template.** Nelle prove del 4 ottobre, il
+**Applicazione con 120 template.** Il
 [servizio 1.8.1 a N120](docs/validazione/TEMPI_181_20261004.md)
 richiede circa 1,88–1,90 s nei tre casi misurati; la
 [demo con elaborazione della foto](docs/validazione/DEMO_SSE_20261004.md)
@@ -81,7 +81,7 @@ richiede 2,10–2,24 s dal POST al risultato SSE, esclusi avvio e cattura.
 Qualità biometrica, correttezza sui cifrati provati e tempi sono verifiche separate.
 
 Il [runtime mantenuto](runtime/README.md) usa TFHE-rs 1.8.1, Head/PFKS,
-controllo del selettore rigenerato, packing fino a quattro cifre, 16 thread
+refresh del controllo di selezione, packing fino a quattro cifre, 16 thread
 e FFT fissa; i [termini tecnici](docs/come-funziona-il-confronto.md#termini-usati-nei-readme)
 sono spiegati nel glossario. I programmi usati nelle singole misure sono
 conservati nei rispettivi pacchetti sperimentali.

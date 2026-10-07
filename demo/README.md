@@ -40,13 +40,12 @@ a livello applicativo.
 | Leggere la composizione del motore e i risultati misurati | [Esperimento 22](../experiments/22_demo_composita/README.md) |
 | Consultare API e limiti del circuito | [Contratto del core](../runtime/core/README.md) |
 | Eseguire i test o rigenerare i grafici | [Riproducibilità](../docs/riproducibilita.md) |
-| Leggere il percorso precedente A28/A29/A33 | [Guida storica del 1–2 settembre](README-storico.md) |
+| Consultare il prototipo A28/A29/A33 | [Guida del prototipo](README-storico.md) |
 
 ## Versione della demo
 
-I sorgenti della demo attuale usano il runtime derivato dal pacchetto 22,
-aggiornato a TFHE-rs 1.8.1, e la modalità
-`public_parallel`: ingresso full51/low60 e risposta di tre LWE, con ID
+La demo usa il runtime TFHE-rs 1.8.1 in modalità `public_parallel`:
+ingresso full51/low60 e risposta di tre LWE, con ID
 in base 15. Full51/low60 indica le codifiche numeriche dell'ingresso; le LWE
 sono i valori cifrati che trasportano il risultato. Il dominio ammette fino a
 3374 voci; i risultati pubblicati riguardano le dimensioni delle rispettive
@@ -54,8 +53,8 @@ campagne, non l'intera capienza.
 Il limite dell'interfaccia web è descritto nella sua guida. La versione
 installata di un servizio ospitato dipende dal suo ultimo aggiornamento.
 
-I tempi storici del servizio restano associati ai sorgenti congelati
-dell'esperimento 22.
+L'[esperimento 22](../experiments/22_demo_composita/README.md) conserva
+sorgenti e tempi della propria configurazione.
 
 La variante client/server è destinata all'esecuzione locale con un terminale fidato.
 Il [modello di fiducia](../README.md#modello-di-fiducia) descrive le ipotesi
